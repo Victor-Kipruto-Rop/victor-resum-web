@@ -58,7 +58,7 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; max-width: 100%; overflow-x: hidden; }
 
   body {
     background: var(--paper);
@@ -67,6 +67,7 @@
     font-size: 14px;
     line-height: 1.6;
     overflow-x: hidden;
+    max-width: 100%;
     cursor: none;
     opacity: 0;
     transition: opacity 0.8s ease-in, background 0.3s ease, color 0.3s ease;
@@ -324,11 +325,13 @@
   }
   .section-title {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(32px, 4vw, 52px);
+    font-size: clamp(1.5rem, 5vw, 3rem);
     line-height: 1.05; letter-spacing: -1px;
     color: var(--ink); margin-bottom: 48px;
     text-align: center;
   }
+  
+  p { max-width: 100%; padding: 0 1rem; box-sizing: border-box; }
 
   /* ── Why Hire Me ── */
   #why { background: var(--paper); border-top: 1px solid var(--rule); }
@@ -459,10 +462,11 @@
   .about-fact {
     display: flex; gap: 16px; align-items: baseline;
     padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
   }
   .fact-label {
     font-family: 'DM Mono', monospace; font-size: 10px;
-    letter-spacing: 0.18em; text-transform: uppercase;
+    letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--accent); min-width: 100px;
   }
   .fact-value { font-size: 12.5px; color: var(--ink); }
