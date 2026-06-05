@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Technical Blog — Victor Kipruto Rop</title>
+<meta name="description" content="Technical articles on Data Engineering, ETL, and Cloud Infrastructure by Victor Kipruto Rop."/>
+<link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  :root {
+    --ink:    #0a0e14;
+    --paper:  #f5f0e8;
+    --accent: #c8401a;
+    --muted:  #7a7060;
+    --rule:   #d4cec2;
+  }
+  
+  body.dark-mode {
+    --ink:    #f5f0e8;
+    --paper:  #0a0e14;
+    --accent: #ff4b2b;
+    --muted:  #a1a1aa;
+    --rule:   #27272a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    line-height: 1.8;
+    padding: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  /* ── Theme Toggle ── */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle .fa-sun { display: none; }
+  body.dark-mode .theme-toggle .fa-moon { display: none; }
+  body.dark-mode .theme-toggle .fa-sun { display: block; }
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 9990;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  nav {
+    position: sticky; top: 0; background: var(--paper);
+    padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--rule); z-index: 100;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); text-decoration: none; }
+  .nav-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; margin-left: 32px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  header { padding: 80px 48px; text-align: center; max-width: 900px; margin: 0 auto; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 8vw, 72px); line-height: 1; margin-bottom: 24px; }
+  .header-desc { color: var(--muted); font-size: 18px; font-family: 'Syne', sans-serif; }
+
+  .blog-container { max-width: 800px; margin: 0 auto; padding: 0 24px 120px; }
+  article { margin-bottom: 120px; border-bottom: 1px solid var(--rule); padding-bottom: 80px; }
+  article:last-child { border-bottom: none; }
+  
+  .post-meta { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; display: block; }
+  .post-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.1; margin-bottom: 32px; }
+  .post-content h2 { font-family: 'Syne', sans-serif; font-size: 24px; margin: 48px 0 24px; color: var(--ink); }
+  .post-content p { margin-bottom: 24px; color: var(--ink); opacity: 0.9; }
+  .post-content code { background: rgba(10,14,20,0.05); padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+  
+  .back-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
+  .back-link:hover { text-decoration: underline; }
+
+  footer { padding: 48px; border-top: 1px solid var(--rule); text-align: center; color: var(--muted); font-size: 12px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    header { padding: 60px 24px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Victor Kipruto Rop</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#send-message">Contact</a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</nav>
+
+<script>
+  // Theme Toggle Logic
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+  });
+</script>
+
+<header>
+  <p class="post-meta">// THE DATA LOG</p>
+  <h1>Technical Insights & Engineering Notes</h1>
+  <p class="header-desc">Deep dives into data infrastructure, real-time systems, and the future of data engineering.</p>
+</header>
+
+<main class="blog-container">
+
+  <article id="airflow-scalability">
+    <span class="post-meta">Oct 12, 2026 · 8 min read</span>
+    <h2 class="post-title">Architecting Scalable Data Pipelines with Apache Airflow</h2>
+    <div class="post-content">
+      <p>Apache Airflow has become the industry standard for workflow orchestration, but as your data ecosystem grows, so do the challenges of maintaining performance and reliability. In this article, we explore how to move beyond simple DAGs to enterprise-grade infrastructure.</p>
+      
+      <h2>1. The Modular DAG Approach</h2>
+      <p>One of the most common pitfalls is creating monolithic DAG files. Instead, leverage <code>TaskGroups</code> and dynamic DAG generation. By separating your configuration from your logic, you can scale to hundreds of similar pipelines without repeating code.</p>
+      
+      <h2>2. Custom Operators and Hooks</h2>
+      <p>When interacting with niche APIs or internal systems, avoid cluttering your DAGs with <code>PythonOperators</code> containing hundreds of lines of logic. Building custom operators ensures reusability and makes your pipelines significantly easier to unit test with <code>pytest</code>.</p>
+      
+      <h2>3. Monitoring and SLAs</h2>
+      <p>Scaling isn't just about throughput; it's about visibility. Implementing <code>sla_miss_callbacks</code> and integrating with tools like Prometheus or Datadog allows you to catch bottlenecks before they impact downstream BI reports.</p>
+    </div>
+    <a href="index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog List</a>
+  </article>
+
+  <article id="kafka-vs-rabbitmq">
+    <span class="post-meta">Sep 28, 2026 · 10 min read</span>
+    <h2 class="post-title">Real-time Stream Processing: Kafka vs. RabbitMQ</h2>
+    <div class="post-content">
+      <p>Choosing the right message broker is critical for real-time systems. While both Kafka and RabbitMQ facilitate asynchronous communication, they serve fundamentally different architectural patterns.</p>
+      
+      <h2>The Log vs. The Queue</h2>
+      <p>RabbitMQ is a traditional message broker designed for complex routing. Once a consumer acknowledges a message, it is deleted. Kafka, however, is a distributed commit log. This allows for <strong>replayability</strong>—multiple consumers can read the same data at different speeds without interference.</p>
+      
+      <h2>When to choose Kafka?</h2>
+      <p>If you are building a system like the Mpesa transaction streaming pipeline where you need to persist data for audit trails and perform stream processing (e.g., fraud detection), Kafka is the superior choice due to its high throughput and durability.</p>
+    </div>
+    <a href="index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog List</a>
+  </article>
+
+  <article id="dimensional-modelling">
+    <span class="post-meta">Aug 15, 2026 · 6 min read</span>
+    <h2 class="post-title">Dimensional Modelling in Modern Data Warehouses</h2>
+    <div class="post-content">
+      <p>Despite the rise of "One Big Table" (OBT) in some modern stacks, the principles of Dimensional Modelling (Kimball) remain essential for efficient analytics.</p>
+      
+      <h2>The Star Schema Advantage</h2>
+      <p>A well-designed Star Schema—consisting of a central Fact table and surrounding Dimension tables—optimizes for <code>JOIN</code> performance in columnar databases like Snowflake and BigQuery. It provides a clear, intuitive structure for business users to navigate.</p>
+      
+      <h2>Slowly Changing Dimensions (SCD)</h2>
+      <p>Handling change over time is where modelling shines. Whether implementing Type 1 (overwriting) or Type 2 (versioning), having a robust modelling layer ensures your historical reporting remains accurate even as the business evolves.</p>
+    </div>
+    <a href="index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog List</a>
+  </article>
+
+</main>
+
+<footer>
+  <p>© 2026 Victor Kipruto Rop · Built with focus on data integrity.</p>
+</footer>
+
+</body>
+</html>

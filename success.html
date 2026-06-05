@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Message Sent — Victor Kipruto Rop</title>
+<meta name="description" content="Thank you for your message. Victor Kipruto Rop will get back to you soon."/>
+<link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono&family=Syne:wght@600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:    #0a0e14;
+    --paper:  #f5f0e8;
+    --accent: #c8401a;
+    --muted:  #7a7060;
+    --rule:   #d4cec2;
+  }
+  
+  body.dark-mode {
+    --ink:    #f5f0e8;
+    --paper:  #0a0e14;
+    --accent: #ff4b2b;
+    --muted:  #a1a1aa;
+    --rule:   #27272a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    padding: 24px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  /* ── Theme Toggle ── */
+  .theme-toggle {
+    position: fixed; top: 20px; right: 20px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-size: 16px;
+    z-index: 100;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle .fa-sun { display: none; }
+  body.dark-mode .theme-toggle .fa-moon { display: none; }
+  body.dark-mode .theme-toggle .fa-sun { display: block; }
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: -1;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+  .container {
+    max-width: 500px;
+    width: 100%;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(40px, 8vw, 64px);
+    line-height: 1;
+    margin-bottom: 24px;
+    color: var(--accent);
+  }
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--ink);
+    transition: all 0.25s;
+  }
+  .btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 480px) {
+    h1 { font-size: 48px; }
+    p { font-size: 13px; }
+    .btn { width: 100%; text-align: center; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
+
+  <div class="container">
+    <h1>Thank You.</h1>
+    <p>Your message has been received. I appreciate you reaching out and will get back to you as soon as possible.</p>
+    <a href="index.html" class="btn">Back to Portfolio</a>
+  </div>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+      localStorage.setItem('theme', theme);
+    });
+  </script>
+</body>
+</html>
