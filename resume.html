@@ -74,11 +74,11 @@
     border-radius: 50%;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     font-size: 16px;
-    margin-left: 20px;
+    position: relative; z-index: 102;
   }
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--card); }
   .theme-toggle .fa-sun { display: none; }
   body.dark-mode .theme-toggle .fa-moon { display: none; }
   body.dark-mode .theme-toggle .fa-sun { display: block; }
@@ -149,19 +149,25 @@
     padding: 20px 48px;
     background: transparent;
     transition: background 0.3s ease;
+    gap: 20px;
+  }
+  .nav-right {
+    display: flex; align-items: center; gap: 16px;
   }
   @media (max-width: 720px) {
-    nav { padding: 16px 20px; }
+    nav { padding: 16px 20px; gap: 12px; }
     .nav-logo { font-size: 16px; }
     .nav-links { gap: 16px; }
     .nav-links a { font-size: 10px; letter-spacing: 0.08em; }
+    .theme-toggle { width: 36px; height: 36px; font-size: 14px; }
   }
   @media (max-width: 480px) {
-    nav { padding: 14px 16px; }
+    nav { padding: 14px 16px; gap: 8px; }
     .nav-logo { font-size: 14px; }
     .nav-username { font-size: 11px; }
     .nav-links { gap: 12px; }
     .nav-links a { font-size: 9px; }
+    .theme-toggle { width: 32px; height: 32px; font-size: 12px; }
   }
   body.dark-mode nav { mix-blend-mode: normal; }
   /* Light mode only blending for paper effect */
@@ -174,16 +180,48 @@
   }
   .nav-username { font-family: 'DM Mono', monospace; font-size:13px; color:var(--muted); font-weight:700; text-decoration:none; transition: color 0.3s ease; }
   body.dark-mode .nav-username { color: var(--ink); }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
+
+  /* ── Hamburger Menu ── */
+  .hamburger {
+    display: none; background: none; border: none; cursor: pointer; padding: 8px;
+    align-items: center; justify-content: center; font-size: 28px;
+    color: var(--ink); position: relative; z-index: 101;
+  }
+  .hamburger-close { display: none; }
+  .hamburger.active .hamburger-icon { display: none; }
+  .hamburger.active .hamburger-close { display: inline; }
+  
+  .nav-links {
+    display: flex; gap: 32px; align-items: center;
+  }
   .nav-links a {
     font-family: 'DM Mono', monospace;
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--muted); text-decoration: none;
     transition: color 0.3s;
   }
+  .nav-links a:hover { color: var(--accent); }
   body.dark-mode .nav-links a { color: var(--ink); opacity: 0.8; }
   body.dark-mode .nav-links a:hover { opacity: 1; color: var(--accent); }
-  .nav-links a:hover { color: var(--accent); }
+  
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0;
+      display: none; flex-direction: column; gap: 0;
+      background: var(--paper); border-bottom: 1px solid var(--rule);
+      padding: 0; max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .nav-links.active {
+      display: flex; max-height: 500px; padding: 16px 0;
+    }
+    .nav-links a {
+      padding: 12px 20px; font-size: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-links a:last-of-type { border-bottom: none; }
+  }
 
   /* ── Hero ── */
   #hero {
@@ -195,16 +233,27 @@
     overflow: hidden;
   }
   .hero-left {
-    display: flex; flex-direction: column; justify-content: center; /* vertically center content */
+    display: flex; flex-direction: column; justify-content: center;
     padding: 0 96px 60px;
     position: relative; z-index: 3;
     gap: 18px;
-    max-width: 900px;
+    max-width: 900px; width: 100%;
   }
   .hero-right {
-    display: flex; align-items: center; justify-content: center; padding-top: 0; /* align image vertically with name */
+    display: flex; align-items: center; justify-content: center; padding-top: 0;
   }
   .hero-right-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; padding-right: 96px; }
+  @media (max-width: 1024px) {
+    .hero-left { padding: 0 48px 40px; }
+    .hero-right-inner { padding-right: 48px; }
+  }
+  @media (max-width: 768px) {
+    .hero-left { padding: 70px 24px 40px; }
+    .hero-right-inner { padding-right: 0; }
+  }
+  @media (max-width: 480px) {
+    .hero-left { padding: 60px 18px 32px; gap: 14px; }
+  }
   .hero-prof { width: 360px; height: 360px; object-fit: cover; border-radius: 50%; border: none; box-shadow: 0 22px 48px rgba(10,14,20,0.14); overflow: hidden; }
   @media (max-width: 1024px) { .hero-prof { width: 260px; height: 260px; } }
   @media (max-width: 720px) { .hero-prof { width: 220px; height: 220px; } }
@@ -226,7 +275,7 @@
     .hero-left { padding: 48px 32px; }
   }
   @media (max-width: 720px) {
-    #hero { min-height: auto; padding-top: 100px; }
+    #hero { min-height: auto; padding-top: 60px; }
     .hero-left { padding: 24px 20px 32px 20px; gap: 14px; }
     .hero-right-inner { padding-right: 0; gap: 16px; }
     .hero-prof { width: 180px; height: 180px; }
@@ -235,7 +284,7 @@
     .social-icon { width: 36px; height: 36px; }
   }
   @media (max-width: 480px) {
-    #hero { padding-top: 90px; }
+    #hero { padding-top: 55px; }
     .hero-left { padding: 20px 16px 24px 16px; }
     .hero-prof { width: 160px; height: 160px; }
     .hero-social { gap: 12px; }
@@ -248,9 +297,12 @@
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     color: #ff4b2b; margin-bottom: 24px;
     font-weight: 700; display: inline-block;
-    opacity: 0;
+    opacity: 0; max-width: 100%; word-break: break-word;
     /* entrance + subtle attention pulse */
     animation: fadeUp 0.6s 0.12s forwards, pulseAttention 1.6s 1s infinite ease-in-out;
+  }
+  @media (max-width: 480px) {
+    .hero-eyebrow { font-size: 10px; letter-spacing: 0.12em; margin-bottom: 16px; }
   }
   @keyframes pulseAttention {
     0%   { transform: translateY(0) scale(1); text-shadow: 0 0 0 rgba(255,75,43,0); }
@@ -261,8 +313,11 @@
     font-family: 'DM Serif Display', serif;
     font-size: clamp(42px, 6vw, 68px);
     line-height: 0.95; letter-spacing: -2px;
-    color: var(--ink); margin-bottom: 8px;
+    color: var(--ink); margin-bottom: 8px; max-width: 100%; word-wrap: break-word;
     /* Animation handled by JS staggered reveal */
+  }
+  @media (max-width: 480px) {
+    .hero-name { letter-spacing: -1px; }
   }
   .hero-name em {
     font-style: italic; color: var(--accent);
@@ -271,13 +326,19 @@
     font-family: 'Syne', sans-serif;
     font-size: clamp(14px, 2vw, 20px); font-weight: 600;
     color: var(--muted); margin-bottom: 40px; letter-spacing: 0.01em;
-    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+    opacity: 0; animation: fadeUp 0.9s 0.5s forwards; max-width: 100%; word-wrap: break-word;
+  }
+  @media (max-width: 480px) {
+    .hero-title { margin-bottom: 28px; letter-spacing: 0em; }
   }
   .hero-desc {
-    max-width: 440px;
+    max-width: 440px; width: 100%;
     font-size: 13px; line-height: 1.75; color: var(--muted);
     margin-bottom: 48px;
     opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
+  }
+  @media (max-width: 480px) {
+    .hero-desc { font-size: 12px; line-height: 1.65; margin-bottom: 32px; }
   }
   .hero-cta {
     display: flex; gap: 16px; flex-wrap: wrap;
@@ -350,7 +411,10 @@
     font-size: clamp(32px, 4vw, 52px);
     line-height: 1.05; letter-spacing: -1px;
     color: var(--ink); margin-bottom: 48px;
-    text-align: center;
+    text-align: center; max-width: 100%; width: 100%; word-wrap: break-word;
+  }
+  @media (max-width: 480px) {
+    .section-title { letter-spacing: -0.5px; margin-bottom: 32px; }
   }
 
   /* ── Why Hire Me ── */
@@ -380,14 +444,14 @@
     color: var(--ink); margin-bottom: 8px; letter-spacing: 0.01em;
   }
   .why-card p {
-    font-size: 13px; line-height: 1.6; color: var(--muted);
+    font-size: 13px; line-height: 1.6; color: var(--muted); max-width: 100%;
   }
-  .why-summary { max-width: 900px; margin: 0 auto; padding: 28px; background: transparent; }
-  .why-summary .why-text { font-size: 18px; line-height: 1.9; color: var(--muted); text-align: center; font-family: 'Syne', sans-serif; }
+  .why-summary { max-width: 900px; width: 100%; margin: 0 auto; padding: 28px; background: transparent; }
+  .why-summary .why-text { font-size: 18px; line-height: 1.9; color: var(--muted); text-align: center; font-family: 'Syne', sans-serif; max-width: 100%; }
 
   /* ── Skills ── */
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
-  .skills-wrap { max-width: 1180px; margin: 12px auto 0; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; }
+  .skills-wrap { max-width: 1180px; width: 100%; margin: 12px auto 0; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; }
   .skill-pill { display:inline-block; padding:10px 14px; border-radius:999px; background: var(--paper); color: var(--ink); border:1px solid var(--rule); font-family: 'DM Mono', monospace; font-size:14px; box-shadow: 0 6px 18px rgba(10,14,20,0.04); }
   .skill-pill:hover { background: var(--card); transform: translateY(-2px); }
   @media (max-width: 1100px) { #skills { padding: 28px 16px; } .skill-pill { font-size:13px; padding:8px 12px; } }
@@ -650,15 +714,21 @@
     <img src="assets/1.jpeg" alt="Victor Kipruto Rop" style="height: 48px; width: 48px; border-radius: 50%; object-fit: cover; display: block;"/>
     <span class="nav-username">@kipruto45</span>
   </a>
-  <div class="nav-links">
-    <a href="#github-activity">Activity</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#blog">Blog</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#about">About</a>
-    <a href="#send-message">Contact</a>
-    <a href="assets/Victor_Kipruto_Resume.pdf" download style="color: var(--accent); font-weight: 600;">Download CV</a>
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger-icon">☰</span>
+      <span class="hamburger-close">✕</span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="#github-activity">Activity</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#about">About</a>
+      <a href="#send-message">Contact</a>
+      <a href="assets/Victor_Kipruto_Resume.pdf" download style="color: var(--accent); font-weight: 600;">Download CV</a>
+    </div>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
@@ -1279,6 +1349,25 @@
       console.error('fetchRepos failed', e);
       ensureStaticProjects();
     }
+  }
+
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
   // Call loadGitHubActivity and fetchRepos on load
