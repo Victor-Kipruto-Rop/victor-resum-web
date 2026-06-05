@@ -737,6 +737,9 @@
       <a href="#send-message">Contact</a>
       <a href="assets/Victor_Kipruto_Resume.pdf" download style="color: var(--accent); font-weight: 600;">Download CV</a>
     </div>
+    <a class="nav-github" href="https://github.com/kipruto45" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub">
+      <i class="fab fa-github" style="font-size:20px;display:block"></i>
+    </a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
@@ -758,6 +761,7 @@
     <div class="hero-cta">
       <a class="btn-primary magnetic" href="#projects">View Projects</a>
       <a class="btn-ghost magnetic" href="#send-message">Hire Me</a>
+      <a class="btn-ghost magnetic" href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" aria-label="Schedule a call">Schedule Call</a>
       <a class="btn-ghost magnetic" href="assets/Victor_Kipruto_Resume.pdf" download aria-label="Download Victor's Resume CV">Download CV</a>
     </div>
   </div>
@@ -897,8 +901,8 @@
             <span class="stack-badge">Cloud Storage</span>
           </div>
           <div class="project-actions">
-            <a class="btn-sm btn-primary-sm" href="https://github.com/kipruto45/Data-Enginerring-full-project" target="_blank" rel="noopener">View</a>
-            <a class="btn-sm btn-outline" href="https://github.com/kipruto45/Data-Enginerring-full-project" target="_blank" rel="noopener">Readme</a>
+            <a class="btn-sm btn-primary-sm" href="https://github.com/kipruto45/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View project">GitHub</a>
+            <a class="btn-sm btn-outline" href="https://github.com/kipruto45/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View README">Readme</a>
           </div>
         </div>
       </div>
@@ -983,22 +987,45 @@
   <h2 class="section-title">Technical Blog</h2>
   <div class="blog-grid">
     <div class="blog-card reveal">
-      <span class="blog-date">Oct 12, 2026</span>
+      <span class="blog-date">Oct 12, 2026 · 8 min read</span>
       <h3 class="blog-title">Architecting Scalable Data Pipelines with Apache Airflow</h3>
       <p class="blog-excerpt">Exploring the best practices for managing complex DAGs, implementing robust error handling, and ensuring data consistency across distributed systems.</p>
       <a href="blog.html#airflow-scalability" class="btn-ghost btn-sm">Read Article</a>
     </div>
     <div class="blog-card reveal" style="transition-delay:0.1s">
-      <span class="blog-date">Sep 28, 2026</span>
+      <span class="blog-date">Sep 28, 2026 · 10 min read</span>
       <h3 class="blog-title">Real-time Stream Processing: Kafka vs. RabbitMQ</h3>
       <p class="blog-excerpt">A deep dive into the architectural trade-offs between different messaging systems for high-throughput financial data ingestion.</p>
       <a href="blog.html#kafka-vs-rabbitmq" class="btn-ghost btn-sm">Read Article</a>
     </div>
     <div class="blog-card reveal" style="transition-delay:0.2s">
-      <span class="blog-date">Aug 15, 2026</span>
+      <span class="blog-date">Aug 15, 2026 · 6 min read</span>
       <h3 class="blog-title">Dimensional Modelling in Modern Data Warehouses</h3>
       <p class="blog-excerpt">Why the Star Schema remains the gold standard for analytical queries in Snowflake and BigQuery environments.</p>
       <a href="blog.html#dimensional-modelling" class="btn-ghost btn-sm">Read Article</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-label">// 05</p>
+  <h2 class="section-title">Testimonials & Feedback</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px">
+    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
+      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6">&quot;Victor's ability to design scalable data pipelines is exceptional. His Airflow implementations are production-ready and well-documented. A great addition to any data team.&quot;</p>
+      <p style="font-weight:600;color:var(--accent);margin-bottom:4px">Data Engineering Mentor</p>
+      <p style="color:var(--muted);font-size:13px">Project Lead • The Cooperative University</p>
+    </div>
+    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
+      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6\">&quot;Demonstrates exceptional understanding of cloud infrastructure, CI/CD pipelines, and distributed systems. Eager to learn and collaborate effectively with the team.&quot;</p>
+      <p style="font-weight:600;color:var(--accent);margin-bottom:4px\">DevOps & Infrastructure Review</p>
+      <p style="color:var(--muted);font-size:13px\">Technical Assessment • GitHub Projects</p>
+    </div>
+    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)\">
+      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6\">&quot;Proficient in ETL architectures, real-time streaming with Kafka, and warehouse modelling. Shows strong fundamentals and brings fresh perspectives to complex problems.&quot;</p>
+      <p style="font-weight:600;color:var(--accent);margin-bottom:4px\">Data Architecture Review</p>
+      <p style="color:var(--muted);font-size:13px\">Technical Feedback • Project Collaboration</p>
     </div>
   </div>
 </section>
@@ -1080,31 +1107,55 @@
 
 <!-- SEND MESSAGE -->
 <section id="send-message">
-  <p class="section-label">// 06</p>
-  <h2 class="section-title">Send a Message</h2>
-  <div data-fs-success class="fs-success" style="display:none; text-align:center; margin-bottom:12px;">Thanks — your message was sent.</div>
-  <div data-fs-error class="fs-error" style="display:none; text-align:center; margin-bottom:12px;">Oops — there was an error sending your message.</div>
-  <form id="contact-form" class="contact-form" action="https://formspree.io/f/xkoagvvk" method="POST">
-    <div class="contact-row">
-      <input class="field" type="text" name="name" placeholder="Your name" required data-fs-field />
-      <input class="field" type="email" name="email" placeholder="Your email" required data-fs-field />
+  <p class="section-label">// 07</p>
+  <h2 class="section-title">Get in Touch</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin:48px 0;align-items:start">
+    <div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Schedule a Call</h3>
+      <p style="color:var(--muted);margin-bottom:16px;">Want to discuss data engineering, project collaboration, or just chat about pipelines? Book a time that works for you.</p>
+      <a href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block">Schedule on Calendly →</a>
     </div>
-    <input type="text" name="subject" placeholder="Subject" required data-fs-field />
-    <textarea name="message" placeholder="Message" required data-fs-field></textarea>
-    <div style="display:flex;gap:12px;justify-content:center;margin-top:8px;">
-      <button type="submit" class="btn-primary" data-fs-submit-btn>Send Message</button>
-      <button type="reset" class="btn-ghost">Reset</button>
+    <div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Send a Message</h3>
+      <p style="color:var(--muted);margin-bottom:16px;">Prefer email? Send me a message and I'll get back to you within 24 hours.</p>
+      <div data-fs-success class="fs-success" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">✓ Thanks — your message was sent.</div>
+      <div data-fs-error class="fs-error" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">⚠ Oops — there was an error. Please try again.</div>
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/xkoagvvk" method="POST">
+        <div class="contact-row">
+          <input class="field" type="text" name="name" placeholder="Your name" required data-fs-field />
+          <input class="field" type="email" name="email" placeholder="Your email" required data-fs-field />
+        </div>
+        <input type="text" name="subject" placeholder="Subject" required data-fs-field />
+        <textarea name="message" placeholder="Message" required data-fs-field></textarea>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:8px;">
+          <button type="submit" class="btn-primary" data-fs-submit-btn>Send Message</button>
+          <button type="reset" class="btn-ghost">Reset</button>
+        </div>
+      </form>
+      <p class="contact-note small">Powered by <a href="https://formspree.io" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">Formspree</a></p>
     </div>
-  </form>
-  <p class="contact-note small">You will receive feedback as soon as possible.</p>
+  </div>
 </section>
 
 </main>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Victor Kipruto Rop</p>
-  <p>Nairobi, Kenya</p>
+  <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap">
+    <div>
+      <p>© 2026 Victor Kipruto Rop</p>
+      <p>Nairobi, Kenya</p>
+    </div>
+    <div style="flex:1;min-width:200px">
+      <p style="font-weight:600;margin-bottom:8px;color:var(--accent)">Latest Projects</p>
+      <div style="display:flex;gap:16px;font-size:13px">
+        <a href="https://github.com/kipruto45/Data-Enginerring-full-project" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;transition:0.3s">Data Engineering</a>
+        <a href="https://github.com/kipruto45/cloud-etl-pipeline" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;transition:0.3s">Cloud ETL</a>
+        <a href="https://github.com/kipruto45/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;transition:0.3s">Streaming</a>
+        <a href="https://github.com/kipruto45" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600;transition:0.3s">See All →</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>
