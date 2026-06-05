@@ -101,9 +101,24 @@
   footer { padding: 48px; border-top: 1px solid var(--rule); text-align: center; color: var(--muted); font-size: 12px; }
 
   @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
+    nav { 
+      padding: 12px 16px; 
+      flex-direction: row; 
+      flex-wrap: wrap; 
+      justify-content: space-between; 
+      align-items: center; 
+    }
+    .nav-logo { flex: 1; }
+    .theme-toggle { margin-left: auto; width: 36px; height: 36px; font-size: 14px; }
+    .nav-links { 
+      order: 3;
+      display: flex; width: 100%; overflow-x: auto; 
+      padding: 8px 0; gap: 20px; 
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { white-space: nowrap; font-size: 11px; margin-left: 0; margin-right: 20px; }
     header { padding: 60px 24px; }
-    .nav-links { display: none; }
     .blog-container { padding-bottom: 80px; }
     article { margin-bottom: 80px; padding-bottom: 40px; }
   }
@@ -125,11 +140,11 @@
     <a href="index.html">Home</a>
     <a href="index.html#projects">Projects</a>
     <a href="index.html#send-message">Contact</a>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-      <i class="fas fa-moon"></i>
-      <i class="fas fa-sun"></i>
-    </button>
   </div>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
 </nav>
 
 <script>

@@ -27,13 +27,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x22t01hk2k");
-</script>
 <style>
   :root {
     --ink:    #0a0e14;
@@ -70,8 +63,6 @@
     cursor: none;
     opacity: 0;
     transition: opacity 0.8s ease-in, background 0.3s ease, color 0.3s ease;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
   }
   
   /* ── Theme Toggle ── */
@@ -159,6 +150,19 @@
     background: transparent;
     transition: background 0.3s ease;
   }
+  @media (max-width: 720px) {
+    nav { padding: 16px 20px; }
+    .nav-logo { font-size: 16px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 10px; letter-spacing: 0.08em; }
+  }
+  @media (max-width: 480px) {
+    nav { padding: 14px 16px; }
+    .nav-logo { font-size: 14px; }
+    .nav-username { font-size: 11px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 9px; }
+  }
   body.dark-mode nav { mix-blend-mode: normal; }
   /* Light mode only blending for paper effect */
   body:not(.dark-mode) nav { mix-blend-mode: multiply; }
@@ -220,6 +224,24 @@
     .hero-right { padding-top: 40px; }
     .hero-prof { width: 220px; height: 220px; border-radius: 50%; }
     .hero-left { padding: 48px 32px; }
+  }
+  @media (max-width: 720px) {
+    #hero { min-height: auto; padding-top: 100px; }
+    .hero-left { padding: 24px 20px 32px 20px; gap: 14px; }
+    .hero-right-inner { padding-right: 0; gap: 16px; }
+    .hero-prof { width: 180px; height: 180px; }
+    .hero-social { gap: 16px; flex-wrap: wrap; }
+    .social-link { font-size: 12px; }
+    .social-icon { width: 36px; height: 36px; }
+  }
+  @media (max-width: 480px) {
+    #hero { padding-top: 90px; }
+    .hero-left { padding: 20px 16px 24px 16px; }
+    .hero-prof { width: 160px; height: 160px; }
+    .hero-social { gap: 12px; }
+    .social-icon { width: 32px; height: 32px; font-size: 14px; }
+    .hero-name { font-size: 32px; }
+    .social-label { font-size: 11px; }
   }
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
@@ -315,6 +337,9 @@
 
   /* ── Sections ── */
   section { padding: 96px 48px; }
+  @media (max-width: 1024px) { section { padding: 64px 32px; } }
+  @media (max-width: 720px) { section { padding: 48px 20px; } }
+  @media (max-width: 480px) { section { padding: 32px 16px; } }
   .section-label {
     font-family: 'DM Mono', monospace; font-size: 10px;
     letter-spacing: 0.25em; text-transform: uppercase;
@@ -382,7 +407,7 @@
   .projects-grid::-webkit-scrollbar-thumb{background:rgba(10,14,20,0.06);border-radius:6px}
 
   .project-card {
-    min-width: 280px; flex: 0 0 280px; display: flex; flex-direction: column; background: var(--paper); padding: 0; border-radius: 12px; overflow:hidden;
+    min-width: 320px; flex: 0 0 320px; display: flex; flex-direction: column; background: var(--paper); padding: 0; border-radius: 12px; overflow:hidden;
     box-shadow: 0 10px 30px rgba(10,14,20,0.04); border: 1px solid var(--rule);
     opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s;
   }
@@ -443,7 +468,7 @@
     border: none; z-index: 0;
   }
   .about-photo {
-    width: 100%; max-width: 320px; height: auto; aspect-ratio: 4/5; object-fit: cover;
+    width: 320px; height: 400px; object-fit: cover;
     position: relative; z-index: 1;
     filter: grayscale(20%);
     border-radius: 8px;
@@ -512,61 +537,31 @@
   }
 
   /* ── Mobile ── */
-  @media (max-width: 1024px) {
-    #hero { grid-template-columns: 1fr; min-height: auto; padding-top: 100px; }
-    .hero-left { padding: 40px 24px; align-items: center; text-align: center; }
-    .hero-right { padding-top: 20px; padding-bottom: 60px; }
-    .hero-right-inner { padding-right: 0; }
-    .hero-prof { width: 280px; height: 280px; }
-    .hero-desc { margin-left: auto; margin-right: auto; }
-    .hero-cta { justify-content: center; }
-    .why-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
   @media (max-width: 768px) {
-    nav { 
-      padding: 12px 16px; 
-      flex-direction: row; 
-      flex-wrap: wrap; 
-      justify-content: space-between; 
-      align-items: center; 
-      background: var(--paper); /* Ensure background on mobile nav for clarity */
-    }
-    .nav-logo { flex: 1; }
-    .theme-toggle { margin-left: auto; width: 36px; height: 36px; font-size: 14px; }
-    .nav-links { 
-      order: 3;
-      display: flex; width: 100%; overflow-x: auto; 
-      padding: 8px 0; gap: 20px; 
-      scrollbar-width: none;
-    }
-    .nav-links::-webkit-scrollbar { display: none; }
-    .nav-links a { white-space: nowrap; font-size: 10px; }
-    section { padding: 48px 20px; }
-    .why-grid { grid-template-columns: 1fr; gap: 24px; }
-    .about-layout { grid-template-columns: 1fr; gap: 40px; }
-    .contact-layout { grid-template-columns: 1fr; gap: 48px; }
-    .skills-layout { grid-template-columns: 1fr; gap: 24px; }
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 120px 24px 40px; }
+    .hero-right { height: auto; padding-bottom: 40px; }
+    .hero-right-inner { padding-right: 0; }
+    section { padding: 64px 24px; }
+    .why-grid, .about-layout, .contact-layout, .skills-layout { grid-template-columns: 1fr; gap: 24px; }
+    .about-layout { gap: 40px; }
+    .contact-layout { gap: 48px; }
     .hero-photo, .about-photo { width: 100%; height: auto; aspect-ratio: 4/5; }
     .about-photo-wrap::before { display: none; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
     .contact-row { flex-direction: column; }
-    .hero-counter { display: none; }
   }
 
   @media (max-width: 480px) {
-    .hero-name { font-size: clamp(32px, 10vw, 42px); }
-    .hero-title { font-size: 15px; }
-    .hero-desc { font-size: 13px; line-height: 1.6; }
-    .section-title { font-size: 26px; margin-bottom: 32px; }
-    .hero-cta { flex-direction: column; width: 100%; align-items: center; }
-    .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+    .hero-name { font-size: 36px; }
+    .hero-title { font-size: 16px; }
+    .section-title { font-size: 28px; }
+    .hero-cta { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-ghost { text-align: center; width: 100%; }
     #cursor, #cursor-ring { display: none; }
     body { cursor: auto; }
-    section { padding: 48px 20px; }
-    .why-card { padding: 20px; }
-    .nav-logo img { height: 36px; width: 36px; }
-    .nav-username { font-size: 12px; }
   }
 
   /* Contact form styles */
@@ -580,7 +575,7 @@
   /* ── Blog & Testimonials ── */
   .blog-grid, .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 32px;
     margin-top: 48px;
   }
@@ -663,11 +658,11 @@
     <a href="#about">About</a>
     <a href="#send-message">Contact</a>
     <a href="assets/Victor_Kipruto_Resume.pdf" download style="color: var(--accent); font-weight: 600;">Download CV</a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
   </div>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-    <i class="fas fa-moon"></i>
-    <i class="fas fa-sun"></i>
-  </button>
 </nav>
 
 <main id="main-content">
