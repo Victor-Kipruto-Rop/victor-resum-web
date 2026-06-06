@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Technical Blog — Victor Kipruto Rop</title>
-<meta name="description" content="Technical articles on Data Engineering, ETL, and Cloud Infrastructure by Victor Kipruto Rop."/>
-<link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
-  <link rel="alternate" type="application/rss+xml" title="Technical Blog RSS" href="rss.xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script type="text/javascript">
+<meta name="description" content="Technical articles on Data Engineering, ETL, and Cloud Infrastructure by Victor Kipruto Rop.">
+<link rel="icon" href="assets/1.jpeg" type="image/jpeg">
+  <link rel="alternate" type="application/rss+xml" title="Technical Blog RSS" href="rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -224,7 +224,6 @@
 
   body.dark-mode .rss-link:hover {
     box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
-  }
     display: inline-block;
     padding: 4px 8px;
     background: rgba(200, 64, 26, 0.15);
@@ -234,7 +233,7 @@
     font-weight: 600;
     margin-left: 8px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.05em; 
   }
 
   .blog-card {
@@ -324,7 +323,7 @@
     <a href="index.html#projects">Projects</a>
     <a href="index.html#send-message">Contact</a>
   </div>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
     <i class="fas fa-moon"></i>
     <i class="fas fa-sun"></i>
   </button>
@@ -520,28 +519,10 @@
     renderPosts();
   });
 </script>
-            <a href="post.html?id=${id}" class="back-link"><i class="fas fa-arrow-right"></i> Read Article</a>
-            ${post.isDraft ? '<span style="margin-left: 16px; font-size: 12px; color: var(--muted);">(AI Generated)</span>' : ''}
-          </div>
-        </article>
-      `).join('');
-    }
-
-    // Search event listener
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      renderPosts();
-    });
-
-    // Initialize
-    extractTags();
-    renderPosts();
-  });
-</script>
 
 <header>
   <p class="post-meta">// THE DATA LOG</p>
-  <h1>Technical Insights & Engineering Notes</h1>
+  <h1>Technical Insights &amp; Engineering Notes</h1>
   <p class="header-desc">Deep dives into data infrastructure, real-time systems, and the future of data engineering.</p>
 </header>
 
@@ -559,14 +540,14 @@
   </div>
   
   <div class="tags-container" id="tags-container">
-    <button class="tag-btn active" data-tag="all">All Posts</button>
+    <button type="button" class="tag-btn active" data-tag="all">All Posts</button>
   </div>
 
-  <button onclick="openRssModal()" class="rss-link" title="Subscribe to RSS feed">
+  <button type="button" onclick="openRssModal()" class="rss-link" title="Subscribe to RSS feed">
     <i class="fas fa-rss"></i> Subscribe (RSS)
   </button>
 
-  <button onclick="openSubscriptionModal()" class="rss-link" title="Subscribe to email newsletter">
+  <button type="button" onclick="openSubscriptionModal()" class="rss-link" title="Subscribe to email newsletter">
     <i class="fas fa-envelope"></i> Subscribe (Email)
   </button>
 </div>
@@ -584,21 +565,21 @@
 </footer>
 
 <!-- Subscription Modal Component -->
-<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;"> role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
   <div class="subscription-modal" style="background:var(--paper);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;">
     <div class="subscription-modal-header" style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
       <h2 id="subscriptionModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;">Subscribe for Updates</h2>
-      <button class="subscription-modal-close" id="subscriptionModalClose" aria-label="Close subscription modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+      <button type="button" class="subscription-modal-close" id="subscriptionModalClose" aria-label="Close subscription modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
     </div>
     <div class="subscription-modal-content" style="padding:32px 24px;">
       <div class="subscription-option-tabs" style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
-        <button class="subscription-tab active" data-tab="feed" aria-label="Feed subscription options" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+        <button type="button" class="subscription-tab active" data-tab="feed" aria-label="Feed subscription options" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
           <i class="fas fa-rss"></i> <span>Feed</span>
         </button>
-        <button class="subscription-tab" data-tab="email" aria-label="Email subscription" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+        <button type="button" class="subscription-tab" data-tab="email" aria-label="Email subscription" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
           <i class="fas fa-envelope"></i> <span>Email</span>
         </button>
-        <button class="subscription-tab" data-tab="messaging" aria-label="Messaging apps" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+        <button type="button" class="subscription-tab" data-tab="messaging" aria-label="Messaging apps" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
           <i class="fas fa-comment"></i> <span>Messages</span>
         </button>
       </div>
@@ -606,7 +587,7 @@
       <!-- Feed Tab -->
       <div class="subscription-form active" id="feedTab" style="display:block;">
         <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
-          <button class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+          <button type="button" class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
             <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-rss" style="color:var(--accent);"></i>
             </div>
@@ -614,7 +595,7 @@
             <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</div>
           </button>
 
-          <button class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+          <button type="button" class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
             <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-book-reader" style="color:#3498db;"></i>
             </div>
@@ -622,7 +603,7 @@
             <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</div>
           </button>
 
-          <button class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+          <button type="button" class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
             <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-layer-group" style="color:#2ecc71;"></i>
             </div>
@@ -630,7 +611,7 @@
             <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</div>
           </button>
 
-          <button class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+          <button type="button" class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
             <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-link" style="color:var(--accent);"></i>
             </div>
@@ -643,7 +624,7 @@
           <div class="subscription-rss-label" style="font-size:12px;font-weight:600;margin-bottom:8px;text-transform:uppercase;opacity:0.7;color:var(--ink);">RSS Feed URL</div>
           <div class="subscription-rss-url" style="display:flex;gap:8px;align-items:center;">
             <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--ink);border:2px solid var(--rule);border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;color:var(--paper);transition:all 0.3s ease;">
-            <button class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
+            <button type="button" class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
               <i class="fas fa-copy"></i> Copy
             </button>
           </div>
@@ -654,11 +635,11 @@
       <form class="subscription-form" id="emailTab" style="display:none;">
         <div class="subscription-form-group" style="margin-bottom:16px;">
           <label for="emailName" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--ink);">Name</label>
-          <input type="text" id="emailName" required placeholder="Your name" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:all 0.3s ease;" onFocus="this.style.borderColor='var(--accent)'" onBlur="this.style.borderColor='var(--rule)'">
+          <input type="text" id="emailName" required placeholder="Your name" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule)'>">
         </div>
         <div class="subscription-form-group" style="margin-bottom:16px;">
           <label for="emailAddress" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--ink);">Email Address</label>
-          <input type="email" id="emailAddress" required placeholder="your@email.com" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:all 0.3s ease;" onFocus="this.style.borderColor='var(--accent)'" onBlur="this.style.borderColor='var(--rule)'">
+          <input type="email" id="emailAddress" required placeholder="your@email.com" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule)'">
         </div>
         <button type="submit" class="subscription-form-submit" style="width:100%;padding:12px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s ease;">Subscribe to Email Updates</button>
       </form>
@@ -666,7 +647,7 @@
       <!-- Messaging Tab -->
       <div class="subscription-form" id="messagingTab" style="display:none;">
         <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
-          <button class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+          <button type="button" class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
             <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fab fa-telegram" style="color:#0088cc;"></i>
             </div>
@@ -674,7 +655,7 @@
             <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Instant notifications</div>
           </button>
 
-          <button class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+          <button type="button" class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
             <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fab fa-x-twitter" style="color:var(--ink);"></i>
             </div>
@@ -697,11 +678,11 @@
   <div class="subscription-modal" style="background:var(--paper);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;">
     <div class="subscription-modal-header" style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
       <h2 id="rssModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;color:var(--ink);">Subscribe via RSS</h2>
-      <button class="subscription-modal-close" id="rssModalClose" aria-label="Close RSS modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+      <button type="button" class="subscription-modal-close" id="rssModalClose" aria-label="Close RSS modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
     </div>
     <div class="subscription-modal-content" style="padding:32px 24px;">
       <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
-        <button class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+        <button type="button" class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
           <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
             <i class="fas fa-rss" style="color:var(--accent);"></i>
           </div>
@@ -709,7 +690,7 @@
           <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</div>
         </button>
 
-        <button class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+        <button type="button" class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
           <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
             <i class="fas fa-book-reader" style="color:#3498db;"></i>
           </div>
@@ -717,7 +698,7 @@
           <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</div>
         </button>
 
-        <button class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+        <button type="button" class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
           <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
             <i class="fas fa-layer-group" style="color:#2ecc71;"></i>
           </div>
@@ -725,7 +706,7 @@
           <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</div>
         </button>
 
-        <button class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+        <button type="button" class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
           <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
             <i class="fas fa-link" style="color:var(--accent);"></i>
           </div>
@@ -734,11 +715,11 @@
         </button>
       </div>
 
-      <div class="subscription-rss-copy" id="rssUrlSection" style="background:var(--paper);padding:16px;border-radius:8px;margin-top:16px;border:2px solid var(--rule);display:none;">
+      <div class="subscription-rss-copy" id="rssModal-rssUrlSection" style="background:var(--paper);padding:16px;border-radius:8px;margin-top:16px;border:2px solid var(--rule);display:none;">
         <div class="subscription-rss-label" style="font-size:12px;font-weight:600;margin-bottom:8px;text-transform:uppercase;opacity:0.7;color:var(--ink);">RSS Feed URL</div>
         <div class="subscription-rss-url" style="display:flex;gap:8px;align-items:center;">
-          <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--ink);border:2px solid var(--rule);border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;color:var(--paper);transition:all 0.3s ease;">
-          <button class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
+          <input type="text" class="subscription-rss-input" id="rssModal-rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--ink);border:2px solid var(--rule);border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;color:var(--paper);transition:all 0.3s ease;">
+          <button type="button" class="subscription-copy-btn" id="rssModal-copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
             <i class="fas fa-copy"></i> Copy
           </button>
         </div>
@@ -751,22 +732,21 @@
     </div>
   </div>
 </div>
+<style>
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  
-  .subscription-tab.active { 
-    background: var(--accent); 
-    color: white; 
-    border-color: var(--accent); 
+
+  .subscription-tab.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
   }
-  
-  .subscription-option:hover { 
-    border-color: var(--accent); 
-    background: var(--paper); 
-    transform: translateY(-2px); 
-  }
-  
+
+  .subscription-option:hover {
+    border-color: var(--accent);
+    background: var(--paper);
+    transform: translateY(-2px);
   /* Input styling for both light and dark modes */
   #emailName::placeholder,
   #emailAddress::placeholder {
@@ -1010,8 +990,99 @@
     subscriptionModal.open();
   }
 
+  // RSS Modal Handler
+  const rssModal = {
+    isOpen: false,
+
+    open() {
+      const overlay = document.getElementById('rssModalOverlay');
+      if (overlay) {
+        overlay.style.display = 'flex';
+        this.isOpen = true;
+        document.body.style.overflow = 'hidden';
+      }
+    },
+
+    close() {
+      const overlay = document.getElementById('rssModalOverlay');
+      if (overlay) {
+        overlay.style.display = 'none';
+        this.isOpen = false;
+        document.body.style.overflow = '';
+      }
+    },
+
+    setupEventListeners() {
+      const closeBtn = document.getElementById('rssModalClose');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => this.close());
+      }
+
+      const overlay = document.getElementById('rssModalOverlay');
+      if (overlay) {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) this.close();
+        });
+      }
+
+      document.querySelectorAll('#rssModalOverlay .subscription-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+          e.preventDefault();
+          const optionType = e.currentTarget.getAttribute('data-option');
+          
+          switch(optionType) {
+            case 'rss':
+              window.open('rss.xml', '_blank');
+              break;
+            case 'inoreader':
+              window.open('https://www.inoreader.com/', '_blank');
+              break;
+            case 'feedly':
+              window.open('https://feedly.com/i/subscription/feed%2Frss.xml', '_blank');
+              break;
+            case 'copy-url':
+              this.copyRssUrl();
+              break;
+          }
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) {
+          this.close();
+        }
+      });
+    },
+
+    copyRssUrl() {
+      const rssUrlSection = document.getElementById('rssUrlSection');
+      if (rssUrlSection) {
+        rssUrlSection.style.display = 'block';
+      }
+
+      const rssInput = document.getElementById('rssUrlInput');
+      const copyBtn = document.getElementById('copyRssBtn');
+
+      if (rssInput && copyBtn) {
+        rssInput.select();
+        navigator.clipboard.writeText(rssInput.value).then(() => {
+          const originalText = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+          }, 2000);
+        });
+      }
+    }
+  };
+
+  function openRssModal() {
+    rssModal.open();
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     subscriptionModal.setupEventListeners();
+    rssModal.setupEventListeners();
   });
 </script>
 </body>
