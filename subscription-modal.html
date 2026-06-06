@@ -1,0 +1,686 @@
+<!-- Subscription Modal Component -->
+<!-- Include this in your HTML or integrate the styles and script into your pages -->
+
+<style id="subscription-modal-styles">
+  /* Dark Mode Variables */
+  :root {
+    --sub-bg: #ffffff;
+    --sub-text: #0a0e14;
+    --sub-accent: #ff4b2b;
+    --sub-border: #e0e0e0;
+    --sub-hover: #f5f5f5;
+    --sub-icon-bg: #f0f0f0;
+    --sub-success: #4ade80;
+    --sub-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  body.dark-mode {
+    --sub-bg: #18181b;
+    --sub-text: #f5f0e8;
+    --sub-accent: #ff4b2b;
+    --sub-border: #27272a;
+    --sub-hover: #27272a;
+    --sub-icon-bg: #27272a;
+    --sub-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Subscription Modal Overlay */
+  .subscription-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .subscription-modal-overlay.active {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .subscription-modal {
+    background: var(--sub-bg);
+    color: var(--sub-text);
+    border-radius: 12px;
+    box-shadow: var(--sub-shadow);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+    position: relative;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .subscription-modal-header {
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid var(--sub-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .subscription-modal-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  .subscription-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--sub-text);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .subscription-modal-close:hover {
+    opacity: 0.7;
+  }
+
+  .subscription-modal-content {
+    padding: 32px 24px;
+  }
+
+  .subscription-option-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .subscription-tab {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 16px;
+    background: var(--sub-hover);
+    border: 1px solid var(--sub-border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .subscription-tab:hover {
+    background: var(--sub-accent);
+    color: white;
+    border-color: var(--sub-accent);
+  }
+
+  .subscription-tab.active {
+    background: var(--sub-accent);
+    color: white;
+    border-color: var(--sub-accent);
+  }
+
+  /* Subscription Options */
+  .subscription-options-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .subscription-option {
+    padding: 20px;
+    border: 2px solid var(--sub-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    background: transparent;
+  }
+
+  .subscription-option:hover {
+    border-color: var(--sub-accent);
+    background: var(--sub-hover);
+    transform: translateY(-2px);
+  }
+
+  .subscription-option-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .subscription-option-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .subscription-option-desc {
+    font-size: 12px;
+    color: #666;
+    opacity: 0.7;
+  }
+
+  body.dark-mode .subscription-option-desc {
+    color: #aaa;
+  }
+
+  /* Email/Telegram Forms */
+  .subscription-form {
+    display: none;
+  }
+
+  .subscription-form.active {
+    display: block;
+  }
+
+  .subscription-form-group {
+    margin-bottom: 16px;
+  }
+
+  .subscription-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .subscription-form-group input,
+  .subscription-form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--sub-border);
+    border-radius: 8px;
+    background: var(--sub-bg);
+    color: var(--sub-text);
+    font-size: 14px;
+    font-family: 'DM Mono', monospace;
+    transition: border-color 0.3s ease;
+  }
+
+  .subscription-form-group input:focus,
+  .subscription-form-group select:focus {
+    outline: none;
+    border-color: var(--sub-accent);
+  }
+
+  .subscription-form-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--sub-accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .subscription-form-submit:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .subscription-form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* RSS Copy Section */
+  .subscription-rss-copy {
+    background: var(--sub-hover);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    display: none;
+  }
+
+  .subscription-rss-copy.active {
+    display: block;
+  }
+
+  .subscription-rss-label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .subscription-rss-url {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .subscription-rss-input {
+    flex: 1;
+    padding: 10px;
+    background: var(--sub-bg);
+    border: 1px solid var(--sub-border);
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    color: var(--sub-text);
+  }
+
+  .subscription-copy-btn {
+    padding: 10px 16px;
+    background: var(--sub-accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .subscription-copy-btn:hover {
+    opacity: 0.9;
+  }
+
+  /* Notification */
+  .subscription-notification {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--sub-success);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+    animation: slideDown 0.3s ease;
+  }
+
+  .subscription-notification.show {
+    display: block;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .subscription-modal {
+      width: 95%;
+      max-height: 95vh;
+    }
+
+    .subscription-options-container {
+      grid-template-columns: 1fr;
+    }
+
+    .subscription-option-tabs {
+      flex-wrap: wrap;
+    }
+
+    .subscription-tab {
+      min-width: 120px;
+      font-size: 12px;
+    }
+
+    .subscription-modal-header h2 {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<!-- Modal HTML -->
+<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true">
+  <div class="subscription-modal">
+    <div class="subscription-modal-header">
+      <h2 id="subscriptionModalTitle">Subscribe for Updates</h2>
+      <button class="subscription-modal-close" id="subscriptionModalClose" aria-label="Close subscription modal">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="subscription-modal-content">
+      <div class="subscription-option-tabs">
+        <button class="subscription-tab active" data-tab="feed" aria-label="Feed subscription options">
+          <i class="fas fa-rss"></i>
+          <span>Feed</span>
+        </button>
+        <button class="subscription-tab" data-tab="email" aria-label="Email subscription">
+          <i class="fas fa-envelope"></i>
+          <span>Email</span>
+        </button>
+        <button class="subscription-tab" data-tab="messaging" aria-label="Messaging apps">
+          <i class="fas fa-comment"></i>
+          <span>Messages</span>
+        </button>
+      </div>
+
+      <!-- Feed Tab -->
+      <div class="subscription-form active" id="feedTab">
+        <div class="subscription-options-container">
+          <button class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed">
+            <div class="subscription-option-icon">
+              <i class="fas fa-rss" style="color: var(--sub-accent);"></i>
+            </div>
+            <div class="subscription-option-label">RSS Feed</div>
+            <div class="subscription-option-desc">Raw feed format</div>
+          </button>
+
+          <button class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader">
+            <div class="subscription-option-icon">
+              <i class="fas fa-book-reader" style="color: #3498db;"></i>
+            </div>
+            <div class="subscription-option-label">Inoreader</div>
+            <div class="subscription-option-desc">Powerful RSS reader</div>
+          </button>
+
+          <button class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly">
+            <div class="subscription-option-icon">
+              <i class="fas fa-layer-group" style="color: #2ecc71;"></i>
+            </div>
+            <div class="subscription-option-label">Feedly</div>
+            <div class="subscription-option-desc">Popular feed reader</div>
+          </button>
+
+          <button class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL">
+            <div class="subscription-option-icon">
+              <i class="fas fa-link" style="color: var(--sub-accent);"></i>
+            </div>
+            <div class="subscription-option-label">Copy URL</div>
+            <div class="subscription-option-desc">Manual subscription</div>
+          </button>
+        </div>
+
+        <div class="subscription-rss-copy" id="rssUrlSection">
+          <div class="subscription-rss-label">RSS Feed URL</div>
+          <div class="subscription-rss-url">
+            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml">
+            <button class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard">
+              <i class="fas fa-copy"></i>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Tab -->
+      <form class="subscription-form" id="emailTab">
+        <div class="subscription-form-group">
+          <label for="emailName">Name</label>
+          <input type="text" id="emailName" required placeholder="Your name">
+        </div>
+        <div class="subscription-form-group">
+          <label for="emailAddress">Email Address</label>
+          <input type="email" id="emailAddress" required placeholder="your@email.com">
+        </div>
+        <button type="submit" class="subscription-form-submit">Subscribe to Email Updates</button>
+      </form>
+
+      <!-- Messaging Tab -->
+      <div class="subscription-form" id="messagingTab">
+        <div class="subscription-options-container">
+          <button class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram">
+            <div class="subscription-option-icon">
+              <i class="fab fa-telegram" style="color: #0088cc;"></i>
+            </div>
+            <div class="subscription-option-label">Telegram</div>
+            <div class="subscription-option-desc">Instant notifications</div>
+          </button>
+
+          <button class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X">
+            <div class="subscription-option-icon">
+              <i class="fab fa-x-twitter" style="color: #000;"></i>
+            </div>
+            <div class="subscription-option-label">Twitter/X</div>
+            <div class="subscription-option-desc">Social updates</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Notification -->
+      <div class="subscription-notification" id="subscriptionNotification" role="alert">
+        ✅ Thanks for subscribing to Victor Kipruto's developer updates.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="subscription-modal-script">
+  // Analytics tracking
+  const subscriptionAnalytics = {
+    init() {
+      const defaults = {
+        rss_clicks: 0,
+        inoreader_clicks: 0,
+        feedly_clicks: 0,
+        email_subscriptions: 0,
+        telegram_subscriptions: 0,
+        copy_clicks: 0
+      };
+
+      if (!localStorage.getItem('subscriptionAnalytics')) {
+        localStorage.setItem('subscriptionAnalytics', JSON.stringify(defaults));
+      }
+    },
+
+    track(event) {
+      const analytics = JSON.parse(localStorage.getItem('subscriptionAnalytics') || '{}');
+      if (analytics[event] !== undefined) {
+        analytics[event]++;
+        localStorage.setItem('subscriptionAnalytics', JSON.stringify(analytics));
+        console.log(`Tracked: ${event}`, analytics);
+      }
+    },
+
+    get(event) {
+      const analytics = JSON.parse(localStorage.getItem('subscriptionAnalytics') || '{}');
+      return analytics[event] || 0;
+    },
+
+    getAll() {
+      return JSON.parse(localStorage.getItem('subscriptionAnalytics') || '{}');
+    }
+  };
+
+  // Modal management
+  const subscriptionModal = {
+    overlay: document.getElementById('subscriptionModalOverlay'),
+    modal: document.querySelector('.subscription-modal'),
+    closeBtn: document.getElementById('subscriptionModalClose'),
+    rssUrlInput: document.getElementById('rssUrlInput'),
+    copyRssBtn: document.getElementById('copyRssBtn'),
+    notification: document.getElementById('subscriptionNotification'),
+
+    init() {
+      subscriptionAnalytics.init();
+      this.setupEventListeners();
+    },
+
+    setupEventListeners() {
+      // Close modal
+      this.closeBtn.addEventListener('click', () => this.close());
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.close();
+      });
+
+      // Tab switching
+      document.querySelectorAll('.subscription-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => this.switchTab(e.target.closest('button').dataset.tab));
+      });
+
+      // Feed options
+      document.querySelectorAll('[data-option]').forEach(option => {
+        option.addEventListener('click', (e) => this.handleFeedOption(e.target.closest('[data-option]').dataset.option));
+      });
+
+      // Email form
+      document.getElementById('emailTab').addEventListener('submit', (e) => this.handleEmailSubmit(e));
+
+      // Copy RSS URL
+      this.copyRssBtn.addEventListener('click', () => this.copyRssUrl());
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) this.close();
+      });
+    },
+
+    open() {
+      this.overlay.classList.add('active');
+      this.overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+      this.overlay.classList.remove('active');
+      this.overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    },
+
+    isOpen() {
+      return this.overlay.classList.contains('active');
+    },
+
+    switchTab(tabName) {
+      // Update active tab button
+      document.querySelectorAll('.subscription-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+      });
+
+      // Update active form
+      document.querySelectorAll('.subscription-form').forEach(form => {
+        form.classList.toggle('active', form.id === tabName + 'Tab');
+      });
+
+      // Show/hide RSS URL section
+      document.getElementById('rssUrlSection').classList.toggle('active', tabName === 'feed');
+    },
+
+    handleFeedOption(option) {
+      subscriptionAnalytics.track(option + '_clicks');
+
+      const rssUrl = 'https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml';
+      const inoreaderUrl = 'https://www.inoreader.com/?add_feed=' + encodeURIComponent(rssUrl);
+      const feedlyUrl = 'https://feedly.com/i/subscription/feed/' + encodeURIComponent(rssUrl);
+
+      const urls = {
+        rss: rssUrl,
+        inoreader: inoreaderUrl,
+        feedly: feedlyUrl,
+        'copy-url': null
+      };
+
+      if (option === 'copy-url') {
+        this.copyRssUrl();
+      } else if (urls[option]) {
+        window.open(urls[option], '_blank');
+        this.showNotification();
+      }
+    },
+
+    handleEmailSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('emailName').value.trim();
+      const email = document.getElementById('emailAddress').value.trim();
+
+      if (!name || !email) return;
+
+      // Store email subscription
+      const subscribers = JSON.parse(localStorage.getItem('emailSubscribers') || '[]');
+      const subscriber = { name, email, date: new Date().toISOString() };
+
+      if (!subscribers.some(s => s.email === email)) {
+        subscribers.push(subscriber);
+        localStorage.setItem('emailSubscribers', JSON.stringify(subscribers));
+        subscriptionAnalytics.track('email_subscriptions');
+      }
+
+      document.getElementById('emailTab').reset();
+      this.showNotification();
+      setTimeout(() => this.close(), 2000);
+    },
+
+    copyRssUrl() {
+      const url = this.rssUrlInput.value;
+      navigator.clipboard.writeText(url).then(() => {
+        subscriptionAnalytics.track('copy_clicks');
+        const originalText = this.copyRssBtn.innerHTML;
+        this.copyRssBtn.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+        setTimeout(() => {
+          this.copyRssBtn.innerHTML = originalText;
+        }, 2000);
+      });
+    },
+
+    showNotification() {
+      this.notification.classList.add('show');
+      setTimeout(() => {
+        this.notification.classList.remove('show');
+      }, 4000);
+    }
+  };
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => subscriptionModal.init());
+  } else {
+    subscriptionModal.init();
+  }
+
+  // Expose for external access
+  window.openSubscriptionModal = () => subscriptionModal.open();
+  window.getSubscriptionAnalytics = () => subscriptionAnalytics.getAll();
+</script>
