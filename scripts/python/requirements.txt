@@ -20,8 +20,7 @@ numpy>=1.24.0                     # Numerical computing
 
 # === Social Media & APIs ===
 tweepy>=4.14.0                    # Twitter/X API integration
-python-linkedin-api>=2.10.0       # LinkedIn API wrapper
-medium-api>=0.1.0                 # Medium.com API client
+requests-oauthlib>=1.3.0          # OAuth support for social APIs
 python-telegram-bot>=20.0         # Telegram Bot API
 
 # === Web Scraping & Content ===
@@ -36,7 +35,6 @@ nltk>=3.8.0                       # Natural language toolkit
 
 # === Email & Notifications ===
 resend>=0.5.0                     # Resend email service API
-smtplib-fork>=3.0.0               # SMTP email functionality
 email-validator>=2.0.0            # Email validation
 
 # === Database & Storage ===

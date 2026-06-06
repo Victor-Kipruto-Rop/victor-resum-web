@@ -28,7 +28,8 @@ jobs:
       
       - name: Install Dependencies
         run: |
-          pip install requests
+          python -m pip install --upgrade pip
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Parse Blog Changes
         id: parse
@@ -76,6 +77,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+      
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Run Viral Detection
         run: |

@@ -63,7 +63,7 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -72,7 +72,8 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install requests python-dotenv
+          python -m pip install --upgrade pip
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Run subscriber segmentation
         run: |
@@ -92,7 +93,7 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -101,10 +102,11 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install requests python-dotenv
+          python -m pip install --upgrade pip
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Download events
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: blog-events
       
