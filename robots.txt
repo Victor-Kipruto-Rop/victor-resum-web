@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kipruto45.github.io/victor-resum-web/sitemap.xml
