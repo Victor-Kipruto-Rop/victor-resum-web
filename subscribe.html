@@ -480,21 +480,7 @@
         subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Subscribing...</span>';
 
         try {
-          const response = await fetch('/api/subscribe', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email })
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            showMessage(data.message || 'Successfully subscribed! Check your email.', 'success');
-            form.reset();
-            setTimeout(() => messageDiv.classList.remove('success'), 5000);
-          } else {
-            showMessage('Subscription failed. Please try again.', 'error');
-          }
-        } catch (error) {
+          // Store subscription locally\n          const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');\n          const subscriber = { name, email, date: new Date().toISOString() };\n          \n          // Check if already subscribed\n          const exists = subscribers.some(s => s.email === email);\n          if (exists) {\n            showMessage('✓ You\\'re already subscribed with this email!', 'success');\n            messageDiv.style.display = 'block';\n            setTimeout(() => messageDiv.style.display = 'none', 4000);\n          } else {\n            subscribers.push(subscriber);\n            localStorage.setItem('subscribers', JSON.stringify(subscribers));\n            showMessage('✓ Successfully subscribed! You\\'ll receive updates about new articles.', 'success');\n            messageDiv.style.display = 'block';\n            form.reset();\n            document.getElementById('subscriberCount').textContent = subscribers.length;\n            setTimeout(() => messageDiv.style.display = 'none', 4000);\n          }\n        } catch (error) {\n          showMessage('✗ Subscription error. Please try again later.', 'error');\n          messageDiv.style.display = 'block';\n          setTimeout(() => messageDiv.style.display = 'none', 4000);
           showMessage('Network error. Please try again later.', 'error');
         } finally {
           subscribeBtn.disabled = false;
@@ -506,6 +492,7 @@
         messageDiv.textContent = text;
         messageDiv.classList.remove('success', 'error');
         messageDiv.classList.add(type);
+        messageDiv.style.display = 'block';
       }
 
       // LOAD STATS
