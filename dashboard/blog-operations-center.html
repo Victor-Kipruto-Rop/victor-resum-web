@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Blog Operations & Intelligence Dashboard - Private Analytics for Victor Kipruto's Blog Ecosystem">
+  <title>Blog Operations Center — Private Dashboard</title>
+  <link rel="icon" href="../assets/1.jpeg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-primary: #0f1419;
+      --bg-secondary: #1a1f2e;
+      --bg-tertiary: #24293d;
+      --text-primary: #e8eef5;
+      --text-secondary: #b0b8c9;
+      --text-muted: #7a8299;
+      --accent-primary: #ff4b2b;
+      --accent-secondary: #3b82f6;
+      --accent-tertiary: #10b981;
+      --accent-danger: #ef4444;
+      --accent-warning: #f59e0b;
+      --border-color: #2d3445;
+      --success-color: #10b981;
+      --error-color: #ef4444;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ── LAYOUT ── */
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 24px;
+      overflow-y: auto;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 280px;
+      height: 100vh;
+      z-index: 100;
+    }
+
+    .main-content {
+      margin-left: 280px;
+      padding: 32px;
+    }
+
+    /* ── SIDEBAR ── */
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-primary);
+    }
+
+    .nav-section {
+      margin-bottom: 28px;
+    }
+
+    .nav-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+
+    .nav-item.active {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+    }
+
+    .nav-item i {
+      width: 16px;
+      text-align: center;
+    }
+
+    .privacy-notice {
+      background: var(--bg-tertiary);
+      border-left: 3px solid var(--accent-warning);
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ── HEADER ── */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-title h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .header-subtitle {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+      color: white;
+    }
+
+    .btn-export { background: var(--accent-secondary); color: white; border-color: var(--accent-secondary); }
+    .btn-refresh { background: var(--accent-tertiary); color: white; border-color: var(--accent-tertiary); }
+    .btn-logout { background: var(--accent-danger); color: white; border-color: var(--accent-danger); }
+
+    /* ── SECTIONS ── */
+    .section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: var(--accent-primary);
+    }
+
+    /* ── GRID LAYOUTS ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .kpi-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .kpi-card:hover {
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-label {
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 8px;
+    }
+
+    .kpi-change {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kpi-change.positive { color: var(--success-color); }
+    .kpi-change.negative { color: var(--error-color); }
+
+    /* ── TABLES ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+
+    .data-table thead {
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 12px;
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    .data-table tr:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success-color); }
+    .badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--error-color); }
+    .badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--accent-warning); }
+    .badge-info { background: rgba(59, 130, 246, 0.1); color: var(--accent-secondary); }
+    .badge-draft { background: rgba(107, 114, 128, 0.1); color: var(--text-secondary); }
+
+    /* ── CHARTS ── */
+    .chart-container {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ── LISTS ── */
+    .item-list {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .item-list-item {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .item-list-item:hover {
+      background: var(--bg-secondary);
+    }
+
+    .item-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-title {
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .item-desc {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    /* ── ALERTS ── */
+    .alert {
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border-left: 4px solid;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .alert-success { background: rgba(16, 185, 129, 0.1); border-color: var(--success-color); color: var(--success-color); }
+    .alert-danger { background: rgba(239, 68, 68, 0.1); border-color: var(--error-color); color: var(--error-color); }
+    .alert-warning { background: rgba(245, 158, 11, 0.1); border-color: var(--accent-warning); color: var(--accent-warning); }
+    .alert-info { background: rgba(59, 130, 246, 0.1); border-color: var(--accent-secondary); color: var(--accent-secondary); }
+
+    /* ── STATUS INDICATOR ── */
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .status-dot.online { background: var(--success-color); }
+    .status-dot.offline { background: var(--error-color); }
+    .status-dot.pending { background: var(--accent-warning); }
+
+    /* ── LOADING STATE ── */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .dashboard-container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        max-height: 300px;
+        overflow-x: auto;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 16px;
+        margin-bottom: 20px;
+      }
+
+      .nav-section {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 0;
+      }
+
+      .nav-label {
+        display: none;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .data-table {
+        font-size: 11px;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 8px;
+      }
+    }
+
+    /* ── LOGIN SCREEN ── */
+    .login-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .login-box {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: var(--shadow);
+    }
+
+    .login-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .login-subtitle {
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 32px;
+      font-size: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(255, 75, 43, 0.1);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent-primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .form-error {
+      color: var(--error-color);
+      font-size: 11px;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* ── MODALS ── */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      margin-bottom: 24px;
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="loginScreen" class="login-container">
+    <div class="login-box">
+      <h1 class="login-title">🔐 Dashboard</h1>
+      <p class="login-subtitle">Blog Operations & Intelligence Center</p>
+      <form id="loginForm" style="display: none;">
+        <div class="form-group">
+          <label class="form-label">Access Token</label>
+          <input type="password" id="tokenInput" class="form-input" placeholder="Enter your access token" required>
+        </div>
+        <button type="submit" class="form-submit">Access Dashboard</button>
+        <div class="form-error" id="loginError"></div>
+      </form>
+      <div class="loading" id="loginLoading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Initializing dashboard...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboardScreen" style="display: none;">
+    <div class="dashboard-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="fas fa-chart-line"></i>
+          <span>Blog Ops</span>
+        </div>
+
+        <nav class="nav-section">
+          <div class="nav-label">Overview</div>
+          <a class="nav-item active" data-section="overview">
+            <i class="fas fa-dashboard"></i>
+            <span>Dashboard</span>
+          </a>
+          <a class="nav-item" data-section="inventory">
+            <i class="fas fa-list-ul"></i>
+            <span>Blog Inventory</span>
+          </a>
+          <a class="nav-item" data-section="performance">
+            <i class="fas fa-chart-bar"></i>
+            <span>Performance</span>
+          </a>
+          <a class="nav-item" data-section="analytics">
+            <i class="fas fa-chart-line"></i>
+            <span>Analytics</span>
+          </a>
+        </nav>
+
+        <nav class="nav-section">
+          <div class="nav-label">Analysis</div>
+          <a class="nav-item" data-section="failures">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Content At Risk</span>
+          </a>
+          <a class="nav-item" data-section="successes">
+            <i class="fas fa-star"></i>
+            <span>Top Performers</span>
+          </a>
+          <a class="nav-item" data-section="seo">
+            <i class="fas fa-search"></i>
+            <span>SEO Analysis</span>
+          </a>
+          <a class="nav-item" data-section="gaps">
+            <i class="fas fa-lightbulb"></i>
+            <span>Content Gaps</span>
+          </a>
+        </nav>
+
+        <nav class="nav-section">
+          <div class="nav-label">Operations</div>
+          <a class="nav-item" data-section="automation">
+            <i class="fas fa-cog"></i>
+            <span>Automation</span>
+          </a>
+          <a class="nav-item" data-section="errors">
+            <i class="fas fa-bug"></i>
+            <span>Error Log</span>
+          </a>
+          <a class="nav-item" data-section="conversions">
+            <i class="fas fa-funnel"></i>
+            <span>Conversions</span>
+          </a>
+          <a class="nav-item" data-section="ai">
+            <i class="fas fa-brain"></i>
+            <span>AI Assistant</span>
+          </a>
+        </nav>
+
+        <div class="privacy-notice">
+          <i class="fas fa-lock"></i> Private Dashboard
+          <br>Access Restricted
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+          <div class="header-title">
+            <h1 id="sectionTitle">Dashboard</h1>
+            <div class="header-subtitle" id="sectionSubtitle">Complete visibility into your blog ecosystem</div>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-refresh" onclick="refreshDashboard()">
+              <i class="fas fa-sync"></i> Refresh
+            </button>
+            <button class="btn btn-export" onclick="showExportModal()">
+              <i class="fas fa-download"></i> Export
+            </button>
+            <button class="btn btn-logout" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
+        </header>
+
+        <!-- Overview Section -->
+        <section id="overview" class="section active">
+          <div class="kpi-grid" id="overviewKPIs"></div>
+          <h2 class="section-title"><i class="fas fa-fire"></i> Top Content</h2>
+          <table class="data-table" id="topContentTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Views</th>
+                <th>Engagement</th>
+                <th>Read Time</th>
+                <th>Conversions</th>
+              </tr>
+            </thead>
+            <tbody id="topContentBody"></tbody>
+          </table>
+        </section>
+
+        <!-- Blog Inventory Section -->
+        <section id="inventory" class="section">
+          <div class="kpi-grid" id="inventoryStats"></div>
+          <table class="data-table" id="blogTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Published</th>
+                <th>Updated</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Tags</th>
+              </tr>
+            </thead>
+            <tbody id="blogTableBody"></tbody>
+          </table>
+        </section>
+
+        <!-- Performance Section -->
+        <section id="performance" class="section">
+          <div class="kpi-grid" id="performanceKPIs"></div>
+          <div class="charts-grid">
+            <div class="chart-container">
+              <canvas id="viewsChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="engagementChart"></canvas>
+            </div>
+          </div>
+          <h2 class="section-title"><i class="fas fa-ranking-star"></i> Article Rankings</h2>
+          <div class="item-list" id="rankingsList"></div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="section">
+          <div class="kpi-grid" id="analyticsKPIs"></div>
+          <div class="charts-grid">
+            <div class="chart-container">
+              <canvas id="trafficChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="conversionChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="sourceChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Content At Risk Section -->
+        <section id="failures" class="section">
+          <div id="failuresAlert" class="item-list"></div>
+        </section>
+
+        <!-- Top Performers Section -->
+        <section id="successes" class="section">
+          <div id="successesList" class="item-list"></div>
+        </section>
+
+        <!-- SEO Analysis Section -->
+        <section id="seo" class="section">
+          <table class="data-table" id="seoTable">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Target Keyword</th>
+                <th>SEO Score</th>
+                <th>Meta</th>
+                <th>OG Tags</th>
+                <th>Structured Data</th>
+              </tr>
+            </thead>
+            <tbody id="seoTableBody"></tbody>
+          </table>
+        </section>
+
+        <!-- Content Gaps Section -->
+        <section id="gaps" class="section">
+          <div id="contentGapsList" class="item-list"></div>
+        </section>
+
+        <!-- Automation Section -->
+        <section id="automation" class="section">
+          <div id="automationStatus"></div>
+        </section>
+
+        <!-- Error Log Section -->
+        <section id="errors" class="section">
+          <table class="data-table" id="errorTable">
+            <thead>
+              <tr>
+                <th>Error Type</th>
+                <th>Article</th>
+                <th>Details</th>
+                <th>Severity</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="errorTableBody"></tbody>
+          </table>
+        </section>
+
+        <!-- Conversions Section -->
+        <section id="conversions" class="section">
+          <div class="kpi-grid" id="conversionKPIs"></div>
+          <table class="data-table" id="conversionTable">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>GitHub Clicks</th>
+                <th>Portfolio Clicks</th>
+                <th>LinkedIn Clicks</th>
+                <th>CV Downloads</th>
+                <th>Conversion Rate</th>
+              </tr>
+            </thead>
+            <tbody id="conversionTableBody"></tbody>
+          </table>
+        </section>
+
+        <!-- AI Assistant Section -->
+        <section id="ai" class="section">
+          <div id="aiRecommendations" class="item-list"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Export Modal -->
+  <div id="exportModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Export Analytics</h2>
+        <button class="modal-close" onclick="closeExportModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Select Format</label>
+          <select id="exportFormat" class="form-input" style="cursor: pointer;">
+            <option value="json">JSON</option>
+            <option value="csv">CSV</option>
+            <option value="xlsx">Excel (XLSX)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Data to Export</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="export-inventory" checked>
+              <span>Blog Inventory</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="export-analytics" checked>
+              <span>Analytics</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="export-conversions" checked>
+              <span>Conversions</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="export-errors" checked>
+              <span>Error Log</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeExportModal()">Cancel</button>
+        <button class="btn btn-export" onclick="exportData()">Export</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="blog-operations-center.js"></script>
+</body>
+</html>
