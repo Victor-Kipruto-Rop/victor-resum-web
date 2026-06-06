@@ -1,0 +1,101 @@
+{
+  "timestamp": "2026-06-06T14:23:43.721199",
+  "total_subscribers": 1,
+  "by_interest": {
+    "Python Developers": {
+      "email": [
+        {
+          "contact": "demo@example.com",
+          "interests": [
+            "python",
+            "data-engineering"
+          ],
+          "engagement": "active"
+        }
+      ],
+      "telegram": [],
+      "total": 1
+    },
+    "Data Engineers": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "DevOps Engineers": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "AI/ML Enthusiasts": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "Cloud Architects": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "API Developers": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "Database Specialists": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "Testing & QA": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "General Tech": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    }
+  },
+  "by_engagement": {
+    "active": {
+      "email": [
+        {
+          "contact": "demo@example.com",
+          "interests": [
+            "python",
+            "data-engineering"
+          ]
+        }
+      ],
+      "telegram": [],
+      "total": 1
+    },
+    "moderate": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    },
+    "inactive": {
+      "email": [],
+      "telegram": [],
+      "total": 0
+    }
+  },
+  "by_subscription_type": {
+    "email_only": {
+      "total": 1,
+      "contacts": [
+        "demo@example.com"
+      ]
+    },
+    "telegram_only": {
+      "total": 0,
+      "contacts": []
+    },
+    "multi_channel": {
+      "total": 0,
+      "contacts": []
+    }
+  }
+}

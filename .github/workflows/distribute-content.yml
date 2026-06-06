@@ -1,0 +1,154 @@
+name: Distribute Content to Social Platforms
+
+on:
+  workflow_run:
+    workflows: ["Publish Blog & Generate Assets"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      post_id:
+        description: 'Post ID to distribute (leave blank for latest)'
+        required: false
+
+jobs:
+  check-new-posts:
+    runs-on: ubuntu-latest
+    name: Check for New Posts
+    outputs:
+      new_posts: ${{ steps.detect.outputs.new_posts }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Checkout previous commit
+        uses: actions/checkout@v4
+        with:
+          ref: HEAD~1
+          path: previous
+      
+      - name: Detect new/updated posts
+        id: detect
+        run: |
+          if [ ! -f previous/blog/posts.json ]; then
+            echo "new_posts=all" >> $GITHUB_OUTPUT
+          else
+            echo "new_posts=compare" >> $GITHUB_OUTPUT
+          fi
+
+  prepare-distribution:
+    runs-on: ubuntu-latest
+    name: Prepare Distribution
+    needs: check-new-posts
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests tweepy python-linkedin-api
+      
+      - name: Prepare social content
+        run: python3 scripts/python/prepare_distribution.py
+      
+      - name: Upload distribution metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: distribution-metadata
+          path: distribution-content.json
+
+  distribute-twitter:
+    runs-on: ubuntu-latest
+    name: Distribute to Twitter/X
+    needs: prepare-distribution
+    if: ${{ secrets.TWITTER_API_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download distribution metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: distribution-metadata
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Prepare and post to Twitter
+        run: python3 scripts/python/distribute_twitter.py
+      
+      - name: Log distribution
+        run: echo "✓ Twitter distribution prepared (requires API key)"
+
+  distribute-linkedin:
+    runs-on: ubuntu-latest
+    name: Distribute to LinkedIn
+    needs: prepare-distribution
+    if: ${{ secrets.LINKEDIN_ACCESS_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download distribution metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: distribution-metadata
+      
+      - name: Prepare LinkedIn post
+        run: python3 scripts/python/distribute_linkedin.py
+      
+      - name: Log distribution
+        run: echo "✓ LinkedIn distribution prepared (requires API key)"
+
+  distribute-devto:
+    runs-on: ubuntu-latest
+    name: Publish to Dev.to
+    needs: prepare-distribution
+    if: ${{ secrets.DEVTO_API_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download distribution metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: distribution-metadata
+      
+      - name: Publish article to Dev.to
+        run: python3 scripts/python/distribute_devto.py
+
+  distribute-telegram:
+    runs-on: ubuntu-latest
+    name: Send Telegram Notification
+    needs: prepare-distribution
+    if: ${{ secrets.TELEGRAM_BOT_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download distribution metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: distribution-metadata
+      
+      - name: Send Telegram notification
+        run: python3 scripts/python/distribute_telegram.py
+
+  send-newsletter:
+    runs-on: ubuntu-latest
+    name: Send Newsletter Email
+    needs: prepare-distribution
+    if: ${{ secrets.MAILCHIMP_API_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download distribution metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: distribution-metadata
+      
+      - name: Prepare and send newsletter
+        run: python3 scripts/python/send_newsletter.py
+

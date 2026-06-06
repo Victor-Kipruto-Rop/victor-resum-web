@@ -30,7 +30,7 @@ jobs:
           echo "Checking for blog post changes..."
           
           # Get latest commit info
-          if git diff HEAD~1..HEAD --name-only | grep -E 'blog/posts\.json|blog/posts/'; then
+          if git diff HEAD~1..HEAD --name-only | grep -E 'blog/posts\.json|blog/posts/' >/dev/null 2>&1; then
             echo "Blog changes detected!"
             echo "changed=true" >> $GITHUB_OUTPUT
           else

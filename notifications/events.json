@@ -1,0 +1,162 @@
+{
+  "events": [
+    {
+      "event_type": "new_post",
+      "post_slug": "advanced-kubernetes-patterns",
+      "post_title": "Advanced Kubernetes Patterns for Data Engineers",
+      "timestamp": "2026-06-06T14:23:43.762573",
+      "category": "Infrastructure",
+      "tags": [
+        "kubernetes",
+        "data-engineering",
+        "devops",
+        "containers"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\udcf0 New blog post published: Advanced Kubernetes Patterns for Data Engineers",
+      "notification_channels": [
+        "email",
+        "telegram"
+      ],
+      "status": "pending"
+    },
+    {
+      "event_type": "new_post",
+      "post_slug": "building-data-pipelines-airflow",
+      "post_title": "Building Data Pipelines with Apache Airflow",
+      "timestamp": "2026-06-06T14:23:43.762617",
+      "category": "Data Engineering",
+      "tags": [
+        "airflow",
+        "etl",
+        "data-pipelines",
+        "python"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\udcf0 New blog post published: Building Data Pipelines with Apache Airflow",
+      "notification_channels": [
+        "email",
+        "telegram"
+      ],
+      "status": "pending"
+    },
+    {
+      "event_type": "new_post",
+      "post_slug": "dbt-best-practices",
+      "post_title": "dbt Best Practices: Structuring Your Data Models",
+      "timestamp": "2026-06-06T14:23:43.762637",
+      "category": "Data Transformation",
+      "tags": [
+        "dbt",
+        "sql",
+        "analytics-engineering",
+        "data-modeling"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\udcf0 New blog post published: dbt Best Practices: Structuring Your Data Models",
+      "notification_channels": [
+        "email",
+        "telegram"
+      ],
+      "status": "pending"
+    },
+    {
+      "event_type": "new_post",
+      "post_slug": "data-quality-frameworks-comparison",
+      "post_title": "Data Quality Frameworks: Great Expectations vs Soda",
+      "timestamp": "2026-06-06T14:23:43.762789",
+      "category": "Data Quality",
+      "tags": [
+        "data-quality",
+        "testing",
+        "great-expectations",
+        "soda"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\udcf0 New blog post published: Data Quality Frameworks: Great Expectations vs Soda",
+      "notification_channels": [
+        "email",
+        "telegram"
+      ],
+      "status": "pending"
+    },
+    {
+      "event_type": "new_post",
+      "post_slug": "python-performance-optimization",
+      "post_title": "Python Performance Optimization for Data Processing",
+      "timestamp": "2026-06-06T14:23:43.762810",
+      "category": "Python",
+      "tags": [
+        "python",
+        "performance",
+        "optimization",
+        "profiling"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\udcf0 New blog post published: Python Performance Optimization for Data Processing",
+      "notification_channels": [
+        "email",
+        "telegram"
+      ],
+      "status": "pending"
+    },
+    {
+      "event_type": "trending_post",
+      "post_slug": "advanced-kubernetes-patterns",
+      "post_title": "Advanced Kubernetes Patterns for Data Engineers",
+      "timestamp": "2026-06-06T14:23:43.762908",
+      "category": "Infrastructure",
+      "tags": [
+        "kubernetes",
+        "data-engineering",
+        "devops",
+        "containers"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\ude80 Trending post: Advanced Kubernetes Patterns for Data Engineers",
+      "notification_channels": [
+        "telegram"
+      ],
+      "status": "pending"
+    },
+    {
+      "event_type": "trending_post",
+      "post_slug": "dbt-best-practices",
+      "post_title": "dbt Best Practices: Structuring Your Data Models",
+      "timestamp": "2026-06-06T14:23:43.762926",
+      "category": "Data Transformation",
+      "tags": [
+        "dbt",
+        "sql",
+        "analytics-engineering",
+        "data-modeling"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\ude80 Trending post: dbt Best Practices: Structuring Your Data Models",
+      "notification_channels": [
+        "telegram"
+      ],
+      "status": "pending"
+    },
+    {
+      "event_type": "trending_post",
+      "post_slug": "data-quality-frameworks-comparison",
+      "post_title": "Data Quality Frameworks: Great Expectations vs Soda",
+      "timestamp": "2026-06-06T14:23:43.762939",
+      "category": "Data Quality",
+      "tags": [
+        "data-quality",
+        "testing",
+        "great-expectations",
+        "soda"
+      ],
+      "priority": "medium",
+      "message": "\ud83d\ude80 Trending post: Data Quality Frameworks: Great Expectations vs Soda",
+      "notification_channels": [
+        "telegram"
+      ],
+      "status": "pending"
+    }
+  ],
+  "last_check": "2026-06-06T14:23:43.766859"
+}

@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-06-06T14:23:43.697889",
+  "total_subscribers": 1,
+  "by_type": {
+    "email": 1,
+    "telegram": 0
+  },
+  "by_status": {
+    "active": 1
+  },
+  "by_engagement": {
+    "active": 1
+  }
+}

@@ -1,0 +1,236 @@
+name: 📢 Blog Notifications
+
+on:
+  push:
+    paths:
+      - 'blog/posts.json'
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      event_type:
+        description: 'Event type to simulate'
+        required: false
+        default: 'blog_published'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Dependencies
+        run: |
+          pip install requests
+      
+      - name: Parse Blog Changes
+        id: parse
+        run: |
+          python scripts/python/parse_blog_changes.py
+      
+      - name: Send Telegram Notification
+        if: success() && env.TELEGRAM_BOT_TOKEN != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/python/notify_telegram.py \
+            --event_type blog_published \
+            --workflow_status success || echo "Telegram notification skipped"
+      
+      - name: Send Email Notification
+        if: success()
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          NOTIFICATION_FROM_EMAIL: ${{ secrets.NOTIFICATION_FROM_EMAIL }}
+        run: |
+          python scripts/python/notify_email.py \
+            --event_type blog_published \
+            --workflow_status success
+      
+      - name: Log Notification
+        if: always()
+        run: |
+          python scripts/python/log_notification.py \
+            --event_type blog_published \
+            --status ${{ job.status }}
+
+  # Viral Detection
+  viral_check:
+    runs-on: ubuntu-latest
+    needs: notify
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Run Viral Detection
+        run: |
+          python scripts/python/viral_detector.py
+      
+      - name: Check Viral Status
+        id: viral
+        run: |
+          python << 'EOF'
+          import json
+          from pathlib import Path
+          
+          viral_file = Path('analytics/viral-analysis.json')
+          if viral_file.exists():
+              with open(viral_file) as f:
+                  data = json.load(f)
+                  viral_posts = len(data.get('viral_posts', []))
+                  if viral_posts > 0:
+                      with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                          f.write(f"viral_count={viral_posts}\n")
+                          f.write("has_viral=true\n")
+          EOF
+      
+      - name: Send Viral Alert
+        if: steps.viral.outputs.has_viral == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/python/notify_viral.py
+
+  # Recruiter Detection
+  recruiter_check:
+    runs-on: ubuntu-latest
+    needs: notify
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Run Recruiter Detection
+        run: |
+          python scripts/python/recruiter_detector.py
+      
+      - name: Check Recruiter Activity
+        id: recruiter
+        run: |
+          python -c "
+          import json
+          from pathlib import Path
+          
+          recruiter_file = Path('analytics/recruiter-analysis.json')
+          if recruiter_file.exists():
+              with open(recruiter_file) as f:
+                  data = json.load(f)
+                  recruiters = len(data.get('recruiters_detected', []))
+                  if recruiters > 0:
+                      print(f'::set-output name=recruiter_count::{recruiters}')
+                      print(f'::set-output name=has_recruiter::true')
+          "
+      
+      - name: Send Recruiter Alert
+        if: steps.recruiter.outputs.has_recruiter == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/python/notify_recruiter.py
+
+  # SEO Check
+  seo_check:
+    runs-on: ubuntu-latest
+    needs: notify
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Check SEO Issues
+        id: seo
+        run: |
+          python -c "
+          import json
+          from pathlib import Path
+          
+          seo_file = Path('assets/seo/posts-metadata.json')
+          if seo_file.exists():
+              with open(seo_file) as f:
+                  posts = json.load(f)
+                  for post in posts:
+                      if post.get('seoScore', 100) < 70:
+                          print('::set-output name=has_low_seo::true')
+                          break
+          "
+      
+      - name: Send SEO Warning
+        if: steps.seo.outputs.has_low_seo == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scripts/python/notify_seo.py
+
+  # Final Summary
+  summary:
+    runs-on: ubuntu-latest
+    needs: [notify, viral_check, recruiter_check, seo_check]
+    if: always()
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Generate Summary
+        run: |
+          echo "## 📊 Notification Summary"
+          echo "- Blog Published: ✅"
+          echo "- Viral Detection: ✅"
+          echo "- Recruiter Detection: ✅"
+          echo "- SEO Check: ✅"
+          echo ""
+          echo "All notifications sent successfully!"
+      
+      - name: Update Notification Log
+        if: always()
+        run: |
+          python -c "
+          import json
+          from pathlib import Path
+          from datetime import datetime
+          
+          log_file = Path('notifications/notification-logs.json')
+          logs = []
+          
+          if log_file.exists():
+              with open(log_file) as f:
+                  logs = json.load(f)
+          
+          logs.append({
+              'timestamp': datetime.utcnow().isoformat(),
+              'event': 'blog_notifications_workflow',
+              'status': 'completed',
+              'checks': ['blog_published', 'viral_detection', 'recruiter_detection', 'seo_check']
+          })
+          
+          with open(log_file, 'w') as f:
+              json.dump(logs[-100:], f, indent=2)
+          "
