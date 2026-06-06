@@ -167,14 +167,23 @@
   <div class="post-share">
     <p>Found this helpful? Share with your network</p>
     <div class="share-buttons">
-      <a class="share-btn" href="#" title="Share on Twitter" aria-label="Share on Twitter">
+      <a class="share-btn" href="#" title="Share on Twitter" aria-label="Share on Twitter" data-platform="twitter">
         <i class="fab fa-twitter"></i>
       </a>
-      <a class="share-btn" href="#" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+      <a class="share-btn" href="#" title="Share on LinkedIn" aria-label="Share on LinkedIn" data-platform="linkedin">
         <i class="fab fa-linkedin"></i>
       </a>
-      <a class="share-btn" href="#" title="Share on GitHub" aria-label="Share on GitHub">
+      <a class="share-btn" href="#" title="Share on WhatsApp" aria-label="Share on WhatsApp" data-platform="whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a class="share-btn" href="#" title="Share on Discord" aria-label="Share on Discord" data-platform="discord">
+        <i class="fab fa-discord"></i>
+      </a>
+      <a class="share-btn" href="#" title="Share on GitHub" aria-label="Share on GitHub" data-platform="github">
         <i class="fab fa-github"></i>
+      </a>
+      <a class="share-btn" href="#" title="Copy Link" aria-label="Copy Link" data-platform="copy">
+        <i class="fas fa-link"></i>
       </a>
     </div>
   </div>
@@ -231,20 +240,48 @@
   document.querySelectorAll('.share-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const icon = btn.querySelector('i').className;
-      const title = encodeURIComponent(document.title);
+      
+      const platform = btn.dataset.platform;
+      const title = encodeURIComponent(document.querySelector('#post-title')?.textContent || 'Check this out!');
       const url = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
       let shareUrl = '';
       
-      if (icon.includes('twitter')) {
-        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-      } else if (icon.includes('linkedin')) {
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-      } else if (icon.includes('github')) {
-        shareUrl = 'https://github.com/kipruto45';
+      switch(platform) {
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${pageTitle}`;
+          break;
+        case 'linkedin':
+          shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+          break;
+        case 'whatsapp':
+          shareUrl = `https://wa.me/?text=${pageTitle}%20${url}`;
+          break;
+        case 'discord':
+          // Discord doesn't have a direct share URL, but users can paste the link
+          shareUrl = `https://discord.com/channels/@me`;
+          break;
+        case 'github':
+          // Link to user's GitHub profile
+          shareUrl = 'https://github.com/Victor-Kipruto-Rop';
+          break;
+        case 'copy':
+          // Copy link to clipboard
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.title = 'Copied!';
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.title = 'Copy Link';
+            }, 2000);
+          }).catch(() => {
+            alert('Failed to copy link');
+          });
+          return;
       }
       
-      if (shareUrl) window.open(shareUrl, '_blank');
+      if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=400');
     });
   });
 </script>

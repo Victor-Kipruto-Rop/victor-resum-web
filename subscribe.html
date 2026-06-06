@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subscribe to Blog — Victor Kipruto Rop</title>
   <meta name="description" content="Join my newsletter for insights on data engineering and modern architecture.">
-  <link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="rss.xml">
   <link rel="icon" href="assets/1.jpeg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -522,8 +522,75 @@
         subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Subscribing...</span>';
 
         try {
-          // Store subscription locally\n          const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');\n          const subscriber = { name, email, date: new Date().toISOString() };\n          \n          // Check if already subscribed\n          const exists = subscribers.some(s => s.email === email);\n          if (exists) {\n            showMessage('✓ You\\'re already subscribed with this email!', 'success');\n            messageDiv.style.display = 'block';\n            setTimeout(() => messageDiv.style.display = 'none', 4000);\n          } else {\n            subscribers.push(subscriber);\n            localStorage.setItem('subscribers', JSON.stringify(subscribers));\n            showMessage('✓ Successfully subscribed! You\\'ll receive updates about new articles.', 'success');\n            messageDiv.style.display = 'block';\n            form.reset();\n            document.getElementById('subscriberCount').textContent = subscribers.length;\n            setTimeout(() => messageDiv.style.display = 'none', 4000);\n          }\n        } catch (error) {\n          showMessage('✗ Subscription error. Please try again later.', 'error');\n          messageDiv.style.display = 'block';\n          setTimeout(() => messageDiv.style.display = 'none', 4000);
-          showMessage('Network error. Please try again later.', 'error');
+          // Try to call backend API
+          const apiUrls = [
+            'http://localhost:5000/api/subscribe',
+            'https://victor-kipruto-rop.github.io/victor-resum-web/api/subscribe',
+            '/api/subscribe'
+          ];
+          
+          let success = false;
+          let errorMsg = 'Unable to connect to subscription service';
+          
+          for (const apiUrl of apiUrls) {
+            try {
+              const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  name: name,
+                  email: email,
+                  channels: ['email', 'telegram', 'twitter']
+                })
+              });
+              
+              if (response.ok) {
+                const data = await response.json();
+                success = true;
+                showMessage('✓ Successfully subscribed! You\'ll receive updates about new articles.', 'success');
+                messageDiv.style.display = 'block';
+                form.reset();
+                loadStats();
+                setTimeout(() => messageDiv.style.display = 'none', 4000);
+                break;
+              } else if (response.status === 409) {
+                success = true;
+                showMessage('✓ You\'re already subscribed with this email!', 'success');
+                messageDiv.style.display = 'block';
+                setTimeout(() => messageDiv.style.display = 'none', 4000);
+                break;
+              }
+            } catch (e) {
+              // Continue to next API URL
+              continue;
+            }
+          }
+          
+          if (!success) {
+            // Fallback: Store locally and show message
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            const subscriber = { name, email, date: new Date().toISOString() };
+            
+            const exists = subscribers.some(s => s.email === email);
+            if (exists) {
+              showMessage('✓ You\'re already subscribed with this email!', 'success');
+            } else {
+              subscribers.push(subscriber);
+              localStorage.setItem('subscribers', JSON.stringify(subscribers));
+              showMessage('✓ Successfully subscribed! You\'ll receive updates about new articles.', 'success');
+              document.getElementById('subscriberCount').textContent = subscribers.length;
+            }
+            messageDiv.style.display = 'block';
+            form.reset();
+            setTimeout(() => messageDiv.style.display = 'none', 4000);
+          }
+        } catch (error) {
+          console.error('Subscription error:', error);
+          showMessage('✗ Subscription error. Please try again later.', 'error');
+          messageDiv.style.display = 'block';
+          setTimeout(() => messageDiv.style.display = 'none', 4000);
         } finally {
           subscribeBtn.disabled = false;
           subscribeBtn.innerHTML = originalHTML;
@@ -540,13 +607,33 @@
       // LOAD STATS
       async function loadStats() {
         try {
-          const response = await fetch('/api/stats');
-          if (response.ok) {
-            const data = await response.json();
-            document.getElementById('subscriberCount').textContent = data.active_subscribers || '0';
+          // Try to fetch stats from backend API
+          const apiUrls = [
+            'http://localhost:5000/api/stats',
+            'https://victor-kipruto-rop.github.io/victor-resum-web/api/stats',
+            '/api/stats'
+          ];
+          
+          for (const apiUrl of apiUrls) {
+            try {
+              const response = await fetch(apiUrl);
+              if (response.ok) {
+                const data = await response.json();
+                document.getElementById('subscriberCount').textContent = data.total_subscribers || '0';
+                return;
+              }
+            } catch (e) {
+              // Continue to next URL
+              continue;
+            }
           }
+          
+          // Fallback: Count from localStorage
+          const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+          document.getElementById('subscriberCount').textContent = subscribers.length || '0';
         } catch (error) {
-          console.log('Stats unavailable');
+          console.log('Stats unavailable, using fallback');
+          document.getElementById('subscriberCount').textContent = '0';
         }
       }
 

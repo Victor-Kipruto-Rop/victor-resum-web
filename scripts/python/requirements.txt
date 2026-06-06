@@ -12,7 +12,6 @@ urllib3>=2.0.0                    # Advanced URL handling
 
 # === Image Processing ===
 Pillow>=10.0.0                    # Image manipulation, optimization, formats
-pillow-simd>=9.1.0                # SIMD-optimized Pillow (faster)
 
 # === Data Processing & Analysis ===
 pandas>=2.0.0                     # Data manipulation and analysis
@@ -29,7 +28,7 @@ lxml>=4.9.0                       # XML and HTML processing
 feedparser>=6.0.0                 # RSS/Atom feed parsing
 
 # === SEO & Analytics ===
-yake>=0.12.0                      # Keyword extraction
+yake>=0.7.0                       # Keyword extraction
 textblob>=0.17.0                  # NLP sentiment analysis
 nltk>=3.8.0                       # Natural language toolkit
 
@@ -38,23 +37,14 @@ resend>=0.5.0                     # Resend email service API
 email-validator>=2.0.0            # Email validation
 
 # === Database & Storage ===
-sqlite3>=3.0.0                    # Built-in SQLite database
 sqlalchemy>=2.0.0                 # SQL toolkit and ORM
 
 # === Date/Time & Utilities ===
 python-dateutil>=2.8.0            # Date utilities
 pytz>=2023.0                      # Timezone support
 
-# === Web Framework (Optional) ===
-flask>=3.0.0                      # Lightweight web framework
-flask-cors>=4.0.0                 # CORS support for Flask
-
 # === Development & Testing ===
-pytest>=7.0.0                     # Testing framework
-black>=23.0.0                     # Code formatter
-flake8>=6.0.0                     # Code linter
-pylint>=2.17.0                    # Code analysis
-mypy>=1.0.0                       # Static type checker
+pytest>=7.0.0                     # Testing framework (optional)
 
 # === Monitoring & Logging ===
 python-json-logger>=2.0.0         # JSON logging
