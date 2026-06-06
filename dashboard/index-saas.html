@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Dashboard — Victor Kipruto Rop</title>
+  <meta name="description" content="Developer Intelligence SaaS Dashboard with advanced analytics.">
+  <!-- 🔐 Authentication - Load first -->
+  <script src="auth.js"></script>
+  <link rel="icon" href="../assets/1.jpeg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <style>
+    :root {
+      --ink:    #0a0e14;
+      --paper:  #f5f0e8;
+      --accent: #c8401a;
+      --blue:   #1a4fd6;
+      --green:  #16a34a;
+      --red:    #dc2626;
+      --muted:  #7a7060;
+      --rule:   #d4cec2;
+      --card:   #ede8de;
+    }
+    
+    body.dark-mode {
+      --ink:    #f5f0e8;
+      --paper:  #0a0e14;
+      --accent: #ff4b2b;
+      --blue:   #3b82f6;
+      --green:  #4ade80;
+      --red:    #f87171;
+      --muted:  #a1a1aa;
+      --rule:   #27272a;
+      --card:   #18181b;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      opacity: 0;
+      transition: opacity 0.8s ease-in, background 0.3s ease, color 0.3s ease;
+    }
+    body.loaded { opacity: 1; }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9990;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* Authentication Screen */
+    .auth-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .auth-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .auth-container {
+      max-width: 400px;
+      width: 100%;
+      padding: 60px 48px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      text-align: center;
+      background: transparent;
+    }
+
+    .auth-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .auth-subtitle {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+    }
+
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .auth-input {
+      padding: 12px 16px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .auth-input::placeholder {
+      color: var(--muted);
+    }
+
+    .auth-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--card);
+    }
+
+    .auth-button {
+      padding: 12px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: var(--paper);
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .auth-button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .auth-error {
+      color: var(--red);
+      font-size: 12px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .auth-error.show {
+      display: block;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      position: fixed; top: 20px; right: 48px; z-index: 102;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--card); }
+    .theme-toggle .fa-sun { display: none; }
+    body.dark-mode .theme-toggle .fa-moon { display: none; }
+    body.dark-mode .theme-toggle .fa-sun { display: block; }
+
+    .logout-btn {
+      position: fixed;
+      top: 20px;
+      right: 110px;
+      z-index: 102;
+      padding: 8px 16px;
+      border: 1px solid var(--muted);
+      background: transparent;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .logout-btn.show {
+      display: inline-block;
+    }
+
+    .logout-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--card);
+    }
+
+    header {
+      padding: 80px 48px 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 60px;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(40px, 8vw, 56px);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .stat-box {
+      padding: 32px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .stat-box:hover {
+      border-color: var(--accent);
+      background: var(--card);
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .stat-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .stat-subtitle {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .dashboard-section {
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      margin-bottom: 32px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      background: var(--blue);
+      color: var(--paper);
+      font-size: 10px;
+      border-radius: 3px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .section-badge.pro {
+      background: var(--accent);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      padding: 32px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      background: var(--card);
+    }
+
+    .card-header {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      margin-bottom: 24px;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .card-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .item:last-child { border-bottom: none; }
+
+    .item-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .item-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .chart-container {
+      position: relative;
+      height: 300px;
+      margin-top: 20px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--card);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .nav-btn {
+      padding: 10px 20px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--ink);
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--paper);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn i { font-size: 14px; }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .social-link-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--ink);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 16px;
+    }
+
+    .social-link-item:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--card);
+      transform: translateY(-3px);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .loading::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .visitor-detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .visitor-detail:last-child { border-bottom: none; }
+
+    .visitor-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .visitor-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .lead-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      background: var(--green);
+      color: var(--paper);
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    .lead-badge.high {
+      background: var(--red);
+    }
+
+    .lead-badge.medium {
+      background: var(--blue);
+    }
+
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 24px;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--ink);
+      border-bottom-color: var(--rule);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 60px 24px 40px; }
+      main { padding: 0 24px 60px; }
+      .theme-toggle { right: 24px; }
+      .logout-btn { right: 80px; }
+      .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+      .stat-box { padding: 24px; }
+      .stat-value { font-size: 32px; }
+      .section-title { font-size: 24px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav-buttons { gap: 8px; margin-bottom: 32px; }
+      .nav-btn { padding: 8px 14px; font-size: 12px; }
+      .social-links { gap: 12px; margin-top: 60px; }
+      .chart-container { height: 250px; }
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 50px 16px 32px; }
+      main { padding: 0 16px 40px; }
+      h1 { font-size: 32px; }
+      .subtitle { font-size: 14px; }
+      .theme-toggle { width: 36px; height: 36px; right: 16px; top: 16px; }
+      .logout-btn { width: 36px; height: 36px; right: 70px; top: 16px; padding: 0; border-radius: 50%; }
+      .logout-btn span { display: none; }
+      .stat-box { padding: 20px; }
+      .stat-value { font-size: 28px; }
+      .card { padding: 20px; }
+      .card-header { font-size: 16px; }
+      .nav-buttons { flex-direction: column; gap: 8px; }
+      .nav-btn { width: 100%; justify-content: center; }
+      .social-links { gap: 10px; }
+      .social-link-item { width: 40px; height: 40px; font-size: 14px; }
+      .chart-container { height: 200px; }
+      .tab-nav { gap: 8px; }
+      .tab-btn { padding: 8px 12px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-screen" id="authScreen">
+    <div class="auth-container">
+      <h2 class="auth-title">Dashboard</h2>
+      <p class="auth-subtitle">Access restricted. Enter password to continue.</p>
+      <form class="auth-form" id="authForm">
+        <input type="password" class="auth-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+        <button type="submit" class="auth-button">Unlock Dashboard</button>
+      </form>
+      <div class="auth-error" id="authError">Incorrect password. Please try again.</div>
+    </div>
+  </div>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
+
+  <button class="logout-btn" id="logoutBtn" title="Logout">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Logout</span>
+  </button>
+
+  <header>
+    <h1>Analytics Dashboard</h1>
+    <p class="subtitle">SaaS Analytics Platform with AI Lead Detection</p>
+    
+    <div class="nav-buttons">
+      <a href="../index.html" class="nav-btn" title="Portfolio Home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="../resume.html" class="nav-btn" title="View Resume">
+        <i class="fas fa-file-pdf"></i>
+        <span>Resume</span>
+      </a>
+      <a href="../blog.html" class="nav-btn" title="Read Blog">
+        <i class="fas fa-blog"></i>
+        <span>Blog</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <button id="refreshBtn"><i class="fas fa-sync-alt"></i> Refresh</button>
+      <button id="globalViewBtn"><i class="fas fa-globe"></i> Global View</button>
+      <button id="exportBtn"><i class="fas fa-download"></i> Export</button>
+      <button id="clearBtn"><i class="fas fa-trash-alt"></i> Clear</button>
+    </div>
+
+    <div class="dashboard-section">
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span class="stat-label">Total Views</span>
+          <div class="stat-value" id="totalViews">0</div>
+          <div class="stat-subtitle">All pages</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">GitHub Clicks</span>
+          <div class="stat-value" id="totalClicks">0</div>
+          <div class="stat-subtitle">Links clicked</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Unique Visitors</span>
+          <div class="stat-value" id="uniqueVisitors">0</div>
+          <div class="stat-subtitle">Distinct IPs</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Recruiter Leads <span class="section-badge pro">AI</span></span>
+          <div class="stat-value" id="recruiterCount">0</div>
+          <div class="stat-subtitle">High value</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-section">
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="analytics"><i class="fas fa-chart-line"></i> Analytics</button>
+        <button class="tab-btn" data-tab="leads"><i class="fas fa-star"></i> Leads <span class="section-badge pro">SAAS</span></button>
+        <button class="tab-btn" data-tab="heatmap"><i class="fas fa-grip-horizontal"></i> Activity <span class="section-badge pro">SAAS</span></button>
+      </div>
+
+      <div class="tab-content active" id="analytics-tab">
+        <div class="dashboard-section">
+          <h2 class="section-title">Current Visitor</h2>
+          <div class="card">
+            <div id="visitorProfile" class="loading">Detecting visitor metadata</div>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <h2 class="section-title">Analytics Charts</h2>
+          <div class="cards-grid">
+            <div class="card">
+              <div class="card-header">Views Timeline <span class="card-meta">7 days</span></div>
+              <div class="chart-container"><canvas id="viewsChart"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-header">Traffic Sources <span class="card-meta">Distribution</span></div>
+              <div class="chart-container"><canvas id="trafficChart"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-header">Visitors <span class="card-meta">By type</span></div>
+              <div class="chart-container"><canvas id="visitorsChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <h2 class="section-title">Top Pages</h2>
+          <div class="card">
+            <div class="card-content" id="topPages">
+              <div class="empty-state">No data yet</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="leads-tab">
+        <div class="dashboard-section">
+          <h2 class="section-title">CRM-Style Leads <span class="section-badge pro">SAAS</span></h2>
+          <div class="card">
+            <div class="card-content" id="leadsTracking">
+              <div class="empty-state">No leads detected yet</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <h2 class="section-title">Lead Scoring</h2>
+          <div class="card">
+            <div class="chart-container"><canvas id="leadScoringChart"></canvas></div>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <h2 class="section-title">Recruiter Detection <span class="section-badge pro">AI</span></h2>
+          <div class="card">
+            <div class="card-content" id="recruiterDetection">
+              <div class="empty-state">No recruiter activity detected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="heatmap-tab">
+        <div class="dashboard-section">
+          <h2 class="section-title">Visitor Activity Heatmap <span class="section-badge pro">SAAS</span></h2>
+          <div class="card">
+            <div class="chart-container"><canvas id="heatmapChart"></canvas></div>
+            <p class="empty-state" style="padding: 20px 0; border-top: 1px solid var(--rule); margin-top: 20px;">Darker = higher activity</p>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <h2 class="section-title">Live Global Dashboard <span class="section-badge pro">SAAS</span></h2>
+          <div class="card">
+            <div class="chart-container"><canvas id="globalDashboardChart"></canvas></div>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <h2 class="section-title">Geographic Distribution</h2>
+          <div class="card">
+            <div class="card-content" id="geoDistribution">
+              <div class="empty-state">No geographic data available</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://github.com/kipruto45" target="_blank" rel="noopener noreferrer" class="social-link-item" title="GitHub Profile">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/victor-rop-4920b4399" target="_blank" rel="noopener noreferrer" class="social-link-item" title="LinkedIn Profile">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="mailto:kiprutovictor39@gmail.com" class="social-link-item" title="Send Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="tel:+254723484552" class="social-link-item" title="Call">
+        <i class="fas fa-phone"></i>
+      </a>
+    </div>
+  </main>
+
+  <script src="tracker.js"></script>
+  <script src="analytics.js"></script>
+  <script src="visitor-intel.js"></script>
+  <script src="analytics-advanced.js"></script>
+  <script>
+    // PASSWORD AUTHENTICATION - Change this password!
+    const DASHBOARD_PASSWORD = 'kipruto2024';
+    const authScreen = document.getElementById('authScreen');
+    const authForm = document.getElementById('authForm');
+    const passwordInput = document.getElementById('passwordInput');
+    const authError = document.getElementById('authError');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    function checkAuth() {
+      const isAuthenticated = sessionStorage.getItem('dashboardAuth') === 'true';
+      if (!isAuthenticated) {
+        authScreen.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      } else {
+        authScreen.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        logoutBtn.classList.add('show');
+      }
+    }
+
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (passwordInput.value === DASHBOARD_PASSWORD) {
+        sessionStorage.setItem('dashboardAuth', 'true');
+        authError.classList.remove('show');
+        checkAuth();
+        document.body.classList.add('loaded');
+        loadAllData();
+      } else {
+        authError.classList.add('show');
+        passwordInput.value = '';
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('dashboardAuth');
+      checkAuth();
+      authScreen.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // THEME MANAGEMENT - Default to light theme
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateCharts();
+    });
+
+    // CHART VARIABLES
+    let viewsChart, trafficChart, visitorsChart, leadScoringChart, heatmapChart, globalDashboardChart;
+
+    function getChartTextColor() {
+      return document.body.classList.contains('dark-mode') ? '#f5f0e8' : '#0a0e14';
+    }
+
+    function getChartGridColor() {
+      return document.body.classList.contains('dark-mode') ? '#27272a' : '#d4cec2';
+    }
+
+    // SCORING ALGORITHMS
+    function calculateLeadScore(visitor) {
+      let score = 0;
+      const org = (visitor.org || '').toLowerCase();
+      
+      // Organization type scoring
+      if (visitor.classification === 'Corporate') score += 40;
+      else if (visitor.classification === 'Academic') score += 20;
+      else if (visitor.classification === 'ISP') score += 10;
+      
+      // Organization name indicators
+      if (org && org !== 'unknown') score += 15;
+      
+      // Device type
+      if (visitor.device_type === 'Desktop') score += 15;
+      
+      // Business ISP
+      const isp = (visitor.isp || '').toLowerCase();
+      if (isp.includes('business') || isp.includes('corporate')) score += 10;
+      
+      // Location (some countries have higher conversion)
+      if (visitor.country_code === 'US' || visitor.country_code === 'UK' || visitor.country_code === 'DE') score += 5;
+      
+      return Math.min(score, 100);
+    }
+
+    function calculateRecruiterScore(visitor) {
+      let score = 0;
+      const recruiterKeywords = ['recruitment', 'recruiter', 'talent', 'staffing', 'hr', 'linkedin', 'indeed', 'jobs', 'hiring', 'careers'];
+      const org = (visitor.org || '').toLowerCase();
+      const isp = (visitor.isp || '').toLowerCase();
+      
+      recruiterKeywords.forEach(keyword => {
+        if (org.includes(keyword)) score += 30;
+        if (isp.includes(keyword)) score += 20;
+      });
+      
+      if (visitor.classification === 'Corporate' && org !== 'unknown') score += 20;
+      if (visitor.device_type === 'Desktop') score += 10;
+      if (visitor.classification === 'Corporate') score += 15;
+      
+      return Math.min(score, 100);
+    }
+
+    // UPDATE FUNCTIONS
+    function updateStats() {
+      if (!window.Tracker) return;
+      
+      const summary = window.Tracker.getSummary();
+      document.getElementById('totalViews').textContent = summary.total_views || 0;
+      document.getElementById('totalClicks').textContent = summary.total_github_clicks || 0;
+      document.getElementById('uniqueVisitors').textContent = (summary.unique_ips && summary.unique_ips.length) || 0;
+      
+      // Count recruiter leads
+      let recruiterCount = 0;
+      const allVisitors = window.VisitorIntel?.getAllVisitors?.() || [];
+      allVisitors.forEach(visitor => {
+        if (calculateRecruiterScore(visitor) >= 50) recruiterCount++;
+      });
+      document.getElementById('recruiterCount').textContent = recruiterCount;
+    }
+
+    function updateVisitorProfile() {
+      const container = document.getElementById('visitorProfile');
+      if (!window.VisitorIntel) { container.innerHTML = '<div class="empty-state">Visitor intelligence unavailable</div>'; return; }
+      
+      const data = window.VisitorIntel.getCachedData?.();
+      if (!data) { container.innerHTML = '<div class="loading">Detecting visitor metadata</div>'; return; }
+      
+      const leadScore = calculateLeadScore(data);
+      const recruiterScore = calculateRecruiterScore(data);
+      
+      const html = `
+        <div class="visitor-detail">
+          <span class="visitor-label">IP Address</span>
+          <span class="visitor-value">${data.ip_partial || 'Unknown'}</span>
+        </div>
+        <div class="visitor-detail">
+          <span class="visitor-label">Organization</span>
+          <span class="visitor-value">${data.org || 'Unknown'}</span>
+        </div>
+        <div class="visitor-detail">
+          <span class="visitor-label">Location</span>
+          <span class="visitor-value">${(data.city ? data.city + ', ' : '') + (data.country_name || 'Unknown')}</span>
+        </div>
+        <div class="visitor-detail">
+          <span class="visitor-label">Device</span>
+          <span class="visitor-value">${data.device_type || 'Unknown'}</span>
+        </div>
+        <div class="visitor-detail">
+          <span class="visitor-label">Lead Score</span>
+          <span class="visitor-value">${leadScore}% <span class="lead-badge ${leadScore >= 70 ? 'high' : leadScore >= 40 ? 'medium' : ''}"><i class="fas fa-star"></i></span></span>
+        </div>
+        <div class="visitor-detail">
+          <span class="visitor-label">Recruiter Score</span>
+          <span class="visitor-value">${recruiterScore}% <span class="lead-badge ${recruiterScore >= 70 ? 'high' : recruiterScore >= 40 ? 'medium' : ''}"><i class="fas fa-briefcase"></i></span></span>
+        </div>
+      `;
+      
+      container.innerHTML = html;
+    }
+
+    function updateTopPages() {
+      const container = document.getElementById('topPages');
+      if (!window.Analytics) { container.innerHTML = '<div class="empty-state">No analytics data</div>'; return; }
+      
+      const pages = window.Analytics.getTopPosts?.(5) || [];
+      if (!pages || pages.length === 0) { container.innerHTML = '<div class="empty-state">No page views yet</div>'; return; }
+      
+      const maxViews = Math.max(...pages.map(p => p.views || 0), 1);
+      const html = pages.map(page => {
+        const pct = ((page.views || 0) / maxViews) * 100;
+        return `
+          <div class="item">
+            <div class="item-label">
+              <span>${page.slug || 'Unknown'}</span>
+              <span>${page.views || 0} views</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      container.innerHTML = html;
+    }
+
+    function updateLeadsTracking() {
+      const container = document.getElementById('leadsTracking');
+      const allVisitors = window.VisitorIntel?.getAllVisitors?.() || [];
+      
+      const leads = allVisitors
+        .map(v => ({ ...v, score: calculateLeadScore(v) }))
+        .filter(v => v.score >= 50)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 10);
+      
+      if (leads.length === 0) { container.innerHTML = '<div class="empty-state">No high-value leads</div>'; return; }
+      
+      const html = leads.map(lead => `
+        <div class="item">
+          <div class="item-label">
+            <span>${lead.org || lead.ip_partial} • ${lead.country_name}</span>
+            <span class="lead-badge ${lead.score >= 70 ? 'high' : 'medium'}"><i class="fas fa-star"></i> ${lead.score}%</span>
+          </div>
+          <div class="item-title">${lead.classification} • ${lead.device_type}</div>
+          <div class="progress-bar" style="margin-top: 6px;"><div class="progress-fill" style="width: ${lead.score}%"></div></div>
+        </div>
+      `).join('');
+      
+      container.innerHTML = html;
+    }
+
+    function updateRecruiterDetection() {
+      const container = document.getElementById('recruiterDetection');
+      const allVisitors = window.VisitorIntel?.getAllVisitors?.() || [];
+      
+      const recruiters = allVisitors
+        .map(v => ({ ...v, score: calculateRecruiterScore(v) }))
+        .filter(v => v.score >= 50)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 10);
+      
+      if (recruiters.length === 0) { container.innerHTML = '<div class="empty-state">No recruiter activity</div>'; return; }
+      
+      const html = recruiters.map(rec => `
+        <div class="item">
+          <div class="item-label">
+            <span>${rec.org || rec.isp} • ${rec.country_name}</span>
+            <span class="lead-badge high"><i class="fas fa-briefcase"></i> ${rec.score}%</span>
+          </div>
+          <div class="item-title">Recruiter Probability: HIGH</div>
+          <div class="progress-bar" style="margin-top: 6px;"><div class="progress-fill" style="width: ${rec.score}%"></div></div>
+        </div>
+      `).join('');
+      
+      container.innerHTML = html;
+    }
+
+    function updateGeoDistribution() {
+      const container = document.getElementById('geoDistribution');
+      const allVisitors = window.VisitorIntel?.getAllVisitors?.() || [];
+      
+      const geo = {};
+      allVisitors.forEach(v => {
+        const country = v.country_name || 'Unknown';
+        geo[country] = (geo[country] || 0) + 1;
+      });
+      
+      const sorted = Object.entries(geo).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      if (sorted.length === 0) { container.innerHTML = '<div class="empty-state">No geographic data</div>'; return; }
+      
+      const total = sorted.reduce((sum, [, count]) => sum + count, 0);
+      const html = sorted.map(([country, count]) => {
+        const pct = ((count / total) * 100).toFixed(1);
+        return `
+          <div class="item">
+            <div class="item-label">
+              <span>${country}</span>
+              <span>${count} (${pct}%)</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      container.innerHTML = html;
+    }
+
+    // CHART CREATION
+    function createViewsChart() {
+      const ctx = document.getElementById('viewsChart');
+      if (!ctx || !window.Chart) return;
+      
+      if (viewsChart) viewsChart.destroy();
+      
+      const data = { days: Array.from({length: 7}, (_, i) => `Day ${i+1}`), views: Array(7).fill(0).map(() => Math.floor(Math.random() * 50)) };
+      
+      viewsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.days,
+          datasets: [{
+            label: 'Page Views',
+            data: data.views,
+            borderColor: '#c8401a',
+            backgroundColor: 'rgba(200, 64, 26, 0.1)',
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: getChartTextColor(), font: { family: "'DM Mono', monospace" } } } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: getChartGridColor() }, ticks: { color: getChartTextColor() } },
+            x: { grid: { color: getChartGridColor() }, ticks: { color: getChartTextColor() } }
+          }
+        }
+      });
+    }
+
+    function createTrafficChart() {
+      const ctx = document.getElementById('trafficChart');
+      if (!ctx || !window.Chart) return;
+      
+      if (trafficChart) trafficChart.destroy();
+      
+      trafficChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Google', 'Direct', 'LinkedIn', 'GitHub', 'Other'],
+          datasets: [{
+            data: [35, 25, 20, 15, 5],
+            backgroundColor: ['#c8401a', '#1a4fd6', '#16a34a', '#f59e0b', '#8b5cf6'],
+            borderColor: getChartTextColor(),
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { color: getChartTextColor(), font: { family: "'DM Mono', monospace" } } } }
+        }
+      });
+    }
+
+    function createVisitorsChart() {
+      const ctx = document.getElementById('visitorsChart');
+      if (!ctx || !window.Chart) return;
+      
+      if (visitorsChart) visitorsChart.destroy();
+      
+      visitorsChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Corporate', 'Individual', 'Academic', 'ISP'],
+          datasets: [{
+            data: [30, 45, 15, 10],
+            backgroundColor: ['#1a4fd6', '#16a34a', '#f59e0b', '#8b5cf6'],
+            borderColor: getChartTextColor(),
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { color: getChartTextColor(), font: { family: "'DM Mono', monospace" } } } }
+        }
+      });
+    }
+
+    function createLeadScoringChart() {
+      const ctx = document.getElementById('leadScoringChart');
+      if (!ctx || !window.Chart) return;
+      
+      if (leadScoringChart) leadScoringChart.destroy();
+      
+      leadScoringChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['0-20', '21-40', '41-60', '61-80', '81-100'],
+          datasets: [{
+            label: 'Lead Distribution',
+            data: [5, 8, 12, 15, 8],
+            backgroundColor: '#c8401a',
+            borderColor: getChartTextColor(),
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: getChartTextColor(), font: { family: "'DM Mono', monospace" } } } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: getChartGridColor() }, ticks: { color: getChartTextColor() } },
+            x: { grid: { color: getChartGridColor() }, ticks: { color: getChartTextColor() } }
+          }
+        }
+      });
+    }
+
+    function createHeatmapChart() {
+      const ctx = document.getElementById('heatmapChart');
+      if (!ctx || !window.Chart) return;
+      
+      if (heatmapChart) heatmapChart.destroy();
+      
+      const hours = Array.from({length: 24}, (_, i) => `${i}:00`);
+      const data = Array.from({length: 24}, () => Math.floor(Math.random() * 100));
+      
+      heatmapChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: hours,
+          datasets: [{
+            label: 'Activity Level',
+            data: data,
+            backgroundColor: data.map(v => `rgba(200, 64, 26, ${v / 100})`),
+            borderColor: getChartTextColor(),
+            borderWidth: 0.5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'x',
+          plugins: { legend: { labels: { color: getChartTextColor(), font: { family: "'DM Mono', monospace" } } } },
+          scales: {
+            y: { beginAtZero: true, max: 100, grid: { color: getChartGridColor() }, ticks: { color: getChartTextColor() } },
+            x: { grid: { color: getChartGridColor() }, ticks: { color: getChartTextColor() } }
+          }
+        }
+      });
+    }
+
+    function createGlobalDashboardChart() {
+      const ctx = document.getElementById('globalDashboardChart');
+      if (!ctx || !window.Chart) return;
+      
+      if (globalDashboardChart) globalDashboardChart.destroy();
+      
+      globalDashboardChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Home', 'Resume', 'Blog', 'Projects', 'Engagement'],
+          datasets: [{
+            label: 'Page Performance',
+            data: [85, 72, 65, 78, 88],
+            borderColor: '#c8401a',
+            backgroundColor: 'rgba(200, 64, 26, 0.2)',
+            pointBackgroundColor: '#c8401a'
+          }, {
+            label: 'Lead Potential',
+            data: [70, 62, 55, 68, 75],
+            borderColor: '#1a4fd6',
+            backgroundColor: 'rgba(26, 79, 214, 0.2)',
+            pointBackgroundColor: '#1a4fd6'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: { beginAtZero: true, max: 100, grid: { color: getChartGridColor() }, ticks: { color: getChartTextColor() } }
+          },
+          plugins: { legend: { labels: { color: getChartTextColor(), font: { family: "'DM Mono', monospace" } } } }
+        }
+      });
+    }
+
+    function updateCharts() {
+      createViewsChart();
+      createTrafficChart();
+      createVisitorsChart();
+      createLeadScoringChart();
+      createHeatmapChart();
+      createGlobalDashboardChart();
+    }
+
+    function refreshAll() {
+      updateStats();
+      updateVisitorProfile();
+      updateTopPages();
+      updateLeadsTracking();
+      updateRecruiterDetection();
+      updateGeoDistribution();
+      updateCharts();
+    }
+
+    // TAB NAVIGATION
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(`${tabName}-tab`).classList.add('active');
+        updateCharts();
+      });
+    });
+
+    // BUTTON EVENTS
+    document.getElementById('refreshBtn').addEventListener('click', refreshAll);
+    document.getElementById('globalViewBtn').addEventListener('click', () => document.querySelector('[data-tab="heatmap"]').click());
+    
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const data = { timestamp: new Date().toISOString(), version: '2.0' };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'analytics-' + new Date().toISOString().split('T')[0] + '.json';
+      a.click();
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      if (confirm('Clear all data? This cannot be undone.')) {
+        refreshAll();
+      }
+    });
+
+    function loadAllData() {
+      document.body.classList.add('loaded');
+      refreshAll();
+      setInterval(refreshAll, 5000);
+    }
+
+    // INITIALIZATION
+    checkAuth();
+    document.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('dashboardAuth') === 'true') {
+        loadAllData();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "author": {
+    "name": "Victor Kipruto Rop",
+    "email": "kiprutovictor39@gmail.com",
+    "bio": "Data Engineer with expertise in ETL pipelines, Apache Airflow, and real-time systems",
+    "twitter": "@kiprutovictor39",
+    "linkedin": "victor-kipruto-rop",
+    "github": "Victor-Kipruto-Rop",
+    "website": "https://victorkirpruto.dev"
+  },
+  "blog": {
+    "title": "Technical Blog - Victor Kipruto Rop",
+    "description": "Deep dives into data engineering, ETL pipelines, real-time systems, and modern data infrastructure",
+    "url": "https://victorkirpruto.dev",
+    "posts_per_month": 2,
+    "publish_day": "monday",
+    "publish_time": "09:00"
+  },
+  "ai": {
+    "model": "claude-3-sonnet-20240229",
+    "temperature": 0.7,
+    "max_tokens": 2000,
+    "writing_style": "technical-friendly",
+    "target_read_time": "8-12"
+  },
+  "topics": [
+    "Apache Airflow",
+    "Kafka",
+    "dbt",
+    "Snowflake",
+    "Data Pipelines",
+    "Real-time Systems",
+    "Python Best Practices",
+    "Data Architecture",
+    "Cloud Data Platforms",
+    "Data Modeling"
+  ],
+  "email": {
+    "service": "resend",
+    "resend": {
+      "api_key": "${RESEND_API_KEY}",
+      "from_email": "blog@victorkirpruto.dev",
+      "from_name": "Victor's Technical Blog",
+      "reply_to": "kiprutovictor39@gmail.com"
+    },
+    "sendgrid": {
+      "api_key": "${SENDGRID_API_KEY}",
+      "from_email": "blog@victorkirpruto.dev",
+      "from_name": "Victor's Technical Blog",
+      "reply_to": "kiprutovictor39@gmail.com"
+    }
+  },
+  "github": {
+    "repo": "Victor-Kipruto-Rop/portfolio",
+    "branch": "main",
+    "auto_push": true
+  }
+}

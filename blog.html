@@ -6,6 +6,7 @@
 <title>Technical Blog — Victor Kipruto Rop</title>
 <meta name="description" content="Technical articles on Data Engineering, ETL, and Cloud Infrastructure by Victor Kipruto Rop."/>
 <link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
+<link rel="alternate" type="application/rss+xml" title="Technical Blog RSS" href="feed.xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -98,6 +99,151 @@
   .back-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
   .back-link:hover { text-decoration: underline; }
 
+  /* Search & Filter Styles */
+  .blog-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px 48px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    max-width: 100%;
+  }
+
+  .search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(200, 64, 26, 0.1);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+    font-size: 14px;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .tag-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tag-btn:hover,
+  .tag-btn.active {
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+
+  .rss-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    background: rgba(200, 64, 26, 0.05);
+    color: var(--accent);
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    align-self: center;
+  }
+
+  .rss-link:hover {
+    background: rgba(200, 64, 26, 0.15);
+  }
+
+  .ai-draft-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    background: rgba(200, 64, 26, 0.15);
+    color: var(--accent);
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .blog-card {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(200, 64, 26, 0.1);
+  }
+
+  .blog-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .blog-tag {
+    padding: 4px 8px;
+    background: rgba(200, 64, 26, 0.1);
+    color: var(--accent);
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+
   footer { padding: 48px; border-top: 1px solid var(--rule); text-align: center; color: var(--muted); font-size: 12px; }
 
   @media (max-width: 768px) {
@@ -132,7 +278,7 @@
   }
 </style>
 </head>
-<body>
+<body data-blog-post="blog-index">
 
 <nav>
   <a href="index.html" class="nav-logo">Victor Kipruto Rop</a>
@@ -164,67 +310,153 @@
   });
 </script>
 
+<!-- Load posts data -->
+<script src="posts.js"></script>
+
+<script>
+  // Blog Search & Filter Logic - Wait for DOM to load
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const tagsContainer = document.getElementById('tags-container');
+    const blogContainer = document.getElementById('blog-posts-container');
+    const emptyState = document.getElementById('empty-state');
+
+    let allTags = new Set();
+    let selectedTag = 'all';
+    let searchQuery = '';
+
+    // Extract all unique tags from posts
+    function extractTags() {
+      if (window.posts) {
+        Object.values(window.posts).forEach(post => {
+          if (post.tags && Array.isArray(post.tags)) {
+            post.tags.forEach(tag => allTags.add(tag));
+          }
+        });
+      }
+      renderTags();
+    }
+
+    // Render tag buttons
+    function renderTags() {
+      // Clear and add "All Posts" button
+      tagsContainer.innerHTML = '<button class="tag-btn active" data-tag="all">All Posts</button>';
+      
+      Array.from(allTags).sort().forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'tag-btn';
+        btn.textContent = tag;
+        btn.dataset.tag = tag;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedTag = tag;
+          renderPosts();
+        });
+        tagsContainer.appendChild(btn);
+      });
+    }
+
+    // Render blog posts
+    function renderPosts() {
+      const filtered = Object.entries(window.posts || {})
+        .filter(([id, post]) => {
+          const matchesSearch = !searchQuery || 
+            post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+          
+          const matchesTag = selectedTag === 'all' || 
+            (post.tags && post.tags.includes(selectedTag));
+          
+          return matchesSearch && matchesTag;
+        })
+        .sort(([, a], [, b]) => new Date(b.date) - new Date(a.date));
+
+      if (filtered.length === 0) {
+        blogContainer.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      blogContainer.style.display = 'block';
+      emptyState.style.display = 'none';
+      blogContainer.innerHTML = filtered.map(([id, post]) => `
+        <article class="blog-card">
+          <span class="post-meta">${post.date} · ${post.readTime} min read</span>
+          <h2 class="post-title">
+            ${post.title}
+            ${post.isDraft ? '<span class="ai-draft-badge">Draft</span>' : ''}
+          </h2>
+          <p>${post.excerpt}</p>
+          ${post.tags ? `<div class="blog-tags">${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}</div>` : ''}
+          <div style="margin-top: 16px;">
+            <a href="post.html?id=${id}" class="back-link"><i class="fas fa-arrow-right"></i> Read Article</a>
+            ${post.isDraft ? '<span style="margin-left: 16px; font-size: 12px; color: var(--muted);">(AI Generated)</span>' : ''}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Search event listener
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderPosts();
+    });
+
+    // Initialize
+    extractTags();
+    renderPosts();
+  });
+</script>
+
 <header>
   <p class="post-meta">// THE DATA LOG</p>
   <h1>Technical Insights & Engineering Notes</h1>
   <p class="header-desc">Deep dives into data infrastructure, real-time systems, and the future of data engineering.</p>
 </header>
 
-<main class="blog-container">
+<!-- Search & Filters -->
+<div class="blog-controls">
+  <div class="search-container">
+    <i class="fas fa-search search-icon"></i>
+    <input 
+      type="text" 
+      class="search-input" 
+      id="search-input" 
+      placeholder="Search posts..."
+      aria-label="Search blog posts"
+    >
+  </div>
+  
+  <div class="tags-container" id="tags-container">
+    <button class="tag-btn active" data-tag="all">All Posts</button>
+  </div>
 
-  <article id="airflow-scalability">
-    <span class="post-meta">Oct 12, 2026 · 8 min read</span>
-    <h2 class="post-title">Architecting Scalable Data Pipelines with Apache Airflow</h2>
-    <div class="post-content">
-      <p>Apache Airflow has become the industry standard for workflow orchestration, but as your data ecosystem grows, so do the challenges of maintaining performance and reliability. In this article, we explore how to move beyond simple DAGs to enterprise-grade infrastructure.</p>
-      
-      <h2>1. The Modular DAG Approach</h2>
-      <p>One of the most common pitfalls is creating monolithic DAG files. Instead, leverage <code>TaskGroups</code> and dynamic DAG generation. By separating your configuration from your logic, you can scale to hundreds of similar pipelines without repeating code.</p>
-      
-      <h2>2. Custom Operators and Hooks</h2>
-      <p>When interacting with niche APIs or internal systems, avoid cluttering your DAGs with <code>PythonOperators</code> containing hundreds of lines of logic. Building custom operators ensures reusability and makes your pipelines significantly easier to unit test with <code>pytest</code>.</p>
-      
-      <h2>3. Monitoring and SLAs</h2>
-      <p>Scaling isn't just about throughput; it's about visibility. Implementing <code>sla_miss_callbacks</code> and integrating with tools like Prometheus or Datadog allows you to catch bottlenecks before they impact downstream BI reports.</p>
-    </div>
-    <a href="index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog List</a>
-  </article>
+  <a href="feed.xml" class="rss-link" title="Subscribe to RSS feed">
+    <i class="fas fa-rss"></i> Subscribe (RSS)
+  </a>
 
-  <article id="kafka-vs-rabbitmq">
-    <span class="post-meta">Sep 28, 2026 · 10 min read</span>
-    <h2 class="post-title">Real-time Stream Processing: Kafka vs. RabbitMQ</h2>
-    <div class="post-content">
-      <p>Choosing the right message broker is critical for real-time systems. While both Kafka and RabbitMQ facilitate asynchronous communication, they serve fundamentally different architectural patterns.</p>
-      
-      <h2>The Log vs. The Queue</h2>
-      <p>RabbitMQ is a traditional message broker designed for complex routing. Once a consumer acknowledges a message, it is deleted. Kafka, however, is a distributed commit log. This allows for <strong>replayability</strong>—multiple consumers can read the same data at different speeds without interference.</p>
-      
-      <h2>When to choose Kafka?</h2>
-      <p>If you are building a system like the Mpesa transaction streaming pipeline where you need to persist data for audit trails and perform stream processing (e.g., fraud detection), Kafka is the superior choice due to its high throughput and durability.</p>
-    </div>
-    <a href="index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog List</a>
-  </article>
+  <a href="subscribe.html" class="rss-link" title="Subscribe to email newsletter">
+    <i class="fas fa-envelope"></i> Subscribe (Email)
+  </a>
+</div>
 
-  <article id="dimensional-modelling">
-    <span class="post-meta">Aug 15, 2026 · 6 min read</span>
-    <h2 class="post-title">Dimensional Modelling in Modern Data Warehouses</h2>
-    <div class="post-content">
-      <p>Despite the rise of "One Big Table" (OBT) in some modern stacks, the principles of Dimensional Modelling (Kimball) remain essential for efficient analytics.</p>
-      
-      <h2>The Star Schema Advantage</h2>
-      <p>A well-designed Star Schema—consisting of a central Fact table and surrounding Dimension tables—optimizes for <code>JOIN</code> performance in columnar databases like Snowflake and BigQuery. It provides a clear, intuitive structure for business users to navigate.</p>
-      
-      <h2>Slowly Changing Dimensions (SCD)</h2>
-      <p>Handling change over time is where modelling shines. Whether implementing Type 1 (overwriting) or Type 2 (versioning), having a robust modelling layer ensures your historical reporting remains accurate even as the business evolves.</p>
-    </div>
-    <a href="index.html#blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog List</a>
-  </article>
-
+<main class="blog-container" id="blog-posts-container">
+  <!-- Populated by JavaScript -->
 </main>
+
+<div id="empty-state" class="empty-state" style="display:none;">
+  <p>No posts found. Try adjusting your search or filters.</p>
+</div>
 
 <footer>
   <p>© 2026 Victor Kipruto Rop · Built with focus on data integrity.</p>
 </footer>
 
+<!-- Analytics Tracking -->
+<script src="dashboard/tracker.js"></script>
+<script src="dashboard/visitor-intel.js"></script>
+<script src="dashboard/analytics-advanced.js"></script>
+<script src="integration/blog-tracker.js"></script>
 </body>
 </html>

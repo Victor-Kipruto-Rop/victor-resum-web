@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Analytics Dashboard</title>
+    <!-- 🔐 Authentication - Load first -->
+    <script src="auth.js"></script>
+    <link rel="stylesheet" href="../assets/dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📊 Developer Analytics Dashboard</h1>
+                <p class="subtitle">Real-time blog performance & engagement metrics</p>
+                <p id="sessionStatus" style="font-size: 12px; color: #7a7060; margin-top: 8px; font-weight: 400;">🔒 Session: Checking...</p>
+            </div>
+            <div class="header-controls">
+                <button id="refreshBtn" class="btn btn-primary" title="Manually refresh data">
+                    🔄 Refresh
+                </button>
+                <button id="clearDataBtn" class="btn btn-secondary" title="Clear all tracking data">
+                    🗑️ Clear Data
+                </button>
+                <button onclick="DashboardAuth.logout()" class="btn btn-logout" title="Logout from dashboard" style="background: #c8401a; color: #f5f0e8; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: background 0.3s; font-size: 13px;">
+                    🔓 Logout
+                </button>
+            </div>
+        </header>
+
+        <!-- Quick Stats -->
+        <section class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-icon">👁️</div>
+                <div class="stat-info">
+                    <div class="stat-label">Total Views</div>
+                    <div class="stat-value" id="totalViews">0</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔗</div>
+                <div class="stat-info">
+                    <div class="stat-label">GitHub Clicks</div>
+                    <div class="stat-value" id="totalGithubClicks">0</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <div class="stat-info">
+                    <div class="stat-label">Total Posts</div>
+                    <div class="stat-value" id="totalPosts">0</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-info">
+                    <div class="stat-label">Last Updated</div>
+                    <div class="stat-value" id="lastUpdated">Just now</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Grid -->
+        <div class="dashboard-grid">
+            <!-- Top Posts Section -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2>🔥 Top Blog Posts</h2>
+                    <span class="card-info">By views</span>
+                </div>
+                <div class="card-body">
+                    <div id="topPosts" class="posts-list">
+                        <div class="empty-state">No data yet. Posts will appear here as they're viewed.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Traffic Sources Section -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2>🚗 Traffic Sources</h2>
+                    <span class="card-info">Last 30 days</span>
+                </div>
+                <div class="card-body">
+                    <div id="trafficSources" class="traffic-chart">
+                        <div class="traffic-item">
+                            <div class="traffic-label">
+                                <span class="label-text">Google</span>
+                                <span class="label-percent" id="google-percent">35%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="google-bar" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div class="traffic-item">
+                            <div class="traffic-label">
+                                <span class="label-text">LinkedIn</span>
+                                <span class="label-percent" id="linkedin-percent">25%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="linkedin-bar" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div class="traffic-item">
+                            <div class="traffic-label">
+                                <span class="label-text">GitHub</span>
+                                <span class="label-percent" id="github-percent">20%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="github-bar" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="traffic-item">
+                            <div class="traffic-label">
+                                <span class="label-text">Direct</span>
+                                <span class="label-percent" id="direct-percent">20%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="direct-bar" style="width: 20%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GitHub Click Tracking Section -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2>🌐 GitHub Click Tracking</h2>
+                    <span class="card-info">Clicks by post</span>
+                </div>
+                <div class="card-body">
+                    <div id="githubClicks" class="clicks-list">
+                        <div class="empty-state">No GitHub clicks tracked yet.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Engagement Metrics Section -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2>📈 Engagement Metrics</h2>
+                    <span class="card-info">Performance indicators</span>
+                </div>
+                <div class="card-body">
+                    <div id="engagementMetrics" class="metrics-table">
+                        <div class="metric-row">
+                            <div class="metric-name">Average Views per Post</div>
+                            <div class="metric-value" id="avgViewsPerPost">0</div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-name">GitHub Click-Through Rate</div>
+                            <div class="metric-value" id="githubCTR">0%</div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-name">Most Viewed Post</div>
+                            <div class="metric-value" id="mostViewedPost">—</div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-name">Most Clicked Repository</div>
+                            <div class="metric-value" id="mostClickedRepo">—</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-Time Activity Section -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2>⚡ Real-Time Activity</h2>
+                    <span class="card-info" id="autoRefreshStatus">Auto-refresh: ON</span>
+                </div>
+                <div class="card-body">
+                    <div id="activityFeed" class="activity-feed">
+                        <div class="empty-state">Activity will appear here in real-time.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Links Section -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2>🔗 Quick Links</h2>
+                    <span class="card-info">Resources</span>
+                </div>
+                <div class="card-body">
+                    <div class="quick-links">
+                        <a href="../blog.html" class="quick-link-btn">📝 Blog Hub</a>
+                        <a href="https://github.com/victorkirpruto" class="quick-link-btn">💻 GitHub</a>
+                        <a href="https://linkedin.com/in/victorkirpruto" class="quick-link-btn">💼 LinkedIn</a>
+                        <a href="../index.html" class="quick-link-btn">🏠 Portfolio</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>📊 Developer Analytics • Data persisted in browser localStorage • Last sync: <span id="syncTime">just now</span></p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="analytics.js"></script>
+    <script src="tracker.js"></script>
+    <script src="charts.js"></script>
+    <script>
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            DashboardApp.init();
+            
+            // Update session status
+            const updateSessionStatus = () => {
+                const statusEl = document.getElementById('sessionStatus');
+                const timeRemaining = DashboardAuth.getFormattedSessionTime();
+                statusEl.textContent = `🔒 Session: ${timeRemaining}`;
+            };
+            updateSessionStatus();
+            setInterval(updateSessionStatus, 30000); // Update every 30 seconds
+            
+            // Setup refresh button
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                this.classList.add('spinning');
+                setTimeout(() => this.classList.remove('spinning'), 600);
+                DashboardApp.refresh();
+            });
+            
+            // Setup clear data button
+            document.getElementById('clearDataBtn').addEventListener('click', function() {
+                if (confirm('⚠️ Are you sure? This will clear all tracking data.')) {
+                    Tracker.clearAllData();
+                    DashboardApp.refresh();
+                }
+            });
+            
+            // Auto-refresh every 5 seconds
+            setInterval(function() {
+                DashboardApp.updateRealTimeData();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

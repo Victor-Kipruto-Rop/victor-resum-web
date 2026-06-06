@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Technical Blog - Victor Kipruto Rop</title>
+    <link>https://victorkirpruto.dev/blog.html</link>
+    <atom:link href="https://victorkirpruto.dev/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Data Engineering, Analytics, and Software Architecture insights</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Jun 2024 07:45:00 GMT</lastBuildDate>
+    <ttl>1440</ttl>
+
+    <!-- Channel Image -->
+    <image>
+      <url>https://victorkirpruto.dev/assets/images/blog-logo.png</url>
+      <title>Victor Kipruto Rop - Technical Blog</title>
+      <link>https://victorkirpruto.dev/blog.html</link>
+    </image>
+
+    <!-- Author/Managing Editor -->
+    <managingEditor>victor@victorkirpruto.dev</managingEditor>
+    <webMaster>victor@victorkirpruto.dev</webMaster>
+
+    <!-- Category -->
+    <category>Technology</category>
+    <category>Data Engineering</category>
+    <category>Analytics</category>
+
+    <!-- Sample Blog Post 1 -->
+    <item>
+      <title>Data Engineering Fundamentals</title>
+      <link>https://victorkirpruto.dev/posts/data-engineering.html</link>
+      <guid isPermaLink="true">https://victorkirpruto.dev/posts/data-engineering.html</guid>
+      <pubDate>Thu, 06 Jun 2024 09:00:00 GMT</pubDate>
+      <lastBuildDate>Thu, 06 Jun 2024 09:00:00 GMT</lastBuildDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Data Engineering</category>
+      <category>Fundamentals</category>
+      <category>ETL</category>
+      <description>Learn the core concepts of data engineering including ETL pipelines, data warehousing, and best practices for building scalable data systems.</description>
+      <content:encoded><![CDATA[
+        <p>Data engineering is the practice of designing and building systems for collecting, storing, and analyzing data. In this comprehensive guide, we explore:</p>
+        <ul>
+          <li>ETL vs ELT paradigms</li>
+          <li>Data warehouse architecture</li>
+          <li>Real-time vs batch processing</li>
+          <li>Best practices and tools</li>
+        </ul>
+        <p>Read the full article on our blog for detailed code examples and best practices.</p>
+      ]]></content:encoded>
+      <comments>https://victorkirpruto.dev/posts/data-engineering.html#comments</comments>
+    </item>
+
+    <!-- Sample Blog Post 2 -->
+    <item>
+      <title>Building Scalable Data Pipelines</title>
+      <link>https://victorkirpruto.dev/posts/scalable-pipelines.html</link>
+      <guid isPermaLink="true">https://victorkirpruto.dev/posts/scalable-pipelines.html</guid>
+      <pubDate>Wed, 29 May 2024 10:30:00 GMT</pubDate>
+      <lastBuildDate>Wed, 29 May 2024 10:30:00 GMT</lastBuildDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Data Engineering</category>
+      <category>Architecture</category>
+      <category>Apache Airflow</category>
+      <description>Learn how to design and implement data pipelines that scale from thousands to millions of records using Apache Airflow, Spark, and modern data stack tools.</description>
+      <content:encoded><![CDATA[
+        <p>Building scalable data pipelines is essential for modern data organizations. This guide covers:</p>
+        <ul>
+          <li>Orchestration with Apache Airflow</li>
+          <li>Distributed processing with Spark</li>
+          <li>Monitoring and alerting</li>
+          <li>Cost optimization strategies</li>
+        </ul>
+        <p>Includes practical examples and code snippets for immediate implementation.</p>
+      ]]></content:encoded>
+    </item>
+
+    <!-- Sample Blog Post 3 -->
+    <item>
+      <title>Real-Time Analytics with Kafka and ClickHouse</title>
+      <link>https://victorkirpruto.dev/posts/realtime-analytics.html</link>
+      <guid isPermaLink="true">https://victorkirpruto.dev/posts/realtime-analytics.html</guid>
+      <pubDate>Fri, 17 May 2024 14:20:00 GMT</pubDate>
+      <lastBuildDate>Fri, 17 May 2024 14:20:00 GMT</lastBuildDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Real-Time Analytics</category>
+      <category>Apache Kafka</category>
+      <category>ClickHouse</category>
+      <description>Explore how to build real-time analytics systems using Apache Kafka for streaming ingestion and ClickHouse for sub-second query performance on massive datasets.</description>
+      <content:encoded><![CDATA[
+        <p>Real-time analytics enables organizations to make decisions based on current data. Learn how to:</p>
+        <ul>
+          <li>Set up Kafka clusters for high-throughput streaming</li>
+          <li>Configure ClickHouse for real-time analytics</li>
+          <li>Build resilient data pipelines</li>
+          <li>Monitor system performance</li>
+        </ul>
+        <p>Complete with architecture diagrams and production-ready configurations.</p>
+      ]]></content:encoded>
+    </item>
+
+  </channel>
+</rss>

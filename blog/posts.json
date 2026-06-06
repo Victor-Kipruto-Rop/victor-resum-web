@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Building Scalable Data Pipelines with Python",
+    "slug": "data-pipeline-python",
+    "url": "/blog/posts/data-pipeline-python.html",
+    "date": "2024-06-15",
+    "category": "Backend",
+    "tags": ["python", "data-engineering", "scalability"],
+    "excerpt": "Learn how to build production-grade data pipelines using Python, Apache Airflow, and modern DevOps practices."
+  },
+  {
+    "id": 2,
+    "title": "Kubernetes Deployment Best Practices",
+    "slug": "kubernetes-deployment",
+    "url": "/blog/posts/kubernetes-deployment.html",
+    "date": "2024-06-10",
+    "category": "DevOps",
+    "tags": ["kubernetes", "docker", "deployment"],
+    "excerpt": "Master Kubernetes deployments with industry best practices, security hardening, and production optimization."
+  },
+  {
+    "id": 3,
+    "title": "React Hooks: Advanced Patterns",
+    "slug": "react-hooks-guide",
+    "url": "/blog/posts/react-hooks-guide.html",
+    "date": "2024-06-05",
+    "category": "Frontend",
+    "tags": ["react", "javascript", "hooks"],
+    "excerpt": "Deep dive into React Hooks including custom hooks, performance optimization, and advanced patterns."
+  },
+  {
+    "id": 4,
+    "title": "Terraform for AWS Infrastructure as Code",
+    "slug": "terraform-aws",
+    "url": "/blog/posts/terraform-aws.html",
+    "date": "2024-05-30",
+    "category": "DevOps",
+    "tags": ["terraform", "aws", "infrastructure"],
+    "excerpt": "Complete guide to managing AWS infrastructure with Terraform: modules, state management, and best practices."
+  },
+  {
+    "id": 5,
+    "title": "Docker Best Practices 2024",
+    "slug": "docker-best-practices",
+    "url": "/blog/posts/docker-best-practices.html",
+    "date": "2024-05-25",
+    "category": "DevOps",
+    "tags": ["docker", "containers", "security"],
+    "excerpt": "Essential Docker best practices for production deployments including security, performance, and CI/CD integration."
+  },
+  {
+    "id": 6,
+    "title": "PostgreSQL Performance Tuning",
+    "slug": "postgres-performance",
+    "url": "/blog/posts/postgres-performance.html",
+    "date": "2024-05-20",
+    "category": "Database",
+    "tags": ["postgresql", "database", "performance"],
+    "excerpt": "Optimize PostgreSQL performance with indexing strategies, query optimization, and monitoring techniques."
+  },
+  {
+    "id": 7,
+    "title": "GraphQL vs REST: Choosing the Right API",
+    "slug": "graphql-vs-rest",
+    "url": "/blog/posts/graphql-vs-rest.html",
+    "date": "2024-05-15",
+    "category": "API Design",
+    "tags": ["graphql", "rest", "api"],
+    "excerpt": "Comprehensive comparison of GraphQL and REST APIs with practical examples and decision frameworks."
+  },
+  {
+    "id": 8,
+    "title": "Machine Learning Model Deployment",
+    "slug": "ml-deployment",
+    "url": "/blog/posts/ml-deployment.html",
+    "date": "2024-05-10",
+    "category": "ML/AI",
+    "tags": ["machine-learning", "deployment", "mlops"],
+    "excerpt": "Deploy machine learning models to production with containerization, monitoring, and scaling strategies."
+  }
+]

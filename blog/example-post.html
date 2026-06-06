@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Scalable Data Pipelines with Python</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .meta {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        article {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #0366d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .github-link:hover {
+            background: #0256c7;
+        }
+
+        .cta {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 40px 0;
+            border-left: 4px solid #0366d6;
+        }
+
+        .dashboard-link {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .dashboard-link a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .dashboard-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<!-- 
+    TRACKING SETUP:
+    1. Added data-blog-post attribute with post slug
+    2. All GitHub links have class="tracked-github-link"
+    3. Tracking script loads at bottom
+-->
+<body data-blog-post="data-pipeline-python">
+    <div class="container">
+        <article>
+            <h1>Building Scalable Data Pipelines with Python</h1>
+            <div class="meta">
+                <p>Published: June 15, 2024 | Category: Backend | Reading time: 8 min</p>
+            </div>
+
+            <p>
+                In today's data-driven world, building scalable and maintainable data pipelines is crucial for any organization. 
+                In this comprehensive guide, we'll explore how to architect production-grade data pipelines using Python, 
+                Apache Airflow, and modern DevOps practices.
+            </p>
+
+            <h2>Why Data Pipelines Matter</h2>
+            <p>
+                Data pipelines are the backbone of modern data infrastructure. They ensure that data flows seamlessly from 
+                source systems to analytics platforms, data warehouses, and ML systems. A well-designed pipeline can handle 
+                millions of records per day while maintaining data quality and consistency.
+            </p>
+
+            <h2>Architecture Overview</h2>
+            <p>
+                A typical data pipeline consists of:
+            </p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li><strong>Data Sources:</strong> APIs, databases, files, streaming services</li>
+                <li><strong>Ingestion Layer:</strong> Pulls data from sources</li>
+                <li><strong>Transformation Layer:</strong> Cleans and transforms data</li>
+                <li><strong>Storage Layer:</strong> Warehouse, data lake, or data mart</li>
+                <li><strong>Serving Layer:</strong> Analytics, reporting, ML features</li>
+            </ul>
+
+            <h2>Getting Started with Python</h2>
+            <p>Here's a basic example of a data pipeline in Python:</p>
+            <pre><code>import pandas as pd
+from datetime import datetime
+
+def extract_data(source):
+    """Extract data from source"""
+    data = pd.read_csv(source)
+    return data
+
+def transform_data(df):
+    """Transform data"""
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+    df = df.dropna()
+    return df
+
+def load_data(df, destination):
+    """Load data to destination"""
+    df.to_parquet(destination)
+    print(f"Loaded {len(df)} records")
+
+# Execute pipeline
+data = extract_data('source.csv')
+data = transform_data(data)
+load_data(data, 'warehouse/data.parquet')</code></pre>
+
+            <h2>Apache Airflow for Orchestration</h2>
+            <p>
+                Apache Airflow is the industry standard for orchestrating complex data workflows. It provides:
+            </p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>DAG-based workflow definition</li>
+                <li>Built-in scheduling and triggering</li>
+                <li>Rich monitoring and alerting</li>
+                <li>Extensive integrations</li>
+                <li>Fault tolerance and retries</li>
+            </ul>
+
+            <p>
+                Check out the complete example and best practices on GitHub:
+            </p>
+            <a href="https://github.com/victorkirpruto/data-pipeline-examples" class="github-link tracked-github-link">
+                📦 View Data Pipeline Examples on GitHub
+            </a>
+
+            <h2>Best Practices</h2>
+            <p>When building data pipelines, keep these principles in mind:</p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li><strong>Idempotency:</strong> Pipelines should produce same result when run multiple times</li>
+                <li><strong>Error Handling:</strong> Implement comprehensive logging and alerting</li>
+                <li><strong>Monitoring:</strong> Track pipeline performance metrics</li>
+                <li><strong>Documentation:</strong> Maintain clear documentation of pipeline logic</li>
+                <li><strong>Testing:</strong> Test data transformations thoroughly</li>
+            </ul>
+
+            <div class="cta">
+                <strong>🔗 Pro Tip:</strong> Check out our Airflow setup repository for production-ready configurations.
+                <br>
+                <a href="https://github.com/victorkirpruto/airflow-setup" class="github-link tracked-github-link" style="margin-top: 10px; display: inline-block;">
+                    View Airflow Setup on GitHub
+                </a>
+            </div>
+
+            <h2>Conclusion</h2>
+            <p>
+                Building scalable data pipelines requires careful planning, proper tooling, and adherence to best practices. 
+                By leveraging Python and Apache Airflow, you can create robust pipelines that power your data infrastructure.
+            </p>
+
+            <p>
+                Have questions? Check out the complete code examples and documentation in our GitHub repository!
+            </p>
+
+            <div class="dashboard-link">
+                <p>📊 <a href="/dashboard/">View Analytics Dashboard</a> to see how this article is performing</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- 
+        TRACKING INTEGRATION
+        This script automatically:
+        1. Tracks page view for this post
+        2. Tracks GitHub link clicks
+        3. Detects traffic source from referrer
+        4. Sends all data to localStorage
+    -->
+    <script src="/integration/blog-tracker.js"></script>
+</body>
+</html>

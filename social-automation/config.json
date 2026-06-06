@@ -1,0 +1,168 @@
+{
+  "author": {
+    "name": "Victor Kipruto Rop",
+    "email": "victor@victorkirpruto.dev",
+    "twitter": "@victorkirpruto",
+    "linkedin": "victorkirpruto",
+    "github": "victorkirpruto",
+    "website": "victorkirpruto.dev"
+  },
+  "blog": {
+    "title": "Technical Blog - Victor Kipruto Rop",
+    "description": "Data Engineering, Analytics, and Software Architecture insights",
+    "url": "https://victorkirpruto.dev",
+    "rss_feed": "https://victorkirpruto.dev/feed.xml"
+  },
+  "platforms": {
+    "linkedin": {
+      "enabled": true,
+      "client_id": "${LINKEDIN_CLIENT_ID}",
+      "client_secret": "${LINKEDIN_CLIENT_SECRET}",
+      "redirect_uri": "${LINKEDIN_REDIRECT_URI}",
+      "access_token": "${LINKEDIN_ACCESS_TOKEN}",
+      "organization_id": "${LINKEDIN_ORG_ID}",
+      "retry_on_failure": true,
+      "rate_limit": 10,
+      "format": "article"
+    },
+    "twitter": {
+      "enabled": true,
+      "api_key": "${TWITTER_API_KEY}",
+      "api_secret": "${TWITTER_API_SECRET}",
+      "bearer_token": "${TWITTER_BEARER_TOKEN}",
+      "access_token": "${TWITTER_ACCESS_TOKEN}",
+      "access_token_secret": "${TWITTER_ACCESS_TOKEN_SECRET}",
+      "handle": "@victorkirpruto",
+      "retry_on_failure": true,
+      "rate_limit": 15,
+      "create_thread": true,
+      "max_tweets": 5
+    },
+    "devto": {
+      "enabled": true,
+      "api_key": "${DEVTO_API_KEY}",
+      "username": "victorkirpruto",
+      "retry_on_failure": true,
+      "rate_limit": 5,
+      "publish_status": "published",
+      "canonical_url_enabled": true
+    },
+    "medium": {
+      "enabled": true,
+      "access_token": "${MEDIUM_ACCESS_TOKEN}",
+      "user_id": "${MEDIUM_USER_ID}",
+      "retry_on_failure": true,
+      "rate_limit": 5,
+      "publish_status": "public",
+      "canonical_url_enabled": true
+    },
+    "telegram": {
+      "enabled": true,
+      "bot_token": "${TELEGRAM_BOT_TOKEN}",
+      "channel_id": "${TELEGRAM_CHANNEL_ID}",
+      "chat_id": "${TELEGRAM_CHAT_ID}",
+      "retry_on_failure": true,
+      "rate_limit": 20,
+      "send_to_channel": true,
+      "send_to_subscribers": false
+    }
+  },
+  "formatting": {
+    "linkedin": {
+      "max_title_length": 200,
+      "max_description_length": 500,
+      "include_image": true,
+      "include_hashtags": true,
+      "hashtags": ["#DataEngineering", "#Blog", "#Analytics", "#Python", "#Data"]
+    },
+    "twitter": {
+      "max_tweet_length": 280,
+      "create_thread": true,
+      "max_thread_tweets": 5,
+      "include_url": true,
+      "include_hashtags": true,
+      "hashtags": ["#DataEngineering", "#Python", "#Blog", "#Analytics", "#DevOps"]
+    },
+    "devto": {
+      "preserve_markdown": true,
+      "add_frontmatter": true,
+      "max_tags": 4,
+      "tags": ["dataengineering", "blog", "python", "analytics"],
+      "canonical_url_enabled": true
+    },
+    "medium": {
+      "preserve_formatting": true,
+      "convert_markdown": true,
+      "max_tags": 5,
+      "tags": ["dataengineering", "blog", "analytics", "python"],
+      "canonical_url_enabled": true,
+      "publish_status": "public"
+    },
+    "telegram": {
+      "max_message_length": 4096,
+      "parse_mode": "HTML",
+      "include_link_preview": true,
+      "include_hashtags": true,
+      "hashtags": ["#DataEngineering", "#Blog", "#Analytics"]
+    }
+  },
+  "scheduling": {
+    "auto_post": true,
+    "post_delay": 300,
+    "platform_delays": {
+      "linkedin": 0,
+      "twitter": 60,
+      "devto": 120,
+      "medium": 180,
+      "telegram": 240
+    },
+    "timezone": "UTC",
+    "business_hours_only": false
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "social_dispatch.log",
+    "console": true,
+    "max_file_size": 10485760,
+    "backup_count": 5
+  },
+  "error_handling": {
+    "retry_attempts": 3,
+    "retry_delay": 5,
+    "retry_backoff": 2,
+    "notification_on_failure": true,
+    "notification_email": "${ERROR_NOTIFICATION_EMAIL}"
+  },
+  "webhooks": {
+    "github": {
+      "enabled": true,
+      "secret": "${GITHUB_WEBHOOK_SECRET}",
+      "trigger_on": ["push"],
+      "branch": "main"
+    },
+    "blog_update": {
+      "enabled": true,
+      "url": "https://victorkirpruto.dev/webhook/dispatch",
+      "trigger_on": ["new_post"]
+    }
+  },
+  "analytics": {
+    "track_clicks": true,
+    "utm_parameters": {
+      "source": "social",
+      "medium": "platform",
+      "campaign": "blog_promotion"
+    },
+    "save_analytics": true,
+    "analytics_file": "social_analytics.json"
+  },
+  "content_rules": {
+    "include_author_bio": true,
+    "include_cta": true,
+    "call_to_action": "Read the full article on my blog →",
+    "hashtag_strategy": "aggressive",
+    "mention_strategy": "selective",
+    "thread_strategy": "smart",
+    "image_optimization": true
+  }
+}
