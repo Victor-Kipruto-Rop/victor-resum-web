@@ -785,6 +785,7 @@
     };
 
     let currentDashboard = null;
+    let sessionTimerInterval = null;
 
     // ═════════════════════════════════════════ INITIALIZATION ═════════════════════════════════════════
     document.addEventListener('DOMContentLoaded', function() {
@@ -801,9 +802,6 @@
           localStorage.removeItem(CONFIG.SESSION_KEY);
         }
       }
-
-      // Setup session timer
-      startSessionTimer();
     });
 
     // ═════════════════════════════════════════ AUTHENTICATION ═════════════════════════════════════════
@@ -842,17 +840,25 @@
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('hubScreen').classList.add('active');
       renderDashboards();
-      startSessionTimer();
+      // Start session timer only once after successful login
+      if (!sessionTimerInterval) {
+        startSessionTimer();
+      }
     }
 
     function logout() {
+      // Clear the session timer interval
+      if (sessionTimerInterval) {
+        clearInterval(sessionTimerInterval);
+        sessionTimerInterval = null;
+      }
       localStorage.removeItem(CONFIG.SESSION_KEY);
       closeCredentialsModal();
       document.getElementById('hubScreen').classList.remove('active');
       document.getElementById('loginScreen').style.display = 'flex';
       document.getElementById('password').value = '';
       document.getElementById('password').focus();
-      showToast('Logged out successfully', 'success');
+      showToast('Session ended. Please log in again.', 'info');
     }
 
     // ═════════════════════════════════════════ DASHBOARD RENDERING ═════════════════════════════════════════
@@ -952,27 +958,40 @@
           return;
         }
 
-        const sessionData = JSON.parse(session);
-        const elapsed = Date.now() - sessionData.timestamp;
-        const remaining = CONFIG.SESSION_TIMEOUT - elapsed;
+        try {
+          const sessionData = JSON.parse(session);
+          const elapsed = Date.now() - sessionData.timestamp;
+          const remaining = CONFIG.SESSION_TIMEOUT - elapsed;
 
-        if (remaining <= 0) {
+          if (remaining <= 0) {
+            logout();
+            return;
+          }
+
+          const hours = Math.floor(remaining / (60 * 60 * 1000));
+          const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
+          const seconds = Math.floor((remaining % (60 * 1000)) / 1000);
+
+          const timerElement = document.getElementById('sessionTimer');
+          if (timerElement) {
+            timerElement.textContent = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+          }
+        } catch (error) {
+          console.error('Error updating session timer:', error);
           logout();
-          return;
-        }
-
-        const hours = Math.floor(remaining / (60 * 60 * 1000));
-        const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
-        const seconds = Math.floor((remaining % (60 * 1000)) / 1000);
-
-        const timerElement = document.getElementById('sessionTimer');
-        if (timerElement) {
-          timerElement.textContent = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         }
       };
 
+      // Call update timer immediately to set initial value
       updateTimer();
-      setInterval(updateTimer, 1000);
+      
+      // Clear any existing interval before creating a new one
+      if (sessionTimerInterval) {
+        clearInterval(sessionTimerInterval);
+      }
+      
+      // Set up new interval
+      sessionTimerInterval = setInterval(updateTimer, 1000);
     }
 
     // Close modal on outside click
