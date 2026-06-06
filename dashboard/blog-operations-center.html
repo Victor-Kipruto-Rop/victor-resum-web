@@ -673,8 +673,24 @@
       justify-content: flex-end;
     }
   </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav style="position: sticky; top: 0; background: #1a1f2e; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2d3445; z-index: 100;">
+    <a href="../index.html" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: #ff4b2b; text-decoration: none; font-weight: 600;">Victor Kipruto Rop</a>
+    <div style="display: flex; gap: 24px; align-items: center;">
+      <a href="../blog.html" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #b0b8c9; text-decoration: none;">Blog</a>
+      <a href="../index.html" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #b0b8c9; text-decoration: none;">Home</a>
+    </div>
+  </nav>
   <!-- Login Screen -->
   <div id="loginScreen" class="login-container">
     <div class="login-box">
@@ -727,6 +743,10 @@
 
         <nav class="nav-section">
           <div class="nav-label">Analysis</div>
+          <a class="nav-item" href="blog-success-optimizer.html" target="_blank" style="color: var(--accent-primary); font-weight: 700; background: rgba(255, 75, 43, 0.1); border-color: var(--accent-primary);">
+            <i class="fas fa-brain"></i>
+            <span>📊 Success Optimizer</span>
+          </a>
           <a class="nav-item" data-section="failures">
             <i class="fas fa-exclamation-circle"></i>
             <span>Content At Risk</span>
@@ -742,6 +762,14 @@
           <a class="nav-item" data-section="gaps">
             <i class="fas fa-lightbulb"></i>
             <span>Content Gaps</span>
+          </a>
+        </nav>
+
+        <nav class="nav-section">
+          <div class="nav-label">Content Creation</div>
+          <a class="nav-item" data-section="publish">
+            <i class="fas fa-pen-fancy"></i>
+            <span>Create & Publish</span>
           </a>
         </nav>
 
@@ -865,11 +893,15 @@
 
         <!-- Content At Risk Section -->
         <section id="failures" class="section">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px;" id="failureStats"></div>
+          <h2 class="section-title" style="margin-bottom: 20px;"><i class="fas fa-warning" style="color: #f59e0b;"></i> Articles Needing Attention</h2>
           <div id="failuresAlert" class="item-list"></div>
         </section>
 
         <!-- Top Performers Section -->
         <section id="successes" class="section">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px;" id="successStats"></div>
+          <h2 class="section-title" style="margin-bottom: 20px;"><i class="fas fa-star" style="color: #fbbf24;"></i> Your Best Performing Content</h2>
           <div id="successesList" class="item-list"></div>
         </section>
 
@@ -892,6 +924,21 @@
 
         <!-- Content Gaps Section -->
         <section id="gaps" class="section">
+          <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.1)); border: 2px solid var(--accent-secondary); border-radius: 12px; padding: 32px; margin-bottom: 32px; box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);">
+            <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px;">
+              <div style="background: rgba(59, 130, 246, 0.2); padding: 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-lightbulb" style="font-size: 32px; color: var(--accent-secondary);"></i>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; color: var(--text-primary); font-size: 18px; margin-bottom: 4px;">Content Opportunities</div>
+                <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;">Topics that are trending but missing from your blog</div>
+                <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.7; background: var(--bg-tertiary); padding: 16px; border-radius: 8px; border-left: 3px solid var(--accent-secondary);">
+                  These gaps represent high-opportunity areas where content could attract significant traffic and engagement. Readers are actively searching for these topics and your presence could help capture that demand.
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 class="section-title" style="margin-bottom: 20px; font-size: 20px;"><i class="fas fa-compass" style="color: var(--accent-secondary); margin-right: 8px;"></i>Recommended Topics (with Search Volume & Traffic Potential)</h2>
           <div id="contentGapsList" class="item-list"></div>
         </section>
 
@@ -934,9 +981,176 @@
           </table>
         </section>
 
+        <!-- Create & Publish Section -->
+        <section id="publish" class="section">
+          <!-- Post Composer -->
+          <div style="margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+              <h2 class="section-title" style="font-size: 28px; margin: 0;"><i class="fas fa-pen-fancy" style="color: var(--accent-primary);"></i> Compose Post</h2>
+              <div style="background: var(--accent-primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">NEW</div>
+            </div>
+            <div style="background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(59, 130, 246, 0.05) 100%); border: 2px solid var(--border-color); border-radius: 12px; padding: 40px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);">
+              <div style="display: flex; flex-direction: column; gap: 28px;">
+                <div>
+                  <label style="display: block; margin-bottom: 14px; font-weight: 700; color: var(--text-secondary); font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Post Title</label>
+                  <input type="text" id="postTitle" placeholder="Enter an engaging post title..." style="width: 100%; padding: 24px 28px; background: var(--bg-tertiary); border: 2px solid var(--border-color); border-radius: 10px; color: var(--text-primary); font-family: 'DM Serif Display', serif; font-size: 22px; transition: all 0.3s ease; font-weight: 600; min-height: 60px;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='0 0 0 4px rgba(255, 75, 43, 0.15)'" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'">
+                </div>
+                
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                    <label style="font-weight: 700; color: var(--text-secondary); font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Post Content</label>
+                    <span id="charCount" style="font-size: 13px; color: var(--text-muted);">0 characters</span>
+                  </div>
+                  <textarea id="postContent" placeholder="Write your comprehensive post content here... Share your insights, code examples, and knowledge..." rows="28" style="width: 100%; padding: 24px 28px; background: var(--bg-tertiary); border: 2px solid var(--border-color); border-radius: 10px; color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 16px; resize: vertical; min-height: 650px; line-height: 1.8; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='0 0 0 4px rgba(255, 75, 43, 0.15)'" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'" oninput="document.getElementById('charCount').textContent = this.value.length + ' characters'"></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px;">
+                  <div>
+                    <label style="display: block; margin-bottom: 14px; font-weight: 700; color: var(--text-secondary); font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Tags (comma-separated)</label>
+                    <input type="text" id="postTags" placeholder="e.g., python, data-engineering, etl, airflow..." style="width: 100%; padding: 20px 24px; background: var(--bg-tertiary); border: 2px solid var(--border-color); border-radius: 10px; color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 16px; transition: all 0.3s ease; min-height: 50px;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='0 0 0 4px rgba(255, 75, 43, 0.15)'" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'">
+                  </div>
+                  
+                  <div>
+                    <label style="display: block; margin-bottom: 14px; font-weight: 700; color: var(--text-secondary); font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Category</label>
+                    <select id="postCategory" style="width: 100%; padding: 20px 24px; background: var(--bg-tertiary); border: 2px solid var(--border-color); border-radius: 10px; color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 16px; cursor: pointer; transition: all 0.3s ease; min-height: 50px;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='0 0 0 4px rgba(255, 75, 43, 0.15)'" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'">
+                      <option value="data-engineering">Data Engineering</option>
+                      <option value="etl">ETL & Pipelines</option>
+                      <option value="streaming">Streaming & Real-time</option>
+                      <option value="architecture">Architecture & Design</option>
+                      <option value="cloud">Cloud & Infrastructure</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label style="display: block; margin-bottom: 14px; font-weight: 700; color: var(--text-secondary); font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Read Time (min)</label>
+                    <input type="number" id="postReadTime" placeholder="5" min="1" max="60" value="5" style="width: 100%; padding: 20px 24px; background: var(--bg-tertiary); border: 2px solid var(--border-color); border-radius: 10px; color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 16px; transition: all 0.3s ease; min-height: 50px;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='0 0 0 4px rgba(255, 75, 43, 0.15)'" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publishing Options -->
+          <div style="margin-bottom: 40px; margin-top: 50px; padding-top: 40px; border-top: 2px solid var(--border-color);">
+            <h2 class="section-title" style="font-size: 28px; margin-bottom: 28px; display: flex; align-items: center; gap: 12px;"><i class="fas fa-rocket" style="color: var(--accent-secondary);"></i> Publish To Multiple Platforms</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+              
+              <!-- Platform Selection -->
+              <div style="background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(16, 185, 129, 0.05) 100%); border: 2px solid var(--border-color); border-radius: 12px; padding: 36px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
+                  <div>
+                    <span style="font-weight: 700; color: var(--text-primary); font-size: 18px; display: block; margin-bottom: 4px;">Select Platforms</span>
+                    <span style="font-size: 13px; color: var(--text-muted);">Choose where to publish your content</span>
+                  </div>
+                  <button onclick="toggleAllPlatforms()" style="background: var(--accent-primary); border: none; padding: 10px 20px; border-radius: 8px; color: white; cursor: pointer; font-size: 13px; font-weight: 700; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px rgba(255, 75, 43, 0.3)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">Select All</button>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 18px;">
+                  <label style="display: flex; align-items: center; gap: 14px; cursor: pointer; padding: 14px; background: var(--bg-tertiary); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(255, 75, 43, 0.1)'" onmouseout="this.style.backgroundColor='var(--bg-tertiary)'">
+                    <input type="checkbox" id="platform-twitter" class="platform-checkbox" value="twitter" style="width: 20px; height: 20px; cursor: pointer;"> 
+                    <i class="fab fa-twitter" style="color: #1DA1F2; font-size: 22px;"></i>
+                    <span style="font-weight: 600; font-size: 15px;">Twitter/X</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 14px; cursor: pointer; padding: 14px; background: var(--bg-tertiary); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(255, 75, 43, 0.1)'" onmouseout="this.style.backgroundColor='var(--bg-tertiary)'">
+                    <input type="checkbox" id="platform-linkedin" class="platform-checkbox" value="linkedin" style="width: 20px; height: 20px; cursor: pointer;"> 
+                    <i class="fab fa-linkedin" style="color: #0A66C2; font-size: 22px;"></i>
+                    <span style="font-weight: 600; font-size: 15px;">LinkedIn</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 14px; cursor: pointer; padding: 14px; background: var(--bg-tertiary); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(255, 75, 43, 0.1)'" onmouseout="this.style.backgroundColor='var(--bg-tertiary)'">
+                    <input type="checkbox" id="platform-medium" class="platform-checkbox" value="medium" style="width: 20px; height: 20px; cursor: pointer;"> 
+                    <i class="fab fa-medium" style="color: #000; font-size: 22px;"></i>
+                    <span style="font-weight: 600; font-size: 15px;">Medium</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 14px; cursor: pointer; padding: 14px; background: var(--bg-tertiary); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(255, 75, 43, 0.1)'" onmouseout="this.style.backgroundColor='var(--bg-tertiary)'">
+                    <input type="checkbox" id="platform-devto" class="platform-checkbox" value="devto" style="width: 20px; height: 20px; cursor: pointer;"> 
+                    <i class="fas fa-code" style="color: #000; font-size: 22px;"></i>
+                    <span style="font-weight: 600; font-size: 15px;">Dev.to</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 14px; cursor: pointer; padding: 14px; background: var(--bg-tertiary); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(255, 75, 43, 0.1)'" onmouseout="this.style.backgroundColor='var(--bg-tertiary)'">
+                    <input type="checkbox" id="platform-telegram" class="platform-checkbox" value="telegram" style="width: 20px; height: 20px; cursor: pointer;"> 
+                    <i class="fab fa-telegram" style="color: #0088cc; font-size: 22px;"></i>
+                    <span style="font-weight: 600; font-size: 15px;">Telegram</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 14px; cursor: pointer; padding: 14px; background: var(--bg-tertiary); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(255, 75, 43, 0.1)'" onmouseout="this.style.backgroundColor='var(--bg-tertiary)'">
+                    <input type="checkbox" id="platform-blog" class="platform-checkbox" value="blog" style="width: 20px; height: 20px; cursor: pointer;"> 
+                    <i class="fas fa-blog" style="color: var(--accent-primary); font-size: 22px;"></i>
+                    <span style="font-weight: 600; font-size: 15px;">My Blog</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Publish Button & Status -->
+              <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="background: linear-gradient(135deg, rgba(255, 75, 43, 0.15), rgba(59, 130, 246, 0.15)); border: 2px solid var(--accent-primary); border-radius: 12px; padding: 48px 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-height: 340px; box-shadow: 0 12px 32px rgba(255, 75, 43, 0.15);">
+                  <div style="background: rgba(255, 75, 43, 0.2); padding: 20px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-paper-plane" style="font-size: 56px; color: var(--accent-primary);"></i>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-weight: 700; color: var(--text-primary); font-size: 20px; margin-bottom: 10px;">Ready to Publish?</div>
+                    <div style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px; line-height: 1.6;">Select platforms above and click publish to share your content across all channels instantly</div>
+                  </div>
+                  <button onclick="publishPost()" style="width: 100%; padding: 20px; background: linear-gradient(135deg, var(--accent-primary), #ff6d3b); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: all 0.3s ease; font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 8px 24px rgba(255, 75, 43, 0.2);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 32px rgba(255, 75, 43, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(255, 75, 43, 0.2)'">
+                    <i class="fas fa-rocket"></i> Publish Now
+                  </button>
+                </div>
+
+                <div id="publishStatus" style="display: none; background: var(--bg-tertiary); border: 2px solid var(--accent-warning); border-radius: 8px; padding: 20px; font-size: 14px;">
+                  <div style="margin-bottom: 16px; color: var(--text-secondary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <div class="spinner" style="width: 16px; height: 16px; border: 2px solid rgba(255, 75, 43, 0.2); border-top-color: var(--accent-primary); border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+                    Publishing to platforms...
+                  </div>
+                  <div id="publishProgress" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Published Posts History -->
+          <div style="margin-top: 50px; padding-top: 40px; border-top: 2px solid var(--border-color);">
+            <h2 class="section-title" style="font-size: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;"><i class="fas fa-history" style="color: var(--accent-warning);"></i> Recently Published Posts</h2>
+            <div id="publishHistory" class="item-list" style="margin-top: 16px;"></div>
+          </div>
+        </section>
+
         <!-- AI Assistant Section -->
         <section id="ai" class="section">
+          <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(255, 75, 43, 0.08)); border: 2px solid var(--accent-secondary); border-radius: 12px; padding: 28px; margin-bottom: 32px;">
+            <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px;">
+              <div style="background: rgba(59, 130, 246, 0.2); padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center; min-width: 44px; height: 44px;">
+                <i class="fas fa-robot" style="font-size: 24px; color: var(--accent-secondary);"></i>
+              </div>
+              <div>
+                <div style="font-weight: 700; color: var(--text-primary); font-size: 18px; margin-bottom: 4px;">AI Content Strategist</div>
+                <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;">Smart recommendations powered by content analytics</div>
+                <div style="color: var(--text-secondary); font-size: 13px; line-height: 1.7; background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 6px; border-left: 3px solid var(--accent-tertiary);">
+                  ✓ Based on your article performance (views, engagement, conversions)<br>
+                  ✓ Industry trends & search volume data<br>
+                  ✓ Content gaps vs competitors<br>
+                  ✓ Prioritized by ROI & impact
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 class="section-title" style="margin-bottom: 20px; font-size: 20px;"><i class="fas fa-rocket" style="color: var(--accent-secondary); margin-right: 8px;"></i>Recommended Actions (Prioritized by ROI)</h2>
           <div id="aiRecommendations" class="item-list"></div>
+          
+          <!-- AI Command Input -->
+          <div style="margin-top: 40px; padding-top: 40px; border-top: 2px solid var(--border-color);">
+            <h3 style="font-weight: 700; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--text-primary);"><i class="fas fa-comments" style="color: var(--accent-secondary);"></i>Ask the AI Assistant</h3>
+            <div style="display: flex; gap: 12px;">
+              <input type="text" id="aiCommandInput" placeholder="Ask for content ideas, optimization tips, strategy advice..." style="flex: 1; padding: 22px 28px; background: var(--bg-tertiary); border: 2px solid var(--border-color); border-radius: 10px; color: var(--text-primary); font-family: 'DM Mono', monospace; font-size: 16px; transition: all 0.3s ease; min-height: 55px;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='0 0 0 4px rgba(255, 75, 43, 0.15)'" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none'">
+              <button onclick="sendAICommand()" style="padding: 22px 32px; background: linear-gradient(135deg, var(--accent-secondary), rgba(59, 130, 246, 0.8)); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; font-size: 15px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 32px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(59, 130, 246, 0.2)'">
+                <i class="fas fa-send"></i> Send
+              </button>
+            </div>
+            <div id="aiCommandResponse" style="margin-top: 20px; padding: 20px; background: var(--bg-tertiary); border: 2px solid var(--accent-secondary); border-radius: 10px; display: none;">
+              <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-robot" style="color: var(--accent-secondary);"></i> AI Response
+              </div>
+              <div id="aiResponseText" style="color: var(--text-secondary); line-height: 1.8; font-size: 15px;"></div>
+            </div>
+          </div>
         </section>
       </main>
     </div>
@@ -988,5 +1202,24 @@
   </div>
 
   <script src="blog-operations-center.js"></script>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.querySelector('[id*="theme-toggle"], [id*="themeToggle"]');
+        const body = document.body;
+        
+        if (themeToggle) {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            });
+        }
+    </script>
 </body>
 </html>

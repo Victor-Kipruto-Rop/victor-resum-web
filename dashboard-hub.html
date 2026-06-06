@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBOS Dashboard Hub - Victor Kipruto Rop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        :root {
+            --ink:    #0a0e14;
+            --paper:  #f5f0e8;
+            --accent: #c8401a;
+            --muted:  #7a7060;
+            --rule:   #d4cec2;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+        }
+        
+        body.dark-mode {
+            --ink:    #f5f0e8;
+            --paper:  #0a0e14;
+            --accent: #ff4b2b;
+            --muted:  #a1a1aa;
+            --rule:   #27272a;
+            --success: #27ae60;
+            --warning: #d68910;
+            --error: #c0392b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Mono', monospace;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--paper);
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--rule);
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--rule);
+            color: var(--ink);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .theme-toggle .fa-sun { display: none; }
+        body.dark-mode .theme-toggle .fa-moon { display: none; }
+        body.dark-mode .theme-toggle .fa-sun { display: block; }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: var(--error);
+            color: var(--paper);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 48px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 56px;
+            color: var(--ink);
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* Dashboard Grid */
+        .dashboards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .dashboard-card {
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--muted));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(200, 64, 26, 0.1);
+        }
+
+        .dashboard-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 32px;
+            color: var(--accent);
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(200, 64, 26, 0.1);
+            border-radius: 8px;
+        }
+
+        .card-content h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px;
+            color: var(--ink);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .card-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .status-badge {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Categories */
+        .category-section {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: var(--ink);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-title i {
+            color: var(--accent);
+            font-size: 32px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .stat-box {
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'DM Serif Display', serif;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 48px;
+            text-align: center;
+            border-top: 1px solid var(--rule);
+        }
+
+        footer p {
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Auth Modal */
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .auth-form {
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            border-radius: 16px;
+            padding: 48px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-form h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: var(--ink);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 14px;
+            font-family: 'DM Mono', monospace;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group input::placeholder {
+            color: var(--muted);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: var(--paper);
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(200, 64, 26, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid var(--rule);
+            color: var(--ink);
+        }
+
+        .btn.secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 24px;
+            }
+
+            nav {
+                padding: 16px 24px;
+            }
+
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .dashboards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+    <meta name="robots" content="noindex, nofollow">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="../index.html" class="nav-logo">DBOS Hub</a>
+        <div class="nav-links">
+            <a href="../blog.html">Blog</a>
+            <a href="../index.html">Home</a>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="logout-btn" onclick="logout()" id="logout-btn" style="display:none;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </nav>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-form">
+            <h2><i class="fas fa-lock"></i></h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 24px; font-size: 12px; text-transform: uppercase;">Dashboard Access</p>
+            <div id="error-msg" class="error-message"></div>
+            <form onsubmit="authenticate(event)">
+                <div class="form-group">
+                    <label for="password">Passcode</label>
+                    <input type="password" id="password" placeholder="Enter access code" required autofocus>
+                </div>
+                <button type="submit" class="btn">Unlock Dashboards</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until authenticated) -->
+    <div id="main-content" style="display: none;">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Dashboard Operations Center</h1>
+                <p>Real-time monitoring & analytics platform</p>
+            </div>
+
+            <!-- Analytics Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-chart-line"></i> Analytics & Performance
+                </h2>
+                <div class="dashboards-grid">
+                    <a href="dashboard/analytics-dashboard-private.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-bar-chart"></i></div>
+                        <div class="card-content">
+                            <h3>Analytics Dashboard</h3>
+                            <p>Real-time traffic metrics, user behavior, and performance analytics across all platforms.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/blog-analytics.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-newspaper"></i></div>
+                        <div class="card-content">
+                            <h3>Blog Analytics</h3>
+                            <p>Post performance metrics, engagement rates, and content analytics dashboard.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/d8k4p2x9n6m.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="card-content">
+                            <h3>Performance Monitor</h3>
+                            <p>System performance, load times, and infrastructure health monitoring.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Content Management Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-pencil-alt"></i> Content Management
+                </h2>
+                <div class="dashboards-grid">
+                    <a href="dashboard/blog-operations-center.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="card-content">
+                            <h3>Blog Operations</h3>
+                            <p>Manage blog posts, schedule publications, and control content workflow.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/image-library.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-image"></i></div>
+                        <div class="card-content">
+                            <h3>Image Library</h3>
+                            <p>Auto-manage images, organize assets, and handle image distribution.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/blog-success-optimizer.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                        <div class="card-content">
+                            <h3>Success Optimizer</h3>
+                            <p>Optimize content strategy, track KPIs, and improve engagement metrics.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Communications Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-bell"></i> Communications
+                </h2>
+                <div class="dashboards-grid">
+                    <a href="dashboard/notifications-center.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-bell"></i></div>
+                        <div class="card-content">
+                            <h3>Notifications Center</h3>
+                            <p>Manage alerts, notifications, and system messages in real-time.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/alerts-center.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="card-content">
+                            <h3>Alerts Center</h3>
+                            <p>Real-time alert management and critical issue monitoring system.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="subscription-analytics-dashboard.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="card-content">
+                            <h3>Subscriptions</h3>
+                            <p>Email subscriptions, subscriber analytics, and engagement tracking.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Business Intelligence Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-brain"></i> Business Intelligence
+                </h2>
+                <div class="dashboards-grid">
+                    <a href="dashboard/hub.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-sitemap"></i></div>
+                        <div class="card-content">
+                            <h3>Hub Dashboard</h3>
+                            <p>Central intelligence hub with cross-platform insights and business metrics.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/index-enhanced.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-star"></i></div>
+                        <div class="card-content">
+                            <h3>Enhanced Index</h3>
+                            <p>Advanced analytics dashboard with deep insights and predictive metrics.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/index-saas.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-cloud"></i></div>
+                        <div class="card-content">
+                            <h3>SaaS Dashboard</h3>
+                            <p>SaaS-specific metrics, customer insights, and subscription analytics.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-sliders-h"></i> System & Administration
+                </h2>
+                <div class="dashboards-grid">
+                    <a href="dashboard/index-themed.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-palette"></i></div>
+                        <div class="card-content">
+                            <h3>Themed Dashboard</h3>
+                            <p>Theme management and visual customization for all platforms.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/index.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-home"></i></div>
+                        <div class="card-content">
+                            <h3>Main Dashboard</h3>
+                            <p>Primary developer analytics and system overview dashboard.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+
+                    <a href="dashboard/login.html" class="dashboard-card">
+                        <div class="card-icon"><i class="fas fa-lock"></i></div>
+                        <div class="card-content">
+                            <h3>Access Control</h3>
+                            <p>Authentication and user access management system.</p>
+                        </div>
+                        <div class="card-status">
+                            <div class="status-badge"></div>
+                            <span>Active</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-tachometer-alt"></i> System Status
+                </h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Dashboards Online</div>
+                        <div class="stat-value">14</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">System Health</div>
+                        <div class="stat-value" style="color: var(--success);">100%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Response Time</div>
+                        <div class="stat-value">&lt;100ms</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Uptime</div>
+                        <div class="stat-value" style="color: var(--success);">99.9%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Victor Kipruto Rop - DBOS Dashboard Operations System</p>
+            <p style="font-size: 11px; color: var(--muted);">Real-time monitoring, analytics, and content management platform</p>
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../blog.html">Blog</a>
+                <a href="javascript:logout()">Logout</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+
+        // Dashboard Access Control
+        const DASHBOARD_PASSWORD = 'dbos2024'; // Change this to your desired password
+
+        function authenticate(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+
+            if (password === DASHBOARD_PASSWORD) {
+                localStorage.setItem('dashboard-access', 'true');
+                document.getElementById('auth-modal').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('logout-btn').style.display = 'block';
+                document.getElementById('password').value = '';
+            } else {
+                errorMsg.textContent = '❌ Invalid passcode. Please try again.';
+                document.getElementById('password').value = '';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('dashboard-access');
+            document.getElementById('auth-modal').style.display = 'flex';
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('logout-btn').style.display = 'none';
+            document.getElementById('password').focus();
+        }
+
+        // Check access on page load
+        window.addEventListener('load', () => {
+            const hasAccess = localStorage.getItem('dashboard-access') === 'true';
+            
+            if (hasAccess) {
+                document.getElementById('auth-modal').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('logout-btn').style.display = 'block';
+            } else {
+                document.getElementById('auth-modal').style.display = 'flex';
+                document.getElementById('main-content').style.display = 'none';
+                document.getElementById('logout-btn').style.display = 'none';
+                document.getElementById('password').focus();
+            }
+        });
+
+        // Auto-logout after 30 minutes of inactivity
+        let inactivityTimeout;
+        const INACTIVITY_TIME = 30 * 60 * 1000; // 30 minutes
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimeout);
+            inactivityTimeout = setTimeout(() => {
+                if (localStorage.getItem('dashboard-access') === 'true') {
+                    logout();
+                    alert('⏰ Session expired due to inactivity. Please log in again.');
+                }
+            }, INACTIVITY_TIME);
+        }
+
+        // Reset timer on user activity
+        document.addEventListener('mousemove', resetInactivityTimer);
+        document.addEventListener('keypress', resetInactivityTimer);
+        document.addEventListener('click', resetInactivityTimer);
+
+        // Initialize timer
+        resetInactivityTimer();
+
+        // Prevent back button access after logout
+        window.addEventListener('popstate', () => {
+            if (localStorage.getItem('dashboard-access') !== 'true') {
+                document.getElementById('auth-modal').style.display = 'flex';
+                document.getElementById('main-content').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

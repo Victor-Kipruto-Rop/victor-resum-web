@@ -10,6 +10,14 @@ Disallow: /blog-ai/
 Disallow: /.git/
 Disallow: /.env
 Disallow: /*.log
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /scripts/
+Disallow: /automation/
+Disallow: /integration/
+Disallow: /notifications/
+Disallow: /subscribers/
 
 # Specific bot rules
 User-agent: Googlebot

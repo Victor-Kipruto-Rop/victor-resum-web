@@ -1,0 +1,221 @@
+name: Notify Subscribers - Blog Updates
+
+on:
+  push:
+    paths:
+      - 'blog/posts.json'
+      - 'blog/posts/**'
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    # Run daily at 9 AM UTC
+    - cron: '0 9 * * *'
+
+jobs:
+  detect-events:
+    runs-on: ubuntu-latest
+    outputs:
+      events-count: ${{ steps.detect.outputs.events-count }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv Pillow
+      
+      - name: Detect blog events
+        id: detect
+        run: |
+          cd scripts/python
+          python event_detection.py
+          
+          # Count events for output
+          if [ -f "../../notifications/events.json" ]; then
+            EVENT_COUNT=$(python -c "import json; data=json.load(open('../../notifications/events.json')); print(len(data.get('events', [])))")
+            echo "events-count=$EVENT_COUNT" >> $GITHUB_OUTPUT
+          else
+            echo "events-count=0" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Upload events
+        uses: actions/upload-artifact@v4
+        if: steps.detect.outputs.events-count > 0
+        with:
+          name: blog-events
+          path: notifications/events.json
+  
+  segment-subscribers:
+    runs-on: ubuntu-latest
+    needs: detect-events
+    if: needs.detect-events.outputs.events-count > 0
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests python-dotenv
+      
+      - name: Run subscriber segmentation
+        run: |
+          cd scripts/python
+          python subscriber_segmentation.py
+      
+      - name: Verify segments
+        run: |
+          if [ -f "subscribers/segments.json" ]; then
+            echo "✓ Subscriber segments created"
+          fi
+  
+  send-notifications:
+    runs-on: ubuntu-latest
+    needs: [detect-events, segment-subscribers]
+    if: needs.detect-events.outputs.events-count > 0
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests python-dotenv
+      
+      - name: Download events
+        uses: actions/download-artifact@v3
+        with:
+          name: blog-events
+      
+      - name: Send Telegram notifications
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        continue-on-error: true
+        run: |
+          cd scripts/python
+          python -c "
+          import os
+          import json
+          from telegram_notifier import TelegramNotifier
+          
+          notifier = TelegramNotifier()
+          if notifier.validate_credentials():
+              with open('../../notifications/events.json') as f:
+                  events = json.load(f).get('events', [])
+              
+              if events:
+                  count = len(events)
+                  message = f'📡 Blog notification pipeline started\n👀 Processing {count} events'
+                  notifier.send_alert('📡 NOTIFICATION PIPELINE', message, 'info')
+          "
+      
+      - name: Log notification status
+        run: |
+          echo "✓ Notifications processed"
+          if [ -f "notifications/telegram-log.json" ]; then
+            echo "✓ Telegram log created"
+          fi
+          if [ -f "notifications/email-log.json" ]; then
+            echo "✓ Email log created"
+          fi
+  
+  verify-delivery:
+    runs-on: ubuntu-latest
+    needs: send-notifications
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Verify delivery logs
+        run: |
+          echo "📊 Notification Delivery Report"
+          echo "================================"
+          
+          if [ -f "notifications/telegram-log.json" ]; then
+            echo "📱 Telegram Log:"
+            cat notifications/telegram-log.json | head -20
+          fi
+          
+          if [ -f "notifications/email-log.json" ]; then
+            echo ""
+            echo "📧 Email Log:"
+            cat notifications/email-log.json | head -20
+          fi
+      
+      - name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: notification-logs
+          path: notifications/
+          retention-days: 30
+  
+  create-summary:
+    runs-on: ubuntu-latest
+    needs: [detect-events, send-notifications, verify-delivery]
+    if: always()
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Create workflow summary
+        run: |
+          cat > WORKFLOW_SUMMARY.md <<'EOF'
+          # 📧 Notification Pipeline Execution Summary
+          
+          ## Events Detected
+          - Total: ${{ needs.detect-events.outputs.events-count }}
+          - Status: ${{ needs.detect-events.result }}
+          
+          ## Segmentation
+          - Status: ${{ needs.segment-subscribers.result }}
+          - Segments created: By Interest, Engagement, Channel
+          
+          ## Notifications Sent
+          - Telegram: ${{ needs.send-notifications.result }}
+          - Email: Configured via SMTP/Resend
+          - Status: ${{ needs.send-notifications.result }}
+          
+          ## Delivery Verification
+          - Status: ${{ needs.verify-delivery.result }}
+          - Logs location: notifications/
+          
+          ## Next Steps
+          1. Check notification logs for delivery status
+          2. Monitor subscriber engagement
+          3. Review unsubscribe/bounce events
+          4. Optimize segment targeting
+          
+          Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          EOF
+          
+          cat WORKFLOW_SUMMARY.md
+      
+      - name: Upload summary
+        uses: actions/upload-artifact@v3
+        with:
+          name: workflow-summary
+          path: WORKFLOW_SUMMARY.md

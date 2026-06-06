@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog AI Dashboard</title>
+    <title>Blog AI Dashboard — Victor Kipruto Rop</title>
+    <link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -17,19 +20,65 @@
             --paper: #f5f0e8;
             --accent: #c8401a;
             --muted: #7a7060;
+            --rule: #d4cec2;
+        }
+
+        body.dark-mode {
+            --ink: #f5f0e8;
+            --paper: #0a0e14;
+            --accent: #ff4b2b;
+            --muted: #a1a1aa;
+            --rule: #27272a;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--ink) 0%, #1a1f2e 100%);
-            color: var(--paper);
-            padding: 40px 20px;
+            font-family: 'DM Mono', monospace;
+            background: var(--paper);
+            color: var(--ink);
+            padding: 0;
             min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 9990;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        nav {
+            position: sticky; top: 0; background: var(--paper);
+            padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--rule); z-index: 100;
+        }
+        .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); text-decoration: none; }
+        .nav-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; margin-left: 32px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+        
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--rule);
+            color: var(--ink);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+        .theme-toggle .fa-sun { display: none; }
+        body.dark-mode .theme-toggle .fa-moon { display: none; }
+        body.dark-mode .theme-toggle .fa-sun { display: block; }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 40px 48px 120px;
         }
 
         header {
@@ -38,13 +87,18 @@
         }
 
         h1 {
+            font-family: 'DM Serif Display', serif;
             font-size: 42px;
-            margin-bottom: 10px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: var(--ink);
         }
 
         .subtitle {
-            font-size: 18px;
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
             color: var(--muted);
+            font-weight: 500;
         }
 
         .grid {
@@ -55,25 +109,27 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            background: transparent;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
             padding: 30px;
-            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .card:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(200, 64, 26, 0.1);
         }
 
         .card-title {
-            font-size: 20px;
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--ink);
         }
 
         .card-title i {
@@ -83,32 +139,50 @@
 
         .card-content {
             color: var(--muted);
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.8;
+        }
+
+        .card-content p {
+            margin-bottom: 12px;
         }
 
         .status-badge {
             display: inline-block;
             padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+            border-radius: 4px;
+            font-size: 11px;
             font-weight: 600;
             margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .status-ready {
-            background: #4ade80;
-            color: #064e3b;
+            background: rgba(74, 222, 128, 0.1);
+            color: #16a34a;
         }
 
         .status-pending {
-            background: #fbbf24;
-            color: #78350f;
+            background: rgba(250, 204, 21, 0.1);
+            color: #d97706;
         }
 
         .status-info {
-            background: #60a5fa;
-            color: #01266e;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        body.dark-mode .status-ready {
+            color: #4ade80;
+        }
+
+        body.dark-mode .status-pending {
+            color: #fbbf24;
+        }
+
+        body.dark-mode .status-info {
+            color: #60a5fa;
         }
 
         .quick-links {
@@ -121,47 +195,61 @@
         .link-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 10px 16px;
             background: var(--accent);
-            color: white;
-            border-radius: 6px;
+            color: var(--paper);
+            border-radius: 4px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            transition: opacity 0.3s ease;
+            transition: all 0.2s;
+            border: 1px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .link-btn:hover {
-            opacity: 0.8;
+            background: transparent;
+            color: var(--accent);
         }
 
         .commands {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--rule);
             border-left: 4px solid var(--accent);
-            padding: 20px;
-            border-radius: 6px;
+            padding: 16px;
+            border-radius: 4px;
             margin-top: 15px;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            color: #4ade80;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
             overflow-x: auto;
         }
 
+        body.dark-mode .commands {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
         .features {
-            margin-top: 40px;
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 1px solid var(--rule);
         }
 
         .features h2 {
-            font-size: 28px;
-            margin-bottom: 30px;
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            line-height: 1.1;
+            margin-bottom: 48px;
             text-align: center;
+            color: var(--ink);
         }
 
         .feature-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 30px;
         }
 
         .feature-item {
@@ -171,10 +259,10 @@
         }
 
         .feature-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent);
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            background: rgba(200, 64, 26, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -182,45 +270,98 @@
         }
 
         .feature-icon i {
-            color: white;
+            color: var(--accent);
+            font-size: 20px;
         }
 
         .feature-text h3 {
+            font-family: 'Syne', sans-serif;
             font-size: 16px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: var(--ink);
+            font-weight: 600;
         }
 
         .feature-text p {
             font-size: 13px;
             color: var(--muted);
+            line-height: 1.6;
         }
 
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 80px;
+            padding: 48px;
+            border-top: 1px solid var(--rule);
             color: var(--muted);
-            font-size: 13px;
+            font-size: 12px;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 28px;
+            nav {
+                padding: 12px 16px;
+                flex-direction: row;
+                flex-wrap: wrap;
             }
+            .nav-logo { flex: 1; }
+            .theme-toggle { margin-left: auto; width: 36px; height: 36px; }
+            .nav-links {
+                order: 3;
+                width: 100%;
+                overflow-x: auto;
+                padding: 8px 0;
+                gap: 20px;
+            }
+            .nav-links a {
+                white-space: nowrap;
+                font-size: 11px;
+                margin-left: 0;
+                margin-right: 20px;
+            }
+            .container { padding: 30px 24px 80px; }
+            header { margin-bottom: 40px; }
+            h1 { font-size: 32px; }
+            .grid { grid-template-columns: 1fr; }
+            .features h2 { font-size: 24px; }
+            .feature-list { grid-template-columns: 1fr; }
+        }
 
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                margin-bottom: 40px;
-            }
+        @media (max-width: 480px) {
+            nav { padding: 12px; }
+            .nav-links a { font-size: 10px; }
+            .container { padding: 20px 12px 60px; }
+            header { margin-bottom: 30px; }
+            h1 { font-size: 28px; }
+            .card { padding: 20px; }
+            .card-title { font-size: 16px; }
         }
     </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
 </head>
 <body>
-    <div class="container">
+
+<nav>
+  <a href="index.html" class="nav-logo">Victor Kipruto Rop</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="index.html#send-message">Contact</a>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
+</nav>
+
+<div class="container">
         <header>
             <h1>🤖 Blog AI Dashboard</h1>
             <p class="subtitle">AI-Powered Blog Generation & Email Notifications</p>
@@ -257,7 +398,7 @@
                         python3 generate.py<br>
                         python3 generate.py --count 3
                     </div>
-                    <a href="#" class="link-btn" style="margin-top: 12px;">
+                    <a href="javascript:void(0)" onclick="generatePost()" class="link-btn" style="margin-top: 12px;">
                         <i class="fas fa-play"></i> Generate Post
                     </a>
                 </div>
@@ -437,6 +578,53 @@
     </div>
 
     <script>
+        // Generate Post Function
+        async function generatePost() {
+            const btn = event.target.closest('.link-btn');
+            const originalText = btn.innerHTML;
+            
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+                btn.disabled = true;
+                
+                // Call the Python script
+                const response = await fetch('/api/generate-post', { method: 'POST' });
+                
+                if (response.ok) {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Post Generated!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 3000);
+                    alert('Blog post generated successfully! Check blog/posts.json for the new post.');
+                } else {
+                    throw new Error('Generation failed');
+                }
+            } catch (error) {
+                btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                console.error('Generation error:', error);
+                // Fallback: show instructions
+                alert('To generate posts, run:\npython3 blog-ai/generate.py');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+
         // Load subscriber count
         async function loadStats() {
             try {

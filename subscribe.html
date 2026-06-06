@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subscribe to Blog — Victor Kipruto Rop</title>
   <meta name="description" content="Join my newsletter for insights on data engineering and modern architecture.">
+  <link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="feed.xml">
   <link rel="icon" href="assets/1.jpeg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -360,8 +361,37 @@
       .stat-number { font-size: 28px; }
     }
     </style>
-  </head>
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
+</head>
   <body>
+  
+  <nav style="position: sticky; top: 0; background: var(--paper); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); z-index: 100;">
+    <a href="index.html" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--accent); text-decoration: none; font-weight: 600;">Victor Kipruto Rop</a>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <a href="index.html" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.2s;">Home</a>
+      <a href="blog.html" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Blog</a>
+      <a href="index.html#projects" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Projects</a>
+      <a href="subscribe-rss.html" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">RSS Feed</a>
+      <button class="theme-toggle-nav" id="themeToggleNav" aria-label="Toggle dark/light mode" style="background: transparent; border: 1px solid var(--rule); color: var(--ink); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 14px; margin-left: 20px;">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun" style="display: none;"></i>
+      </button>
+    </div>
+  </nav>
+
+  <style>
+    .theme-toggle-nav .fa-sun { display: none; }
+    body.dark-mode .theme-toggle-nav .fa-moon { display: none; }
+    body.dark-mode .theme-toggle-nav .fa-sun { display: block; }
+  </style>
+
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
@@ -426,6 +456,14 @@
           <h3 class="benefit-title">Learning</h3>
           <p class="benefit-text">Deep dives into modern architecture and design patterns</p>
         </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-rss"></i>
+          </div>
+          <h3 class="benefit-title">RSS Feed</h3>
+          <p class="benefit-text"><a href="subscribe-rss.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Subscribe via RSS</a> for automatic feed updates</p>
+        </div>
       </div>
 
       <div class="stats-section">
@@ -450,14 +488,18 @@
     <script>
       // THEME MANAGEMENT
       const themeToggle = document.getElementById('themeToggle');
+      const themeToggleNav = document.getElementById('themeToggleNav');
       const savedTheme = localStorage.getItem('theme') || 'light';
       if (savedTheme === 'dark') document.body.classList.add('dark-mode');
 
-      themeToggle.addEventListener('click', () => {
+      const toggleTheme = () => {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      });
+      };
+
+      themeToggle.addEventListener('click', toggleTheme);
+      if (themeToggleNav) themeToggleNav.addEventListener('click', toggleTheme);
 
       // FORM HANDLING
       const form = document.getElementById('subscribeForm');

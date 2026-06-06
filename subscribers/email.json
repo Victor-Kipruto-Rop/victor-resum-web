@@ -1,0 +1,23 @@
+{
+  "subscribers": [
+    {
+      "id": "sub_001",
+      "contact": "demo@example.com",
+      "subscribed_at": "2026-06-06T14:23:43.622018",
+      "status": "active",
+      "interests": [
+        "python",
+        "data-engineering"
+      ],
+      "engagement_level": "active",
+      "preferences": {
+        "digest_frequency": "weekly"
+      },
+      "metadata": {
+        "source": "demo",
+        "total_opens": 0
+      }
+    }
+  ],
+  "last_updated": "2026-06-06T14:23:43.622142"
+}

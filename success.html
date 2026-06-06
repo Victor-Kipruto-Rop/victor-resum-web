@@ -119,8 +119,24 @@
     to { opacity: 1; transform: translateY(0); }
   }
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
 </head>
 <body>
+  <nav style="position: sticky; top: 0; background: var(--paper); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); z-index: 99;">
+    <a href="index.html" style="font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--accent); text-decoration: none; font-weight: 600;">Victor Kipruto Rop</a>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <a href="index.html" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Home</a>
+      <a href="blog.html" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Blog</a>
+    </div>
+  </nav>
+  
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
     <i class="fas fa-moon"></i>
     <i class="fas fa-sun"></i>
