@@ -163,7 +163,7 @@ def template_welcome(name: str, email: str) -> str:
           </div>
           
           <div class="highlight-box">
-            <strong>💡 Tip:</strong> Follow me on <a href="https://twitter.com/Victor_Kipruto">Twitter</a> and <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a> for real-time updates and code samples!
+            <strong>💡 Tip:</strong> Follow me on <a href="https://twitter.com/Victor_Kipruto">Twitter</a> and <a href="https://github.com/kipruto45">GitHub</a> for real-time updates and code samples!
           </div>
           
           <div class="email-section">
@@ -176,7 +176,7 @@ def template_welcome(name: str, email: str) -> str:
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
           </div>
@@ -245,7 +245,7 @@ def template_new_blog_post(name: str, post_title: str, post_excerpt: str, post_s
             <ul>
               <li><a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html">All Articles</a></li>
               <li><a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a></li>
-              <li><a href="https://github.com/Victor-Kipruto-Rop">View Projects</a></li>
+              <li><a href="https://github.com/kipruto45">View Projects</a></li>
             </ul>
           </div>
           
@@ -258,7 +258,7 @@ def template_new_blog_post(name: str, post_title: str, post_excerpt: str, post_s
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
           </div>
@@ -331,7 +331,7 @@ def template_weekly_digest(name: str, posts: list) -> str:
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
           </div>
@@ -487,7 +487,7 @@ def template_event_announcement(name: str, event_title: str, event_date: str, ev
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
           </div>
         </div>
@@ -554,7 +554,7 @@ def template_trending_content(name: str, trending_posts: list, top_post_stats: d
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
           </div>
         </div>
@@ -638,7 +638,7 @@ def template_activity_recap(name: str, month: str, stats: dict) -> str:
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
           </div>
         </div>
@@ -701,7 +701,7 @@ def template_subscriber_milestone(name: str, milestone: int, celebration_message
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
           </div>
         </div>
@@ -768,7 +768,7 @@ def template_viral_alert(name: str, post_title: str, current_views: int, viral_t
           <div class="footer-links">
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
           </div>
         </div>
       </div>
@@ -824,7 +824,7 @@ def template_recruiter_alert(name: str, recruiter_info: dict) -> str:
             <h2>Next Steps</h2>
             <ol>
               <li>Update your <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">portfolio</a> with your latest projects</li>
-              <li>Ensure your <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a> is up to date</li>
+              <li>Ensure your <a href="https://github.com/kipruto45">GitHub</a> is up to date</li>
               <li>Connect on <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a> to be found</li>
             </ol>
           </div>
@@ -838,7 +838,7 @@ def template_recruiter_alert(name: str, recruiter_info: dict) -> str:
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
           </div>
           <p style="margin-top: 20px; border-top: 1px solid #e5e7eb; padding-top: 20px;">
@@ -929,7 +929,7 @@ def template_engagement_summary(name: str, period: str, engagement_stats: dict) 
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
           </div>
         </div>
@@ -996,7 +996,7 @@ def template_recommended_reads(name: str, reading_history: list, recommended_pos
           <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
           <div class="footer-links">
             <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-            <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+            <a href="https://github.com/kipruto45">GitHub</a>
             <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
           </div>
           <p style="margin-top: 20px; border-top: 1px solid #e5e7eb; padding-top: 20px;">

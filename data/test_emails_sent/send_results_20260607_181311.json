@@ -1,0 +1,106 @@
+{
+  "timestamp": "2026-06-07T18:13:11.000994",
+  "recipient": "kiprutovictor39@gmail.com",
+  "api_available": false,
+  "emails_sent": [
+    {
+      "template": "welcome",
+      "subject": "Welcome to Victor Kipruto's Technical Blog!",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/welcome_20260607_181311.html"
+    },
+    {
+      "template": "new_blog_post",
+      "subject": "New Article: Building Scalable Data Pipelines",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/new_blog_post_20260607_181311.html"
+    },
+    {
+      "template": "weekly_digest",
+      "subject": "Your Weekly Digest",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/weekly_digest_20260607_181311.html"
+    },
+    {
+      "template": "trending_content",
+      "subject": "Content Going Viral!",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/trending_content_20260607_181311.html"
+    },
+    {
+      "template": "activity_recap",
+      "subject": "June Activity Recap",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/activity_recap_20260607_181311.html"
+    },
+    {
+      "template": "subscriber_milestone",
+      "subject": "We Hit 1,000 Subscribers!",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/subscriber_milestone_20260607_181311.html"
+    },
+    {
+      "template": "viral_alert",
+      "subject": "Your Post is Going Viral!",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/viral_alert_20260607_181311.html"
+    },
+    {
+      "template": "event_announcement",
+      "subject": "New Masterclass: Advanced Data Engineering",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/event_announcement_20260607_181311.html"
+    },
+    {
+      "template": "recruiter_alert",
+      "subject": "Recruiter Interest Detected",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/recruiter_alert_20260607_181311.html"
+    },
+    {
+      "template": "recommended_reads",
+      "subject": "Recommended For You",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/recommended_reads_20260607_181311.html"
+    },
+    {
+      "template": "notification",
+      "subject": "New Technical Resource Available",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/notification_20260607_181311.html"
+    },
+    {
+      "template": "dashboard_alert",
+      "subject": "Weekly Performance Summary",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/dashboard_alert_20260607_181311.html"
+    },
+    {
+      "template": "engagement_summary",
+      "subject": "Engagement Summary - June 2026",
+      "method": "file_save",
+      "status": "saved",
+      "file": "data/test_emails_sent/engagement_summary_20260607_181311.html"
+    }
+  ],
+  "emails_failed": [],
+  "summary": {
+    "total_sent": 13,
+    "total_failed": 0,
+    "recipient_email": "kiprutovictor39@gmail.com",
+    "recipient_name": "Victor Kipruto",
+    "twitter_handle": "VictorKipr10418"
+  }
+}

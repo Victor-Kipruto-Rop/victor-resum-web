@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-06-07T18:18:33.041877",
+  "recipient": "kiprutovictor39@gmail.com",
+  "sender": "kiprutovictor39@gmail.com",
+  "emails_sent": [],
+  "emails_failed": [
+    {
+      "template": "welcome",
+      "subject": "Welcome to Victor Kipruto's Technical Blog!",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "new_blog_post",
+      "subject": "New Article: Building Scalable Data Pipelines",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "weekly_digest",
+      "subject": "Your Weekly Digest",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "trending_content",
+      "subject": "Content Going Viral!",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "activity_recap",
+      "subject": "June Activity Recap",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "subscriber_milestone",
+      "subject": "We Hit 1,000 Subscribers!",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "viral_alert",
+      "subject": "Your Post is Going Viral!",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "event_announcement",
+      "subject": "New Masterclass: Advanced Data Engineering",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "recruiter_alert",
+      "subject": "Recruiter Interest Detected",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "recommended_reads",
+      "subject": "Recommended For You",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "notification",
+      "subject": "New Technical Resource Available",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "dashboard_alert",
+      "subject": "Weekly Performance Summary",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    },
+    {
+      "template": "engagement_summary",
+      "subject": "Engagement Summary - June 2026",
+      "error": "SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD"
+    }
+  ]
+}

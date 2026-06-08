@@ -38,14 +38,19 @@ class LinkedInPoster:
             self.logger.info(f"Posting to LinkedIn: {content.get('title')}")
 
             # In production: Use LinkedIn API
-            # response = requests.post(
-            #     f"https://api.linkedin.com/v2/ugcPosts",
-            #     headers={"Authorization": f"Bearer {self.config['access_token']}"},
-            #     json=linkedin_post
-            # )
+            import requests
+            response = requests.post(
+                f"https://api.linkedin.com/v2/ugcPosts",
+                headers={"Authorization": f"Bearer {self.config['access_token']}"},
+                json=linkedin_post
+            )
+            
+            if not response.ok:
+                error_data = response.json()
+                raise Exception(f"LinkedIn API error: {error_data.get('message', 'Unknown error')}")
 
-            # Simulated success for demo
-            post_id = f"linkedin_{datetime.now().timestamp()}"
+            result = response.json()
+            post_id = result.get("id", f"linkedin_{datetime.now().timestamp()}")
 
             return {
                 "success": True,

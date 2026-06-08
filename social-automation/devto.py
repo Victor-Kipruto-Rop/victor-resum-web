@@ -38,20 +38,25 @@ class DevtoPoster:
             self.logger.info(f"Publishing to Dev.to: {content.get('title')}")
 
             # In production: Use Dev.to API
-            # import requests
-            # response = requests.post(
-            #     "https://dev.to/api/articles",
-            #     headers={"api-key": self.config['api_key']},
-            #     json={"article": devto_article}
-            # )
-            # article = response.json()
+            import requests
+            response = requests.post(
+                "https://dev.to/api/articles",
+                headers={"api-key": self.config['api_key']},
+                json={"article": devto_article}
+            )
+            
+            if not response.ok:
+                error_data = response.json()
+                raise Exception(f"Dev.to API error: {error_data.get('error', 'Unknown error')}")
 
-            article_id = f"devto_{datetime.now().timestamp()}"
+            article = response.json()
+            article_id = article.get("id", f"devto_{datetime.now().timestamp()}")
+            article_url = article.get("url", f"https://dev.to/{self.config.get('username', 'user')}/{article_id}")
 
             return {
                 "success": True,
                 "article_id": article_id,
-                "url": f"https://dev.to/victorkirpruto/{article_id}",
+                "url": article_url,
                 "platform": "devto",
                 "posted_at": datetime.now().isoformat()
             }
@@ -62,7 +67,15 @@ class DevtoPoster:
 
     def _format_article(self, content: Dict, metadata: Dict) -> Dict:
         """Format content for Dev.to"""
-        tags = content.get("tags", ["dataengineering", "blogging"])[:4]  # Max 4 tags
+        raw_tags = content.get("tags", ["dataengineering", "blogging"])
+        # Sanitize tags: remove non-alphanumeric characters and keep only letters/numbers
+        sanitized_tags = []
+        for tag in raw_tags:
+            clean_tag = "".join(c for c in tag if c.isalnum()).lower()
+            if clean_tag:
+                sanitized_tags.append(clean_tag)
+        
+        tags = sanitized_tags[:4]  # Max 4 tags
 
         return {
             "title": content.get("title", ""),

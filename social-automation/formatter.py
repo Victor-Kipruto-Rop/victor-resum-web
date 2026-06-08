@@ -131,11 +131,18 @@ class ContentFormatter:
         return excerpt
 
     def _extract_tags(self, post_data: Dict) -> list:
-        """Extract tags from post metadata"""
-        tags = post_data.get("tags", [])
-        if not tags:
-            tags = ["dataengineering", "blog", "analytics"]
-        return tags
+        """Extract and sanitize tags from post metadata"""
+        raw_tags = post_data.get("tags", [])
+        if not raw_tags:
+            raw_tags = ["dataengineering", "blog", "analytics"]
+        
+        # Sanitize tags for all platforms (alphanumeric only)
+        sanitized = []
+        for tag in raw_tags:
+            clean = "".join(c for c in tag if c.isalnum()).lower()
+            if clean:
+                sanitized.append(clean)
+        return sanitized
 
     def _create_twitter_thread(self, title: str, content: str, url: str) -> list:
         """Create Twitter thread from content"""
@@ -147,8 +154,9 @@ class ContentFormatter:
         # Extract key points
         paragraphs = content.split('\n\n')
         for para in paragraphs[:3]:  # Max 3 tweets for thread
-            if len(para.strip()) > 10:
-                tweet_text = para.strip()[:280]
+            clean_para = self.clean_content(para)
+            if len(clean_para.strip()) > 10:
+                tweet_text = clean_para.strip()[:280]
                 tweets.append(tweet_text)
 
         return tweets
@@ -162,7 +170,7 @@ class ContentFormatter:
         frontmatter = f"""---
 title: {title}
 published: true
-tags: {','.join(tags[:4])}
+tags: {', '.join(tags[:4])}
 canonical_url: {url}
 ---
 

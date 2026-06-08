@@ -41,19 +41,23 @@ class TelegramPoster:
             self.logger.info(f"Sending to Telegram: {content.get('title')}")
 
             # In production: Use Telegram Bot API
-            # import requests
-            # response = requests.post(
-            #     f"https://api.telegram.org/bot{self.config['bot_token']}/sendMessage",
-            #     json={
-            #         "chat_id": self.config['channel_id'],
-            #         "text": telegram_message,
-            #         "parse_mode": "HTML",
-            #         "disable_web_page_preview": False
-            #     }
-            # )
-            # result = response.json()
+            import requests
+            response = requests.post(
+                f"https://api.telegram.org/bot{self.config['bot_token']}/sendMessage",
+                json={
+                    "chat_id": self.config['channel_id'],
+                    "text": telegram_message,
+                    "parse_mode": "HTML",
+                    "disable_web_page_preview": False
+                }
+            )
+            
+            if not response.ok:
+                error_data = response.json()
+                raise Exception(f"Telegram API error: {error_data.get('description', 'Unknown error')}")
 
-            message_id = f"telegram_{datetime.now().timestamp()}"
+            result = response.json()
+            message_id = result.get("result", {}).get("message_id", f"telegram_{datetime.now().timestamp()}")
 
             return {
                 "success": True,
