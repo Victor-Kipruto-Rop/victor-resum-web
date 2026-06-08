@@ -11,35 +11,38 @@ def generate_unsubscribe_token(email: str) -> str:
     return hashlib.sha256(email.encode()).hexdigest()[:16]
 
 def get_base_styles():
-    """Get enhanced CSS styles used in all email templates"""
+    """Get enhanced CSS styles used in all email templates - matching blog.html design"""
     return """
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      color: #1a1a1a;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'DM Mono', 'Courier New', monospace;
+      line-height: 1.8;
+      color: #0a0e14;
+      background: #f5f0e8;
       min-height: 100%;
     }
     .email-wrapper {
       padding: 20px;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      background: #f5f0e8;
     }
     .email-container {
       max-width: 600px;
       margin: 0 auto;
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(10, 14, 20, 0.08);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid #d4cec2;
     }
     .email-header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #c8401a 0%, #9a2f12 100%);
       color: white;
       padding: 50px 30px;
       text-align: center;
@@ -53,8 +56,8 @@ def get_base_styles():
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(255,255,255,0.04) 0%, transparent 50%);
       pointer-events: none;
     }
     .email-header h1 {
@@ -63,7 +66,8 @@ def get_base_styles():
       font-weight: 700;
       position: relative;
       z-index: 1;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
+      font-family: 'DM Serif Display', serif;
     }
     .email-header .subtitle {
       font-size: 14px;
@@ -72,6 +76,7 @@ def get_base_styles():
       position: relative;
       z-index: 1;
       font-weight: 300;
+      font-family: 'Syne', sans-serif;
     }
     .email-content {
       padding: 40px 30px;
@@ -80,13 +85,14 @@ def get_base_styles():
       margin-bottom: 30px;
     }
     .email-section h2 {
-      color: #2d3748;
+      color: #0a0e14;
       font-size: 22px;
       margin-top: 0;
       margin-bottom: 16px;
       font-weight: 700;
       position: relative;
       padding-bottom: 10px;
+      font-family: 'Syne', sans-serif;
     }
     .email-section h2::after {
       content: '';
@@ -94,135 +100,151 @@ def get_base_styles():
       bottom: 0;
       left: 0;
       width: 40px;
-      height: 3px;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-      border-radius: 2px;
+      height: 2px;
+      background: #c8401a;
+      border-radius: 1px;
     }
     .email-section p {
-      color: #4a5568;
+      color: #0a0e14;
       margin: 14px 0;
       font-size: 15px;
-      line-height: 1.7;
+      line-height: 1.8;
+      opacity: 0.9;
     }
     .email-section ul, .email-section ol {
       margin: 16px 0 16px 20px;
-      color: #4a5568;
+      color: #0a0e14;
     }
     .email-section li {
       margin: 10px 0;
       font-size: 15px;
       line-height: 1.6;
     }
+    .email-icon {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      background: #c8401a;
+      color: white;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 32px;
+      margin-right: 10px;
+      font-size: 14px;
+      vertical-align: middle;
+    }
     .email-section a {
-      color: #667eea;
+      color: #c8401a;
       text-decoration: none;
       font-weight: 600;
-      border-bottom: 2px solid #667eea;
+      border-bottom: 2px solid #c8401a;
       transition: all 0.3s ease;
     }
     .email-section a:hover {
-      color: #764ba2;
-      border-bottom-color: #764ba2;
+      color: #9a2f12;
+      border-bottom-color: #9a2f12;
     }
     .cta-button {
       display: inline-block;
       padding: 14px 32px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: #c8401a;
       color: white !important;
       text-decoration: none !important;
-      border-radius: 8px;
+      border-radius: 4px;
       font-weight: 700;
       margin: 16px 0;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 4px 12px rgba(200, 64, 26, 0.2);
       border: none;
       cursor: pointer;
       font-size: 15px;
       letter-spacing: 0.3px;
       border-bottom: none !important;
+      text-transform: uppercase;
     }
     .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
-      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(200, 64, 26, 0.35);
+      background: #9a2f12;
     }
     .secondary-button {
       display: inline-block;
       padding: 12px 28px;
-      background: #f0f4ff;
-      color: #667eea !important;
+      background: transparent;
+      color: #c8401a !important;
       text-decoration: none !important;
-      border-radius: 8px;
+      border-radius: 4px;
       font-weight: 600;
       margin: 12px 8px 12px 0;
       transition: all 0.3s ease;
       font-size: 14px;
-      border: 2px solid #667eea;
-      border-bottom: 2px solid #667eea;
+      border: 2px solid #c8401a;
+      border-bottom: 2px solid #c8401a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .secondary-button:hover {
-      background: #667eea;
+      background: #c8401a;
       color: white !important;
     }
     .highlight-box {
-      background: linear-gradient(135deg, #f5f7ff 0%, #e0e7ff 100%);
-      border-left: 5px solid #667eea;
+      background: #f5f0e8;
+      border-left: 4px solid #c8401a;
       padding: 20px 20px;
       margin: 24px 0;
-      border-radius: 8px;
-      border-left-width: 5px;
+      border-radius: 4px;
     }
     .highlight-box strong {
-      color: #2d3748;
+      color: #0a0e14;
       font-weight: 700;
     }
     .info-box {
-      background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);
-      border-left: 5px solid #f59e0b;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
       padding: 20px;
       margin: 24px 0;
-      border-radius: 8px;
+      border-radius: 4px;
+      border: 1px solid #d4cec2;
     }
     .success-box {
-      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-      border-left: 5px solid #10b981;
+      background: #dcfce7;
+      border-left: 4px solid #10b981;
       padding: 20px;
       margin: 24px 0;
-      border-radius: 8px;
+      border-radius: 4px;
+      border: 1px solid #d4cec2;
     }
     .stat-box {
-      background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
-      border: 2px solid #e9ecef;
+      background: #f5f0e8;
+      border: 1px solid #d4cec2;
       padding: 24px;
-      border-radius: 12px;
+      border-radius: 4px;
       text-align: center;
       margin: 16px 0;
       transition: all 0.3s ease;
     }
     .stat-box:hover {
-      border-color: #667eea;
-      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.1);
+      border-color: #c8401a;
+      box-shadow: 0 4px 12px rgba(200, 64, 26, 0.1);
       transform: translateY(-2px);
     }
     .stat-number {
       font-size: 36px;
       font-weight: 800;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #c8401a;
       margin: 8px 0;
+      font-family: 'DM Serif Display', serif;
     }
     .stat-label {
-      color: #718096;
+      color: #7a7060;
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+      height: 1px;
+      background: #d4cec2;
       margin: 32px 0;
     }
     .content-grid {
@@ -232,35 +254,36 @@ def get_base_styles():
       margin: 24px 0;
     }
     .grid-item {
-      background: #f8f9fa;
+      background: #f5f0e8;
       padding: 16px;
-      border-radius: 8px;
-      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      border: 1px solid #d4cec2;
     }
     .grid-item h3 {
-      color: #2d3748;
+      color: #0a0e14;
       font-size: 14px;
       font-weight: 700;
       margin-bottom: 8px;
       text-transform: uppercase;
+      font-family: 'Syne', sans-serif;
     }
     .grid-item p {
-      color: #4a5568;
+      color: #0a0e14;
       font-size: 13px;
       margin: 0;
     }
     .email-footer {
-      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      background: #0a0e14;
       padding: 40px 30px;
       text-align: center;
-      color: #cbd5e0;
+      color: #a1a1aa;
       font-size: 12px;
     }
     .footer-links {
       margin: 20px 0;
     }
     .footer-links a {
-      color: #a0aec0;
+      color: #a1a1aa;
       text-decoration: none;
       margin: 0 12px;
       font-weight: 500;
@@ -268,17 +291,17 @@ def get_base_styles():
       border-bottom: none !important;
     }
     .footer-links a:hover {
-      color: #f5a623;
+      color: #c8401a;
     }
     .unsubscribe-notice {
-      color: #a0aec0;
+      color: #a1a1aa;
       font-size: 11px;
       margin-top: 24px;
       padding-top: 20px;
-      border-top: 1px solid #4a5568;
+      border-top: 1px solid #27272a;
     }
     .unsubscribe-notice a {
-      color: #f5a623;
+      color: #c8401a;
       text-decoration: none;
       border-bottom: none !important;
     }
@@ -287,31 +310,31 @@ def get_base_styles():
     }
     .tag {
       display: inline-block;
-      background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%);
-      color: #3730a3;
+      background: rgba(200, 64, 26, 0.1);
+      color: #c8401a;
       padding: 6px 12px;
-      border-radius: 20px;
+      border-radius: 4px;
       font-size: 12px;
       font-weight: 700;
       margin: 6px 6px 6px 0;
-      border: 1px solid #c7d2fe;
+      border: 1px solid #d4cec2;
     }
     .tag.hot {
-      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      background: #fee2e2;
       color: #7f1d1d;
       border-color: #fca5a5;
     }
     .tag.featured {
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      background: #fef3c7;
       color: #78350f;
       border-color: #fcd34d;
     }
     .badge {
       display: inline-block;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: #c8401a;
       color: white;
       padding: 4px 10px;
-      border-radius: 12px;
+      border-radius: 4px;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
@@ -326,8 +349,8 @@ def get_base_styles():
       width: 36px;
       height: 36px;
       margin: 0 8px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 50%;
+      background: #c8401a;
+      border-radius: 4px;
       text-align: center;
       line-height: 36px;
       color: white;
@@ -337,8 +360,9 @@ def get_base_styles():
       border-bottom: none !important;
     }
     .social-icon:hover {
-      transform: scale(1.1) translateY(-3px);
-      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(200, 64, 26, 0.3);
+      background: #9a2f12;
     }
     .feature-list {
       list-style: none;
@@ -348,7 +372,7 @@ def get_base_styles():
       padding: 12px 0;
       padding-left: 28px;
       position: relative;
-      color: #4a5568;
+      color: #0a0e14;
     }
     .feature-list li::before {
       content: '✓';
@@ -360,9 +384,9 @@ def get_base_styles():
     }
     .image-card {
       margin: 24px 0;
-      border-radius: 12px;
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(200, 64, 26, 0.1);
     }
     .image-card img {
       width: 100%;
@@ -372,7 +396,7 @@ def get_base_styles():
     }
     @media (max-width: 600px) {
       .email-container {
-        border-radius: 8px;
+        border-radius: 4px;
       }
       .content-grid {
         grid-template-columns: 1fr;
@@ -388,7 +412,7 @@ def get_base_styles():
 
 # Template 1: Welcome Email
 def template_welcome(name: str, email: str) -> str:
-    """Enhanced welcome email for new subscribers"""
+    """Enhanced welcome email for new subscribers - Blog design with modern icons"""
     token = generate_unsubscribe_token(email)
     unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
@@ -405,7 +429,7 @@ def template_welcome(name: str, email: str) -> str:
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>🎉 Welcome Aboard!</h1>
+            <h1>Welcome Aboard!</h1>
             <p class="subtitle">You're about to discover world-class technical insights</p>
           </div>
           
@@ -418,32 +442,43 @@ def template_welcome(name: str, email: str) -> str:
             <div class="email-section">
               <h2>What to Expect</h2>
               <ul class="feature-list">
-                <li><strong>Deep Technical Dives:</strong> In-depth tutorials on data engineering, ETL pipelines, and real-time systems</li>
-                <li><strong>Cloud Infrastructure:</strong> AWS, GCP, and Kubernetes best practices with real-world examples</li>
-                <li><strong>Code Optimization:</strong> Python and SQL performance tuning techniques</li>
-                <li><strong>Lessons Learned:</strong> Hard-won insights from building production systems</li>
-                <li><strong>Weekly Digests:</strong> Curated content delivered straight to your inbox</li>
+                <li><span class="email-icon">◆</span> <strong>Deep Technical Dives:</strong> In-depth tutorials on data engineering, ETL pipelines, and real-time systems</li>
+                <li><span class="email-icon">☁</span> <strong>Cloud Infrastructure:</strong> AWS, GCP, and Kubernetes best practices with real-world examples</li>
+                <li><span class="email-icon">⚡</span> <strong>Code Optimization:</strong> Python and SQL performance tuning techniques</li>
+                <li><span class="email-icon">★</span> <strong>Lessons Learned:</strong> Hard-won insights from building production systems</li>
+                <li><span class="email-icon">📬</span> <strong>Weekly Digests:</strong> Curated content delivered straight to your inbox</li>
               </ul>
             </div>
             
-            <div class="info-box">
-              <strong>💡 Pro Tip:</strong> Check out my <a href="https://github.com/Victor-Kipruto-Rop">GitHub repositories</a> to see code samples and projects that complement the blog posts!
+            <div class="highlight-box">
+              <strong>Pro Tip:</strong> Check out my <a href="https://github.com/kipruto45">GitHub repositories</a> to see code samples and projects that complement the blog posts!
             </div>
             
             <div class="email-section">
               <h2>Get Started Now</h2>
               <p>Explore my latest articles and get caught up on everything you've missed:</p>
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">📖 Start Reading Blog</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Start Reading Blog</a>
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/" class="secondary-button">View Portfolio</a>
+            </div>
+            
+            <div class="content-grid">
+              <div class="grid-item">
+                <h3>Latest Articles</h3>
+                <p>Deep dives into data engineering, cloud infrastructure, and modern DevOps practices</p>
+              </div>
+              <div class="grid-item">
+                <h3>Code Examples</h3>
+                <p>Production-ready code samples and best practices from real-world projects</p>
+              </div>
             </div>
             
             <div class="email-section">
               <h2>Connect With Me</h2>
               <div class="social-links">
-                <a href="https://twitter.com/Victor_Kipruto" class="social-icon" title="Twitter">𝕏</a>
-                <a href="https://github.com/Victor-Kipruto-Rop" class="social-icon" title="GitHub">🐙</a>
+                <a href="https://twitter.com/Victor_Kipruto" class="social-icon" title="Twitter">f</a>
+                <a href="https://github.com/kipruto45" class="social-icon" title="GitHub">g</a>
                 <a href="https://linkedin.com/in/victor-kipruto-rop" class="social-icon" title="LinkedIn">in</a>
-                <a href="mailto:kiprutovictor39@gmail.com" class="social-icon" title="Email">✉️</a>
+                <a href="mailto:kiprutovictor39@gmail.com" class="social-icon" title="Email">@</a>
               </div>
             </div>
             
@@ -453,10 +488,10 @@ def template_welcome(name: str, email: str) -> str:
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer • Full Stack Developer • Tech Content Creator</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer • Full Stack Developer • Tech Content Creator</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
             </div>
@@ -495,7 +530,7 @@ def template_new_blog_post(name: str, email: str, post_title: str, post_excerpt:
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>📝 New Article Published</h1>
+            <h1>New Article Published</h1>
             <p class="subtitle">Fresh insights from the tech trenches</p>
           </div>
           
@@ -512,12 +547,12 @@ def template_new_blog_post(name: str, email: str, post_title: str, post_excerpt:
               <p>{post_excerpt}</p>
               
               <div class="stat-box">
-                <div class="stat-label">Reading Time</div>
-                <span class="stat-number">⏱️ {read_time}</span>
-                <p style="margin: 8px 0 0 0;">Perfect for your coffee break or commute</p>
+                <div class="stat-label">⏱ Reading Time</div>
+                <span class="stat-number">{read_time} min read</span>
+                <p style="margin: 8px 0 0 0; font-size: 14px; color: #7a7060;">Perfect for your coffee break</p>
               </div>
               
-              <a href="{post_url}" class="cta-button">📖 Read Full Article</a>
+              <a href="{post_url}" class="cta-button">Read Full Article</a>
             </div>
             
             <div class="email-section">
@@ -531,36 +566,34 @@ def template_new_blog_post(name: str, email: str, post_title: str, post_excerpt:
               </ul>
             </div>
             
-            <div class="highlight-box">
-              <strong>📢 Share This:</strong><br>
-              Found this valuable? Help spread the word by sharing with your network:
-              <a href="https://twitter.com/intent/tweet?url={post_url}&text={post_title}%20-%20Check%20out%20this%20great%20article%20by%20@Victor_Kipruto" class="secondary-button" style="margin: 12px 8px 12px 0;">Share on Twitter</a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url={post_url}" class="secondary-button">Share on LinkedIn</a>
+            <div class="success-box">
+              <strong>Share This Article</strong><br>
+              Found this valuable? Help spread the word by sharing with your network!
             </div>
             
             <div class="content-grid">
               <div class="grid-item">
-                <h3>🔗 Quick Links</h3>
-                <p><a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html">All Articles</a></p>
+                <h3>More Articles</h3>
+                <p><a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html">Browse All</a></p>
               </div>
               <div class="grid-item">
-                <h3>👨‍💻 Code Examples</h3>
-                <p><a href="https://github.com/Victor-Kipruto-Rop">GitHub Repos</a></p>
+                <h3>Code Examples</h3>
+                <p><a href="https://github.com/kipruto45">GitHub</a></p>
               </div>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
             </div>
             <p class="unsubscribe-notice">
               © 2024 Victor Kipruto. All rights reserved.<br>
-              <a href="{unsubscribe_url}">Unsubscribe</a> • <a href="#">Update Email Preferences</a>
+              <a href="{unsubscribe_url}">Unsubscribe</a> • <a href="#">Update Preferences</a>
             </p>
           </div>
         </div>
@@ -609,7 +642,7 @@ def template_weekly_digest(name: str, email: str, posts: list) -> str:
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>📬 Your Weekly Digest</h1>
+            <h1>Your Weekly Digest</h1>
             <p class="subtitle">This week's best technical insights</p>
           </div>
           
@@ -622,19 +655,20 @@ def template_weekly_digest(name: str, email: str, posts: list) -> str:
             {posts_html}
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">📚 Browse All Articles</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Browse All Articles</a>
             </div>
             
             <div class="success-box">
-              <strong>✨ New Feature:</strong> You can now customize which topics you want to receive. <a href="#">Update Your Preferences</a>
+              <strong>Customize Your Experience</strong><br>
+              You can now customize which topics you want to receive. <a href="#">Update Your Preferences</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
             </div>
@@ -678,14 +712,14 @@ def template_trending_content(name: str, email: str, trending_posts: list, top_p
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>🔥 Trending Content Alert</title>
+      <title>Trending Content Alert</title>
       <style>{get_base_styles()}</style>
     </head>
     <body>
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>🔥 Content Going Viral!</h1>
+            <h1>Content Going Viral!</h1>
             <p class="subtitle">These articles are resonating with readers</p>
           </div>
           
@@ -698,22 +732,22 @@ def template_trending_content(name: str, email: str, trending_posts: list, top_p
             {trending_html}
             
             <div class="success-box">
-              <strong>🏆 Top Performer This Week:</strong><br>
+              <strong>Top Performer This Week</strong><br>
               <strong>"{top_post_stats.get('title', 'N/A')}"</strong><br>
               With an impressive <strong>{top_post_stats.get('views', 0):,} views</strong> and <strong>{top_post_stats.get('share_count', 0)} social shares</strong>, this is dominating the conversation!
             </div>
             
             <div class="email-section">
               <p><strong>Why This Matters:</strong> These trending articles represent the topics readers are most interested in. If you haven't read them yet, they're definitely worth your time!</p>
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">📖 Explore More Articles</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Explore More Articles</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
             <p class="unsubscribe-notice">
@@ -746,8 +780,8 @@ def template_activity_recap(name: str, email: str, month: str, stats: dict) -> s
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>📊 {month} Activity Recap</h1>
-            <p class="subtitle">Here's what happened on the blog</p>
+            <h1>Activity Recap</h1>
+            <p class="subtitle">Here's what happened on the blog this month</p>
           </div>
           
           <div class="email-content">
@@ -778,26 +812,26 @@ def template_activity_recap(name: str, email: str, month: str, stats: dict) -> s
             <div class="email-section">
               <h2>Top 3 Articles This Month</h2>
               <ol>
-                <li><strong>{stats.get('top_post_1', 'Article 1')}</strong><br><span style="color: #718096;">👁️ {stats.get('top_post_1_views', 0):,} views</span></li>
-                <li><strong>{stats.get('top_post_2', 'Article 2')}</strong><br><span style="color: #718096;">👁️ {stats.get('top_post_2_views', 0):,} views</span></li>
-                <li><strong>{stats.get('top_post_3', 'Article 3')}</strong><br><span style="color: #718096;">👁️ {stats.get('top_post_3_views', 0):,} views</span></li>
+                <li><strong>{stats.get('top_post_1', 'Article 1')}</strong><br><span style="color: #7a7060; font-size: 14px;">{stats.get('top_post_1_views', 0):,} views</span></li>
+                <li><strong>{stats.get('top_post_2', 'Article 2')}</strong><br><span style="color: #7a7060; font-size: 14px;">{stats.get('top_post_2_views', 0):,} views</span></li>
+                <li><strong>{stats.get('top_post_3', 'Article 3')}</strong><br><span style="color: #7a7060; font-size: 14px;">{stats.get('top_post_3_views', 0):,} views</span></li>
               </ol>
             </div>
             
-            <div class="highlight-box">
-              <strong>💡 Key Insight:</strong> {stats.get('insight', 'Your readers are most engaged with technical deep-dives and real-world case studies!')}
+            <div class="success-box">
+              <strong>Key Insight:</strong> {stats.get('insight', 'Your readers are most engaged with technical deep-dives and real-world case studies!')}
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">📈 View Full Dashboard</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Full Dashboard</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
             <p class="unsubscribe-notice">
@@ -823,31 +857,31 @@ def template_subscriber_milestone(name: str, email: str, milestone: int, celebra
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>🎉 We Hit {milestone} Subscribers!</title>
+      <title>We Hit {milestone} Subscribers!</title>
       <style>{get_base_styles()}</style>
     </head>
     <body>
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>🎉 We Did It!</h1>
+            <h1>We Did It!</h1>
             <p class="subtitle">You're part of something special</p>
           </div>
           
           <div class="email-content">
             <div class="email-section">
               <p>Hi {name},</p>
-              <p>I'm thrilled to share that we've just hit <strong>{milestone:,} subscribers</strong>! 🚀</p>
+              <p>I'm thrilled to share that we've just hit <strong>{milestone:,} subscribers</strong>!</p>
             </div>
             
             <div class="stat-box">
               <span class="stat-number">{milestone:,}</span>
               <div class="stat-label">Incredible Readers</div>
-              <p style="margin: 12px 0 0 0; color: #4a5568;">And growing every day!</p>
+              <p style="margin: 12px 0 0 0; font-size: 14px; color: #7a7060;">And growing every day!</p>
             </div>
             
             <div class="email-section">
-              <h2>Thank You 🙏</h2>
+              <h2>Thank You</h2>
               <p>{celebration_message or "This milestone wouldn't be possible without your support and engagement. Your comments, shares, and questions inspire me to keep creating high-quality content that matters."}</p>
               <p><strong>What I'm committed to:</strong></p>
               <ul class="feature-list">
@@ -860,24 +894,24 @@ def template_subscriber_milestone(name: str, email: str, milestone: int, celebra
             </div>
             
             <div class="success-box">
-              <strong>🎯 Next Goal:</strong> {milestone + 500:,} subscribers! 🌟<br><br>
-              Help me get there by sharing your favorite articles with colleagues and friends. <a href="https://twitter.com/intent/tweet?text=Just%20subscribed%20to%20@Victor_Kipruto%27s%20blog%21%20Amazing%20technical%20content%20on%20data%20engineering%20and%20cloud%20infrastructure%21">Share on Twitter</a>
+              <strong>Next Goal:</strong> {milestone + 500:,} subscribers!<br><br>
+              Help me get there by sharing your favorite articles with colleagues and friends.
             </div>
             
             <div class="email-section">
               <div class="social-links">
                 <a href="https://twitter.com/Victor_Kipruto" class="social-icon" title="Twitter">𝕏</a>
-                <a href="https://github.com/Victor-Kipruto-Rop" class="social-icon" title="GitHub">🐙</a>
+                <a href="https://github.com/kipruto45" class="social-icon" title="GitHub">◆</a>
                 <a href="https://linkedin.com/in/victor-kipruto-rop" class="social-icon" title="LinkedIn">in</a>
               </div>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
             <p class="unsubscribe-notice">
@@ -903,14 +937,14 @@ def template_viral_alert(name: str, email: str, post_title: str, current_views: 
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>🚀 Viral Alert: {post_title}</title>
+      <title>Viral Alert: {post_title}</title>
       <style>{get_base_styles()}</style>
     </head>
     <body>
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>🚀 Content Going Viral!</h1>
+            <h1>Content Going Viral!</h1>
             <p class="subtitle">An article is experiencing explosive growth</p>
           </div>
           
@@ -920,8 +954,8 @@ def template_viral_alert(name: str, email: str, post_title: str, current_views: 
               <p>Exciting news! One of my articles is trending and getting tons of attention right now!</p>
             </div>
             
-            <div class="email-section" style="border: 3px solid #f59e0b; padding: 24px; border-radius: 12px; background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);">
-              <h2 style="margin-top: 0; color: #92400e;">"<strong>{post_title}</strong>"</h2>
+            <div class="email-section" style="border: 3px solid #c8401a; padding: 24px; border-radius: 4px; background: #f5f0e8;">
+              <h2 style="margin-top: 0; color: #0a0e14;">"<strong>{post_title}</strong>"</h2>
               
               <div class="content-grid" style="margin: 24px 0;">
                 <div class="stat-box">
@@ -930,18 +964,18 @@ def template_viral_alert(name: str, email: str, post_title: str, current_views: 
                 </div>
                 <div class="stat-box">
                   <div class="stat-label">Growth Rate</div>
-                  <span class="stat-number">📈 {growth_rate}</span>
+                  <span class="stat-number">{growth_rate}</span>
                 </div>
               </div>
               
-              <p style="font-size: 14px; color: #92400e; margin: 0;">
-                <strong>✨ Viral Status Activated!</strong><br>
-                This post has exceeded the {viral_threshold:,} view threshold and is spreading rapidly across social media, Twitter, LinkedIn, and beyond!
+              <p style="font-size: 14px; color: #0a0e14; margin: 0;">
+                <strong>Viral Status Activated!</strong><br>
+                This post has exceeded the {viral_threshold:,} view threshold and is spreading rapidly across social media!
               </p>
             </div>
             
-            <div class="highlight-box">
-              <strong>💡 Action Items:</strong>
+            <div class="success-box">
+              <strong>Action Items:</strong>
               <ul style="margin: 12px 0 0 0; list-style: none; padding: 0;">
                 <li>✓ Share on all your social channels to capitalize on momentum</li>
                 <li>✓ Update your social profiles to highlight this achievement</li>
@@ -951,16 +985,16 @@ def template_viral_alert(name: str, email: str, post_title: str, current_views: 
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">📖 View All Articles</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">View All Articles</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
             </div>
             <p class="unsubscribe-notice">
               © 2024 Victor Kipruto. All rights reserved.<br>
@@ -993,7 +1027,7 @@ def template_event_announcement(name: str, email: str, event_title: str, event_d
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>✨ {event_title}</h1>
+            <h1>{event_title}</h1>
             <p class="subtitle">Something exciting is happening</p>
           </div>
           
@@ -1004,8 +1038,8 @@ def template_event_announcement(name: str, email: str, event_title: str, event_d
             </div>
             
             <div class="stat-box">
-              <div class="stat-label">📅 Date</div>
-              <div style="font-size: 20px; color: #667eea; font-weight: 700; margin-top: 12px;">{event_date}</div>
+              <div class="stat-label">Date</div>
+              <div style="font-size: 20px; color: #c8401a; font-weight: 700; margin-top: 12px;">{event_date}</div>
             </div>
             
             <div class="email-section">
@@ -1015,15 +1049,15 @@ def template_event_announcement(name: str, email: str, event_title: str, event_d
             </div>
             
             <div class="success-box">
-              <strong>🎯 Why You Should Care:</strong> This represents a significant milestone and evolution in my work. It's designed specifically for people like you who are passionate about technical excellence and continuous learning.
+              <strong>Why You Should Care:</strong> This represents a significant milestone and evolution in my work. It's designed specifically for people like you who are passionate about technical excellence and continuous learning.
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
             <p class="unsubscribe-notice">
@@ -1051,14 +1085,14 @@ def template_recruiter_alert(name: str, email: str, recruiter_info: dict) -> str
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>👔 Recruiter Interest Detected</title>
+      <title>Recruiter Interest Detected</title>
       <style>{get_base_styles()}</style>
     </head>
     <body>
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>👔 Recruiter Interest</h1>
+            <h1>Recruiter Interest</h1>
             <p class="subtitle">Your work is getting noticed</p>
           </div>
           
@@ -1068,10 +1102,10 @@ def template_recruiter_alert(name: str, email: str, recruiter_info: dict) -> str
               <p>Great news! A recruiter from a top-tier company has been actively engaging with your content.</p>
             </div>
             
-            <div class="highlight-box">
-              <strong>🏢 Company:</strong> {company}<br>
-              <strong>💼 Position:</strong> {position}<br>
-              <strong>📍 Status:</strong> Active Interest
+            <div class="success-box">
+              <strong>Company:</strong> {company}<br>
+              <strong>Position:</strong> {position}<br>
+              <strong>Status:</strong> Active Interest
             </div>
             
             <div class="email-section">
@@ -1084,7 +1118,7 @@ def template_recruiter_alert(name: str, email: str, recruiter_info: dict) -> str
             </div>
             
             <div class="success-box">
-              <strong>📋 Recommended Next Steps:</strong><br>
+              <strong>Recommended Next Steps:</strong><br>
               <ul style="margin: 12px 0 0 0;">
                 <li>Update your LinkedIn profile with recent accomplishments</li>
                 <li>Refresh your portfolio with latest projects</li>
@@ -1094,15 +1128,15 @@ def template_recruiter_alert(name: str, email: str, recruiter_info: dict) -> str
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/resume.html" class="cta-button">📄 View Your Resume</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/resume.html" class="cta-button">View Your Resume</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
             <p class="unsubscribe-notice">
@@ -1157,7 +1191,7 @@ def template_recommended_reads(name: str, email: str, reading_history: list, rec
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>📚 Recommended For You</h1>
+            <h1>Recommended For You</h1>
             <p class="subtitle">Personalized based on your reading habits</p>
           </div>
           
@@ -1169,20 +1203,20 @@ def template_recommended_reads(name: str, email: str, reading_history: list, rec
             
             {recommendations_html}
             
-            <div class="highlight-box">
-              <strong>💡 How It Works:</strong> I analyze your reading history to recommend articles that match your interests and expertise level. The higher the match percentage, the more likely you'll find it valuable!
+            <div class="success-box">
+              <strong>How It Works:</strong> I analyze your reading history to recommend articles that match your interests and expertise level. The higher the match percentage, the more likely you'll find it valuable!
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">📚 Explore All Articles</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Explore All Articles</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
             <p class="unsubscribe-notice">
@@ -1216,7 +1250,7 @@ def template_notification(name: str, email: str, title: str, message: str, icon:
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>{icon} {title}</h1>
+            <h1>{title}</h1>
           </div>
           
           <div class="email-content">
@@ -1226,16 +1260,16 @@ def template_notification(name: str, email: str, title: str, message: str, icon:
               {button_html}
             </div>
             
-            <div class="highlight-box">
+            <div class="success-box">
               <strong>Need help?</strong> Reply to this email or visit my <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">portfolio</a>.
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
             </div>
             <p class="unsubscribe-notice">
               © 2024 Victor Kipruto. All rights reserved.<br>
@@ -1276,7 +1310,7 @@ def template_dashboard_alert(name: str, email: str, alert_title: str, metrics: d
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>📊 {alert_title}</h1>
+            <h1>{alert_title}</h1>
             <p class="subtitle">Your dashboard metrics update</p>
           </div>
           
@@ -1290,17 +1324,17 @@ def template_dashboard_alert(name: str, email: str, alert_title: str, metrics: d
               {metrics_html}
             </div>
             
-            <div class="highlight-box">
-              <strong>💡 Recommendation:</strong> {recommendation}
+            <div class="success-box">
+              <strong>Recommendation:</strong> {recommendation}
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">📈 View Full Dashboard</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Full Dashboard</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Dashboard Analytics</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Dashboard Analytics</p>
             <p class="unsubscribe-notice">
               © 2024 Victor Kipruto. All rights reserved.<br>
               <a href="#">Manage Alerts</a> • <a href="{unsubscribe_url}">Unsubscribe</a>
@@ -1331,7 +1365,7 @@ def template_engagement_summary(name: str, email: str, period: str, engagement_s
       <div class="email-wrapper">
         <div class="email-container">
           <div class="email-header">
-            <h1>📈 Engagement Summary</h1>
+            <h1>Engagement Summary</h1>
             <p class="subtitle">How readers engaged this {period}</p>
           </div>
           
@@ -1370,19 +1404,19 @@ def template_engagement_summary(name: str, email: str, period: str, engagement_s
             </div>
             
             <div class="success-box">
-              <strong>🎯 Key Insight:</strong> Your readers are most engaged with {engagement_stats.get('top_content_type', 'technical tutorials')}, indicating strong interest in deep, practical content.
+              <strong>Key Insight:</strong> Your readers are most engaged with {engagement_stats.get('top_content_type', 'technical tutorials')}, indicating strong interest in deep, practical content.
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">📊 View Detailed Analytics</a>
+              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Detailed Analytics</a>
             </div>
           </div>
           
           <div class="email-footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
+            <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
               <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
-              <a href="https://github.com/Victor-Kipruto-Rop">GitHub</a>
+              <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
             <p class="unsubscribe-notice">

@@ -154,6 +154,26 @@ class AutoSocialPoster:
         post_id = post.get("id", post.get("slug", "unknown"))
         title = post.get("title", "Untitled")
         
+        # Load actual content if it's a path
+        content_path = post.get("content", "")
+        if content_path and (content_path.endswith(".md") or content_path.endswith(".html")):
+            try:
+                # Try relative paths
+                full_path = Path(content_path)
+                if not full_path.exists():
+                    # Try from project root
+                    full_path = Path(__file__).parent.parent.parent / content_path
+                
+                if full_path.exists():
+                    with open(full_path, 'r') as f:
+                        post["content_raw"] = f.read()
+                        # Also update 'content' for the formatter which expects it there
+                        post["content"] = post["content_raw"]
+                else:
+                    logger.warning(f"⚠️  Content file not found: {content_path}")
+            except Exception as e:
+                logger.error(f"❌ Error loading content from {content_path}: {e}")
+
         logger.info(f"🚀 Starting social media distribution for: {title}")
         
         results = {

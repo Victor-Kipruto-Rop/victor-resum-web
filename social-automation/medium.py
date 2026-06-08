@@ -43,20 +43,25 @@ class MediumPoster:
             self.logger.info(f"Publishing to Medium: {content.get('title')}")
 
             # In production: Use Medium API
-            # import requests
-            # response = requests.post(
-            #     f"https://api.medium.com/v1/users/{user_id}/posts",
-            #     headers={"Authorization": f"Bearer {self.config['access_token']}"},
-            #     json=medium_story
-            # )
-            # story = response.json()
+            import requests
+            response = requests.post(
+                f"https://api.medium.com/v1/users/{user_id}/posts",
+                headers={"Authorization": f"Bearer {self.config['access_token']}"},
+                json=medium_story
+            )
+            
+            if not response.ok:
+                error_data = response.json()
+                raise Exception(f"Medium API error: {error_data.get('errors', [{'message': 'Unknown error'}])[0].get('message')}")
 
-            story_id = f"medium_{datetime.now().timestamp()}"
+            story = response.json()
+            story_id = story.get("data", {}).get("id", f"medium_{datetime.now().timestamp()}")
+            story_url = story.get("data", {}).get("url", f"https://medium.com/@{self.config.get('user_id', 'user')}/{story_id}")
 
             return {
                 "success": True,
                 "story_id": story_id,
-                "url": f"https://medium.com/@victorkirpruto/{story_id}",
+                "url": story_url,
                 "platform": "medium",
                 "posted_at": datetime.now().isoformat()
             }

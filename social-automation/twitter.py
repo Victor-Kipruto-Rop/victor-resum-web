@@ -38,30 +38,38 @@ class TwitterPoster:
             self.logger.info(f"Posting to Twitter/X with {len(tweets)} tweets")
 
             # In production: Use Twitter API v2
-            # client = tweepy.Client(
-            #     bearer_token=self.config['bearer_token'],
-            #     consumer_key=self.config['api_key'],
-            #     consumer_secret=self.config['api_secret'],
-            #     access_token=self.config['access_token'],
-            #     access_token_secret=self.config['access_token_secret']
-            # )
-            # response = client.create_tweet(text=tweets[0])
-
+            import tweepy
+            client = tweepy.Client(
+                bearer_token=self.config.get('bearer_token'),
+                consumer_key=self.config.get('api_key'),
+                consumer_secret=self.config.get('api_secret'),
+                access_token=self.config.get('access_token'),
+                access_token_secret=self.config.get('access_token_secret')
+            )
+            
             tweet_ids = []
-            for i, tweet in enumerate(tweets):
+            previous_tweet_id = None
+            
+            for i, tweet_text in enumerate(tweets):
                 # Validate tweet length
-                if len(tweet) > self.max_length:
+                if len(tweet_text) > self.max_length:
                     self.logger.warning(f"Tweet {i+1} exceeds max length, truncating")
-                    tweet = tweet[:self.max_length-3] + "..."
+                    tweet_text = tweet_text[:self.max_length-3] + "..."
 
-                tweet_id = f"twitter_{datetime.now().timestamp()}_{i}"
+                if i == 0:
+                    response = client.create_tweet(text=tweet_text)
+                else:
+                    response = client.create_tweet(text=tweet_text, in_reply_to_tweet_id=previous_tweet_id)
+                
+                tweet_id = response.data.get("id")
                 tweet_ids.append(tweet_id)
+                previous_tweet_id = tweet_id
 
             return {
                 "success": True,
                 "tweet_ids": tweet_ids,
                 "thread_count": len(tweets),
-                "url": f"https://twitter.com/victorkirpruto/status/{tweet_ids[0]}",
+                "url": f"https://twitter.com/{self.config.get('handle', 'user').replace('@', '')}/status/{tweet_ids[0]}",
                 "platform": "twitter",
                 "posted_at": datetime.now().isoformat()
             }

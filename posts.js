@@ -246,5 +246,116 @@ window.posts = {
       <h2>Warehouse Sizing</h2>
       <p>Right-sizing warehouses balances speed and cost. Larger warehouses run queries faster but cost more per second.</p>
     `
+  },
+
+  'micro-1': {
+    title: 'The Modern Microservices Guide for Data Engineers',
+    date: 'June 7, 2026',
+    readTime: 15,
+    tags: ['Microservices', 'Architecture', 'Data Engineering'],
+    isDraft: false,
+    excerpt: 'How to design, deploy, and monitor microservices in a data-intensive environment. Exploring communication patterns, data consistency, and service mesh.',
+    content: `
+      <p>Microservices have revolutionized how we build scalable applications, but they introduce unique challenges for data engineers, especially regarding data consistency and cross-service communication.</p>
+      
+      <h2>Decoupling Services</h2>
+      <p>The core of microservices is independence. Each service should own its data and communicate via well-defined APIs or event streams.</p>
+      
+      <h2>Event-Driven Communication</h2>
+      <p>In data-intensive systems, asynchronous communication using message brokers like Kafka is often superior to synchronous REST calls. It provides better resilience and enables event sourcing patterns.</p>
+      
+      <h2>Observability in Distributed Systems</h2>
+      <p>You can't fix what you can't see. Distributed tracing, centralized logging, and standardized metrics are non-negotiable for a healthy microservices ecosystem.</p>
+    `
+  },
+
+  'analytics-1': {
+    title: 'Real-Time Analytics at Scale',
+    date: 'June 6, 2026',
+    readTime: 12,
+    tags: ['Analytics', 'Real-Time', 'Infrastructure'],
+    isDraft: false,
+    excerpt: 'Building low-latency analytics systems that process millions of events per second. Exploring technologies like Apache Druid, ClickHouse, and StarRocks.',
+    content: `
+      <p>The demand for real-time insights is growing. Traditional batch processing is no longer enough for use cases like fraud detection, dynamic pricing, and live monitoring.</p>
+      
+      <h2>The Lambda vs. Kappa Architecture</h2>
+      <p>We explore the evolution from Lambda (batch + speed layers) to Kappa (everything is a stream), and how modern OLAP databases are changing the game.</p>
+      
+      <h2>Choosing the Right OLAP Database</h2>
+      <p>Comparing ClickHouse, Druid, and StarRocks for different real-time analytics workloads. Which one fits your latency and concurrency requirements?</p>
+    `
+  },
+
+  'sql-1': {
+    title: 'Advanced SQL Optimization for Data Warehousing',
+    date: 'June 5, 2026',
+    readTime: 10,
+    tags: ['SQL', 'Optimization', 'Data Warehouse'],
+    isDraft: false,
+    excerpt: 'Master the art of writing high-performance SQL. Techniques for window functions, CTE optimization, and understanding query execution plans.',
+    content: `
+      <p>SQL is the lingua franca of data. Writing SQL that "works" is easy; writing SQL that performs well at scale is an art form.</p>
+      
+      <h2>Window Functions Deep Dive</h2>
+      <p>Beyond simple aggregations. Learn how to use window functions for complex analytical tasks without sacrificing performance.</p>
+      
+      <h2>Query Plan Analysis</h2>
+      <p>Don't guess, measure. We show you how to read and interpret query plans to identify bottlenecks and optimize your JOINS and filters.</p>
+    `
+  },
+
+  'cloud-1': {
+    title: 'Cloud Infrastructure Best Practices',
+    date: 'June 4, 2026',
+    readTime: 10,
+    tags: ['Cloud', 'Infrastructure', 'DevOps'],
+    isDraft: false,
+    excerpt: 'Essential patterns for building resilient and scalable cloud infrastructure. Covering multi-region deployments, cost management, and security.',
+    content: `
+      <p>Building in the cloud requires a shift in mindset from traditional on-premise infrastructure. We explore the pillars of well-architected cloud systems.</p>
+      
+      <h2>Resilience through Redundancy</h2>
+      <p>Multi-AZ and multi-region strategies to ensure your data systems stay up even during major provider outages.</p>
+      
+      <h2>Cost Management</h2>
+      <p>The cloud can be expensive if not managed. Learn how to use spot instances, reserved capacity, and auto-scaling to keep your bills under control.</p>
+    `
+  },
+
+  'python-1': {
+    title: 'Python Performance Optimization',
+    date: 'June 3, 2026',
+    readTime: 15,
+    tags: ['Python', 'Performance', 'Data Processing'],
+    isDraft: false,
+    excerpt: 'Advanced techniques for making your Python code run faster. Exploring multiprocessing, async patterns, and efficient data structures.',
+    content: `
+      <p>Python is often criticized for being slow, but with the right techniques, it can handle massive data workloads efficiently.</p>
+      
+      <h2>Multiprocessing vs. Threading</h2>
+      <p>Understanding the GIL and when to use different concurrency models in Python for data processing tasks.</p>
+      
+      <h2>Vectorization with NumPy and Pandas</h2>
+      <p>Stop writing loops. Learn how to leverage vectorized operations to speed up your data transformations by 100x or more.</p>
+    `
+  },
+
+  'docker-1': {
+    title: 'Docker and Kubernetes Deep Dive',
+    date: 'June 2, 2026',
+    readTime: 18,
+    tags: ['Docker', 'Kubernetes', 'Containers'],
+    isDraft: false,
+    excerpt: 'Containerization strategies for modern data platforms. From building optimized images to orchestrating complex clusters.',
+    content: `
+      <p>Containers are the unit of deployment for modern data systems. Kubernetes has emerged as the standard for orchestrating these containers at scale.</p>
+      
+      <h2>Optimizing Docker Images</h2>
+      <p>Multi-stage builds, minimal base images, and layer caching to create fast, secure, and small container images.</p>
+      
+      <h2>Kubernetes for Data Workloads</h2>
+      <p>Managing stateful sets, persistent volumes, and resource quotas specifically for data-intensive applications like databases and brokers.</p>
+    `
   }
 };
