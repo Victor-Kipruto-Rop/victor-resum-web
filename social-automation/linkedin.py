@@ -5,8 +5,9 @@ LinkedIn Poster - Post blog content to LinkedIn
 
 import json
 import logging
+import os
 from datetime import datetime
-from typing import Dict, Optional
+from typing import Dict
 
 
 class LinkedInPoster:
@@ -15,38 +16,102 @@ class LinkedInPoster:
     def __init__(self, config: Dict):
         """Initialize LinkedIn poster"""
         self.config = config.get("platforms", {}).get("linkedin", {})
+        self._resolve_env_vars(self.config)
         self.logger = logging.getLogger(__name__)
+
+    def _resolve_env_vars(self, obj):
+        """Resolve ${ENV_VAR} references in config"""
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                obj[k] = self._resolve_env_vars(v)
+        elif isinstance(obj, list):
+            return [self._resolve_env_vars(item) for item in obj]
+        elif isinstance(obj, str) and obj.startswith("${") and obj.endswith("}"):
+            return os.getenv(obj[2:-1], obj)
+        return obj
 
     def post(self, content: Dict, metadata: Dict) -> Dict:
         """
         Post content to LinkedIn
-
-        Args:
-            content: Formatted content dict with 'title', 'excerpt', 'url'
-            metadata: Blog post metadata
-
-        Returns:
-            Result dict with success status and post_id
         """
         try:
-            if not self.config.get("access_token"):
+            token = self.config.get("access_token")
+            if not token:
                 return {"success": False, "error": "LinkedIn access token not configured"}
 
-            # Prepare LinkedIn post
-            linkedin_post = self._format_post(content, metadata)
+            import requests
+            
+            # 1. Get Member URN (Priority: .env override -> /me -> /userinfo)
+            member_urn = os.getenv("LINKEDIN_MEMBER_URN")
+            
+            if member_urn:
+                author_urn = member_urn if member_urn.startswith("urn:li:") else f"urn:li:person:{member_urn}"
+                self.logger.info(f"Using manual Member URN from .env: {author_urn}")
+            else:
+                self.logger.info("Fetching LinkedIn profile to get member ID...")
+                me_response = requests.get(
+                    "https://api.linkedin.com/v2/me",
+                    headers={"Authorization": f"Bearer {token}"}
+                )
+                
+                if me_response.ok:
+                    member_id = me_response.json().get("id")
+                    author_urn = f"urn:li:person:{member_id}"
+                else:
+                    # Try userinfo fallback (OpenID Connect)
+                    self.logger.info("Retrying with userinfo endpoint...")
+                    ui_response = requests.get(
+                        "https://api.linkedin.com/v2/userinfo",
+                        headers={"Authorization": f"Bearer {token}"}
+                    )
+                    if not ui_response.ok:
+                        error_data = ui_response.json()
+                        raise Exception(f"LinkedIn Profile error: {error_data.get('message', 'Not enough permissions to get URN. Please add openid/profile scope or set LINKEDIN_MEMBER_URN in .env')}")
+                    member_id = ui_response.json().get("sub")
+                    author_urn = f"urn:li:person:{member_id}"
+
+            self.logger.info(f"Using Author URN: {author_urn}")
+
+            # 2. Prepare LinkedIn post (ugcPosts format)
+            linkedin_post = {
+                "author": author_urn,
+                "lifecycleState": "PUBLISHED",
+                "specificContent": {
+                    "com.linkedin.ugc.ShareContent": {
+                        "shareCommentary": {
+                            "text": f"{content.get('title')}\n\n{content.get('excerpt')}\n\nRead more: {content.get('url')}"
+                        },
+                        "shareMediaCategory": "ARTICLE",
+                        "media": [
+                            {
+                                "status": "READY",
+                                "description": {
+                                    "text": content.get("excerpt", "")
+                                },
+                                "originalUrl": content.get("url", ""),
+                                "title": {
+                                    "text": content.get("title", "")
+                                }
+                            }
+                        ]
+                    }
+                },
+                "visibility": {
+                    "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
+                }
+            }
 
             self.logger.info(f"Posting to LinkedIn: {content.get('title')}")
 
-            # In production: Use LinkedIn API
-            import requests
             response = requests.post(
-                f"https://api.linkedin.com/v2/ugcPosts",
-                headers={"Authorization": f"Bearer {self.config['access_token']}"},
+                "https://api.linkedin.com/v2/ugcPosts",
+                headers={"Authorization": f"Bearer {token}"},
                 json=linkedin_post
             )
             
             if not response.ok:
                 error_data = response.json()
+                # If error is about unpermitted fields, it might be the wrong endpoint/schema
                 raise Exception(f"LinkedIn API error: {error_data.get('message', 'Unknown error')}")
 
             result = response.json()

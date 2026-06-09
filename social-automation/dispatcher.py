@@ -7,6 +7,7 @@ Coordinates posting to LinkedIn, Twitter, Dev.to, Medium, and Telegram
 import json
 import logging
 import os
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -168,6 +169,22 @@ class SocialDispatcher:
                     "error": str(e)
                 }
                 results["summary"]["failed"] += 1
+
+        # Notify subscribers
+        try:
+            sys.path.insert(0, str(Path(__file__).parent.parent))
+            from subscription_service import SubscriptionService
+            sub_service = SubscriptionService()
+            sub_results = sub_service.send_new_post_notification(post_data)
+            results["subscribers"] = {
+                "total_notified": sub_results["total_sent"],
+                "email_sent": len(sub_results.get("email", [])),
+                "telegram_sent": len(sub_results.get("telegram", []))
+            }
+            self.logger.info(f"Notified {sub_results['total_sent']} subscribers")
+        except Exception as e:
+            self.logger.warning(f"Subscriber notification failed: {e}")
+            results["subscribers"] = {"error": str(e)}
 
         self._save_dispatch_result(results)
         return results

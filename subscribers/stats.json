@@ -10,5 +10,12 @@
   },
   "by_engagement": {
     "active": 1
+  },
+  "last_updated": "2026-06-09T03:29:04.998004",
+  "stats": {
+    "email_subscriptions": 2,
+    "last_updated": "2026-06-09T03:29:04.997994",
+    "notifications_sent": 10,
+    "last_notification": "2026-06-09T03:29:04.997953"
   }
 }

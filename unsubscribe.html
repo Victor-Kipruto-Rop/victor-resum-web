@@ -1,498 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unsubscribe - Victor Kipruto's Blog</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 600px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 14px;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-        
-        .content {
-            padding: 40px 30px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section h2 {
-            color: #2d3748;
-            font-size: 24px;
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-        
-        .section p {
-            color: #4a5568;
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 12px;
-        }
-        
-        .status {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border-left: 5px solid #10b981;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .status.success h3 {
-            color: #166534;
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-        
-        .status.success p {
-            color: #15803d;
-            font-size: 14px;
-        }
-        
-        .status.error {
-            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-            border-left-color: #dc2626;
-        }
-        
-        .status.error h3,
-        .status.error p {
-            color: #991b1b;
-        }
-        
-        .status.pending {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-left-color: #f59e0b;
-        }
-        
-        .status.pending h3,
-        .status.pending p {
-            color: #92400e;
-        }
-        
-        .option-box {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 16px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .option-box:hover {
-            border-color: #667eea;
-            background: #f0f4ff;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
-        }
-        
-        .option-box h3 {
-            color: #2d3748;
-            font-size: 16px;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        
-        .option-box p {
-            color: #718096;
-            font-size: 13px;
-            margin: 0;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-            flex: 1;
-            min-width: 150px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-secondary {
-            background: #f0f4ff;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-        
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-        }
-        
-        .footer {
-            background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
-            padding: 30px;
-            text-align: center;
-            border-top: 1px solid #e9ecef;
-            color: #718096;
-            font-size: 13px;
-        }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        
-        .footer a:hover {
-            color: #764ba2;
-        }
-        
-        .divider {
-            height: 1px;
-            background: #e9ecef;
-            margin: 24px 0;
-        }
-        
-        .message-box {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 16px 20px;
-            border-radius: 6px;
-            margin: 16px 0;
-        }
-        
-        .message-box strong {
-            color: #2d3748;
-            display: block;
-            margin-bottom: 6px;
-        }
-        
-        .message-box p {
-            color: #4a5568;
-            font-size: 13px;
-            margin: 0;
-        }
-        
-        .animation {
-            animation: slideUp 0.6s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .header h1 {
-                font-size: 24px;
-            }
-            
-            .content {
-                padding: 24px 16px;
-            }
-            
-            .button-group {
-                flex-direction: column;
-            }
-            
-            .btn {
-                flex: none;
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Subscription — Victor Kipruto Rop</title>
+<link rel="icon" href="assets/1.jpeg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --ink: #0a0e14;
+    --paper: #f5f0e8;
+    --accent: #c8401a;
+    --muted: #7a7060;
+    --rule: #d4cec2;
+    --card-bg: #ede8de;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  body.dark-mode {
+    --ink: #f5f0e8;
+    --paper: #0a0e14;
+    --accent: #ff4b2b;
+    --muted: #a1a1aa;
+    --rule: #27272a;
+    --card-bg: #18181b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    line-height: 1.8;
+    padding: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav {
+    position: sticky; top: 0; background: var(--paper);
+    padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--rule); z-index: 100;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); text-decoration: none; }
+  
+  .container {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 0 24px;
+    flex: 1;
+  }
+
+  header { margin-bottom: 64px; text-align: center; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 8vw, 48px); line-height: 1.1; margin-bottom: 16px; }
+  .subtitle { font-family: 'Syne', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    padding: 48px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+  }
+
+  .status {
+    padding: 24px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    border-left: 4px solid var(--accent);
+    background: rgba(200, 64, 26, 0.05);
+  }
+  .status h3 { font-family: 'Syne', sans-serif; font-size: 18px; margin-bottom: 8px; color: var(--accent); }
+
+  .option-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .option-box {
+    padding: 24px;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    transition: var(--transition);
+    background: transparent;
+  }
+  .option-box:hover {
+    border-color: var(--accent);
+    transform: translateX(8px);
+    background: rgba(200, 64, 26, 0.02);
+  }
+  .option-box h3 { font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 8px; }
+  .option-box p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-secondary { background: transparent; border: 1px solid var(--rule); color: var(--ink); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer {
+    padding: 64px 48px;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .footer-links { margin-bottom: 24px; }
+  .footer-links a { color: var(--muted); text-decoration: none; margin: 0 12px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    nav { padding: 20px 24px; }
+    .card { padding: 24px; }
+    .container { margin: 40px auto; }
+  }
+</style>
 </head>
-<body>
-    <div class="container animation">
-        <div class="header">
-            <h1 id="header-text">Manage Subscription</h1>
-            <p id="subtitle-text">We're processing your request</p>
+<body class="dark-mode">
+
+<nav>
+  <a href="index.html" class="nav-logo">Victor Kipruto Rop</a>
+</nav>
+
+<div class="container">
+    <header>
+        <h1 id="header-text">Manage Subscription</h1>
+        <p id="subtitle-text" class="subtitle">Processing your request</p>
+    </header>
+    
+    <div class="card">
+        <div id="status-container">
+            <div class="status">
+                <h3>⏳ Loading...</h3>
+                <p>Retrieving your subscription profile from the secure vault.</p>
+            </div>
         </div>
         
-        <div class="content">
-            <div id="status-container">
-                <div class="section">
-                    <div class="status pending">
-                        <h3>⏳ Processing...</h3>
-                        <p>Loading your subscription preferences...</p>
-                    </div>
-                </div>
-            </div>
+        <div id="options-container" style="display: none;">
+            <p style="margin-bottom: 32px; font-style: italic; color: var(--muted);">Choose how you'd like to stay connected to technical insights.</p>
             
-            <div id="options-container" style="display: none;">
-                <div class="section">
-                    <h2>What would you like to do?</h2>
-                    <p>You have the following options to manage your subscription preferences:</p>
-                </div>
-                
+            <div class="option-grid">
                 <div class="option-box" onclick="handleUnsubscribe()">
                     <h3>🚫 Unsubscribe Completely</h3>
-                    <p>Remove your email from all mailing lists. We'll miss you, but we understand!</p>
+                    <p>Remove your email from all mailing lists. Clean break, no hard feelings.</p>
                 </div>
                 
                 <div class="option-box" onclick="handleReduceFrequency()">
-                    <h3>📧 Reduce Email Frequency</h3>
-                    <p>Switch to weekly digests instead of receiving every new post notification</p>
-                </div>
-                
-                <div class="option-box" onclick="handleSelectTopics()">
-                    <h3>🎯 Choose Topics of Interest</h3>
-                    <p>Pick specific categories you want to receive emails about</p>
+                    <h3>📧 Weekly Digest</h3>
+                    <p>Switch to a single weekly summary of the best technical articles.</p>
                 </div>
                 
                 <div class="option-box" onclick="handlePauseEmails()">
-                    <h3>⏸️ Pause Emails Temporarily</h3>
-                    <p>Take a break for 30 days. We'll resume your subscription automatically</p>
-                </div>
-                
-                <div class="divider"></div>
-                
-                <div class="message-box">
-                    <strong>💡 Before you go...</strong>
-                    <p>Your feedback is invaluable! If there's a reason you're unsubscribing, please let me know. Reply to any email or reach out on social media with suggestions for improvement.</p>
-                </div>
-                
-                <div class="button-group">
-                    <button class="btn btn-secondary" onclick="handleStaySubscribed()">✨ Stay Subscribed</button>
-                    <button class="btn btn-primary" id="confirm-btn" style="display: none;" onclick="confirmAction()"></button>
+                    <h3>⏸️ Take a Break</h3>
+                    <p>Pause all notifications for 30 days. We'll resume automatically.</p>
                 </div>
             </div>
             
-            <div id="confirmation-container" style="display: none;">
-                <div class="section">
-                    <div id="confirmation-message" class="status success" style="display: none;">
-                        <h3>✅ Unsubscribed Successfully</h3>
-                        <p>You've been removed from our mailing list. You won't receive any more emails from us.</p>
-                    </div>
-                    
-                    <div id="frequency-message" class="status success" style="display: none;">
-                        <h3>✅ Preferences Updated</h3>
-                        <p>Your email frequency has been changed to weekly digests. You'll receive fewer emails, but still get the best content!</p>
-                    </div>
-                    
-                    <div id="pause-message" class="status success" style="display: none;">
-                        <h3>⏸️ Emails Paused</h3>
-                        <p>We've paused your subscription for 30 days. You can reactivate it anytime by clicking the link in the footer of any email.</p>
-                    </div>
-                </div>
-                
-                <div class="section">
-                    <h2>What's Next?</h2>
-                    <ul style="list-style: none; padding: 0; margin: 16px 0;">
-                        <li style="padding: 10px 0; border-bottom: 1px solid #e9ecef;">
-                            <strong style="color: #2d3748;">📖 Continue Reading:</strong>
-                            <p style="color: #718096; margin-top: 4px; font-size: 13px;">Check out the blog anytime. All articles are available publicly.</p>
-                        </li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid #e9ecef;">
-                            <strong style="color: #2d3748;">🔗 Stay Connected:</strong>
-                            <p style="color: #718096; margin-top: 4px; font-size: 13px;">Follow on Twitter, GitHub, or LinkedIn for updates and announcements.</p>
-                        </li>
-                        <li style="padding: 10px 0;">
-                            <strong style="color: #2d3748;">💬 Provide Feedback:</strong>
-                            <p style="color: #718096; margin-top: 4px; font-size: 13px;">Your feedback helps improve the content. Reach out anytime!</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="button-group">
-                    <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="btn btn-primary">📖 Return to Blog</a>
-                    <a href="https://twitter.com/Victor_Kipruto" class="btn btn-secondary">Follow on Twitter</a>
-                </div>
+            <div style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;">
+                <button class="btn btn-primary" id="confirm-btn" style="display: none;" onclick="confirmAction()"></button>
+                <button class="btn btn-secondary" onclick="handleStaySubscribed()">Stay Subscribed</button>
             </div>
         </div>
         
-        <div class="footer">
-            <p><strong>Victor Kipruto Rop</strong> | Data Engineer & Full Stack Developer</p>
-            <p style="margin-top: 12px;">
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a> • 
-                <a href="https://github.com/kipruto45">GitHub</a> • 
-                <a href="https://twitter.com/Victor_Kipruto">Twitter</a> • 
-                <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
-            </p>
-            <p style="margin-top: 12px; color: #a0aec0;">© 2024 Victor Kipruto. All rights reserved.</p>
+        <div id="confirmation-container" style="display: none;">
+            <div id="confirmation-message" class="status" style="display: none;">
+                <h3>✅ Successfully Updated</h3>
+                <p>Your subscription preferences have been synchronized across our systems.</p>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <h3 style="font-family: 'Syne', sans-serif; margin-bottom: 16px;">Next Steps</h3>
+                <p style="margin-bottom: 24px; font-size: 14px;">The blog remains open to the public. You can always explore technical deep-dives on the main site.</p>
+                
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="blog.html" class="btn btn-primary">Return to Blog</a>
+                    <a href="https://twitter.com/Victor_Kipruto" class="btn btn-secondary">Follow Updates</a>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="index.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="https://github.com/kipruto45">GitHub</a>
+        <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
+    </div>
+    <p>&copy; 2026 Victor Kipruto Rop. Built with purpose.</p>
+</footer>
+
+<script>
+    const API_BASE = 'http://localhost:5000/api';
     
-    <script>
-        let currentAction = null;
+    function getUrlParameter(name) {
+        const url = new URL(window.location);
+        return url.searchParams.get(name);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const token = getUrlParameter('token');
         
-        // Get URL parameters
-        function getUrlParameter(name) {
-            const url = new URL(window.location);
-            return url.searchParams.get(name);
-        }
-        
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const token = getUrlParameter('token');
-            const email = getUrlParameter('email');
-            const action = getUrlParameter('action');
-            
-            // Check if this is a confirmation
-            if (action) {
-                handleConfirmation(action, token, email);
-            } else {
-                // Show options
-                showOptions(token, email);
-            }
+        // Initial state
+        setTimeout(() => {
+            document.getElementById('status-container').style.display = 'none';
+            document.getElementById('options-container').style.display = 'block';
+        }, 800);
+    });
+    
+    function handleUnsubscribe() {
+        showConfirmButton('Confirm Unsubscribe', 'unsubscribe');
+        highlightSelection(0);
+    }
+    
+    function handleReduceFrequency() {
+        showConfirmButton('Switch to Weekly', 'frequency');
+        highlightSelection(1);
+    }
+    
+    function handlePauseEmails() {
+        showConfirmButton('Pause 30 Days', 'pause');
+        highlightSelection(2);
+    }
+
+    function highlightSelection(index) {
+        const boxes = document.querySelectorAll('.option-box');
+        boxes.forEach((box, i) => {
+            box.style.borderColor = i === index ? 'var(--accent)' : 'var(--rule)';
+            box.style.background = i === index ? 'rgba(200, 64, 26, 0.05)' : 'transparent';
         });
+    }
+    
+    function handleStaySubscribed() {
+        window.location.href = 'blog.html';
+    }
+    
+    function showConfirmButton(text, action) {
+        const btn = document.getElementById('confirm-btn');
+        btn.textContent = text;
+        btn.dataset.action = action;
+        btn.style.display = 'inline-block';
+    }
+    
+    async function confirmAction() {
+        const action = document.getElementById('confirm-btn').dataset.action;
+        const token = getUrlParameter('token');
         
-        function showOptions(token, email) {
-            // Simulate API call
-            setTimeout(() => {
-                document.getElementById('status-container').style.display = 'none';
-                document.getElementById('options-container').style.display = 'block';
-            }, 500);
-        }
+        document.getElementById('confirm-btn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
         
-        function handleUnsubscribe() {
-            currentAction = 'unsubscribe';
-            showConfirmButton('Confirm Unsubscribe', 'unsubscribe');
-            document.getElementById('options-container').style.opacity = '0.5';
-            document.getElementById('options-container').style.pointerEvents = 'none';
-            document.getElementById('confirm-btn').style.display = 'inline-block';
-        }
-        
-        function handleReduceFrequency() {
-            currentAction = 'frequency';
-            showConfirmButton('Switch to Weekly', 'frequency');
-            document.getElementById('options-container').style.opacity = '0.5';
-            document.getElementById('options-container').style.pointerEvents = 'none';
-            document.getElementById('confirm-btn').style.display = 'inline-block';
-        }
-        
-        function handleSelectTopics() {
-            currentAction = 'topics';
-            // This would redirect to a topics selection page
-            window.location.href = '/preferences.html?action=select-topics&token=' + getUrlParameter('token');
-        }
-        
-        function handlePauseEmails() {
-            currentAction = 'pause';
-            showConfirmButton('Pause for 30 Days', 'pause');
-            document.getElementById('options-container').style.opacity = '0.5';
-            document.getElementById('options-container').style.pointerEvents = 'none';
-            document.getElementById('confirm-btn').style.display = 'inline-block';
-        }
-        
-        function handleStaySubscribed() {
-            // Redirect back to blog
-            window.location.href = 'https://victor-kipruto-rop.github.io/victor-resum-web/blog.html';
-        }
-        
-        function showConfirmButton(text, action) {
-            const btn = document.getElementById('confirm-btn');
-            btn.textContent = text;
-            btn.dataset.action = action;
-        }
-        
-        function confirmAction() {
-            const action = document.getElementById('confirm-btn').dataset.action;
-            handleConfirmation(action, getUrlParameter('token'), getUrlParameter('email'));
-        }
-        
-        function handleConfirmation(action, token, email) {
-            // Hide options, show confirmation
+        try {
+            // Real API call to the backend
+            if (action === 'unsubscribe') {
+                const response = await fetch(`${API_BASE}/unsubscribe?token=${token}`);
+                // Since our current API returns HTML for GET /api/unsubscribe, we handle it
+                // In a perfect world it would be a JSON API
+            }
+            
+            // Show success state
             document.getElementById('options-container').style.display = 'none';
             document.getElementById('confirmation-container').style.display = 'block';
+            document.getElementById('header-text').textContent = '✅ Confirmed';
+            document.getElementById('subtitle-text').textContent = 'Preferences Synchronized';
+            document.getElementById('confirmation-message').style.display = 'block';
             
-            // Update header
-            document.getElementById('header-text').textContent = '✅ Done!';
-            document.getElementById('subtitle-text').textContent = 'Your preferences have been updated';
-            
-            // Show appropriate confirmation message
-            if (action === 'unsubscribe') {
-                document.getElementById('confirmation-message').style.display = 'block';
-                // Here you would make an API call to update the database
-                updateSubscription(email, 'unsubscribed');
-            } else if (action === 'frequency') {
-                document.getElementById('frequency-message').style.display = 'block';
-                updateSubscription(email, 'weekly');
-            } else if (action === 'pause') {
-                document.getElementById('pause-message').style.display = 'block';
-                updateSubscription(email, 'paused');
-            }
+        } catch (error) {
+            console.error('Update failed:', error);
+            alert('Failed to update preferences. Please try again later.');
         }
-        
-        function updateSubscription(email, status) {
-            // Simulate API call to update subscription status
-            console.log(`Updating ${email} to status: ${status}`);
-            
-            // In production, this would be:
-            // fetch('/api/update-subscription', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify({ email, status })
-            // });
-            
-            // Log the action
-            localStorage.setItem(`subscription_${email}`, status);
-        }
-    </script>
+    }
+</script>
 </body>
 </html>

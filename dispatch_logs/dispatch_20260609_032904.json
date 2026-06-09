@@ -1,0 +1,37 @@
+{
+  "post_title": "Building Scalable Systems with Apache Airflow: A Data Engineer's Guide",
+  "dispatch_time": "2026-06-09T03:28:31.796228",
+  "platforms": {
+    "linkedin": {
+      "status": "failed",
+      "error": "LinkedIn API error: Invalid access token"
+    },
+    "twitter": {
+      "status": "failed",
+      "error": "401 Unauthorized\nUnauthorized"
+    },
+    "devto": {
+      "status": "failed",
+      "error": "Dev.to API error: Canonical url has already been taken. Email support@dev.to for further details. and Title has already been used in the last five minutes"
+    },
+    "medium": {
+      "status": "failed",
+      "error": "Medium API error: Token was invalid."
+    },
+    "telegram": {
+      "status": "failed",
+      "error": "Telegram API error: Not Found"
+    }
+  },
+  "summary": {
+    "total_platforms": 5,
+    "successful": 0,
+    "failed": 5,
+    "skipped": 0
+  },
+  "subscribers": {
+    "total_notified": 2,
+    "email_sent": 2,
+    "telegram_sent": 0
+  }
+}

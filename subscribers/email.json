@@ -17,7 +17,47 @@
         "source": "demo",
         "total_opens": 0
       }
+    },
+    {
+      "id": "sub_e693d45f",
+      "contact": "test-blog@example.com",
+      "name": "Test User",
+      "subscribed_at": "2026-06-09T02:17:58.728901",
+      "status": "inactive",
+      "interests": [],
+      "engagement_level": "new",
+      "preferences": {
+        "digest_frequency": "weekly",
+        "notifications": true
+      },
+      "metadata": {
+        "source": "blog",
+        "total_opens": 0,
+        "total_clicks": 0
+      },
+      "unsubscribed_at": "2026-06-09T02:18:41.915035"
+    },
+    {
+      "id": "sub_3bf34da0",
+      "contact": "engineer@data.com",
+      "name": "Data Engineer",
+      "subscribed_at": "2026-06-09T02:17:58.733495",
+      "status": "active",
+      "interests": [
+        "python",
+        "kafka"
+      ],
+      "engagement_level": "new",
+      "preferences": {
+        "digest_frequency": "weekly",
+        "notifications": true
+      },
+      "metadata": {
+        "source": "blog",
+        "total_opens": 0,
+        "total_clicks": 0
+      }
     }
   ],
-  "last_updated": "2026-06-06T14:23:43.622142"
+  "last_updated": "2026-06-09T02:18:41.915065"
 }

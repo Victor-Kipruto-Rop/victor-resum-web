@@ -5,6 +5,7 @@ Telegram Poster - Send blog content to Telegram channel/group
 
 import json
 import logging
+import os
 from datetime import datetime
 from typing import Dict
 
@@ -15,7 +16,19 @@ class TelegramPoster:
     def __init__(self, config: Dict):
         """Initialize Telegram poster"""
         self.config = config.get("platforms", {}).get("telegram", {})
+        self._resolve_env_vars(self.config)
         self.logger = logging.getLogger(__name__)
+
+    def _resolve_env_vars(self, obj):
+        """Resolve ${ENV_VAR} references in config"""
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                obj[k] = self._resolve_env_vars(v)
+        elif isinstance(obj, list):
+            return [self._resolve_env_vars(item) for item in obj]
+        elif isinstance(obj, str) and obj.startswith("${") and obj.endswith("}"):
+            return os.getenv(obj[2:-1], obj)
+        return obj
 
     def post(self, content: Dict, metadata: Dict) -> Dict:
         """
@@ -32,20 +45,20 @@ class TelegramPoster:
             if not self.config.get("bot_token"):
                 return {"success": False, "error": "Telegram bot token not configured"}
 
-            if not self.config.get("channel_id"):
-                return {"success": False, "error": "Telegram channel ID not configured"}
+            chat_id = self.config.get("channel_id") or self.config.get("chat_id")
+            if not chat_id:
+                return {"success": False, "error": "Telegram chat_id not configured"}
 
             # Prepare Telegram message
             telegram_message = self._format_message(content, metadata)
 
             self.logger.info(f"Sending to Telegram: {content.get('title')}")
 
-            # In production: Use Telegram Bot API
             import requests
             response = requests.post(
                 f"https://api.telegram.org/bot{self.config['bot_token']}/sendMessage",
                 json={
-                    "chat_id": self.config['channel_id'],
+                    "chat_id": chat_id,
                     "text": telegram_message,
                     "parse_mode": "HTML",
                     "disable_web_page_preview": False
