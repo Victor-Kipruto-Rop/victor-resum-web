@@ -1,0 +1,93 @@
+{
+  "slug": "production-grade-python-testing-strategies-for-data-pipelines",
+  "metaTitle": "Production-Grade Python Testing Strategies for Data Pip...",
+  "metaDescription": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing Learn more on my blog.",
+  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+  "openGraph": {
+    "og:title": "Production-Grade Python Testing Strategies for Data Pipelines",
+    "og:description": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...",
+    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/sql-optimization.png",
+    "og:type": "article",
+    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+    "og:site_name": "Victor Kipruto - Developer",
+    "article:published_time": "2026-06-08T15:12:42.902384Z",
+    "article:modified_time": "2026-06-08T15:12:42.902384Z",
+    "article:author": "Victor Kipruto"
+  },
+  "twitterCard": {
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Production-Grade Python Testing Strategies for Data Pipelines",
+    "twitter:description": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...",
+    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/sql-optimization.png",
+    "twitter:creator": "@VictorKipruto",
+    "twitter:site": "@VictorKipruto"
+  },
+  "structuredData": {
+    "blogPosting": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Production-Grade Python Testing Strategies for Data Pipelines",
+      "description": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...",
+      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/sql-optimization.png",
+      "datePublished": "2026-06-08T15:12:42.902384Z",
+      "dateModified": "2026-06-08T15:12:42.902384Z",
+      "author": {
+        "@type": "Person",
+        "name": "Victor Kipruto",
+        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Victor Kipruto",
+        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines"
+      },
+      "keywords": "",
+      "articleSection": "Best Practices",
+      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines"
+    },
+    "breadcrumb": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Best Practices",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/best-practices"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Production-Grade Python Testing Strategies for Data Pipelines",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines"
+        }
+      ]
+    }
+  },
+  "seoScore": 80,
+  "keywords": [],
+  "category": "Best Practices",
+  "tags": [
+    "python",
+    "testing",
+    "data-pipelines",
+    "pytest",
+    "ci-cd"
+  ]
+}
