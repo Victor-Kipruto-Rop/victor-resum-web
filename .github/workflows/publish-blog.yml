@@ -144,46 +144,10 @@ jobs:
           name: seo-assets
           path: assets/seo-assets/
   
-  deploy:
-    runs-on: ubuntu-latest
-    name: Deploy to GitHub Pages
-    needs: [generate-rss, generate-sitemap, generate-seo]
-    if: success()
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Download all artifacts
-        uses: actions/download-artifact@v3
-      
-      - name: Prepare deployment files
-        run: |
-          mkdir -p deploy
-          cp -r blog deploy/
-          cp -r dashboard deploy/
-          cp -r assets deploy/
-          cp sitemap/sitemap.xml deploy/
-          cp rss-feed/feed.xml deploy/blog/
-          echo "Deployment files prepared"
-          ls -la deploy/
-      
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./deploy
-          cname: victor-kipruto-rop.github.io
-      
-      - name: Deployment summary
-        run: |
-          echo "✅ Blog published successfully!"
-          echo "📊 RSS feed updated: feed.xml"
-          echo "🗺️ Sitemap updated: sitemap.xml"
-          echo "🔍 SEO assets generated"
-  
   notify:
     runs-on: ubuntu-latest
     name: Send Notifications
-    needs: deploy
+    needs: deploy-pages
     if: always()
     steps:
       - name: Slack notification
