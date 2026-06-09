@@ -1,0 +1,50 @@
+{
+  "hot_topics": [
+    {
+      "topic": "Data Mesh Architecture",
+      "trendScore": 9.2,
+      "mentions": 156,
+      "growth": "+245% YoY",
+      "relatedKeywords": [
+        "domain-driven architecture",
+        "data governance"
+      ]
+    },
+    {
+      "topic": "Real-time Analytics",
+      "trendScore": 8.8,
+      "mentions": 234,
+      "growth": "+185% YoY",
+      "relatedKeywords": [
+        "streaming",
+        "event processing"
+      ]
+    },
+    {
+      "topic": "AI-powered Data Platforms",
+      "trendScore": 8.5,
+      "mentions": 187,
+      "growth": "+320% YoY",
+      "relatedKeywords": [
+        "LLM",
+        "data science",
+        "automation"
+      ]
+    },
+    {
+      "topic": "Data Quality Engineering",
+      "trendScore": 8.1,
+      "mentions": 143,
+      "growth": "+198% YoY",
+      "relatedKeywords": [
+        "testing",
+        "observability"
+      ]
+    }
+  ],
+  "declining_topics": [
+    "Traditional ETL (Informatica, Talend)",
+    "MapReduce and Hadoop",
+    "On-premises data warehousing"
+  ]
+}

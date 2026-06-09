@@ -1,0 +1,96 @@
+{
+  "slug": "advanced-kubernetes-patterns",
+  "metaTitle": "Advanced Kubernetes Patterns for Data Engineers",
+  "metaDescription": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, Learn more on my blog.",
+  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns",
+  "openGraph": {
+    "og:title": "Advanced Kubernetes Patterns for Data Engineers",
+    "og:description": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, StatefulSets, monitoring, and GitOps workflows.",
+    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png",
+    "og:type": "article",
+    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns",
+    "og:site_name": "Victor Kipruto - Developer",
+    "article:published_time": "2026-06-01T00:00:00Z",
+    "article:modified_time": "2026-06-05T12:30:00Z",
+    "article:author": "Victor Kipruto"
+  },
+  "twitterCard": {
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Advanced Kubernetes Patterns for Data Engineers",
+    "twitter:description": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, StatefulSets, monitoring, and GitOps workflows.",
+    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png",
+    "twitter:creator": "@VictorKipruto",
+    "twitter:site": "@VictorKipruto"
+  },
+  "structuredData": {
+    "blogPosting": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Advanced Kubernetes Patterns for Data Engineers",
+      "description": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, StatefulSets, monitoring, and GitOps workflows.",
+      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png",
+      "datePublished": "2026-06-01T00:00:00Z",
+      "dateModified": "2026-06-05T12:30:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Victor Kipruto",
+        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Victor Kipruto",
+        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns"
+      },
+      "keywords": "kubernetes patterns, data engineering, production deployment",
+      "articleSection": "Infrastructure",
+      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns"
+    },
+    "breadcrumb": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Infrastructure",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/infrastructure"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Advanced Kubernetes Patterns for Data Engineers",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns"
+        }
+      ]
+    }
+  },
+  "seoScore": 95,
+  "keywords": [
+    "kubernetes patterns",
+    "data engineering",
+    "production deployment"
+  ],
+  "category": "Infrastructure",
+  "tags": [
+    "kubernetes",
+    "data-engineering",
+    "devops",
+    "containers"
+  ]
+}
