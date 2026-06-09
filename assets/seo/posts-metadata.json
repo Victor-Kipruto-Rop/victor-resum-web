@@ -1,0 +1,948 @@
+[
+  {
+    "slug": "designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+    "metaTitle": "Designing a Modern Data Lakehouse: From Architecture to...",
+    "metaDescription": "h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+    "openGraph": {
+      "og:title": "Designing a Modern Data Lakehouse: From Architecture to Implementation",
+      "og:description": "h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/cloud-infrastructure.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-06-09T03:12:42.902384Z",
+      "article:modified_time": "2026-06-09T03:12:42.902384Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Designing a Modern Data Lakehouse: From Architecture to Implementation",
+      "twitter:description": "h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/cloud-infrastructure.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Designing a Modern Data Lakehouse: From Architecture to Implementation",
+        "description": "h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/cloud-infrastructure.png",
+        "datePublished": "2026-06-09T03:12:42.902384Z",
+        "dateModified": "2026-06-09T03:12:42.902384Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation"
+        },
+        "keywords": "",
+        "articleSection": "Architecture",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Architecture",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/architecture"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Designing a Modern Data Lakehouse: From Architecture to Implementation",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation"
+          }
+        ]
+      }
+    },
+    "seoScore": 80,
+    "keywords": [],
+    "category": "Architecture",
+    "tags": [
+      "data-lakehouse",
+      "delta-lake",
+      "apache-spark",
+      "snowflake",
+      "architecture"
+    ]
+  },
+  {
+    "slug": "mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+    "metaTitle": "Mastering Apache Spark Shuffle Operations for Large-Sca...",
+    "metaDescription": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+    "openGraph": {
+      "og:title": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
+      "og:description": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-engineering-fundamentals.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-06-08T23:12:42.902384Z",
+      "article:modified_time": "2026-06-08T23:12:42.902384Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
+      "twitter:description": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-engineering-fundamentals.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
+        "description": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-engineering-fundamentals.png",
+        "datePublished": "2026-06-08T23:12:42.902384Z",
+        "dateModified": "2026-06-08T23:12:42.902384Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
+        },
+        "keywords": "",
+        "articleSection": "Data Engineering",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Data Engineering",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-engineering"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
+          }
+        ]
+      }
+    },
+    "seoScore": 75,
+    "keywords": [],
+    "category": "Data Engineering",
+    "tags": [
+      "apache-spark",
+      "big-data",
+      "performance",
+      "shuffle",
+      "distributed-computing"
+    ]
+  },
+  {
+    "slug": "optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+    "metaTitle": "Optimizing Snowflake Virtual Warehouses for Cost and Pe...",
+    "metaDescription": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+    "openGraph": {
+      "og:title": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
+      "og:description": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-06-08T19:12:42.902384Z",
+      "article:modified_time": "2026-06-08T19:12:42.902384Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
+      "twitter:description": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
+        "description": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+        "datePublished": "2026-06-08T19:12:42.902384Z",
+        "dateModified": "2026-06-08T19:12:42.902384Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
+        },
+        "keywords": "",
+        "articleSection": "Cloud",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cloud",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/cloud"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
+          }
+        ]
+      }
+    },
+    "seoScore": 80,
+    "keywords": [],
+    "category": "Cloud",
+    "tags": [
+      "snowflake",
+      "cost-optimization",
+      "performance",
+      "cloud",
+      "data-warehouse"
+    ]
+  },
+  {
+    "slug": "production-grade-python-testing-strategies-for-data-pipelines",
+    "metaTitle": "Production-Grade Python Testing Strategies for Data Pip...",
+    "metaDescription": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+    "openGraph": {
+      "og:title": "Production-Grade Python Testing Strategies for Data Pipelines",
+      "og:description": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/sql-optimization.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-06-08T15:12:42.902384Z",
+      "article:modified_time": "2026-06-08T15:12:42.902384Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Production-Grade Python Testing Strategies for Data Pipelines",
+      "twitter:description": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/sql-optimization.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Production-Grade Python Testing Strategies for Data Pipelines",
+        "description": "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/sql-optimization.png",
+        "datePublished": "2026-06-08T15:12:42.902384Z",
+        "dateModified": "2026-06-08T15:12:42.902384Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines"
+        },
+        "keywords": "",
+        "articleSection": "Best Practices",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Best Practices",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/best-practices"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Production-Grade Python Testing Strategies for Data Pipelines",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines"
+          }
+        ]
+      }
+    },
+    "seoScore": 80,
+    "keywords": [],
+    "category": "Best Practices",
+    "tags": [
+      "python",
+      "testing",
+      "data-pipelines",
+      "pytest",
+      "ci-cd"
+    ]
+  },
+  {
+    "slug": "building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+    "metaTitle": "Building a Real-Time Dashboard Pipeline with Flink, Kaf...",
+    "metaDescription": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+    "openGraph": {
+      "og:title": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+      "og:description": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-fundamentals.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-06-08T11:12:42.902384Z",
+      "article:modified_time": "2026-06-08T11:12:42.902384Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+      "twitter:description": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-fundamentals.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+        "description": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-fundamentals.png",
+        "datePublished": "2026-06-08T11:12:42.902384Z",
+        "dateModified": "2026-06-08T11:12:42.902384Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana"
+        },
+        "keywords": "",
+        "articleSection": "Analytics",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Analytics",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/analytics"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana"
+          }
+        ]
+      }
+    },
+    "seoScore": 80,
+    "keywords": [],
+    "category": "Analytics",
+    "tags": [
+      "flink",
+      "kafka",
+      "grafana",
+      "real-time",
+      "streaming",
+      "monitoring"
+    ]
+  },
+  {
+    "slug": "advanced-kubernetes-patterns",
+    "metaTitle": "Advanced Kubernetes Patterns for Data Engineers",
+    "metaDescription": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns",
+    "openGraph": {
+      "og:title": "Advanced Kubernetes Patterns for Data Engineers",
+      "og:description": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, StatefulSets, monitoring, and GitOps workflows.",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-06-01T00:00:00Z",
+      "article:modified_time": "2026-06-05T12:30:00Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Advanced Kubernetes Patterns for Data Engineers",
+      "twitter:description": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, StatefulSets, monitoring, and GitOps workflows.",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Advanced Kubernetes Patterns for Data Engineers",
+        "description": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, StatefulSets, monitoring, and GitOps workflows.",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png",
+        "datePublished": "2026-06-01T00:00:00Z",
+        "dateModified": "2026-06-05T12:30:00Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns"
+        },
+        "keywords": "kubernetes patterns, data engineering, production deployment",
+        "articleSection": "Infrastructure",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Infrastructure",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/infrastructure"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Advanced Kubernetes Patterns for Data Engineers",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns"
+          }
+        ]
+      }
+    },
+    "seoScore": 95,
+    "keywords": [
+      "kubernetes patterns",
+      "data engineering",
+      "production deployment"
+    ],
+    "category": "Infrastructure",
+    "tags": [
+      "kubernetes",
+      "data-engineering",
+      "devops",
+      "containers"
+    ]
+  },
+  {
+    "slug": "building-data-pipelines-airflow",
+    "metaTitle": "Building Data Pipelines with Apache Airflow | Victor Kipruto",
+    "metaDescription": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns. Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow",
+    "openGraph": {
+      "og:title": "Building Data Pipelines with Apache Airflow",
+      "og:description": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns.",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/airflow-pipelines.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-05-25T00:00:00Z",
+      "article:modified_time": "2026-06-01T10:00:00Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Building Data Pipelines with Apache Airflow",
+      "twitter:description": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns.",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/airflow-pipelines.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Building Data Pipelines with Apache Airflow",
+        "description": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns.",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/airflow-pipelines.png",
+        "datePublished": "2026-05-25T00:00:00Z",
+        "dateModified": "2026-06-01T10:00:00Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow"
+        },
+        "keywords": "apache airflow, data pipelines, etl workflows",
+        "articleSection": "Data Engineering",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Data Engineering",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-engineering"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Building Data Pipelines with Apache Airflow",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow"
+          }
+        ]
+      }
+    },
+    "seoScore": 100,
+    "keywords": [
+      "apache airflow",
+      "data pipelines",
+      "etl workflows"
+    ],
+    "category": "Data Engineering",
+    "tags": [
+      "airflow",
+      "etl",
+      "data-pipelines",
+      "python"
+    ]
+  },
+  {
+    "slug": "dbt-best-practices",
+    "metaTitle": "dbt Best Practices: Structuring Your Data Models",
+    "metaDescription": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks. Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices",
+    "openGraph": {
+      "og:title": "dbt Best Practices: Structuring Your Data Models",
+      "og:description": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks.",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-best-practices.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-05-15T00:00:00Z",
+      "article:modified_time": "2026-05-20T14:20:00Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "dbt Best Practices: Structuring Your Data Models",
+      "twitter:description": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks.",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-best-practices.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "dbt Best Practices: Structuring Your Data Models",
+        "description": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks.",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-best-practices.png",
+        "datePublished": "2026-05-15T00:00:00Z",
+        "dateModified": "2026-05-20T14:20:00Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices"
+        },
+        "keywords": "dbt best practices, data modeling, analytics engineering",
+        "articleSection": "Data Transformation",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Data Transformation",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-transformation"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "dbt Best Practices: Structuring Your Data Models",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices"
+          }
+        ]
+      }
+    },
+    "seoScore": 100,
+    "keywords": [
+      "dbt best practices",
+      "data modeling",
+      "analytics engineering"
+    ],
+    "category": "Data Transformation",
+    "tags": [
+      "dbt",
+      "sql",
+      "analytics-engineering",
+      "data-modeling"
+    ]
+  },
+  {
+    "slug": "data-quality-frameworks-comparison",
+    "metaTitle": "Data Quality Frameworks: Great Expectations vs Soda",
+    "metaDescription": "Comprehensive comparison of modern data quality tools. Implementation guide with Python examples and integration patterns. Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison",
+    "openGraph": {
+      "og:title": "Data Quality Frameworks: Great Expectations vs Soda",
+      "og:description": "Comprehensive comparison of modern data quality tools. Implementation guide with Python examples and integration patterns.",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-quality-frameworks.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-05-08T00:00:00Z",
+      "article:modified_time": "2026-06-03T09:15:00Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Data Quality Frameworks: Great Expectations vs Soda",
+      "twitter:description": "Comprehensive comparison of modern data quality tools. Implementation guide with Python examples and integration patterns.",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-quality-frameworks.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Data Quality Frameworks: Great Expectations vs Soda",
+        "description": "Comprehensive comparison of modern data quality tools. Implementation guide with Python examples and integration patterns.",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-quality-frameworks.png",
+        "datePublished": "2026-05-08T00:00:00Z",
+        "dateModified": "2026-06-03T09:15:00Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison"
+        },
+        "keywords": "data quality frameworks, great expectations, data validation",
+        "articleSection": "Data Quality",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Data Quality",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-quality"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Data Quality Frameworks: Great Expectations vs Soda",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison"
+          }
+        ]
+      }
+    },
+    "seoScore": 100,
+    "keywords": [
+      "data quality frameworks",
+      "great expectations",
+      "data validation"
+    ],
+    "category": "Data Quality",
+    "tags": [
+      "data-quality",
+      "testing",
+      "great-expectations",
+      "soda"
+    ]
+  },
+  {
+    "slug": "python-performance-optimization",
+    "metaTitle": "Python Performance Optimization for Data Processing",
+    "metaDescription": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques. Learn more on my blog.",
+    "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization",
+    "openGraph": {
+      "og:title": "Python Performance Optimization for Data Processing",
+      "og:description": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques.",
+      "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+      "og:type": "article",
+      "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization",
+      "og:site_name": "Victor Kipruto - Developer",
+      "article:published_time": "2026-04-30T00:00:00Z",
+      "article:modified_time": "2026-05-18T11:45:00Z",
+      "article:author": "Victor Kipruto"
+    },
+    "twitterCard": {
+      "twitter:card": "summary_large_image",
+      "twitter:title": "Python Performance Optimization for Data Processing",
+      "twitter:description": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques.",
+      "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+      "twitter:creator": "@VictorKipruto",
+      "twitter:site": "@VictorKipruto"
+    },
+    "structuredData": {
+      "blogPosting": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python Performance Optimization for Data Processing",
+        "description": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques.",
+        "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+        "datePublished": "2026-04-30T00:00:00Z",
+        "dateModified": "2026-05-18T11:45:00Z",
+        "author": {
+          "@type": "Person",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Victor Kipruto",
+          "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization"
+        },
+        "keywords": "python optimization, performance tuning, profiling",
+        "articleSection": "Python",
+        "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization"
+      },
+      "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Python",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/python"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Python Performance Optimization for Data Processing",
+            "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization"
+          }
+        ]
+      }
+    },
+    "seoScore": 100,
+    "keywords": [
+      "python optimization",
+      "performance tuning",
+      "profiling"
+    ],
+    "category": "Python",
+    "tags": [
+      "python",
+      "performance",
+      "optimization",
+      "profiling"
+    ]
+  }
+]

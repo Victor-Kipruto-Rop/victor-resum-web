@@ -1,0 +1,7 @@
+{
+  "platform": "telegram",
+  "postType": "channel_message",
+  "message": "\ud83d\udcdd <b>Designing a Modern Data Lakehouse: From Architecture to Implementation</b>\n\nh2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\n\n\ud83c\udff7\ufe0f Tags: data-lakehouse, delta-lake, apache-spark, snowflake, architecture\n\u23f1\ufe0f Read time: 15 min\n\n<a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\">Read Full Article</a>",
+  "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+  "parse_mode": "HTML"
+}
