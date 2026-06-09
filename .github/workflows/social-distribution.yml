@@ -33,7 +33,7 @@ jobs:
       
       # Twitter/X Distribution
       - name: Distribute to Twitter/X
-        if: ${{ secrets.TWITTER_API_KEY != '' }}
+        if: secrets.TWITTER_API_KEY != ''
         env:
           TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
           TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
@@ -48,7 +48,7 @@ jobs:
       
       # LinkedIn Distribution
       - name: Distribute to LinkedIn
-        if: ${{ secrets.LINKEDIN_API_KEY != '' }}
+        if: secrets.LINKEDIN_API_KEY != ''
         env:
           LINKEDIN_API_KEY: ${{ secrets.LINKEDIN_API_KEY }}
         run: |
@@ -57,7 +57,7 @@ jobs:
       
       # Dev.to Distribution
       - name: Distribute to Dev.to
-        if: ${{ secrets.DEVTO_API_KEY != '' }}
+        if: secrets.DEVTO_API_KEY != ''
         env:
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
         run: |
@@ -66,7 +66,7 @@ jobs:
       
       # Telegram Distribution
       - name: Distribute to Telegram
-        if: ${{ secrets.TELEGRAM_BOT_TOKEN != '' }}
+        if: secrets.TELEGRAM_BOT_TOKEN != ''
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}

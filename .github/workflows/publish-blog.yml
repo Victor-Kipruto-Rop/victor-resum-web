@@ -203,7 +203,7 @@ jobs:
                 }
               ]
             }
-        if: ${{ secrets.SLACK_WEBHOOK != '' && success() }}
+        if: secrets.SLACK_WEBHOOK != '' && success()
       
       - name: Create deployment annotation
         uses: actions/github-script@v6
