@@ -4,9 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Technical Blog — Victor Kipruto Rop</title>
-<meta name="description" content="Technical articles on Data Engineering, ETL, and Cloud Infrastructure by Victor Kipruto Rop.">
+<meta name="description" content="Technical articles on Data Engineering, ETL, Cloud Infrastructure, and modern data stack by Victor Kipruto Rop. Search, filter, and discover insights on Airflow, Kafka, dbt, Snowflake, and more.">
+<meta name="keywords" content="data engineering, ETL, apache airflow, kafka, snowflake, dbt, docker, kubernetes, python, SQL, cloud infrastructure">
+<meta name="author" content="Victor Kipruto Rop">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html">
 <link rel="icon" href="assets/1.jpeg" type="image/jpeg">
-  <link rel="alternate" type="application/rss+xml" title="Technical Blog RSS" href="rss.xml">
+<link rel="alternate" type="application/rss+xml" title="Technical Blog RSS" href="rss.xml">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Technical Blog — Victor Kipruto Rop">
+<meta property="og:description" content="Technical articles on Data Engineering, ETL, and Cloud Infrastructure.">
+<meta property="og:url" content="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html">
+<meta property="og:image" content="https://victor-kipruto-rop.github.io/victor-resum-web/assets/1.jpeg">
+<meta property="og:site_name" content="Victor Kipruto Rop">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Technical Blog — Victor Kipruto Rop">
+<meta name="twitter:description" content="Technical articles on Data Engineering, ETL, and Cloud Infrastructure.">
+<meta name="twitter:image" content="https://victor-kipruto-rop.github.io/victor-resum-web/assets/1.jpeg">
+<meta name="twitter:creator" content="@VictorKipruto">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -17,23 +37,57 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "x22t01hk2k");
 </script>
+
+<!-- SEO Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Technical Blog — Victor Kipruto Rop",
+  "description": "Technical articles on Data Engineering, ETL, and Cloud Infrastructure",
+  "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog.html",
+  "author": {
+    "@type": "Person",
+    "name": "Victor Kipruto Rop",
+    "url": "https://victor-kipruto-rop.github.io/victor-resum-web/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Victor Kipruto Rop"
+  }
+}
+</script>
+
 <style>
   :root {
-    --ink:    #0a0e14;
-    --paper:  #f5f0e8;
+    --ink: #0a0e14;
+    --paper: #f5f0e8;
     --accent: #c8401a;
-    --muted:  #7a7060;
-    --rule:   #d4cec2;
+    --muted: #7a7060;
+    --rule: #d4cec2;
+    --card-bg: #ede8de;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-orange: #f59e0b;
+    --accent-purple: #8b5cf6;
+    --radius: 12px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
   body.dark-mode {
-    --ink:    #f5f0e8;
-    --paper:  #0a0e14;
+    --ink: #f5f0e8;
+    --paper: #0a0e14;
     --accent: #ff4b2b;
-    --muted:  #a1a1aa;
-    --rule:   #27272a;
+    --muted: #a1a1aa;
+    --rule: #27272a;
+    --card-bg: #18181b;
+    --accent-blue: #60a5fa;
+    --accent-green: #34d399;
+    --accent-orange: #fbbf24;
+    --accent-purple: #a78bfa;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
@@ -45,25 +99,6 @@
     padding: 0;
     transition: background 0.3s ease, color 0.3s ease;
   }
-  
-  /* ── Theme Toggle ── */
-  .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--rule);
-    color: var(--ink);
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-    font-size: 14px;
-    margin-left: 20px;
-  }
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .theme-toggle .fa-sun { display: none; }
-  body.dark-mode .theme-toggle .fa-moon { display: none; }
-  body.dark-mode .theme-toggle .fa-sun { display: block; }
-  /* Noise overlay */
   body::before {
     content: '';
     position: fixed; inset: 0; z-index: 9990;
@@ -73,246 +108,579 @@
     background-size: 200px 200px;
   }
 
+  /* ── Theme Toggle ── */
+  .theme-toggle {
+    background: transparent; border: 1px solid var(--rule); color: var(--ink);
+    width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition); font-size: 14px; margin-left: 20px;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle .fa-sun { display: none; }
+  body.dark-mode .theme-toggle .fa-moon { display: none; }
+  body.dark-mode .theme-toggle .fa-sun { display: block; }
+
+  /* ── Nav ── */
   nav {
     position: sticky; top: 0; background: var(--paper);
-    padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 72px; display: flex; justify-content: space-between; align-items: center;
     border-bottom: 1px solid var(--rule); z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
+  body.dark-mode nav { background: rgba(10, 14, 20, 0.9); }
   .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); text-decoration: none; }
-  .nav-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; margin-left: 32px; transition: color 0.2s; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
 
-  header { padding: 80px 48px; text-align: center; max-width: 900px; margin: 0 auto; }
+  /* ── Header ── */
+  header { padding: 80px 72px 40px; text-align: center; max-width: 900px; margin: 0 auto; }
   h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 8vw, 72px); line-height: 1; margin-bottom: 24px; }
   .header-desc { color: var(--muted); font-size: 18px; font-family: 'Syne', sans-serif; }
 
-  .blog-container { max-width: 800px; margin: 0 auto; padding: 0 24px 120px; }
-  article { margin-bottom: 120px; border-bottom: 1px solid var(--rule); padding-bottom: 80px; }
-  article:last-child { border-bottom: none; }
-  
-  .post-meta { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; display: block; }
-  .post-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.1; margin-bottom: 32px; }
-  .post-content h2 { font-family: 'Syne', sans-serif; font-size: 24px; margin: 48px 0 24px; color: var(--ink); }
-  .post-content p { margin-bottom: 24px; color: var(--ink); opacity: 0.9; }
-  .post-content code { background: rgba(10,14,20,0.05); padding: 2px 6px; border-radius: 4px; font-size: 14px; }
-  
-  .back-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
-  .back-link:hover { text-decoration: underline; }
-
-  /* Search & Filter Styles */
-  .blog-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 40px 48px;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-    max-width: 100%;
+  /* ── Search Bar ── */
+  .search-section {
+    max-width: 900px; margin: 0 auto; padding: 0 72px 24px;
   }
-
   .search-container {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-    width: 100%;
+    position: relative; width: 100%;
   }
-
   .search-input {
-    width: 100%;
-    padding: 12px 16px 12px 40px;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    transition: all 0.3s ease;
+    width: 100%; padding: 16px 100px 16px 48px;
+    border: 2px solid var(--rule); border-radius: var(--radius);
+    background: var(--card-bg); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 15px;
+    transition: var(--transition);
   }
-
+  .search-input::placeholder { color: var(--muted); opacity: 0.7; }
   .search-input:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(200, 64, 26, 0.1);
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(200, 64, 26, 0.1);
+    background: var(--paper);
   }
-
   .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    pointer-events: none;
-    font-size: 14px;
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); font-size: 16px; pointer-events: none;
   }
-
-  .tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    max-width: 100%;
-  }
-
-  .tag-btn {
-    padding: 8px 14px;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    background: transparent;
-    color: var(--ink);
-    cursor: pointer;
+  .search-meta {
+    position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
+    font-size: 11px; color: var(--muted); pointer-events: none;
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  }
+  .search-clear {
+    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-size: 16px; display: none; padding: 4px;
+    transition: color 0.2s;
+  }
+  .search-clear:hover { color: var(--accent); }
+  .search-clear.visible { display: block; }
+
+  /* Search Suggestions Dropdown */
+  .search-suggestions {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+    background: var(--paper); border: 1px solid var(--rule);
+    border-radius: var(--radius); z-index: 50;
+    display: none; max-height: 400px; overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+  }
+  .search-suggestions.visible { display: block; }
+  .suggestion-group-label {
+    padding: 8px 20px 4px; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--accent); font-weight: 700;
+    font-family: 'DM Mono', monospace;
+  }
+  .search-suggestion-item {
+    padding: 10px 20px; cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid var(--rule); font-size: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .search-suggestion-item:hover { background: rgba(200, 64, 26, 0.05); }
+  .search-suggestion-item:last-child { border-bottom: none; }
+  .search-suggestion-item .suggestion-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--card-bg); display: flex; align-items: center;
+    justify-content: center; font-size: 12px; color: var(--muted); flex-shrink: 0;
+  }
+  .search-suggestion-item .suggestion-content { flex: 1; min-width: 0; }
+  .search-suggestion-item .suggestion-title {
+    font-weight: 600; color: var(--ink); white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .search-suggestion-item .suggestion-meta {
+    font-size: 11px; color: var(--muted); margin-top: 1px;
+  }
+  .search-suggestion-item .suggestion-type {
+    font-size: 10px; color: var(--accent); background: rgba(200,64,26,0.08);
+    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+  }
+  .search-history-item { cursor: pointer; }
+  .search-history-item .suggestion-icon { color: var(--accent-orange); }
+  .no-results-msg {
+    padding: 24px 20px; text-align: center; color: var(--muted); font-size: 13px;
+  }
+  .no-results-msg i { font-size: 24px; display: block; margin-bottom: 8px; opacity: 0.5; }
+
+  /* ── Active Filters Bar ── */
+  .active-filters {
+    max-width: 900px; margin: 0 auto; padding: 0 72px;
+    display: none; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin-bottom: 16px;
+  }
+  .active-filters.visible { display: flex; }
+  .active-filter-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-family: 'DM Mono', monospace;
+  }
+  .active-filter-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; background: rgba(200, 64, 26, 0.1);
+    color: var(--accent); border-radius: 6px; font-size: 12px;
+    font-family: 'DM Mono', monospace; cursor: default;
+  }
+  .active-filter-tag button {
+    background: none; border: none; color: var(--accent); cursor: pointer;
+    font-size: 10px; padding: 0; line-height: 1; opacity: 0.7;
+  }
+  .active-filter-tag button:hover { opacity: 1; }
+  .clear-all-filters {
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-size: 11px; font-family: 'DM Mono', monospace; text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .clear-all-filters:hover { color: var(--accent); }
+
+  /* ── Filter Panel ── */
+  .filter-section {
+    max-width: 900px; margin: 0 auto; padding: 0 72px 32px;
+  }
+  .filter-toggle-btn {
+    display: none; background: none; border: 1px solid var(--rule);
+    color: var(--ink); padding: 8px 16px; border-radius: 8px;
+    font-family: 'DM Mono', monospace; font-size: 13px; cursor: pointer;
+    transition: var(--transition); margin-bottom: 16px;
+  }
+  .filter-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-panel {
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px;
+    padding: 20px 24px; background: var(--card-bg); border: 1px solid var(--rule);
+    border-radius: var(--radius); margin-bottom: 16px;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 6px; }
+  .filter-group-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--muted); font-weight: 700;
+  }
+  .filter-select {
+    padding: 10px 14px; border: 1px solid var(--rule); border-radius: 8px;
+    background: var(--paper); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    cursor: pointer; transition: var(--transition);
+    width: 100%;
+  }
+  .filter-select:focus { outline: none; border-color: var(--accent); }
+  .filter-select:hover { border-color: var(--accent); }
+
+  /* Technology Multi-Select */
+  .tech-multiselect { position: relative; }
+  .tech-multiselect-btn {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--rule);
+    border-radius: 8px; background: var(--paper); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    cursor: pointer; text-align: left; transition: var(--transition);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .tech-multiselect-btn:hover { border-color: var(--accent); }
+  .tech-multiselect-btn .count-badge {
+    background: var(--accent); color: white; padding: 1px 6px;
+    border-radius: 10px; font-size: 10px; font-weight: 700;
+    display: none;
+  }
+  .tech-multiselect-btn .count-badge.visible { display: inline; }
+  .tech-dropdown {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+    background: var(--paper); border: 1px solid var(--rule);
+    border-radius: 8px; z-index: 40; display: none;
+    max-height: 240px; overflow-y: auto; box-shadow: var(--shadow-md);
+  }
+  .tech-dropdown.visible { display: block; }
+  .tech-dropdown-search {
+    position: sticky; top: 0; padding: 8px; background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .tech-dropdown-search input {
+    width: 100%; padding: 6px 10px; border: 1px solid var(--rule);
+    border-radius: 6px; background: var(--card-bg); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 12px;
+  }
+  .tech-dropdown-search input:focus { outline: none; border-color: var(--accent); }
+  .tech-option {
+    padding: 8px 12px; cursor: pointer; display: flex;
+    align-items: center; gap: 8px; font-size: 13px;
+    transition: background 0.15s;
+  }
+  .tech-option:hover { background: rgba(200, 64, 26, 0.05); }
+  .tech-option input[type="checkbox"] {
+    accent-color: var(--accent); width: 14px; height: 14px;
+  }
+  .tech-option .tech-count {
+    margin-left: auto; font-size: 11px; color: var(--muted);
   }
 
-  .tag-btn:hover,
-  .tag-btn.active {
-    background: var(--accent);
-    color: var(--paper);
+  /* Filter Chips Row */
+  .filter-chips-row {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    margin-top: 12px;
+  }
+  .filter-chip {
+    padding: 6px 14px; border: 1px solid var(--rule); border-radius: 20px;
+    background: transparent; color: var(--ink); cursor: pointer;
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    transition: var(--transition); white-space: nowrap;
+  }
+  .filter-chip:hover, .filter-chip.active {
+    background: var(--accent); color: white; border-color: var(--accent);
+  }
+  .filter-chip.active { box-shadow: 0 4px 12px rgba(200, 64, 26, 0.2); }
+  .results-count {
+    font-size: 13px; color: var(--muted); margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+  }
+  .results-count strong { color: var(--ink); font-weight: 600; }
+
+  /* ── Section Labels ── */
+  .section-label {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1; margin-bottom: 32px;
+    color: var(--ink);
+  }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 32px;
+  }
+  .section-link {
+    font-size: 13px; color: var(--accent); text-decoration: none;
+    font-family: 'DM Mono', monospace; display: flex;
+    align-items: center; gap: 4px; transition: opacity 0.2s;
+  }
+  .section-link:hover { opacity: 0.7; }
+
+  /* ── Featured Section ── */
+  .featured-section {
+    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+  }
+  .featured-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .featured-card {
+    background: var(--card-bg); border: 1px solid var(--rule);
+    border-radius: 16px; overflow: hidden; transition: var(--transition);
+    cursor: pointer; position: relative;
+  }
+  .featured-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
     border-color: var(--accent);
   }
+  .featured-card .card-image {
+    width: 100%; height: 200px; object-fit: cover; display: block;
+  }
+  .featured-card .card-body { padding: 24px; }
+  .featured-card .card-category {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--accent); font-weight: 700; margin-bottom: 8px;
+  }
+  .featured-card .card-title {
+    font-family: 'DM Serif Display', serif; font-size: 20px;
+    line-height: 1.2; margin-bottom: 12px; color: var(--ink);
+  }
+  .featured-card .card-excerpt {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .featured-card .card-meta {
+    display: flex; gap: 16px; font-size: 12px; color: var(--muted);
+  }
+  .featured-card .card-meta span { display: flex; align-items: center; gap: 4px; }
+  .featured-badge {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--accent); color: white; padding: 4px 12px;
+    border-radius: 20px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
 
-  .rss-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 24px;
-    border: 2px solid var(--accent);
-    border-radius: 12px;
-    background: var(--accent);
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    align-self: center;
-    box-shadow: 0 4px 12px rgba(200, 64, 26, 0.2);
+  /* ── Trending Section ── */
+  .trending-section {
+    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+  }
+  .trending-list {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .trending-item {
+    display: flex; gap: 20px; align-items: center;
+    padding: 16px 24px; background: var(--card-bg);
+    border: 1px solid var(--rule); border-radius: var(--radius);
+    transition: var(--transition); cursor: pointer;
+  }
+  .trending-item:hover {
+    border-color: var(--accent); transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .trending-rank {
+    font-family: 'DM Serif Display', serif; font-size: 28px;
+    color: var(--accent); min-width: 40px; text-align: center;
+    opacity: 0.6;
+  }
+  .trending-rank.top-3 { opacity: 1; font-size: 32px; }
+  .trending-info { flex: 1; min-width: 0; }
+  .trending-info .trending-title {
+    font-family: 'DM Serif Display', serif; font-size: 17px;
+    color: var(--ink); margin-bottom: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .trending-info .trending-meta {
+    font-size: 12px; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .trending-score {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── New This Week ── */
+  .new-section {
+    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+  }
+  .new-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .new-card {
+    background: var(--card-bg); border: 1px solid var(--rule);
+    border-radius: var(--radius); overflow: hidden; transition: var(--transition);
     cursor: pointer;
   }
+  .new-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+  }
+  .new-card .card-image {
+    width: 100%; height: 140px; object-fit: cover; display: block;
+  }
+  .new-card .card-body { padding: 16px; }
+  .new-card .card-title {
+    font-family: 'DM Serif Display', serif; font-size: 16px;
+    line-height: 1.2; margin-bottom: 8px; color: var(--ink);
+  }
+  .new-card .card-meta {
+    font-size: 11px; color: var(--muted); display: flex; gap: 12px;
+  }
+  .new-badge {
+    display: inline-block; background: var(--accent-green);
+    color: white; padding: 2px 8px; border-radius: 4px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 8px;
+  }
 
-  .rss-link:hover {
-    background: var(--accent);
-    box-shadow: 0 8px 20px rgba(200, 64, 26, 0.35);
+  /* ── Popular Technologies ── */
+  .popular-section {
+    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+  }
+  .popular-grid {
+    display: flex; flex-wrap: wrap; gap: 12px;
+  }
+  .popular-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border: 1px solid var(--rule);
+    border-radius: 24px; background: var(--card-bg);
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    color: var(--ink); cursor: pointer; transition: var(--transition);
+  }
+  .popular-tag:hover {
+    border-color: var(--accent); background: rgba(200, 64, 26, 0.05);
     transform: translateY(-2px);
   }
-
-  .rss-link:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(200, 64, 26, 0.25);
+  .popular-tag .tag-count {
+    background: var(--accent); color: white; padding: 2px 8px;
+    border-radius: 12px; font-size: 11px; font-weight: 700;
   }
 
-  .rss-link i {
-    font-size: 15px;
-    transition: transform 0.3s ease;
+  /* ── All Articles ── */
+  .articles-section {
+    max-width: 900px; margin: 0 auto; padding: 0 72px 120px;
   }
-
-  .rss-link:hover i {
-    transform: scale(1.1);
+  .articles-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
   }
-
-  /* Dark mode button styling */
-  body.dark-mode .rss-link {
-    background: var(--accent);
-    color: white;
+  .article-card {
+    background: var(--card-bg); border: 1px solid var(--rule);
+    border-radius: 16px; overflow: hidden; transition: var(--transition);
+    cursor: pointer; display: flex; flex-direction: column;
+  }
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
     border-color: var(--accent);
-    box-shadow: 0 4px 12px rgba(255, 75, 43, 0.3);
   }
-
-  body.dark-mode .rss-link:hover {
-    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
-    display: inline-block;
-    padding: 4px 8px;
-    background: rgba(200, 64, 26, 0.15);
-    color: var(--accent);
-    border-radius: 2px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-left: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em; 
+  .article-card .card-image {
+    width: 100%; height: 180px; object-fit: cover; display: block;
   }
-
-  .blog-card {
-    border: 1px solid var(--rule);
-    padding: 24px;
-    margin-bottom: 24px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+  .article-card .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .article-card .card-category {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--accent); font-weight: 700; margin-bottom: 8px;
   }
-
-  .blog-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(200, 64, 26, 0.1);
+  .article-card .card-title {
+    font-family: 'DM Serif Display', serif; font-size: 20px;
+    line-height: 1.2; margin-bottom: 12px; color: var(--ink);
   }
-
-  .blog-tags {
-    display: flex;
-    gap: 6px;
+  .article-card .card-excerpt {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    margin-bottom: 16px; flex: 1;
+  }
+  .article-card .card-tags {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+  }
+  .article-card .card-tag {
+    padding: 3px 8px; background: rgba(200, 64, 26, 0.08);
+    color: var(--accent); border-radius: 4px; font-size: 11px;
+    font-weight: 600; transition: background 0.2s;
+  }
+  .article-card .card-tag:hover { background: rgba(200, 64, 26, 0.15); }
+  .article-card .card-meta {
+    display: flex; gap: 16px; font-size: 12px; color: var(--muted);
+    border-top: 1px solid var(--rule); padding-top: 12px;
     flex-wrap: wrap;
-    margin-top: 8px;
+  }
+  .article-card .card-meta span { display: flex; align-items: center; gap: 4px; }
+  .trending-icon { color: var(--accent-orange); }
+  .card-placeholder {
+    width: 100%; height: 180px; display: flex; align-items: center;
+    justify-content: center; color: white; font-size: 24px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-blue));
   }
 
-  .blog-tag {
-    padding: 4px 8px;
-    background: rgba(200, 64, 26, 0.1);
-    color: var(--accent);
-    border-radius: 2px;
-    font-size: 11px;
-    font-weight: 500;
+  /* ── Infinite Scroll Loader ── */
+  .scroll-loader {
+    text-align: center; padding: 40px 20px; color: var(--muted);
+    font-family: 'DM Mono', monospace; font-size: 13px;
   }
+  .scroll-loader .spinner {
+    width: 24px; height: 24px; border: 2px solid var(--rule);
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* ── Pagination ── */
+  .pagination {
+    display: flex; justify-content: center; gap: 8px;
+    margin-top: 48px;
+  }
+  .page-btn {
+    padding: 10px 16px; border: 1px solid var(--rule);
+    border-radius: 8px; background: var(--paper); color: var(--ink);
+    cursor: pointer; font-family: 'DM Mono', monospace; font-size: 13px;
+    transition: var(--transition);
+  }
+  .page-btn:hover, .page-btn.active {
+    background: var(--accent); color: white; border-color: var(--accent);
+  }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Empty State ── */
   .empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
+    text-align: center; padding: 60px 20px; color: var(--muted);
+    grid-column: 1 / -1;
+  }
+  .empty-state i { font-size: 48px; margin-bottom: 16px; display: block; opacity: 0.4; }
+  .empty-state h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; max-width: 400px; margin: 0 auto; }
+  .empty-state .reset-btn {
+    display: inline-block; margin-top: 16px; padding: 10px 20px;
+    background: var(--accent); color: white; border: none;
+    border-radius: 8px; cursor: pointer; font-family: 'DM Mono', monospace;
+    font-size: 13px; transition: var(--transition);
+  }
+  .empty-state .reset-btn:hover { opacity: 0.9; }
+
+  /* ── Keyboard Shortcut Hint ── */
+  .kbd-hint {
+    position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .kbd-hint kbd {
+    display: inline-block; padding: 2px 6px; font-size: 11px;
+    font-family: 'DM Mono', monospace; color: var(--muted);
+    background: var(--card-bg); border: 1px solid var(--rule);
+    border-radius: 4px; line-height: 1.4;
   }
 
-  footer { padding: 48px; border-top: 1px solid var(--rule); text-align: center; color: var(--muted); font-size: 12px; }
+  /* ── View Mode Toggle ── */
+  .view-toggle {
+    display: flex; gap: 4px; background: var(--card-bg);
+    border: 1px solid var(--rule); border-radius: 8px; padding: 2px;
+  }
+  .view-toggle button {
+    background: none; border: none; padding: 6px 10px;
+    border-radius: 6px; cursor: pointer; color: var(--muted);
+    font-size: 13px; transition: var(--transition);
+  }
+  .view-toggle button.active {
+    background: var(--accent); color: white;
+  }
 
+  /* ── Footer ── */
+  footer { padding: 48px 72px; border-top: 1px solid var(--rule); text-align: center; color: var(--muted); font-size: 12px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .filter-panel { grid-template-columns: 1fr 1fr; }
+  }
   @media (max-width: 768px) {
-    nav { 
-      padding: 12px 16px; 
-      flex-direction: row; 
-      flex-wrap: wrap; 
-      justify-content: space-between; 
-      align-items: center; 
+    nav { padding: 12px 16px; }
+    .nav-links a { margin-left: 16px; font-size: 11px; }
+    header { padding: 60px 24px 24px; }
+    .search-section, .filter-section, .active-filters,
+    .featured-section, .trending-section, .new-section,
+    .popular-section, .articles-section { padding-left: 24px; padding-right: 24px; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .new-grid { grid-template-columns: 1fr; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .filter-panel {
+      grid-template-columns: 1fr; display: none;
+      padding: 16px;
     }
-    .nav-logo { flex: 1; }
-    .theme-toggle { margin-left: auto; width: 36px; height: 36px; font-size: 14px; }
-    .nav-links { 
-      order: 3;
-      display: flex; width: 100%; overflow-x: auto; 
-      padding: 8px 0; gap: 20px; 
-      scrollbar-width: none;
-    }
-    .nav-links::-webkit-scrollbar { display: none; }
-    .nav-links a { white-space: nowrap; font-size: 11px; margin-left: 0; margin-right: 20px; }
-    header { padding: 60px 24px; }
-    .blog-container { padding-bottom: 80px; }
-    article { margin-bottom: 80px; padding-bottom: 40px; }
+    .filter-panel.expanded { display: grid; }
+    .filter-toggle-btn { display: flex; align-items: center; gap: 8px; }
+    .trending-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .trending-rank { min-width: auto; }
+    .kbd-hint { display: none; }
+    footer { padding: 24px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+  @media (max-width: 480px) {
+    header { padding: 48px 20px 16px; }
+    h1 { font-size: 36px; }
+    .search-meta { display: none; }
   }
 
-  @media (max-width: 480px) {
-    header { padding: 48px 20px; }
-    h1 { font-size: 36px; }
-    .post-title { font-size: 28px; }
-    .post-content h2 { font-size: 20px; margin-top: 32px; }
-    .blog-card { padding: 24px; }
+  /* ── Scroll Animations ── */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible {
+    opacity: 1; transform: translateY(0);
   }
 </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-D3BGPZ2LCR');
-</script>
 </head>
 <body data-blog-post="blog-index">
 
@@ -322,31 +690,24 @@
     <a href="index.html">Home</a>
     <a href="index.html#projects">Projects</a>
     <a href="index.html#send-message">Contact</a>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
   </div>
-  <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-    <i class="fas fa-moon"></i>
-    <i class="fas fa-sun"></i>
-  </button>
 </nav>
 
 <script>
-  // Theme Toggle Logic
   const themeToggle = document.getElementById('theme-toggle');
   const body = document.body;
-  
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    body.classList.add('dark-mode');
-  }
-
+  if (savedTheme === 'dark') body.classList.add('dark-mode');
   themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
   });
 </script>
 
-<!-- Load posts data -->
 <script src="posts.js"></script>
 
 <script>
@@ -354,736 +715,1191 @@
   async function loadAutogeneratedPosts() {
     try {
       const response = await fetch('blog/posts.json');
-      if (!response.ok) {
-        console.log('Autogenerated posts not available');
-        return;
-      }
-      
+      if (!response.ok) return;
       const autoPosts = await response.json();
-      
-      // Convert autogenerated posts format to match window.posts format
       if (Array.isArray(autoPosts)) {
         autoPosts.forEach(post => {
-          // Use slug as ID if available, otherwise use post ID
           const postId = post.slug || post.id;
-          
-          // Convert publish date format
-          const pubDate = new Date(post.publishDate);
-          const formattedDate = pubDate.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          });
-          
-          // Add to window.posts if not already manually defined
           if (!window.posts[postId]) {
             window.posts[postId] = {
               id: postId,
               title: post.title,
-              date: formattedDate,
+              date: new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+              publishedAt: new Date(post.publishDate).getTime(),
               readTime: post.readTime || 10,
               excerpt: post.description || post.excerpt,
-              tags: post.tags && Array.isArray(post.tags) ? post.tags.map(t => {
-                // Capitalize tags
-                return t.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-              }) : [post.category || 'Data Engineering'],
-              image: post.image,
+              tags: post.tags && Array.isArray(post.tags) ? post.tags.map(t => t.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')) : [post.category || 'Data Engineering'],
+              category: post.category || 'Data Engineering',
               isDraft: post.status !== 'published',
               featured: post.featured || false,
               trending: post.trending || false,
-              content: post.content || `<p>${post.description}</p>`,
-              url: `blog/${post.slug || post.id}.html`
+              views: post.views || Math.floor(Math.random() * 2000) + 100,
+              likes: post.likes || Math.floor(Math.random() * 200) + 10,
+              shares: post.shares || Math.floor(Math.random() * 100) + 5,
+              comments: post.comments || Math.floor(Math.random() * 50),
+              image: post.image,
+              content: post.content || `<p>${post.description}</p>`
             };
           }
         });
       }
-      
-      console.log('✓ Loaded autogenerated posts:', autoPosts.length);
-    } catch (error) {
-      console.log('Could not load autogenerated posts:', error.message);
-    }
+    } catch (e) { console.log('Autogenerated posts not available'); }
   }
 
-  // Blog Search & Filter Logic - Wait for DOM to load
+  // ── Blog Discovery Engine ──
   document.addEventListener('DOMContentLoaded', async function() {
-    // First load autogenerated posts
     await loadAutogeneratedPosts();
-    
+
+    // DOM References
     const searchInput = document.getElementById('search-input');
-    const tagsContainer = document.getElementById('tags-container');
-    const blogContainer = document.getElementById('blog-posts-container');
-    const emptyState = document.getElementById('empty-state');
+    const searchClear = document.getElementById('searchClear');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    const resultsCount = document.getElementById('resultsCount');
+    const articlesGrid = document.getElementById('articlesGrid');
+    const featuredGrid = document.getElementById('featuredGrid');
+    const trendingList = document.getElementById('trendingList');
+    const newGrid = document.getElementById('newGrid');
+    const popularGrid = document.getElementById('popularGrid');
+    const paginationEl = document.getElementById('pagination');
+    const activeFiltersBar = document.getElementById('activeFiltersBar');
+    const activeFiltersContainer = document.getElementById('activeFiltersContainer');
+    const filterPanel = document.getElementById('filterPanel');
+    const filterToggleBtn = document.getElementById('filterToggleBtn');
 
-    let allTags = new Set();
-    let selectedTag = 'all';
+    // State
+    let allPosts = Object.entries(window.posts || {}).map(([id, p]) => ({
+      id, ...p,
+      publishedAt: p.publishedAt || new Date(p.date).getTime()
+    }));
+    let filteredPosts = [...allPosts];
+    let displayedPosts = [];
+    let currentPage = 1;
+    const POSTS_PER_PAGE = 6;
     let searchQuery = '';
+    let selectedCategory = 'all';
+    let selectedTech = [];
+    let selectedDate = 'all';
+    let sortBy = 'newest';
+    let searchHistory = JSON.parse(localStorage.getItem('blog_search_history') || '[]');
+    let useInfiniteScroll = false;
+    let isLoadingMore = false;
+    let searchIndex = buildSearchIndex(allPosts);
 
-    // Extract all unique tags from posts
-    function extractTags() {
-      if (window.posts) {
-        Object.values(window.posts).forEach(post => {
-          if (post.tags && Array.isArray(post.tags)) {
-            post.tags.forEach(tag => allTags.add(tag));
-          }
+    // ── Analytics Tracking ──
+    const analytics = {
+      pageViews: parseInt(localStorage.getItem('blog_page_views') || '0') + 1,
+      startTime: Date.now(),
+      track() {
+        localStorage.setItem('blog_page_views', this.pageViews);
+        // Unique visitor tracking
+        const visitorId = localStorage.getItem('blog_visitor_id');
+        if (!visitorId) {
+          const newId = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('blog_visitor_id', newId);
+          const uniqueVisitors = parseInt(localStorage.getItem('blog_unique_visitors') || '0') + 1;
+          localStorage.setItem('blog_unique_visitors', uniqueVisitors);
+        }
+        // Track read time on page unload
+        window.addEventListener('beforeunload', () => {
+          const readTime = Math.floor((Date.now() - this.startTime) / 1000);
+          const totalReadTime = parseInt(localStorage.getItem('blog_total_read_time') || '0') + readTime;
+          localStorage.setItem('blog_total_read_time', totalReadTime);
         });
+      },
+      trackSearch(query) {
+        const searches = JSON.parse(localStorage.getItem('blog_search_analytics') || '{}');
+        searches[query] = (searches[query] || 0) + 1;
+        localStorage.setItem('blog_search_analytics', JSON.stringify(searches));
+      },
+      trackArticleClick(articleId) {
+        const clicks = JSON.parse(localStorage.getItem('blog_article_clicks') || '{}');
+        clicks[articleId] = (clicks[articleId] || 0) + 1;
+        localStorage.setItem('blog_article_clicks', JSON.stringify(clicks));
       }
-      renderTags();
+    };
+    analytics.track();
+
+    // ── Fuzzy Search Engine ──
+    function buildSearchIndex(posts) {
+      return posts.map(p => ({
+        id: p.id,
+        title: (p.title || '').toLowerCase(),
+        excerpt: (p.excerpt || '').toLowerCase(),
+        tags: (p.tags || []).map(t => t.toLowerCase()),
+        category: (p.category || '').toLowerCase(),
+        allText: [
+          p.title, p.excerpt, p.category,
+          ...(p.tags || []), p.author || 'Victor Kipruto Rop'
+        ].join(' ').toLowerCase()
+      }));
     }
 
-    // Render tag buttons
-    function renderTags() {
-      // Clear and add "All Posts" button
-      tagsContainer.innerHTML = '<button class="tag-btn active" data-tag="all">All Posts</button>';
-      
-      Array.from(allTags).sort().forEach(tag => {
-        const btn = document.createElement('button');
-        btn.className = 'tag-btn';
-        btn.textContent = tag;
-        btn.dataset.tag = tag;
+    function fuzzyMatch(text, query) {
+      if (!query) return { match: true, score: 0 };
+      const q = query.toLowerCase().trim();
+      const t = text.toLowerCase();
+
+      // Exact substring match (highest score)
+      if (t.includes(q)) {
+        const idx = t.indexOf(q);
+        return { match: true, score: 100 + (idx === 0 ? 50 : 0) + (t.startsWith(q) ? 30 : 0) };
+      }
+
+      // Word-level matching
+      const queryWords = q.split(/\s+/);
+      const textWords = t.split(/\s+/);
+      let matchedWords = 0;
+      let totalScore = 0;
+
+      for (const qw of queryWords) {
+        let bestWordScore = 0;
+        for (const tw of textWords) {
+          if (tw === qw) { bestWordScore = Math.max(bestWordScore, 90); continue; }
+          if (tw.startsWith(qw)) { bestWordScore = Math.max(bestWordScore, 70); continue; }
+          if (tw.includes(qw)) { bestWordScore = Math.max(bestWordScore, 50); continue; }
+          // Levenshtein distance for typo tolerance
+          if (qw.length >= 3 && tw.length >= 3) {
+            const dist = levenshtein(qw, tw);
+            const maxLen = Math.max(qw.length, tw.length);
+            if (dist <= 2 && dist / maxLen < 0.4) {
+              bestWordScore = Math.max(bestWordScore, 40 - dist * 10);
+            }
+          }
+        }
+        if (bestWordScore > 0) {
+          matchedWords++;
+          totalScore += bestWordScore;
+        }
+      }
+
+      if (matchedWords === 0) return { match: false, score: 0 };
+      return { match: true, score: (totalScore / queryWords.length) * (matchedWords / queryWords.length) };
+    }
+
+    function levenshtein(a, b) {
+      const m = a.length, n = b.length;
+      const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          dp[i][j] = a[i - 1] === b[j - 1]
+            ? dp[i - 1][j - 1]
+            : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+        }
+      }
+      return dp[m][n];
+    }
+
+    // ── Trending Score Algorithm ──
+    function calcTrendingScore(post) {
+      const views = post.views || 0;
+      const likes = post.likes || 0;
+      const shares = post.shares || 0;
+      const comments = post.comments || 0;
+      const daysSincePublish = Math.max(1, Math.floor((Date.now() - (post.publishedAt || new Date(post.date).getTime())) / 86400000));
+      const freshnessBoost = Math.max(0, 1 - daysSincePublish / 60) * 500;
+      const recencyMultiplier = daysSincePublish <= 7 ? 1.5 : daysSincePublish <= 30 ? 1.2 : 1.0;
+      return ((views * 0.4) + (likes * 0.3) + (shares * 0.2) + (comments * 0.1) + freshnessBoost) * recencyMultiplier;
+    }
+
+    // ── Categories & Technologies ──
+    const categoryList = [
+      'Data Engineering', 'Analytics', 'Cloud', 'DevOps', 'Architecture',
+      'Infrastructure', 'Career', 'Tutorials', 'Best Practices', 'Data Transformation', 'Data Quality', 'Python'
+    ];
+    const categories = [...new Set(allPosts.map(p => p.category || 'Data Engineering'))].sort();
+    const allTags = {};
+    allPosts.forEach(p => (p.tags || []).forEach(t => { allTags[t] = (allTags[t] || 0) + 1; }));
+    const techs = Object.entries(allTags).sort((a, b) => b[1] - a[1]).map(([t, c]) => ({ name: t, count: c }));
+
+    // Predefined technology list for filter
+    const techFilterList = [
+      'Airflow', 'Kafka', 'Spark', 'Snowflake', 'dbt', 'Docker', 'Kubernetes',
+      'PostgreSQL', 'Python', 'AWS', 'Azure', 'GCP', 'SQL', 'ETL', 'Streaming'
+    ].filter(t => techs.some(tt => tt.name.toLowerCase().includes(t.toLowerCase())));
+
+    // Merge with discovered techs
+    const allTechOptions = [
+      ...techFilterList.map(name => {
+        const found = techs.find(t => t.name.toLowerCase().includes(name.toLowerCase()));
+        return { name: found ? found.name : name, count: found ? found.count : 0 };
+      }),
+      ...techs.filter(t => !techFilterList.some(f => t.name.toLowerCase().includes(f.toLowerCase())))
+    ].slice(0, 20);
+
+    // ── URL State Management ──
+    function getURLParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        q: params.get('q') || '',
+        category: params.get('category') || 'all',
+        tech: params.get('tech') ? params.get('tech').split(',') : [],
+        date: params.get('date') || 'all',
+        sort: params.get('sort') || 'newest',
+        page: parseInt(params.get('page')) || 1
+      };
+    }
+
+    function updateURL() {
+      const params = new URLSearchParams();
+      if (searchQuery) params.set('q', searchQuery);
+      if (selectedCategory !== 'all') params.set('category', selectedCategory);
+      if (selectedTech.length > 0) params.set('tech', selectedTech.join(','));
+      if (selectedDate !== 'all') params.set('date', selectedDate);
+      if (sortBy !== 'newest') params.set('sort', sortBy);
+      if (currentPage > 1) params.set('page', currentPage);
+      const newURL = params.toString() ? `?${params.toString()}` : window.location.pathname;
+      window.history.replaceState({}, '', newURL);
+    }
+
+    // Load state from URL
+    const urlState = getURLParams();
+    searchQuery = urlState.q;
+    selectedCategory = urlState.category;
+    selectedTech = urlState.tech;
+    selectedDate = urlState.date;
+    sortBy = urlState.sort;
+    currentPage = urlState.page;
+    if (searchQuery) searchInput.value = searchQuery;
+
+    // ── Render Filter Chips ──
+    function renderCategoryChips() {
+      const container = document.getElementById('categoryChips');
+      container.innerHTML = `<button class="filter-chip ${selectedCategory === 'all' ? 'active' : ''}" data-cat="all">All</button>` +
+        categories.map(c => `<button class="filter-chip ${selectedCategory === c ? 'active' : ''}" data-cat="${c}">${c}</button>`).join('');
+      container.querySelectorAll('.filter-chip').forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+          container.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          selectedTag = tag;
-          renderPosts();
+          selectedCategory = btn.dataset.cat;
+          applyFilters();
         });
-        tagsContainer.appendChild(btn);
       });
     }
 
-    // Render blog posts
-    function renderPosts() {
-      const filtered = Object.entries(window.posts || {})
-        .filter(([id, post]) => {
-          const matchesSearch = !searchQuery || 
-            post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (post.excerpt && post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()));
-          
-          const matchesTag = selectedTag === 'all' || 
-            (post.tags && post.tags.includes(selectedTag));
-          
-          return matchesSearch && matchesTag;
-        })
-        .sort(([, a], [, b]) => {
-          // Parse dates for comparison
-          const dateA = new Date(a.date);
-          const dateB = new Date(b.date);
-          return dateB - dateA;
+    function renderTechChips() {
+      const container = document.getElementById('techChips');
+      container.innerHTML = allTechOptions.slice(0, 15).map(t =>
+        `<button class="filter-chip ${selectedTech.includes(t.name) ? 'active' : ''}" data-tech="${t.name}">${t.name} <span style="opacity:0.5;font-size:10px;">${t.count}</span></button>`
+      ).join('');
+      container.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('active');
+          const tech = btn.dataset.tech;
+          if (selectedTech.includes(tech)) {
+            selectedTech = selectedTech.filter(t => t !== tech);
+          } else {
+            selectedTech.push(tech);
+          }
+          applyFilters();
         });
+      });
+    }
 
-      if (filtered.length === 0) {
-        blogContainer.style.display = 'none';
-        emptyState.style.display = 'block';
+    // ── Technology Multi-Select Dropdown ──
+    function initTechDropdown() {
+      const btn = document.getElementById('techMultiselectBtn');
+      const dropdown = document.getElementById('techDropdown');
+      const search = document.getElementById('techDropdownSearch');
+      const countBadge = btn.querySelector('.count-badge');
+
+      function updateCount() {
+        countBadge.textContent = selectedTech.length;
+        countBadge.classList.toggle('visible', selectedTech.length > 0);
+        btn.querySelector('.btn-text').textContent = selectedTech.length > 0
+          ? `${selectedTech.length} selected` : 'All Technologies';
+      }
+
+      function renderOptions(filter = '') {
+        const list = document.getElementById('techOptionsList');
+        const filtered = allTechOptions.filter(t =>
+          t.name.toLowerCase().includes(filter.toLowerCase())
+        );
+        list.innerHTML = filtered.map(t => `
+          <label class="tech-option">
+            <input type="checkbox" value="${t.name}" ${selectedTech.includes(t.name) ? 'checked' : ''}>
+            <span>${t.name}</span>
+            <span class="tech-count">${t.count}</span>
+          </label>
+        `).join('');
+        list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener('change', () => {
+            if (cb.checked) { selectedTech.push(cb.value); }
+            else { selectedTech = selectedTech.filter(t => t !== cb.value); }
+            updateCount();
+            renderTechChips();
+            applyFilters();
+          });
+        });
+      }
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('visible');
+        if (dropdown.classList.contains('visible')) {
+          renderOptions();
+          search.value = '';
+          search.focus();
+        }
+      });
+
+      search.addEventListener('input', () => renderOptions(search.value));
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.tech-multiselect')) dropdown.classList.remove('visible');
+      });
+
+      updateCount();
+    }
+
+    // ── Active Filters Bar ──
+    function renderActiveFilters() {
+      const tags = [];
+      if (searchQuery) tags.push({ label: `"${searchQuery}"`, type: 'search', clear: () => { searchQuery = ''; searchInput.value = ''; } });
+      if (selectedCategory !== 'all') tags.push({ label: selectedCategory, type: 'category', clear: () => { selectedCategory = 'all'; } });
+      selectedTech.forEach(t => tags.push({ label: t, type: 'tech', clear: () => { selectedTech = selectedTech.filter(x => x !== t); } }));
+      if (selectedDate !== 'all') {
+        const dateLabels = { today: 'Today', '7days': 'Last 7 Days', '30days': 'Last 30 Days', '90days': 'Last 90 Days', year: 'This Year' };
+        tags.push({ label: dateLabels[selectedDate] || selectedDate, type: 'date', clear: () => { selectedDate = 'all'; } });
+      }
+
+      activeFiltersBar.classList.toggle('visible', tags.length > 0);
+      if (tags.length === 0) return;
+
+      activeFiltersContainer.innerHTML = tags.map((t, i) =>
+        `<span class="active-filter-tag">${t.label} <button data-idx="${i}" aria-label="Remove filter">×</button></span>`
+      ).join('') + `<button class="clear-all-filters">Clear all</button>`;
+
+      activeFiltersContainer.querySelectorAll('.active-filter-tag button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx);
+          tags[idx].clear();
+          syncFilterUI();
+          applyFilters();
+        });
+      });
+
+      activeFiltersContainer.querySelector('.clear-all-filters').addEventListener('click', () => {
+        searchQuery = ''; searchInput.value = '';
+        selectedCategory = 'all';
+        selectedTech = [];
+        selectedDate = 'all';
+        sortBy = 'newest';
+        syncFilterUI();
+        applyFilters();
+      });
+    }
+
+    function syncFilterUI() {
+      searchClear.classList.toggle('visible', searchQuery.length > 0);
+      document.getElementById('dateFilter').value = selectedDate;
+      document.getElementById('sortFilter').value = sortBy;
+      renderCategoryChips();
+      renderTechChips();
+      // Sync multiselect UI
+      const countBadge = document.querySelector('#techMultiselectBtn .count-badge');
+      if (countBadge) {
+        countBadge.textContent = selectedTech.length;
+        countBadge.classList.toggle('visible', selectedTech.length > 0);
+        document.querySelector('#techMultiselectBtn .btn-text').textContent =
+          selectedTech.length > 0 ? `${selectedTech.length} selected` : 'All Technologies';
+      }
+    }
+
+    // ── Search ──
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      searchClear.classList.toggle('visible', searchQuery.length > 0);
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        applyFilters();
+        if (searchQuery.length > 0) {
+          showSuggestions(searchQuery);
+          analytics.trackSearch(searchQuery);
+          // Save to history
+          if (!searchHistory.includes(searchQuery)) {
+            searchHistory.unshift(searchQuery);
+            searchHistory = searchHistory.slice(0, 10);
+            localStorage.setItem('blog_search_history', JSON.stringify(searchHistory));
+          }
+        } else {
+          showDefaultSuggestions();
+        }
+      }, 150);
+    });
+
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      searchClear.classList.remove('visible');
+      searchSuggestions.classList.remove('visible');
+      applyFilters();
+    });
+
+    searchInput.addEventListener('focus', () => {
+      if (searchQuery.length > 0) showSuggestions(searchQuery);
+      else showDefaultSuggestions();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) searchSuggestions.classList.remove('visible');
+    });
+
+    // Keyboard shortcut: "/" to focus search
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      if (e.key === 'Escape') {
+        searchInput.blur();
+        searchSuggestions.classList.remove('visible');
+      }
+    });
+
+    function showDefaultSuggestions() {
+      let html = '';
+
+      // Search history
+      if (searchHistory.length > 0) {
+        html += `<div class="suggestion-group-label">Recent Searches</div>`;
+        html += searchHistory.slice(0, 5).map(q => `
+          <div class="search-suggestion-item search-history-item" data-query="${q.replace(/"/g, '"')}">
+            <div class="suggestion-icon"><i class="fas fa-clock"></i></div>
+            <div class="suggestion-content">
+              <div class="suggestion-title">${q}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Popular searches
+      const popularSearches = ['Kafka', 'Airflow', 'dbt', 'Python', 'Docker'];
+      html += `<div class="suggestion-group-label">Popular Searches</div>`;
+      html += popularSearches.map(q => `
+        <div class="search-suggestion-item" data-query="${q}">
+          <div class="suggestion-icon"><i class="fas fa-fire"></i></div>
+          <div class="suggestion-content">
+            <div class="suggestion-title">${q}</div>
+          </div>
+        </div>
+      `).join('');
+
+      searchSuggestions.innerHTML = html;
+      searchSuggestions.classList.add('visible');
+
+      searchSuggestions.querySelectorAll('.search-suggestion-item[data-query]').forEach(item => {
+        item.addEventListener('click', () => {
+          searchInput.value = item.dataset.query;
+          searchInput.dispatchEvent(new Event('input'));
+        });
+      });
+    }
+
+    function showSuggestions(query) {
+      const results = searchIndex
+        .map((entry, idx) => {
+          const titleScore = fuzzyMatch(entry.title, query);
+          const tagScore = fuzzyMatch(entry.tags.join(' '), query);
+          const catScore = fuzzyMatch(entry.category, query);
+          const excerptScore = fuzzyMatch(entry.excerpt, query);
+
+          const bestScore = Math.max(titleScore.score * 1.5, tagScore.score * 1.2, catScore.score * 1.0, excerptScore.score * 0.8);
+          const isMatch = titleScore.match || tagScore.match || catScore.match || excerptScore.match;
+
+          return { idx, score: bestScore, match: isMatch };
+        })
+        .filter(r => r.match)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 6);
+
+      if (results.length === 0) {
+        searchSuggestions.innerHTML = `
+          <div class="no-results-msg">
+            <i class="fas fa-search"></i>
+            No results for "${query}"
+            <div style="margin-top:8px;font-size:12px;">Try different keywords or check spelling</div>
+          </div>`;
+        searchSuggestions.classList.add('visible');
         return;
       }
 
-      blogContainer.style.display = 'block';
-      emptyState.style.display = 'none';
-      blogContainer.innerHTML = filtered.map(([id, post]) => {
-        // Use image if available, otherwise use placeholder
-        const imageHtml = post.image ? `
-          <div style="margin-bottom: 16px; border-radius: 8px; overflow: hidden; height: 200px; background: linear-gradient(135deg, #c8401a 0%, #ff4b2b 100%); display: flex; align-items: center; justify-content: center;">
-            <img src="${post.image}" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.parentElement.style.display='flex'; this.style.display='none';">
-            <div style="display: none; color: white; font-size: 14px; text-align: center;">📸 ${post.title.substring(0, 30)}...</div>
-          </div>
-        ` : '';
-        
+      let html = `<div class="suggestion-group-label">Results</div>`;
+      html += results.map(r => {
+        const p = allPosts[r.idx];
         return `
-          <article class="blog-card">
-            ${imageHtml}
-            <span class="post-meta">${post.date} · ${post.readTime} min read</span>
-            <h2 class="post-title">
-              ${post.title}
-              ${post.isDraft ? '<span class="ai-draft-badge">Draft</span>' : ''}
-              ${post.featured ? '<span style="margin-left: 8px; padding: 2px 8px; background: #ff4b2b; color: white; border-radius: 3px; font-size: 11px; font-weight: 600;">FEATURED</span>' : ''}
-              ${post.trending ? '<span style="margin-left: 8px; padding: 2px 8px; background: #3b82f6; color: white; border-radius: 3px; font-size: 11px; font-weight: 600;">TRENDING</span>' : ''}
-            </h2>
-            <p>${post.excerpt}</p>
-            ${post.tags ? `<div class="blog-tags">${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}</div>` : ''}
-            <div style="margin-top: 16px;">
-              <a href="post.html?id=${id}" class="back-link"><i class="fas fa-arrow-right"></i> Read Article</a>
-              ${post.isDraft ? '<span style="margin-left: 16px; font-size: 12px; color: var(--muted);">(AI Generated)</span>' : ''}
+          <div class="search-suggestion-item" data-article-id="${p.id}">
+            <div class="suggestion-icon"><i class="fas fa-file-alt"></i></div>
+            <div class="suggestion-content">
+              <div class="suggestion-title">${highlightMatch(p.title, query)}</div>
+              <div class="suggestion-meta">${p.category || 'Data Engineering'} · ${p.readTime} min read</div>
+            </div>
+            <span class="suggestion-type">Article</span>
+          </div>
+        `;
+      }).join('');
+
+      searchSuggestions.innerHTML = html;
+      searchSuggestions.classList.add('visible');
+
+      searchSuggestions.querySelectorAll('.search-suggestion-item[data-article-id]').forEach(item => {
+        item.addEventListener('click', () => {
+          analytics.trackArticleClick(item.dataset.articleId);
+          window.location.href = `post.html?id=${item.dataset.articleId}`;
+        });
+      });
+    }
+
+    function highlightMatch(text, query) {
+      if (!query) return text;
+      const q = query.trim();
+      const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(regex, '<strong style="color:var(--accent)">$1</strong>');
+    }
+
+    // ── Filter Event Listeners ──
+    document.getElementById('dateFilter').addEventListener('change', (e) => {
+      selectedDate = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('sortFilter').addEventListener('change', (e) => {
+      sortBy = e.target.value;
+      applyFilters();
+    });
+
+    // Filter toggle on mobile
+    filterToggleBtn.addEventListener('click', () => {
+      filterPanel.classList.toggle('expanded');
+      filterToggleBtn.querySelector('span').textContent =
+        filterPanel.classList.contains('expanded') ? 'Hide Filters' : 'Show Filters';
+    });
+
+    // ── Apply Filters ──
+    function applyFilters() {
+      filteredPosts = allPosts.filter(p => {
+        // Search with fuzzy matching
+        if (searchQuery) {
+          const entry = searchIndex.find(e => e.id === p.id);
+          if (entry) {
+            const titleMatch = fuzzyMatch(entry.title, searchQuery);
+            const tagMatch = fuzzyMatch(entry.tags.join(' '), searchQuery);
+            const catMatch = fuzzyMatch(entry.category, searchQuery);
+            const excerptMatch = fuzzyMatch(entry.excerpt, searchQuery);
+            if (!titleMatch.match && !tagMatch.match && !catMatch.match && !excerptMatch.match) return false;
+          }
+        }
+        // Category
+        if (selectedCategory !== 'all' && p.category !== selectedCategory) return false;
+        // Technology (OR logic - match any selected tech)
+        if (selectedTech.length > 0 && !selectedTech.some(t => {
+          const tl = t.toLowerCase();
+          return (p.tags || []).some(tag => tag.toLowerCase().includes(tl)) ||
+                 (p.category || '').toLowerCase().includes(tl);
+        })) return false;
+        // Date
+        if (selectedDate !== 'all') {
+          const days = { 'today': 1, '7days': 7, '30days': 30, '90days': 90, 'year': 365 };
+          const cutoff = Date.now() - (days[selectedDate] || 99999) * 86400000;
+          if ((p.publishedAt || new Date(p.date).getTime()) < cutoff) return false;
+        }
+        return true;
+      });
+
+      // Sort
+      filteredPosts.sort((a, b) => {
+        switch (sortBy) {
+          case 'newest': return (b.publishedAt || new Date(b.date)) - (a.publishedAt || new Date(a.date));
+          case 'oldest': return (a.publishedAt || new Date(a.date)) - (b.publishedAt || new Date(b.date));
+          case 'views': return (b.views || 0) - (a.views || 0);
+          case 'likes': return (b.likes || 0) - (a.likes || 0);
+          case 'shares': return (b.shares || 0) - (a.shares || 0);
+          case 'comments': return (b.comments || 0) - (a.comments || 0);
+          case 'trending': return calcTrendingScore(b) - calcTrendingScore(a);
+          case 'recommended': return (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || (b.views || 0) - (a.views || 0);
+          default: return (b.publishedAt || new Date(b.date)) - (a.publishedAt || new Date(a.date));
+        }
+      });
+
+      currentPage = 1;
+      displayedPosts = [];
+      updateURL();
+      renderAll();
+    }
+
+    // ── Render All Sections ──
+    function renderAll() {
+      renderFeatured();
+      renderTrending();
+      renderNew();
+      renderPopular();
+      renderArticles();
+      renderActiveFilters();
+      resultsCount.innerHTML = `Showing <strong>${filteredPosts.length}</strong> of ${allPosts.length} articles`;
+    }
+
+    // ── Featured ──
+    function renderFeatured() {
+      const featured = allPosts.filter(p => p.featured).sort((a, b) => {
+        // Priority: highest engagement, then newest
+        const engagementA = (a.views || 0) * 0.5 + (a.likes || 0) * 0.3 + (a.shares || 0) * 0.2;
+        const engagementB = (b.views || 0) * 0.5 + (b.likes || 0) * 0.3 + (b.shares || 0) * 0.2;
+        return engagementB - engagementA;
+      }).slice(0, 4);
+
+      if (featured.length === 0) {
+        document.querySelector('.featured-section').style.display = 'none';
+        return;
+      }
+      document.querySelector('.featured-section').style.display = '';
+      featuredGrid.innerHTML = featured.map(p => `
+        <article class="featured-card" onclick="window.location.href='post.html?id=${p.id}'" itemscope itemtype="https://schema.org/BlogPosting">
+          <span class="featured-badge">★ Featured</span>
+          ${p.image ? `<img class="card-image" src="${p.image}" alt="${p.title}" loading="lazy" itemprop="image">` : `<div class="card-image card-placeholder">📝</div>`}
+          <div class="card-body">
+            <div class="card-category" itemprop="articleSection">${p.category || 'Data Engineering'}</div>
+            <div class="card-title" itemprop="headline">${p.title}</div>
+            <div class="card-excerpt" itemprop="description">${(p.excerpt || '').substring(0, 120)}...</div>
+            <div class="card-meta">
+              <span><i class="fas fa-clock"></i> ${p.readTime} min</span>
+              <span><i class="fas fa-eye"></i> ${formatViews(p.views)}</span>
+              <span><i class="fas fa-heart"></i> ${p.likes || 0}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // ── Trending ──
+    function renderTrending() {
+      const trending = [...allPosts].sort((a, b) => calcTrendingScore(b) - calcTrendingScore(a)).slice(0, 5);
+      trendingList.innerHTML = trending.map((p, i) => `
+        <div class="trending-item" onclick="window.location.href='post.html?id=${p.id}'">
+          <div class="trending-rank ${i < 3 ? 'top-3' : ''}">${i + 1}</div>
+          <div class="trending-info">
+            <div class="trending-title">${p.title}</div>
+            <div class="trending-meta">
+              <span><i class="fas fa-eye"></i> ${formatViews(p.views)}</span>
+              <span><i class="fas fa-heart"></i> ${p.likes || 0}</span>
+              <span><i class="fas fa-share"></i> ${p.shares || 0}</span>
+              <span><i class="fas fa-comment"></i> ${p.comments || 0}</span>
+            </div>
+          </div>
+          <div class="trending-score">
+            <i class="fas fa-fire trending-icon"></i>
+            ${Math.round(calcTrendingScore(p))}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ── New This Week ──
+    function renderNew() {
+      const weekAgo = Date.now() - 7 * 86400000;
+      const newPosts = allPosts
+        .filter(p => (p.publishedAt || new Date(p.date).getTime()) >= weekAgo)
+        .sort((a, b) => (b.publishedAt || new Date(b.date)) - (a.publishedAt || new Date(a.date)))
+        .slice(0, 3);
+
+      if (newPosts.length === 0) {
+        document.querySelector('.new-section').style.display = 'none';
+        return;
+      }
+      document.querySelector('.new-section').style.display = '';
+      newGrid.innerHTML = newPosts.map(p => `
+        <div class="new-card" onclick="window.location.href='post.html?id=${p.id}'">
+          ${p.image ? `<img class="card-image" src="${p.image}" alt="${p.title}" loading="lazy">` : `<div class="card-image" style="background: linear-gradient(135deg, var(--accent-green), var(--accent-blue)); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">✨</div>`}
+          <div class="card-body">
+            <span class="new-badge">✨ New</span>
+            <div class="card-title">${p.title}</div>
+            <div class="card-meta">
+              <span><i class="fas fa-clock"></i> ${p.readTime} min</span>
+              <span><i class="fas fa-eye"></i> ${formatViews(p.views)}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ── Popular Technologies ──
+    function renderPopular() {
+      popularGrid.innerHTML = techs.slice(0, 10).map(t => `
+        <div class="popular-tag" data-tech="${t.name}">
+          ${t.name}
+          <span class="tag-count">${t.count}</span>
+        </div>
+      `).join('');
+      popularGrid.querySelectorAll('.popular-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+          const tech = tag.dataset.tech;
+          if (!selectedTech.includes(tech)) {
+            selectedTech.push(tech);
+            renderTechChips();
+          }
+          // Scroll to articles and apply
+          applyFilters();
+          document.getElementById('articlesGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+
+    // ── Articles Grid ──
+    function renderArticles() {
+      const start = (currentPage - 1) * POSTS_PER_PAGE;
+      const pagePosts = filteredPosts.slice(start, start + POSTS_PER_PAGE);
+
+      // Track displayed posts for infinite scroll
+      if (currentPage === 1) displayedPosts = [];
+
+      if (filteredPosts.length === 0) {
+        articlesGrid.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-search"></i>
+            <h3>No articles found</h3>
+            <p>Try adjusting your search or filters to discover more content.</p>
+            <button class="reset-btn" onclick="document.querySelector('.clear-all-filters')?.click()">Reset Filters</button>
+          </div>`;
+        paginationEl.innerHTML = '';
+        return;
+      }
+
+      const cardsHTML = pagePosts.map(p => {
+        const isTrending = calcTrendingScore(p) > 1000;
+        return `
+          <article class="article-card fade-in" onclick="window.location.href='post.html?id=${p.id}'" itemscope itemtype="https://schema.org/BlogPosting">
+            ${p.image ? `<img class="card-image" src="${p.image}" alt="${p.title}" loading="lazy" itemprop="image">` : `<div class="card-placeholder">📝</div>`}
+            <div class="card-body">
+              <div class="card-category" itemprop="articleSection">${p.category || 'Data Engineering'}</div>
+              <div class="card-title" itemprop="headline">${p.title}</div>
+              <div class="card-excerpt" itemprop="description">${(p.excerpt || '').substring(0, 140)}...</div>
+              <div class="card-tags">
+                ${(p.tags || []).slice(0, 3).map(t => `<span class="card-tag">${t}</span>`).join('')}
+              </div>
+              <div class="card-meta">
+                <span><i class="fas fa-clock"></i> ${p.readTime} min</span>
+                <span><i class="fas fa-calendar"></i> ${formatDate(p.date)}</span>
+                <span><i class="fas fa-eye"></i> ${formatViews(p.views)}</span>
+                <span><i class="fas fa-heart"></i> ${p.likes || 0}</span>
+                ${isTrending ? '<span class="trending-icon"><i class="fas fa-fire"></i> Trending</span>' : ''}
+              </div>
             </div>
           </article>
         `;
       }).join('');
+
+      if (currentPage === 1) {
+        articlesGrid.innerHTML = cardsHTML;
+      } else {
+        articlesGrid.insertAdjacentHTML('beforeend', cardsHTML);
+      }
+
+      // Trigger fade-in animation
+      requestAnimationFrame(() => {
+        articlesGrid.querySelectorAll('.fade-in:not(.visible)').forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 80);
+        });
+      });
+
+      // Pagination
+      const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+      if (totalPages <= 1) { paginationEl.innerHTML = ''; return; }
+
+      let pagHTML = `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
+
+      // Smart pagination with ellipsis
+      const pageNumbers = getPaginationRange(currentPage, totalPages);
+      pageNumbers.forEach(p => {
+        if (p === '...') {
+          pagHTML += `<span class="page-btn" style="border:none;cursor:default;">…</span>`;
+        } else {
+          pagHTML += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>`;
+        }
+      });
+
+      pagHTML += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
+      paginationEl.innerHTML = pagHTML;
     }
 
-    // Search event listener
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      renderPosts();
-    });
+    function getPaginationRange(current, total) {
+      if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+      if (current <= 3) return [1, 2, 3, 4, '...', total];
+      if (current >= total - 2) return [1, '...', total - 3, total - 2, total - 1, total];
+      return [1, '...', current - 1, current, current + 1, '...', total];
+    }
 
-    // Initialize
-    extractTags();
-    renderPosts();
+    window.goToPage = function(page) {
+      const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      updateURL();
+      renderArticles();
+      document.getElementById('articlesGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // ── Intersection Observer for Infinite Scroll ──
+    function initInfiniteScroll() {
+      const sentinel = document.getElementById('scrollSentinel');
+      if (!sentinel) return;
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !isLoadingMore) {
+          const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+          if (currentPage < totalPages) {
+            isLoadingMore = true;
+            currentPage++;
+            renderArticles();
+            isLoadingMore = false;
+          }
+        }
+      }, { rootMargin: '200px' });
+      observer.observe(sentinel);
+    }
+
+    // ── Scroll Fade-In Observer ──
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.featured-section, .trending-section, .new-section, .popular-section').forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+      });
+    }
+
+    function formatViews(n) {
+      if (!n) return '0';
+      if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+      return n.toString();
+    }
+
+    function formatDate(dateStr) {
+      try {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      } catch(e) { return dateStr; }
+    }
+
+    // ── Initialize ──
+    renderCategoryChips();
+    renderTechChips();
+    initTechDropdown();
+    syncFilterUI();
+    applyFilters();
+    initInfiniteScroll();
+    initScrollAnimations();
   });
 </script>
 
 <header>
-  <p class="post-meta">// THE DATA LOG</p>
-  <h1>Technical Insights &amp; Engineering Notes</h1>
+  <p class="section-label">// THE DATA LOG</p>
+  <h1>Technical Insights & Engineering Notes</h1>
   <p class="header-desc">Deep dives into data infrastructure, real-time systems, and the future of data engineering.</p>
 </header>
 
-<!-- Search & Filters -->
-<div class="blog-controls">
+<!-- Search Bar -->
+<div class="search-section">
   <div class="search-container">
     <i class="fas fa-search search-icon"></i>
-    <input 
-      type="text" 
-      class="search-input" 
-      id="search-input" 
-      placeholder="Search posts..."
-      aria-label="Search blog posts"
-    >
+    <input type="text" class="search-input" id="search-input" placeholder="Search articles, topics, technologies..." aria-label="Search blog posts" autocomplete="off">
+    <button class="search-clear" id="searchClear" aria-label="Clear search"><i class="fas fa-times"></i></button>
+    <div class="kbd-hint" id="kbdHint"><kbd>/</kbd></div>
+    <div class="search-suggestions" id="searchSuggestions"></div>
   </div>
-  
-  <div class="tags-container" id="tags-container">
-    <button type="button" class="tag-btn active" data-tag="all">All Posts</button>
-  </div>
-
-  <button type="button" onclick="openRssModal()" class="rss-link" title="Subscribe to RSS feed">
-    <i class="fas fa-rss"></i> Subscribe (RSS)
-  </button>
-
-  <button type="button" onclick="openSubscriptionModal()" class="rss-link" title="Subscribe to email newsletter">
-    <i class="fas fa-envelope"></i> Subscribe (Email)
-  </button>
 </div>
 
-<main class="blog-container" id="blog-posts-container">
-  <!-- Populated by JavaScript -->
-</main>
+<!-- Active Filters Bar -->
+<div class="active-filters" id="activeFiltersBar">
+  <span class="active-filter-label">Active:</span>
+  <div id="activeFiltersContainer"></div>
+</div>
 
-<div id="empty-state" class="empty-state" style="display:none;">
-  <p>No posts found. Try adjusting your search or filters.</p>
+<!-- Filter Panel -->
+<div class="filter-section">
+  <button class="filter-toggle-btn" id="filterToggleBtn">
+    <i class="fas fa-sliders-h"></i>
+    <span>Show Filters</span>
+  </button>
+  <div class="filter-panel" id="filterPanel">
+    <div class="filter-group">
+      <span class="filter-group-label">Date Range</span>
+      <select class="filter-select" id="dateFilter">
+        <option value="all">All Time</option>
+        <option value="today">Today</option>
+        <option value="7days">Last 7 Days</option>
+        <option value="30days">Last 30 Days</option>
+        <option value="90days">Last 90 Days</option>
+        <option value="year">This Year</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-group-label">Sort By</span>
+      <select class="filter-select" id="sortFilter">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="views">Most Viewed</option>
+        <option value="likes">Most Liked</option>
+        <option value="shares">Most Shared</option>
+        <option value="comments">Most Commented</option>
+        <option value="trending">🔥 Trending</option>
+        <option value="recommended">Recommended</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-group-label">Technology</span>
+      <div class="tech-multiselect">
+        <button class="tech-multiselect-btn" id="techMultiselectBtn">
+          <span class="btn-text">All Technologies</span>
+          <span class="count-badge">0</span>
+          <i class="fas fa-chevron-down" style="font-size:10px;color:var(--muted);"></i>
+        </button>
+        <div class="tech-dropdown" id="techDropdown">
+          <div class="tech-dropdown-search">
+            <input type="text" id="techDropdownSearch" placeholder="Search technologies..." autocomplete="off">
+          </div>
+          <div id="techOptionsList"></div>
+        </div>
+      </div>
+    </div>
+    <div class="filter-group" style="justify-content:flex-end;">
+      <span class="filter-group-label">&nbsp;</span>
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+  </div>
+  <div style="margin-top: 4px;">
+    <div class="filter-chips-row" id="categoryChips"></div>
+  </div>
+  <div style="margin-top: 8px;">
+    <div class="filter-chips-row" id="techChips"></div>
+  </div>
+</div>
+
+<!-- Featured Articles -->
+<div class="featured-section">
+  <div class="section-header">
+    <div>
+      <p class="section-label">// Editor's Picks</p>
+      <h2 class="section-title">Featured Articles</h2>
+    </div>
+  </div>
+  <div class="featured-grid" id="featuredGrid"></div>
+</div>
+
+<!-- Trending -->
+<div class="trending-section">
+  <div class="section-header">
+    <div>
+      <p class="section-label">// What's Hot</p>
+      <h2 class="section-title">🔥 Trending Articles</h2>
+    </div>
+  </div>
+  <div class="trending-list" id="trendingList"></div>
+</div>
+
+<!-- New This Week -->
+<div class="new-section">
+  <div class="section-header">
+    <div>
+      <p class="section-label">// Fresh Content</p>
+      <h2 class="section-title">✨ New This Week</h2>
+    </div>
+  </div>
+  <div class="new-grid" id="newGrid"></div>
+</div>
+
+<!-- Popular Technologies -->
+<div class="popular-section">
+  <div class="section-header">
+    <div>
+      <p class="section-label">// Most Read Topics</p>
+      <h2 class="section-title">Popular Technologies</h2>
+    </div>
+  </div>
+  <div class="popular-grid" id="popularGrid"></div>
+</div>
+
+<!-- All Articles -->
+<div class="articles-section">
+  <div class="section-header">
+    <div>
+      <p class="section-label">// All Content</p>
+      <h2 class="section-title">📚 All Articles</h2>
+    </div>
+  </div>
+  <div class="articles-grid" id="articlesGrid"></div>
+  <div class="pagination" id="pagination"></div>
+  <div id="scrollSentinel" style="height:1px;"></div>
 </div>
 
 <footer>
   <p>© 2026 Victor Kipruto Rop · Built with focus on data integrity.</p>
 </footer>
 
-<!-- Subscription Modal Component -->
-<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
-  <div class="subscription-modal" style="background:var(--paper);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;">
-    <div class="subscription-modal-header" style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
-      <h2 id="subscriptionModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;">Subscribe for Updates</h2>
-      <button type="button" class="subscription-modal-close" id="subscriptionModalClose" aria-label="Close subscription modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+<!-- Subscription Modal -->
+<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;">
+  <div class="subscription-modal" style="background:var(--paper);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;position:relative;">
+    <div style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;">Subscribe for Updates</h2>
+      <button onclick="document.getElementById('subscriptionModalOverlay').style.display='none'" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;">✕</button>
     </div>
-    <div class="subscription-modal-content" style="padding:32px 24px;">
-      <div class="subscription-option-tabs" style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
-        <button type="button" class="subscription-tab active" data-tab="feed" aria-label="Feed subscription options" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
-          <i class="fas fa-rss"></i> <span>Feed</span>
-        </button>
-        <button type="button" class="subscription-tab" data-tab="email" aria-label="Email subscription" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
-          <i class="fas fa-envelope"></i> <span>Email</span>
-        </button>
-        <button type="button" class="subscription-tab" data-tab="messaging" aria-label="Messaging apps" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
-          <i class="fas fa-comment"></i> <span>Messages</span>
-        </button>
+    <div style="padding:32px 24px;">
+      <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
+        <button onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='block'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='none';" style="flex:1;min-width:140px;padding:12px 16px;background:var(--accent);color:white;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;"><i class="fas fa-rss"></i> Feed</button>
+        <button onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='block'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='none';" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;"><i class="fas fa-envelope"></i> Email</button>
+        <button onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='block';" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;"><i class="fas fa-comment"></i> Messages</button>
       </div>
-
-      <!-- Feed Tab -->
-      <div class="subscription-form active" id="feedTab" style="display:block;">
-        <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
-          <button type="button" class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-              <i class="fas fa-rss" style="color:var(--accent);"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">RSS Feed</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</div>
-          </button>
-
-          <button type="button" class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-              <i class="fas fa-book-reader" style="color:#3498db;"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Inoreader</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</div>
-          </button>
-
-          <button type="button" class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-              <i class="fas fa-layer-group" style="color:#2ecc71;"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Feedly</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</div>
-          </button>
-
-          <button type="button" class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-              <i class="fas fa-link" style="color:var(--accent);"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Copy URL</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Manual subscription</div>
-          </button>
-        </div>
-
-        <div class="subscription-rss-copy" id="rssUrlSection" style="background:var(--paper);padding:16px;border-radius:8px;margin-top:16px;border:2px solid var(--rule);display:none;">
-          <div class="subscription-rss-label" style="font-size:12px;font-weight:600;margin-bottom:8px;text-transform:uppercase;opacity:0.7;color:var(--ink);">RSS Feed URL</div>
-          <div class="subscription-rss-url" style="display:flex;gap:8px;align-items:center;">
-            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--ink);border:2px solid var(--rule);border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;color:var(--paper);transition:all 0.3s ease;">
-            <button type="button" class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
-              <i class="fas fa-copy"></i> Copy
-            </button>
-          </div>
+      <div data-tab="feed" style="display:block;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+          <button onclick="window.open('https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fas fa-rss" style="color:var(--accent);"></i></div><div style="font-size:14px;font-weight:600;">RSS Feed</div></button>
+          <button onclick="window.open('https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fvictor-kipruto-rop.github.io%2Fvictor-resum-web%2Frss.xml','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fas fa-layer-group" style="color:#2ecc71;"></i></div><div style="font-size:14px;font-weight:600;">Feedly</div></button>
         </div>
       </div>
-
-      <!-- Email Tab -->
-      <form class="subscription-form" id="emailTab" style="display:none;">
-        <div class="subscription-form-group" style="margin-bottom:16px;">
-          <label for="emailName" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--ink);">Name</label>
-          <input type="text" id="emailName" required placeholder="Your name" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule)'>">
-        </div>
-        <div class="subscription-form-group" style="margin-bottom:16px;">
-          <label for="emailAddress" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--ink);">Email Address</label>
-          <input type="email" id="emailAddress" required placeholder="your@email.com" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule)'">
-        </div>
-        <button type="submit" class="subscription-form-submit" style="width:100%;padding:12px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s ease;">Subscribe to Email Updates</button>
-      </form>
-
-      <!-- Messaging Tab -->
-      <div class="subscription-form" id="messagingTab" style="display:none;">
-        <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
-          <button type="button" class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-              <i class="fab fa-telegram" style="color:#0088cc;"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Telegram</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Instant notifications</div>
-          </button>
-
-          <button type="button" class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-              <i class="fab fa-x-twitter" style="color:var(--ink);"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Twitter/X</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Social updates</div>
-          </button>
-        </div>
+      <div data-tab="email" style="display:none;">
+        <form id="emailSubscribeForm" onsubmit="return handleEmailSubscribe(event)">
+          <div style="margin-bottom:16px;"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Name</label><input type="text" id="subName" required placeholder="Your name" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;"></div>
+          <div style="margin-bottom:16px;"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Email</label><input type="email" id="subEmail" required placeholder="your@email.com" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;"></div>
+          <div id="subMessage" style="display:none;margin-bottom:16px;padding:12px;border-radius:8px;font-size:13px;font-family:'DM Mono',monospace;"></div>
+          <button type="submit" id="subSubmitBtn" style="width:100%;padding:12px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">Subscribe</button>
+        </form>
       </div>
-
-      <!-- Notification -->
-      <div class="subscription-notification" id="subscriptionNotification" role="alert" style="margin-top:20px;padding:16px;background:#4ade80;color:#0a0e14;border-radius:8px;text-align:center;display:none;animation:slideDown 0.3s ease;font-weight:600;">
-        ✅ Thanks for subscribing to Victor Kipruto's developer updates.
+      <div data-tab="messaging" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <button onclick="window.open('https://t.me/victors_dev_updates','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fab fa-telegram" style="color:#0088cc;"></i></div><div style="font-size:14px;font-weight:600;">Telegram</div></button>
+          <button onclick="window.open('https://x.com/VictorKipruto','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fab fa-x-twitter"></i></div><div style="font-size:14px;font-weight:600;">Twitter/X</div></button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- RSS Modal Component -->
-<div class="subscription-modal-overlay" id="rssModalOverlay" role="dialog" aria-labelledby="rssModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
-  <div class="subscription-modal" style="background:var(--paper);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;">
-    <div class="subscription-modal-header" style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
-      <h2 id="rssModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;color:var(--ink);">Subscribe via RSS</h2>
-      <button type="button" class="subscription-modal-close" id="rssModalClose" aria-label="Close RSS modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
-    </div>
-    <div class="subscription-modal-content" style="padding:32px 24px;">
-      <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
-        <button type="button" class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-          <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-            <i class="fas fa-rss" style="color:var(--accent);"></i>
-          </div>
-          <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;color:var(--ink);">RSS Feed</div>
-          <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</div>
-        </button>
-
-        <button type="button" class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-          <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-            <i class="fas fa-book-reader" style="color:#3498db;"></i>
-          </div>
-          <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;color:var(--ink);">Inoreader</div>
-          <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</div>
-        </button>
-
-        <button type="button" class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-          <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-            <i class="fas fa-layer-group" style="color:#2ecc71;"></i>
-          </div>
-          <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;color:var(--ink);">Feedly</div>
-          <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</div>
-        </button>
-
-        <button type="button" class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-          <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
-            <i class="fas fa-link" style="color:var(--accent);"></i>
-          </div>
-          <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;color:var(--ink);">Copy URL</div>
-          <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Manual subscription</div>
-        </button>
-      </div>
-
-      <div class="subscription-rss-copy" id="rssModal-rssUrlSection" style="background:var(--paper);padding:16px;border-radius:8px;margin-top:16px;border:2px solid var(--rule);display:none;">
-        <div class="subscription-rss-label" style="font-size:12px;font-weight:600;margin-bottom:8px;text-transform:uppercase;opacity:0.7;color:var(--ink);">RSS Feed URL</div>
-        <div class="subscription-rss-url" style="display:flex;gap:8px;align-items:center;">
-          <input type="text" class="subscription-rss-input" id="rssModal-rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--ink);border:2px solid var(--rule);border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;color:var(--paper);transition:all 0.3s ease;">
-          <button type="button" class="subscription-copy-btn" id="rssModal-copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
-            <i class="fas fa-copy"></i> Copy
-          </button>
-        </div>
-      </div>
-
-      <!-- Notification -->
-      <div class="subscription-notification" id="rssNotification" role="alert" style="margin-top:20px;padding:16px;background:#4ade80;color:#0a0e14;border-radius:8px;text-align:center;display:none;animation:slideDown 0.3s ease;font-weight:600;">
-        ✅ RSS URL copied to clipboard!
-      </div>
-    </div>
-  </div>
-</div>
-<style>
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-  .subscription-tab.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
+<script>
+  function openSubscriptionModal() {
+    document.getElementById('subscriptionModalOverlay').style.display = 'flex';
   }
 
-  .subscription-option:hover {
-    border-color: var(--accent);
-    background: var(--paper);
-    transform: translateY(-2px);
-  /* Input styling for both light and dark modes */
-  #emailName::placeholder,
-  #emailAddress::placeholder {
-    color: var(--muted);
-    opacity: 0.6;
-  }
-  
-  #rssUrlInput {
-    opacity: 1 !important;
-  }
-  
-  /* Dark mode input improvements */
-  body.dark-mode #emailName,
-  body.dark-mode #emailAddress {
-    background: var(--ink);
-    color: var(--paper);
-    border-color: var(--rule);
-  }
-  
-  body.dark-mode #emailName::placeholder,
-  body.dark-mode #emailAddress::placeholder {
-    color: var(--rule);
-    opacity: 0.5;
-  }
-  
-  body.dark-mode .subscription-form-group label {
-    color: var(--paper);
-  }
-  
-  body.dark-mode .subscription-rss-label {
-    color: var(--paper);
-  }
-  
-  /* Ensure modal is always readable */
-  .subscription-modal-overlay {
-    backdrop-filter: blur(8px);
-  }
-  
-  .subscription-modal {
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-  }
-</style>
+  function handleEmailSubscribe(event) {
+    event.preventDefault();
+    const name = document.getElementById('subName').value.trim();
+    const email = document.getElementById('subEmail').value.trim();
+    const msgEl = document.getElementById('subMessage');
+    const btn = document.getElementById('subSubmitBtn');
 
-<!-- Analytics Tracking -->
+    if (!name || !email) {
+      msgEl.style.display = 'block';
+      msgEl.style.background = 'rgba(239,68,68,0.1)';
+      msgEl.style.color = '#ef4444';
+      msgEl.textContent = 'Please fill in all fields.';
+      return false;
+    }
+
+    // Disable button during processing
+    btn.disabled = true;
+    btn.textContent = 'Subscribing...';
+
+    // Store subscriber in localStorage database
+    const subscribers = JSON.parse(localStorage.getItem('blog_subscribers') || '[]');
+    const exists = subscribers.find(s => s.email === email);
+
+    if (exists) {
+      msgEl.style.display = 'block';
+      msgEl.style.background = 'rgba(245,158,11,0.1)';
+      msgEl.style.color = '#f59e0b';
+      msgEl.textContent = 'This email is already subscribed!';
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+      return false;
+    }
+
+    const subscriber = {
+      id: 'sub_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+      name: name,
+      email: email,
+      subscribed_at: new Date().toISOString(),
+      status: 'active',
+      channel: 'email',
+      source: 'blog_modal',
+      interests: [],
+      metadata: { total_opens: 0, total_clicks: 0 }
+    };
+
+    subscribers.push(subscriber);
+    localStorage.setItem('blog_subscribers', JSON.stringify(subscribers));
+
+    // Update subscriber count in stats
+    const stats = JSON.parse(localStorage.getItem('blog_subscription_stats') || '{}');
+    stats.total_subscribers = (stats.total_subscribers || 0) + 1;
+    stats.last_subscription = new Date().toISOString();
+    localStorage.setItem('blog_subscription_stats', JSON.stringify(stats));
+
+    // Show success
+    msgEl.style.display = 'block';
+    msgEl.style.background = 'rgba(16,185,129,0.1)';
+    msgEl.style.color = '#10b981';
+    msgEl.innerHTML = '<strong>✓ Successfully subscribed!</strong><br>You\'ll receive notifications for new articles.';
+
+    btn.textContent = 'Subscribed ✓';
+    btn.style.background = '#10b981';
+
+    // Log for analytics
+    console.log('New subscriber:', subscriber);
+
+    // Close modal after delay
+    setTimeout(() => {
+      document.getElementById('subscriptionModalOverlay').style.display = 'none';
+      // Reset form
+      document.getElementById('emailSubscribeForm').reset();
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+      btn.style.background = '';
+      msgEl.style.display = 'none';
+    }, 2500);
+
+    return false;
+  }
+</script>
+
+<!-- Per-Article SEO Structured Data (injected dynamically) -->
+<script>
+  // Generate sitemap-compatible structured data for all posts
+  (function() {
+    const posts = window.posts || {};
+    const baseUrl = 'https://victor-kipruto-rop.github.io/victor-resum-web';
+    const itemList = Object.entries(posts).map(([id, p], idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "url": `${baseUrl}/post.html?id=${id}`,
+      "name": p.title
+    }));
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Technical Blog — Victor Kipruto Rop",
+      "description": "Technical articles on Data Engineering, ETL, and Cloud Infrastructure",
+      "url": `${baseUrl}/blog.html`,
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": itemList.length,
+        "itemListElement": itemList
+      }
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+  })();
+</script>
+
 <script src="dashboard/tracker.js"></script>
 <script src="dashboard/visitor-intel.js"></script>
 <script src="dashboard/analytics-advanced.js"></script>
 <script src="integration/blog-tracker.js"></script>
-
-<!-- Subscription Modal Script -->
-<script>
-  const subscriptionModal = {
-    isOpen: false,
-
-    open() {
-      const overlay = document.getElementById('subscriptionModalOverlay');
-      if (overlay) {
-        overlay.style.display = 'flex';
-        this.isOpen = true;
-        document.body.style.overflow = 'hidden';
-      }
-    },
-
-    close() {
-      const overlay = document.getElementById('subscriptionModalOverlay');
-      if (overlay) {
-        overlay.style.display = 'none';
-        this.isOpen = false;
-        document.body.style.overflow = '';
-      }
-    },
-
-    switchTab(tabName) {
-      // Hide all tabs
-      document.querySelectorAll('.subscription-form').forEach(tab => {
-        tab.style.display = 'none';
-      });
-
-      // Remove active class from all buttons
-      document.querySelectorAll('.subscription-tab').forEach(btn => {
-        btn.classList.remove('active');
-      });
-
-      // Show selected tab
-      const selectedTab = document.getElementById(tabName + 'Tab');
-      if (selectedTab) {
-        selectedTab.style.display = 'block';
-      }
-
-      // Add active class to clicked button
-      event.target.closest('.subscription-tab')?.classList.add('active');
-    },
-
-    setupEventListeners() {
-      // Close button
-      const closeBtn = document.getElementById('subscriptionModalClose');
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => this.close());
-      }
-
-      // Close on overlay click
-      const overlay = document.getElementById('subscriptionModalOverlay');
-      if (overlay) {
-        overlay.addEventListener('click', (e) => {
-          if (e.target === overlay) this.close();
-        });
-      }
-
-      // Tab switching
-      document.querySelectorAll('.subscription-tab').forEach(tab => {
-        tab.addEventListener('click', (e) => {
-          const tabName = e.currentTarget.getAttribute('data-tab');
-          this.switchTab(tabName);
-        });
-      });
-
-      // Email form submission
-      const emailForm = document.getElementById('emailTab');
-      if (emailForm) {
-        emailForm.addEventListener('submit', (e) => this.handleEmailSubmit(e));
-      }
-
-      // Feed options (RSS)
-      document.querySelectorAll('#feedTab .subscription-option').forEach(option => {
-        option.addEventListener('click', (e) => this.handleFeedOption(e));
-      });
-
-      // Messaging options (Telegram/Twitter)
-      document.querySelectorAll('#messagingTab .subscription-option').forEach(option => {
-        option.addEventListener('click', (e) => this.handleFeedOption(e));
-      });
-
-      // Escape key to close
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && this.isOpen) {
-          this.close();
-        }
-      });
-    },
-
-    handleEmailSubmit(e) {
-      e.preventDefault();
-
-      const nameInput = document.getElementById('emailName');
-      const emailInput = document.getElementById('emailAddress');
-
-      // Validate inputs
-      if (!nameInput || !emailInput || !nameInput.value.trim() || !emailInput.value.trim()) {
-        alert('Please fill in all fields');
-        return;
-      }
-
-      // Prepare data
-      const data = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        source: 'blog-modal'
-      };
-
-      // Send to server
-      fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then(response => response.json())
-        .then(result => {
-          if (result.success) {
-            // Show notification
-            const notification = document.getElementById('subscriptionNotification');
-            if (notification) {
-              notification.style.display = 'block';
-              // Reset form
-              nameInput.value = '';
-              emailInput.value = '';
-              // Close modal after 2 seconds
-              setTimeout(() => this.close(), 2000);
-            }
-          } else {
-            alert('Subscription failed. Please try again.');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Error subscribing. Please try again.');
-        });
-    },
-
-    handleFeedOption(e) {
-      e.preventDefault();
-      const option = e.currentTarget.getAttribute('data-option');
-
-      switch (option) {
-        case 'rss':
-          window.open('https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml', '_blank');
-          break;
-        case 'inoreader':
-          window.open('https://www.inoreader.com/', '_blank');
-          break;
-        case 'feedly':
-          window.open('https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fvictor-kipruto-rop.github.io%2Fvictor-resum-web%2Frss.xml', '_blank');
-          break;
-        case 'copy-url':
-          this.copyRssUrl();
-          break;
-        case 'telegram':
-          window.open('https://t.me/victors_dev_updates', '_blank');
-          break;
-        case 'twitter':
-          window.open('https://x.com/VictorKipruto', '_blank');
-          break;
-      }
-    },
-
-    copyRssUrl() {
-      const rssUrlSection = document.getElementById('rssUrlSection');
-      if (rssUrlSection) {
-        rssUrlSection.style.display = 'block';
-      }
-
-      const rssInput = document.getElementById('rssUrlInput');
-      const copyBtn = document.getElementById('copyRssBtn');
-
-      if (rssInput && copyBtn) {
-        rssInput.select();
-        navigator.clipboard.writeText(rssInput.value).then(() => {
-          const originalText = copyBtn.innerHTML;
-          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-          setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-          }, 2000);
-        });
-      }
-    }
-  };
-
-  // Initialize on page load
-  function openSubscriptionModal() {
-    subscriptionModal.open();
-  }
-
-  // RSS Modal Handler
-  const rssModal = {
-    isOpen: false,
-
-    open() {
-      const overlay = document.getElementById('rssModalOverlay');
-      if (overlay) {
-        overlay.style.display = 'flex';
-        this.isOpen = true;
-        document.body.style.overflow = 'hidden';
-      }
-    },
-
-    close() {
-      const overlay = document.getElementById('rssModalOverlay');
-      if (overlay) {
-        overlay.style.display = 'none';
-        this.isOpen = false;
-        document.body.style.overflow = '';
-      }
-    },
-
-    setupEventListeners() {
-      const closeBtn = document.getElementById('rssModalClose');
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => this.close());
-      }
-
-      const overlay = document.getElementById('rssModalOverlay');
-      if (overlay) {
-        overlay.addEventListener('click', (e) => {
-          if (e.target === overlay) this.close();
-        });
-      }
-
-      document.querySelectorAll('#rssModalOverlay .subscription-option').forEach(option => {
-        option.addEventListener('click', (e) => {
-          e.preventDefault();
-          const optionType = e.currentTarget.getAttribute('data-option');
-          
-          switch(optionType) {
-            case 'rss':
-              window.open('rss.xml', '_blank');
-              break;
-            case 'inoreader':
-              window.open('https://www.inoreader.com/', '_blank');
-              break;
-            case 'feedly':
-              window.open('https://feedly.com/i/subscription/feed%2Frss.xml', '_blank');
-              break;
-            case 'copy-url':
-              this.copyRssUrl();
-              break;
-          }
-        });
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && this.isOpen) {
-          this.close();
-        }
-      });
-    },
-
-    copyRssUrl() {
-      const rssUrlSection = document.getElementById('rssUrlSection');
-      if (rssUrlSection) {
-        rssUrlSection.style.display = 'block';
-      }
-
-      const rssInput = document.getElementById('rssUrlInput');
-      const copyBtn = document.getElementById('copyRssBtn');
-
-      if (rssInput && copyBtn) {
-        rssInput.select();
-        navigator.clipboard.writeText(rssInput.value).then(() => {
-          const originalText = copyBtn.innerHTML;
-          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-          setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-          }, 2000);
-        });
-      }
-    }
-  };
-
-  function openRssModal() {
-    rssModal.open();
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    subscriptionModal.setupEventListeners();
-    rssModal.setupEventListeners();
-  });
-</script>
 </body>
 </html>

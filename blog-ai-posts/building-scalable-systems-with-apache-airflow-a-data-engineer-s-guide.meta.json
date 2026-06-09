@@ -1,0 +1,20 @@
+{
+  "title": "Building Scalable Systems with Apache Airflow: A Data Engineer's Guide",
+  "read_time": 7,
+  "tags": [
+    "Apache Airflow",
+    "Data Engineering",
+    "Scalability",
+    "DevOps",
+    "Kubernetes"
+  ],
+  "tldr": "Scaling Apache Airflow to handle enterprise workflows requires moving beyond basic executors and decoupling execution from orchestration. By optimizing executor architecture, keeping DAG files free of top-level dependencies, and tuning scheduler parameters, data engineers can scale pipelines to thousands of daily runs without bottlenecking the system.",
+  "excerpt": "Learn how to architect, optimize, and maintain production-ready Apache Airflow environments that scale seamlessly to thousands of daily tasks.",
+  "keywords": [
+    "Apache Airflow scalability",
+    "Celery vs Kubernetes Executor",
+    "Airflow performance tuning",
+    "TaskFlow API tutorial",
+    "data orchestration best practices"
+  ]
+}
