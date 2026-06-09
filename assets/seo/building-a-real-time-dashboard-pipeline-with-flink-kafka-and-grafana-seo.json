@@ -1,0 +1,94 @@
+{
+  "slug": "building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+  "metaTitle": "Building a Real-Time Dashboard Pipeline with Flink, Kaf...",
+  "metaDescription": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that Learn more on my blog.",
+  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+  "openGraph": {
+    "og:title": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+    "og:description": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...",
+    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-fundamentals.png",
+    "og:type": "article",
+    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+    "og:site_name": "Victor Kipruto - Developer",
+    "article:published_time": "2026-06-08T11:12:42.902384Z",
+    "article:modified_time": "2026-06-08T11:12:42.902384Z",
+    "article:author": "Victor Kipruto"
+  },
+  "twitterCard": {
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+    "twitter:description": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...",
+    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-fundamentals.png",
+    "twitter:creator": "@VictorKipruto",
+    "twitter:site": "@VictorKipruto"
+  },
+  "structuredData": {
+    "blogPosting": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+      "description": "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...",
+      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-fundamentals.png",
+      "datePublished": "2026-06-08T11:12:42.902384Z",
+      "dateModified": "2026-06-08T11:12:42.902384Z",
+      "author": {
+        "@type": "Person",
+        "name": "Victor Kipruto",
+        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Victor Kipruto",
+        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana"
+      },
+      "keywords": "",
+      "articleSection": "Analytics",
+      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana"
+    },
+    "breadcrumb": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Analytics",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/analytics"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana"
+        }
+      ]
+    }
+  },
+  "seoScore": 80,
+  "keywords": [],
+  "category": "Analytics",
+  "tags": [
+    "flink",
+    "kafka",
+    "grafana",
+    "real-time",
+    "streaming",
+    "monitoring"
+  ]
+}

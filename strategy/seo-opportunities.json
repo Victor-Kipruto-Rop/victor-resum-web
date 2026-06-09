@@ -1,0 +1,21 @@
+{
+  "low_competition_keywords": [
+    "data engineering best practices",
+    "analytics engineering fundamentals",
+    "python data pipeline tutorial",
+    "kubernetes for data engineers",
+    "dbt project structure guide"
+  ],
+  "long_tail_keywords": [
+    "how to build scalable data pipelines with python",
+    "best practices for dbt project organization",
+    "data quality testing strategies for analytics",
+    "kubernetes deployment for data engineering teams",
+    "optimizing apache airflow for production"
+  ],
+  "content_refresh_candidates": [
+    "Update 'Building Data Pipelines' - add Airflow 2.0 features",
+    "Expand 'Kubernetes Best Practices' with 2024 patterns",
+    "Add dbt 1.6+ features to existing dbt content"
+  ]
+}

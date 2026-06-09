@@ -1,0 +1,9 @@
+{
+  "platform": "email",
+  "postType": "newsletter",
+  "subject": "\ud83d\udcda Designing a Modern Data Lakehouse: From Architecture to Implementation",
+  "preview": "h2The Lakehouse Paradigm/h2pThe data lakehouse com...",
+  "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Designing a Modern Data Lakehouse: From Architecture to Implementation</h2>\n<p>h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...</p>\n\n<p>\n  <strong>Category:</strong> Architecture<br>\n  <strong>Read Time:</strong> 15 min<br>\n  <strong>Published:</strong> 2026-06-09T03:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>data-lakehouse</li><li>delta-lake</li><li>apache-spark</li><li>snowflake</li><li>architecture</li>\n</ul>\n\n<p>\n  <a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
+  "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+  "category": "Architecture"
+}

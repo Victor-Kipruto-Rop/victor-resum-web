@@ -1,195 +1,310 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
-
-  <!-- Homepage -->
+<?xml version='1.0' encoding='utf-8'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/</loc>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web</loc>
     <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Blog Hub (Enhanced with filtering & search) -->
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog.html</loc>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Subscribe Page -->
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/subscribe.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/analytics</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Dashboard -->
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog-ai-dashboard.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- Blog Posts - Auto-generated -->
-  <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=advanced-kubernetes-patterns</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/architecture</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png</image:loc>
-      <image:title>Advanced Kubernetes Patterns for Data Engineers</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=building-data-pipelines-airflow</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/best-practices</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/airflow-pipelines.png</image:loc>
-      <image:title>Building Data Pipelines with Apache Airflow</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=dbt-best-practices</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/cloud</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-best-practices.png</image:loc>
-      <image:title>dbt Best Practices: Structuring Your Data Models</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=data-quality-frameworks-comparison</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-engineering</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-quality-frameworks.png</image:loc>
-      <image:title>Data Quality Frameworks: Great Expectations vs Soda</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=python-performance-optimization</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-quality</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png</image:loc>
-      <image:title>Python Performance Optimization for Data Processing</image:title>
-    </image:image>
   </url>
-
-  <!-- Blog Posts - Manual -->
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=first-post</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-transformation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/infrastructure</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/python</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/airflow</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=data-engineering</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=airflow-advanced</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=kafka-streaming</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=dbt-fundamentals</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/analytics-engineering</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=snowflake-performance</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/apache-spark</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=micro-1</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=analytics-1</loc>
-    <lastmod>2026-06-06</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/architecture</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=sql-1</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/big-data</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=cloud-1</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/ci-cd</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=python-1</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/cloud</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id=docker-1</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.8</priority>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/containers</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Resume/Portfolio -->
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/resume.html</loc>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/cost-optimization</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/data-engineering</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/data-lakehouse</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/data-modeling</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/data-pipelines</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/data-quality</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/data-warehouse</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/dbt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/delta-lake</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/devops</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/distributed-computing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/etl</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/flink</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/grafana</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/great-expectations</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/kafka</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/kubernetes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/monitoring</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/optimization</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/performance</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/profiling</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/pytest</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/python</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/real-time</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/shuffle</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/snowflake</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/soda</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/sql</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/streaming</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/tags/testing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- RSS Feed -->
   <url>
-    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
-
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

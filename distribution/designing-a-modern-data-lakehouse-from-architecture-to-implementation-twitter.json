@@ -1,0 +1,20 @@
+{
+  "platform": "twitter",
+  "thread": [
+    "\ud83e\uddf5 Just published: Designing a Modern Data Lakehouse: From Architecture to Implementation\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+    "h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...",
+    "Read the full article, save it, and share it with your network!\n\n#data-lakehouse #delta-lake #apache-spark"
+  ],
+  "hashtags": [
+    "data-lakehouse",
+    "delta-lake",
+    "apache-spark",
+    "snowflake",
+    "architecture"
+  ],
+  "mentions": [
+    "@VictorKipruto"
+  ],
+  "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+  "postType": "thread"
+}
