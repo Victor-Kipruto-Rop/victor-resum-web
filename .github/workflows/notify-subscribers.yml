@@ -168,7 +168,7 @@ jobs:
           fi
       
       - name: Upload logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: notification-logs
           path: notifications/
@@ -217,7 +217,7 @@ jobs:
           cat WORKFLOW_SUMMARY.md
       
       - name: Upload summary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: workflow-summary
           path: WORKFLOW_SUMMARY.md

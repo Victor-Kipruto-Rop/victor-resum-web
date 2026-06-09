@@ -139,7 +139,7 @@ jobs:
           echo "Generated $count SEO asset files"
       
       - name: Upload SEO assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: seo-assets
           path: assets/seo-assets/
