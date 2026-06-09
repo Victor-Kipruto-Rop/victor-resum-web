@@ -40,37 +40,27 @@ class EmailNotifier:
         self.db_path = DB_PATH
         self._init_database()
         
-        # Get email service configuration
-        email_config = self.config.get("email", {})
-        service = email_config.get("service", "resend")
+        # Load API keys and settings from environment
+        self.resend_api_key = os.getenv("RESEND_API_KEY")
+        self.from_email = os.getenv("RESEND_FROM_EMAIL", "onboarding@resend.dev")
+        self.from_name = os.getenv("RESEND_FROM_NAME", "Victor's Technical Blog")
         
-        # Initialize Resend if configured
-        if service == "resend":
-            resend_config = email_config.get("resend", {})
-            api_key = os.getenv("RESEND_API_KEY") or resend_config.get("api_key")
-            if api_key:
-                self.service = "resend"
-                self.resend_api_key = api_key
-                self.from_email = resend_config.get("from_email", "blog@victorkirpruto.dev")
-                self.from_name = resend_config.get("from_name", "Victor's Technical Blog")
-                logger.info("✅ Resend email service initialized")
-            else:
-                logger.warning("⚠️  RESEND_API_KEY not set.")
-                self.service = None
-        # Initialize SendGrid if configured
-        elif service == "sendgrid" and HAS_SENDGRID:
-            sendgrid_config = email_config.get("sendgrid", {})
-            api_key = os.getenv("SENDGRID_API_KEY") or sendgrid_config.get("api_key")
-            if api_key:
-                self.sg = SendGridAPIClient(api_key)
-                self.service = "sendgrid"
-                logger.info("✅ SendGrid email service initialized")
-            else:
-                logger.warning("⚠️  SENDGRID_API_KEY not set.")
-                self.service = None
+        # SMTP settings
+        self.smtp_host = os.getenv("SMTP_HOST")
+        self.smtp_port = int(os.getenv("SMTP_PORT", 587))
+        self.smtp_user = os.getenv("SMTP_USER")
+        self.smtp_password = os.getenv("SMTP_PASSWORD")
+        self.smtp_encryption = os.getenv("SMTP_ENCRYPTION", "tls").lower()
+
+        if self.resend_api_key:
+            self.service = "resend"
+            logger.info("✅ Resend email service prioritized")
+        elif self.smtp_host and self.smtp_user and self.smtp_password:
+            self.service = "smtp"
+            logger.info("✅ SMTP email service prioritized")
         else:
-            logger.warning("⚠️  Email service not properly configured or library not installed.")
             self.service = None
+            logger.warning("⚠️  No email service configured correctly in .env")
 
     def _init_database(self):
         """Initialize subscriber database"""
@@ -312,7 +302,7 @@ class EmailNotifier:
         <div class="footer">
             <p>&copy; 2024-2026 {self.config['author']['name']}. All rights reserved.</p>
             <p style="margin-top: 10px;">
-                <a href="https://victorkirpruto.dev/unsubscribe?token=UNSUBSCRIBE_TOKEN">Unsubscribe</a>
+                <a href="UNSUBSCRIBE_LINK">Unsubscribe</a>
             </p>
         </div>
     </div>
@@ -355,20 +345,37 @@ class EmailNotifier:
 
     def send_new_post_notification(self, post_data: Dict):
         """Send notification to all subscribers about new post"""
-        subscribers = self.get_active_subscribers()
+        # Get subscribers with their tokens
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.execute("""
+                    SELECT email, unsubscribe_token FROM subscribers WHERE active = 1 AND verified = 1
+                """)
+                subscribers = cursor.fetchall()
+        except Exception as e:
+            logger.error(f"❌ Error fetching subscribers: {e}")
+            return
         
         if not subscribers:
             logger.warning("⚠️  No active subscribers to notify")
             return
         
         subject = f"📝 New: {post_data['title']}"
-        html_content = self._generate_html_email(post_data)
+        template_html = self._generate_html_email(post_data)
         
         logger.info(f"📧 Sending notification to {len(subscribers)} subscribers...")
         
         success_count = 0
-        for email in subscribers:
+        import hashlib
+        for email, token in subscribers:
             try:
+                # Fallback token if none exists
+                if not token:
+                    token = hashlib.sha256(email.encode()).hexdigest()[:16]
+                
+                unsubscribe_url = f"https://victorkirpruto.dev/unsubscribe.html?token={token}&email={email}"
+                html_content = template_html.replace("UNSUBSCRIBE_LINK", unsubscribe_url)
+                
                 self._send_email(email, subject, html_content)
                 success_count += 1
             except Exception as e:
@@ -376,16 +383,24 @@ class EmailNotifier:
         
         logger.info(f"✅ Sent {success_count}/{len(subscribers)} notifications")
 
-    def _send_email(self, to_email: str, subject: str, html_content: str):
-        """Send email (routes to Resend, SendGrid, or SMTP)"""
-        if self.service == "resend":
-            self._send_via_resend(to_email, subject, html_content)
-        elif self.service == "sendgrid":
-            self._send_via_sendgrid(to_email, subject, html_content)
-        else:
-            self._send_via_smtp(to_email, subject, html_content)
+    def _send_email(self, to_email: str, subject: str, html_content: str) -> bool:
+        """Send email with automatic fallback"""
+        success = False
+        
+        # Try Resend first
+        if self.resend_api_key:
+            success = self._send_via_resend(to_email, subject, html_content)
+            if success:
+                return True
+        
+        # Fallback to SMTP
+        if not success and self.smtp_host:
+            logger.info(f"🔄 Falling back to SMTP for {to_email}")
+            return self._send_via_smtp(to_email, subject, html_content)
+        
+        return False
 
-    def _send_via_resend(self, to_email: str, subject: str, html_content: str):
+    def _send_via_resend(self, to_email: str, subject: str, html_content: str) -> bool:
         """Send via Resend API"""
         try:
             url = "https://api.resend.com/emails"
@@ -405,50 +420,54 @@ class EmailNotifier:
             
             if response.status_code in [200, 201]:
                 message_id = response.json().get("id", "")
-                logger.info(f"✅ Email sent via Resend to {to_email} (ID: {message_id})")
-                
-                # Log email send
-                with sqlite3.connect(self.db_path) as conn:
-                    conn.execute("""
-                        INSERT INTO email_logs (email, subject, status, message_id)
-                        VALUES (?, ?, ?, ?)
-                    """, (to_email, subject, "sent", message_id))
-                    conn.commit()
+                logger.info(f"✅ Email sent via Resend to {to_email}")
+                self._log_email(to_email, subject, "sent_resend", message_id)
+                return True
             else:
                 logger.error(f"❌ Resend error ({response.status_code}): {response.text}")
+                return False
         except Exception as e:
             logger.error(f"❌ Resend API error: {e}")
+            return False
 
-    def _send_via_sendgrid(self, to_email: str, subject: str, html_content: str):
-        """Send via SendGrid"""
-        try:
-            message = Mail(
-                from_email=self.config['email'].get('sendgrid', {}).get('from_email', 'blog@victorkirpruto.dev'),
-                to_emails=to_email,
-                subject=subject,
-                html_content=html_content
-            )
-            
-            response = self.sg.send(message)
-            
-            if response.status_code in [200, 201, 202]:
-                logger.info(f"✅ Email sent via SendGrid to {to_email}")
-            else:
-                logger.error(f"❌ SendGrid error: {response.status_code}")
-        except Exception as e:
-            logger.error(f"❌ SendGrid error: {e}")
-
-    def _send_via_smtp(self, to_email: str, subject: str, html_content: str):
-        """Send via SMTP (fallback)"""
+    def _send_via_smtp(self, to_email: str, subject: str, html_content: str) -> bool:
+        """Send via SMTP"""
         try:
             import smtplib
             from email.mime.text import MIMEText
             from email.mime.multipart import MIMEMultipart
             
-            # This is a placeholder - requires SMTP configuration
-            logger.warning(f"⚠️  SMTP not configured. Email to {to_email} would be sent here.")
+            msg = MIMEMultipart()
+            msg['From'] = f"{self.from_name} <{self.smtp_user}>"
+            msg['To'] = to_email
+            msg['Subject'] = subject
+            
+            msg.attach(MIMEText(html_content, 'html'))
+            
+            with smtplib.SMTP(self.smtp_host, self.smtp_port) as server:
+                if self.smtp_encryption == "tls":
+                    server.starttls()
+                server.login(self.smtp_user, self.smtp_password)
+                server.send_message(msg)
+                
+            logger.info(f"✅ Email sent via SMTP to {to_email}")
+            self._log_email(to_email, subject, "sent_smtp")
+            return True
         except Exception as e:
             logger.error(f"❌ SMTP error: {e}")
+            return False
+
+    def _log_email(self, email: str, subject: str, status: str, message_id: str = ""):
+        """Log email to database"""
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                conn.execute("""
+                    INSERT INTO email_logs (email, subject, status, message_id)
+                    VALUES (?, ?, ?, ?)
+                """, (email, subject, status, message_id))
+                conn.commit()
+        except Exception as e:
+            logger.error(f"❌ Error logging email: {e}")
 
     def get_stats(self) -> Dict:
         """Get email statistics"""

@@ -152,7 +152,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
+    padding: 20px 72px;
     background: transparent;
     transition: background 0.3s ease;
     gap: 20px;
@@ -403,10 +403,10 @@
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* ── Sections ── */
-  section { padding: 96px 48px; }
-  @media (max-width: 1024px) { section { padding: 64px 32px; } }
-  @media (max-width: 720px) { section { padding: 48px 20px; } }
-  @media (max-width: 480px) { section { padding: 32px 16px; } }
+  section { padding: 96px 72px; }
+  @media (max-width: 1024px) { section { padding: 64px 48px; } }
+  @media (max-width: 720px) { section { padding: 48px 32px; } }
+  @media (max-width: 480px) { section { padding: 32px 20px; } }
   .section-label {
     font-family: 'DM Mono', monospace; font-size: 10px;
     letter-spacing: 0.25em; text-transform: uppercase;
@@ -588,7 +588,7 @@
 
   /* ── Footer ── */
   footer {
-    background: transparent; padding: 24px 48px;
+    background: transparent; padding: 24px 72px;
     border-top: 1px solid var(--rule);
     display: flex; justify-content: space-between; align-items: center;
     color: var(--muted);
@@ -750,7 +750,6 @@
       <a href="#experience">Experience</a>
       <a href="#about">About</a>
       <a href="#send-message">Contact</a>
-      <a href="dashboard/hub.html" style="color: var(--accent); font-weight: 600; background: rgba(255, 75, 43, 0.1); padding: 6px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 6px;"><i class="fas fa-chart-line"></i> Dashboard Hub</a>
       <a href="assets/Victor_Kipruto_Resume.pdf" download style="color: var(--accent); font-weight: 600;">Download CV</a>
     </div>
     <a class="nav-github" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub">
@@ -857,9 +856,52 @@
 </section>
 
 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">// 03</p>
+  <h2 class="section-title">Learning & Project Experience</h2>
+  <div class="experience-grid">
+    <div class="experience-card reveal">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Final-Year BSc Data Science Student</h3>
+          <p class="experience-company">The Cooperative University of Kenya</p>
+        </div>
+        <p class="experience-date">2022 - Present</p>
+      </div>
+      <p class="experience-desc">Over the past year, I've specialized in data engineering and have built production-grade data systems through hands-on projects. Designed and implemented scalable ETL pipelines, real-time stream processing with Kafka, and warehouse infrastructure. These projects have equipped me with deep technical skills in Python, SQL, Airflow orchestration, and cloud architecture.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Apache Airflow</span>
+        <span class="skill-tag">Kafka</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">ETL/ELT</span>
+      </div>
+    </div>
+    <div class="experience-card reveal" style="transition-delay:0.1s">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Hands-On Project Development</h3>
+          <p class="experience-company">Building Real-World Data Infrastructure</p>
+        </div>
+        <p class="experience-date">Last 12 Months</p>
+      </div>
+      <p class="experience-desc">Completed 5 major projects involving data pipeline design, cloud ETL systems, real-time transaction streaming, and warehouse optimization. Each project has significantly strengthened my understanding of production systems, best practices, and scalable architecture. I'm committed to continuous learning, eager to gain from experienced professionals, and passionate about building reliable data systems that drive organizational value.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Cloud Architecture</span>
+        <span class="skill-tag">System Design</span>
+        <span class="skill-tag">CI/CD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- SKILLS -->
 <section id="skills">
-  <p class="section-label">// 03</p>
+  <p class="section-label">// 04</p>
   <h2 class="section-title">Technical Skills</h2>
   <div class="skills-wrap">
     <div class="skill-pill">Apache Airflow</div>
@@ -889,7 +931,7 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <p class="section-label">// 04</p>
+  <p class="section-label">// 05</p>
   <div class="projects-wrap">
     <div class="projects-header">
       <h2 class="section-title">Projects <span class="project-count">(5)</span></h2>
@@ -982,7 +1024,7 @@
 
 <!-- BLOG -->
 <section id="blog">
-  <p class="section-label">// 05</p>
+  <p class="section-label">// 06</p>
   <h2 class="section-title">Technical Blog</h2>
   <div class="blog-grid">
     <div class="blog-card reveal">
@@ -1012,7 +1054,7 @@
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <p class="section-label">// 05</p>
+  <p class="section-label">// 07</p>
   <h2 class="section-title">Testimonials & Feedback</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px">
     <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
@@ -1032,49 +1074,6 @@
     </div>
   </div>
 </section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <p class="section-label">// 06</p>
-  <h2 class="section-title">Learning & Project Experience</h2>
-  <div class="experience-grid">
-    <div class="experience-card reveal">
-      <div class="experience-header">
-        <div>
-          <h3 class="experience-title">Final-Year BSc Data Science Student</h3>
-          <p class="experience-company">The Cooperative University of Kenya</p>
-        </div>
-        <p class="experience-date">2022 - Present</p>
-      </div>
-      <p class="experience-desc">Over the past year, I've specialized in data engineering and have built production-grade data systems through hands-on projects. Designed and implemented scalable ETL pipelines, real-time stream processing with Kafka, and warehouse infrastructure. These projects have equipped me with deep technical skills in Python, SQL, Airflow orchestration, and cloud architecture.</p>
-      <div class="experience-skills">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Apache Airflow</span>
-        <span class="skill-tag">Kafka</span>
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">ETL/ELT</span>
-      </div>
-    </div>
-    <div class="experience-card reveal" style="transition-delay:0.1s">
-      <div class="experience-header">
-        <div>
-          <h3 class="experience-title">Hands-On Project Development</h3>
-          <p class="experience-company">Building Real-World Data Infrastructure</p>
-        </div>
-        <p class="experience-date">Last 12 Months</p>
-      </div>
-      <p class="experience-desc">Completed 5 major projects involving data pipeline design, cloud ETL systems, real-time transaction streaming, and warehouse optimization. Each project has significantly strengthened my understanding of production systems, best practices, and scalable architecture. I'm committed to continuous learning, eager to gain from experienced professionals, and passionate about building reliable data systems that drive organizational value.</p>
-      <div class="experience-skills">
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Cloud Architecture</span>
-        <span class="skill-tag">System Design</span>
-        <span class="skill-tag">CI/CD</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- GITHUB ACTIVITY -->
 <section id="github-activity">

@@ -1,0 +1,11 @@
+{
+  "last_generated": "2026-06-09T03:12:42.902384",
+  "total_generated": 5,
+  "used_topics": [
+    "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
+    "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+    "Production-Grade Python Testing Strategies for Data Pipelines",
+    "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
+    "Designing a Modern Data Lakehouse: From Architecture to Implementation"
+  ]
+}

@@ -43,13 +43,14 @@ class KeywordResearcher:
         """Estimate keyword metrics"""
         # Simulated metrics based on keyword characteristics
         base_search_volume = len(keyword.split()) * 100
+        difficulty = self._calculate_difficulty(keyword)
 
         metrics = {
             "estimated_monthly_searches": base_search_volume,
-            "keyword_difficulty": self._calculate_difficulty(keyword),
+            "keyword_difficulty": difficulty,
             "search_intent": self._classify_intent(keyword),
             "cpc_estimate": "$2-5" if len(keyword) > 15 else "$5-15",
-            "opportunity_score": self._calculate_opportunity(keyword),
+            "opportunity_score": max(0, 100 - difficulty),
             "competition_level": "high" if base_search_volume > 1000 else "medium" if base_search_volume > 100 else "low"
         }
         return metrics
@@ -82,8 +83,7 @@ class KeywordResearcher:
 
     def _calculate_opportunity(self, keyword: str) -> int:
         """Calculate SEO opportunity score (0-100)"""
-        metrics = self._estimate_metrics(keyword)
-        difficulty = metrics["keyword_difficulty"]
+        difficulty = self._calculate_difficulty(keyword)
         # Lower difficulty = higher opportunity
         opportunity = max(0, 100 - difficulty)
         return opportunity

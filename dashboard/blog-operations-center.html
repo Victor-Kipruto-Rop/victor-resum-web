@@ -247,6 +247,229 @@
     .btn-export { background: var(--accent-secondary); color: white; border-color: var(--accent-secondary); }
     .btn-refresh { background: var(--accent-tertiary); color: white; border-color: var(--accent-tertiary); }
     .btn-logout { background: var(--accent-danger); color: white; border-color: var(--accent-danger); }
+    .btn-deploy {
+      background: linear-gradient(135deg, var(--accent-primary), #ff6d3b);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 24px rgba(255, 75, 43, 0.3);
+    }
+    .btn-deploy:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(255, 75, 43, 0.5);
+    }
+    .btn-deploy:active { transform: translateY(0); }
+    .btn-deploy:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── MODAL ── */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    .modal.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.15);
+    }
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--bg-tertiary);
+      color: var(--text-muted);
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      background: var(--accent-danger);
+      border-color: var(--accent-danger);
+      color: white;
+      transform: rotate(90deg);
+    }
+    .modal-body {
+      padding: 32px;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      padding: 24px 32px;
+      border-top: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .modal-footer .btn {
+      min-width: 140px;
+    }
+
+    /* ── CHECKBOX GROUP ── */
+    .export-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .export-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .export-option:hover {
+      border-color: var(--accent-secondary);
+      background: rgba(59, 130, 246, 0.06);
+    }
+    .export-option input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent-secondary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .export-option label {
+      color: var(--text-secondary);
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 600;
+      flex: 1;
+    }
+    .export-option .option-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ── FORM ERROR ── */
+    .form-error {
+      color: var(--error-color);
+      font-size: 13px;
+      margin-top: 16px;
+      min-height: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* ── SPINNER ── */
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── ALERTS (extra variants) ── */
+    .alert-success {
+      background: rgba(16, 185, 129, 0.1);
+      border-left-color: var(--accent-tertiary);
+      color: #34d399;
+    }
+    .alert-warning {
+      background: rgba(245, 158, 11, 0.1);
+      border-left-color: var(--accent-warning);
+      color: #fbbf24;
+    }
+
+    /* ── STATUS DOTS ── */
+    .status-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .status-dot.online { background: var(--accent-tertiary); box-shadow: 0 0 8px rgba(16, 185, 129, 0.5); }
+    .status-dot.offline { background: var(--accent-danger); box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
+
+    /* ── PUBLISH STATUS ── */
+    .publish-status {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+      display: none;
+    }
+    .publish-status.visible { display: block; }
+
+    /* ── TOAST ANIMATIONS ── */
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* ── SECTIONS ── */
     .section {
@@ -747,6 +970,22 @@
         </nav>
 
         <nav class="nav-section">
+          <div class="nav-label">Communication</div>
+          <a class="nav-item" data-section="notifications">
+            <i class="fas fa-bell"></i>
+            <span>Notifications</span>
+          </a>
+          <a class="nav-item" data-section="autopost">
+            <i class="fas fa-clock"></i>
+            <span>Auto-Post</span>
+          </a>
+          <a class="nav-item" data-section="subscribers">
+            <i class="fas fa-users"></i>
+            <span>Subscribers</span>
+          </a>
+        </nav>
+
+        <nav class="nav-section">
           <div class="nav-label">Systems</div>
           <a class="nav-item" data-section="automation">
             <i class="fas fa-robot"></i>
@@ -778,8 +1017,8 @@
             <div class="header-subtitle" id="sectionSubtitle">Managing the data lifecycle of your technical blog</div>
           </div>
           <div class="header-actions">
-            <button class="btn btn-refresh" onclick="refreshDashboard()">
-              <i class="fas fa-rotate"></i> Sync
+            <button class="btn btn-refresh" onclick="deployContentSync()">
+              <i class="fas fa-rotate"></i> Deploy Content Sync
             </button>
             <button class="btn btn-export" onclick="showExportModal()">
               <i class="fas fa-file-export"></i> Export
@@ -1017,6 +1256,16 @@
           <!-- Multi-Platform Push -->
           <div style="padding-top: 64px; border-top: 2px solid var(--border-color);">
             <h2 class="section-title"><i class="fas fa-share-nodes"></i> Omnichannel Publishing</h2>
+
+            <!-- Publish Status -->
+            <div id="publishStatus" class="publish-status">
+              <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                <div class="spinner" style="margin: 0; width: 24px; height: 24px;"></div>
+                <strong style="font-size: 16px;">Deploying Content...</strong>
+              </div>
+              <div id="publishProgress"></div>
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px;">
               
               <div style="background: var(--bg-tertiary); border: 2px solid var(--border-color); border-radius: 20px; padding: 48px; box-shadow: var(--shadow-sm);">
@@ -1027,19 +1276,19 @@
 
                 <div style="display: grid; gap: 20px;">
                   <label class="nav-item" style="justify-content: flex-start; background: rgba(0,0,0,0.2);">
-                    <input type="checkbox" id="platform-twitter" class="platform-checkbox" style="width: 24px; height: 24px;">
+                    <input type="checkbox" id="platform-twitter" class="platform-checkbox" value="twitter" style="width: 24px; height: 24px;">
                     <i class="fab fa-twitter" style="color: #1DA1F2;"></i> <span>Twitter / X</span>
                   </label>
                   <label class="nav-item" style="justify-content: flex-start; background: rgba(0,0,0,0.2);">
-                    <input type="checkbox" id="platform-linkedin" class="platform-checkbox" style="width: 24px; height: 24px;">
+                    <input type="checkbox" id="platform-linkedin" class="platform-checkbox" value="linkedin" style="width: 24px; height: 24px;">
                     <i class="fab fa-linkedin" style="color: #0A66C2;"></i> <span>LinkedIn Pro</span>
                   </label>
                   <label class="nav-item" style="justify-content: flex-start; background: rgba(0,0,0,0.2);">
-                    <input type="checkbox" id="platform-medium" class="platform-checkbox" style="width: 24px; height: 24px;">
+                    <input type="checkbox" id="platform-medium" class="platform-checkbox" value="medium" style="width: 24px; height: 24px;">
                     <i class="fab fa-medium"></i> <span>Medium Story</span>
                   </label>
                   <label class="nav-item" style="justify-content: flex-start; background: rgba(0,0,0,0.2);">
-                    <input type="checkbox" id="platform-devto" class="platform-checkbox" style="width: 24px; height: 24px;">
+                    <input type="checkbox" id="platform-devto" class="platform-checkbox" value="devto" style="width: 24px; height: 24px;">
                     <i class="fas fa-code"></i> <span>Dev.to Community</span>
                   </label>
                 </div>
@@ -1051,9 +1300,183 @@
                   <h3 style="font-size: 24px; margin-bottom: 12px;">Final Deployment</h3>
                   <p style="color: var(--text-muted); max-width: 300px; margin: 0 auto 32px;">Push your content to the selected high-traffic platforms instantly.</p>
                 </div>
-                <button onclick="publishPost()" class="form-submit" style="max-width: 300px;">Deploy Content</button>
+                <button onclick="publishPost()" class="form-submit" style="max-width: 300px;">
+                  <i class="fas fa-rocket"></i> Deploy Content Sync
+                </button>
               </div>
             </div>
+          </div>
+
+          <!-- Publish History -->
+          <div style="padding-top: 64px; border-top: 2px solid var(--border-color); margin-top: 64px;">
+            <h2 class="section-title"><i class="fas fa-clock-rotate-left"></i> Publish History</h2>
+            <div id="publishHistory" class="item-list">
+              <div style="text-align: center; color: var(--text-muted); padding: 32px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-color);">No posts published yet</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Notifications Center -->
+        <section id="notifications" class="section">
+          <div class="kpi-grid" id="notifKPIs"></div>
+          
+          <div style="display: flex; gap: 16px; margin-bottom: 32px;">
+            <button class="btn btn-export" onclick="showSendNotificationModal()" style="padding: 14px 28px;">
+              <i class="fas fa-paper-plane"></i> Send Custom Notification
+            </button>
+          </div>
+          
+          <h2 class="section-title"><i class="fas fa-gear"></i> Notification Settings</h2>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px;">
+            <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
+              <h3 style="font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;"><i class="fas fa-envelope" style="color: var(--accent-secondary);"></i> Email Notifications</h3>
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <label class="export-option">
+                  <input type="checkbox" id="notif-welcome" checked onchange="saveNotifSettings()">
+                  <label for="notif-welcome">Welcome Email (new subscribers)</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="notif-newpost" checked onchange="saveNotifSettings()">
+                  <label for="notif-newpost">New Post Alerts (all subscribers)</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="notif-admin" checked onchange="saveNotifSettings()">
+                  <label for="notif-admin">Admin Post Notifications</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="notif-digest" checked onchange="saveNotifSettings()">
+                  <label for="notif-digest">Weekly Digest Emails</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="notif-trending" onchange="saveNotifSettings()">
+                  <label for="notif-trending">Trending Content Alerts</label>
+                </label>
+              </div>
+            </div>
+            <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
+              <h3 style="font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;"><i class="fas fa-share-nodes" style="color: var(--accent-tertiary);"></i> Social Auto-Post</h3>
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <label class="export-option">
+                  <input type="checkbox" id="autopost-twitter" checked onchange="saveNotifSettings()">
+                  <label for="autopost-twitter"><i class="fab fa-twitter" style="color: #1DA1F2; margin-right: 8px;"></i>Twitter / X</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="autopost-linkedin" checked onchange="saveNotifSettings()">
+                  <label for="autopost-linkedin"><i class="fab fa-linkedin" style="color: #0A66C2; margin-right: 8px;"></i>LinkedIn</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="autopost-medium" onchange="saveNotifSettings()">
+                  <label for="autopost-medium"><i class="fab fa-medium" style="margin-right: 8px;"></i>Medium</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="autopost-devto" checked onchange="saveNotifSettings()">
+                  <label for="autopost-devto"><i class="fas fa-code" style="margin-right: 8px;"></i>Dev.to</label>
+                </label>
+                <label class="export-option">
+                  <input type="checkbox" id="autopost-telegram" checked onchange="saveNotifSettings()">
+                  <label for="autopost-telegram"><i class="fab fa-telegram" style="color: #0088cc; margin-right: 8px;"></i>Telegram</label>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="section-title"><i class="fas fa-paper-plane"></i> Notification History</h2>
+          <div id="notifHistory" class="item-list"></div>
+        </section>
+
+        <!-- Auto-Post Scheduler -->
+        <section id="autopost" class="section">
+          <div class="kpi-grid" id="autopostKPIs"></div>
+          
+          <div style="background: linear-gradient(135deg, rgba(255, 75, 43, 0.15), rgba(59, 130, 246, 0.1)); border: 2px solid var(--accent-primary); border-radius: 20px; padding: 48px; margin-bottom: 48px; box-shadow: var(--shadow);">
+            <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 32px;">
+              <div style="background: var(--accent-primary); width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i class="fas fa-clock" style="font-size: 32px; color: white;"></i>
+              </div>
+              <div>
+                <h2 style="font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 4px;">24-Hour Auto-Post Cycle</h2>
+                <p style="color: var(--text-secondary); font-size: 15px;">Blog posts are automatically generated, published, and distributed every 24 hours</p>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+              <div style="background: rgba(0,0,0,0.2); padding: 24px; border-radius: 12px; border: 1px solid var(--border-color);">
+                <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">Content Generation</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="status-dot online"></span>
+                  <strong>Active</strong>
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">AI generates posts every 24h based on trending topics</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.2); padding: 24px; border-radius: 12px; border: 1px solid var(--border-color);">
+                <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">Social Distribution</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="status-dot online"></span>
+                  <strong>Active</strong>
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Auto-posts to Twitter, LinkedIn, Dev.to, Telegram</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.2); padding: 24px; border-radius: 12px; border: 1px solid var(--border-color);">
+                <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">Email Blast</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="status-dot online"></span>
+                  <strong>Active</strong>
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Sends new post emails + admin alerts automatically</div>
+              </div>
+            </div>
+            <div style="margin-top: 32px; display: flex; gap: 16px;">
+              <button onclick="triggerAutoPostCycle()" class="btn btn-refresh" style="padding: 14px 28px;">
+                <i class="fas fa-play"></i> Run Cycle Now
+              </button>
+              <button onclick="scheduleAutoPost()" class="btn btn-export" style="padding: 14px 28px;">
+                <i class="fas fa-calendar-check"></i> Schedule Next
+              </button>
+            </div>
+          </div>
+
+          <h2 class="section-title"><i class="fas fa-list-check"></i> Scheduled Posts Queue</h2>
+          <div id="scheduledPosts" class="item-list"></div>
+          
+          <h2 class="section-title"><i class="fas fa-clock-rotate-left"></i> Auto-Post History</h2>
+          <div id="autopostHistory" class="item-list"></div>
+        </section>
+
+        <!-- Subscribers Management -->
+        <section id="subscribers" class="section">
+          <div class="kpi-grid" id="subKPIs"></div>
+          
+          <h2 class="section-title"><i class="fas fa-user-plus"></i> Add New Subscriber</h2>
+          <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px; margin-bottom: 48px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 20px; align-items: end;">
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Name</label>
+                <input type="text" id="subName" class="form-input" placeholder="Subscriber name">
+              </div>
+              <div class="form-group" style="margin: 0;">
+                <label class="form-label">Email</label>
+                <input type="email" id="subEmail" class="form-input" placeholder="subscriber@email.com">
+              </div>
+              <button onclick="addSubscriber()" class="btn btn-refresh" style="height: 56px; padding: 0 28px;">
+                <i class="fas fa-plus"></i> Add & Send Welcome
+              </button>
+            </div>
+          </div>
+
+          <h2 class="section-title"><i class="fas fa-users"></i> All Subscribers</h2>
+          <div class="data-table-container">
+            <table class="data-table" id="subTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Joined</th>
+                  <th>Welcome Sent</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="subTableBody"></tbody>
+            </table>
           </div>
         </section>
 
@@ -1091,7 +1514,7 @@
   <div id="exportModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Export Intelligence Report</h2>
+        <h2 class="modal-title"><i class="fas fa-file-export" style="color: var(--accent-secondary); margin-right: 12px;"></i>Export Intelligence Report</h2>
         <button class="modal-close" onclick="closeExportModal()">&times;</button>
       </div>
       <div class="modal-body">
@@ -1103,10 +1526,33 @@
             <option value="xlsx">Excel Workbook (Management)</option>
           </select>
         </div>
+        <div class="form-group">
+          <label class="form-label">Data to Include</label>
+          <div class="export-options">
+            <div class="export-option">
+              <input type="checkbox" id="export-inventory" checked>
+              <label for="export-inventory">
+                Blog Inventory
+                <div class="option-desc">All articles, metadata, and status information</div>
+              </label>
+            </div>
+            <div class="export-option">
+              <input type="checkbox" id="export-conversions" checked>
+              <label for="export-conversions">
+                Analytics & Conversions
+                <div class="option-desc">Views, clicks, engagement scores, and conversion metrics</div>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button class="btn" onclick="closeExportModal()">Cancel</button>
-        <button class="btn btn-export" onclick="exportData()">Generate Report</button>
+        <button class="btn" onclick="closeExportModal()">
+          <i class="fas fa-xmark"></i> Cancel
+        </button>
+        <button class="btn btn-export" onclick="exportData()">
+          <i class="fas fa-download"></i> Generate Report
+        </button>
       </div>
     </div>
   </div>

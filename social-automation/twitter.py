@@ -5,6 +5,7 @@ Twitter/X Poster - Post blog content to Twitter/X
 
 import json
 import logging
+import os
 from datetime import datetime
 from typing import Dict
 
@@ -15,8 +16,20 @@ class TwitterPoster:
     def __init__(self, config: Dict):
         """Initialize Twitter poster"""
         self.config = config.get("platforms", {}).get("twitter", {})
+        self._resolve_env_vars(self.config)
         self.logger = logging.getLogger(__name__)
         self.max_length = 280
+
+    def _resolve_env_vars(self, obj):
+        """Resolve ${ENV_VAR} references in config"""
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                obj[k] = self._resolve_env_vars(v)
+        elif isinstance(obj, list):
+            return [self._resolve_env_vars(item) for item in obj]
+        elif isinstance(obj, str) and obj.startswith("${") and obj.endswith("}"):
+            return os.getenv(obj[2:-1], obj)
+        return obj
 
     def post(self, content: Dict, metadata: Dict) -> Dict:
         """

@@ -398,15 +398,68 @@
                         python3 generate.py<br>
                         python3 generate.py --count 3
                     </div>
-                    <a href="javascript:void(0)" onclick="generatePost()" class="link-btn" style="margin-top: 12px;">
-                        <i class="fas fa-play"></i> Generate Post
-                    </a>
-                </div>
-            </div>
+                    <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;">
+                        <a href="javascript:void(0)" onclick="generatePost()" class="link-btn">
+                            <i class="fas fa-play"></i> Generate
+                        </a>
+                        <a href="javascript:void(0)" onclick="generatePost(true)" class="link-btn" style="background: var(--blue); border-color: var(--blue);">
+                            <i class="fas fa-bolt"></i> Use Trend
+                        </a>
+                    </div>
+                    </div>
+                    </div>
 
-            <!-- Email Notifications Card -->
-            <div class="card">
-                <div class="card-title">
+                    <!-- Social Dispatch Card -->
+                    <div class="card">
+                    <div class="card-title">
+                    <i class="fas fa-share-nodes"></i>
+                    Social Dispatch
+                    </div>
+                    <div class="card-content">
+                    <p>Cross-post content to LinkedIn, Twitter, Dev.to, and Medium</p>
+                    <div class="commands">
+                        python3 dispatcher.py<br>
+                        --dispatch-metadata latest.json
+                    </div>
+                    <a href="javascript:void(0)" onclick="dispatchLatest()" class="link-btn" style="margin-top: 12px;">
+                        <i class="fas fa-paper-plane"></i> Dispatch Latest
+                    </a>
+                    </div>
+                    </div>
+
+                    <!-- Email Notifications Card -->
+                    ...
+                    <!-- Trends Section -->
+                    <div class="features" id="trends-section">
+                    <h2>📊 Tech Trends & Research</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                    <!-- Trending Topics -->
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--rule); border-radius: 12px; padding: 24px;">
+                    <h3 style="font-family: 'Syne', sans-serif; margin-bottom: 20px; font-size: 18px;">🔥 Trending Technologies</h3>
+                    <div id="trends-list" style="display: flex; flex-direction: column; gap: 12px;">
+                        <p style="color: var(--muted); font-size: 13px;">Click "Load Trends" to see what's hot...</p>
+                    </div>
+                    <a href="javascript:void(0)" onclick="loadTrends()" class="link-btn" style="margin-top: 20px; background: transparent; color: var(--accent); width: 100%; text-align: center;">
+                        <i class="fas fa-sync"></i> Load Trends
+                    </a>
+                    </div>
+
+                    <!-- Keyword Researcher -->
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--rule); border-radius: 12px; padding: 24px;">
+                    <h3 style="font-family: 'Syne', sans-serif; margin-bottom: 20px; font-size: 18px;">🔍 SEO Keyword Research</h3>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" id="keyword-input" placeholder="Enter keyword (e.g. Apache Airflow)" style="flex: 1; padding: 10px; border: 1px solid var(--rule); border-radius: 4px; background: transparent; color: var(--ink); font-family: 'DM Mono'; font-size: 13px;">
+                        <button onclick="researchKeyword()" class="link-btn" style="padding: 10px 20px;">Analyze</button>
+                    </div>
+                    <div id="keyword-results" style="font-size: 12px; line-height: 1.6;">
+                        <p style="color: var(--muted);">Research keywords to see opportunity scores and SEO insights.</p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+                    <!-- Features Section -->
+
                     <i class="fas fa-envelope"></i>
                     Email Notifications
                 </div>
@@ -578,8 +631,10 @@
     </div>
 
     <script>
+        const API_BASE = 'http://localhost:5000/api';
+
         // Generate Post Function
-        async function generatePost() {
+        async function generatePost(useTrend = false) {
             const btn = event.target.closest('.link-btn');
             const originalText = btn.innerHTML;
             
@@ -587,24 +642,118 @@
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
                 btn.disabled = true;
                 
-                // Call the Python script
-                const response = await fetch('/api/generate-post', { method: 'POST' });
+                const response = await fetch(`${API_BASE}/generate-post`, { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ use_trend: useTrend })
+                });
+                
+                const data = await response.json();
                 
                 if (response.ok) {
-                    btn.innerHTML = '<i class="fas fa-check"></i> Post Generated!';
+                    btn.innerHTML = '<i class="fas fa-check"></i> Success!';
                     setTimeout(() => {
                         btn.innerHTML = originalText;
                         btn.disabled = false;
                     }, 3000);
-                    alert('Blog post generated successfully! Check blog/posts.json for the new post.');
+                    alert(`Blog post "${data.title}" generated successfully!\n\nFiles saved:\n- ${data.files.markdown}\n- ${data.files.metadata}`);
                 } else {
-                    throw new Error('Generation failed');
+                    throw new Error(data.message || 'Generation failed');
                 }
             } catch (error) {
                 btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
                 console.error('Generation error:', error);
-                // Fallback: show instructions
-                alert('To generate posts, run:\npython3 blog-ai/generate.py');
+                alert(`Error: ${error.message}`);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Load Trends Function
+        async function loadTrends() {
+            const list = document.getElementById('trends-list');
+            list.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing trends...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/trends`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    list.innerHTML = '';
+                    data.data.trending_technologies.slice(0, 5).forEach(tech => {
+                        const div = document.createElement('div');
+                        div.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 4px;';
+                        div.innerHTML = `
+                            <span><strong>${tech.name}</strong> <small style="color: var(--muted)">(${tech.category})</small></span>
+                            <span style="color: ${tech.trend === 'hot' ? 'var(--accent)' : 'var(--blue)'}; font-size: 10px; font-weight: bold; text-transform: uppercase;">${tech.trend}</span>
+                        `;
+                        list.appendChild(div);
+                    });
+                }
+            } catch (error) {
+                list.innerHTML = '<p style="color: var(--accent)">Error loading trends. Is API server running?</p>';
+            }
+        }
+
+        // Research Keyword Function
+        async function researchKeyword() {
+            const input = document.getElementById('keyword-input');
+            const results = document.getElementById('keyword-results');
+            const keyword = input.value.trim();
+            
+            if (!keyword) return;
+            
+            results.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Researching...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/research-keyword`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ keyword })
+                });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    results.innerHTML = `
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 4px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: var(--accent);">${data.metrics.opportunity_score}</div>
+                                <div style="font-size: 9px; text-transform: uppercase; color: var(--muted);">Opportunity Score</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 4px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: var(--blue);">${data.metrics.keyword_difficulty}</div>
+                                <div style="font-size: 9px; text-transform: uppercase; color: var(--muted);">Difficulty</div>
+                            </div>
+                        </div>
+                        <div style="color: var(--ink); font-weight: 600; margin-bottom: 5px;">AI Strategy:</div>
+                        <div style="color: var(--muted); margin-bottom: 10px;">${data.ai_insights.depth} content for ${data.ai_insights.audience}.</div>
+                        <div style="color: var(--ink); font-weight: 600; margin-bottom: 5px;">Related:</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            ${data.related_keywords.map(k => `<span style="background: var(--rule); padding: 2px 6px; border-radius: 3px; font-size: 10px;">${k}</span>`).join('')}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = '<p style="color: var(--accent)">Research failed.</p>';
+            }
+        }
+
+        // Dispatch Latest Function
+        async function dispatchLatest() {
+            const btn = event.target.closest('.link-btn');
+            const originalText = btn.innerHTML;
+            
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Dispatching...';
+                btn.disabled = true;
+                
+                // For simplicity, we assume we know the latest metadata path or have an endpoint that finds it
+                // Here we'll just show the action
+                alert('In a real scenario, this would find the latest generated post and dispatch it to all configured social platforms.');
+                
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            } catch (error) {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }

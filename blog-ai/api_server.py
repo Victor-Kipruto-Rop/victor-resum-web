@@ -12,19 +12,100 @@ import os
 from datetime import datetime
 import sys
 
-# Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent / "blog-ai"))
+# Add necessary directories to path for imports
+sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent / "social-automation"))
 
 from email_notifier import EmailNotifier
+from generate import BlogPostGenerator
+from trend_scraper import TrendScraper
+from dispatcher import SocialDispatcher
+from keyword_research import KeywordResearcher
 
 app = Flask(__name__)
 CORS(app)
 
-# Initialize email notifier
+# Initialize services
 email_notifier = EmailNotifier()
+blog_generator = BlogPostGenerator()
+trend_scraper = TrendScraper()
+social_dispatcher = SocialDispatcher()
+keyword_researcher = KeywordResearcher()
 
 # Configuration
 CONFIG_PATH = Path(__file__).parent / "blog-ai" / "config.json"
+
+@app.route('/api/generate-post', methods=['POST'])
+def generate_post():
+    """Generate a new AI blog post"""
+    try:
+        data = request.json or {}
+        title = data.get('title')
+        
+        # Use trend if requested
+        if not title and data.get('use_trend'):
+            report = trend_scraper.compile_trends_report()
+            if report['data']['trending_technologies']:
+                tech = report['data']['trending_technologies'][0]['name']
+                title = f"The Future of {tech}: A Data Engineer's Perspective"
+
+        title, content, metadata = blog_generator.generate_post(title)
+        md_file, meta_file = blog_generator.save_post(title, content, metadata)
+        
+        # Format for posts.json (simulating updates to posts.js)
+        post_entry = blog_generator.format_for_posts_js(title, content, metadata)
+        
+        return jsonify({
+            "status": "success",
+            "message": "Post generated successfully",
+            "title": title,
+            "files": {
+                "markdown": md_file,
+                "metadata": meta_file
+            },
+            "post_data": post_entry
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/trends', methods=['GET'])
+def get_trends():
+    """Get latest tech trends"""
+    try:
+        report = trend_scraper.compile_trends_report()
+        return jsonify(report), 200
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/research-keyword', methods=['POST'])
+def research_keyword():
+    """Research a keyword for SEO"""
+    try:
+        data = request.json
+        keyword = data.get('keyword', '')
+        if not keyword:
+            return jsonify({"status": "error", "message": "Keyword is required"}), 400
+            
+        analysis = keyword_researcher.analyze_keyword(keyword)
+        return jsonify(analysis), 200
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/dispatch-post', methods=['POST'])
+def dispatch_post():
+    """Dispatch a post to social media"""
+    try:
+        data = request.json
+        metadata_path = data.get('metadata_path')
+        
+        if not metadata_path:
+            return jsonify({"status": "error", "message": "Metadata path is required"}), 400
+            
+        results = social_dispatcher.dispatch_from_metadata(metadata_path)
+        return jsonify(results), 200
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route('/api/subscribe', methods=['POST'])
 def subscribe():

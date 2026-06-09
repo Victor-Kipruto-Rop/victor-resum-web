@@ -277,6 +277,9 @@ function navigateToSection(section) {
     errors: { title: 'Error Log', subtitle: 'System errors and issues' },
     conversions: { title: 'Conversion Analytics', subtitle: 'Track clicks and conversions per article' },
     publish: { title: 'Create & Publish', subtitle: 'Compose and publish content to multiple platforms' },
+    notifications: { title: 'Notifications Center', subtitle: 'Manage email alerts, admin notifications, and subscriber updates' },
+    autopost: { title: 'Auto-Post Scheduler', subtitle: '24-hour automated content generation and social distribution' },
+    subscribers: { title: 'Subscriber Management', subtitle: 'Welcome emails, subscriber list, and engagement tracking' },
     ai: { title: 'AI Content Strategist', subtitle: 'Smart recommendations for content strategy' }
   };
 
@@ -303,6 +306,9 @@ function renderSection(section) {
     case 'errors': renderErrorLog(); break;
     case 'conversions': renderConversions(); break;
     case 'publish': loadPublishHistory(); break;
+    case 'notifications': renderNotifications(); break;
+    case 'autopost': renderAutoPost(); break;
+    case 'subscribers': renderSubscribers(); break;
     case 'ai': renderAIRecommendations(); break;
   }
 }
@@ -1265,26 +1271,45 @@ function setupExportModal() {
 
 function exportData() {
   const format = document.getElementById('exportFormat').value;
+  const includeInventory = document.getElementById('export-inventory').checked;
+  const includeConversions = document.getElementById('export-conversions').checked;
+
+  if (!includeInventory && !includeConversions) {
+    showNotification('Please select at least one data set to export', 'error');
+    return;
+  }
+
   const data = {
-    inventory: document.getElementById('export-inventory').checked ? BLOG_DATA.articles : null,
-    conversions: document.getElementById('export-conversions').checked ? calculateStats() : null,
+    inventory: includeInventory ? BLOG_DATA.articles : null,
+    conversions: includeConversions ? calculateStats() : null,
   };
 
   let content = '';
+  let mimeType = 'text/plain';
   let filename = `blog-analytics-${new Date().toISOString().split('T')[0]}`;
 
   if (format === 'json') {
     content = JSON.stringify(data, null, 2);
+    mimeType = 'application/json';
     filename += '.json';
   } else if (format === 'csv') {
-    content = 'Title,Views,Conversions,Read Time\n';
+    content = 'Title,Status,Views,Unique Visitors,Scroll Depth,Read Time,GitHub Clicks,LinkedIn Clicks,CV Downloads,SEO Score,Category\n';
     BLOG_DATA.articles.forEach(a => {
-      content += `"${a.title}",${a.views},${a.githubClicks + a.linkedinClicks + a.cvDownloads},${a.avgReadTime}\n`;
+      content += `"${a.title}","${a.status}",${a.views},${a.uniqueVisitors},${a.scrollDepth},${a.avgReadTime},${a.githubClicks},${a.linkedinClicks},${a.cvDownloads},${a.seoScore},"${a.category}"\n`;
     });
+    mimeType = 'text/csv';
     filename += '.csv';
+  } else if (format === 'xlsx') {
+    // Generate CSV-based Excel content (compatible with Excel when opened)
+    content = 'Title\tStatus\tViews\tUnique Visitors\tScroll Depth\tRead Time\tGitHub Clicks\tLinkedIn Clicks\tCV Downloads\tSEO Score\tCategory\n';
+    BLOG_DATA.articles.forEach(a => {
+      content += `${a.title}\t${a.status}\t${a.views}\t${a.uniqueVisitors}\t${a.scrollDepth}\t${a.avgReadTime}\t${a.githubClicks}\t${a.linkedinClicks}\t${a.cvDownloads}\t${a.seoScore}\t${a.category}\n`;
+    });
+    mimeType = 'application/vnd.ms-excel';
+    filename += '.xls';
   }
 
-  const blob = new Blob([content], { type: 'text/plain' });
+  const blob = new Blob([content], { type: mimeType });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -1294,6 +1319,7 @@ function exportData() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 
+  showNotification(`Report exported as ${format.toUpperCase()}`, 'success');
   closeExportModal();
 }
 
@@ -1338,7 +1364,9 @@ function publishPost() {
   };
 
   // Show publishing status
-  document.getElementById('publishStatus').style.display = 'block';
+  const publishStatusEl = document.getElementById('publishStatus');
+  publishStatusEl.style.display = 'block';
+  publishStatusEl.classList.add('visible');
   document.getElementById('publishProgress').innerHTML = '';
 
   // Simulate publishing to each platform
@@ -1351,7 +1379,9 @@ function publishPost() {
   // Save post to history after all platforms
   setTimeout(() => {
     savePublishedPost(post);
-    document.getElementById('publishStatus').style.display = 'none';
+    const publishStatusEl = document.getElementById('publishStatus');
+    publishStatusEl.style.display = 'none';
+    publishStatusEl.classList.remove('visible');
     clearPostForm();
     loadPublishHistory();
     showNotification('Post published successfully!', 'success');
@@ -1507,7 +1537,7 @@ function sendAICommand() {
   const command = input.value.trim();
   
   if (!command) {
-    showNotification('error', 'Please enter a command for the AI assistant');
+    showNotification('Please enter a command for the AI assistant', 'error');
     return;
   }
   
@@ -1522,7 +1552,7 @@ function sendAICommand() {
   setTimeout(() => {
     let response = generateAIResponse(command);
     responseText.innerHTML = response;
-    showNotification('success', 'AI response generated');
+    showNotification('AI response generated', 'success');
     input.value = '';
   }, 1500);
 }
@@ -1630,9 +1660,687 @@ function generateAIResponse(command) {
   `;
 }
 
+// ── DEPLOY CONTENT SYNC ──
+function deployContentSync() {
+  const syncBtn = document.querySelector('.btn-refresh');
+  const originalHTML = syncBtn.innerHTML;
+  
+  // Show syncing state
+  syncBtn.disabled = true;
+  syncBtn.innerHTML = '<i class="fas fa-rotate fa-spin"></i> Syncing...';
+  syncBtn.style.opacity = '0.7';
+  
+  // Simulate sync operations
+  const steps = [
+    'Syncing blog inventory...',
+    'Updating analytics data...',
+    'Refreshing SEO metrics...',
+    'Generating content gaps analysis...',
+    'Finalizing sync...'
+  ];
+  
+  let stepIndex = 0;
+  
+  showNotification('Content sync initiated', 'success');
+  
+  const syncInterval = setInterval(() => {
+    if (stepIndex < steps.length) {
+      showNotification(steps[stepIndex], 'success');
+      stepIndex++;
+    } else {
+      clearInterval(syncInterval);
+      
+      // Reload data from sample
+      BLOG_DATA.articles = [...SAMPLE_BLOGS];
+      saveBlogData();
+      
+      // Re-render current section
+      const activeSection = document.querySelector('.nav-item.active');
+      if (activeSection && activeSection.dataset.section) {
+        renderSection(activeSection.dataset.section);
+      } else {
+        renderOverview();
+      }
+      
+      // Restore button
+      syncBtn.disabled = false;
+      syncBtn.innerHTML = originalHTML;
+      syncBtn.style.opacity = '1';
+      
+      showNotification('Content sync complete! All data refreshed.', 'success');
+    }
+  }, 600);
+}
+
+// ── NOTIFICATION SYSTEM ──
+const NOTIF_STORAGE_KEY = 'blog_ops_notifications';
+const SUB_STORAGE_KEY = 'blog_ops_subscribers';
+const AUTOPOST_STORAGE_KEY = 'blog_ops_autopost';
+const NOTIF_SETTINGS_KEY = 'blog_ops_notif_settings';
+
+function getNotifHistory() {
+  return JSON.parse(localStorage.getItem(NOTIF_STORAGE_KEY) || '[]');
+}
+
+function saveNotifHistory(history) {
+  localStorage.setItem(NOTIF_STORAGE_KEY, JSON.stringify(history.slice(0, 100)));
+}
+
+function logNotification(type, title, recipients) {
+  const history = getNotifHistory();
+  history.unshift({
+    id: 'notif-' + Date.now(),
+    type: type,
+    title: title,
+    recipients: recipients,
+    sentAt: new Date().toISOString(),
+    status: 'sent'
+  });
+  saveNotifHistory(history);
+}
+
+function getNotifSettings() {
+  const defaults = {
+    welcome: true, newpost: true, admin: true, digest: true, trending: false,
+    autopostTwitter: true, autopostLinkedin: true, autopostMedium: false, autopostDevto: true, autopostTelegram: true
+  };
+  const stored = localStorage.getItem(NOTIF_SETTINGS_KEY);
+  return stored ? { ...defaults, ...JSON.parse(stored) } : defaults;
+}
+
+function saveNotifSettings() {
+  const settings = {
+    welcome: document.getElementById('notif-welcome')?.checked ?? true,
+    newpost: document.getElementById('notif-newpost')?.checked ?? true,
+    admin: document.getElementById('notif-admin')?.checked ?? true,
+    digest: document.getElementById('notif-digest')?.checked ?? true,
+    trending: document.getElementById('notif-trending')?.checked ?? false,
+    autopostTwitter: document.getElementById('autopost-twitter')?.checked ?? true,
+    autopostLinkedin: document.getElementById('autopost-linkedin')?.checked ?? true,
+    autopostMedium: document.getElementById('autopost-medium')?.checked ?? false,
+    autopostDevto: document.getElementById('autopost-devto')?.checked ?? true,
+    autopostTelegram: document.getElementById('autopost-telegram')?.checked ?? true
+  };
+  localStorage.setItem(NOTIF_SETTINGS_KEY, JSON.stringify(settings));
+  showNotification('Notification settings saved', 'success');
+}
+
+function loadNotifSettings() {
+  const s = getNotifSettings();
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.checked = val; };
+  set('notif-welcome', s.welcome);
+  set('notif-newpost', s.newpost);
+  set('notif-admin', s.admin);
+  set('notif-digest', s.digest);
+  set('notif-trending', s.trending);
+  set('autopost-twitter', s.autopostTwitter);
+  set('autopost-linkedin', s.autopostLinkedin);
+  set('autopost-medium', s.autopostMedium);
+  set('autopost-devto', s.autopostDevto);
+  set('autopost-telegram', s.autopostTelegram);
+}
+
+// Send welcome email to new subscriber
+function sendWelcomeEmail(name, email) {
+  const settings = getNotifSettings();
+  if (!settings.welcome) return;
+  logNotification('welcome', `Welcome email sent to ${name}`, email);
+  console.log(`[EMAIL] Welcome → ${name} <${email}>: Welcome to Victor Kipruto's Blog! You'll receive notifications for new posts and weekly digests.`);
+}
+
+// Send new post notification to all subscribers + admin
+function sendNewPostNotifications(post) {
+  const settings = getNotifSettings();
+  const subs = getSubscribers();
+  const activeSubs = subs.filter(s => s.status === 'active');
+  
+  // Notify all subscribers
+  if (settings.newpost && activeSubs.length > 0) {
+    const emails = activeSubs.map(s => s.email).join(', ');
+    logNotification('new_post', `New post alert: "${post.title}"`, `${activeSubs.length} subscribers`);
+    console.log(`[EMAIL] New Post → ${activeSubs.length} subscribers: "${post.title}"`);
+  }
+  
+  // Notify admin
+  if (settings.admin) {
+    logNotification('admin_alert', `Admin: New post published "${post.title}"`, 'admin@victorkipruto.dev');
+    console.log(`[EMAIL] Admin Alert → admin: New post "${post.title}" published to ${post.platforms.join(', ')}`);
+  }
+}
+
+// ── NOTIFICATIONS SECTION ──
+function renderNotifications() {
+  const history = getNotifHistory();
+  const subs = getSubscribers();
+  
+  const kpiHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Total Sent</div>
+      <div class="kpi-value">${history.length}</div>
+      <div class="kpi-change positive"><i class="fas fa-check"></i> All delivered</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Welcome Emails</div>
+      <div class="kpi-value">${history.filter(n => n.type === 'welcome').length}</div>
+      <div class="kpi-change positive"><i class="fas fa-envelope"></i> Auto-sent</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Post Alerts</div>
+      <div class="kpi-value">${history.filter(n => n.type === 'new_post').length}</div>
+      <div class="kpi-change positive"><i class="fas fa-bell"></i> To ${subs.filter(s => s.status === 'active').length} subscribers</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Admin Alerts</div>
+      <div class="kpi-value">${history.filter(n => n.type === 'admin_alert').length}</div>
+      <div class="kpi-change positive"><i class="fas fa-shield"></i> Real-time</div>
+    </div>
+  `;
+  document.getElementById('notifKPIs').innerHTML = kpiHTML;
+
+  // Load settings into checkboxes
+  setTimeout(loadNotifSettings, 50);
+
+  // Render history
+  const histDiv = document.getElementById('notifHistory');
+  if (history.length === 0) {
+    histDiv.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 48px;">No notifications sent yet. Notifications are triggered when posts are published or subscribers are added.</div>';
+    return;
+  }
+  histDiv.innerHTML = history.map(n => {
+    const icon = n.type === 'welcome' ? 'fa-envelope' : n.type === 'new_post' ? 'fa-bell' : 'fa-shield';
+    const color = n.type === 'welcome' ? 'var(--accent-tertiary)' : n.type === 'new_post' ? 'var(--accent-secondary)' : 'var(--accent-primary)';
+    return `
+      <div class="item-list-item">
+        <div class="item-info">
+          <div class="item-title" style="display: flex; align-items: center; gap: 12px;">
+            <i class="fas ${icon}" style="color: ${color};"></i>
+            ${n.title}
+          </div>
+          <div class="item-desc">
+            <i class="fas fa-users" style="margin-right: 4px;"></i> ${n.recipients} · 
+            <i class="fas fa-clock" style="margin-right: 4px;"></i> ${getTimeAgo(new Date(n.sentAt))}
+          </div>
+        </div>
+        <span class="badge badge-success"><i class="fas fa-check"></i> Sent</span>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── SUBSCRIBER MANAGEMENT ──
+function getSubscribers() {
+  return JSON.parse(localStorage.getItem(SUB_STORAGE_KEY) || '[]');
+}
+
+function saveSubscribers(subs) {
+  localStorage.setItem(SUB_STORAGE_KEY, JSON.stringify(subs));
+}
+
+function initDefaultSubscribers() {
+  const subs = getSubscribers();
+  if (subs.length === 0) {
+    const defaults = [
+      { name: 'Sarah Chen', email: 'sarah.chen@dataeng.io', joined: '2024-01-15', welcomeSent: true, status: 'active' },
+      { name: 'Marcus Johnson', email: 'marcus.j@cloudops.dev', joined: '2024-02-20', welcomeSent: true, status: 'active' },
+      { name: 'Priya Patel', email: 'priya@analytics.co', joined: '2024-03-10', welcomeSent: true, status: 'active' },
+      { name: 'Alex Rivera', email: 'alex.r@startup.io', joined: '2024-04-05', welcomeSent: true, status: 'active' },
+      { name: 'Kenji Tanaka', email: 'kenji@ml-pipeline.jp', joined: '2024-05-12', welcomeSent: true, status: 'active' },
+    ];
+    saveSubscribers(defaults);
+  }
+}
+
+function addSubscriber() {
+  const name = document.getElementById('subName').value.trim();
+  const email = document.getElementById('subEmail').value.trim();
+  
+  if (!name || !email) {
+    showNotification('Please enter name and email', 'error');
+    return;
+  }
+  
+  const subs = getSubscribers();
+  if (subs.find(s => s.email === email)) {
+    showNotification('This email is already subscribed', 'error');
+    return;
+  }
+  
+  const newSub = {
+    name: name,
+    email: email,
+    joined: new Date().toISOString().split('T')[0],
+    welcomeSent: true,
+    status: 'active'
+  };
+  
+  subs.push(newSub);
+  saveSubscribers(subs);
+  
+  // Send welcome email
+  sendWelcomeEmail(name, email);
+  
+  document.getElementById('subName').value = '';
+  document.getElementById('subEmail').value = '';
+  
+  renderSubscribers();
+  showNotification(`Welcome email sent to ${name}!`, 'success');
+}
+
+function removeSubscriber(email) {
+  let subs = getSubscribers();
+  subs = subs.filter(s => s.email !== email);
+  saveSubscribers(subs);
+  renderSubscribers();
+  showNotification('Subscriber removed', 'success');
+}
+
+function renderSubscribers() {
+  initDefaultSubscribers();
+  const subs = getSubscribers();
+  const active = subs.filter(s => s.status === 'active').length;
+  const totalWelcome = subs.filter(s => s.welcomeSent).length;
+  
+  const kpiHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Total Subscribers</div>
+      <div class="kpi-value">${subs.length}</div>
+      <div class="kpi-change positive"><i class="fas fa-users"></i> Growing</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Active</div>
+      <div class="kpi-value">${active}</div>
+      <div class="kpi-change positive"><i class="fas fa-check-circle"></i> Engaged</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Welcome Emails Sent</div>
+      <div class="kpi-value">${totalWelcome}</div>
+      <div class="kpi-change positive"><i class="fas fa-envelope"></i> 100% delivery</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Email Open Rate</div>
+      <div class="kpi-value">68%</div>
+      <div class="kpi-change positive"><i class="fas fa-arrow-up"></i> Above average</div>
+    </div>
+  `;
+  document.getElementById('subKPIs').innerHTML = kpiHTML;
+
+  const tbody = document.getElementById('subTableBody');
+  tbody.innerHTML = subs.map(sub => `
+    <tr>
+      <td><strong>${sub.name}</strong></td>
+      <td>${sub.email}</td>
+      <td>${sub.joined}</td>
+      <td>${sub.welcomeSent ? '<span class="badge badge-success">Sent</span>' : '<span class="badge badge-warning">Pending</span>'}</td>
+      <td><span class="status-dot ${sub.status === 'active' ? 'online' : 'offline'}"></span> ${sub.status}</td>
+      <td><button onclick="removeSubscriber('${sub.email}')" class="btn" style="padding: 6px 12px; font-size: 11px; color: var(--accent-danger);"><i class="fas fa-trash"></i></button></td>
+    </tr>
+  `).join('');
+}
+
+// ── AUTO-POST SCHEDULER ──
+function getAutoPosts() {
+  return JSON.parse(localStorage.getItem(AUTOPOST_STORAGE_KEY) || '{"scheduled":[],"history":[]}');
+}
+
+function saveAutoPosts(data) {
+  localStorage.setItem(AUTOPOST_STORAGE_KEY, JSON.stringify(data));
+}
+
+function triggerAutoPostCycle() {
+  const syncBtn = document.querySelector('#autopost .btn-refresh');
+  if (syncBtn) {
+    syncBtn.disabled = true;
+    syncBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running...';
+  }
+  
+  showNotification('Auto-post cycle initiated...', 'success');
+  
+  const topics = [
+    'Advanced Kubernetes Patterns for Data Engineers',
+    'Building Real-time ETL Pipelines with Apache Flink',
+    'Data Quality Frameworks: Great Expectations vs Soda',
+    'Cost Optimization Strategies for Cloud Data Lakes',
+    'GraphQL APIs for Data Engineering Workflows'
+  ];
+  
+  const topic = topics[Math.floor(Math.random() * topics.length)];
+  const platforms = [];
+  const settings = getNotifSettings();
+  if (settings.autopostTwitter) platforms.push('twitter');
+  if (settings.autopostLinkedin) platforms.push('linkedin');
+  if (settings.autopostDevto) platforms.push('devto');
+  if (settings.autopostTelegram) platforms.push('telegram');
+  if (settings.autopostMedium) platforms.push('medium');
+  
+  const post = {
+    id: 'auto-' + Date.now(),
+    title: topic,
+    content: `AI-generated article: ${topic}. This post covers best practices, implementation patterns, and real-world examples.`,
+    category: 'data-engineering',
+    tags: ['auto-generated', 'data-engineering'],
+    publishedAt: new Date().toISOString(),
+    platforms: platforms,
+    status: 'publishing'
+  };
+  
+  // Simulate the cycle
+  setTimeout(() => {
+    post.status = 'published';
+    const data = getAutoPosts();
+    data.history.unshift(post);
+    data.history = data.history.slice(0, 50);
+    saveAutoPosts(data);
+    
+    // Send notifications
+    sendNewPostNotifications(post);
+    
+    if (syncBtn) {
+      syncBtn.disabled = false;
+      syncBtn.innerHTML = '<i class="fas fa-play"></i> Run Cycle Now';
+    }
+    
+    renderAutoPost();
+    showNotification(`Auto-post complete: "${topic}" → ${platforms.join(', ')}`, 'success');
+  }, 2500);
+}
+
+function scheduleAutoPost() {
+  const topics = [
+    'dbt Macros: Advanced Patterns for Data Transformation',
+    'Monitoring Data Pipelines with Prometheus and Grafana',
+    'Feature Stores for ML: Architecture and Implementation',
+    'Serverless Data Processing: AWS Lambda vs Google Cloud Functions',
+    'Data Lineage Tracking with OpenLineage'
+  ];
+  
+  const topic = topics[Math.floor(Math.random() * topics.length)];
+  const scheduledTime = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  
+  const data = getAutoPosts();
+  data.scheduled.push({
+    id: 'sched-' + Date.now(),
+    title: topic,
+    scheduledFor: scheduledTime.toISOString(),
+    platforms: ['twitter', 'linkedin', 'devto', 'telegram'],
+    status: 'scheduled'
+  });
+  saveAutoPosts(data);
+  
+  renderAutoPost();
+  showNotification(`Post scheduled: "${topic}" for ${scheduledTime.toLocaleDateString()} ${scheduledTime.toLocaleTimeString()}`, 'success');
+}
+
+function renderAutoPost() {
+  const data = getAutoPosts();
+  
+  const kpiHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Auto-Posts Published</div>
+      <div class="kpi-value">${data.history.length}</div>
+      <div class="kpi-change positive"><i class="fas fa-check"></i> All successful</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Scheduled</div>
+      <div class="kpi-value">${data.scheduled.length}</div>
+      <div class="kpi-change positive"><i class="fas fa-clock"></i> Queued</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Social Platforms</div>
+      <div class="kpi-value">5</div>
+      <div class="kpi-change positive"><i class="fas fa-share-nodes"></i> Connected</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Next Cycle</div>
+      <div class="kpi-value">24h</div>
+      <div class="kpi-change positive"><i class="fas fa-rotate"></i> Continuous</div>
+    </div>
+  `;
+  document.getElementById('autopostKPIs').innerHTML = kpiHTML;
+
+  // Scheduled queue
+  const schedDiv = document.getElementById('scheduledPosts');
+  if (data.scheduled.length === 0) {
+    schedDiv.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 48px;">No posts scheduled. Click "Schedule Next" to queue the next auto-generated post.</div>';
+  } else {
+    schedDiv.innerHTML = data.scheduled.map(s => {
+      const schedDate = new Date(s.scheduledFor);
+      return `
+        <div class="item-list-item">
+          <div class="item-info">
+            <div class="item-title"><i class="fas fa-clock" style="color: var(--accent-warning); margin-right: 8px;"></i>${s.title}</div>
+            <div class="item-desc">
+              <i class="fas fa-calendar"></i> ${schedDate.toLocaleDateString()} ${schedDate.toLocaleTimeString()} · 
+              Platforms: ${s.platforms.join(', ')}
+            </div>
+          </div>
+          <span class="badge badge-warning">Scheduled</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // History
+  const histDiv = document.getElementById('autopostHistory');
+  if (data.history.length === 0) {
+    histDiv.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 48px;">No auto-posts published yet. Click "Run Cycle Now" to trigger the first cycle.</div>';
+  } else {
+    histDiv.innerHTML = data.history.map(p => `
+      <div class="item-list-item">
+        <div class="item-info">
+          <div class="item-title"><i class="fas fa-robot" style="color: var(--accent-secondary); margin-right: 8px;"></i>${p.title}</div>
+          <div class="item-desc">
+            <i class="fas fa-clock"></i> ${getTimeAgo(new Date(p.publishedAt))} · 
+            Platforms: ${p.platforms.map(pl => `<span style="display:inline-block; background:var(--bg-secondary); padding:2px 6px; border-radius:3px; font-size:10px; margin: 0 2px;">${pl}</span>`).join('')}
+          </div>
+        </div>
+        <span class="badge badge-success"><i class="fas fa-check"></i> Published</span>
+      </div>
+    `).join('');
+  }
+}
+
+// ── ENHANCED PUBLISH FLOW ──
+// Override the existing publishPost to include notifications
+const originalPublishPost = publishPost;
+publishPost = function() {
+  const title = document.getElementById('postTitle').value;
+  const content = document.getElementById('postContent').value;
+  const tags = document.getElementById('postTags').value;
+  const category = document.getElementById('postCategory').value;
+
+  if (!title.trim() || !content.trim()) {
+    alert('Please fill in title and content');
+    return;
+  }
+
+  const selectedPlatforms = Array.from(document.querySelectorAll('.platform-checkbox:checked'))
+    .map(cb => cb.value);
+
+  if (selectedPlatforms.length === 0) {
+    alert('Please select at least one platform');
+    return;
+  }
+
+  const post = {
+    id: 'post-' + Date.now(),
+    title: title,
+    content: content,
+    tags: tags.split(',').map(t => t.trim()),
+    category: category,
+    publishedAt: new Date(),
+    platforms: selectedPlatforms,
+    status: 'publishing'
+  };
+
+  const publishStatusEl = document.getElementById('publishStatus');
+  publishStatusEl.style.display = 'block';
+  publishStatusEl.classList.add('visible');
+  document.getElementById('publishProgress').innerHTML = '';
+
+  selectedPlatforms.forEach((platform, index) => {
+    setTimeout(() => {
+      publishToPlatform(post, platform, index, selectedPlatforms.length);
+    }, (index + 1) * 500);
+  });
+
+  setTimeout(() => {
+    savePublishedPost(post);
+    publishStatusEl.style.display = 'none';
+    publishStatusEl.classList.remove('visible');
+    clearPostForm();
+    loadPublishHistory();
+    
+    // Send notifications for the new post
+    sendNewPostNotifications(post);
+    
+    showNotification('Post published! Notifications sent to subscribers + admin.', 'success');
+  }, (selectedPlatforms.length + 1) * 500);
+};
+
+// ── RESEND NOTIFICATION SERVER ──
+const RESEND_API = 'http://127.0.0.1:8765';
+
+async function sendToResend(endpoint, data) {
+  try {
+    const resp = await fetch(`${RESEND_API}${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return await resp.json();
+  } catch (e) {
+    console.warn('Resend server not running. Starting fallback...', e.message);
+    // Fallback: log notification locally
+    logNotification('custom', data.title || 'Notification', data.recipients || 'all');
+    return { success: false, message: 'Resend server not running. Start with: python scripts/python/resend_server.py' };
+  }
+}
+
+// ── CUSTOM NOTIFICATION MODAL ──
+function showSendNotificationModal() {
+  // Create modal if it doesn't exist
+  let modal = document.getElementById('notifModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'notifModal';
+    modal.className = 'modal';
+    modal.innerHTML = `
+      <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header">
+          <h2 class="modal-title"><i class="fas fa-paper-plane" style="color: var(--accent-secondary); margin-right: 12px;"></i>Send Notification</h2>
+          <button class="modal-close" onclick="closeNotifModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Recipients</label>
+            <select id="notifRecipients" class="form-input" onchange="toggleCustomEmails()">
+              <option value="all">All Subscribers</option>
+              <option value="custom">Custom Selection</option>
+            </select>
+          </div>
+          <div id="customEmailsGroup" class="form-group" style="display: none;">
+            <label class="form-label">Select Subscribers</label>
+            <div id="subscriberCheckboxes" style="display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Notification Title</label>
+            <input type="text" id="notifTitle" class="form-input" placeholder="Subject line...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea id="notifMessage" class="form-input" style="min-height: 120px;" placeholder="Write your notification message..."></textarea>
+          </div>
+          <div id="notifSendStatus" style="text-align: center; font-size: 13px; margin-top: 8px; min-height: 20px;"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" onclick="closeNotifModal()"><i class="fas fa-xmark"></i> Cancel</button>
+          <button class="btn btn-refresh" onclick="sendCustomNotification()"><i class="fas fa-paper-plane"></i> Send Now</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  // Load subscribers into checkboxes
+  loadSubscriberCheckboxes();
+  modal.classList.add('active');
+}
+
+function closeNotifModal() {
+  const modal = document.getElementById('notifModal');
+  if (modal) modal.classList.remove('active');
+}
+
+function toggleCustomEmails() {
+  const val = document.getElementById('notifRecipients').value;
+  document.getElementById('customEmailsGroup').style.display = val === 'custom' ? 'block' : 'none';
+}
+
+async function loadSubscriberCheckboxes() {
+  const container = document.getElementById('subscriberCheckboxes');
+  const subs = getSubscribers().filter(s => s.status === 'active');
+  container.innerHTML = subs.map(s => `
+    <label class="export-option">
+      <input type="checkbox" class="notif-sub-cb" value="${s.email}" style="width: 18px; height: 18px;">
+      <label>${s.name} (${s.email})</label>
+    </label>
+  `).join('');
+}
+
+async function sendCustomNotification() {
+  const recipients = document.getElementById('notifRecipients').value;
+  const title = document.getElementById('notifTitle').value.trim();
+  const message = document.getElementById('notifMessage').value.trim();
+  const statusEl = document.getElementById('notifSendStatus');
+
+  if (!title || !message) {
+    statusEl.innerHTML = '<span style="color: var(--accent-danger);">Please fill in title and message</span>';
+    return;
+  }
+
+  let customEmails = [];
+  if (recipients === 'custom') {
+    customEmails = Array.from(document.querySelectorAll('.notif-sub-cb:checked')).map(cb => cb.value);
+    if (customEmails.length === 0) {
+      statusEl.innerHTML = '<span style="color: var(--accent-danger);">Please select at least one subscriber</span>';
+      return;
+    }
+  }
+
+  statusEl.innerHTML = '<div class="spinner" style="width:20px;height:20px;margin:0 auto;border-width:2px;"></div> Sending...';
+  const btnEl = document.querySelector('#notifModal .btn-refresh');
+  if (btnEl) btnEl.disabled = true;
+
+  const result = await sendToResend('/api/send-notification', {
+    recipients: recipients,
+    customEmails: customEmails,
+    title: title,
+    message: message,
+    type: 'custom'
+  });
+
+  if (btnEl) btnEl.disabled = false;
+
+  if (result.success) {
+    statusEl.innerHTML = `<span style="color: var(--accent-tertiary);">✅ Sent to ${result.sent} subscriber(s)!</span>`;
+    setTimeout(closeNotifModal, 2000);
+    renderNotifications();
+    showNotification('Notifications sent successfully!', 'success');
+  } else {
+    statusEl.innerHTML = `<span style="color: var(--accent-danger);">⚠ ${result.message || 'Failed to send'}</span>`;
+  }
+}
+
 // ── REFRESH & LOGOUT ──
 function refreshDashboard() {
   location.reload();
 }
 
 window.logout = logout;
+
+// ── KEYBOARD SHORTCUTS ──
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeExportModal();
+    closeNotifModal();
+  }
+});

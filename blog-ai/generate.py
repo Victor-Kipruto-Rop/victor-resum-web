@@ -11,15 +11,46 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import random
 import re
+import markdown
 from typing import Dict, Tuple
 from dotenv import load_dotenv
 from anthropic import Anthropic
+try:
+    from openai import OpenAI
+    HAS_OPENAI = True
+except ImportError:
+    HAS_OPENAI = False
+
+try:
+    import google.generativeai as genai
+    HAS_GEMINI = True
+except ImportError:
+    HAS_GEMINI = False
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent))
+from keyword_research import KeywordResearcher
 
 # Load environment variables
 load_dotenv()
 
-# Initialize Anthropic client
-client = Anthropic()
+# Initialize AI clients
+client_anthropic = None
+client_openai = None
+client_gemini = None
+
+anthropic_key = os.getenv("ANTHROPIC_API_KEY")
+if anthropic_key:
+    client_anthropic = Anthropic(api_key=anthropic_key)
+
+openai_key = os.getenv("OPENAI_API_KEY")
+if openai_key and HAS_OPENAI:
+    client_openai = OpenAI(api_key=openai_key)
+
+gemini_key = os.getenv("GEMINI_API_KEY")
+if gemini_key and HAS_GEMINI:
+    genai.configure(api_key=gemini_key)
+    client_gemini = genai.GenerativeModel('gemini-flash-latest')
 
 CONFIG_PATH = Path(__file__).parent / "config.json"
 PROMPTS_PATH = Path(__file__).parent / "prompts.json"
@@ -34,6 +65,23 @@ class BlogPostGenerator:
         self.template = self._load_template()
         self.output_dir = OUTPUT_DIR
         self.output_dir.mkdir(exist_ok=True)
+        self.researcher = KeywordResearcher()
+        
+        # Determine which AI service to use
+        if client_gemini:
+            self.ai_service = "gemini"
+            self.model = "gemini-flash-latest"
+            print("🤖 Using Google Gemini")
+        elif client_anthropic:
+            self.ai_service = "anthropic"
+            self.model = self.config["ai"].get("model", "claude-3-sonnet-20240229")
+            print("🤖 Using Anthropic Claude")
+        elif client_openai:
+            self.ai_service = "openai"
+            self.model = os.getenv("OPENAI_MODEL", "gpt-4o")
+            print(f"🤖 Using OpenAI {self.model}")
+        else:
+            raise Exception("No AI API keys found in .env file (checked GEMINI_API_KEY, ANTHROPIC_API_KEY, OPENAI_API_KEY)")
 
     def _load_config(self) -> Dict:
         """Load configuration from config.json"""
@@ -51,20 +99,14 @@ class BlogPostGenerator:
             return f.read()
 
     def generate_topic(self) -> str:
-        """Generate a blog post topic using Claude"""
+        """Generate a blog post topic using AI"""
         topics = self.config.get("topics", [])
         focus_areas = self.prompts.get("topics_generation", {}).get("focus_areas", [])
         
         selected_topic = random.choice(topics)
         selected_focus = random.choice(focus_areas)
 
-        message = client.messages.create(
-            model=self.config["ai"]["model"],
-            max_tokens=200,
-            messages=[
-                {
-                    "role": "user",
-                    "content": f"""Generate ONE catchy, technical blog post title for a data engineer's blog.
+        prompt = f"""Generate ONE catchy, technical blog post title for a data engineer's blog.
 
 Topic: {selected_topic}
 Content Pillar: {selected_focus}
@@ -76,29 +118,48 @@ Requirements:
 - Make it SEO-friendly
 - Between 60-80 characters
 
-Return ONLY the title, nothing else."""
-                }
-            ]
-        )
-        
-        return message.content[0].text.strip()
+        Return ONLY the title, nothing else."""
+
+        if self.ai_service == "gemini":
+            response = client_gemini.generate_content(prompt)
+            return response.text.strip()
+        elif self.ai_service == "anthropic":
+            message = client_anthropic.messages.create(
+
+                model=self.model,
+                max_tokens=200,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            return message.content[0].text.strip()
+        else:
+            response = client_openai.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=200
+            )
+            return response.choices[0].message.content.strip()
 
     def generate_post(self, title: str = None) -> Tuple[str, str, str]:
         """Generate a complete blog post"""
         if not title:
             title = self.generate_topic()
 
+        # SEO Optimization: Analyze title keywords
+        print(f"🔍 Optimizing for SEO...")
+        keyword_analysis = self.researcher.analyze_keyword(title)
+        primary_keyword = keyword_analysis.get('keyword', title)
+        related_keywords = keyword_analysis.get('related_keywords', [])
+
         print(f"📝 Generating post: '{title}'...")
 
         # Create conversation for multi-turn generation
         conversation = []
-
-        # First turn: Generate outline
-        conversation.append({
-            "role": "user",
-            "content": f"""Create a detailed outline for this technical blog post:
+        
+        outline_prompt = f"""Create a detailed outline for this technical blog post:
 
 Title: {title}
+Primary Keyword: {primary_keyword}
+Secondary Keywords: {', '.join(related_keywords)}
 
 Author persona: {json.dumps(self.config['author'], indent=2)}
 
@@ -106,25 +167,35 @@ Writing guidelines:
 {json.dumps(self.prompts['post_instructions'], indent=2)}
 
 Create a 5-6 section outline with brief descriptions. Be specific about code examples and real-world scenarios."""
-        })
 
-        outline_response = client.messages.create(
-            model=self.config["ai"]["model"],
-            max_tokens=1000,
-            system=self.prompts["system_prompt"],
-            messages=conversation
-        )
+        # First turn: Generate outline
+        if self.ai_service == "gemini":
+            chat = client_gemini.start_chat(history=[])
+            response = chat.send_message(f"SYSTEM: {self.prompts['system_prompt']}\n\n{outline_prompt}")
+            outline = response.text
+        elif self.ai_service == "anthropic":
+            conversation.append({"role": "user", "content": outline_prompt})
+            outline_response = client_anthropic.messages.create(
+                model=self.model,
+                max_tokens=1000,
+                system=self.prompts["system_prompt"],
+                messages=conversation
+            )
+            outline = outline_response.content[0].text
+        else:
+            conversation.append({"role": "system", "content": self.prompts["system_prompt"]})
+            conversation.append({"role": "user", "content": outline_prompt})
+            outline_response = client_openai.chat.completions.create(
+                model=self.model,
+                messages=conversation,
+                max_tokens=1000
+            )
+            outline = outline_response.choices[0].message.content
 
-        outline = outline_response.content[0].text
-        conversation.append({
-            "role": "assistant",
-            "content": outline
-        })
+        conversation.append({"role": "assistant", "content": outline})
 
         # Second turn: Generate full content
-        conversation.append({
-            "role": "user",
-            "content": f"""Now write the complete blog post based on this outline.
+        content_prompt = f"""Now write the complete blog post based on this outline.
 
 Title: {title}
 
@@ -144,26 +215,33 @@ Target length: {self.prompts['post_instructions']['length']}
 Tone: {self.prompts['post_instructions']['tone']}
 Code language: {self.prompts['post_instructions']['code_examples']['language']}
 
-Write engaging, practical content that provides immediate value."""
-        })
+        Write engaging, practical content that provides immediate value."""
 
-        content_response = client.messages.create(
-            model=self.config["ai"]["model"],
-            max_tokens=3000,
-            system=self.prompts["system_prompt"],
-            messages=conversation
-        )
+        if self.ai_service == "gemini":
+            response = chat.send_message(content_prompt)
+            content = response.text
+        elif self.ai_service == "anthropic":
+            conversation.append({"role": "user", "content": content_prompt})
+            content_response = client_anthropic.messages.create(
+                model=self.model,
+                max_tokens=3000,
+                system=self.prompts["system_prompt"],
+                messages=conversation
+            )
+            content = content_response.content[0].text
+        else:
+            conversation.append({"role": "user", "content": content_prompt})
+            content_response = client_openai.chat.completions.create(
+                model=self.model,
+                messages=conversation,
+                max_tokens=3000
+            )
+            content = content_response.choices[0].message.content
 
-        content = content_response.content[0].text
-        conversation.append({
-            "role": "assistant",
-            "content": content
-        })
+        conversation.append({"role": "assistant", "content": content})
 
         # Third turn: Extract metadata
-        conversation.append({
-            "role": "user",
-            "content": f"""Extract metadata for this blog post. Respond ONLY with valid JSON in this exact format:
+        metadata_prompt = f"""Extract metadata for this blog post. Respond ONLY with valid JSON in this exact format:
 
 {{
   "title": "{title}",
@@ -175,17 +253,29 @@ Write engaging, practical content that provides immediate value."""
 }}
 
 Do not include any markdown or additional text."""
-        })
 
-        metadata_response = client.messages.create(
-            model=self.config["ai"]["model"],
-            max_tokens=500,
-            system="You are a JSON generator. Respond ONLY with valid JSON.",
-            messages=conversation
-        )
+        if self.ai_service == "gemini":
+            response = chat.send_message(metadata_prompt)
+            metadata_text = response.text.strip()
+        elif self.ai_service == "anthropic":
+            conversation.append({"role": "user", "content": metadata_prompt})
+            metadata_response = client_anthropic.messages.create(
+                model=self.model,
+                max_tokens=500,
+                system="You are a JSON generator. Respond ONLY with valid JSON.",
+                messages=conversation
+            )
+            metadata_text = metadata_response.content[0].text.strip()
+        else:
+            conversation.append({"role": "user", "content": metadata_prompt})
+            metadata_response = client_openai.chat.completions.create(
+                model=self.model,
+                messages=conversation,
+                max_tokens=500
+            )
+            metadata_text = metadata_response.choices[0].message.content.strip()
 
         try:
-            metadata_text = metadata_response.content[0].text.strip()
             # Try to extract JSON from the response
             json_match = re.search(r'\{[\s\S]*\}', metadata_text)
             if json_match:
@@ -244,47 +334,24 @@ Do not include any markdown or additional text."""
             "tldr": metadata.get("tldr", "")
         }
 
-    def _markdown_to_html(self, markdown: str) -> str:
-        """Simple markdown to HTML conversion"""
-        import re
+    def _markdown_to_html(self, md_content: str) -> str:
+        """Convert markdown to high-quality HTML using markdown library"""
+        extensions = [
+            'fenced_code',
+            'codehilite',
+            'tables',
+            'toc',
+            'attr_list',
+            'md_in_html'
+        ]
         
-        html = markdown
+        # Add extra spacing for readability
+        content = md_content.replace("\n", "\n\n")
         
-        # Headers
-        html = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
-        html = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
-        html = re.sub(r'^# (.+)$', r'<h1>\1</h1>', html, flags=re.MULTILINE)
+        html = markdown.markdown(md_content, extensions=extensions)
         
-        # Bold and italic
-        html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
-        html = re.sub(r'\*(.+?)\*', r'<em>\1</em>', html)
-        html = re.sub(r'_(.+?)_', r'<em>\1</em>', html)
-        
-        # Code blocks
-        html = re.sub(
-            r'```python\n(.*?)\n```',
-            r'<pre><code class="language-python">\1</code></pre>',
-            html,
-            flags=re.DOTALL
-        )
-        html = re.sub(r'```\n(.*?)\n```', r'<pre><code>\1</code></pre>', html, flags=re.DOTALL)
-        
-        # Inline code
-        html = re.sub(r'`(.+?)`', r'<code>\1</code>', html)
-        
-        # Links
-        html = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2">\1</a>', html)
-        
-        # Lists
-        html = re.sub(r'^\- (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
-        html = re.sub(r'(<li>.+</li>)', r'<ul>\1</ul>', html, flags=re.DOTALL)
-        
-        # Paragraphs
-        html = re.sub(r'\n\n+', '</p><p>', html)
-        html = '<p>' + html + '</p>'
-        
-        # Line breaks
-        html = html.replace('\n', '<br>')
+        # Clean up some common issues
+        html = html.replace('<code>', '<code class="language-python">') # Default to python
         
         return html
 

@@ -5,17 +5,30 @@ Medium Poster - Publish blog content to Medium
 
 import json
 import logging
+import os
 from datetime import datetime
 from typing import Dict
 
 
 class MediumPoster:
-    """Handle Medium publishing"""
+    """Handle Medium posting"""
 
     def __init__(self, config: Dict):
         """Initialize Medium poster"""
         self.config = config.get("platforms", {}).get("medium", {})
+        self._resolve_env_vars(self.config)
         self.logger = logging.getLogger(__name__)
+
+    def _resolve_env_vars(self, obj):
+        """Resolve ${ENV_VAR} references in config"""
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                obj[k] = self._resolve_env_vars(v)
+        elif isinstance(obj, list):
+            return [self._resolve_env_vars(item) for item in obj]
+        elif isinstance(obj, str) and obj.startswith("${") and obj.endswith("}"):
+            return os.getenv(obj[2:-1], obj)
+        return obj
 
     def post(self, content: Dict, metadata: Dict) -> Dict:
         """
