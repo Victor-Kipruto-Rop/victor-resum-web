@@ -100,10 +100,12 @@ jobs:
 
     steps:
       - name: Notify on Slack
-        if: secrets.SLACK_WEBHOOK_URL
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: env.SLACK_WEBHOOK_URL != ''
         uses: slackapi/slack-github-action@v1
         with:
-          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-url: ${{ env.SLACK_WEBHOOK_URL }}
           payload: |
             {
               "text": "📢 Blog Notification Workflow",
