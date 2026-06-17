@@ -1221,18 +1221,6 @@
       <p class="expertise-desc">I treat data infrastructure with engineering rigor, implementing automated unit testing (Pytest) and deployment pipelines for constant reliability.</p>
     </div>
   </div>
-
-  <div class="expertise-card reveal" style="margin-top: 48px; border-style: dashed; border-color: var(--accent);">
-    <h3 class="expertise-title" style="text-align: center;">Core Architecture: Data Ingestion & Transformation</h3>
-    <div class="mermaid" style="display: flex; justify-content: center; padding: 20px;">
-      graph TD
-        A[Data Sources] -->|Kafka| B(Ingestion Layer)
-        B -->|Avro/Parquet| C{Data Lake}
-        C -->|Airflow DAG| D[Transformation - dbt/Spark]
-        D -->|Fact/Dim Tables| E[(Data Warehouse)]
-        E --> F[Analytics & BI]
-    </div>
-  </div>
 </section>
 
 <!-- CONTRIBUTIONS -->
