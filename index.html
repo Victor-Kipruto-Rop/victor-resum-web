@@ -124,17 +124,16 @@
     border-radius: 50%;
     pointer-events: none;
     transition: transform 0.15s ease, opacity 0.2s;
-    mix-blend-mode: multiply;
   }
   #cursor-ring {
     position: fixed; top: 0; left: 0; z-index: 9998;
     width: 36px; height: 36px;
-    border: 1.5px solid var(--ink);
+    border: 2px solid var(--accent);
     border-radius: 50%;
     pointer-events: none;
     transition: transform 0.35s cubic-bezier(.16,1,.3,1), width 0.3s, height 0.3s, border-color 0.3s;
-    mix-blend-mode: multiply;
   }
+  body.dark-mode #cursor-ring { border-color: #ff4b2b; }
   body:has(a:hover) #cursor-ring,
   body:has(button:hover) #cursor-ring { width: 56px; height: 56px; border-color: var(--accent); }
 
@@ -458,8 +457,8 @@
   /* ── Skills ── */
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
   .skills-wrap { max-width: 1180px; width: 100%; margin: 12px auto 0; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; }
-  .skill-pill { display:inline-block; padding:10px 14px; border-radius:999px; background: var(--paper); color: var(--ink); border:1px solid var(--rule); font-family: 'DM Mono', monospace; font-size:14px; box-shadow: 0 6px 18px rgba(10,14,20,0.04); }
-  .skill-pill:hover { background: var(--card); transform: translateY(-2px); }
+  .skill-pill { display:inline-block; padding:10px 14px; border-radius:999px; background: var(--paper); color: var(--ink); border:1px solid var(--rule); font-family: 'DM Mono', monospace; font-size:14px; box-shadow: 0 6px 18px rgba(10,14,20,0.04); cursor: pointer; transition: all 0.2s ease; }
+  .skill-pill:hover { background: var(--card); transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
   @media (max-width: 1100px) { #skills { padding: 28px 16px; } .skill-pill { font-size:13px; padding:8px 12px; } }
   @media (max-width: 720px) { #skills { padding: 20px 12px; } .skill-pill { width:100%; text-align:center; } }
 
@@ -471,18 +470,24 @@
   .section-title::after { content: ''; display:block; width:56px; height:4px; background: var(--accent); border-radius:4px; margin-top:10px; opacity:0.9; }
   .project-count { margin-left:8px; color: var(--muted); font-size:14px; font-weight:700; }
 
-  .projects-grid { display:flex; gap:24px; align-items:stretch; overflow-x:auto; scroll-behavior:smooth; padding-bottom:8px; padding-top:6px; }
-  .projects-grid::-webkit-scrollbar{height:10px}
-  .projects-grid::-webkit-scrollbar-track{background:transparent}
-  .projects-grid::-webkit-scrollbar-thumb{background:rgba(10,14,20,0.06);border-radius:6px}
+  .projects-grid { display:flex; gap:24px; align-items:stretch; overflow-x:hidden; scroll-behavior:smooth; padding-bottom:8px; padding-top:6px; scroll-snap-type: x mandatory; }
+  .projects-grid::-webkit-scrollbar{display:none}
 
   .project-card {
-    min-width: 320px; flex: 0 0 320px; display: flex; flex-direction: column; background: var(--paper); padding: 0; border-radius: 12px; overflow:hidden;
+    min-width: calc((100% - 48px) / 3); flex: 0 0 calc((100% - 48px) / 3); display: flex; flex-direction: column; background: var(--paper); padding: 0; border-radius: 12px; overflow:hidden;
     box-shadow: 0 10px 30px rgba(10,14,20,0.04); border: 1px solid var(--rule);
     opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s;
+    scroll-snap-align: start; cursor: pointer;
   }
   .project-card.visible { opacity: 1; transform: translateY(0); }
-  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 45px rgba(10,14,20,0.09); }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 45px rgba(10,14,20,0.09); border-color: var(--accent); }
+  
+  /* ── Project Modal Specifics ── */
+  .project-modal-image { width: 100%; height: 240px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--rule); }
+  .project-modal-meta { display: flex; gap: 16px; margin-bottom: 16px; font-size: 13px; color: var(--accent); font-family: 'DM Mono', monospace; }
+  .project-modal-section-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .project-modal-list { padding-left: 18px; margin-bottom: 16px; }
+  .project-modal-list li { margin-bottom: 6px; }
   .project-thumb { height: 160px; width:100%; display:block; object-fit:cover; background: #f0efe9; }
   .project-content { display:flex; flex-direction:column; gap:8px; padding:14px 18px; flex:1; }
   .project-title { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--ink); margin: 0 0 6px 0; font-weight:700; }
@@ -494,12 +499,12 @@
   .project-actions { margin-top: 12px; display:flex; gap:10px; }
 
   .project-controls { position: static; display:flex; gap:12px; align-items:center; pointer-events:auto; }
-  .project-btn { background: transparent; border: 1px solid var(--rule); width:46px; height:46px; border-radius:999px; display:flex; align-items:center; justify-content:center; cursor:pointer; color: var(--ink); }
-  .project-btn:hover { background: rgba(10,14,20,0.02); }
+  .project-btn { background: transparent; border: 1px solid var(--rule); width:46px; height:46px; border-radius:999px; display:flex; align-items:center; justify-content:center; cursor:pointer; color: var(--ink); transition: all 0.3s ease; }
+  .project-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
   .project-btn svg { width:18px; height:18px; color: currentColor; }
 
-  @media (max-width: 1100px) { .project-card { min-width: 300px; flex:0 0 300px; } }
-  @media (max-width: 720px) { .projects-wrap { padding: 0 12px; } .project-card { min-width: 260px; flex:0 0 260px; } }
+  @media (max-width: 1100px) { .project-card { min-width: calc((100% - 24px) / 2); flex:0 0 calc((100% - 24px) / 2); } }
+  @media (max-width: 720px) { .projects-wrap { padding: 0 12px; } .project-card { min-width: calc(100% - 40px); flex:0 0 calc(100% - 40px); } }
   @media (max-width: 540px) { .projects-grid { gap:14px; } .project-controls { display:flex; padding:0 4px; } .project-btn { width:40px; height:40px; } }
   @media (max-width: 420px) { .project-card { min-width: calc(100vw - 64px); flex: 0 0 calc(100vw - 64px); } }
 
@@ -689,6 +694,28 @@
   .skip-link:focus { top: 0; }
   .gh-chart { overflow:auto; padding:12px 18px; border-radius:8px; border:1px solid var(--rule); background:var(--paper); transition: background 0.3s ease; }
   body.dark-mode #gh-chart { filter: invert(0.9) hue-rotate(180deg) brightness(1.2); mix-blend-mode: screen; }
+
+  /* ── Top Repositories ── */
+  .top-repos-section { margin-top: 48px; }
+  .top-repos-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  .top-repos-title::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
+  .top-repos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .repo-item { 
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; 
+    transition: all 0.3s ease; cursor: pointer; display: flex; flex-direction: column; gap: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  }
+  .repo-item:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+  .repo-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; justify-content: space-between; }
+  .repo-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; flex-grow: 1; }
+  .repo-stats { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .repo-lang { display: flex; align-items: center; gap: 6px; }
+  .repo-lang-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .repo-stars { display: flex; align-items: center; gap: 4px; }
+
+  @media (max-width: 720px) {
+    .top-repos-grid { grid-template-columns: 1fr; }
+  }
 </style>
 
 <!-- Structured Data -->
@@ -745,16 +772,13 @@
     <div class="nav-links" id="nav-links">
       <a href="#github-activity">Activity</a>
       <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
       <a href="#projects">Projects</a>
       <a href="#blog">Blog</a>
       <a href="#experience">Experience</a>
       <a href="#about">About</a>
       <a href="#send-message">Contact</a>
-      <a href="assets/Victor_Kipruto_Resume.pdf" download style="color: var(--accent); font-weight: 600;">Download CV</a>
     </div>
-    <a class="nav-github" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub">
-      <i class="fab fa-github" style="font-size:20px;display:block"></i>
-    </a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
@@ -904,34 +928,95 @@
   <p class="section-label">// 04</p>
   <h2 class="section-title">Technical Skills</h2>
   <div class="skills-wrap">
-    <div class="skill-pill">Apache Airflow</div>
-    <div class="skill-pill">ETL Design</div>
-    <div class="skill-pill">DAG Management</div>
-    <div class="skill-pill">Apache Kafka</div>
-    <div class="skill-pill">Stream Processing</div>
-    <div class="skill-pill">Producers &amp; Consumers</div>
-    <div class="skill-pill">Star Schema</div>
-    <div class="skill-pill">Dimensional Modelling</div>
-    <div class="skill-pill">OLAP Queries</div>
-    <div class="skill-pill">Data Warehousing</div>
-    <div class="skill-pill">Deduplication</div>
-    <div class="skill-pill">Validation Rule Engines</div>
-    <div class="skill-pill">Anomaly Detection</div>
-    <div class="skill-pill">Docker</div>
-    <div class="skill-pill">GitHub Actions</div>
-    <div class="skill-pill">Pytest</div>
-    <div class="skill-pill">CI/CD Pipelines</div>
-    <div class="skill-pill">Python</div>
-    <div class="skill-pill">SQL</div>
-    <div class="skill-pill">PostgreSQL</div>
-    <div class="skill-pill">Git</div>
-    <div class="skill-pill">Docker Compose</div>
+    <div class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</div>
+    <div class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</div>
+    <div class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</div>
+    <div class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</div>
+    <div class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</div>
+    <div class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</div>
+    <div class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</div>
+    <div class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</div>
+    <div class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</div>
+    <div class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</div>
+    <div class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</div>
+    <div class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</div>
+    <div class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</div>
+    <div class="skill-pill" onclick="openSkillModal('Docker')">Docker</div>
+    <div class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</div>
+    <div class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</div>
+    <div class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</div>
+    <div class="skill-pill" onclick="openSkillModal('Python')">Python</div>
+    <div class="skill-pill" onclick="openSkillModal('SQL')">SQL</div>
+    <div class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</div>
+    <div class="skill-pill" onclick="openSkillModal('Git')">Git</div>
+    <div class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">// 05</p>
+  <h2 class="section-title">Professional Certifications</h2>
+  <div class="experience-grid">
+    <div class="experience-card reveal">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Big Data Foundations</h3>
+          <p class="experience-company">IBM / Cognitive Class</p>
+        </div>
+        <p class="experience-date">2026</p>
+      </div>
+      <p class="experience-desc">Comprehensive training in big data concepts, Hadoop ecosystem, and distributed computing fundamentals.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Big Data</span>
+        <span class="skill-tag">Hadoop</span>
+        <span class="skill-tag">IBM Cloud</span>
+      </div>
+      <div style="margin-top:16px;">
+        <a href="assets/certifications/IBM BD0101EN Certificate _ Cognitive Class.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+      </div>
+    </div>
+    <div class="experience-card reveal" style="transition-delay:0.1s">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Enterprise Design Thinking</h3>
+          <p class="experience-company">IBM</p>
+        </div>
+        <p class="experience-date">2026</p>
+      </div>
+      <p class="experience-desc">Mastered user-centered design principles and collaboration techniques for solving complex business problems.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Design Thinking</span>
+        <span class="skill-tag">User Experience</span>
+        <span class="skill-tag">Problem Solving</span>
+      </div>
+      <div style="margin-top:16px;">
+        <a href="assets/certifications/IBMDesign20260614-31-to05rr.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+      </div>
+    </div>
+    <div class="experience-card reveal" style="transition-delay:0.2s">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Professional Development</h3>
+          <p class="experience-company">Verified Credential</p>
+        </div>
+        <p class="experience-date">2026</p>
+      </div>
+      <p class="experience-desc">Continued learning and specialization in scalable data systems and engineering best practices.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Data Engineering</span>
+        <span class="skill-tag">Systems Architecture</span>
+      </div>
+      <div style="margin-top:16px;">
+        <a href="assets/certifications/8891ecf5-e5ba-43e1-98e4-02ff864a4c50.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <p class="section-label">// 05</p>
+  <p class="section-label">// 06</p>
   <div class="projects-wrap">
     <div class="projects-header">
       <h2 class="section-title">Projects <span class="project-count">(5)</span></h2>
@@ -947,7 +1032,7 @@
 
     <div class="projects-grid" id="projects-grid">
 
-      <div class="project-card reveal">
+      <div class="project-card reveal" onclick="openProjectModal({title: 'Data Engineering — Full Project', desc: 'Designed and automated a complete star schema architecture with cloud-based data ingestion and optimised analytical queries for BI reporting.', stack: ['Python', 'SQL', 'ETL', 'Cloud Storage'], img: 'assets/images/1.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project'})">
         <img class="project-thumb" src="assets/images/1.jpeg" alt="Data Engineering thumbnail" />
         <div class="project-content">
           <p class="project-title">Data Engineering — Full Project</p>
@@ -965,7 +1050,7 @@
         </div>
       </div>
 
-      <div class="project-card reveal" style="transition-delay:0.08s">
+      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
         <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL thumbnail" />
         <div class="project-content">
           <p class="project-title">Cloud ETL Pipeline</p>
@@ -983,7 +1068,7 @@
         </div>
       </div>
 
-      <div class="project-card reveal" style="transition-delay:0.16s">
+      <div class="project-card reveal" style="transition-delay:0.16s" onclick="openProjectModal({title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python', 'PostgreSQL', 'Connection Pooling'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'})">
         <img class="project-thumb" src="assets/images/3.jpeg" alt="Mpesa pipeline thumbnail" />
         <div class="project-content">
           <p class="project-title">Mpesa / Safaricom Pipeline</p>
@@ -1000,15 +1085,16 @@
         </div>
       </div>
 
-      <div class="project-card reveal" style="transition-delay:0.24s">
+      <div class="project-card reveal" style="transition-delay:0.24s" onclick="openProjectModal({title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python', 'Kafka', 'Flink', 'dbt', 'Terraform', 'BigQuery', 'Airflow', 'Grafana'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'})">
         <img class="project-thumb" src="assets/images/4.jpeg" alt="Streaming thumbnail" />
         <div class="project-content">
           <p class="project-title">Real-Time Transaction Streaming (MPESA)</p>
-          <p class="project-desc">Kafka producer/consumer architecture for continuous MPESA transaction ingestion and live analytical processing at low latency.</p>
+          <p class="project-desc">A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.</p>
           <div class="project-stack">
             <span class="stack-badge">Kafka</span>
-            <span class="stack-badge">Python</span>
-            <span class="stack-badge">Stream Processing</span>
+            <span class="stack-badge">Flink</span>
+            <span class="stack-badge">dbt</span>
+            <span class="stack-badge">Terraform</span>
           </div>
           <div class="project-actions">
             <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener">View</a>
@@ -1101,6 +1187,13 @@
           <span style="width:14px;height:14px;border:1px solid #0d4a2a;border-radius:3px;display:inline-block;background:#0d4a2a" title="Many contributions"></span>
         </div>
         <span>More</span>
+      </div>
+    </div>
+
+    <div class="top-repos-section">
+      <h3 class="top-repos-title">Top Repositories</h3>
+      <div id="top-repos-container" class="top-repos-grid">
+        <p style="color:var(--muted);font-family:'DM Mono',monospace;">Loading repositories…</p>
       </div>
     </div>
   </div>
@@ -1399,6 +1492,16 @@
         card.style.transitionDelay = (idx * 0.08) + 's';
         const thumb = shuffledImages[idx % shuffledImages.length];
         
+        const projectData = {
+          title: r.name.replace(/[-_]/g, ' '),
+          desc: desc,
+          stack: toolsTrim,
+          img: thumb,
+          view: r.html_url
+        };
+        
+        card.onclick = () => openProjectModal(projectData);
+        
         card.innerHTML = `
           <img class="project-thumb" src="${thumb}" alt="${escapeHtml(r.name)}" loading="lazy" />
           <div class="project-content">
@@ -1446,14 +1549,103 @@
       });
     });
   }
+  
+
+  // Fetch Top Repositories from GitHub
+  async function fetchTopRepos() {
+    const container = document.getElementById('top-repos-container');
+    if (!container) return;
+
+    try {
+      const res = await fetch('https://api.github.com/users/Victor-Kipruto-Rop/repos?per_page=100');
+      if (!res.ok) throw new Error('GitHub API error');
+      const repos = await res.json();
+      
+      // Filter for data engineering-related projects and sort by stars
+      const deKeywords = ['data', 'engineer', 'etl', 'airflow', 'spark', 'sql', 'warehouse', 'pipeline', 'kafka', 'flink', 'dbt', 'bigquery', 'snowflake', 'analytics', 'streaming'];
+      const filtered = (Array.isArray(repos) ? repos.filter(r => {
+        if (!r || !r.name) return false;
+        if (r.name.toLowerCase() === 'victor-kipruto-rop' || r.name.toLowerCase() === 'kipruto45') return false;
+        
+        // Include known data engineering projects explicitly
+        const knownDE = ['mpesa_safaricom-pipeline-', 'cloud-etl-pipeline', 'data-enginerring-full-project', 'real_time_transaction_streaming-mpesa-', 'streaming-pipeline', 'bank-balance-cdc-pipeline', 'data-quality-framework-knbs-population-data', 'kenyan-city-weather-elt-pipeline', 'sql-for-data-engineering'];
+        if (knownDE.includes(r.name.toLowerCase())) return true;
+        
+        const nameDesc = (r.name + ' ' + (r.description || '')).toLowerCase();
+        return deKeywords.some(keyword => nameDesc.includes(keyword));
+      }) : []);
+      filtered.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0));
+      
+      // Take top 6
+      const topRepos = filtered.slice(0, 6);
+
+      container.innerHTML = '';
+
+      const langColors = {
+        'Python': '#3572A5',
+        'Scala': '#c22d40',
+        'Java': '#b07219',
+        'SQL': '#e38c00',
+        'JavaScript': '#f1e05a',
+        'TypeScript': '#2b7489',
+        'Jupyter Notebook': '#DA5B0B',
+        'HTML': '#e34c26',
+        'CSS': '#563d7c',
+        'Go': '#00ADD8'
+      };
+
+      topRepos.forEach(repo => {
+        const item = document.createElement('div');
+        item.className = 'repo-item';
+        item.onclick = () => window.open(repo.html_url, '_blank');
+
+        const lang = repo.language || 'Markdown';
+        const color = langColors[lang] || '#8b8b8b';
+
+        item.innerHTML = `
+          <div class="repo-name">
+            ${escapeHtml(repo.name)}
+            <i class="fab fa-github" style="font-size: 14px; opacity: 0.5;"></i>
+          </div>
+          <p class="repo-desc">${escapeHtml(repo.description || 'No description available.')}</p>
+          <div class="repo-stats">
+            <span class="repo-lang">
+              <span class="repo-lang-dot" style="background: ${color};"></span>
+              ${escapeHtml(lang)}
+            </span>
+            <span class="repo-stars">
+              <i class="fas fa-star" style="color: #f1e05a;"></i>
+              ${repo.stargazers_count || 0}
+            </span>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    } catch (e) {
+      console.error('fetchTopRepos failed', e);
+      // Fallback to minimal error message or empty
+      container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; opacity: 0.7;">Unable to load GitHub repositories at this time.</p>';
+    }
+
+    // Add "View Full Profile" link
+    const viewFull = document.createElement('div');
+    viewFull.style.cssText = 'grid-column: 1 / -1; text-align: center; margin-top: 24px;';
+    viewFull.innerHTML = `
+      <a href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" 
+         style="color: var(--accent); font-weight: 700; text-decoration: none; font-family: \'Syne\', sans-serif; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s ease;">
+         View Full Profile →
+      </a>
+    `;
+    container.appendChild(viewFull);
+  }
 
   // Call loadGitHubActivity and fetchRepos on load
   document.addEventListener('DOMContentLoaded', ()=>{ 
-    loadGitHubActivity(); 
-    fetchRepos();
-    ensureStaticProjects(); // fallback if fetchRepos takes too long or fails
+  loadGitHubActivity(); 
+  fetchRepos();
+  fetchTopRepos();
+  ensureStaticProjects(); // fallback if fetchRepos takes too long or fails
   });
-
   // ensure projects are visible: if projects-grid is empty, populate static fallback cards
   function ensureStaticProjects(){
     const grid = document.getElementById('projects-grid');
@@ -1470,6 +1662,7 @@
       const card = document.createElement('div');
       card.className = 'project-card reveal';
       card.style.transitionDelay = (idx*0.08)+'s';
+      card.onclick = () => openProjectModal(p);
       card.innerHTML = `\n        <img class="project-thumb" src="${p.img}" alt="${p.title}" loading="lazy" />\n        <div class="project-content">\n          <p class="project-title">${p.title}</p>\n          <p class="project-desc">${p.desc}</p>\n          <div class="project-stack">${p.stack.map(s=>`<span class="stack-badge">${s}</span>`).join('')}</div>\n          <div class="project-actions">\n            <a class="btn-sm btn-primary-sm" href="${p.view}" target="_blank" rel="noopener" aria-label="View project ${p.title}">View</a>\n            <a class="btn-sm btn-outline" href="${p.view}" target="_blank" rel="noopener" aria-label="Read documentation for ${p.title}">Readme</a>\n          </div>\n        </div>`;
       grid.appendChild(card);
       if(window.obs) window.obs.observe(card);
@@ -1513,6 +1706,54 @@
 <script src="dashboard/visitor-intel.js"></script>
 <script src="dashboard/analytics-advanced.js"></script>
 <script src="integration/blog-tracker.js"></script>
+
+<!-- Project Modal Component -->
+<div class="project-modal-overlay" id="projectModalOverlay" role="dialog" aria-labelledby="projectModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="project-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:800px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
+    <div class="project-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:10;">
+      <h2 id="projectModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--ink);">Project Details</h2>
+      <button class="project-modal-close" id="projectModalClose" aria-label="Close project modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="project-modal-content" style="padding:32px;">
+      <img id="projectModalImage" class="project-modal-image" src="" alt="Project Preview">
+      <div class="project-modal-meta">
+        <span id="projectModalTime"></span>
+        <span id="projectModalCategory"></span>
+      </div>
+      <div id="projectModalDescription" style="font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:24px;"></div>
+      
+      <div class="project-modal-section-title">Tools & Technologies</div>
+      <div id="projectModalStack" class="project-stack" style="margin-bottom:24px;"></div>
+      
+      <div id="projectModalFeaturesSection">
+        <div class="project-modal-section-title">Key Features & Achievements</div>
+        <ul id="projectModalFeatures" class="project-modal-list" style="font-size:15px;line-height:1.7;color:var(--muted);"></ul>
+      </div>
+    </div>
+    <div class="project-modal-footer" style="padding:24px;border-top:1px solid var(--rule);display:flex;gap:12px;justify-content:flex-end;background:rgba(0,0,0,0.02);position:sticky;bottom:0;z-index:10;">
+      <a id="projectModalGithub" href="#" target="_blank" class="btn-sm btn-primary-sm" style="text-decoration:none;">GitHub Repository</a>
+      <button onclick="closeProjectModal()" class="btn-sm btn-outline" style="cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Skill Modal Component -->
+<div class="skill-modal-overlay" id="skillModalOverlay" role="dialog" aria-labelledby="skillModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="skill-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:500px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
+    <div class="skill-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="skillModalTitle" style="font-size:20px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--accent);">Skill Details</h2>
+      <button class="skill-modal-close" id="skillModalClose" aria-label="Close skill modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="skill-modal-content" style="padding:24px;">
+      <div id="skillModalBody" style="font-size:15px;line-height:1.7;color:var(--muted);font-family:'DM Mono',monospace;">
+        <!-- Content will be injected by JavaScript -->
+      </div>
+    </div>
+    <div class="skill-modal-footer" style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;background:rgba(0,0,0,0.02);">
+      <button onclick="closeSkillModal()" class="btn-sm btn-outline" style="cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
 
 <!-- Subscription Modal Component -->
 <div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
@@ -1664,6 +1905,179 @@
     }
   };
 
+  // Project Modal Management
+  const projectExtendedData = {
+    'Data Engineering — Full Project': {
+      time: 'Feb 2026 - April 2026',
+      category: 'Data Architecture',
+      features: [
+        'Implemented a complete Star Schema architecture for retail analytics.',
+        'Automated cloud-based data ingestion from multiple source systems.',
+        'Optimized complex SQL queries, reducing report generation time by 60%.',
+        'Built a custom monitoring dashboard for pipeline health tracking.'
+      ]
+    },
+    'Cloud ETL Pipeline': {
+      time: 'Jan 2026 - Feb 2026',
+      category: 'Infrastructure & Automation',
+      features: [
+        'Multi-stage ETL orchestrations using Apache Airflow.',
+        'Robust data validation engine with custom rule definitions.',
+        'Automated deduplication logic handling millions of records.',
+        'Full CI/CD integration with GitHub Actions and Docker.'
+      ]
+    },
+    'Mpesa / Safaricom Pipeline': {
+      time: 'Nov 2025 - Dec 2025',
+      category: 'FinTech Data Systems',
+      features: [
+        'High-throughput ingestion system for mobile transaction data.',
+        'Chunked reading strategies to handle large CSV/JSON exports efficiently.',
+        'Optimized batch inserts into PostgreSQL using connection pooling.',
+        'Implemented transaction-level data integrity checks.'
+      ]
+    },
+    'Real-Time Transaction Streaming (MPESA)': {
+      time: 'Dec 2025 - Jan 2026',
+      category: 'FinTech Streaming Architecture',
+      features: [
+        'Real-time webhook ingestion from Safaricom Daraja API confirmation events.',
+        'Distributed event streaming using Apache Kafka and Apache Flink for sub-second processing.',
+        'Automated data modelling with dbt for both operational (PostgreSQL) and analytical (BigQuery) storage.',
+        'Infrastructure as Code (Terraform) and full observability with Grafana and Streamlit.'
+      ]
+    }
+  };
+
+  const projectModal = {
+    overlay: document.getElementById('projectModalOverlay'),
+    title: document.getElementById('projectModalTitle'),
+    image: document.getElementById('projectModalImage'),
+    time: document.getElementById('projectModalTime'),
+    category: document.getElementById('projectModalCategory'),
+    description: document.getElementById('projectModalDescription'),
+    stack: document.getElementById('projectModalStack'),
+    features: document.getElementById('projectModalFeatures'),
+    featuresSection: document.getElementById('projectModalFeaturesSection'),
+    github: document.getElementById('projectModalGithub'),
+    closeBtn: document.getElementById('projectModalClose'),
+
+    init() {
+      this.closeBtn.addEventListener('click', () => this.close());
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) this.close();
+      });
+    },
+
+    open(data) {
+      const extended = projectExtendedData[data.title] || {};
+      
+      this.title.textContent = data.title;
+      this.image.src = data.img || 'assets/images/1.jpeg';
+      this.time.textContent = extended.time || 'Project Completion: 2026';
+      this.category.textContent = ' · ' + (extended.category || 'Engineering');
+      this.description.textContent = data.desc;
+      
+      // Render Stack
+      this.stack.innerHTML = (data.stack || []).map(t => `<span class="stack-badge">${t}</span>`).join('');
+      
+      // Render Features
+      if (extended.features && extended.features.length) {
+        this.featuresSection.style.display = 'block';
+        this.features.innerHTML = extended.features.map(f => `<li>${f}</li>`).join('');
+      } else {
+        this.featuresSection.style.display = 'none';
+      }
+      
+      this.github.href = data.view || '#';
+      
+      this.overlay.style.display = 'flex';
+      this.overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+      this.overlay.style.display = 'none';
+      this.overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    },
+
+    isOpen() {
+      return this.overlay.style.display === 'flex';
+    }
+  };
+
+  window.openProjectModal = (data) => projectModal.open(data);
+  window.closeProjectModal = () => projectModal.close();
+
+  // Skill Modal Management
+  const skillData = {
+    'Apache Airflow': 'Expertise in orchestrating complex data pipelines, managing DAGs, and ensuring reliable ETL workflows through automated scheduling and monitoring.',
+    'ETL Design': 'Specialized in designing scalable Extract, Transform, Load processes that efficiently handle large volumes of data while maintaining high performance and data integrity.',
+    'DAG Management': 'Proficient in creating, monitoring, and optimizing Directed Acyclic Graphs (DAGs) to ensure complex workflows are executed in the correct order with proper error handling.',
+    'Apache Kafka': 'Hands-on experience with real-time stream processing, including setting up brokers, managing topics, and building high-throughput data ingestion systems.',
+    'Stream Processing': 'Developing real-time data processing engines that transform and analyze data on-the-fly to provide immediate business insights and reactive systems.',
+    'Producers & Consumers': 'Implementing robust Kafka producers and consumers in Python to facilitate distributed data streaming and event-driven microservices architecture.',
+    'Star Schema': 'Designing optimized data warehouse schemas using the Star Schema approach to simplify complex queries and significantly improve business intelligence reporting performance.',
+    'Dimensional Modelling': 'Applying Kimball methodologies to create intuitive, performant, and flexible data models that bridge the gap between raw data and business users.',
+    'OLAP Queries': 'Mastery of writing complex SQL for Online Analytical Processing to extract deep multi-dimensional insights from massive historical datasets.',
+    'Data Warehousing': 'End-to-end experience building and maintaining modern data warehouses as the "single source of truth" for organizational data and analytics.',
+    'Deduplication': 'Implementing sophisticated data cleansing and deduplication strategies at scale to ensure data quality and prevent redundant information in production systems.',
+    'Validation Rule Engines': 'Architecting automated validation systems that enforce data quality standards and business rules across entire data lifecycles.',
+    'Anomaly Detection': 'Developing and deploying statistical models and algorithms to identify outliers and potential data quality issues in real-time and batch pipelines.',
+    'Docker': 'Advanced containerization skills for packaging data tools and applications, ensuring consistent environments across development, testing, and production.',
+    'GitHub Actions': 'Automating full-scale CI/CD pipelines, unit testing, and deployment workflows directly within the GitHub ecosystem for rapid and reliable delivery.',
+    'Pytest': 'Rigorous testing approach using Pytest to build comprehensive unit and integration test suites, ensuring production-grade reliability for data engineering code.',
+    'CI/CD Pipelines': 'Designing and managing end-to-end automated delivery pipelines that enable frequent, low-risk software and data infrastructure updates.',
+    'Python': 'Expert proficiency in Python for data engineering, building automation tools, complex scripting, and backend system development.',
+    'SQL': 'Mastery of advanced SQL across multiple dialects (PostgreSQL, MySQL, etc.), including query optimization, window functions, and complex CTEs.',
+    'PostgreSQL': 'Deep experience with PostgreSQL as a primary transactional and analytical database, including performance tuning, schema design, and administration.',
+    'Git': 'Professional version control management using Git, including collaborative workflows, branching strategies, and repository maintenance.',
+    'Docker Compose': 'Proficiency in orchestrating multi-container local development environments to replicate complex production infrastructures with ease.'
+  };
+
+  const skillModal = {
+    overlay: document.getElementById('skillModalOverlay'),
+    body: document.getElementById('skillModalBody'),
+    title: document.getElementById('skillModalTitle'),
+    closeBtn: document.getElementById('skillModalClose'),
+
+    init() {
+      this.closeBtn.addEventListener('click', () => this.close());
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) this.close();
+      });
+    },
+
+    open(skillName) {
+      const description = skillData[skillName] || 'Details coming soon...';
+      this.title.textContent = skillName;
+      this.body.textContent = description;
+      this.overlay.style.display = 'flex';
+      this.overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+      this.overlay.style.display = 'none';
+      this.overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    },
+
+    isOpen() {
+      return this.overlay.style.display === 'flex';
+    }
+  };
+
+  window.openSkillModal = (name) => skillModal.open(name);
+  window.closeSkillModal = () => skillModal.close();
+
   // Modal management
   const subscriptionModal = {
     overlay: document.getElementById('subscriptionModalOverlay'),
@@ -1795,9 +2209,15 @@
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => subscriptionModal.init());
+    document.addEventListener('DOMContentLoaded', () => {
+      subscriptionModal.init();
+      skillModal.init();
+      projectModal.init();
+    });
   } else {
     subscriptionModal.init();
+    skillModal.init();
+    projectModal.init();
   }
 
   // Expose for external access
