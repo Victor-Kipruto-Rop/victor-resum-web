@@ -1200,22 +1200,22 @@
   <p class="section-label">// 08</p>
   <h2 class="section-title">How I Work</h2>
   <div class="expertise-grid">
-    <div class="expertise-card reveal">
+    <div class="expertise-card reveal" onclick="openSkillModal('Pipeline Design')">
       <div class="expertise-icon"><i class="fas fa-project-diagram"></i></div>
       <h3 class="expertise-title">Pipeline Design</h3>
       <p class="expertise-desc">I design resilient ETL/ELT frameworks. By treating data pipelines as software, I ensure modularity, observability, and scalability from the very first row.</p>
     </div>
-    <div class="expertise-card reveal" style="transition-delay:0.1s">
+    <div class="expertise-card reveal" style="transition-delay:0.1s" onclick="openSkillModal('Orchestration')">
       <div class="expertise-icon"><i class="fas fa-clock"></i></div>
       <h3 class="expertise-title">Orchestration</h3>
       <p class="expertise-desc">I leverage Apache Airflow to turn complex, interdependent data tasks into deterministic, automated workflows with robust alerting and retry strategies.</p>
     </div>
-    <div class="expertise-card reveal" style="transition-delay:0.2s">
+    <div class="expertise-card reveal" style="transition-delay:0.2s" onclick="openSkillModal('Data Modelling')">
       <div class="expertise-icon"><i class="fas fa-database"></i></div>
       <h3 class="expertise-title">Data Modelling</h3>
       <p class="expertise-desc">I bridge raw data to business value using dimensional modelling (Star/Snowflake), optimized for high-performance analytical query engines.</p>
     </div>
-    <div class="expertise-card reveal" style="transition-delay:0.3s">
+    <div class="expertise-card reveal" style="transition-delay:0.3s" onclick="openSkillModal('Data CI/CD')">
       <div class="expertise-icon"><i class="fas fa-infinity"></i></div>
       <h3 class="expertise-title">Data CI/CD</h3>
       <p class="expertise-desc">I treat data infrastructure with engineering rigor, implementing automated unit testing (Pytest) and deployment pipelines for constant reliability.</p>
@@ -2162,6 +2162,10 @@
     'Anomaly Detection': 'Developing and deploying statistical models and algorithms to identify outliers and potential data quality issues in real-time and batch pipelines.',
     'Docker': 'Advanced containerization skills for packaging data tools and applications, ensuring consistent environments across development, testing, and production.',
     'GitHub Actions': 'Automating full-scale CI/CD pipelines, unit testing, and deployment workflows directly within the GitHub ecosystem for rapid and reliable delivery.',
+    'Pipeline Design': 'Designing resilient and scalable ETL/ELT frameworks. I treat data pipelines as software, ensuring modularity, observability, and robust error handling to guarantee data quality from source to destination.',
+    'Orchestration': 'Leveraging Apache Airflow to orchestrate complex, interdependent data workflows. I design deterministic, automated processes with comprehensive monitoring, retries, and alerting to minimize downtime.',
+    'Data Modelling': 'Bridging raw data to business value through dimensional modelling (Star/Snowflake schemas). I optimize models for high-performance analytical queries in OLAP systems.',
+    'Data CI/CD': 'Treating data infrastructure with engineering rigor. I implement automated unit/integration testing (e.g., Pytest) and deployment pipelines to ensure continuous reliability in production.',
     'Pytest': 'Rigorous testing approach using Pytest to build comprehensive unit and integration test suites, ensuring production-grade reliability for data engineering code.',
     'CI/CD Pipelines': 'Designing and managing end-to-end automated delivery pipelines that enable frequent, low-risk software and data infrastructure updates.',
     'Python': 'Expert proficiency in Python for data engineering, building automation tools, complex scripting, and backend system development.',
