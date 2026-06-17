@@ -973,7 +973,7 @@
         <span class="skill-tag">IBM Cloud</span>
       </div>
       <div style="margin-top:16px;">
-        <a href="assets/certifications/IBM_BD0101EN_Certificate_Cognitive_Class.pdf" target="_blank" class="btn-sm btn-primary-sm magnetic">View Certificate</a>
+        <button onclick="openCertModal('assets/certifications/IBM_BD0101EN_Certificate_Cognitive_Class.pdf')" class="btn-sm btn-primary-sm magnetic">View Certificate</button>
       </div>
     </div>
     <div class="experience-card reveal" style="transition-delay:0.1s">
@@ -991,7 +991,7 @@
         <span class="skill-tag">Problem Solving</span>
       </div>
       <div style="margin-top:16px;">
-        <a href="assets/certifications/IBM_Design_Thinking.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+        <button onclick="openCertModal('assets/certifications/IBM_Design_Thinking.pdf')" class="btn-sm btn-outline magnetic">View Certificate</button>
       </div>
     </div>
     <div class="experience-card reveal" style="transition-delay:0.2s">
@@ -1008,7 +1008,7 @@
         <span class="skill-tag">Systems Architecture</span>
       </div>
       <div style="margin-top:16px;">
-        <a href="assets/certifications/Professional_Development.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+        <button onclick="openCertModal('assets/certifications/Professional_Development.pdf')" class="btn-sm btn-outline magnetic">View Certificate</button>
       </div>
     </div>
   </div>
@@ -1252,6 +1252,20 @@
   </div>
 </div>
 
+<!-- Certificate Viewer Modal -->
+<div class="cert-modal-overlay" id="certModalOverlay" role="dialog" aria-labelledby="certModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);z-index:10000;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="cert-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-width:900px;width:90%;height:90vh;display:flex;flex-direction:column;position:relative;border:1px solid var(--rule);">
+    <div style="padding:16px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="certModalTitle" style="font-size:18px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--ink);">Certificate Viewer</h2>
+      <button onclick="closeCertModal()" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;">✕</button>
+    </div>
+    <iframe id="certModalIframe" src="" style="width:100%;height:100%;border:none;flex:1;"></iframe>
+    <div style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;">
+        <p style="font-size:12px; color:var(--muted); font-family:'DM Mono',monospace;">Note: Certificates are for viewing only.</p>
+    </div>
+  </div>
+</div>
+
 <script>
   function openCvModal() {
     document.getElementById('cvModalOverlay').style.display = 'flex';
@@ -1269,6 +1283,19 @@
     document.body.removeChild(link);
     document.getElementById('cvSuccessMsg').style.display = 'block';
     setTimeout(closeCvModal, 2000);
+  }
+
+  function openCertModal(url) {
+    const overlay = document.getElementById('certModalOverlay');
+    const iframe = document.getElementById('certModalIframe');
+    iframe.src = url;
+    overlay.style.display = 'flex';
+  }
+  function closeCertModal() {
+    const overlay = document.getElementById('certModalOverlay');
+    const iframe = document.getElementById('certModalIframe');
+    iframe.src = '';
+    overlay.style.display = 'none';
   }
 </script>
 <script>
