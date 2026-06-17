@@ -6,56 +6,144 @@
     <title>How I Work | Victor Kipruto Rop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: { colors: { accent: '#c8401a' } } }
-        }
-    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
-        body { font-family: 'DM Mono', monospace; }
+        body { font-family: 'DM Mono', monospace; background: #f5f0e8; color: #0a0e14; }
+        .dark body { background: #0a0e14; color: #f5f0e8; }
         h1, h2, h3 { font-family: 'DM Serif Display', serif; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-400 { animation-delay: 0.4s; }
+        .bg-card { background: #ede8de; }
+        .dark .bg-card { background: #18181b; }
     </style>
 </head>
-<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8] transition-colors duration-300">
+<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
 
-<nav class="flex justify-between items-center px-12 py-6">
-  <a href="index.html" class="text-xl font-bold">Victor Kipruto Rop</a>
-  <div class="flex gap-6 text-sm uppercase tracking-wider">
-    <a href="index.html#github-activity" class="hover:text-accent">Activity</a>
-    <a href="index.html#skills" class="hover:text-accent">Skills</a>
-    <a href="index.html#certifications" class="hover:text-accent">Certifications</a>
-    <a href="index.html#projects" class="hover:text-accent">Projects</a>
-    <a href="index.html#blog" class="hover:text-accent">Blog</a>
-    <a href="index.html#experience" class="hover:text-accent">Experience</a>
-    <a href="index.html#about" class="hover:text-accent">About</a>
-    <a href="index.html#send-message" class="hover:text-accent">Contact</a>
-  </div>
-  <button id="theme-toggle" class="border border-gray-400 p-2 rounded-full w-10 h-10"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
-</nav>
-
-<main class="container mx-auto px-6 py-12 max-w-6xl">
-    <section class="mb-16 text-center animate-fade-in-up">
-        <h1 class="text-5xl font-bold mb-4">How I Work</h1>
+<main class="container mx-auto px-6 py-12 max-w-5xl">
+    <!-- HERO -->
+    <section class="text-center mb-20">
+        <h1 class="text-6xl font-bold mb-6">How I Work</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">My approach to designing, building, deploying, and maintaining reliable data platforms and scalable systems.</p>
+        <div class="flex gap-4 justify-center">
+            <a href="index.html#projects" class="bg-[#c8401a] text-white px-8 py-3 rounded hover:bg-black transition">View Projects</a>
+            <a href="assets/Victor_Kipruto_Resume.pdf" class="border border-[#c8401a] text-[#c8401a] px-8 py-3 rounded hover:bg-[#c8401a] hover:text-white transition">Download Resume</a>
+        </div>
     </section>
 
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 animate-fade-in-up delay-200">
-        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800 text-center"><h3 class="text-3xl font-bold text-accent">5+</h3><p>Years Experience</p></div>
+    <!-- PHILOSOPHY -->
+    <section class="mb-20">
+        <h2 class="text-4xl mb-10">My Engineering Philosophy</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-10">I believe great data systems should be reliable, scalable, observable, secure, and easy to maintain.</p>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-card p-6 rounded-lg"><h3>Simplicity</h3></div>
+            <div class="bg-card p-6 rounded-lg"><h3>Automation</h3></div>
+            <div class="bg-card p-6 rounded-lg"><h3>Data Quality</h3></div>
+            <div class="bg-card p-6 rounded-lg"><h3>Scalability</h3></div>
+            <div class="bg-card p-6 rounded-lg"><h3>Security</h3></div>
+            <div class="bg-card p-6 rounded-lg"><h3>Documentation</h3></div>
+        </div>
     </section>
-    
-    <a href="index.html" class="inline-block text-accent hover:underline animate-fade-in-up delay-400">← Back to Portfolio</a>
+
+    <!-- WHY I WORK THIS WAY -->
+    <section class="mb-20 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+        <h2 class="text-4xl mb-6">Why I Work This Way</h2>
+        <div class="space-y-4 text-gray-600 dark:text-gray-400">
+            <p>Data engineering isn't just about moving data; it's about building trust. My structured approach is designed to eliminate ambiguity, reduce technical debt, and ensure that every pipeline I build delivers consistent business value.</p>
+            <p>By enforcing rigorous phases like discovery, architecture, and validation, I minimize costly production incidents and ensure the systems we build today are robust enough for the challenges of tomorrow.</p>
+        </div>
+    </section>
+
+    <!-- LIFECYCLE -->
+    <section class="mb-20">
+        <h2 class="text-4xl mb-10">My Project Lifecycle</h2>
+        <div class="space-y-12 border-l-2 border-[#c8401a] pl-8">
+            <!-- [Existing Phases] -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 1: Discovery & Requirements</h3>
+                    <p class="text-gray-400">Activities: Stakeholder meetings, requirement gathering, data source identification, success metrics, risk analysis.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Requirements document, solution proposal, architecture draft.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 2: Architecture & Planning</h3>
+                    <p class="text-gray-400">Activities: Data flow design, infrastructure planning, technology selection, cost estimation, security review.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Architecture diagrams, technical design documents, sprint plan.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 3: Development</h3>
+                    <p class="text-gray-400">Activities: Pipeline development, ETL implementation, infrastructure setup, testing, documentation.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Source code, automated tests, deployment scripts.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 4: Deployment</h3>
+                    <p class="text-gray-400">Activities: CI/CD execution, monitoring setup, validation, performance testing.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Production deployment, monitoring dashboards, runbooks.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 5: Optimization</h3>
+                    <p class="text-gray-400">Activities: Cost optimization, performance tuning, scaling, continuous improvements.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Optimization reports, updated architecture.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <h3 class="text-2xl mb-6 text-center">Applied Example: Real-Time MPESA Streaming Platform</h3>
+            <div class="space-y-4">
+                <p><strong>Requirement:</strong> Process 10k transactions/sec with sub-second latency.</p>
+                <p><strong>Architecture:</strong> Webhook -> Kafka -> Flink -> BigQuery.</p>
+                <p><strong>Optimization:</strong> Partitioning tuning and Flink checkpointing optimization reduced latency by 40%.</p>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <h3 class="text-2xl mb-6 text-center">Development Workflow Diagram</h3>
+            <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+            <div class="mermaid">
+                graph LR
+                    A[Planning] --> B[Design]
+                    B --> C[Build]
+                    C --> D[Test]
+                    D --> E[Deploy]
+                    E --> F[Monitor]
+                    F --> G[Improve]
+                    G --> A
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="mb-20">
+        <h2 class="text-4xl mb-10">Technology Stack</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-card p-4 rounded text-center">Python</div>
+            <div class="bg-card p-4 rounded text-center">SQL</div>
+            <div class="bg-card p-4 rounded text-center">Apache Airflow</div>
+            <div class="bg-card p-4 rounded text-center">Apache Kafka</div>
+            <div class="bg-card p-4 rounded text-center">AWS/GCP</div>
+            <div class="bg-card p-4 rounded text-center">Docker/K8s</div>
+            <div class="bg-card p-4 rounded text-center">Terraform</div>
+            <div class="bg-card p-4 rounded text-center">PostgreSQL</div>
+        </div>
+    </section>
+
+    <a href="index.html" class="text-[#c8401a] hover:underline">← Back to Portfolio</a>
 </main>
-
-<script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-    });
-</script>
 </body>
 </html>

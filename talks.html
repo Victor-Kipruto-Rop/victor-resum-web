@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,46 +16,68 @@
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
         body { font-family: 'DM Mono', monospace; }
         h1, h2, h3 { font-family: 'DM Serif Display', serif; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-400 { animation-delay: 0.4s; }
     </style>
 </head>
-<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8] transition-colors duration-300">
-
-<nav class="flex justify-between items-center px-12 py-6">
-  <a href="index.html" class="text-xl font-bold">Victor Kipruto Rop</a>
-  <div class="flex gap-6 text-sm uppercase tracking-wider">
-    <a href="index.html#github-activity" class="hover:text-accent">Activity</a>
-    <a href="index.html#skills" class="hover:text-accent">Skills</a>
-    <a href="index.html#certifications" class="hover:text-accent">Certifications</a>
-    <a href="index.html#projects" class="hover:text-accent">Projects</a>
-    <a href="index.html#blog" class="hover:text-accent">Blog</a>
-    <a href="index.html#experience" class="hover:text-accent">Experience</a>
-    <a href="index.html#about" class="hover:text-accent">About</a>
-    <a href="index.html#send-message" class="hover:text-accent">Contact</a>
-  </div>
-  <button id="theme-toggle" class="border border-gray-400 p-2 rounded-full w-10 h-10"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
-</nav>
+<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
 
 <main class="container mx-auto px-6 py-12 max-w-6xl">
-    <section class="mb-16 text-center animate-fade-in-up">
+    <!-- HERO SECTION -->
+    <section class="mb-16">
+        <p class="text-accent font-bold tracking-widest text-sm uppercase mb-2">// TALKS</p>
         <h1 class="text-5xl font-bold mb-4">Tech Talks & Workshops</h1>
+        <div class="bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <h3 class="text-2xl mb-2">Speaker Profile</h3>
+            <p class="text-gray-600 dark:text-gray-400">Victor Kipruto Rop | Data Engineer</p>
+            <p class="text-gray-600 dark:text-gray-400">Expertise: Data Engineering, Cloud Computing, Real-Time Streaming</p>
+        </div>
     </section>
 
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 animate-fade-in-up delay-200">
-        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800 text-center"><h3 class="text-3xl font-bold text-accent">10+</h3><p>Talks</p></div>
+    <!-- FEATURED TALKS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">Featured Talks</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Building Real-Time Data Pipelines with Kafka</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Venue: Google Developer Group Eldoret | June 2026</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Audience: 150 Developers</p>
+            </div>
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Data Engineering Career Roadmap</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Venue: Data Science Summit Nairobi | August 2026</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Audience: 200+ Students & Professionals</p>
+            </div>
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Building Production ETL Pipelines</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Venue: Tech Monthly Meetup | September 2026</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Audience: 80 Developers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">Workshops</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Introduction to Apache Airflow</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: DAG Management, Operators, XComs.</p>
+            </div>
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">ETL Pipeline Design</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: Schema design, data cleansing, performance.</p>
+            </div>
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Data Warehousing Fundamentals</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: Star schema, OLAP, query optimization.</p>
+            </div>
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Python for Data Engineers</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: Advanced scripting, testing, library development.</p>
+            </div>
+        </div>
     </section>
     
-    <a href="index.html" class="inline-block text-accent hover:underline animate-fade-in-up delay-400">← Back to Portfolio</a>
+    <a href="index.html" class="text-accent hover:underline">← Back to Portfolio</a>
 </main>
-
-<script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-    });
-</script>
 </body>
 </html>

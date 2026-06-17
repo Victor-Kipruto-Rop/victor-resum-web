@@ -16,46 +16,105 @@
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
         body { font-family: 'DM Mono', monospace; }
         h1, h2, h3 { font-family: 'DM Serif Display', serif; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-400 { animation-delay: 0.4s; }
     </style>
 </head>
-<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8] transition-colors duration-300">
-
-<nav class="flex justify-between items-center px-12 py-6">
-  <a href="index.html" class="text-xl font-bold">Victor Kipruto Rop</a>
-  <div class="flex gap-6 text-sm uppercase tracking-wider">
-    <a href="index.html#github-activity" class="hover:text-accent">Activity</a>
-    <a href="index.html#skills" class="hover:text-accent">Skills</a>
-    <a href="index.html#certifications" class="hover:text-accent">Certifications</a>
-    <a href="index.html#projects" class="hover:text-accent">Projects</a>
-    <a href="index.html#blog" class="hover:text-accent">Blog</a>
-    <a href="index.html#experience" class="hover:text-accent">Experience</a>
-    <a href="index.html#about" class="hover:text-accent">About</a>
-    <a href="index.html#send-message" class="hover:text-accent">Contact</a>
-  </div>
-  <button id="theme-toggle" class="border border-gray-400 p-2 rounded-full w-10 h-10"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
-</nav>
+<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
 
 <main class="container mx-auto px-6 py-12 max-w-6xl">
-    <section class="mb-16 text-center animate-fade-in-up">
-        <h1 class="text-5xl font-bold mb-4">Open Source Contributions</h1>
+    <!-- HERO SECTION -->
+    <section class="flex flex-col md:flex-row items-center gap-12 mb-16">
+        <img src="assets/1.jpeg" alt="Victor Kipruto Rop" class="w-48 h-48 rounded-full shadow-lg"/>
+        <div class="text-center md:text-left">
+            <p class="text-accent font-bold tracking-widest text-sm uppercase mb-2">Open Source Hub</p>
+            <h1 class="text-5xl font-bold mb-4">Victor Kipruto Rop</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">Data Engineer specializing in real-time streaming, cloud infrastructure, data warehousing, and analytics engineering.</p>
+            <div class="flex gap-4 justify-center md:justify-start">
+                <a href="https://github.com/Victor-Kipruto-Rop" class="bg-accent text-white px-6 py-3 rounded hover:bg-black transition">View GitHub</a>
+                <a href="assets/Victor_Kipruto_Resume.pdf" class="border border-accent text-accent px-6 py-3 rounded hover:bg-accent hover:text-white transition">Download Resume</a>
+            </div>
+        </div>
     </section>
 
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 animate-fade-in-up delay-200">
-        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800 text-center"><h3 class="text-3xl font-bold text-accent">150+</h3><p>Contributions</p></div>
+    <!-- METRICS -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-contrib">150+</h3>
+            <p class="text-sm">Total Contributions</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-pr">45</h3>
+            <p class="text-sm">PRs Merged</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-repos">12</h3>
+            <p class="text-sm">Repositories</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-stars">20</h3>
+            <p class="text-sm">Stars Earned</p>
+        </div>
     </section>
-    
-    <a href="index.html" class="inline-block text-accent hover:underline animate-fade-in-up delay-400">← Back to Portfolio</a>
+
+    <!-- FEATURED CONTRIBUTIONS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">Featured Contributions</h2>
+        <div class="grid md:grid-cols-2 gap-8" id="featured-contribs">
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Apache Airflow</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Bug Fix in Core Scheduler.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">dbt-core</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Documentation Improvement.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Apache Kafka (Python Client)</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Refactoring Producer Connection Logic.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Great Expectations</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">New Data Validation Rules.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MY PROJECTS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">My Open Source Projects</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Realtime MPESA Streaming</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">High-performance streaming architecture using Kafka and Flink.</p>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">ETL Framework</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Robust, containerized ETL orchestrations for financial data.</p>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Warehouse Data Quality Tool</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Automated anomaly detection for Snowflake/BigQuery.</p>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Airflow Starter Kit</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Boilerplate templates for rapid DAG development.</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="index.html" class="text-accent hover:underline">← Back to Portfolio</a>
 </main>
 
 <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-    });
+    // Placeholder for API integration logic to be expanded
+    async function initStats() {
+        // Animation for counters could go here
+        console.log("Initializing contribution statistics...");
+    }
+    document.addEventListener('DOMContentLoaded', initStats);
 </script>
 </body>
 </html>
