@@ -1140,6 +1140,9 @@
       </div>
 
     </div>
+    <div class="flex justify-center mt-12">
+      <a href="https://github.com/Victor-Kipruto-Rop?tab=repositories" target="_blank" rel="noopener" class="btn-primary">View More Projects →</a>
+    </div>
   </div>
 </section>
 
@@ -1535,9 +1538,12 @@
         if (!r || !r.name) return false;
         if (r.name.toLowerCase() === 'victor-kipruto-rop' || r.name.toLowerCase() === 'kipruto45') return false;
         const nameDesc = (r.name + ' ' + (r.description || '')).toLowerCase();
-        return deKeywords.some(keyword => nameDesc.includes(keyword));
+        const isMatch = deKeywords.some(keyword => nameDesc.includes(keyword));
+        if (isMatch) console.log('Match found:', r.name);
+        return isMatch;
       }) : []);
 
+      console.log('Filtered projects count:', filtered.length);
       // sort by popularity (stars) then recent activity
       filtered.sort((a,b)=> {
         const starsA = a.stargazers_count || 0; const starsB = b.stargazers_count || 0;
@@ -1547,9 +1553,15 @@
 
       // show all relevant projects
       const display = filtered;
-      const images = ['assets/images/1.jpeg','assets/images/2.jpeg','assets/images/3.jpeg','assets/images/3.png','assets/images/4.jpeg','assets/images/5.jpeg'];
-      // randomize thumbnails so projects receive images in a shuffled order
-      const shuffledImages = images.slice().sort(() => Math.random() - 0.5);
+      console.log('Displaying projects:', display.map(p => p.name));
+      // Map specific repos to images
+      const projectImageMap = {
+        'Real_Time_Transaction_Streaming-MPESA-': 'assets/images/4.jpeg',
+        'cloud-etl-pipeline': 'assets/images/2.jpeg',
+        'Data-Enginerring-full-project': 'assets/images/1.jpeg',
+        'mpesa_safaricom-pipeline-': 'assets/images/3.jpeg'
+      };
+      
       const grid = document.getElementById('projects-grid');
       if(!grid) return;
       grid.innerHTML = '';
@@ -1633,7 +1645,9 @@
         const card = document.createElement('div');
         card.className = 'project-card reveal';
         card.style.transitionDelay = (idx * 0.08) + 's';
-        const thumb = shuffledImages[idx % shuffledImages.length];
+        
+        // Use mapped image or fallback to a default image
+        const thumb = projectImageMap[r.name] || 'assets/images/1.jpeg';
         
         const projectData = {
           title: r.name.replace(/[-_]/g, ' '),
