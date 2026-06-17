@@ -351,22 +351,22 @@
   }
   .btn-primary {
     display: inline-block; padding: 14px 32px;
-    background: var(--ink); color: var(--paper);
+    background: var(--accent); color: var(--paper);
     font-family: 'DM Mono', monospace; font-size: 11px;
     letter-spacing: 0.12em; text-transform: uppercase;
-    text-decoration: none; border: 1.5px solid var(--ink);
+    text-decoration: none; border: 1px solid var(--accent);
     transition: background 0.25s, color 0.25s;
   }
-  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-primary:hover { background: var(--ink); border-color: var(--ink); }
   .btn-ghost {
     display: inline-block; padding: 14px 32px;
     background: transparent; color: var(--ink);
     font-family: 'DM Mono', monospace; font-size: 11px;
     letter-spacing: 0.12em; text-transform: uppercase;
-    text-decoration: none; border: 1.5px solid var(--rule);
+    text-decoration: none; border: 1px solid var(--accent);
     transition: border-color 0.25s, color 0.25s;
   }
-  .btn-ghost:hover { border-color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--ink); background: var(--accent); color: var(--paper); }
 
 
 
@@ -514,9 +514,9 @@
   .fs-error.visible { display:block; background: #fff2f0; color: var(--ink); border:1px solid rgba(200,64,26,0.12); }
   .fs-success small, .fs-error small { display:block; font-weight:400; margin-top:6px; font-size:13px; color: rgba(255,255,255,0.9); }
   @media (max-width: 540px) { .fs-success, .fs-error { padding:10px 14px; font-size:14px; } }
-  .btn-sm { padding: 8px 12px; font-size: 12px; border-radius: 8px; text-decoration: none; display:inline-flex; align-items:center; gap:8px; }
-  .btn-outline { background: transparent; border: 1px solid var(--rule); color: var(--ink); }
-  .btn-primary-sm { background: var(--ink); color: var(--paper); border: 1px solid var(--ink); }
+  .btn-sm { padding: 8px 12px; font-size: 12px; border-radius: 8px; text-decoration: none; display:inline-flex; align-items:center; gap:8px; border: 1px solid var(--accent); }
+  .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--ink); }
+  .btn-primary-sm { background: var(--accent); color: var(--paper); border: 1px solid var(--accent); }
   .btn-sm i { font-size: 14px; }
   @media (max-width: 1200px) { .projects-grid{ grid-template-columns: repeat(2,1fr);} }
   @media (max-width: 720px) { .projects-grid{ grid-template-columns: 1fr;} }
@@ -801,7 +801,7 @@
       <a class="btn-primary magnetic" href="#projects">View Projects</a>
       <a class="btn-ghost magnetic" href="#send-message">Hire Me</a>
       <a class="btn-ghost magnetic" href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" aria-label="Schedule a call">Schedule Call</a>
-      <a class="btn-ghost magnetic" href="assets/Victor_Kipruto_Resume.pdf" download aria-label="Download Victor's Resume CV">Download CV</a>
+      <a class="btn-ghost magnetic" href="#" onclick="openCvModal(); return false;" aria-label="View or Download Victor's Resume CV">View/Download CV</a>
     </div>
   </div>
   <div class="hero-right">
@@ -973,7 +973,7 @@
         <span class="skill-tag">IBM Cloud</span>
       </div>
       <div style="margin-top:16px;">
-        <a href="assets/certifications/IBM BD0101EN Certificate _ Cognitive Class.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+        <a href="assets/certifications/IBM_BD0101EN_Certificate_Cognitive_Class.pdf" target="_blank" class="btn-sm btn-primary-sm magnetic">View Certificate</a>
       </div>
     </div>
     <div class="experience-card reveal" style="transition-delay:0.1s">
@@ -991,7 +991,7 @@
         <span class="skill-tag">Problem Solving</span>
       </div>
       <div style="margin-top:16px;">
-        <a href="assets/certifications/IBMDesign20260614-31-to05rr.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+        <a href="assets/certifications/IBM_Design_Thinking.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
       </div>
     </div>
     <div class="experience-card reveal" style="transition-delay:0.2s">
@@ -1008,7 +1008,7 @@
         <span class="skill-tag">Systems Architecture</span>
       </div>
       <div style="margin-top:16px;">
-        <a href="assets/certifications/8891ecf5-e5ba-43e1-98e4-02ff864a4c50.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
+        <a href="assets/certifications/Professional_Development.pdf" target="_blank" class="btn-sm btn-outline magnetic">View Certificate</a>
       </div>
     </div>
   </div>
@@ -1044,7 +1044,7 @@
             <span class="stack-badge">Cloud Storage</span>
           </div>
           <div class="project-actions">
-            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View project">GitHub</a>
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View project">View Project</a>
             <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View README">Readme</a>
           </div>
         </div>
@@ -1236,25 +1236,42 @@
 
 <!-- FOOTER -->
 <footer>
-  <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap">
-    <div>
-      <p>© 2026 Victor Kipruto Rop</p>
-      <p>Nairobi, Kenya</p>
-    </div>
-    <div style="flex:1;min-width:200px">
-      <p style="font-weight:600;margin-bottom:8px;color:var(--accent)">Latest Projects</p>
-      <div style="display:flex;gap:16px;font-size:13px">
-        <a href="https://github.com/Victor-Kipruto-Rop/Data-Engineering-full-project" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;transition:0.3s">Data Engineering</a>
-        <a href="https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;transition:0.3s">Cloud ETL</a>
-        <a href="https://github.com/Victor-Kipruto-Rop/real-time-transaction-streaming" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;transition:0.3s">Streaming</a>
-        <a href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600;transition:0.3s">See All →</a>
-      </div>
-    </div>
-  </div>
+  <p>&copy; 2026 Victor Kipruto Rop. All rights reserved.</p>
 </footer>
 
+<!-- CV Action Modal Component -->
+<div class="cv-modal-overlay" id="cvModalOverlay" role="dialog" aria-labelledby="cvModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="cv-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:400px;width:90%;padding:32px;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);text-align:center;">
+    <h2 id="cvModalTitle" style="font-size:20px;font-weight:700;margin-bottom:24px;font-family:'Syne',sans-serif;color:var(--ink);">Choose CV Action</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="assets/Victor_Kipruto_Resume.pdf" target="_blank" class="btn-primary" style="text-decoration:none;display:block;width:100%;">View Resume</a>
+      <button onclick="downloadCv()" class="btn-outline" style="width:100%;padding:14px;cursor:pointer;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">Download Resume</button>
+      <button onclick="closeCvModal()" class="btn-ghost" style="width:100%;margin-top:8px;">Close</button>
+    </div>
+    <div id="cvSuccessMsg" style="display:none; margin-top:20px; padding:12px; border-radius:8px; background:#4ade80; color:white; font-size:13px; font-weight:600;">✅ Resume download started!</div>
+  </div>
+</div>
+
 <script>
-  // Theme Toggle Logic
+  function openCvModal() {
+    document.getElementById('cvModalOverlay').style.display = 'flex';
+  }
+  function closeCvModal() {
+    document.getElementById('cvModalOverlay').style.display = 'none';
+    document.getElementById('cvSuccessMsg').style.display = 'none';
+  }
+  function downloadCv() {
+    const link = document.createElement('a');
+    link.href = 'assets/Victor_Kipruto_Resume.pdf';
+    link.download = 'Victor_Kipruto_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    document.getElementById('cvSuccessMsg').style.display = 'block';
+    setTimeout(closeCvModal, 2000);
+  }
+</script>
+<script>
   const themeToggle = document.getElementById('theme-toggle');
   const body = document.body;
   
