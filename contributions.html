@@ -1,60 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Open Source Contributions | Victor Kipruto Rop</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-  :root { --ink: #0a0e14; --paper: #f5f0e8; --accent: #c8401a; --muted: #7a7060; --rule: #d4cec2; --card: #ede8de; }
-  body { background: var(--paper); color: var(--ink); font-family: 'DM Mono', monospace; line-height: 1.6; padding: 48px 24px; }
-  .container { max-width: 1000px; margin: 0 auto; }
-  h1 { font-family: 'DM Serif Display', serif; font-size: 48px; margin-bottom: 32px; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
-  .card { background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule); }
-  .btn-primary { display: inline-block; padding: 12px 24px; background: var(--accent); color: var(--paper); text-decoration: none; border-radius: 4px; font-weight: 700; margin-top: 24px; }
-</style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Open Source Contributions | Victor Kipruto Rop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { accent: '#c8401a' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
+        body { font-family: 'DM Mono', monospace; }
+        h1, h2, h3 { font-family: 'DM Serif Display', serif; }
+    </style>
 </head>
-<body>
-<div class="container">
-  <p class="section-label">// CONTRIBUTIONS</p>
-  <h1>Open Source Contributions</h1>
-  
-  <div class="card">
-    <h3>Overview</h3>
-    <p>Total Contributions: 150+ | Repositories: 12 | Technologies: Python, SQL, Airflow, Kafka</p>
-    <a href="https://github.com/Victor-Kipruto-Rop" class="btn-primary" target="_blank">View GitHub Profile</a>
-  </div>
+<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
 
-  <h2>Featured Contributions</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Apache Airflow</h3>
-      <p>Contribution: Bug Fix in Core Scheduler</p>
-      <p>PR: #12345 | Status: Merged</p>
-    </div>
-    <div class="card">
-      <h3>dbt-core</h3>
-      <p>Contribution: Documentation Improvement</p>
-      <p>PR: #9876 | Status: Merged</p>
-    </div>
-  </div>
+<main class="container mx-auto px-6 py-12 max-w-6xl">
+    <!-- HERO SECTION -->
+    <section class="flex flex-col md:flex-row items-center gap-12 mb-16">
+        <img src="assets/1.jpeg" alt="Victor Kipruto Rop" class="w-48 h-48 rounded-full shadow-lg"/>
+        <div class="text-center md:text-left">
+            <p class="text-accent font-bold tracking-widest text-sm uppercase mb-2">Open Source Hub</p>
+            <h1 class="text-5xl font-bold mb-4">Victor Kipruto Rop</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">Data Engineer specializing in real-time streaming, cloud infrastructure, data warehousing, and analytics engineering.</p>
+            <div class="flex gap-4 justify-center md:justify-start">
+                <a href="https://github.com/Victor-Kipruto-Rop" class="bg-accent text-white px-6 py-3 rounded hover:bg-black transition">View GitHub</a>
+                <a href="assets/Victor_Kipruto_Resume.pdf" class="border border-accent text-accent px-6 py-3 rounded hover:bg-accent hover:text-white transition">Download Resume</a>
+            </div>
+        </div>
+    </section>
 
-  <h2>My Projects</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Realtime MPESA Streaming</h3>
-      <p>High-performance streaming architecture.</p>
-    </div>
-    <div class="card">
-      <h3>ETL Framework</h3>
-      <p>Robust, containerized ETL orchestrations.</p>
-    </div>
-  </div>
-  
-  <br><br>
-  <a href="index.html" style="color:var(--accent);text-decoration:none;">← Back to Home</a>
-</div>
+    <!-- METRICS -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-contrib">150+</h3>
+            <p class="text-sm">Total Contributions</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-pr">45</h3>
+            <p class="text-sm">PRs Merged</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-repos">12</h3>
+            <p class="text-sm">Repositories</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-stars">20</h3>
+            <p class="text-sm">Stars Earned</p>
+        </div>
+    </section>
+
+    <!-- FEATURED CONTRIBUTIONS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">Featured Contributions</h2>
+        <div class="grid md:grid-cols-2 gap-8" id="featured-contribs">
+            <!-- Cards will be populated by JS -->
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Apache Airflow</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Bug Fix in Core Scheduler.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+        </div>
+    </section>
+
+    <a href="index.html" class="text-accent hover:underline">← Back to Portfolio</a>
+</main>
+
+<script>
+    // Placeholder for API integration logic to be expanded
+    async function initStats() {
+        // Animation for counters could go here
+        console.log("Initializing contribution statistics...");
+    }
+    document.addEventListener('DOMContentLoaded', initStats);
+</script>
 </body>
 </html>
