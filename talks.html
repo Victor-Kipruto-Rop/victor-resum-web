@@ -1,50 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Tech Talks | Victor Kipruto Rop</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-  :root { --ink: #0a0e14; --paper: #f5f0e8; --accent: #c8401a; --muted: #7a7060; --rule: #d4cec2; --card: #ede8de; }
-  body { background: var(--paper); color: var(--ink); font-family: 'DM Mono', monospace; line-height: 1.6; padding: 48px 24px; }
-  .container { max-width: 1000px; margin: 0 auto; }
-  h1 { font-family: 'DM Serif Display', serif; font-size: 48px; margin-bottom: 32px; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
-  .card { background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule); }
-</style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tech Talks | Victor Kipruto Rop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { accent: '#c8401a' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
+        body { font-family: 'DM Mono', monospace; }
+        h1, h2, h3 { font-family: 'DM Serif Display', serif; }
+    </style>
 </head>
-<body>
-<div class="container">
-  <p class="section-label">// TALKS</p>
-  <h1>Tech Talks & Workshops</h1>
-  
-  <div class="card">
-    <h3>Speaker Profile</h3>
-    <p>Victor Kipruto Rop | Data Engineer</p>
-    <p>Expertise: Data Engineering, Cloud Computing, Real-Time Streaming</p>
-  </div>
+<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
 
-  <h2>Featured Talks</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Building Real-Time Data Pipelines with Kafka</h3>
-      <p>Venue: Google Developer Group Eldoret | June 2026</p>
-      <p>Audience: 150 Developers</p>
-    </div>
-  </div>
+<main class="container mx-auto px-6 py-12 max-w-6xl">
+    <!-- HERO SECTION -->
+    <section class="mb-16">
+        <p class="text-accent font-bold tracking-widest text-sm uppercase mb-2">// TALKS</p>
+        <h1 class="text-5xl font-bold mb-4">Tech Talks & Workshops</h1>
+        <div class="bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <h3 class="text-2xl mb-2">Speaker Profile</h3>
+            <p class="text-gray-600 dark:text-gray-400">Victor Kipruto Rop | Data Engineer</p>
+            <p class="text-gray-600 dark:text-gray-400">Expertise: Data Engineering, Cloud Computing, Real-Time Streaming</p>
+        </div>
+    </section>
 
-  <h2>Workshops</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Introduction to Apache Airflow</h3>
-      <p>Learning Objectives: DAG Management, Operators.</p>
-    </div>
-  </div>
-  
-  <br><br>
-  <a href="index.html" style="color:var(--accent);text-decoration:none;">← Back to Home</a>
-</div>
+    <!-- FEATURED TALKS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">Featured Talks</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Building Real-Time Data Pipelines with Kafka</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Venue: Google Developer Group Eldoret | June 2026</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Audience: 150 Developers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">Workshops</h2>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+            <h3 class="text-xl mb-2">Introduction to Apache Airflow</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: DAG Management, Operators.</p>
+        </div>
+    </section>
+    
+    <a href="index.html" class="text-accent hover:underline">← Back to Portfolio</a>
+</main>
 </body>
 </html>
