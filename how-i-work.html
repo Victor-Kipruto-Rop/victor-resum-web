@@ -45,12 +45,67 @@
     <!-- LIFECYCLE -->
     <section class="mb-20">
         <h2 class="text-4xl mb-10">My Project Lifecycle</h2>
-        <div class="space-y-8 border-l-2 border-[#c8401a] pl-8">
-            <div><h3 class="text-2xl">Phase 1: Discovery & Requirements</h3><p class="text-gray-500">Business needs, stakeholders, success metrics.</p></div>
-            <div><h3 class="text-2xl">Phase 2: Architecture & Planning</h3><p class="text-gray-500">Flow design, tech selection, sprint plan.</p></div>
-            <div><h3 class="text-2xl">Phase 3: Development</h3><p class="text-gray-500">Pipeline building, ETL implementation, testing.</p></div>
-            <div><h3 class="text-2xl">Phase 4: Deployment</h3><p class="text-gray-500">CI/CD, monitoring, validation.</p></div>
-            <div><h3 class="text-2xl">Phase 5: Optimization</h3><p class="text-gray-500">Cost/performance tuning, continuous improvement.</p></div>
+        <div class="space-y-12 border-l-2 border-[#c8401a] pl-8">
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 1: Discovery & Requirements</h3>
+                    <p class="text-gray-400">Activities: Stakeholder meetings, requirement gathering, data source identification, success metrics, risk analysis.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Requirements document, solution proposal, architecture draft.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 2: Architecture & Planning</h3>
+                    <p class="text-gray-400">Activities: Data flow design, infrastructure planning, technology selection, cost estimation, security review.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Architecture diagrams, technical design documents, sprint plan.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 3: Development</h3>
+                    <p class="text-gray-400">Activities: Pipeline development, ETL implementation, infrastructure setup, testing, documentation.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Source code, automated tests, deployment scripts.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 4: Deployment</h3>
+                    <p class="text-gray-400">Activities: CI/CD execution, monitoring setup, validation, performance testing.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Production deployment, monitoring dashboards, runbooks.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-2xl mb-2">Phase 5: Optimization</h3>
+                    <p class="text-gray-400">Activities: Cost optimization, performance tuning, scaling, continuous improvements.</p>
+                </div>
+                <div class="bg-card p-4 rounded">
+                    <p class="text-sm"><strong>Deliverables:</strong> Optimization reports, updated architecture.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <h3 class="text-2xl mb-6 text-center">Development Workflow Diagram</h3>
+            <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+            <div class="mermaid">
+                graph LR
+                    A[Planning] --> B[Design]
+                    B --> C[Build]
+                    C --> D[Test]
+                    D --> E[Deploy]
+                    E --> F[Monitor]
+                    F --> G[Improve]
+                    G --> A
+            </div>
         </div>
     </section>
 
