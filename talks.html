@@ -1,83 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Tech Talks | Victor Kipruto Rop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: { colors: { accent: '#c8401a' } } }
-        }
-    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
-        body { font-family: 'DM Mono', monospace; }
+        body { font-family: 'DM Mono', monospace; background: #f5f0e8; color: #0a0e14; }
+        .dark body { background: #0a0e14; color: #f5f0e8; }
         h1, h2, h3 { font-family: 'DM Serif Display', serif; }
+        .bg-card { background: #ede8de; }
+        .dark .bg-card { background: #18181b; }
     </style>
 </head>
 <body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
 
 <main class="container mx-auto px-6 py-12 max-w-6xl">
-    <!-- HERO SECTION -->
-    <section class="mb-16">
-        <p class="text-accent font-bold tracking-widest text-sm uppercase mb-2">// TALKS</p>
+    <!-- HERO -->
+    <section class="mb-16 text-center">
         <h1 class="text-5xl font-bold mb-4">Tech Talks & Workshops</h1>
-        <div class="bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
-            <h3 class="text-2xl mb-2">Speaker Profile</h3>
-            <p class="text-gray-600 dark:text-gray-400">Victor Kipruto Rop | Data Engineer</p>
-            <p class="text-gray-600 dark:text-gray-400">Expertise: Data Engineering, Cloud Computing, Real-Time Streaming</p>
-        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-400">Sharing insights on data engineering, scalable architecture, and best practices.</p>
     </section>
 
-    <!-- FEATURED TALKS -->
-    <section class="mb-16">
-        <h2 class="text-3xl mb-8">Featured Talks</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-                <h3 class="text-xl mb-2">Building Real-Time Data Pipelines with Kafka</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Venue: Google Developer Group Eldoret | June 2026</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Audience: 150 Developers</p>
-            </div>
-            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-                <h3 class="text-xl mb-2">Data Engineering Career Roadmap</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Venue: Data Science Summit Nairobi | August 2026</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Audience: 200+ Students & Professionals</p>
-            </div>
-            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-                <h3 class="text-xl mb-2">Building Production ETL Pipelines</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Venue: Tech Monthly Meetup | September 2026</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Audience: 80 Developers</p>
-            </div>
-        </div>
+    <!-- STATS -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-card p-6 rounded-lg text-center"><h3 class="text-3xl font-bold text-accent">10+</h3><p class="text-sm">Talks Delivered</p></div>
+        <div class="bg-card p-6 rounded-lg text-center"><h3 class="text-3xl font-bold text-accent">5</h3><p class="text-sm">Workshops Conducted</p></div>
+        <div class="bg-card p-6 rounded-lg text-center"><h3 class="text-3xl font-bold text-accent">500+</h3><p class="text-sm">Participants Reached</p></div>
     </section>
 
-    <!-- WORKSHOPS -->
-    <section class="mb-16">
-        <h2 class="text-3xl mb-8">Workshops</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-                <h3 class="text-xl mb-2">Introduction to Apache Airflow</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: DAG Management, Operators, XComs.</p>
-            </div>
-            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-                <h3 class="text-xl mb-2">ETL Pipeline Design</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: Schema design, data cleansing, performance.</p>
-            </div>
-            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-                <h3 class="text-xl mb-2">Data Warehousing Fundamentals</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: Star schema, OLAP, query optimization.</p>
-            </div>
-            <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
-                <h3 class="text-xl mb-2">Python for Data Engineers</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Learning Objectives: Advanced scripting, testing, library development.</p>
-            </div>
-        </div>
+    <!-- SECTIONS -->
+    <section class="space-y-12">
+        <div><h2 class="text-3xl mb-4">Featured Talks</h2><div class="grid md:grid-cols-2 gap-6"><div class="bg-card p-6 rounded-lg"><h3>Building Real-Time Data Pipelines with Kafka</h3><p>Venue: GDG Eldoret | June 2026</p></div></div></div>
+        <div><h2 class="text-3xl mb-4">Workshops</h2><div class="grid md:grid-cols-2 gap-6"><div class="bg-card p-6 rounded-lg"><h3>Introduction to Apache Airflow</h3><p>Curriculum: DAGs, Operators, XComs.</p></div></div></div>
     </section>
-    
-    <a href="index.html" class="text-accent hover:underline">← Back to Portfolio</a>
+
+    <a href="index.html" class="inline-block mt-12 text-accent hover:underline">← Back to Portfolio</a>
 </main>
+
 </body>
 </html>
