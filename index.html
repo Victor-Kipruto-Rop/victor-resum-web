@@ -1530,15 +1530,23 @@
       if(!res.ok) throw new Error('GitHub API error');
       const repos = await res.json();
       // exclude personal/placeholder repos
-      const filtered = (Array.isArray(repos) ? repos.filter(r => r && r.name && r.name.toLowerCase() !== 'victor-kipruto-rop' && r.name.toLowerCase() !== 'kipruto45') : []);
+      const deKeywords = ['data', 'engineer', 'etl', 'airflow', 'spark', 'sql', 'warehouse', 'pipeline', 'kafka', 'flink', 'dbt', 'bigquery', 'snowflake', 'analytics', 'streaming'];
+      const filtered = (Array.isArray(repos) ? repos.filter(r => {
+        if (!r || !r.name) return false;
+        if (r.name.toLowerCase() === 'victor-kipruto-rop' || r.name.toLowerCase() === 'kipruto45') return false;
+        const nameDesc = (r.name + ' ' + (r.description || '')).toLowerCase();
+        return deKeywords.some(keyword => nameDesc.includes(keyword));
+      }) : []);
+
       // sort by popularity (stars) then recent activity
       filtered.sort((a,b)=> {
         const starsA = a.stargazers_count || 0; const starsB = b.stargazers_count || 0;
         if(starsB !== starsA) return starsB - starsA;
         return new Date(b.pushed_at) - new Date(a.pushed_at);
       });
-      // show top 5 projects
-      const display = filtered.slice(0, 5);
+
+      // show all relevant projects
+      const display = filtered;
       const images = ['assets/images/1.jpeg','assets/images/2.jpeg','assets/images/3.jpeg','assets/images/3.png','assets/images/4.jpeg','assets/images/5.jpeg'];
       // randomize thumbnails so projects receive images in a shuffled order
       const shuffledImages = images.slice().sort(() => Math.random() - 0.5);
