@@ -46,6 +46,7 @@
     <section class="mb-20">
         <h2 class="text-4xl mb-10">My Project Lifecycle</h2>
         <div class="space-y-12 border-l-2 border-[#c8401a] pl-8">
+            <!-- [Existing Phases] -->
             <div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <h3 class="text-2xl mb-2">Phase 1: Discovery & Requirements</h3>
@@ -90,6 +91,15 @@
                 <div class="bg-card p-4 rounded">
                     <p class="text-sm"><strong>Deliverables:</strong> Optimization reports, updated architecture.</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
+            <h3 class="text-2xl mb-6 text-center">Applied Example: Real-Time MPESA Streaming Platform</h3>
+            <div class="space-y-4">
+                <p><strong>Requirement:</strong> Process 10k transactions/sec with sub-second latency.</p>
+                <p><strong>Architecture:</strong> Webhook -> Kafka -> Flink -> BigQuery.</p>
+                <p><strong>Optimization:</strong> Partitioning tuning and Flink checkpointing optimization reduced latency by 40%.</p>
             </div>
         </div>
 
