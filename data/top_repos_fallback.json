@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Real_Time_Transaction_Streaming-MPESA-",
+    "description": "High-performance streaming architecture for MPESA transaction data using Kafka and Flink.",
+    "html_url": "https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-",
+    "language": "Python",
+    "stargazers_count": 5
+  },
+  {
+    "name": "cloud-etl-pipeline",
+    "description": "Multi-stage ETL orchestrations using Apache Airflow and Docker.",
+    "html_url": "https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline",
+    "language": "Python",
+    "stargazers_count": 3
+  },
+  {
+    "name": "Data-Enginerring-full-project",
+    "description": "Complete star schema architecture with cloud-based data ingestion.",
+    "html_url": "https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project",
+    "language": "SQL",
+    "stargazers_count": 2
+  },
+  {
+    "name": "mpesa_safaricom-pipeline-",
+    "description": "High-throughput ingestion system for MPESA transaction data.",
+    "html_url": "https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-",
+    "language": "Python",
+    "stargazers_count": 1
+  }
+]
