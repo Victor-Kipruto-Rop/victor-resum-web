@@ -1195,31 +1195,6 @@
       <p style="color:var(--muted);font-size:13px">Technical Feedback • Project Collaboration</p>
     </div>
   </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <p class="section-label">// 07</p>
-  <h2 class="section-title">Testimonials & Feedback</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px">
-    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
-      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6">&quot;Victor's ability to design scalable data pipelines is exceptional. His Airflow implementations are production-ready and well-documented. A great addition to any data team.&quot;</p>
-      <p style="font-weight:600;color:var(--accent);margin-bottom:4px">Data Engineering Mentor</p>
-      <p style="color:var(--muted);font-size:13px">Project Lead • The Cooperative University</p>
-    </div>
-    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
-      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6">&quot;Demonstrates exceptional understanding of cloud infrastructure, CI/CD pipelines, and distributed systems. Eager to learn and collaborate effectively with the team.&quot;</p>
-      <p style="font-weight:600;color:var(--accent);margin-bottom:4px">DevOps & Infrastructure Review</p>
-      <p style="color:var(--muted);font-size:13px">Technical Assessment • GitHub Projects</p>
-    </div>
-    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
-      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6">&quot;Proficient in ETL architectures, real-time streaming with Kafka, and warehouse modelling. Shows strong fundamentals and brings fresh perspectives to complex problems.&quot;</p>
-      <p style="font-weight:600;color:var(--accent);margin-bottom:4px">Data Architecture Review</p>
-      <p style="color:var(--muted);font-size:13px">Technical Feedback • Project Collaboration</p>
-    </div>
-  </div>
-</section>
-
 <!-- SERVICES / EXPERTISE -->
 <section id="expertise">
   <p class="section-label">// 08</p>
@@ -1228,22 +1203,34 @@
     <div class="expertise-card reveal">
       <div class="expertise-icon"><i class="fas fa-project-diagram"></i></div>
       <h3 class="expertise-title">Pipeline Design</h3>
-      <p class="expertise-desc">Architecting robust, scalable ETL/ELT pipelines using modern tools to turn raw data into actionable insights.</p>
+      <p class="expertise-desc">I design resilient ETL/ELT frameworks. By treating data pipelines as software, I ensure modularity, observability, and scalability from the very first row.</p>
     </div>
     <div class="expertise-card reveal" style="transition-delay:0.1s">
       <div class="expertise-icon"><i class="fas fa-clock"></i></div>
       <h3 class="expertise-title">Orchestration</h3>
-      <p class="expertise-desc">Expert in Apache Airflow for managing complex dependencies, ensuring reliable execution and monitoring.</p>
+      <p class="expertise-desc">I leverage Apache Airflow to turn complex, interdependent data tasks into deterministic, automated workflows with robust alerting and retry strategies.</p>
     </div>
     <div class="expertise-card reveal" style="transition-delay:0.2s">
       <div class="expertise-icon"><i class="fas fa-database"></i></div>
       <h3 class="expertise-title">Data Modelling</h3>
-      <p class="expertise-desc">Structuring data with Star Schema and dimensional modelling for high-performance analytical queries.</p>
+      <p class="expertise-desc">I bridge raw data to business value using dimensional modelling (Star/Snowflake), optimized for high-performance analytical query engines.</p>
     </div>
     <div class="expertise-card reveal" style="transition-delay:0.3s">
       <div class="expertise-icon"><i class="fas fa-infinity"></i></div>
       <h3 class="expertise-title">Data CI/CD</h3>
-      <p class="expertise-desc">Automating testing and deployment of data workflows to maintain reliability in production environments.</p>
+      <p class="expertise-desc">I treat data infrastructure with engineering rigor, implementing automated unit testing (Pytest) and deployment pipelines for constant reliability.</p>
+    </div>
+  </div>
+
+  <div class="expertise-card reveal" style="margin-top: 48px; border-style: dashed; border-color: var(--accent);">
+    <h3 class="expertise-title" style="text-align: center;">Core Architecture: Data Ingestion & Transformation</h3>
+    <div class="mermaid" style="display: flex; justify-content: center; padding: 20px;">
+      graph TD
+        A[Data Sources] -->|Kafka| B(Ingestion Layer)
+        B -->|Avro/Parquet| C{Data Lake}
+        C -->|Airflow DAG| D[Transformation - dbt/Spark]
+        D -->|Fact/Dim Tables| E[(Data Warehouse)]
+        E --> F[Analytics & BI]
     </div>
   </div>
 </section>
@@ -1252,12 +1239,27 @@
 <section id="contributions">
   <p class="section-label">// 09</p>
   <h2 class="section-title">Talks & Contributions</h2>
-  <ul class="contributions-list">
-    <li><i class="fas fa-code-branch"></i><strong>Open Source Contribution:</strong> Improved documentation and fixed bug in a popular data processing library.</li>
-    <li><i class="fas fa-microphone"></i><strong>Tech Talk:</strong> "Building Scalable Data Pipelines with Airflow" at local University Tech Meetup.</li>
-    <li><i class="fas fa-code-branch"></i><strong>Open Source Contribution:</strong> Contributed PR to standardise logging in a distributed streaming system.</li>
-  </ul>
+  <div class="contributions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-top: 48px;">
+    <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule);">
+        <i class="fas fa-code-branch" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
+        <h4 style="font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 8px;">Open Source Contribution</h4>
+        <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Improved error-handling documentation and resolved critical race conditions in a widely used Python data processing library.</p>
+        <a href="#" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View Pull Request →</a>
+    </div>
+    <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule); transition-delay: 0.1s;">
+        <i class="fas fa-microphone" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
+        <h4 style="font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 8px;">Tech Talk</h4>
+        <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Delivered a technical session on "Designing Fault-Tolerant Data Pipelines with Airflow" to 100+ students at a university tech meetup.</p>
+        <a href="#" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View Presentation Slides →</a>
+    </div>
+  </div>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    });
+</script>
 
 <!-- GITHUB ACTIVITY -->
 <section id="github-activity">
