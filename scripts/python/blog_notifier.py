@@ -29,9 +29,9 @@ class BlogEventNotifier:
     
     def __init__(self):
         self.email_manager = EmailTemplateManager()
-        self.posts_file = Path(__file__).parent.parent.parent / "blog" / "posts.json"
-        self.subscribers_file = Path(__file__).parent.parent.parent / "subscribers.json"
-        self.events_file = Path(__file__).parent.parent.parent / ".blog_events.json"
+        self.posts_file = Path(__file__).parent.parent.parent / "blog" / "assets/shared/posts.json"
+        self.subscribers_file = Path(__file__).parent.parent.parent / "assets/shared/subscribers.json"
+        self.events_file = Path(__file__).parent.parent.parent / "assets/shared/.blog_events.json"
         
         # Initialize social poster if available
         self.social_poster = None
@@ -117,7 +117,7 @@ class BlogEventNotifier:
         post_slug = post.get("slug", "")
         post_excerpt = post.get("description", "Check out this new article")
         read_time = post.get("readTime", 5)
-        image_url = post.get("image", None)  # Use absolute URL from posts.json
+        image_url = post.get("image", None)  # Use absolute URL from assets/shared/posts.json
         
         logger.info(f"Sending notifications for: {post_title}")
         logger.info(f"  - Subscribers: {len(subscribers)}")

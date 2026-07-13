@@ -68,7 +68,7 @@ def test_email_templates():
             message=post['description'],
             icon="📝",
             action_text="Read Article",
-            action_url=f"https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={post['slug']}"
+            action_url=f"https://victor-kipruto-rop.github.io/victor-resum-web/post/?id={post['slug']}"
         )
         print(f"     ✅ Generated {len(notif_email)} characters")
 
@@ -111,7 +111,7 @@ def test_create_test_subscriber():
     """Create a test subscriber for demonstration"""
     print_section("TEST 3: Creating Test Subscriber")
     
-    subscribers_file = Path(__file__).parent.parent.parent / "subscribers.json"
+    subscribers_file = Path(__file__).parent.parent.parent / "assets/shared/subscribers.json"
     
     try:
         # Load existing subscribers

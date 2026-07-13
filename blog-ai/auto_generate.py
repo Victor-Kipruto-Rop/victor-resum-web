@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Auto Blog Generator - Generates 5 detailed technical blog posts every 24 hours.
-Writes to blog/posts.json which the blog page loads automatically.
+Writes to blog/assets/shared/posts.json which the blog page loads automatically.
 Reads topics from topics.json to avoid Python syntax issues with HTML content.
 """
 
@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
-POSTS_JSON = PROJECT_ROOT / "blog" / "posts.json"
+POSTS_JSON = PROJECT_ROOT / "blog" / "assets/shared/posts.json"
 TOPICS_JSON = Path(__file__).parent / "topics.json"
 STATE_FILE = Path(__file__).parent / ".auto_generate_state"
 
@@ -144,7 +144,7 @@ def main():
         for p in posts:
             print(f"  - {p['title']}")
         print(f"\nPosts saved to: {POSTS_JSON}")
-        print("Posts will appear on blog.html automatically")
+        print("Posts will appear on blog/ automatically")
     else:
         print("No new posts generated (all topics already used)")
 

@@ -8,8 +8,8 @@ from pathlib import Path
 from datetime import datetime
 
 def parse_blog_changes():
-    """Parse changes in blog/posts.json"""
-    posts_file = Path('blog/posts.json')
+    """Parse changes in blog/assets/shared/posts.json"""
+    posts_file = Path('blog/assets/shared/posts.json')
     
     if not posts_file.exists():
         print("❌ No blog posts found")
@@ -35,7 +35,7 @@ def parse_blog_changes():
         print(f"✓ Found {len(recent_posts)} recent posts")
         
         # Save for downstream jobs
-        with open('notifications/recent-posts.json', 'w') as f:
+        with open('notifications/recent-assets/shared/posts.json', 'w') as f:
             json.dump(recent_posts, f, indent=2)
         
         return recent_posts

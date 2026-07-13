@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 DBOS PHASE 1: RSS Feed Generator
-Auto-generates RSS 2.0 feed from posts.json
+Auto-generates RSS 2.0 feed from assets/shared/posts.json
 """
 
 import json
@@ -15,7 +15,7 @@ class RSSGenerator:
     """Generate RSS 2.0 feed automatically"""
     
     def __init__(self):
-        self.posts_file = Path('blog/posts.json')
+        self.posts_file = Path('blog/assets/shared/posts.json')
         self.rss_file = Path('feed.xml')
         self.base_url = Config.BASE_URL
         self.posts = []

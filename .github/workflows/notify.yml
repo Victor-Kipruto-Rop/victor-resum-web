@@ -7,7 +7,7 @@ on:
       - master
     paths:
       - 'blog/**'
-      - 'blog/posts.json'
+      - 'blog/assets/shared/posts.json'
   workflow_dispatch:  # Allow manual trigger
 
 permissions:

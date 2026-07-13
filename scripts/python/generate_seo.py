@@ -14,7 +14,7 @@ class SEOEngine:
     """Generate SEO metadata and compute SEO scores"""
     
     def __init__(self):
-        self.posts_file = Path('blog/posts.json')
+        self.posts_file = Path('blog/assets/shared/posts.json')
         self.output_dir = Path('assets/seo')
         self.base_url = Config.BASE_URL
         self.posts = []

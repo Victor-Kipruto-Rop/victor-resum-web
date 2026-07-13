@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Simple HTTP API Server for Subscriptions
-Handles POST requests from subscribe.html form
+Handles POST requests from subscribe/ form
 Can be deployed as serverless function or run locally
 """
 

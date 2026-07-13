@@ -52,7 +52,7 @@ def generate_post():
         title, content, metadata = blog_generator.generate_post(title)
         md_file, meta_file = blog_generator.save_post(title, content, metadata)
         
-        # Format for posts.json (simulating updates to posts.js)
+        # Format for assets/shared/posts.json (simulating updates to assets/shared/posts.js)
         post_entry = blog_generator.format_for_posts_js(title, content, metadata)
         
         return jsonify({
@@ -144,9 +144,9 @@ def verify_email():
             <body style="font-family: system-ui; text-align: center; padding: 40px;">
                 <h2>{'✅ Email Verified!' if status == 'success' else '❌ Verification Failed'}</h2>
                 <p>{result['message']}</p>
-                <a href="blog.html">← Back to Blog</a>
+                <a href="blog/">← Back to Blog</a>
                 <script>
-                    setTimeout(() => window.location.href = 'blog.html', 3000);
+                    setTimeout(() => window.location.href = 'blog/', 3000);
                 </script>
             </body>
         </html>
@@ -172,7 +172,7 @@ def unsubscribe():
             <body style="font-family: system-ui; text-align: center; padding: 40px;">
                 <h2>{'✅ Unsubscribed' if status == 'success' else '❌ Unsubscribe Failed'}</h2>
                 <p>{result['message']}</p>
-                <a href="subscribe.html">← Back to Subscribe</a>
+                <a href="subscribe/">← Back to Subscribe</a>
             </body>
         </html>
         """, 200 if status == 'success' else 400

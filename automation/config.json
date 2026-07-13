@@ -27,13 +27,13 @@
   },
   "blog": {
     "posts_dir": "blog/posts",
-    "posts_json": "blog/posts.json",
+    "posts_json": "blog/assets/shared/posts.json",
     "max_excerpt_length": 200
   },
   "detection": {
     "method": "file_modification",
     "watch_paths": [
-      "blog/posts.json"
+      "blog/assets/shared/posts.json"
     ]
   },
   "message_templates": {

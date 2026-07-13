@@ -191,7 +191,7 @@ class BlogImagePipeline:
             
             if not posts:
                 print("⚠️  No posts found")
-                self.pipeline_status["warnings"].append("No posts in blog/posts.json")
+                self.pipeline_status["warnings"].append("No posts in blog/assets/shared/posts.json")
                 return True
             
             print(f"✓ Found {len(posts)} blog posts")

@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Templates Preview - Victor Kipruto's Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .template-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+        
+        .template-card h3 {
+            color: #2d3748;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .template-card p {
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .template-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .template-badge.popular {
+            background: linear-gradient(135deg, #f59e0b 0%, #ff6b2b 100%);
+        }
+        
+        .template-badge.important {
+            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+        }
+        
+        .preview-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .preview-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+        
+        .modal.active {
+            display: block;
+        }
+        
+        .modal-content {
+            background-color: #f5f7fa;
+            margin: 20px auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 95%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .modal-header h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .email-preview {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .email-preview iframe {
+            width: 100%;
+            border: none;
+            min-height: 600px;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-item h4 {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .feature-item p {
+            color: #718096;
+            font-size: 13px;
+        }
+        
+        .section {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+        }
+        
+        .section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section p {
+            font-size: 15px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 98%;
+                margin: 10px auto;
+            }
+            
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Email Templates Preview</h1>
+            <p>Modern, attractive email designs with working unsubscribe functionality</p>
+        </div>
+        
+        <div class="templates-grid">
+            <!-- Welcome Email -->
+            <div class="template-card">
+                <span class="template-badge popular">POPULAR</span>
+                <h3>🎉 Welcome Email</h3>
+                <p>Warm welcome email for new subscribers with onboarding information and social links.</p>
+                <button class="preview-btn" onclick="previewTemplate('welcome', 'Welcome Email')">Preview</button>
+            </div>
+            
+            <!-- New Blog Post -->
+            <div class="template-card">
+                <span class="template-badge important">FREQUENT</span>
+                <h3>📝 New Blog Post</h3>
+                <p>Notification for new blog posts with featured image, excerpt, and reading time.</p>
+                <button class="preview-btn" onclick="previewTemplate('new_blog_post', 'New Blog Post')">Preview</button>
+            </div>
+            
+            <!-- Weekly Digest -->
+            <div class="template-card">
+                <span class="template-badge popular">POPULAR</span>
+                <h3>📬 Weekly Digest</h3>
+                <p>Curated list of this week's best articles with summaries and read times.</p>
+                <button class="preview-btn" onclick="previewTemplate('weekly_digest', 'Weekly Digest')">Preview</button>
+            </div>
+            
+            <!-- Trending Content -->
+            <div class="template-card">
+                <span class="template-badge">ENGAGEMENT</span>
+                <h3>🔥 Trending Content</h3>
+                <p>Alert for viral or trending articles with view counts and growth metrics.</p>
+                <button class="preview-btn" onclick="previewTemplate('trending_content', 'Trending Content')">Preview</button>
+            </div>
+            
+            <!-- Activity Recap -->
+            <div class="template-card">
+                <span class="template-badge">ANALYTICS</span>
+                <h3>📊 Monthly Activity Recap</h3>
+                <p>Comprehensive monthly statistics with top articles and reader insights.</p>
+                <button class="preview-btn" onclick="previewTemplate('activity_recap', 'Monthly Activity Recap')">Preview</button>
+            </div>
+            
+            <!-- Milestone Celebration -->
+            <div class="template-card">
+                <span class="template-badge popular">IMPORTANT</span>
+                <h3>🎉 Subscriber Milestone</h3>
+                <p>Celebrate reaching subscriber milestones with gratitude and community building.</p>
+                <button class="preview-btn" onclick="previewTemplate('subscriber_milestone', 'Milestone Celebration')">Preview</button>
+            </div>
+            
+            <!-- Viral Alert -->
+            <div class="template-card">
+                <span class="template-badge important">URGENT</span>
+                <h3>🚀 Viral Content Alert</h3>
+                <p>Notification when content goes viral with impressive metrics and action items.</p>
+                <button class="preview-btn" onclick="previewTemplate('viral_alert', 'Viral Alert')">Preview</button>
+            </div>
+            
+            <!-- Event Announcement -->
+            <div class="template-card">
+                <span class="template-badge">ANNOUNCEMENT</span>
+                <h3>✨ Event Announcement</h3>
+                <p>Project launches or event announcements with dates and detailed descriptions.</p>
+                <button class="preview-btn" onclick="previewTemplate('event_announcement', 'Event Announcement')">Preview</button>
+            </div>
+            
+            <!-- Recruiter Alert -->
+            <div class="template-card">
+                <span class="template-badge important">OPPORTUNITY</span>
+                <h3>👔 Recruiter Interest Alert</h3>
+                <p>Notification of recruiter engagement with next steps and recommendations.</p>
+                <button class="preview-btn" onclick="previewTemplate('recruiter_alert', 'Recruiter Alert')">Preview</button>
+            </div>
+            
+            <!-- Recommended Reads -->
+            <div class="template-card">
+                <span class="template-badge">PERSONALIZED</span>
+                <h3>📚 Recommended Reads</h3>
+                <p>Personalized article recommendations based on reading history and interests.</p>
+                <button class="preview-btn" onclick="previewTemplate('recommended_reads', 'Recommended Reads')">Preview</button>
+            </div>
+            
+            <!-- Generic Notification -->
+            <div class="template-card">
+                <span class="template-badge">FLEXIBLE</span>
+                <h3>🔔 Generic Notification</h3>
+                <p>Flexible notification template for any general announcements or updates.</p>
+                <button class="preview-btn" onclick="previewTemplate('notification', 'Generic Notification')">Preview</button>
+            </div>
+            
+            <!-- Engagement Summary -->
+            <div class="template-card">
+                <span class="template-badge">ANALYTICS</span>
+                <h3>📈 Engagement Summary</h3>
+                <p>Detailed reader engagement metrics with traffic sources and insights.</p>
+                <button class="preview-btn" onclick="previewTemplate('engagement_summary', 'Engagement Summary')">Preview</button>
+            </div>
+        </div>
+        
+        <div class="features-list">
+            <div class="feature-item">
+                <h4>✨ Modern Design</h4>
+                <p>Beautiful gradient headers, smooth animations, and professional styling</p>
+            </div>
+            
+            <div class="feature-item">
+                <h4>🔗 Working Unsubscribe</h4>
+                <p>Functional unsubscribe links with unique tokens for each subscriber</p>
+            </div>
+            
+            <div class="feature-item">
+                <h4>📱 Fully Responsive</h4>
+                <p>Perfect display on all devices - desktop, tablet, and mobile</p>
+            </div>
+            
+            <div class="feature-item">
+                <h4>🎨 Detailed Content</h4>
+                <p>Rich, comprehensive content with multiple sections and CTAs</p>
+            </div>
+            
+            <div class="feature-item">
+                <h4>🚀 Performance Optimized</h4>
+                <p>Fast loading times with minimal CSS and efficient HTML structure</p>
+            </div>
+            
+            <div class="feature-item">
+                <h4>🔐 Secure Links</h4>
+                <p>All external links properly formatted with tracking capabilities</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🚀 Ready to Use</h2>
+            <p>All email templates are production-ready with working unsubscribe functionality and detailed content. Each template includes unique tokens for subscriber tracking and preference management.</p>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog/" class="cta-button">📖 Return to Blog</a>
+        </div>
+    </div>
+    
+    <!-- Modal for preview -->
+    <div id="templateModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Template Preview</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="email-preview">
+                    <div id="previewContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sample template data
+        const templateData = {
+            welcome: {
+                title: '🎉 Welcome Email',
+                html: `
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'; line-height: 1.6; color: #1a1a1a; }
+                        .container { max-width: 600px; margin: 0 auto; background: white; }
+                        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 30px; text-align: center; }
+                        .content { padding: 40px 30px; }
+                        .section { margin-bottom: 30px; }
+                        .section h2 { color: #2d3748; font-size: 22px; margin: 20px 0 15px 0; }
+                        .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+                        .footer { background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 12px; }
+                        ul { margin: 16px 0 16px 20px; }
+                        li { margin: 10px 0; }
+                        .highlight { background: #f5f7ff; border-left: 5px solid #667eea; padding: 20px; margin: 24px 0; border-radius: 8px; }
+                    </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>🎉 Welcome Aboard!</h1>
+                            <p>You're about to discover world-class technical insights</p>
+                        </div>
+                        <div class="content">
+                            <div class="section">
+                                <p>Hi Victor,</p>
+                                <p>Thank you for subscribing! You've joined a vibrant community of data engineers and developers.</p>
+                            </div>
+                            <div class="section">
+                                <h2>What to Expect</h2>
+                                <ul>
+                                    <li>Deep technical tutorials on data engineering</li>
+                                    <li>Cloud infrastructure best practices</li>
+                                    <li>Code optimization techniques</li>
+                                    <li>Lessons from production systems</li>
+                                </ul>
+                            </div>
+                            <div class="highlight">
+                                <strong>💡 Pro Tip:</strong> Check out my GitHub for code samples and projects!
+                            </div>
+                            <div class="section">
+                                <a href="#" class="cta-button">📖 Start Reading Blog</a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p><strong>Victor Kipruto Rop</strong></p>
+                            <p>© 2024 All rights reserved.</p>
+                        </div>
+                    </div>
+                `
+            },
+            new_blog_post: {
+                title: '📝 New Blog Post',
+                html: `
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'; line-height: 1.6; color: #1a1a1a; }
+                        .container { max-width: 600px; margin: 0 auto; background: white; }
+                        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 30px; text-align: center; }
+                        .content { padding: 40px 30px; }
+                        .section { margin-bottom: 30px; }
+                        .section h2 { color: #2d3748; font-size: 22px; margin: 20px 0 15px 0; }
+                        .image { width: 100%; margin: 20px 0; border-radius: 12px; }
+                        .stat-box { background: #f8f9fa; border: 2px solid #e9ecef; padding: 24px; border-radius: 12px; text-align: center; margin: 20px 0; }
+                        .stat-number { font-size: 36px; font-weight: 800; color: #667eea; }
+                        .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+                        .footer { background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 12px; }
+                        .highlight { background: #f5f7ff; border-left: 5px solid #667eea; padding: 20px; margin: 24px 0; border-radius: 8px; }
+                    </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>📝 New Article Published</h1>
+                            <p>Fresh insights from the tech trenches</p>
+                        </div>
+                        <div class="content">
+                            <div class="section">
+                                <p>Hi Victor,</p>
+                                <p>I just published a brand new article you'll find incredibly valuable!</p>
+                            </div>
+                            <div class="section">
+                                <h2>Building Scalable Data Pipelines</h2>
+                                <p>Learn how to design data pipelines that scale to millions of events per second...</p>
+                                <div class="stat-box">
+                                    <div style="font-size: 14px; color: #718096; margin-bottom: 8px;">Reading Time</div>
+                                    <span class="stat-number">⏱️ 12</span>
+                                    <p style="margin: 8px 0 0 0; font-size: 13px;">minutes</p>
+                                </div>
+                                <a href="#" class="cta-button">📖 Read Full Article</a>
+                            </div>
+                            <div class="highlight">
+                                <strong>📢 Share This:</strong> Help spread the word on <a href="#">Twitter</a> or <a href="#">LinkedIn</a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p><strong>Victor Kipruto Rop</strong></p>
+                            <p>© 2024 All rights reserved.</p>
+                        </div>
+                    </div>
+                `
+            },
+            weekly_digest: {
+                title: '📬 Weekly Digest',
+                html: `
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'; line-height: 1.6; color: #1a1a1a; }
+                        .container { max-width: 600px; margin: 0 auto; background: white; }
+                        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 30px; text-align: center; }
+                        .content { padding: 40px 30px; }
+                        .section { margin-bottom: 30px; }
+                        .article { border: 2px solid #e9ecef; padding: 20px; border-radius: 10px; margin: 16px 0; }
+                        .article h3 { color: #2d3748; font-size: 16px; margin: 0 0 8px 0; }
+                        .article p { color: #718096; font-size: 13px; margin: 8px 0; }
+                        .badge { background: #667eea; color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+                        .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+                        .footer { background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 12px; }
+                    </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>📬 Your Weekly Digest</h1>
+                            <p>This week's best technical insights</p>
+                        </div>
+                        <div class="content">
+                            <div class="section">
+                                <p>Hi Victor,</p>
+                                <p>Here's what I published this week:</p>
+                            </div>
+                            <div class="article">
+                                <span class="badge">1</span>
+                                <h3>Advanced PostgreSQL Optimization</h3>
+                                <p>⏱️ 15 min read • 2024-06-04</p>
+                                <p>Discover advanced techniques for optimizing PostgreSQL queries and indexes for production workloads.</p>
+                            </div>
+                            <div class="article">
+                                <span class="badge">2</span>
+                                <h3>Kubernetes Networking Deep Dive</h3>
+                                <p>⏱️ 18 min read • 2024-06-03</p>
+                                <p>Understanding service discovery, DNS, and ingress controllers in Kubernetes.</p>
+                            </div>
+                            <div style="margin-top: 30px;">
+                                <a href="#" class="cta-button">📚 Browse All Articles</a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p><strong>Victor Kipruto Rop</strong></p>
+                            <p>© 2024 All rights reserved.</p>
+                        </div>
+                    </div>
+                `
+            },
+            trending_content: {
+                title: '🔥 Trending Content',
+                html: `
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'; line-height: 1.6; color: #1a1a1a; }
+                        .container { max-width: 600px; margin: 0 auto; background: white; }
+                        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 30px; text-align: center; }
+                        .content { padding: 40px 30px; }
+                        .trending { border-left: 5px solid #f59e0b; background: #fffaf0; padding: 16px 16px 16px 20px; margin: 14px 0; border-radius: 6px; }
+                        .trending h3 { margin: 0 0 8px 0; color: #92400e; font-size: 16px; }
+                        .trending p { margin: 0; font-size: 13px; color: #a16207; }
+                        .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+                        .footer { background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 12px; }
+                        .success-box { background: #f0fdf4; border-left: 5px solid #10b981; padding: 20px; margin: 20px 0; border-radius: 8px; }
+                    </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>🔥 Content Going Viral!</h1>
+                            <p>These articles are resonating with readers</p>
+                        </div>
+                        <div class="content">
+                            <div style="margin-bottom: 30px;">
+                                <p>Hi Victor,</p>
+                                <p>Some blog posts are trending right now! Here are the hottest articles:</p>
+                            </div>
+                            <div class="trending">
+                                <h3>#1 🔥 Data Pipeline Architecture at Scale</h3>
+                                <p>👁️ 5,240 views • 📈 +240% growth</p>
+                            </div>
+                            <div class="trending">
+                                <h3>#2 🔥 Mastering SQL Window Functions</h3>
+                                <p>👁️ 3,890 views • 📈 +180% growth</p>
+                            </div>
+                            <div class="success-box">
+                                <strong>🏆 Top Performer This Week:</strong><br>
+                                "Data Pipeline Architecture at Scale" is dominating with 5,240 views!
+                            </div>
+                            <div style="margin-top: 30px; text-align: center;">
+                                <a href="#" class="cta-button">📖 Explore More Articles</a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p><strong>Victor Kipruto Rop</strong></p>
+                            <p>© 2024 All rights reserved.</p>
+                        </div>
+                    </div>
+                `
+            },
+            activity_recap: {
+                title: '📊 Monthly Activity Recap',
+                html: `
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'; line-height: 1.6; color: #1a1a1a; }
+                        .container { max-width: 600px; margin: 0 auto; background: white; }
+                        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 30px; text-align: center; }
+                        .content { padding: 40px 30px; }
+                        .stat-box { background: #f8f9fa; border: 2px solid #e9ecef; padding: 24px; border-radius: 12px; text-align: center; margin: 16px 0; }
+                        .stat-number { font-size: 36px; font-weight: 800; color: #667eea; }
+                        .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+                        .footer { background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 12px; }
+                        .top-articles { margin-top: 20px; }
+                        .article-item { border-bottom: 1px solid #e9ecef; padding: 12px 0; }
+                        .article-item strong { color: #2d3748; }
+                        .article-item span { color: #718096; font-size: 13px; }
+                    </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>📊 June Activity Recap</h1>
+                            <p>Here's what happened on the blog</p>
+                        </div>
+                        <div class="content">
+                            <div style="margin-bottom: 30px;">
+                                <p>Hi Victor,</p>
+                                <p>It's been an amazing June! Here's a comprehensive breakdown:</p>
+                            </div>
+                            <div class="stat-box">
+                                <div style="font-size: 14px; color: #718096;">Total Views</div>
+                                <span class="stat-number">28,540</span>
+                            </div>
+                            <div class="stat-box">
+                                <div style="font-size: 14px; color: #718096;">New Articles</div>
+                                <span class="stat-number">8</span>
+                            </div>
+                            <div class="stat-box">
+                                <div style="font-size: 14px; color: #718096;">New Subscribers</div>
+                                <span class="stat-number">+145</span>
+                            </div>
+                            <div class="top-articles">
+                                <strong>Top 3 Articles:</strong>
+                                <div class="article-item">
+                                    <strong>1. Data Pipeline Architecture at Scale</strong>
+                                    <div><span>👁️ 5,240 views</span></div>
+                                </div>
+                                <div class="article-item">
+                                    <strong>2. Mastering SQL Window Functions</strong>
+                                    <div><span>👁️ 3,890 views</span></div>
+                                </div>
+                                <div class="article-item">
+                                    <strong>3. Kubernetes Best Practices</strong>
+                                    <div><span>👁️ 2,456 views</span></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 30px; text-align: center;">
+                                <a href="#" class="cta-button">📈 View Full Dashboard</a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p><strong>Victor Kipruto Rop</strong></p>
+                            <p>© 2024 All rights reserved.</p>
+                        </div>
+                    </div>
+                `
+            },
+            subscriber_milestone: {
+                title: '🎉 Subscriber Milestone',
+                html: `
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'; line-height: 1.6; color: #1a1a1a; }
+                        .container { max-width: 600px; margin: 0 auto; background: white; }
+                        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 30px; text-align: center; }
+                        .content { padding: 40px 30px; }
+                        .stat-box { background: #f8f9fa; border: 2px solid #e9ecef; padding: 24px; border-radius: 12px; text-align: center; margin: 20px 0; }
+                        .stat-number { font-size: 48px; font-weight: 800; color: #667eea; }
+                        .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+                        .footer { background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 12px; }
+                        .success-box { background: #f0fdf4; border-left: 5px solid #10b981; padding: 20px; margin: 20px 0; border-radius: 8px; }
+                        ul { margin: 16px 0 16px 20px; list-style: none; }
+                        li { margin: 10px 0; padding-left: 25px; position: relative; }
+                        li:before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 700; }
+                    </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>🎉 We Did It!</h1>
+                            <p>You're part of something special</p>
+                        </div>
+                        <div class="content">
+                            <div style="margin-bottom: 20px;">
+                                <p>Hi Victor,</p>
+                                <p>I'm thrilled to share that we've just hit <strong>5,000 subscribers</strong>! 🚀</p>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number">5,000</span>
+                                <div style="font-size: 14px; color: #718096; margin-top: 8px;">Incredible Readers</div>
+                            </div>
+                            <div style="margin: 20px 0;">
+                                <h2 style="color: #2d3748; margin: 20px 0 16px 0;">Thank You 🙏</h2>
+                                <p>This milestone wouldn't be possible without your support and engagement. You inspire me to keep creating high-quality content!</p>
+                            </div>
+                            <div class="success-box">
+                                <strong>🎯 Next Goal: 5,500 subscribers!</strong><br>
+                                Help me get there by sharing your favorite articles!
+                            </div>
+                            <div style="margin-top: 30px; text-align: center;">
+                                <a href="#" class="cta-button">✨ Share on Twitter</a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p><strong>Victor Kipruto Rop</strong></p>
+                            <p>© 2024 All rights reserved.</p>
+                        </div>
+                    </div>
+                `
+            },
+            viral_alert: {
+                title: '🚀 Viral Content Alert',
+                html: `
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI'; line-height: 1.6; color: #1a1a1a; }
+                        .container { max-width: 600px; margin: 0 auto; background: white; }
+                        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 50px 30px; text-align: center; }
+                        .content { padding: 40px 30px; }
+                        .viral-box { border: 3px solid #f59e0b; padding: 24px; border-radius: 12px; background: #fffaf0; }
+                        .viral-box h2 { color: #92400e; margin-top: 0; }
+                        .stat-box { background: #f8f9fa; border: 2px solid #e9ecef; padding: 24px; border-radius: 12px; text-align: center; margin: 16px 0; }
+                        .stat-number { font-size: 36px; font-weight: 800; color: #f59e0b; }
+                        .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; }
+                        .footer { background: #2d3748; color: #cbd5e0; padding: 30px; text-align: center; font-size: 12px; }
+                        .highlight { background: #f5f7ff; border-left: 5px solid #667eea; padding: 20px; margin: 20px 0; border-radius: 8px; }
+                    </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>🚀 Content Going Viral!</h1>
+                            <p>An article is experiencing explosive growth</p>
+                        </div>
+                        <div class="content">
+                            <div style="margin-bottom: 20px;">
+                                <p>Hi Victor,</p>
+                                <p>Exciting news! One of my articles is trending right now!</p>
+                            </div>
+                            <div class="viral-box">
+                                <h2>"Building Scalable Data Pipelines"</h2>
+                                <div class="stat-box" style="margin: 16px 0;">
+                                    <div style="font-size: 14px; color: #718096;">Current Views</div>
+                                    <span class="stat-number">12,540</span>
+                                </div>
+                                <div class="stat-box">
+                                    <div style="font-size: 14px; color: #718096;">Growth Rate</div>
+                                    <span class="stat-number">📈 +350%</span>
+                                </div>
+                                <p style="color: #92400e; margin: 12px 0 0 0;"><strong>Viral Status:</strong> This post has exceeded 10K views and is spreading rapidly!</p>
+                            </div>
+                            <div class="highlight">
+                                <strong>💡 Action Items:</strong>
+                                <ul style="list-style: none; margin: 12px 0 0 0; padding: 0;">
+                                    <li style="padding: 6px 0; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0;">✓</span> Share on all your social channels</li>
+                                    <li style="padding: 6px 0; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0;">✓</span> Engage with comments in real-time</li>
+                                    <li style="padding: 6px 0; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0;">✓</span> Consider follow-up content</li>
+                                </ul>
+                            </div>
+                            <div style="margin-top: 30px; text-align: center;">
+                                <a href="#" class="cta-button">📖 View All Articles</a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p><strong>Victor Kipruto Rop</strong></p>
+                            <p>© 2024 All rights reserved.</p>
+                        </div>
+                    </div>
+                `
+            },
+            event_announcement: {
+                title: '✨ Event Announcement',
+                html: `Template preview coming soon...`
+            },
+            recruiter_alert: {
+                title: '👔 Recruiter Interest',
+                html: `Template preview coming soon...`
+            },
+            recommended_reads: {
+                title: '📚 Recommended Reads',
+                html: `Template preview coming soon...`
+            },
+            notification: {
+                title: '🔔 Generic Notification',
+                html: `Template preview coming soon...`
+            },
+            engagement_summary: {
+                title: '📈 Engagement Summary',
+                html: `Template preview coming soon...`
+            }
+        };
+        
+        function previewTemplate(templateId, templateTitle) {
+            const template = templateData[templateId];
+            document.getElementById('modalTitle').textContent = template.title;
+            document.getElementById('previewContent').innerHTML = template.html;
+            document.getElementById('templateModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('templateModal').classList.remove('active');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('templateModal');
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Open Source Contributions | Victor Kipruto Rop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { accent: '#c8401a' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
+        body { font-family: 'DM Mono', monospace; }
+        h1, h2, h3 { font-family: 'DM Serif Display', serif; }
+    </style>
+</head>
+<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
+
+<main class="container mx-auto px-6 py-12 max-w-6xl">
+    <!-- HERO SECTION -->
+    <section class="flex flex-col md:flex-row items-center gap-12 mb-16">
+        <img src="assets/1.jpeg" alt="Victor Kipruto Rop" class="w-48 h-48 rounded-full shadow-lg"/>
+        <div class="text-center md:text-left">
+            <p class="text-accent font-bold tracking-widest text-sm uppercase mb-2">Open Source Hub</p>
+            <h1 class="text-5xl font-bold mb-4">Victor Kipruto Rop</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">Data Engineer specializing in real-time streaming, cloud infrastructure, data warehousing, and analytics engineering.</p>
+            <div class="flex gap-4 justify-center md:justify-start">
+                <a href="https://github.com/Victor-Kipruto-Rop" class="bg-accent text-white px-6 py-3 rounded hover:bg-black transition">View GitHub</a>
+                <a href="assets/Victor_Kipruto_Resume.pdf" class="border border-accent text-accent px-6 py-3 rounded hover:bg-accent hover:text-white transition">Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-contrib">150+</h3>
+            <p class="text-sm">Total Contributions</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-pr">45</h3>
+            <p class="text-sm">PRs Merged</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-repos">12</h3>
+            <p class="text-sm">Repositories</p>
+        </div>
+        <div class="bg-white dark:bg-[#18181b] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center">
+            <h3 class="text-4xl font-bold text-accent mb-2" id="stat-stars">20</h3>
+            <p class="text-sm">Stars Earned</p>
+        </div>
+    </section>
+
+    <!-- FEATURED CONTRIBUTIONS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">Featured Contributions</h2>
+        <div class="grid md:grid-cols-2 gap-8" id="featured-contribs">
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Apache Airflow</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Bug Fix in Core Scheduler.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">dbt-core</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Documentation Improvement.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Apache Kafka (Python Client)</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Refactoring Producer Connection Logic.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Great Expectations</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">New Data Validation Rules.</p>
+                <a href="#" class="text-accent hover:underline text-sm">View Pull Request →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MY PROJECTS -->
+    <section class="mb-16">
+        <h2 class="text-3xl mb-8">My Open Source Projects</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Realtime MPESA Streaming</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">High-performance streaming architecture using Kafka and Flink.</p>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">ETL Framework</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Robust, containerized ETL orchestrations for financial data.</p>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Warehouse Data Quality Tool</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Automated anomaly detection for Snowflake/BigQuery.</p>
+            </div>
+            <div class="card bg-white dark:bg-[#18181b] p-6 rounded-lg border border-gray-200 dark:border-gray-800">
+                <h3 class="text-xl mb-2">Airflow Starter Kit</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Boilerplate templates for rapid DAG development.</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="../index/" class="text-accent hover:underline">← Back to Portfolio</a>
+</main>
+
+<script>
+    // Placeholder for API integration logic to be expanded
+    async function initStats() {
+        // Animation for counters could go here
+        console.log("Initializing contribution statistics...");
+    }
+    document.addEventListener('DOMContentLoaded', initStats);
+</script>
+</body>
+</html>

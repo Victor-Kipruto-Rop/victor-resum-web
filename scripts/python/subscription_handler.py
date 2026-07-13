@@ -38,7 +38,7 @@ class SubscriptionHandler:
     
     def __init__(self):
         self.config = config
-        self.subscribers_file = Path(__file__).parent.parent.parent / "subscribers.json"
+        self.subscribers_file = Path(__file__).parent.parent.parent / "assets/shared/subscribers.json"
         self.email_manager = EmailTemplateManager()
         self.ensure_subscribers_file()
     

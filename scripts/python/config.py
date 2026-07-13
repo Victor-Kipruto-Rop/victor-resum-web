@@ -13,7 +13,7 @@ class Config:
     
     # Local paths
     BLOG_DIR = 'blog'
-    POSTS_FILE = 'blog/posts.json'
+    POSTS_FILE = 'blog/assets/shared/posts.json'
     RENDERED_DIR = 'blog/rendered'
     CONTENT_DIR = 'content'
     ASSETS_DIR = 'assets'

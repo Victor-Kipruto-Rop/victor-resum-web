@@ -29,7 +29,7 @@ jobs:
       - name: Detect new/updated posts
         id: detect
         run: |
-          if [ ! -f previous/blog/posts.json ]; then
+          if [ ! -f previous/blog/assets/shared/posts.json ]; then
             echo "new_posts=all" >> $GITHUB_OUTPUT
           else
             echo "new_posts=compare" >> $GITHUB_OUTPUT

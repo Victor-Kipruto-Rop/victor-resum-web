@@ -12,7 +12,7 @@ class AIContentStrategist:
     """Generate AI-powered content recommendations"""
     
     def __init__(self):
-        self.posts_file = Path('blog/posts.json')
+        self.posts_file = Path('blog/assets/shared/posts.json')
         self.output_dir = Path('strategy')
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.posts = []

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Blog Sitemap Generator
-Automatically generates sitemap.xml from posts.json
+Automatically generates sitemap.xml from assets/shared/posts.json
 """
 
 import json
@@ -11,11 +11,11 @@ from urllib.parse import urljoin
 
 SITE_URL = "https://victor-kipruto-rop.github.io/victor-resum-web"
 BLOG_DIR = os.path.dirname(__file__)
-POSTS_FILE = os.path.join(BLOG_DIR, "posts.json")
+POSTS_FILE = os.path.join(BLOG_DIR, "assets/shared/posts.json")
 SITEMAP_FILE = os.path.join(os.path.dirname(BLOG_DIR), "sitemap.xml")
 
 def load_posts():
-    """Load posts from posts.json"""
+    """Load posts from assets/shared/posts.json"""
     with open(POSTS_FILE, 'r') as f:
         posts_data = json.load(f)
     return posts_data.get('posts', [])

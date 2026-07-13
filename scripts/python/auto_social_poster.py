@@ -118,7 +118,7 @@ class AutoSocialPoster:
 
     def _load_social_log(self) -> dict:
         """Load log of posts already shared on social media"""
-        log_file = Path("scripts/python/.social_posts.json")
+        log_file = Path("scripts/python/.social_assets/shared/posts.json")
         if log_file.exists():
             with open(log_file, 'r') as f:
                 return json.load(f)
@@ -126,7 +126,7 @@ class AutoSocialPoster:
 
     def _save_social_log(self):
         """Save social posting log"""
-        log_file = Path("scripts/python/.social_posts.json")
+        log_file = Path("scripts/python/.social_assets/shared/posts.json")
         log_file.parent.mkdir(parents=True, exist_ok=True)
         with open(log_file, 'w') as f:
             json.dump(self.social_log, f, indent=2)
@@ -218,10 +218,10 @@ class AutoSocialPoster:
         """Post all new blogs that haven't been shared yet"""
         logger.info("🔍 Scanning for new blog posts...")
         
-        # Load posts from blog/posts.json
-        posts_file = Path("blog/posts.json")
+        # Load posts from blog/assets/shared/posts.json
+        posts_file = Path("blog/assets/shared/posts.json")
         if not posts_file.exists():
-            logger.warning("blog/posts.json not found")
+            logger.warning("blog/assets/shared/posts.json not found")
             return
 
         with open(posts_file, 'r') as f:
@@ -230,7 +230,7 @@ class AutoSocialPoster:
         posts = data.get("posts", []) if isinstance(data, dict) else data
         
         if not posts:
-            logger.warning("No posts found in blog/posts.json")
+            logger.warning("No posts found in blog/assets/shared/posts.json")
             return
 
         logger.info(f"📚 Found {len(posts)} posts")
@@ -255,9 +255,9 @@ class AutoSocialPoster:
 
     def post_specific_blog(self, slug: str):
         """Post a specific blog by slug"""
-        posts_file = Path("blog/posts.json")
+        posts_file = Path("blog/assets/shared/posts.json")
         if not posts_file.exists():
-            logger.error("blog/posts.json not found")
+            logger.error("blog/assets/shared/posts.json not found")
             return
 
         with open(posts_file, 'r') as f:

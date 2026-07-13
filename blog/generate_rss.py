@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Blog RSS Generator
-Automatically generates RSS feed from posts.json
+Automatically generates RSS feed from assets/shared/posts.json
 """
 
 import json
@@ -11,11 +11,11 @@ from urllib.parse import urljoin
 
 SITE_URL = "https://victor-kipruto-rop.github.io/victor-resum-web"
 BLOG_DIR = os.path.dirname(__file__)
-POSTS_FILE = os.path.join(BLOG_DIR, "posts.json")
+POSTS_FILE = os.path.join(BLOG_DIR, "assets/shared/posts.json")
 RSS_FILE = os.path.join(BLOG_DIR, "feed.xml")
 
 def load_posts():
-    """Load posts from posts.json"""
+    """Load posts from assets/shared/posts.json"""
     with open(POSTS_FILE, 'r') as f:
         posts_data = json.load(f)
     return posts_data.get('posts', [])

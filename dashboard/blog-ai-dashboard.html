@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog AI Dashboard — Victor Kipruto Rop</title>
+    <link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #0a0e14;
+            --paper: #f5f0e8;
+            --accent: #c8401a;
+            --muted: #7a7060;
+            --rule: #d4cec2;
+        }
+
+        body.dark-mode {
+            --ink: #f5f0e8;
+            --paper: #0a0e14;
+            --accent: #ff4b2b;
+            --muted: #a1a1aa;
+            --rule: #27272a;
+        }
+
+        body {
+            font-family: 'DM Mono', monospace;
+            background: var(--paper);
+            color: var(--ink);
+            padding: 0;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 9990;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        nav {
+            position: sticky; top: 0; background: var(--paper);
+            padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--rule); z-index: 100;
+        }
+        .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); text-decoration: none; }
+        .nav-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; margin-left: 32px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+        
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--rule);
+            color: var(--ink);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+        .theme-toggle .fa-sun { display: none; }
+        body.dark-mode .theme-toggle .fa-moon { display: none; }
+        body.dark-mode .theme-toggle .fa-sun { display: block; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 48px 120px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 42px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .subtitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: transparent;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(200, 64, 26, 0.1);
+        }
+
+        .card-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+        }
+
+        .card-title i {
+            color: var(--accent);
+            font-size: 24px;
+        }
+
+        .card-content {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .card-content p {
+            margin-bottom: 12px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-ready {
+            background: rgba(74, 222, 128, 0.1);
+            color: #16a34a;
+        }
+
+        .status-pending {
+            background: rgba(250, 204, 21, 0.1);
+            color: #d97706;
+        }
+
+        .status-info {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        body.dark-mode .status-ready {
+            color: #4ade80;
+        }
+
+        body.dark-mode .status-pending {
+            color: #fbbf24;
+        }
+
+        body.dark-mode .status-info {
+            color: #60a5fa;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--accent);
+            color: var(--paper);
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .link-btn:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .commands {
+            background: var(--rule);
+            border-left: 4px solid var(--accent);
+            padding: 16px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            overflow-x: auto;
+        }
+
+        body.dark-mode .commands {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .features {
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .features h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            line-height: 1.1;
+            margin-bottom: 48px;
+            text-align: center;
+            color: var(--ink);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            background: rgba(200, 64, 26, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon i {
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .feature-text h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .feature-text p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 48px;
+            border-top: 1px solid var(--rule);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 12px 16px;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .nav-logo { flex: 1; }
+            .theme-toggle { margin-left: auto; width: 36px; height: 36px; }
+            .nav-links {
+                order: 3;
+                width: 100%;
+                overflow-x: auto;
+                padding: 8px 0;
+                gap: 20px;
+            }
+            .nav-links a {
+                white-space: nowrap;
+                font-size: 11px;
+                margin-left: 0;
+                margin-right: 20px;
+            }
+            .container { padding: 30px 24px 80px; }
+            header { margin-bottom: 40px; }
+            h1 { font-size: 32px; }
+            .grid { grid-template-columns: 1fr; }
+            .features h2 { font-size: 24px; }
+            .feature-list { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            nav { padding: 12px; }
+            .nav-links a { font-size: 10px; }
+            .container { padding: 20px 12px 60px; }
+            header { margin-bottom: 30px; }
+            h1 { font-size: 28px; }
+            .card { padding: 20px; }
+            .card-title { font-size: 16px; }
+        }
+    </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="../index/" class="nav-logo">Victor Kipruto Rop</a>
+  <div class="nav-links">
+    <a href="../index/">Home</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="../blog/">Blog</a>
+    <a href="index.html#send-message">Contact</a>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
+</nav>
+
+<div class="container">
+        <header>
+            <h1>🤖 Blog AI Dashboard</h1>
+            <p class="subtitle">AI-Powered Blog Generation & Email Notifications</p>
+        </header>
+
+        <div class="grid">
+            <!-- System Status Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-chart-line"></i>
+                    System Status
+                </div>
+                <div class="card-content">
+                    <p>✅ All components initialized and ready</p>
+                    <p style="margin-top: 10px;">
+                        • Database: SQLite<br>
+                        • API: Flask<br>
+                        • AI: Claude 3 Sonnet<br>
+                        • Email: SendGrid
+                    </p>
+                    <span class="status-badge status-ready">READY</span>
+                </div>
+            </div>
+
+            <!-- Generate Posts Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-pen-fancy"></i>
+                    Generate Posts
+                </div>
+                <div class="card-content">
+                    <p>AI-powered blog post generation using Claude API</p>
+                    <div class="commands">
+                        python3 generate.py<br>
+                        python3 generate.py --count 3
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;">
+                        <a href="javascript:void(0)" onclick="generatePost()" class="link-btn">
+                            <i class="fas fa-play"></i> Generate
+                        </a>
+                        <a href="javascript:void(0)" onclick="generatePost(true)" class="link-btn" style="background: var(--blue); border-color: var(--blue);">
+                            <i class="fas fa-bolt"></i> Use Trend
+                        </a>
+                    </div>
+                    </div>
+                    </div>
+
+                    <!-- Social Dispatch Card -->
+                    <div class="card">
+                    <div class="card-title">
+                    <i class="fas fa-share-nodes"></i>
+                    Social Dispatch
+                    </div>
+                    <div class="card-content">
+                    <p>Cross-post content to LinkedIn, Twitter, Dev.to, and Medium</p>
+                    <div class="commands">
+                        python3 dispatcher.py<br>
+                        --dispatch-metadata latest.json
+                    </div>
+                    <a href="javascript:void(0)" onclick="dispatchLatest()" class="link-btn" style="margin-top: 12px;">
+                        <i class="fas fa-paper-plane"></i> Dispatch Latest
+                    </a>
+                    </div>
+                    </div>
+
+                    <!-- Email Notifications Card -->
+                    ...
+                    <!-- Trends Section -->
+                    <div class="features" id="trends-section">
+                    <h2>📊 Tech Trends & Research</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                    <!-- Trending Topics -->
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--rule); border-radius: 12px; padding: 24px;">
+                    <h3 style="font-family: 'Syne', sans-serif; margin-bottom: 20px; font-size: 18px;">🔥 Trending Technologies</h3>
+                    <div id="trends-list" style="display: flex; flex-direction: column; gap: 12px;">
+                        <p style="color: var(--muted); font-size: 13px;">Click "Load Trends" to see what's hot...</p>
+                    </div>
+                    <a href="javascript:void(0)" onclick="loadTrends()" class="link-btn" style="margin-top: 20px; background: transparent; color: var(--accent); width: 100%; text-align: center;">
+                        <i class="fas fa-sync"></i> Load Trends
+                    </a>
+                    </div>
+
+                    <!-- Keyword Researcher -->
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--rule); border-radius: 12px; padding: 24px;">
+                    <h3 style="font-family: 'Syne', sans-serif; margin-bottom: 20px; font-size: 18px;">🔍 SEO Keyword Research</h3>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" id="keyword-input" placeholder="Enter keyword (e.g. Apache Airflow)" style="flex: 1; padding: 10px; border: 1px solid var(--rule); border-radius: 4px; background: transparent; color: var(--ink); font-family: 'DM Mono'; font-size: 13px;">
+                        <button onclick="researchKeyword()" class="link-btn" style="padding: 10px 20px;">Analyze</button>
+                    </div>
+                    <div id="keyword-results" style="font-size: 12px; line-height: 1.6;">
+                        <p style="color: var(--muted);">Research keywords to see opportunity scores and SEO insights.</p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+                    <!-- Features Section -->
+
+                    <i class="fas fa-envelope"></i>
+                    Email Notifications
+                </div>
+                <div class="card-content">
+                    <p>Modern HTML emails sent automatically to subscribers</p>
+                    <p style="margin-top: 10px; font-size: 12px;">
+                        <strong>Active Subscribers:</strong><br>
+                        <span id="subscriber-count">Loading...</span>
+                    </p>
+                    <a href="../subscribe/" class="link-btn">
+                        <i class="fas fa-users"></i> Manage Subscribers
+                    </a>
+                </div>
+            </div>
+
+            <!-- Automation Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-robot"></i>
+                    Automation
+                </div>
+                <div class="card-content">
+                    <p>Scheduled post generation and GitHub deployment</p>
+                    <div class="commands">
+                        python3 scheduler.py<br>
+                        bash push.sh 'Deploy'
+                    </div>
+                    <span class="status-badge status-pending">CONFIGURE</span>
+                </div>
+            </div>
+
+            <!-- API Server Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-server"></i>
+                    API Server
+                </div>
+                <div class="card-content">
+                    <p>REST API for subscriptions and blog management</p>
+                    <div class="commands">
+                        python3 api_server.py<br>
+                        http://localhost:5000
+                    </div>
+                    <a href="http://localhost:5000/api/health" target="_blank" class="link-btn">
+                        <i class="fas fa-network-wired"></i> Test API
+                    </a>
+                </div>
+            </div>
+
+            <!-- Documentation Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-book"></i>
+                    Documentation
+                </div>
+                <div class="card-content">
+                    <p>Complete guides and API documentation</p>
+                    <p style="margin-top: 10px; font-size: 12px;">
+                        📖 README.md<br>
+                        🔌 API Endpoints<br>
+                        ⚙️ Configuration
+                    </p>
+                    <a href="blog-ai/README.md" class="link-btn">
+                        <i class="fas fa-file-alt"></i> View Docs
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <h2>✨ Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>AI Generation</h3>
+                        <p>Claude 3 Sonnet generates technical blog posts</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-mail-bulk"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Email Campaigns</h3>
+                        <p>Modern HTML emails via SendGrid</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Scheduled Publishing</h3>
+                        <p>Automated generation on a schedule</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-github"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Auto-Deploy</h3>
+                        <p>Commit and push to GitHub automatically</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Subscriber Management</h3>
+                        <p>SQLite database with verification</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Analytics</h3>
+                        <p>Track posts, subscribers, and metrics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Start Section -->
+        <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 30px; margin-top: 40px; backdrop-filter: blur(10px);">
+            <h2 style="font-size: 22px; margin-bottom: 20px;">🚀 Quick Start</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div>
+                    <h3 style="font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">1. Setup</h3>
+                    <div class="commands" style="margin: 0;">
+                        bash assets/shared/setup-blog-ai.sh
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">2. Generate</h3>
+                    <div class="commands" style="margin: 0;">
+                        cd blog-ai<br>
+                        python3 generate.py
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">3. Deploy</h3>
+                    <div class="commands" style="margin: 0;">
+                        bash blog-ai/push.sh<br>
+                        "New blog post"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🤖 Blog AI System v1.0 | Built for Victor Kipruto Rop | <a href="../blog/" style="color: var(--accent); text-decoration: none;">View Blog →</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+
+        // Generate Post Function
+        async function generatePost(useTrend = false) {
+            const btn = event.target.closest('.link-btn');
+            const originalText = btn.innerHTML;
+            
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+                btn.disabled = true;
+                
+                const response = await fetch(`${API_BASE}/generate-post`, { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ use_trend: useTrend })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Success!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 3000);
+                    alert(`Blog post "${data.title}" generated successfully!\n\nFiles saved:\n- ${data.files.markdown}\n- ${data.files.metadata}`);
+                } else {
+                    throw new Error(data.message || 'Generation failed');
+                }
+            } catch (error) {
+                btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                console.error('Generation error:', error);
+                alert(`Error: ${error.message}`);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Load Trends Function
+        async function loadTrends() {
+            const list = document.getElementById('trends-list');
+            list.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing trends...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/trends`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    list.innerHTML = '';
+                    data.data.trending_technologies.slice(0, 5).forEach(tech => {
+                        const div = document.createElement('div');
+                        div.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 4px;';
+                        div.innerHTML = `
+                            <span><strong>${tech.name}</strong> <small style="color: var(--muted)">(${tech.category})</small></span>
+                            <span style="color: ${tech.trend === 'hot' ? 'var(--accent)' : 'var(--blue)'}; font-size: 10px; font-weight: bold; text-transform: uppercase;">${tech.trend}</span>
+                        `;
+                        list.appendChild(div);
+                    });
+                }
+            } catch (error) {
+                list.innerHTML = '<p style="color: var(--accent)">Error loading trends. Is API server running?</p>';
+            }
+        }
+
+        // Research Keyword Function
+        async function researchKeyword() {
+            const input = document.getElementById('keyword-input');
+            const results = document.getElementById('keyword-results');
+            const keyword = input.value.trim();
+            
+            if (!keyword) return;
+            
+            results.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Researching...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/research-keyword`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ keyword })
+                });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    results.innerHTML = `
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 4px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: var(--accent);">${data.metrics.opportunity_score}</div>
+                                <div style="font-size: 9px; text-transform: uppercase; color: var(--muted);">Opportunity Score</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 4px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: bold; color: var(--blue);">${data.metrics.keyword_difficulty}</div>
+                                <div style="font-size: 9px; text-transform: uppercase; color: var(--muted);">Difficulty</div>
+                            </div>
+                        </div>
+                        <div style="color: var(--ink); font-weight: 600; margin-bottom: 5px;">AI Strategy:</div>
+                        <div style="color: var(--muted); margin-bottom: 10px;">${data.ai_insights.depth} content for ${data.ai_insights.audience}.</div>
+                        <div style="color: var(--ink); font-weight: 600; margin-bottom: 5px;">Related:</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            ${data.related_keywords.map(k => `<span style="background: var(--rule); padding: 2px 6px; border-radius: 3px; font-size: 10px;">${k}</span>`).join('')}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = '<p style="color: var(--accent)">Research failed.</p>';
+            }
+        }
+
+        // Dispatch Latest Function
+        async function dispatchLatest() {
+            const btn = event.target.closest('.link-btn');
+            const originalText = btn.innerHTML;
+            
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Dispatching...';
+                btn.disabled = true;
+                
+                // For simplicity, we assume we know the latest metadata path or have an endpoint that finds it
+                // Here we'll just show the action
+                alert('In a real scenario, this would find the latest generated post and dispatch it to all configured social platforms.');
+                
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            } catch (error) {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+
+        // Load subscriber count
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('subscriber-count').innerHTML = 
+                        `<strong>${data.active_subscribers}</strong> active subscribers`;
+                }
+            } catch (error) {
+                document.getElementById('subscriber-count').innerHTML = 
+                    '<em>API not running</em>';
+            }
+        }
+
+        // Load stats on page load
+        window.addEventListener('load', () => {
+            setTimeout(loadStats, 1000);
+        });
+    </script>
+</body>
+</html>

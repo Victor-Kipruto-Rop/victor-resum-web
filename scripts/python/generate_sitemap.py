@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 DBOS PHASE 1: Sitemap Generator
-Auto-generates XML sitemap from posts.json
+Auto-generates XML sitemap from assets/shared/posts.json
 """
 
 import json
@@ -14,7 +14,7 @@ class SitemapGenerator:
     """Generate XML sitemap automatically"""
     
     def __init__(self):
-        self.posts_file = Path('blog/posts.json')
+        self.posts_file = Path('blog/assets/shared/posts.json')
         self.sitemap_file = Path('sitemap.xml')
         self.base_url = Config.BASE_URL
         self.posts = []

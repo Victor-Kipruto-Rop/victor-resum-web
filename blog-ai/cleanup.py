@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 POSTS_DIR = Path(__file__).parent.parent / "blog-ai-posts"
-POSTS_JSON = Path(__file__).parent.parent / "blog" / "posts.json"
+POSTS_JSON = Path(__file__).parent.parent / "blog" / "assets/shared/posts.json"
 
 def cleanup_old_posts():
     """Delete posts older than 48 hours"""
@@ -29,7 +29,7 @@ def cleanup_old_posts():
         logger.info("✨ No old posts found.")
         return
 
-    # Update posts.json
+    # Update assets/shared/posts.json
     if POSTS_JSON.exists():
         with open(POSTS_JSON, 'r') as f:
             try:
@@ -48,7 +48,7 @@ def cleanup_old_posts():
                 
         with open(POSTS_JSON, 'w') as f:
             json.dump(updated_posts, f, indent=2)
-        logger.info(f"📝 Removed {len(deleted_titles)} posts from posts.json: {deleted_titles}")
+        logger.info(f"📝 Removed {len(deleted_titles)} posts from assets/shared/posts.json: {deleted_titles}")
 
     # Delete files
     for file in files_to_delete:

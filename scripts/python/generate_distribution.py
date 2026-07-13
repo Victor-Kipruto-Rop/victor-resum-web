@@ -13,7 +13,7 @@ class SocialDistributionEngine:
     """Format and distribute content to social platforms"""
     
     def __init__(self):
-        self.posts_file = Path('blog/posts.json')
+        self.posts_file = Path('blog/assets/shared/posts.json')
         self.output_dir = Path('distribution')
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.base_url = Config.BASE_URL

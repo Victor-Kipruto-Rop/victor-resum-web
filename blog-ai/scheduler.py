@@ -63,7 +63,7 @@ class BlogScheduler:
             title, content, metadata = self.generator.generate_post()
             md_file, meta_file = self.generator.save_post(title, content, metadata)
             
-            # Format for posts.js
+            # Format for assets/shared/posts.js
             post_entry = self.generator.format_for_posts_js(title, content, metadata)
             
             # Update schedule state
@@ -103,7 +103,7 @@ class BlogScheduler:
             "excerpt": metadata_dict.get("excerpt", ""),
             "read_time": metadata_dict.get("read_time", 10),
             "tags": metadata_dict.get("tags", []),
-            "url": f"https://victorkirpruto.dev/post.html?id={metadata_dict.get('id', title.lower().replace(' ', '-'))}",
+            "url": f"https://victorkirpruto.dev/post/?id={metadata_dict.get('id', title.lower().replace(' ', '-'))}",
             "published_date": datetime.now().strftime("%B %d, %Y"),
             "author": self.config["author"]["name"]
         }
@@ -193,7 +193,7 @@ def main():
             "excerpt": "Learn best practices for building scalable data pipelines.",
             "read_time": 12,
             "tags": ["Data Engineering", "Pipelines", "Best Practices"],
-            "url": "https://victorkirpruto.dev/post.html?id=test-post",
+            "url": "https://victorkirpruto.dev/post/?id=test-post",
             "published_date": datetime.now().strftime("%B %d, %Y"),
             "author": scheduler.config["author"]["name"]
         }

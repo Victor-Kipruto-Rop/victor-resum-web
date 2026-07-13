@@ -316,7 +316,7 @@ Do not include any markdown or additional text."""
         return str(md_file), str(metadata_file)
 
     def format_for_posts_js(self, title: str, content: str, metadata_str: str) -> Dict:
-        """Format generated post for posts.js"""
+        """Format generated post for assets/shared/posts.js"""
         metadata = json.loads(metadata_str)
         
         # Convert markdown to HTML (basic conversion)
@@ -365,7 +365,7 @@ Do not include any markdown or additional text."""
                 title, content, metadata = self.generate_post()
                 md_file, meta_file = self.save_post(title, content, metadata)
                 
-                # Format for posts.js
+                # Format for assets/shared/posts.js
                 post_entry = self.format_for_posts_js(title, content, metadata)
                 posts.append({
                     "id": re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-'),
@@ -386,7 +386,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate AI blog posts")
     parser.add_argument("--count", type=int, default=1, help="Number of posts to generate")
     parser.add_argument("--title", type=str, help="Specific title for the post")
-    parser.add_argument("--output", type=str, default="posts.json", help="Output file for posts")
+    parser.add_argument("--output", type=str, default="assets/shared/posts.json", help="Output file for posts")
     
     args = parser.parse_args()
     

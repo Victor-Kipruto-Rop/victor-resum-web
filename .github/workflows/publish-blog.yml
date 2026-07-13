@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'blog/posts.json'
+      - 'blog/assets/shared/posts.json'
       - 'scripts/python/generate_*.py'
       - '.github/workflows/publish-blog.yml'
   workflow_dispatch:  # Allow manual trigger

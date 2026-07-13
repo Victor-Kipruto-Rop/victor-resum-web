@@ -32,7 +32,7 @@ jobs:
       
       - name: Validate blog posts JSON
         run: |
-          python -m json.tool blog/posts.json > /dev/null && echo "✓ blog/posts.json is valid"
+          python -m json.tool blog/assets/shared/posts.json > /dev/null && echo "✓ blog/assets/shared/posts.json is valid"
       
       - name: Check sitemap freshness
         run: |

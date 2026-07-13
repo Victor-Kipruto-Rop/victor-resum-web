@@ -3,7 +3,7 @@ name: 🎨 Auto Image Assignment
 on:
   push:
     paths:
-      - 'blog/posts.json'
+      - 'blog/assets/shared/posts.json'
     branches:
       - main
   workflow_dispatch:
@@ -68,7 +68,7 @@ jobs:
           import json
           from pathlib import Path
           
-          posts_file = Path('blog/posts.json')
+          posts_file = Path('blog/assets/shared/posts.json')
           with open(posts_file) as f:
               posts = json.load(f)
           
@@ -91,7 +91,7 @@ jobs:
           git config user.name 'GitHub Actions'
           git config user.email 'actions@github.com'
           
-          git add blog/posts.json
+          git add blog/assets/shared/posts.json
           git add assets/auto/
           
           if git diff --cached --quiet; then
@@ -130,7 +130,7 @@ jobs:
           import xml.etree.ElementTree as ET
           
           # Load posts
-          posts_file = Path('blog/posts.json')
+          posts_file = Path('blog/assets/shared/posts.json')
           with open(posts_file) as f:
               posts = json.load(f)
           
@@ -156,7 +156,7 @@ jobs:
           from pathlib import Path
           from config import Config
           
-          posts_file = Path('blog/posts.json')
+          posts_file = Path('blog/assets/shared/posts.json')
           with open(posts_file) as f:
               posts = json.load(f)
           

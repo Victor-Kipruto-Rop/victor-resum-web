@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 DBOS PHASE 1: Blog Rendering Engine
-Generates HTML blog pages from posts.json
+Generates HTML blog pages from assets/shared/posts.json
 """
 
 import json
@@ -10,17 +10,17 @@ from datetime import datetime
 from pathlib import Path
 
 class BlogRenderingEngine:
-    """Auto-render blog pages from posts.json"""
+    """Auto-render blog pages from assets/shared/posts.json"""
     
     def __init__(self):
         self.blog_dir = Path('blog')
-        self.posts_file = self.blog_dir / 'posts.json'
+        self.posts_file = self.blog_dir / 'assets/shared/posts.json'
         self.output_dir = self.blog_dir / 'rendered'
         self.posts = []
         self.output_dir.mkdir(parents=True, exist_ok=True)
     
     def load_posts(self):
-        """Load posts from posts.json"""
+        """Load posts from assets/shared/posts.json"""
         with open(self.posts_file) as f:
             self.posts = json.load(f)
         print(f"✓ Loaded {len(self.posts)} posts")
@@ -79,7 +79,7 @@ class BlogRenderingEngine:
 </html>
 '''
         
-        output_file = self.output_dir / 'index.html'
+        output_file = self.output_dir / 'index/'
         with open(output_file, 'w') as f:
             f.write(html)
         print(f"✓ Generated blog homepage: {output_file}")

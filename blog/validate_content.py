@@ -10,7 +10,7 @@ import re
 from datetime import datetime
 
 BLOG_DIR = os.path.dirname(__file__)
-POSTS_FILE = os.path.join(BLOG_DIR, "posts.json")
+POSTS_FILE = os.path.join(BLOG_DIR, "assets/shared/posts.json")
 VALIDATION_REPORT = os.path.join(BLOG_DIR, "validation-report.json")
 
 class ContentValidator:
@@ -20,7 +20,7 @@ class ContentValidator:
         self.passes = []
         
     def load_posts(self):
-        """Load posts from posts.json"""
+        """Load posts from assets/shared/posts.json"""
         with open(POSTS_FILE, 'r') as f:
             self.posts_data = json.load(f)
         self.posts = self.posts_data.get('posts', [])

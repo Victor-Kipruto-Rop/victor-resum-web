@@ -25,8 +25,8 @@ def main():
     
     # Handle different event types
     if event_type == "blog_published":
-        # Load latest post from posts.json
-        posts_file = Path('blog/posts.json')
+        # Load latest post from assets/shared/posts.json
+        posts_file = Path('blog/assets/shared/posts.json')
         if posts_file.exists():
             with open(posts_file) as f:
                 posts = json.load(f)

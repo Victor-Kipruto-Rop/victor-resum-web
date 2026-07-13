@@ -34,7 +34,7 @@ class EventDetectionEngine:
     SEO_CRITICAL_SCORE = 50
     
     def __init__(self):
-        self.posts_file = Path("blog/posts.json")
+        self.posts_file = Path("blog/assets/shared/posts.json")
         self.events_file = Path("notifications/events.json")
         self.previous_state_file = Path("notifications/.previous_state.json")
         

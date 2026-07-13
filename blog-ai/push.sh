@@ -63,8 +63,8 @@ main() {
     # Add blog-related files
     print_info "Staging blog files..."
     git add blog-ai-posts/ 2>/dev/null || true
-    git add blog.html 2>/dev/null || true
-    git add posts.js 2>/dev/null || true
+    git add blog/ 2>/dev/null || true
+    git add assets/shared/posts.js 2>/dev/null || true
     git add feed.xml 2>/dev/null || true
     git add blog-ai/config.json 2>/dev/null || true
     

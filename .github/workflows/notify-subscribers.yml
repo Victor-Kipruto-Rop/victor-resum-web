@@ -3,7 +3,7 @@ name: Notify Subscribers - Blog Updates
 on:
   push:
     paths:
-      - 'blog/posts.json'
+      - 'blog/assets/shared/posts.json'
       - 'blog/posts/**'
     branches:
       - main

@@ -159,7 +159,7 @@ def template_welcome(name: str, email: str) -> str:
           <div class="email-section">
             <h2>Start Reading</h2>
             <p>Check out my latest posts and get caught up on everything you've missed:</p>
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Read Blog →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog/" class="cta-button">Read Blog →</a>
           </div>
           
           <div class="highlight-box">
@@ -193,7 +193,7 @@ def template_welcome(name: str, email: str) -> str:
 
 def template_new_blog_post(name: str, post_title: str, post_excerpt: str, post_slug: str, read_time: int, image_url: str = None) -> str:
     """New blog post notification with optional featured image"""
-    post_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={post_slug}"
+    post_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/post/?id={post_slug}"
     
     # Optional featured image
     image_html = ""
@@ -243,7 +243,7 @@ def template_new_blog_post(name: str, post_title: str, post_excerpt: str, post_s
           <div class="email-section">
             <h2>Quick Links</h2>
             <ul>
-              <li><a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html">All Articles</a></li>
+              <li><a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog/">All Articles</a></li>
               <li><a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a></li>
               <li><a href="https://github.com/kipruto45">View Projects</a></li>
             </ul>
@@ -293,7 +293,7 @@ def template_weekly_digest(name: str, posts: list) -> str:
             <span> • {date}</span>
             {' • '.join([f'<span class="tag">{tag}</span>' for tag in tags[:3]]) if tags else ''}
           </div>
-          <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={post_id}" class="cta-button" style="font-size: 14px; padding: 10px 20px; margin-top: 10px;">Read →</a>
+          <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post/?id={post_id}" class="cta-button" style="font-size: 14px; padding: 10px 20px; margin-top: 10px;">Read →</a>
         </div>
         """
     
@@ -323,7 +323,7 @@ def template_weekly_digest(name: str, posts: list) -> str:
           {posts_html}
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">View All Articles →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog/" class="cta-button">View All Articles →</a>
           </div>
         </div>
         
@@ -429,7 +429,7 @@ def template_dashboard_alert(name: str, alert_title: str, metrics: dict, recomme
           </div>
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Full Dashboard →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub/" class="cta-button">View Full Dashboard →</a>
           </div>
         </div>
         
@@ -512,7 +512,7 @@ def template_trending_content(name: str, trending_posts: list, top_post_stats: d
             <span>👁️ {views:,} views</span>
             <span> • 📊 {growth} growth</span>
           </div>
-          <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={slug}" class="cta-button" style="font-size: 13px; padding: 8px 16px; margin-top: 8px;">View →</a>
+          <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post/?id={slug}" class="cta-button" style="font-size: 13px; padding: 8px 16px; margin-top: 8px;">View →</a>
         </div>
         """
     
@@ -546,7 +546,7 @@ def template_trending_content(name: str, trending_posts: list, top_post_stats: d
           </div>
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Read More Articles →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog/" class="cta-button">Read More Articles →</a>
           </div>
         </div>
         
@@ -630,7 +630,7 @@ def template_activity_recap(name: str, month: str, stats: dict) -> str:
           </div>
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Full Dashboard →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub/" class="cta-button">View Full Dashboard →</a>
           </div>
         </div>
         
@@ -693,7 +693,7 @@ def template_subscriber_milestone(name: str, milestone: int, celebration_message
           </div>
           
           <div class="email-section">
-            <a href="https://twitter.com/intent/tweet?text=Just%20subscribed%20to%20Victor%20Kipruto%27s%20blog%21%20Great%20technical%20content%20on%20data%20engineering%20and%20cloud%20infrastructure%21%20https%3A%2F%2Fvictor-kipruto-rop.github.io%2Fvictor-resum-web%2Fblog.html" class="cta-button">Share on Twitter →</a>
+            <a href="https://twitter.com/intent/tweet?text=Just%20subscribed%20to%20Victor%20Kipruto%27s%20blog%21%20Great%20technical%20content%20on%20data%20engineering%20and%20cloud%20infrastructure%21%20https%3A%2F%2Fvictor-kipruto-rop.github.io%2Fvictor-resum-web%2Fblog/" class="cta-button">Share on Twitter →</a>
           </div>
         </div>
         
@@ -759,7 +759,7 @@ def template_viral_alert(name: str, post_title: str, current_views: int, viral_t
           </div>
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">View All Articles →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog/" class="cta-button">View All Articles →</a>
           </div>
         </div>
         
@@ -830,7 +830,7 @@ def template_recruiter_alert(name: str, recruiter_info: dict) -> str:
           </div>
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/resume.html" class="cta-button">View Your Resume →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/resume/" class="cta-button">View Your Resume →</a>
           </div>
         </div>
         
@@ -921,7 +921,7 @@ def template_engagement_summary(name: str, period: str, engagement_stats: dict) 
           </div>
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Detailed Analytics →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub/" class="cta-button">View Detailed Analytics →</a>
           </div>
         </div>
         
@@ -953,7 +953,7 @@ def template_recommended_reads(name: str, reading_history: list, recommended_pos
           <p style="font-size: 13px; color: #666; margin: 8px 0; line-height: 1.5;">{excerpt}</p>
           <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
             <span style="color: #666;">Match: <strong>{relevance}</strong></span>
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={slug}" style="color: #ff4b2b; text-decoration: none; font-weight: 600;">Read →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post/?id={slug}" style="color: #ff4b2b; text-decoration: none; font-weight: 600;">Read →</a>
           </div>
         </div>
         """
@@ -984,7 +984,7 @@ def template_recommended_reads(name: str, reading_history: list, recommended_pos
           {recommendations_html}
           
           <div class="email-section">
-            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Explore All Articles →</a>
+            <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog/" class="cta-button">Explore All Articles →</a>
           </div>
           
           <div class="highlight-box">

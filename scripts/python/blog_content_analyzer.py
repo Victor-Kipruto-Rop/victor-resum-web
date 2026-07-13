@@ -90,7 +90,7 @@ class BlogContentAnalyzer:
     }
     
     def __init__(self):
-        self.posts_file = Path("blog/posts.json")
+        self.posts_file = Path("blog/assets/shared/posts.json")
         self.analysis_file = Path("assets/auto/content-analysis.json")
         self.analysis_file.parent.mkdir(parents=True, exist_ok=True)
     

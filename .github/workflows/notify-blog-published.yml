@@ -3,7 +3,7 @@ name: 📢 Blog Notifications
 on:
   push:
     paths:
-      - 'blog/posts.json'
+      - 'blog/assets/shared/posts.json'
     branches:
       - main
   workflow_dispatch:

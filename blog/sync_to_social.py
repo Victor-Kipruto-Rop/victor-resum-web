@@ -23,19 +23,19 @@ except ImportError as e:
     print("Some social media integrations may not be available")
 
 BLOG_DIR = Path(__file__).parent
-POSTS_JSON = BLOG_DIR / "posts.json"
+POSTS_JSON = BLOG_DIR / "assets/shared/posts.json"
 SYNC_STATE_FILE = BLOG_DIR / ".sync_state.json"
 
 def load_posts() -> List[Dict]:
-    """Load blog posts from posts.json"""
+    """Load blog posts from assets/shared/posts.json"""
     try:
         with open(POSTS_JSON, 'r') as f:
             return json.load(f)
     except FileNotFoundError:
-        print(f"❌ posts.json not found at {POSTS_JSON}")
+        print(f"❌ assets/shared/posts.json not found at {POSTS_JSON}")
         return []
     except json.JSONDecodeError:
-        print(f"❌ posts.json is invalid JSON")
+        print(f"❌ assets/shared/posts.json is invalid JSON")
         return []
 
 def load_sync_state() -> Dict:

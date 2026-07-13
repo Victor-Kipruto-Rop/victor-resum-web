@@ -12,7 +12,7 @@ class PerformanceScoringEngine:
     """Score and classify posts based on performance"""
     
     def __init__(self):
-        self.posts_file = Path('blog/posts.json')
+        self.posts_file = Path('blog/assets/shared/posts.json')
         self.analytics_file = Path('analytics/performance.json')
         self.output_file = Path('analytics/performance-scores.json')
         self.output_file.parent.mkdir(parents=True, exist_ok=True)

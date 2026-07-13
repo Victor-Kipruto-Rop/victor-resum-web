@@ -16,7 +16,7 @@ class AutoImageAssigner:
     
     def __init__(self):
         self.selector = ImageSelector()
-        self.posts_file = Path('blog/posts.json')
+        self.posts_file = Path('blog/assets/shared/posts.json')
         self.assignment_log_file = Path('assets/auto/assignment-log.json')
         self.social_metadata_file = Path('assets/auto/social-metadata.json')
         self.assignment_log_file.parent.mkdir(parents=True, exist_ok=True)

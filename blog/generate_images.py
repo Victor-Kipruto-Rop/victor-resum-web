@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate placeholder blog post images using PIL (Pillow)
-Creates attractive placeholder images for all blog posts in blog/posts.json
+Creates attractive placeholder images for all blog posts in blog/assets/shared/posts.json
 """
 
 import os
@@ -14,7 +14,7 @@ import hashlib
 
 # Setup paths
 BLOG_DIR = Path(__file__).parent
-POSTS_JSON = BLOG_DIR / "posts.json"
+POSTS_JSON = BLOG_DIR / "assets/shared/posts.json"
 IMAGES_DIR = Path(__file__).parent.parent / "assets" / "images"
 
 # Ensure images directory exists
@@ -162,14 +162,14 @@ def main():
         with open(POSTS_JSON, 'r') as f:
             posts = json.load(f)
     except FileNotFoundError:
-        print(f"❌ posts.json not found at {POSTS_JSON}")
+        print(f"❌ assets/shared/posts.json not found at {POSTS_JSON}")
         return 1
     except json.JSONDecodeError:
-        print(f"❌ posts.json is invalid JSON")
+        print(f"❌ assets/shared/posts.json is invalid JSON")
         return 1
     
     if not isinstance(posts, list):
-        print("❌ posts.json should contain an array of posts")
+        print("❌ assets/shared/posts.json should contain an array of posts")
         return 1
     
     generated_count = 0

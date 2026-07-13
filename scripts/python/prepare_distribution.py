@@ -9,7 +9,7 @@ from pathlib import Path
 def prepare_distribution():
     """Prepare social content from latest blog post"""
     try:
-        posts_file = Path('blog/posts.json')
+        posts_file = Path('blog/assets/shared/posts.json')
         
         if not posts_file.exists():
             print("❌ No blog posts found")

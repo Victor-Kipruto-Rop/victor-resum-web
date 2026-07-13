@@ -65,7 +65,7 @@ class NotificationSystem:
             },
             "blog": {
                 "posts_dir": "blog/posts",
-                "posts_json": "blog/posts.json"
+                "posts_json": "blog/assets/shared/posts.json"
             }
         }
     
