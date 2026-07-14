@@ -37,7 +37,59 @@
     --rule:   #d4cec2;
     --card:   #ede8de;
     --hero-top: 100px;
+    --container-max-width: 1200px;
+    --container-gutter-mobile: 20px;
+    --container-gutter-tablet: 48px;
+    --container-gutter-desktop: 96px;
+    --container-gutter-wide: 120px;
   }
+
+  // Share popover helpers (same as index)
+  function createSharePopover(){
+    let p = document.getElementById('share-popover');
+    if(p) return p;
+    p = document.createElement('div');
+    p.id = 'share-popover';
+    p.className = 'share-popover';
+    p.style.position = 'absolute';
+    p.style.display = 'none';
+    document.body.appendChild(p);
+    document.addEventListener('click', (ev)=>{
+      if(!p.contains(ev.target) && !ev.target.classList.contains('share-toggle')){
+        p.style.display = 'none';
+      }
+    });
+    return p;
+  }
+
+  function openShareMenu(btn, url, title){
+    const pop = createSharePopover();
+    pop.innerHTML = '';
+    const opts = [
+      { k: 'WhatsApp', fn: ()=>{ shareWhatsApp(url); } },
+      { k: 'Email', fn: ()=>{ shareEmail(url, title); } },
+      { k: 'LinkedIn', fn: ()=>{ shareLinkedIn(url); } },
+      { k: 'Discord', fn: ()=>{ shareDiscord(url); } },
+      { k: 'Copy link', fn: ()=>{ copyLink(url); } }
+    ];
+    opts.forEach(o => {
+      const btnEl = document.createElement('button');
+      btnEl.className = 'share-option';
+      btnEl.textContent = o.k;
+      btnEl.addEventListener('click', (e)=>{ e.stopPropagation(); o.fn(); pop.style.display='none'; });
+      pop.appendChild(btnEl);
+    });
+    const rect = btn.getBoundingClientRect();
+    pop.style.left = (rect.left + window.scrollX) + 'px';
+    pop.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+    pop.style.display = 'block';
+  }
+
+  function shareWhatsApp(url){ window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(url), '_blank'); }
+  function shareEmail(url, title){ window.location.href = `mailto:?subject=${encodeURIComponent(title||'Check this project')}&body=${encodeURIComponent((title?title+'\n':'')+url)}`; }
+  function shareLinkedIn(url){ window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(url), '_blank'); }
+  function shareDiscord(url){ copyLink(url); window.open('https://discord.com/channels/@me', '_blank'); }
+  function copyLink(url){ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(()=>{ const t = document.createElement('div'); t.textContent = 'Copied!'; t.style.position='fixed'; t.style.right='12px'; t.style.bottom='12px'; t.style.background='var(--accent)'; t.style.color='white'; t.style.padding='8px 10px'; t.style.borderRadius='8px'; t.style.zIndex=99999; document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }); } else { const ta=document.createElement('textarea'); ta.value=url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } }
   
   body.dark-mode {
     --ink:    #f5f0e8;
@@ -146,7 +198,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
+    padding: 20px var(--container-gutter-desktop);
     background: transparent;
     transition: background 0.3s ease;
     gap: 20px;
@@ -155,14 +207,14 @@
     display: flex; align-items: center; gap: 16px;
   }
   @media (max-width: 720px) {
-    nav { padding: 16px 20px; gap: 12px; }
+    nav { padding: 16px var(--container-gutter-mobile); gap: 12px; }
     .nav-logo { font-size: 16px; }
     .nav-links { gap: 16px; }
     .nav-links a { font-size: 10px; letter-spacing: 0.08em; }
     .theme-toggle { width: 36px; height: 36px; font-size: 14px; }
   }
   @media (max-width: 480px) {
-    nav { padding: 14px 16px; gap: 8px; }
+    nav { padding: 14px var(--container-gutter-mobile); gap: 8px; }
     .nav-logo { font-size: 14px; }
     .nav-username { font-size: 11px; }
     .nav-links { gap: 12px; }
@@ -234,7 +286,7 @@
   }
   .hero-left {
     display: flex; flex-direction: column; justify-content: center;
-    padding: 0 96px 60px;
+    padding: 0 var(--container-gutter-desktop) 60px;
     position: relative; z-index: 3;
     gap: 18px;
     max-width: 900px; width: 100%;
@@ -242,17 +294,17 @@
   .hero-right {
     display: flex; align-items: center; justify-content: center; padding-top: 0;
   }
-  .hero-right-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; padding-right: 96px; }
+  .hero-right-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; padding-right: var(--container-gutter-desktop); }
   @media (max-width: 1024px) {
-    .hero-left { padding: 0 48px 40px; }
-    .hero-right-inner { padding-right: 48px; }
+    .hero-left { padding: 0 var(--container-gutter-tablet) 40px; }
+    .hero-right-inner { padding-right: var(--container-gutter-tablet); }
   }
   @media (max-width: 768px) {
-    .hero-left { padding: 70px 24px 40px; }
+    .hero-left { padding: 70px var(--container-gutter-mobile) 40px; }
     .hero-right-inner { padding-right: 0; }
   }
   @media (max-width: 480px) {
-    .hero-left { padding: 60px 18px 32px; gap: 14px; }
+    .hero-left { padding: 60px var(--container-gutter-mobile) 32px; gap: 14px; }
   }
   .hero-prof { width: 360px; height: 360px; object-fit: cover; border-radius: 50%; border: none; box-shadow: 0 22px 48px rgba(10,14,20,0.14); overflow: hidden; }
   @media (max-width: 1024px) { .hero-prof { width: 260px; height: 260px; } }
@@ -272,11 +324,11 @@
     #hero { grid-template-columns: 1fr; }
     .hero-right { padding-top: 40px; }
     .hero-prof { width: 220px; height: 220px; border-radius: 50%; }
-    .hero-left { padding: 48px 32px; }
+    .hero-left { padding: 48px var(--container-gutter-tablet); }
   }
   @media (max-width: 720px) {
     #hero { min-height: auto; padding-top: 60px; }
-    .hero-left { padding: 24px 20px 32px 20px; gap: 14px; }
+    .hero-left { padding: 24px var(--container-gutter-mobile) 32px var(--container-gutter-mobile); gap: 14px; }
     .hero-right-inner { padding-right: 0; gap: 16px; }
     .hero-prof { width: 180px; height: 180px; }
     .hero-social { gap: 16px; flex-wrap: wrap; }
@@ -285,7 +337,7 @@
   }
   @media (max-width: 480px) {
     #hero { padding-top: 55px; }
-    .hero-left { padding: 20px 16px 24px 16px; }
+    .hero-left { padding: 20px var(--container-gutter-mobile) 24px var(--container-gutter-mobile); }
     .hero-prof { width: 160px; height: 160px; }
     .hero-social { gap: 12px; }
     .social-icon { width: 32px; height: 32px; font-size: 14px; }
@@ -397,10 +449,16 @@
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* ── Sections ── */
-  section { padding: 96px 48px; }
-  @media (max-width: 1024px) { section { padding: 64px 32px; } }
-  @media (max-width: 720px) { section { padding: 48px 20px; } }
-  @media (max-width: 480px) { section { padding: 32px 16px; } }
+  section { padding: 96px var(--container-gutter-desktop); }
+  @media (max-width: 1024px) { section { padding: 64px var(--container-gutter-tablet); } }
+  @media (max-width: 720px) { section { padding: 48px var(--container-gutter-mobile); } }
+  @media (max-width: 480px) { section { padding: 32px var(--container-gutter-mobile); } }
+  header, nav, section, footer, .projects-wrap, .blog-grid, .post-container {
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    width: min(100%, var(--container-max-width));
+  }
   .section-label {
     font-family: 'DM Mono', monospace; font-size: 10px;
     letter-spacing: 0.25em; text-transform: uppercase;
@@ -458,8 +516,8 @@
   @media (max-width: 720px) { #skills { padding: 20px 12px; } .skill-pill { width:100%; text-align:center; } }
 
   /* ── Projects ── */
-  #projects { background: transparent; color: var(--ink); border-top: 1px solid var(--rule); position: relative; padding: 32px 0 56px; }
-  .projects-wrap { max-width: 1180px; margin: 0 auto; position: relative; padding: 0 22px; }
+  #projects { background: transparent; color: var(--ink); border-top: 1px solid var(--rule); position: relative; padding: 32px var(--container-gutter-desktop) 56px; }
+  .projects-wrap { max-width: 1180px; margin: 0 auto; position: relative; padding: 0; }
   .projects-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 18px; }
   .section-title { color: var(--ink); margin: 0; font-size: 20px; }
   .section-title::after { content: ''; display:block; width:56px; height:4px; background: var(--accent); border-radius:4px; margin-top:10px; opacity:0.9; }
@@ -500,7 +558,7 @@
   .project-btn svg { width:18px; height:18px; color: currentColor; }
 
   @media (max-width: 1100px) { .project-card { min-width: 300px; flex:0 0 300px; } }
-  @media (max-width: 720px) { .projects-wrap { padding: 0 12px; } .project-card { min-width: 260px; flex:0 0 260px; } }
+  @media (max-width: 720px) { .projects-wrap { padding: 0 var(--container-gutter-mobile); } .project-card { min-width: 260px; flex:0 0 260px; } }
   @media (max-width: 540px) { .projects-grid { gap:14px; } .project-controls { display:flex; padding:0 4px; } .project-btn { width:40px; height:40px; } }
   @media (max-width: 420px) { .project-card { min-width: calc(100vw - 64px); flex: 0 0 calc(100vw - 64px); } }
 
@@ -514,6 +572,13 @@
   .btn-outline { background: transparent; border: 1px solid var(--rule); color: var(--ink); }
   .btn-primary-sm { background: var(--ink); color: var(--paper); border: 1px solid var(--ink); }
   .btn-sm i { font-size: 14px; }
+  .share-popover { position: absolute; background: var(--paper); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding:6px; border-radius:10px; display:none; z-index:99999; min-width:160px; }
+  .share-popover .share-option { display:block; width:100%; text-align:left; padding:8px 10px; border-radius:8px; background:transparent; border:none; cursor:pointer; font-weight:600; color:var(--ink); }
+  .share-popover .share-option:hover { background: rgba(0,0,0,0.03); }
+  .cert-btn { --pad-y:6px; --pad-x:10px; padding: var(--pad-y) var(--pad-x); display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:10px; font-weight:700; text-decoration:none; cursor:pointer; transition: transform .12s ease, box-shadow .12s ease; line-height:1; box-sizing:border-box; background: var(--paper); border: 2px solid var(--accent); color: var(--ink); }
+  .cert-btn i { font-size:16px; color: var(--accent); background: transparent; padding:0; margin-right:6px; display:inline-flex; align-items:center; justify-content:center; }
+  .cert-btn.btn-outline { background: var(--paper); border-color: var(--accent); color: var(--ink); }
+  .cert-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,0.08); }
   @media (max-width: 1200px) { .projects-grid{ grid-template-columns: repeat(2,1fr);} }
   @media (max-width: 720px) { .projects-grid{ grid-template-columns: 1fr;} }
 
@@ -589,7 +654,7 @@
 
   /* ── Footer ── */
   footer {
-    background: transparent; padding: 24px 48px;
+    background: transparent; padding: 24px var(--container-gutter-desktop);
     border-top: 1px solid var(--rule);
     display: flex; justify-content: space-between; align-items: center;
     color: var(--muted);
@@ -610,19 +675,19 @@
 
   /* ── Mobile ── */
   @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
+    nav { padding: 16px var(--container-gutter-mobile); }
     .nav-links { display: none; }
     #hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 120px 24px 40px; }
+    .hero-left { padding: 120px var(--container-gutter-mobile) 40px; }
     .hero-right { height: auto; padding-bottom: 40px; }
     .hero-right-inner { padding-right: 0; }
-    section { padding: 64px 24px; }
+    section { padding: 64px var(--container-gutter-mobile); }
     .why-grid, .about-layout, .contact-layout, .skills-layout { grid-template-columns: 1fr; gap: 24px; }
     .about-layout { gap: 40px; }
     .contact-layout { gap: 48px; }
     .hero-photo, .about-photo { width: 100%; height: auto; aspect-ratio: 4/5; }
     .about-photo-wrap::before { display: none; }
-    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px var(--container-gutter-mobile); }
     .contact-row { flex-direction: column; }
   }
 
@@ -906,13 +971,13 @@
       <span class="blog-date">AWS</span>
       <h3 class="blog-title">Data Engineering on AWS - Foundations</h3>
       <p class="blog-excerpt">Comprehensive foundation in AWS data services, ETL processes, and data lake architecture.</p>
-      <a href="assets/certifications/8891ecf5-e5ba-43e1-98e4-02ff864a4c50.pdf" class="btn-ghost btn-sm" target="_blank">View Certificate</a>
+      <a href="assets/certifications/8891ecf5-e5ba-43e1-98e4-02ff864a4c50.pdf" class="btn-ghost btn-sm cert-btn" target="_blank"><i class="fas fa-certificate"></i><span>View Certificate</span></a>
     </div>
     <div class="blog-card reveal" style="transition-delay:0.1s">
       <span class="blog-date">IBM / CognitiveClass.ai</span>
       <h3 class="blog-title">Big Data 101</h3>
       <p class="blog-excerpt">Official completion certificate covering Big Data fundamentals, Hadoop, and the V's of Big Data.</p>
-      <a href="assets/certifications/IBM BD0101EN Certificate _ Cognitive Class.pdf" class="btn-ghost btn-sm" target="_blank">View Certificate</a>
+      <a href="assets/certifications/IBM BD0101EN Certificate _ Cognitive Class.pdf" class="btn-ghost btn-sm cert-btn" target="_blank"><i class="fas fa-certificate"></i><span>View Certificate</span></a>
     </div>
     <div class="blog-card reveal" style="transition-delay:0.2s">
       <span class="blog-date">IBM / Credly</span>
@@ -967,6 +1032,7 @@
           <div class="project-actions">
             <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener">View</a>
             <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener">Readme</a>
+            <button class="btn-sm btn-ghost share-toggle" type="button" onclick="openShareMenu(this, 'https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project', 'Data Engineering — Full Project')">Share</button>
           </div>
         </div>
       </div>
@@ -985,6 +1051,7 @@
           <div class="project-actions">
             <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline" target="_blank" rel="noopener">View</a>
             <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline" target="_blank" rel="noopener">Readme</a>
+            <button class="btn-sm btn-ghost share-toggle" type="button" onclick="openShareMenu(this, 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline', 'Cloud ETL Pipeline')">Share</button>
           </div>
         </div>
       </div>
@@ -1002,6 +1069,7 @@
           <div class="project-actions">
             <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-" target="_blank" rel="noopener">View</a>
             <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-" target="_blank" rel="noopener">Readme</a>
+            <button class="btn-sm btn-ghost share-toggle" type="button" onclick="openShareMenu(this, 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-', 'Mpesa / Safaricom Pipeline')">Share</button>
           </div>
         </div>
       </div>
@@ -1020,6 +1088,7 @@
           <div class="project-actions">
             <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener">View</a>
             <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener">Readme</a>
+            <button class="btn-sm btn-ghost share-toggle" type="button" onclick="openShareMenu(this, 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-', 'Real-Time Transaction Streaming (MPESA)')">Share</button>
           </div>
         </div>
       </div>
@@ -1551,6 +1620,7 @@
       card.style.transitionDelay = (idx*0.08)+'s';
       card.onclick = () => openProjectModal(p);
       card.innerHTML = `\n        <img class="project-thumb" src="${p.img}" alt="${p.title}" loading="lazy" />\n        <div class="project-content">\n          <p class="project-title">${p.title}</p>\n          <p class="project-desc">${p.desc}</p>\n          <div class="project-stack">${p.stack.map(s=>`<span class="stack-badge">${s}</span>`).join('')}</div>\n          <div class="project-actions">\n            <a class="btn-sm btn-primary-sm" href="${p.view}" target="_blank" rel="noopener" aria-label="View project ${p.title}">View</a>\n            <a class="btn-sm btn-outline" href="${p.view}" target="_blank" rel="noopener" aria-label="Read documentation for ${p.title}">Readme</a>\n          </div>\n        </div>`;
+      card.innerHTML = `\n        <img class="project-thumb" src="${p.img}" alt="${p.title}" loading="lazy" />\n        <div class="project-content">\n          <p class="project-title">${p.title}</p>\n          <p class="project-desc">${p.desc}</p>\n          <div class="project-stack">${p.stack.map(s=>`<span class="stack-badge">${s}</span>`).join('')}</div>\n          <div class="project-actions">\n            <a class="btn-sm btn-primary-sm" href="${p.view}" target="_blank" rel="noopener" aria-label="View project ${p.title}">View</a>\n            <a class="btn-sm btn-outline" href="${p.view}" target="_blank" rel="noopener" aria-label="Read documentation for ${p.title}">Readme</a>\n            <button class="btn-sm btn-ghost share-toggle" type="button" onclick="openShareMenu(this, '${p.view}', '${p.title}')">Share</button>\n          </div>\n        </div>`;
       grid.appendChild(card);
       if(window.obs) window.obs.observe(card);
     });

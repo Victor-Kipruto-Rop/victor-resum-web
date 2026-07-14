@@ -75,6 +75,11 @@
     --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
     --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --container-max-width: 1200px;
+    --container-gutter-mobile: 20px;
+    --container-gutter-tablet: 48px;
+    --container-gutter-desktop: 96px;
+    --container-gutter-wide: 120px;
   }
   body.dark-mode {
     --ink: #f5f0e8;
@@ -99,6 +104,23 @@
     padding: 0;
     transition: background 0.3s ease, color 0.3s ease;
   }
+
+  section {
+    padding: 96px var(--container-gutter-desktop);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    width: min(100%, var(--container-max-width));
+  }
+  @media (max-width: 1024px) { section { padding: 64px var(--container-gutter-tablet); } }
+  @media (max-width: 720px) { section { padding: 48px var(--container-gutter-mobile); } }
+  @media (max-width: 480px) { section { padding: 32px var(--container-gutter-mobile); } }
+  header, nav, section, footer, .projects-wrap, .blog-grid, .post-container {
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    width: min(100%, var(--container-max-width));
+  }
+
   body::before {
     content: '';
     position: fixed; inset: 0; z-index: 9990;
@@ -123,7 +145,7 @@
   /* ── Nav ── */
   nav {
     position: sticky; top: 0; background: var(--paper);
-    padding: 20px 72px; display: flex; justify-content: space-between; align-items: center;
+    padding: 20px var(--container-gutter-desktop); display: flex; justify-content: space-between; align-items: center;
     border-bottom: 1px solid var(--rule); z-index: 100;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -135,13 +157,13 @@
   .nav-links a:hover { color: var(--accent); }
 
   /* ── Header ── */
-  header { padding: 80px 72px 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+  header { padding: 80px var(--container-gutter-desktop) 40px; text-align: center; max-width: 900px; margin: 0 auto; }
   h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 8vw, 72px); line-height: 1; margin-bottom: 24px; }
   .header-desc { color: var(--muted); font-size: 18px; font-family: 'Syne', sans-serif; }
 
   /* ── Search Bar ── */
   .search-section {
-    max-width: 900px; margin: 0 auto; padding: 0 72px 24px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop) 24px;
   }
   .search-container {
     position: relative; width: 100%;
@@ -154,6 +176,37 @@
     transition: var(--transition);
   }
   .search-input::placeholder { color: var(--muted); opacity: 0.7; }
+  .chip-count { opacity: 0.5; font-size: 10px; margin-left: 6px; }
+  .highlight { color: var(--accent); }
+  .card-image.placeholder { background: linear-gradient(135deg, var(--accent-green), var(--accent-blue)); display:flex; align-items:center; justify-content:center; color:white; font-size:20px; }
+  .page-btn.disabled { border: none; cursor: default; }
+  .icon-xs { font-size: 10px; }
+  .muted-icon { color: var(--muted); }
+  .justify-end { justify-content: flex-end; }
+  .mt-4 { margin-top: 4px; }
+  .mt-8 { margin-top: 8px; }
+  .scroll-sentinel { height: 1px; }
+
+  /* Subscription modal styles */
+  .subscription-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; }
+  .subscription-modal { background: var(--paper); color: var(--ink); border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; }
+  .sub-dialog-header { padding: 32px 24px 24px; border-bottom: 1px solid var(--rule); display:flex; align-items:center; justify-content:space-between; }
+  .sub-dialog-body { padding: 32px 24px; }
+  .sub-tabs { display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap; }
+  .service-btn { padding:20px; border:2px solid var(--rule); border-radius:10px; cursor:pointer; text-align:center; background:transparent; }
+  .service-btn .tile-icon { font-size:32px; margin-bottom:12px; }
+  .sub-input { width:100%; padding:12px; border:2px solid var(--rule); border-radius:8px; background:var(--paper); color:var(--ink); font-size:14px; font-family:'DM Mono',monospace; }
+  .sub-submit { width:100%; padding:12px; background:var(--accent); color:white; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; }
+  .service-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px; }
+  .service-label { font-size:14px; font-weight:600; }
+  .sub-field { margin-bottom:16px; }
+  .sub-field-label { display:block; font-size:13px; font-weight:600; margin-bottom:8px; }
+  .message-btn { padding:20px; border:2px solid var(--rule); border-radius:10px; cursor:pointer; text-align:center; background:transparent; }
+  .message-icon { font-size:32px; margin-bottom:12px; }
+  .telegram-icon { color:#0088cc; }
+  .search-hint { margin-top:8px; font-size:12px; }
+  .sub-tab-panel { display:none; }
+  .sub-tab-panel[data-visible="true"] { display:block; }
   .search-input:focus {
     outline: none; border-color: var(--accent);
     box-shadow: 0 0 0 4px rgba(200, 64, 26, 0.1);
@@ -224,7 +277,7 @@
 
   /* ── Active Filters Bar ── */
   .active-filters {
-    max-width: 900px; margin: 0 auto; padding: 0 72px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop);
     display: none; flex-wrap: wrap; gap: 8px; align-items: center;
     margin-bottom: 16px;
   }
@@ -253,7 +306,7 @@
 
   /* ── Filter Panel ── */
   .filter-section {
-    max-width: 900px; margin: 0 auto; padding: 0 72px 32px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop) 32px;
   }
   .filter-toggle-btn {
     display: none; background: none; border: 1px solid var(--rule);
@@ -374,7 +427,7 @@
 
   /* ── Featured Section ── */
   .featured-section {
-    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop) 60px;
   }
   .featured-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
@@ -418,7 +471,7 @@
 
   /* ── Trending Section ── */
   .trending-section {
-    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop) 60px;
   }
   .trending-list {
     display: flex; flex-direction: column; gap: 12px;
@@ -456,7 +509,7 @@
 
   /* ── New This Week ── */
   .new-section {
-    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop) 60px;
   }
   .new-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
@@ -491,7 +544,7 @@
 
   /* ── Popular Technologies ── */
   .popular-section {
-    max-width: 900px; margin: 0 auto; padding: 0 72px 60px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop) 60px;
   }
   .popular-grid {
     display: flex; flex-wrap: wrap; gap: 12px;
@@ -514,7 +567,7 @@
 
   /* ── All Articles ── */
   .articles-section {
-    max-width: 900px; margin: 0 auto; padding: 0 72px 120px;
+    max-width: 900px; margin: 0 auto; padding: 0 var(--container-gutter-desktop) 120px;
   }
   .articles-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
@@ -638,19 +691,19 @@
   }
 
   /* ── Footer ── */
-  footer { padding: 48px 72px; border-top: 1px solid var(--rule); text-align: center; color: var(--muted); font-size: 12px; }
+  footer { padding: 48px var(--container-gutter-desktop); border-top: 1px solid var(--rule); text-align: center; color: var(--muted); font-size: 12px; max-width: var(--container-max-width); margin: 0 auto; width: min(100%, var(--container-max-width)); }
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
     .filter-panel { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
-    nav { padding: 12px 16px; }
+    nav { padding: 12px var(--container-gutter-mobile); }
     .nav-links a { margin-left: 16px; font-size: 11px; }
-    header { padding: 60px 24px 24px; }
+    header { padding: 60px var(--container-gutter-mobile) 24px; }
     .search-section, .filter-section, .active-filters,
     .featured-section, .trending-section, .new-section,
-    .popular-section, .articles-section { padding-left: 24px; padding-right: 24px; }
+    .popular-section, .articles-section { padding-left: var(--container-gutter-mobile); padding-right: var(--container-gutter-mobile); }
     .featured-grid { grid-template-columns: 1fr; }
     .new-grid { grid-template-columns: 1fr; }
     .articles-grid { grid-template-columns: 1fr; }
@@ -663,11 +716,11 @@
     .trending-item { flex-direction: column; align-items: flex-start; gap: 8px; }
     .trending-rank { min-width: auto; }
     .kbd-hint { display: none; }
-    footer { padding: 24px; }
+    footer { padding: 24px var(--container-gutter-mobile); }
     .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
   @media (max-width: 480px) {
-    header { padding: 48px 20px 16px; }
+    header { padding: 48px var(--container-gutter-mobile) 16px; }
     h1 { font-size: 36px; }
     .search-meta { display: none; }
   }
@@ -981,7 +1034,7 @@
     function renderTechChips() {
       const container = document.getElementById('techChips');
       container.innerHTML = allTechOptions.slice(0, 15).map(t =>
-        `<button class="filter-chip ${selectedTech.includes(t.name) ? 'active' : ''}" data-tech="${t.name}">${t.name} <span style="opacity:0.5;font-size:10px;">${t.count}</span></button>`
+        `<button class="filter-chip ${selectedTech.includes(t.name) ? 'active' : ''}" data-tech="${t.name}">${t.name} <span class="chip-count">${t.count}</span></button>`
       ).join('');
       container.querySelectorAll('.filter-chip').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1220,7 +1273,7 @@
           <div class="no-results-msg">
             <i class="fas fa-search"></i>
             No results for "${query}"
-            <div style="margin-top:8px;font-size:12px;">Try different keywords or check spelling</div>
+            <div class="search-hint">Try different keywords or check spelling</div>
           </div>`;
         searchSuggestions.classList.add('visible');
         return;
@@ -1256,7 +1309,7 @@
       if (!query) return text;
       const q = query.trim();
       const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-      return text.replace(regex, '<strong style="color:var(--accent)">$1</strong>');
+      return text.replace(regex, '<strong class="highlight">$1</strong>');
     }
 
     // ── Filter Event Listeners ──
@@ -1512,7 +1565,7 @@
       const pageNumbers = getPaginationRange(currentPage, totalPages);
       pageNumbers.forEach(p => {
         if (p === '...') {
-          pagHTML += `<span class="page-btn" style="border:none;cursor:default;">…</span>`;
+          pagHTML += `<span class="page-btn disabled">…</span>`;
         } else {
           pagHTML += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>`;
         }
@@ -1657,7 +1710,7 @@
         <button class="tech-multiselect-btn" id="techMultiselectBtn">
           <span class="btn-text">All Technologies</span>
           <span class="count-badge">0</span>
-          <i class="fas fa-chevron-down" style="font-size:10px;color:var(--muted);"></i>
+          <i class="fas fa-chevron-down icon-xs muted-icon"></i>
         </button>
         <div class="tech-dropdown" id="techDropdown">
           <div class="tech-dropdown-search">
@@ -1667,15 +1720,15 @@
         </div>
       </div>
     </div>
-    <div class="filter-group" style="justify-content:flex-end;">
+    <div class="filter-group justify-end">
       <span class="filter-group-label">&nbsp;</span>
       <div class="results-count" id="resultsCount"></div>
     </div>
   </div>
-  <div style="margin-top: 4px;">
+  <div class="mt-4">
     <div class="filter-chips-row" id="categoryChips"></div>
   </div>
-  <div style="margin-top: 8px;">
+  <div class="mt-8">
     <div class="filter-chips-row" id="techChips"></div>
   </div>
 </div>
@@ -1734,7 +1787,7 @@
   </div>
   <div class="articles-grid" id="articlesGrid"></div>
   <div class="pagination" id="pagination"></div>
-  <div id="scrollSentinel" style="height:1px;"></div>
+  <div id="scrollSentinel" class="scroll-sentinel"></div>
 </div>
 
 <footer>
@@ -1742,36 +1795,36 @@
 </footer>
 
 <!-- Subscription Modal -->
-<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;">
-  <div class="subscription-modal" style="background:var(--paper);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;position:relative;">
-    <div style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
-      <h2 style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;">Subscribe for Updates</h2>
-      <button onclick="document.getElementById('subscriptionModalOverlay').style.display='none'" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;">✕</button>
+<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-hidden="true">
+  <div class="subscription-modal">
+    <div class="sub-dialog-header">
+      <h2 class="sub-title">Subscribe for Updates</h2>
+      <button onclick="document.getElementById('subscriptionModalOverlay').style.display='none'" class="sub-close">✕</button>
     </div>
-    <div style="padding:32px 24px;">
-      <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
-        <button onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='block'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='none';" style="flex:1;min-width:140px;padding:12px 16px;background:var(--accent);color:white;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;"><i class="fas fa-rss"></i> Feed</button>
-        <button onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='block'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='none';" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;"><i class="fas fa-envelope"></i> Email</button>
-        <button onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='block';" style="flex:1;min-width:140px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;"><i class="fas fa-comment"></i> Messages</button>
+    <div class="sub-dialog-body">
+      <div class="sub-tabs">
+        <button class="sub-tab-btn primary" onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='block'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='none';"><i class="fas fa-rss"></i> Feed</button>
+        <button class="sub-tab-btn ghost" onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='block'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='none';"><i class="fas fa-envelope"></i> Email</button>
+        <button class="sub-tab-btn ghost" onclick="this.parentElement.parentElement.querySelector('[data-tab=feed]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=email]').style.display='none'; this.parentElement.parentElement.querySelector('[data-tab=messaging]').style.display='block';"><i class="fas fa-comment"></i> Messages</button>
       </div>
-      <div data-tab="feed" style="display:block;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
-          <button onclick="window.open('https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fas fa-rss" style="color:var(--accent);"></i></div><div style="font-size:14px;font-weight:600;">RSS Feed</div></button>
-          <button onclick="window.open('https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fvictor-kipruto-rop.github.io%2Fvictor-resum-web%2Frss.xml','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fas fa-layer-group" style="color:#2ecc71;"></i></div><div style="font-size:14px;font-weight:600;">Feedly</div></button>
+      <div data-tab="feed" class="sub-tab-panel" data-visible="true">
+        <div class="service-grid">
+          <button class="service-btn" onclick="window.open('https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml','_blank')"><div class="tile-icon"><i class="fas fa-rss accent-icon"></i></div><div class="service-label">RSS Feed</div></button>
+          <button class="service-btn" onclick="window.open('https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fvictor-kipruto-rop.github.io%2Fvictor-resum-web%2Frss.xml','_blank')"><div class="tile-icon"><i class="fas fa-layer-group feedly-icon"></i></div><div class="service-label">Feedly</div></button>
         </div>
       </div>
-      <div data-tab="email" style="display:none;">
+      <div data-tab="email" class="sub-tab-panel">
         <form id="emailSubscribeForm" onsubmit="return handleEmailSubscribe(event)">
-          <div style="margin-bottom:16px;"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Name</label><input type="text" id="subName" required placeholder="Your name" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;"></div>
-          <div style="margin-bottom:16px;"><label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Email</label><input type="email" id="subEmail" required placeholder="your@email.com" style="width:100%;padding:12px;border:2px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;"></div>
-          <div id="subMessage" style="display:none;margin-bottom:16px;padding:12px;border-radius:8px;font-size:13px;font-family:'DM Mono',monospace;"></div>
-          <button type="submit" id="subSubmitBtn" style="width:100%;padding:12px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">Subscribe</button>
+          <div class="sub-field"><label class="sub-field-label">Name</label><input class="sub-input" type="text" id="subName" required placeholder="Your name"></div>
+          <div class="sub-field"><label class="sub-field-label">Email</label><input class="sub-input" type="email" id="subEmail" required placeholder="your@email.com"></div>
+          <div id="subMessage" class="sub-message"></div>
+          <button type="submit" id="subSubmitBtn" class="sub-submit">Subscribe</button>
         </form>
       </div>
-      <div data-tab="messaging" style="display:none;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <button onclick="window.open('https://t.me/victors_dev_updates','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fab fa-telegram" style="color:#0088cc;"></i></div><div style="font-size:14px;font-weight:600;">Telegram</div></button>
-          <button onclick="window.open('https://x.com/VictorKipruto','_blank')" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;text-align:center;background:transparent;"><div style="font-size:32px;margin-bottom:12px;"><i class="fab fa-x-twitter"></i></div><div style="font-size:14px;font-weight:600;">Twitter/X</div></button>
+      <div data-tab="messaging" class="sub-tab-panel">
+        <div class="service-grid">
+          <button onclick="window.open('https://t.me/victors_dev_updates','_blank')" class="message-btn"><div class="message-icon"><i class="fab fa-telegram telegram-icon"></i></div><div class="service-label">Telegram</div></button>
+          <button onclick="window.open('https://x.com/VictorKipruto','_blank')" class="message-btn"><div class="message-icon"><i class="fab fa-x-twitter"></i></div><div class="service-label">Twitter/X</div></button>
         </div>
       </div>
     </div>
@@ -1781,6 +1834,13 @@
 <script>
   function openSubscriptionModal() {
     document.getElementById('subscriptionModalOverlay').style.display = 'flex';
+  }
+
+  // Subscription modal helpers
+  function switchSubTab(container, tabName) {
+    container.querySelectorAll('[data-tab]').forEach(el => el.style.display = 'none');
+    const target = container.querySelector(`[data-tab=${tabName}]`);
+    if (target) target.style.display = 'block';
   }
 
   function handleEmailSubscribe(event) {
