@@ -1,644 +1,462 @@
 <!DOCTYPE html>
-<html lang="en" data-blog-post="portfolio-home">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Victor Kipruto Rop — Data Engineer Portfolio</title>
-<meta name="description" content="Portfolio of Victor Kipruto Rop, a Data Engineer specializing in scalable pipelines, ETL design, and data architecture using Airflow, Kafka, and Python."/>
-<meta name="keywords" content="Data Engineer, ETL, Airflow, Kafka, Python, SQL, Nairobi, Kenya, Victor Kipruto Rop, Portfolio"/>
-<meta name="author" content="Victor Kipruto Rop"/>
+<title>Victor Kipruto Rop | Data Engineer</title>
+<meta name="description" content="Portfolio of Victor Kipruto Rop, Data Engineer based in Nairobi."/>
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://github.com/Victor-Kipruto-Rop"/>
-<meta property="og:title" content="Victor Kipruto Rop — Data Engineer"/>
-<meta property="og:description" content="Building production-grade data systems that scale. Explore my projects and technical expertise."/>
-<meta property="og:image" content="assets/1.jpeg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:url" content="https://github.com/Victor-Kipruto-Rop"/>
-<meta property="twitter:title" content="Victor Kipruto Rop — Data Engineer"/>
-<meta property="twitter:description" content="Building production-grade data systems that scale. Explore my projects and technical expertise."/>
-<meta property="twitter:image" content="assets/1.jpeg"/>
-
-<!-- RSS Discovery Link -->
-<link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml">
-
-<link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
 <style>
-  link[rel="icon"] { border-radius: 50%; }
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-  /* ── Premium Variables ── */
   :root {
-    --bg-main: #F7F5F2;
-    --bg-card: #FFFFFF;
-    --text-main: #0F172A;
-    --text-muted: #64748B;
-    --accent: #E04D01;
-    --accent-glow: rgba(224, 77, 1, 0.15);
-    --border: rgba(15, 23, 42, 0.08);
-    --glass-bg: rgba(247, 245, 242, 0.7);
-    --hero-top: 100px;
+    --bg: #050505;
+    --surface: #111111;
+    --fg: #F3F4F6;
+    --muted: #9CA3AF;
+    --border: #27272A;
+    --accent: #00FF66; /* Terminal Green */
+    --accent-dim: rgba(0, 255, 102, 0.1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    display: flex;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #000;
+  }
+
+  /* Typography */
+  h1, h2, h3, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  h1 { font-size: 2.5rem; letter-spacing: -0.05em; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+  h2 { font-size: 1.5rem; color: var(--fg); border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 2rem; }
+  h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+  p { color: var(--muted); margin-bottom: 1.5rem; }
+  a { color: var(--fg); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: var(--accent); }
+
+  /* Layout */
+  .sidebar {
+    width: 320px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+  }
+
+  .main-content {
+    margin-left: 320px;
+    padding: 4rem;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  /* Sidebar Elements */
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+  }
+  .sidebar:hover .profile-img { filter: grayscale(0%); }
+
+  .nav-menu {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+  }
+  .nav-menu a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-menu a::before {
+    content: '>';
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.2s;
+  }
+  .nav-menu a:hover::before, .nav-menu a.active::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .nav-menu a:hover, .nav-menu a.active { color: var(--accent); }
+
+  .socials {
+    display: flex;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 6rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Status Indicator */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    margin-bottom: 2rem;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  /* Grid & Cards */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
   }
   
-  body.dark-mode {
-    --bg-main: #0B0F19;
-    --bg-card: #111827;
-    --text-main: #F8FAFC;
-    --text-muted: #94A3B8;
-    --accent: #FF6B00;
-    --accent-glow: rgba(255, 107, 0, 0.2);
-    --border: rgba(248, 250, 252, 0.08);
-    --glass-bg: rgba(11, 15, 25, 0.7);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg-main);
-    color: var(--text-main);
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-    cursor: none;
-    opacity: 0;
-    transition: background 0.5s ease, color 0.5s ease;
-  }
-  body.loaded { opacity: 1; transition: opacity 1s ease-in; }
-
-  /* ── Background Glow ── */
-  .bg-glow {
-    position: absolute; width: 600px; height: 600px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
-    top: -100px; right: -100px; border-radius: 50%;
-    filter: blur(60px); z-index: 0; pointer-events: none;
-  }
-
-  /* ── Theme Toggle ── */
-  .theme-toggle {
-    background: var(--bg-card);
+  .card {
+    background: var(--surface);
     border: 1px solid var(--border);
-    color: var(--text-main);
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 16px; position: relative; z-index: 102;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  }
-  .theme-toggle:hover { 
-    border-color: var(--accent); color: var(--accent); 
-    transform: rotate(15deg) scale(1.05);
-    box-shadow: 0 8px 24px var(--accent-glow);
-  }
-  .theme-toggle .fa-sun { display: none; }
-  body.dark-mode .theme-toggle .fa-moon { display: none; }
-  body.dark-mode .theme-toggle .fa-sun { display: block; }
-
-  /* ── Pre-loader ── */
-  #preloader {
-    position: fixed; inset: 0; z-index: 10000;
-    background: var(--bg-main);
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
-  }
-  #preloader.hidden { transform: translateY(-100%); }
-  .loader-text {
-    font-family: 'DM Serif Display', serif;
-    font-size: 36px; color: var(--text-main);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
     overflow: hidden;
   }
-  .loader-text span {
-    display: inline-block; transform: translateY(100%);
-    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
   }
-  @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
+  .card:hover {
+    border-color: var(--muted);
+    transform: translateY(-4px);
+  }
+  .card:hover::after { transform: scaleX(1); }
 
-  /* ── Custom cursor ── */
-  #cursor {
-    position: fixed; top: 0; left: 0; z-index: 9999;
-    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
-    pointer-events: none; transition: opacity 0.2s;
-    transform: translate(-50%, -50%);
+  /* Skills Matrix */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
   }
-  #cursor-ring {
-    position: fixed; top: 0; left: 0; z-index: 9998;
-    width: 40px; height: 40px; border: 1.5px solid var(--accent); border-radius: 50%;
-    pointer-events: none; transition: width 0.3s, height 0.3s, border-color 0.3s;
-    transform: translate(-50%, -50%);
-  }
-  body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring, body:has(.skill-pill:hover) #cursor-ring { 
-    width: 60px; height: 60px; background: var(--accent-glow); border-color: transparent; 
-  }
-
-  /* ── Noise overlay ── */
-  body::before {
-    content: ''; position: fixed; inset: 0; z-index: 9990; pointer-events: none;
-    opacity: 0.04; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* ── Nav (Glassmorphism) ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 72px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s ease;
-  }
-  .nav-right { display: flex; align-items: center; gap: 24px; }
-  .nav-logo {
-    display:flex; align-items:center; gap:12px;
-    font-family: 'DM Serif Display', serif; font-size: 20px;
-    color: var(--text-main); text-decoration: none;
-  }
-  .nav-username { font-family: 'DM Mono', monospace; font-size:13px; color:var(--text-muted); text-decoration:none; transition: color 0.3s ease; }
-  .nav-logo:hover .nav-username { color: var(--accent); }
-
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a {
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--text-muted); text-decoration: none; transition: all 0.3s ease; position: relative;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
-    background: var(--accent); transition: width 0.3s ease;
-  }
-  .nav-links a:hover { color: var(--text-main); }
-  .nav-links a:hover::after { width: 100%; }
-
-  /* ── Hamburger Menu ── */
-  .hamburger {
-    display: none; background: none; border: none; cursor: pointer; padding: 8px;
-    font-size: 24px; color: var(--text-main); position: relative; z-index: 101;
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--accent);
   }
 
-  /* ── Hero ── */
-  #hero {
-    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center; position: relative; padding: 0 72px;
+  /* Forms & Buttons */
+  .form-group { margin-bottom: 1.5rem; }
+  input, textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    transition: border-color 0.3s;
   }
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    position: relative; z-index: 3; gap: 24px; max-width: 800px;
-  }
-  .hero-right {
-    display: flex; align-items: center; justify-content: flex-end; position: relative; z-index: 2;
-  }
-  .hero-prof { 
-    width: 420px; height: 420px; object-fit: cover; border-radius: 24px;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.1); 
-    border: 1px solid var(--border); transition: transform 0.5s ease;
-  }
-  .hero-prof:hover { transform: translateY(-10px); }
-  
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; display: inline-flex; align-items: center; gap: 12px;
-    animation: fadeUp 0.8s 0.2s forwards; opacity: 0;
-  }
-  .hero-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
-  
-  .hero-name {
-    font-family: 'DM Serif Display', serif; font-size: clamp(48px, 7vw, 84px);
-    line-height: 1; letter-spacing: -0.03em; color: var(--text-main);
-  }
-  .hero-title {
-    font-family: 'Syne', sans-serif; font-size: clamp(16px, 2vw, 22px); font-weight: 600;
-    color: var(--text-muted); opacity: 0; animation: fadeUp 0.9s 0.6s forwards;
-  }
-  .hero-desc {
-    max-width: 500px; font-size: 16px; line-height: 1.8; color: var(--text-muted);
-    opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
-  }
-  
-  .hero-cta {
-    display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px;
-    opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
-  }
-  
-  /* ── Buttons ── */
-  .btn-primary {
-    display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px;
-    background: var(--accent); color: #fff;
-    font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
-    letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none;
-    border-radius: 8px; border: 1px solid transparent;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 24px var(--accent-glow);
-  }
-  .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 32px var(--accent-glow); }
-  
-  .btn-ghost {
-    display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px;
-    background: transparent; color: var(--text-main);
-    font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
-    letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none;
-    border-radius: 8px; border: 1px solid var(--border);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .btn-ghost:hover { border-color: var(--text-main); background: var(--bg-card); transform: translateY(-4px); }
+  input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  textarea { min-height: 120px; resize: vertical; }
 
-  /* ── Sections ── */
-  section { padding: 120px 72px; position: relative; }
-  .section-label {
-    font-family: 'DM Mono', monospace; font-size: 12px;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 16px;
+  .btn {
+    display: inline-block;
+    background: var(--fg);
+    color: var(--bg);
+    padding: 0.75rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
   }
-  .section-label::after { content: ''; height: 1px; width: 60px; background: var(--border); }
-  .section-title {
-    font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4vw, 56px);
-    line-height: 1.1; letter-spacing: -0.02em; color: var(--text-main); margin-bottom: 56px;
-  }
+  .btn:hover { background: var(--accent); }
 
-  /* ── Reveal Animations ── */
-  .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+  /* Terminal Block */
+  .terminal {
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
   }
-  .reveal.active { opacity: 1; transform: translateY(0); }
-
-  /* ── Grids & Cards ── */
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
-  
-  .glass-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 40px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.02);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  .terminal-header {
+    display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;
   }
-  .glass-card:hover {
-    transform: translateY(-8px); border-color: var(--accent);
-    box-shadow: 0 20px 40px var(--accent-glow);
-  }
-
-  /* ── Skills Matrix ── */
-  .skills-wrap { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-  .skill-pill { 
-    padding: 12px 20px; border-radius: 12px; background: var(--bg-card); 
-    color: var(--text-main); border: 1px solid var(--border); 
-    font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500;
-    cursor: pointer; transition: all 0.3s ease;
-  }
-  .skill-pill:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-3px); }
-
-  /* ── Projects Slider ── */
-  .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-  .project-controls { display: flex; gap: 16px; }
-  .project-controls button {
-    width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border);
-    background: var(--bg-card); color: var(--text-main); cursor: pointer;
-    transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
-  }
-  .project-controls button:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  
-  .projects-grid { 
-    display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; 
-    padding-bottom: 24px; scrollbar-width: none;
-  }
-  .projects-grid::-webkit-scrollbar { display: none; }
-  
-  .project-card {
-    min-width: calc(33.333% - 22px); flex: 0 0 auto;
-    background: var(--bg-card); border-radius: 16px; overflow: hidden;
-    border: 1px solid var(--border); scroll-snap-align: start; cursor: pointer;
-    transition: all 0.4s ease;
-  }
-  .project-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px var(--accent-glow); border-color: var(--accent); }
-  
-  .project-thumb { height: 200px; width: 100%; object-fit: cover; border-bottom: 1px solid var(--border); }
-  .project-content { padding: 28px; }
-  .project-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text-main); margin-bottom: 12px; }
-  .project-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
-  
-  .project-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-  .stack-badge { 
-    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); 
-    background: var(--accent-glow); padding: 6px 12px; border-radius: 6px; 
-  }
-  .project-actions { display: flex; gap: 12px; }
-
-  /* ── Contact ── */
-  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-  .contact-form input, .contact-form textarea {
-    width: 100%; padding: 16px; border: 1px solid var(--border); border-radius: 8px;
-    background: var(--bg-card); color: var(--text-main); font-family: 'Syne', sans-serif;
-    font-size: 15px; margin-bottom: 16px; transition: border 0.3s ease;
-  }
-  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); outline: none; }
-  .contact-form textarea { min-height: 150px; resize: vertical; }
-
-  /* Footer */
-  footer {
-    padding: 32px 72px; border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted);
-  }
+  .term-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); }
+  .term-line { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
+  .term-prompt { color: var(--accent); }
 
   /* Responsive */
-  @media (max-width: 1024px) {
-    section { padding: 80px 48px; }
-    #hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; }
-    .hero-left { margin: 0 auto; align-items: center; }
-    .hero-cta { justify-content: center; }
-    .hero-right { justify-content: center; margin-top: 60px; }
-    .project-card { min-width: calc(50% - 16px); }
-  }
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .hamburger { display: block; }
-    section { padding: 64px 24px; }
-    .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-    .project-card { min-width: 100%; }
-    .hero-prof { width: 300px; height: 300px; }
-    .hero-name { font-size: 48px; }
+  .hamburger { display: none; }
+  
+  @media (max-width: 900px) {
+    body { flex-direction: column; }
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      padding: 2rem;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .main-content {
+      margin-left: 0;
+      padding: 2rem;
+    }
+    .nav-menu { display: none; } /* Hide for simplicity in redesign, could add JS toggle */
   }
 </style>
 </head>
 <body>
 
-<div id="preloader">
-  <div class="loader-text"><span>Victor Kipruto Rop.</span></div>
-</div>
-
-<div class="bg-glow"></div>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">
-    <img src="assets/1.jpeg" alt="Victor Kipruto" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border);"/>
-    <span class="nav-username">@Victor-Kipruto-Rop</span>
-  </a>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#send-message">Contact</a>
-    </div>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-      <i class="fas fa-moon"></i>
-      <i class="fas fa-sun"></i>
-    </button>
-    <button class="hamburger">☰</button>
-  </div>
-</nav>
-
-<main id="main-content">
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Available for Internships · 2026</p>
-    <h1 class="hero-name" id="hero-name">Victor Kipruto Rop</h1>
-    <p class="hero-title">Data Engineer · Pipeline Architect</p>
-    <p class="hero-desc">
-      Building production-grade data systems that scale. Specialized in low-latency streaming, reliable ETL architecture, and warehouse modelling. Based in Nairobi, Kenya.
-    </p>
-    <div class="hero-cta">
-      <a class="btn-primary" href="#projects">Explore Work</a>
-      <a class="btn-ghost" href="#send-message">Contact Me</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <img class="hero-prof" src="assets/1.jpeg" alt="Victor Kipruto Rop" />
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label">01 / Background</p>
-  <h2 class="section-title reveal">About Me</h2>
-  <div class="glass-card reveal">
-    <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); margin-bottom: 24px;">
-      I'm a final-year BSc Data Science student at The Cooperative University of Kenya, building a career at the intersection of scalable systems and trustworthy data. My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
-    </p>
-    <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted);">
-      Outside of building pipelines, I'm drawn to the growing data ecosystem across East Africa and the opportunity to work on infrastructure that has real operational impact — whether in aviation safety, energy, or financial services.
-    </p>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <p class="section-label">02 / Journey</p>
-  <h2 class="section-title reveal">Experience & Education</h2>
-  <div class="grid-3">
-    <div class="glass-card reveal">
-      <h3 style="font-family: 'DM Serif Display'; font-size: 24px; margin-bottom: 8px;">BSc Data Science</h3>
-      <p style="color: var(--accent); font-family: 'DM Mono'; font-size: 12px; margin-bottom: 16px; text-transform: uppercase;">The Cooperative University of Kenya · 2022 - Present</p>
-      <p style="color: var(--text-muted); font-size: 14px;">Specializing in data engineering. Designed scalable ETL pipelines, real-time stream processing with Kafka, and optimized warehouse infrastructure.</p>
-    </div>
-    <div class="glass-card reveal" style="transition-delay: 0.1s;">
-      <h3 style="font-family: 'DM Serif Display'; font-size: 24px; margin-bottom: 8px;">Infrastructure Projects</h3>
-      <p style="color: var(--accent); font-family: 'DM Mono'; font-size: 12px; margin-bottom: 16px; text-transform: uppercase;">Independent Work · Last 12 Months</p>
-      <p style="color: var(--text-muted); font-size: 14px;">Completed major pipeline designs including cloud ETL systems and real-time transaction streaming, focusing heavily on distributed systems.</p>
-    </div>
-    <div class="glass-card reveal" style="transition-delay: 0.2s;">
-      <h3 style="font-family: 'DM Serif Display'; font-size: 24px; margin-bottom: 8px;">Certifications</h3>
-      <p style="color: var(--accent); font-family: 'DM Mono'; font-size: 12px; margin-bottom: 16px; text-transform: uppercase;">IBM / Cognitive Class · 2026</p>
-      <p style="color: var(--text-muted); font-size: 14px;">Certified in Big Data Foundations (Hadoop, Distributed Computing) and Enterprise Design Thinking.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <p class="section-label">03 / Selected Works</p>
-  <div class="projects-header reveal">
-    <h2 class="section-title" style="margin: 0;">Featured Projects</h2>
-    <div class="project-controls">
-      <button onclick="document.getElementById('projects-grid').scrollBy({left: -400, behavior: 'smooth'})">←</button>
-      <button onclick="document.getElementById('projects-grid').scrollBy({left: 400, behavior: 'smooth'})">→</button>
-    </div>
-  </div>
+<aside class="sidebar">
+  <img src="assets/1.jpeg" alt="Victor Kipruto" class="profile-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzIyMiIvPjwvc3ZnPg=='">
+  <div class="mono" style="font-size: 0.875rem; color: var(--accent); margin-bottom: 0.5rem;">SYS_ADMIN / DE</div>
+  <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Victor Kipruto Rop</h1>
+  <p style="font-size: 0.875rem; margin-bottom: 0;">Data Engineer building resilient, scalable pipelines. Nairobi, KE.</p>
   
-  <div class="projects-grid reveal" id="projects-grid">
-    <!-- Project 1 -->
-    <div class="project-card">
-      <img class="project-thumb" src="assets/images/4.jpeg" alt="Real-Time Streaming" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80'" />
-      <div class="project-content">
-        <h3 class="project-title">Real-Time MPESA Streaming</h3>
-        <p class="project-desc">A high-performance streaming architecture ingesting Safaricom Daraja API events via webhooks into a distributed Kafka-Flink pipeline.</p>
-        <div class="project-stack">
-          <span class="stack-badge">Kafka</span> <span class="stack-badge">Flink</span> <span class="stack-badge">dbt</span>
-        </div>
-        <div class="project-actions">
-          <a class="btn-primary" style="padding: 10px 20px; font-size: 10px;" href="#">View Live</a>
-          <a class="btn-ghost" style="padding: 10px 20px; font-size: 10px;" href="#">GitHub</a>
-        </div>
-      </div>
-    </div>
-    <!-- Project 2 -->
-    <div class="project-card">
-      <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL Pipeline" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80'" />
-      <div class="project-content">
-        <h3 class="project-title">Cloud ETL Automation</h3>
-        <p class="project-desc">Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Fully containerised.</p>
-        <div class="project-stack">
-          <span class="stack-badge">Airflow</span> <span class="stack-badge">Docker</span> <span class="stack-badge">Pytest</span>
-        </div>
-        <div class="project-actions">
-          <a class="btn-primary" style="padding: 10px 20px; font-size: 10px;" href="#">View Live</a>
-          <a class="btn-ghost" style="padding: 10px 20px; font-size: 10px;" href="#">GitHub</a>
-        </div>
-      </div>
-    </div>
-    <!-- Project 3 -->
-    <div class="project-card">
-      <img class="project-thumb" src="assets/images/1.jpeg" alt="Data Warehouse" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80'" />
-      <div class="project-content">
-        <h3 class="project-title">Enterprise Star Schema</h3>
-        <p class="project-desc">Automated a complete star schema architecture with cloud-based ingestion and optimised analytical queries for BI reporting.</p>
-        <div class="project-stack">
-          <span class="stack-badge">PostgreSQL</span> <span class="stack-badge">SQL</span> <span class="stack-badge">Python</span>
-        </div>
-        <div class="project-actions">
-          <a class="btn-primary" style="padding: 10px 20px; font-size: 10px;" href="#">View Live</a>
-          <a class="btn-ghost" style="padding: 10px 20px; font-size: 10px;" href="#">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <nav class="nav-menu">
+    <a href="#about" class="active">01. About</a>
+    <a href="#experience">02. Experience</a>
+    <a href="#projects">03. Projects</a>
+    <a href="#infrastructure">04. Tech Stack</a>
+    <a href="#contact">05. Contact</a>
+  </nav>
 
-<!-- SKILLS -->
-<section id="skills">
-  <p class="section-label">04 / Toolkit</p>
-  <h2 class="section-title reveal">Technical Arsenal</h2>
-  <div class="glass-card reveal">
-    <div class="skills-wrap">
-      <div class="skill-pill">Apache Airflow</div>
-      <div class="skill-pill">Apache Kafka</div>
-      <div class="skill-pill">Python</div>
-      <div class="skill-pill">PostgreSQL</div>
-      <div class="skill-pill">Docker & Docker Compose</div>
-      <div class="skill-pill">ETL / ELT Design</div>
-      <div class="skill-pill">Stream Processing</div>
-      <div class="skill-pill">Dimensional Modelling</div>
-      <div class="skill-pill">CI/CD (GitHub Actions)</div>
-      <div class="skill-pill">Pytest</div>
-      <div class="skill-pill">Data Warehousing</div>
-    </div>
+  <div class="socials" style="margin-top: auto;">
+    <a href="#">GH://victor-k</a>
+    <a href="#">IN://v-kipruto</a>
   </div>
-</section>
+</aside>
 
-<!-- CONTACT -->
-<section id="send-message">
-  <p class="section-label">05 / Let's Talk</p>
-  <h2 class="section-title reveal">Get in Touch</h2>
-  <div class="contact-layout reveal">
-    <div>
-      <h3 style="font-family: 'DM Serif Display'; font-size: 32px; margin-bottom: 24px;">Start a Conversation</h3>
-      <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 32px;">Whether you have a question, a project proposal, or just want to say hi, I'll try my best to get back to you.</p>
-      <a href="mailto:kiprutovictor39@gmail.com" class="btn-ghost" style="margin-right: 16px; margin-bottom: 16px;">Email Me</a>
-      <a href="https://calendly.com/kiprutovictor39" target="_blank" class="btn-primary">Schedule Call</a>
+<main class="main-content">
+  
+  <section id="hero" style="animation-delay: 0.1s;">
+    <div class="status">
+      <div class="status-dot"></div>
+      Available for Internships · 2026
     </div>
-    <div class="glass-card" style="padding: 32px;">
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+    <h1>Architecting data flows <br>for scale and reliability.</h1>
+    <p style="max-width: 600px; font-size: 1.125rem;">
+      I design and deploy production-grade data infrastructure. Specialized in low-latency streaming (Kafka/Flink), robust ETL automation (Airflow), and enterprise data warehouse modeling.
+    </p>
+  </section>
+
+  <section id="about" style="animation-delay: 0.2s;">
+    <h2>01. About_Me</h2>
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="term-dot" style="background:#ff5f56"></div>
+        <div class="term-dot" style="background:#ffbd2e"></div>
+        <div class="term-dot" style="background:#27c93f"></div>
+      </div>
+      <div class="term-line">
+        <span class="term-prompt">victor@server:~$</span>
+        <span>cat background.txt</span>
+      </div>
+      <div style="color: var(--muted); margin-bottom: 1rem;">
+        Final-year BSc Data Science student at The Cooperative University of Kenya. My core philosophy is that clean, deterministic data engineering is the foundation of any successful AI or analytics initiative.
+      </div>
+      <div class="term-line">
+        <span class="term-prompt">victor@server:~$</span>
+        <span>systemctl status interests</span>
+      </div>
+      <div style="color: var(--muted);">
+        Active: Distributed systems, East African tech infrastructure, open-source data tooling, and optimizing query engines.
+      </div>
+      <div class="term-line" style="margin-top:1rem;">
+        <span class="term-prompt">victor@server:~$</span><span class="cursor" style="animation: pulse 1s infinite;">_</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" style="animation-delay: 0.3s;">
+    <h2>02. Execution_Log</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="mono" style="font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem;">2022 - PRESENT</div>
+        <h3>BSc Data Science</h3>
+        <p style="font-size: 0.875rem;">The Cooperative University of Kenya. Focused on advanced data structures, algorithmic design, and data engineering principles.</p>
+      </div>
+      <div class="card">
+        <div class="mono" style="font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem;">2025 - 2026</div>
+        <h3>Independent Infrastructure Dev</h3>
+        <p style="font-size: 0.875rem;">Designed containerized data workflows. Built and managed end-to-end cloud ETL systems handling simulated real-time transaction loads.</p>
+      </div>
+      <div class="card">
+        <div class="mono" style="font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem;">CERTIFICATION</div>
+        <h3>IBM Big Data Foundations</h3>
+        <p style="font-size: 0.875rem;">Mastered concepts in Hadoop ecosystems, MapReduce, distributed computing, and enterprise data lifecycle management.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" style="animation-delay: 0.4s;">
+    <h2>03. Deployed_Systems</h2>
+    <div style="display: flex; flex-direction: column; gap: 2rem;">
+      
+      <div class="card" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start;">
+        <div>
+          <h3 class="mono" style="color: var(--accent);">mpesa-stream-ingest</h3>
+          <p style="font-size: 0.875rem; margin-top: 1rem;">Real-time event processing architecture.</p>
+          <a href="#" class="mono" style="font-size: 0.75rem; text-decoration: underline;">[View Repository]</a>
+        </div>
+        <div>
+          <p>A high-throughput streaming pipeline capturing Safaricom Daraja API webhooks. Events are published to Kafka topics, processed in-flight via Apache Flink, and loaded into a dimensional model using dbt.</p>
+          <div class="tags">
+            <span class="tag">Kafka</span> <span class="tag">Flink</span> <span class="tag">dbt</span> <span class="tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start;">
+        <div>
+          <h3 class="mono" style="color: var(--accent);">cloud-etl-engine</h3>
+          <p style="font-size: 0.875rem; margin-top: 1rem;">Automated batched data orchestration.</p>
+          <a href="#" class="mono" style="font-size: 0.75rem; text-decoration: underline;">[View Repository]</a>
+        </div>
+        <div>
+          <p>Dockerized multi-stage ETL application. Features include synthetic data generation, rigorous deduplication layers, rule-based validation (Pytest), and orchestration via Apache Airflow.</p>
+          <div class="tags">
+            <span class="tag">Airflow</span> <span class="tag">Docker</span> <span class="tag">Python</span> <span class="tag">Pytest</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="infrastructure" style="animation-delay: 0.5s;">
+    <h2>04. Infrastructure_&_Tools</h2>
+    <div class="card">
+      <div class="tags" style="gap: 1rem;">
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Apache Airflow</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Apache Kafka</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Python 3.x</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">PostgreSQL</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Docker</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">SQL</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">dbt</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">CI/CD Pipelines</span>
+        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Dimensional Modeling</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="animation-delay: 0.6s; margin-bottom: 2rem;">
+    <h2>05. Open_Connection</h2>
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div>
+        <p>Currently open to internship opportunities, technical discussions, or collaborations on data infrastructure projects.</p>
+        <div class="mono" style="margin-top: 2rem;">
+          <p>EMAIL: <a href="mailto:kiprutovictor39@gmail.com" style="color: var(--accent);">kiprutovictor39@gmail.com</a></p>
+          <p>CALENDAR: <a href="https://calendly.com/kiprutovictor39" target="_blank" style="color: var(--accent);">Schedule a sync</a></p>
+        </div>
+      </div>
+      <form style="background: var(--surface); padding: 2rem; border: 1px solid var(--border);">
+        <div class="form-group">
+          <input type="text" placeholder="name = input('Name: ')" required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="email = input('Email: ')" required>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="message = input('Payload: ')" required></textarea>
+        </div>
+        <button type="submit" class="btn">sys.exit(send_payload())</button>
       </form>
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
-<footer>
-  <p>&copy; 2026 Victor Kipruto Rop. Designed and Engineered in Nairobi.</p>
-  <div style="display: flex; gap: 24px;">
-    <a href="#" style="color: var(--text-muted); text-decoration: none;">GitHub</a>
-    <a href="#" style="color: var(--text-muted); text-decoration: none;">LinkedIn</a>
-    <a href="#" style="color: var(--text-muted); text-decoration: none;">Twitter</a>
-  </div>
-</footer>
-
 <script>
-  // Setup Custom Cursor
-  const cursor = document.getElementById('cursor');
-  const cursorRing = document.getElementById('cursor-ring');
-  
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    
-    // Slight delay for ring
-    setTimeout(() => {
-      cursorRing.style.left = e.clientX + 'px';
-      cursorRing.style.top = e.clientY + 'px';
-    }, 50);
-  });
+  // Simple intersection observer for scroll reveals
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-menu a');
 
-  // Dark Mode Toggle Logic
-  const themeToggle = document.getElementById('theme-toggle');
-  const body = document.body;
-  
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
-    body.classList.remove('dark-mode');
-  } else {
-    body.classList.add('dark-mode');
-  }
-
-  themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-  });
-
-  // Scroll Reveal Animations
-  const revealElements = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target);
+      if(entry.isIntersecting) {
+        // Highlight active nav
+        let id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if(link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
       }
     });
-  }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+  }, { threshold: 0.3 });
 
-  revealElements.forEach(el => revealObserver.observe(el));
-
-  // Staggered text animation for Hero Name
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    const heroName = document.getElementById('hero-name');
-    
-    if (heroName) {
-      const text = heroName.textContent;
-      heroName.innerHTML = text.split('').map((char, i) => 
-        `<span style="display:inline-block; animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.4 + i * 0.04}s; transform: translateY(100%); opacity: 0;">${char === ' ' ? '&nbsp;' : char}</span>`
-      ).join('');
-    }
-
-    setTimeout(() => {
-      preloader.classList.add('hidden');
-      document.body.classList.add('loaded');
-      
-      // Cleanup preloader from DOM after transition
-      setTimeout(() => { preloader.style.display = 'none'; }, 800);
-    }, 1200);
+  sections.forEach(section => {
+    observer.observe(section);
   });
 </script>
+
 </body>
 </html>
-
