@@ -1,416 +1,844 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>GitHub Contributions | Victor Kipruto Rop</title>
-    <meta name="description" content="A GitHub-powered overview of Victor Kipruto Rop's repositories, activity, and open-source work."/>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: { colors: { accent: '#c8401a' } } }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
-        body { font-family: 'DM Mono', monospace; }
-        h1, h2, h3 { font-family: 'DM Serif Display', serif; }
-        .glass-card { background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); }
-        .dark .glass-card { background: rgba(24,24,27,0.82); }
-        .readme-body h1, .readme-body h2, .readme-body h3 { font-family: 'DM Serif Display', serif; margin-top: 1rem; margin-bottom: 0.5rem; }
-        .readme-body p, .readme-body li { line-height: 1.75; }
-        .readme-body ul { list-style: disc; padding-left: 1.25rem; margin: 0.75rem 0; }
-        .readme-body a { color: #c8401a; text-decoration: underline; }
-        .readme-body img { max-width: 100%; border-radius: 0.75rem; margin: 0.75rem 0; }
-        .readme-body code { background: rgba(0,0,0,0.06); padding: 0.15rem 0.35rem; border-radius: 0.3rem; }
-        .dark .readme-body code { background: rgba(255,255,255,0.12); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Contributions | Victor Kipruto Rop</title>
+  <meta name="description" content="A GitHub-powered overview of Victor Kipruto Rop's repositories, activity, and open-source work."/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* Light Mode Tokens (Default) */
+    :root {
+      --ink: #0a0e14;         /* Near-black navy */
+      --paper: #f5f0e8;       /* Warm cream */
+      --accent: #c8401a;      /* Burnt terracotta/rust */
+      --blue: #1a4fd6;        /* Primary accent blue */
+      --muted: #7a7060;       /* Warm taupe-grey */
+      --rule: #d4cec2;        /* Light warm grey */
+      --card: #ede8de;        /* Slightly darker cream */
+      --code-bg: #e2dbc9;
+      --card-shadow: 0 10px 25px -5px rgba(10, 14, 20, 0.05);
+      --badge-bg: rgba(200, 64, 26, 0.08);
+      --gh-chart-color: 40c463;
+    }
+
+    /* Dark Mode Tokens (body.dark-mode) */
+    body.dark-mode {
+      --ink: #f5f0e8;         /* Swapped with --paper */
+      --paper: #0a0e14;       /* Swapped with --ink */
+      --accent: #ff4b2b;      /* Saturated bright red-orange */
+      --blue: #3b82f6;        /* Bright accent blue */
+      --muted: #a1a1aa;       /* Slate muted text */
+      --rule: #27272a;        /* Border rule dark */
+      --card: #18181b;        /* Card dark surface */
+      --code-bg: #090d16;
+      --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      --badge-bg: rgba(255, 75, 43, 0.12);
+      --gh-chart-color: ff4b2b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--paper);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-link {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1px solid transparent;
+    }
+
+    .nav-link.active, .nav-link:hover {
+      border-color: var(--rule);
+      background: var(--card);
+    }
+
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .theme-toggle:hover { border-color: var(--accent); }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 60px 0 40px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: var(--badge-bg);
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      padding: 10px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+
+    /* Key Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-family: 'Fira Code', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Section Layouts */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .grid-split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      margin-bottom: 50px;
+    }
+
+    .grid-split-wide {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      margin-bottom: 50px;
+    }
+
+    .card-block {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* README Box Styles */
+    .readme-body {
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .readme-body h1, .readme-body h2, .readme-body h3 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .readme-body p { margin-bottom: 0.8rem; }
+    .readme-body ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }
+    .readme-body li { margin-bottom: 0.3rem; }
+    .readme-body a { color: var(--accent); text-decoration: underline; }
+    .readme-body code {
+      font-family: 'Fira Code', monospace;
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .readme-body img { max-width: 100%; border-radius: 12px; margin: 12px 0; }
+
+    /* Cards lists */
+    .stack-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .project-item {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-item:hover {
+      border-color: var(--accent);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .project-title:hover { text-decoration: underline; }
+
+    .project-lang {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 100px;
+      color: var(--muted);
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+      min-height: 40px;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .lang-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+    }
+
+    .activity-item {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .activity-date {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .activity-desc {
+      font-size: 0.85rem;
+      color: var(--ink);
+    }
+
+    .calendar-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--rule);
+      padding: 10px;
+      background: var(--paper);
+      filter: contrast(1.1);
+    }
+
+    /* Footer Navigation */
+    .footer-nav {
+      margin: 60px 0 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Pulse Skeleton for Loading */
+    .skeleton {
+      background: linear-gradient(90deg, var(--card) 25%, var(--rule) 50%, var(--card) 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 8px;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    @media (max-width: 900px) {
+      .grid-split, .grid-split-wide { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
+    }
+  </style>
 </head>
-<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
+<body class="dark-mode">
 
-<main class="container mx-auto px-6 py-10 md:py-14 max-w-7xl">
-    <section class="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
-            <p class="text-accent font-bold tracking-[0.35em] text-xs uppercase mb-2">GitHub Export</p>
-            <h1 class="text-4xl md:text-5xl font-bold mb-3">Open source activity, repositories, and public work</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">This page pulls live GitHub data for repositories, public activity, stars, and follower stats so the contribution hub stays current without manual editing.</p>
-        </div>
-        <div class="flex flex-wrap gap-3">
-            <a href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" class="bg-accent text-white px-6 py-3 rounded-lg hover:bg-black transition shadow-sm">Open GitHub Profile</a>
-            <a href="index.html" class="border border-accent text-accent px-6 py-3 rounded-lg hover:bg-accent hover:text-white transition">← Back to Portfolio</a>
-        </div>
+  <!-- Navigation Header -->
+  <header>
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">victor_rop<span>.data()</span></a>
+      <div class="nav-right">
+        <a href="how-i-work.html" class="nav-link">How I Work</a>
+        <a href="talks.html" class="nav-link">Talks</a>
+        <a href="#" class="nav-link active">GitHub</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Mode">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="page-hero">
+      <span class="badge">// LIVE GITHUB EXPORT</span>
+      <h1 class="hero-title">Open Source Activity &amp; Repositories</h1>
+      <p style="color: var(--muted); max-width: 720px; font-size: 1.05rem;">
+        This hub dynamically imports live GitHub metrics, repositories, public activity feeds, and profile documentation directly via REST APIs.
+      </p>
+      
+      <div class="hero-actions">
+        <a href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" class="btn-primary">
+          Open GitHub Profile ↗
+        </a>
+        <a href="index.html" class="btn-secondary">
+          ← Back to Portfolio
+        </a>
+      </div>
     </section>
 
-    <section class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
-        <div class="glass-card rounded-2xl border border-gray-200 dark:border-gray-800 p-5">
-            <div class="text-sm text-gray-600 dark:text-gray-400">Public Repositories</div>
-            <div class="text-3xl font-bold text-accent mt-2" id="stat-repos">—</div>
-        </div>
-        <div class="glass-card rounded-2xl border border-gray-200 dark:border-gray-800 p-5">
-            <div class="text-sm text-gray-600 dark:text-gray-400">Followers</div>
-            <div class="text-3xl font-bold text-accent mt-2" id="stat-followers">—</div>
-        </div>
-        <div class="glass-card rounded-2xl border border-gray-200 dark:border-gray-800 p-5">
-            <div class="text-sm text-gray-600 dark:text-gray-400">Following</div>
-            <div class="text-3xl font-bold text-accent mt-2" id="stat-following">—</div>
-        </div>
-        <div class="glass-card rounded-2xl border border-gray-200 dark:border-gray-800 p-5">
-            <div class="text-sm text-gray-600 dark:text-gray-400">Total Stars</div>
-            <div class="text-3xl font-bold text-accent mt-2" id="stat-stars">—</div>
-        </div>
-        <div class="glass-card rounded-2xl border border-gray-200 dark:border-gray-800 p-5">
-            <div class="text-sm text-gray-600 dark:text-gray-400">Public Commits</div>
-            <div class="text-3xl font-bold text-accent mt-2" id="stat-commits">—</div>
-        </div>
+    <!-- Key Metrics Stats Row -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Public Repositories</div>
+        <div class="stat-value" id="stat-repos"><span class="skeleton" style="display:inline-block; width: 60px; height: 32px;"></span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Followers</div>
+        <div class="stat-value" id="stat-followers"><span class="skeleton" style="display:inline-block; width: 60px; height: 32px;"></span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Following</div>
+        <div class="stat-value" id="stat-following"><span class="skeleton" style="display:inline-block; width: 60px; height: 32px;"></span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Stars</div>
+        <div class="stat-value" id="stat-stars"><span class="skeleton" style="display:inline-block; width: 60px; height: 32px;"></span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Public Commits</div>
+        <div class="stat-value" id="stat-commits"><span class="skeleton" style="display:inline-block; width: 60px; height: 32px;"></span></div>
+      </div>
     </section>
 
-    <section class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 mb-10">
-        <div class="glass-card rounded-3xl border border-gray-200 dark:border-gray-800 p-6 md:p-8">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl">Profile Highlights</h2>
-                <span class="text-sm text-gray-600 dark:text-gray-400" id="profile-source">Loading profile details…</span>
-            </div>
-            <div id="readme-content" class="readme-body space-y-3 text-sm leading-7"></div>
+    <!-- Main Content Split: Profile README & Highlights -->
+    <section class="grid-split">
+      <div class="card-block">
+        <h2 class="section-title">Profile Highlights</h2>
+        <div class="section-subtitle" id="profile-source">PULLING LIVE README.MD...</div>
+        <div id="readme-content" class="readme-body">
+          <div class="skeleton" style="height: 20px; margin-bottom: 12px; width: 80%;"></div>
+          <div class="skeleton" style="height: 20px; margin-bottom: 12px; width: 95%;"></div>
+          <div class="skeleton" style="height: 20px; margin-bottom: 12px; width: 60%;"></div>
         </div>
-        <div class="space-y-8">
-            <div class="glass-card rounded-3xl border border-gray-200 dark:border-gray-800 p-6 md:p-8">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-2xl">Featured Projects</h2>
-                    <span class="text-sm text-gray-600 dark:text-gray-400">Ranked by stars and recency</span>
-                </div>
-                <div id="featured-projects" class="space-y-4"></div>
-            </div>
-            <div class="glass-card rounded-3xl border border-gray-200 dark:border-gray-800 p-6 md:p-8">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-2xl">Top Languages</h2>
-                    <span class="text-sm text-gray-600 dark:text-gray-400">Based on public repositories</span>
-                </div>
-                <div id="language-summary" class="space-y-3"></div>
-            </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+        <div class="card-block">
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="section-subtitle">RANKED BY STARS &amp; ACTIVITY</div>
+          <div id="featured-projects" class="stack-list">
+            <div class="skeleton" style="height: 90px; width: 100%;"></div>
+            <div class="skeleton" style="height: 90px; width: 100%;"></div>
+          </div>
         </div>
+
+        <div class="card-block">
+          <h2 class="section-title">Top Languages</h2>
+          <div class="section-subtitle">ACCUMULATED PUBLIC CODEBASE</div>
+          <div id="language-summary" class="stack-list">
+            <div class="skeleton" style="height: 40px; width: 100%;"></div>
+            <div class="skeleton" style="height: 40px; width: 100%;"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="grid lg:grid-cols-[1.3fr_0.7fr] gap-8 mb-10">
-        <div class="glass-card rounded-3xl border border-gray-200 dark:border-gray-800 p-6 md:p-8">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl">Repositories</h2>
-                <span class="text-sm text-gray-600 dark:text-gray-400" id="repo-count-label">Loading repositories…</span>
-            </div>
-            <div id="repos-grid" class="grid md:grid-cols-2 gap-4"></div>
+    <!-- Secondary Split: Repositories & Activity -->
+    <section class="grid-split-wide">
+      <div class="card-block">
+        <h2 class="section-title">Repositories</h2>
+        <div class="section-subtitle" id="repo-count-label">LOADING REPOSITORY LIST...</div>
+        <div id="repos-grid" class="repo-grid">
+          <div class="skeleton" style="height: 120px; width: 100%;"></div>
+          <div class="skeleton" style="height: 120px; width: 100%;"></div>
         </div>
-        <div class="space-y-8">
-            <div class="glass-card rounded-3xl border border-gray-200 dark:border-gray-800 p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-2xl">Recent Activity</h2>
-                    <span class="text-sm text-gray-600 dark:text-gray-400">Public GitHub feed</span>
-                </div>
-                <div id="activity-list" class="space-y-3"></div>
-            </div>
-            <div class="glass-card rounded-3xl border border-gray-200 dark:border-gray-800 p-6">
-                <h2 class="text-2xl mb-4">Contribution Calendar</h2>
-                <img id="gh-chart" src="https://ghchart.rshah.org/40c463/Victor-Kipruto-Rop" alt="GitHub contribution chart for Victor Kipruto Rop" class="w-full rounded-xl border border-gray-200 dark:border-gray-800"/>
-            </div>
-        </div>
-    </section>
-</main>
+      </div>
 
-<script>
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+        <div class="card-block">
+          <h2 class="section-title">Recent Activity</h2>
+          <div class="section-subtitle">PUBLIC EVENT STREAM</div>
+          <div id="activity-list">
+            <div class="skeleton" style="height: 50px; margin-bottom: 12px; width: 100%;"></div>
+            <div class="skeleton" style="height: 50px; margin-bottom: 12px; width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="card-block">
+          <h2 class="section-title">Contribution Calendar</h2>
+          <div class="section-subtitle">365-DAY COMMIT MATRIX</div>
+          <img id="gh-chart" src="https://ghchart.rshah.org/ff4b2b/Victor-Kipruto-Rop" alt="GitHub contribution chart for Victor Kipruto Rop" class="calendar-img"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-nav">
+      <a href="index.html" class="btn-secondary">← Back to Portfolio</a>
+    </footer>
+  </main>
+
+  <script>
     const USER = 'Victor-Kipruto-Rop';
     const API_BASE = 'https://api.github.com';
     const PROFILE_REPO = 'Victor-Kipruto-Rop/Victor-Kipruto-Rop';
     const README_URL = `https://raw.githubusercontent.com/${PROFILE_REPO}/main/README.md`;
 
+    // Fallbacks if rate limited
     const fallbackProfile = {
-        login: USER,
-        public_repos: 18,
-        followers: 18,
-        following: 24,
-        public_gists: 3,
-        bio: 'Data engineer building production-grade data platforms, ETL systems, and developer tooling.'
+      login: USER,
+      public_repos: 18,
+      followers: 18,
+      following: 24,
+      bio: 'Data engineer building production-grade data platforms, ETL pipelines, and stream computing tooling.'
     };
 
     const fallbackRepos = [
-        {
-            name: 'victor-resum-web',
-            description: 'Personal portfolio, blog, and automation hub for showcasing technical work.',
-            html_url: 'https://github.com/Victor-Kipruto-Rop/victor-resum-web',
-            language: 'HTML',
-            stargazers_count: 6,
-            forks_count: 2,
-            updated_at: '2026-07-14T00:00:00Z'
-        },
-        {
-            name: 'modern_portfolio',
-            description: 'Modern portfolio website with data engineering highlights and project showcases.',
-            html_url: 'https://github.com/Victor-Kipruto-Rop/modern_portfolio',
-            language: 'HTML',
-            stargazers_count: 3,
-            forks_count: 1,
-            updated_at: '2026-06-20T00:00:00Z'
-        },
-        {
-            name: 'cloud-etl-pipeline',
-            description: 'Cloud-native ETL pipeline example with orchestration and automation workflows.',
-            html_url: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline',
-            language: 'Python',
-            stargazers_count: 3,
-            forks_count: 1,
-            updated_at: '2026-06-18T00:00:00Z'
-        }
+      {
+        name: 'victor-resum-web',
+        description: 'Personal portfolio, blog, and automation hub for showcasing technical work.',
+        html_url: 'https://github.com/Victor-Kipruto-Rop/victor-resum-web',
+        language: 'HTML',
+        stargazers_count: 6,
+        forks_count: 2,
+        updated_at: '2026-07-14T00:00:00Z'
+      },
+      {
+        name: 'modern_portfolio',
+        description: 'Modern portfolio website with data engineering highlights and project showcases.',
+        html_url: 'https://github.com/Victor-Kipruto-Rop/modern_portfolio',
+        language: 'HTML',
+        stargazers_count: 3,
+        forks_count: 1,
+        updated_at: '2026-06-20T00:00:00Z'
+      },
+      {
+        name: 'cloud-etl-pipeline',
+        description: 'Cloud-native ETL pipeline example with orchestration and automation workflows.',
+        html_url: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline',
+        language: 'Python',
+        stargazers_count: 3,
+        forks_count: 1,
+        updated_at: '2026-06-18T00:00:00Z'
+      }
     ];
 
     const fallbackEvents = [
-        { type: 'PushEvent', repo: { name: 'Victor-Kipruto-Rop/victor-resum-web' }, created_at: '2026-07-14T10:00:00Z', payload: { commits: [{ message: 'Updated portfolio pages and contribution hub.' }] } },
-        { type: 'CreateEvent', repo: { name: 'Victor-Kipruto-Rop/cloud-etl-pipeline' }, created_at: '2026-06-26T08:30:00Z', payload: { ref_type: 'repository' } },
-        { type: 'WatchEvent', repo: { name: 'Victor-Kipruto-Rop/modern_portfolio' }, created_at: '2026-06-19T12:00:00Z', payload: {} }
+      { type: 'PushEvent', repo: { name: 'Victor-Kipruto-Rop/victor-resum-web' }, created_at: '2026-07-14T10:00:00Z', payload: { commits: [{ message: 'Updated portfolio pages and contribution hub.' }] } },
+      { type: 'CreateEvent', repo: { name: 'Victor-Kipruto-Rop/cloud-etl-pipeline' }, created_at: '2026-06-26T08:30:00Z', payload: { ref_type: 'repository' } }
     ];
 
     function formatDate(value) {
-        if (!value) return 'Recently updated';
-        const date = new Date(value);
-        return date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' });
+      if (!value) return 'Recently updated';
+      const date = new Date(value);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
     function describeEvent(event) {
-        const repoName = event.repo?.name || 'GitHub repository';
-        const repoUrl = `https://github.com/${repoName}`;
-        switch (event.type) {
-            case 'PushEvent':
-                const commitCount = event.payload?.commits?.length || 1;
-                const message = event.payload?.commits?.[0]?.message || 'pushed updates';
-                return `<a class="text-accent hover:underline" href="${repoUrl}" target="_blank" rel="noopener">Pushed ${commitCount} commit${commitCount > 1 ? 's' : ''} to ${repoName}</a> · ${message}`;
-            case 'CreateEvent':
-                return `<a class="text-accent hover:underline" href="${repoUrl}" target="_blank" rel="noopener">Created ${repoName}</a>`;
-            case 'PullRequestEvent':
-                return `<a class="text-accent hover:underline" href="${repoUrl}" target="_blank" rel="noopener">Updated a pull request in ${repoName}</a>`;
-            case 'WatchEvent':
-                return `<a class="text-accent hover:underline" href="${repoUrl}" target="_blank" rel="noopener">Starred ${repoName}</a>`;
-            case 'ForkEvent':
-                return `<a class="text-accent hover:underline" href="${repoUrl}" target="_blank" rel="noopener">Forked ${repoName}</a>`;
-            default:
-                return `<a class="text-accent hover:underline" href="${repoUrl}" target="_blank" rel="noopener">Activity recorded for ${repoName}</a>`;
-        }
+      const repoName = event.repo?.name || 'GitHub repository';
+      const repoUrl = `https://github.com/${repoName}`;
+      switch (event.type) {
+        case 'PushEvent':
+          const commitCount = event.payload?.commits?.length || 1;
+          const message = event.payload?.commits?.[0]?.message || 'pushed updates';
+          return `<a class="project-title" style="font-size: 0.85rem;" href="${repoUrl}" target="_blank" rel="noopener">Pushed ${commitCount} commit${commitCount > 1 ? 's' : ''} to ${repoName}</a> — <span style="color: var(--muted);">${message}</span>`;
+        case 'CreateEvent':
+          return `<a class="project-title" style="font-size: 0.85rem;" href="${repoUrl}" target="_blank" rel="noopener">Created repository ${repoName}</a>`;
+        case 'WatchEvent':
+          return `<a class="project-title" style="font-size: 0.85rem;" href="${repoUrl}" target="_blank" rel="noopener">Starred ${repoName}</a>`;
+        default:
+          return `<a class="project-title" style="font-size: 0.85rem;" href="${repoUrl}" target="_blank" rel="noopener">Updated ${repoName}</a>`;
+      }
     }
 
     async function fetchJson(url) {
-        const response = await fetch(url, { headers: { Accept: 'application/vnd.github+json' } });
-        if (!response.ok) throw new Error(`GitHub request failed: ${response.status}`);
-        return response.json();
+      const response = await fetch(url, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!response.ok) throw new Error(`GitHub request failed: ${response.status}`);
+      return response.json();
     }
 
     async function fetchCommitCount(owner, repo) {
-        try {
-            const response = await fetch(`${API_BASE}/repos/${owner}/${repo}/commits?per_page=100`, { headers: { Accept: 'application/vnd.github+json' } });
-            if (!response.ok) throw new Error(`commit fetch failed: ${response.status}`);
-            const link = response.headers.get('link') || '';
-            const match = link.match(/page=(\d+)>; rel="last"/);
-            if (match) {
-                const lastPage = parseInt(match[1], 10);
-                if (lastPage > 1) {
-                    const lastPageResponse = await fetch(`${API_BASE}/repos/${owner}/${repo}/commits?per_page=100&page=${lastPage}`, { headers: { Accept: 'application/vnd.github+json' } });
-                    const lastPageData = await lastPageResponse.json();
-                    return (lastPage - 1) * 100 + lastPageData.length;
-                }
-            }
-            const data = await response.json();
-            return Array.isArray(data) ? data.length : 0;
-        } catch (error) {
-            console.warn('Unable to count commits for', repo, error);
-            return 0;
+      try {
+        const response = await fetch(`${API_BASE}/repos/${owner}/${repo}/commits?per_page=100`, { headers: { Accept: 'application/vnd.github+json' } });
+        if (!response.ok) throw new Error(`commit fetch failed`);
+        const link = response.headers.get('link') || '';
+        const match = link.match(/page=(\d+)>; rel="last"/);
+        if (match) {
+          const lastPage = parseInt(match[1], 10);
+          if (lastPage > 1) {
+            const lastPageResponse = await fetch(`${API_BASE}/repos/${owner}/${repo}/commits?per_page=100&page=${lastPage}`, { headers: { Accept: 'application/vnd.github+json' } });
+            const lastPageData = await lastPageResponse.json();
+            return (lastPage - 1) * 100 + lastPageData.length;
+          }
         }
+        const data = await response.json();
+        return Array.isArray(data) ? data.length : 0;
+      } catch (error) {
+        return 0;
+      }
     }
 
     function escapeHtml(value) {
-        return String(value)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
 
     function renderReadmeContent(markdown, profile) {
-        const container = document.getElementById('readme-content');
-        const profileSource = document.getElementById('profile-source');
+      const container = document.getElementById('readme-content');
+      const profileSource = document.getElementById('profile-source');
 
-        if (!markdown) {
-            profileSource.textContent = 'Fallback profile overview';
-            container.innerHTML = `
-                <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-4 bg-white/70 dark:bg-[#18181b]/80">
-                    <p class="text-sm text-gray-700 dark:text-gray-300">${profile?.bio || 'Public GitHub activity and repository work are shown here.'}</p>
-                </div>
-            `;
-            return;
-        }
+      if (!markdown) {
+        profileSource.textContent = 'PROFILE OVERVIEW';
+        container.innerHTML = `<p>${profile?.bio || 'Public GitHub activity and repository work.'}</p>`;
+        return;
+      }
 
-        profileSource.textContent = 'Imported from GitHub README';
-        const rendered = typeof marked !== 'undefined'
-            ? marked.parse(markdown)
-            : `<pre class="whitespace-pre-wrap">${escapeHtml(markdown)}</pre>`;
+      profileSource.textContent = 'FETCHED FROM RAW README.MD';
+      const rendered = typeof marked !== 'undefined'
+        ? marked.parse(markdown)
+        : `<pre style="white-space: pre-wrap;">${escapeHtml(markdown)}</pre>`;
 
-        container.innerHTML = `
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 p-4 bg-white/70 dark:bg-[#18181b]/80">
-                ${rendered}
-            </div>
-        `;
+      container.innerHTML = rendered;
     }
 
     function renderStats(profile, repos, totalCommits) {
-        const repoCount = document.getElementById('stat-repos');
-        const followers = document.getElementById('stat-followers');
-        const following = document.getElementById('stat-following');
-        const stars = document.getElementById('stat-stars');
-        const commits = document.getElementById('stat-commits');
-        const repoLabel = document.getElementById('repo-count-label');
+      const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
+      const publicRepoCount = repos.filter(repo => !repo.fork && !repo.private).length;
 
-        const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
-        const publicRepoCount = repos.filter(repo => !repo.fork && !repo.private).length;
-
-        repoCount.textContent = profile.public_repos ?? publicRepoCount;
-        followers.textContent = profile.followers ?? 0;
-        following.textContent = profile.following ?? 0;
-        stars.textContent = totalStars;
-        commits.textContent = totalCommits.toLocaleString();
-        repoLabel.textContent = `${publicRepoCount} public repositories`;
+      document.getElementById('stat-repos').textContent = profile.public_repos ?? publicRepoCount;
+      document.getElementById('stat-followers').textContent = profile.followers ?? 0;
+      document.getElementById('stat-following').textContent = profile.following ?? 0;
+      document.getElementById('stat-stars').textContent = totalStars;
+      document.getElementById('stat-commits').textContent = totalCommits.toLocaleString();
+      document.getElementById('repo-count-label').textContent = `${publicRepoCount} PUBLIC REPOSITORIES FOUND`;
     }
 
     function renderFeaturedProjects(repos) {
-        const container = document.getElementById('featured-projects');
-        const featured = [...repos]
-            .filter(repo => repo && repo.name && !repo.private && !repo.archived)
-            .sort((a, b) => (b.stargazers_count + b.forks_count - (a.stargazers_count + a.forks_count)))
-            .slice(0, 4);
+      const container = document.getElementById('featured-projects');
+      const featured = [...repos]
+        .filter(repo => repo && repo.name && !repo.private && !repo.archived)
+        .sort((a, b) => (b.stargazers_count + b.forks_count - (a.stargazers_count + a.forks_count)))
+        .slice(0, 3);
 
-        if (!featured.length) {
-            container.innerHTML = '<div class="text-sm text-gray-600 dark:text-gray-400">No featured projects available yet.</div>';
-            return;
-        }
+      if (!featured.length) {
+        container.innerHTML = '<div style="color: var(--muted); font-size: 0.85rem;">No featured projects found.</div>';
+        return;
+      }
 
-        container.innerHTML = featured.map((repo, index) => `
-            <article class="rounded-2xl border border-gray-200 dark:border-gray-800 p-4 bg-white/70 dark:bg-[#18181b]/80 shadow-sm">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-accent">#${index + 1}</span>
-                        <h3 class="text-lg"><a class="text-accent hover:underline" href="${repo.html_url}" target="_blank" rel="noopener">${repo.name}</a></h3>
-                    </div>
-                    <span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328] text-xs uppercase tracking-[0.2em] text-gray-600 dark:text-gray-300">${repo.language || 'Code'}</span>
-                </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">${repo.description || 'Public project on GitHub.'}</p>
-                <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-400">
-                    <span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328]">★ ${repo.stargazers_count || 0}</span>
-                    <span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328]">↩ ${repo.forks_count || 0}</span>
-                    <span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328]">Updated ${formatDate(repo.updated_at)}</span>
-                </div>
-            </article>
-        `).join('');
+      container.innerHTML = featured.map(repo => `
+        <div class="project-item">
+          <div class="project-header">
+            <a href="${repo.html_url}" target="_blank" rel="noopener" class="project-title">${repo.name}</a>
+            <span class="project-lang">${repo.language || 'Code'}</span>
+          </div>
+          <div class="project-desc">${repo.description || 'Public project hosted on GitHub.'}</div>
+          <div class="project-meta">
+            <span>★ ${repo.stargazers_count || 0}</span>
+            <span>↩ ${repo.forks_count || 0}</span>
+            <span>Updated ${formatDate(repo.updated_at)}</span>
+          </div>
+        </div>
+      `).join('');
     }
 
     function renderLanguageSummary(repos) {
-        const container = document.getElementById('language-summary');
-        const counts = repos.reduce((acc, repo) => {
-            if (!repo.language) return acc;
-            acc[repo.language] = (acc[repo.language] || 0) + 1;
-            return acc;
-        }, {});
+      const container = document.getElementById('language-summary');
+      const counts = repos.reduce((acc, repo) => {
+        if (!repo.language) return acc;
+        acc[repo.language] = (acc[repo.language] || 0) + 1;
+        return acc;
+      }, {});
 
-        const languages = Object.entries(counts)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 5);
+      const languages = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 4);
 
-        if (!languages.length) {
-            container.innerHTML = '<div class="text-sm text-gray-600 dark:text-gray-400">No language data available yet.</div>';
-            return;
-        }
+      if (!languages.length) {
+        container.innerHTML = '<div style="color: var(--muted); font-size: 0.85rem;">No language breakdown available.</div>';
+        return;
+      }
 
-        container.innerHTML = languages.map(([name, count]) => `
-            <div class="flex items-center justify-between rounded-2xl border border-gray-200 dark:border-gray-800 px-4 py-3">
-                <span class="text-sm font-medium">${name}</span>
-                <span class="text-sm text-gray-600 dark:text-gray-400">${count} repo${count > 1 ? 's' : ''}</span>
-            </div>
-        `).join('');
+      container.innerHTML = languages.map(([name, count]) => `
+        <div class="lang-row">
+          <span>${name}</span>
+          <span style="color: var(--accent); font-weight: 600;">${count} repo${count > 1 ? 's' : ''}</span>
+        </div>
+      `).join('');
     }
 
     function renderRepos(repos) {
-        const grid = document.getElementById('repos-grid');
-        const sorted = [...repos]
-            .filter(repo => repo && repo.name && !repo.private && !repo.disabled)
-            .sort((a, b) => (b.stargazers_count + b.forks_count + (b.open_issues_count || 0)) - (a.stargazers_count + a.forks_count + (a.open_issues_count || 0)));
+      const grid = document.getElementById('repos-grid');
+      const sorted = [...repos]
+        .filter(repo => repo && repo.name && !repo.private)
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-        if (!sorted.length) {
-            grid.innerHTML = '<div class="text-sm text-gray-600 dark:text-gray-400">No public repositories found.</div>';
-            return;
-        }
+      if (!sorted.length) {
+        grid.innerHTML = '<div style="color: var(--muted); font-size: 0.85rem;">No public repositories found.</div>';
+        return;
+      }
 
-        grid.innerHTML = sorted.map(repo => `
-            <article class="rounded-2xl border border-gray-200 dark:border-gray-800 p-4 hover:border-accent transition">
-                <div class="flex items-start justify-between gap-3">
-                    <div>
-                        <h3 class="text-lg mb-2"><a href="${repo.html_url}" target="_blank" rel="noopener" class="text-accent hover:underline">${repo.name}</a></h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 min-h-[48px]">${repo.description || 'No description provided.'}</p>
-                    </div>
-                    ${repo.archived ? '<span class="text-[11px] uppercase tracking-[0.2em] text-gray-500">Archived</span>' : ''}
-                </div>
-                <div class="flex flex-wrap gap-2 mt-4 text-xs text-gray-600 dark:text-gray-400">
-                    ${repo.language ? `<span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328]">${repo.language}</span>` : ''}
-                    <span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328]">★ ${repo.stargazers_count || 0}</span>
-                    <span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328]">↩ ${repo.forks_count || 0}</span>
-                    <span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-[#232328]">Open issues ${repo.open_issues_count || 0}</span>
-                </div>
-                <div class="mt-4 text-xs text-gray-500">Updated ${formatDate(repo.updated_at)}</div>
-            </article>
-        `).join('');
+      grid.innerHTML = sorted.map(repo => `
+        <div class="project-item">
+          <div class="project-header">
+            <a href="${repo.html_url}" target="_blank" rel="noopener" class="project-title" style="font-size: 1.05rem;">${repo.name}</a>
+            ${repo.language ? `<span class="project-lang">${repo.language}</span>` : ''}
+          </div>
+          <div class="project-desc" style="min-height: 36px; font-size: 0.82rem;">${repo.description || 'No description provided.'}</div>
+          <div class="project-meta">
+            <span>★ ${repo.stargazers_count || 0}</span>
+            <span>↩ ${repo.forks_count || 0}</span>
+          </div>
+        </div>
+      `).join('');
     }
 
     function renderActivity(events) {
-        const list = document.getElementById('activity-list');
-        if (!events.length) {
-            list.innerHTML = '<div class="text-sm text-gray-600 dark:text-gray-400">No recent public activity available.</div>';
-            return;
-        }
+      const list = document.getElementById('activity-list');
+      if (!events.length) {
+        list.innerHTML = '<div style="color: var(--muted); font-size: 0.85rem;">No public activity records found.</div>';
+        return;
+      }
 
-        list.innerHTML = events.slice(0, 6).map(event => `
-            <div class="rounded-xl border border-gray-200 dark:border-gray-800 p-3">
-                <div class="text-xs uppercase tracking-[0.25em] text-gray-500 mb-1">${formatDate(event.created_at)}</div>
-                <div class="text-sm">${describeEvent(event)}</div>
-            </div>
-        `).join('');
+      list.innerHTML = events.slice(0, 4).map(event => `
+        <div class="activity-item">
+          <div class="activity-date">${formatDate(event.created_at)}</div>
+          <div class="activity-desc">${describeEvent(event)}</div>
+        </div>
+      `).join('');
     }
 
     async function initContributionPage() {
-        try {
-            const [profile, repos, events, readmeText] = await Promise.all([
-                fetchJson(`${API_BASE}/users/${USER}`),
-                fetchJson(`${API_BASE}/users/${USER}/repos?per_page=100&sort=updated`),
-                fetchJson(`${API_BASE}/users/${USER}/events/public?per_page=10`),
-                fetch(README_URL).then(res => res.ok ? res.text() : '')
-            ]);
+      try {
+        const [profile, repos, events, readmeText] = await Promise.all([
+          fetchJson(`${API_BASE}/users/${USER}`),
+          fetchJson(`${API_BASE}/users/${USER}/repos?per_page=100&sort=updated`),
+          fetchJson(`${API_BASE}/users/${USER}/events/public?per_page=10`),
+          fetch(README_URL).then(res => res.ok ? res.text() : '')
+        ]);
 
-            const publicRepos = repos.filter(repo => !repo.private && !repo.fork);
-            const commitTotals = await Promise.all(publicRepos.slice(0, 8).map(repo => fetchCommitCount(USER, repo.name)));
-            const totalCommits = commitTotals.reduce((sum, count) => sum + count, 0);
+        const publicRepos = repos.filter(repo => !repo.private && !repo.fork);
+        const commitTotals = await Promise.all(publicRepos.slice(0, 6).map(repo => fetchCommitCount(USER, repo.name)));
+        const totalCommits = commitTotals.reduce((sum, count) => sum + count, 0);
 
-            renderStats(profile, publicRepos, totalCommits || Math.max(1, publicRepos.length * 18));
-            renderReadmeContent(readmeText || '', profile);
-            renderFeaturedProjects(publicRepos);
-            renderLanguageSummary(publicRepos);
-            renderRepos(publicRepos);
-            renderActivity(events);
-        } catch (error) {
-            console.error(error);
-            renderStats(fallbackProfile, fallbackRepos, 120);
-            renderReadmeContent('', fallbackProfile);
-            renderFeaturedProjects(fallbackRepos);
-            renderLanguageSummary(fallbackRepos);
-            renderRepos(fallbackRepos);
-            renderActivity(fallbackEvents);
-            document.getElementById('repo-count-label').textContent = 'Showing fallback data';
-        }
+        renderStats(profile, publicRepos, totalCommits || Math.max(1, publicRepos.length * 15));
+        renderReadmeContent(readmeText || '', profile);
+        renderFeaturedProjects(publicRepos);
+        renderLanguageSummary(publicRepos);
+        renderRepos(publicRepos);
+        renderActivity(events);
+      } catch (error) {
+        console.warn('API Fallback activated:', error);
+        renderStats(fallbackProfile, fallbackRepos, 120);
+        renderReadmeContent('', fallbackProfile);
+        renderFeaturedProjects(fallbackRepos);
+        renderLanguageSummary(fallbackRepos);
+        renderRepos(fallbackRepos);
+        renderActivity(fallbackEvents);
+      }
     }
 
+    // Theme Switch Logic
+    const themeToggle = document.getElementById('themeToggle');
+    const ghChart = document.getElementById('gh-chart');
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      
+      // Update chart color dynamically on toggle
+      const colorHex = isDark ? 'ff4b2b' : '40c463';
+      ghChart.src = `https://ghchart.rshah.org/${colorHex}/Victor-Kipruto-Rop`;
+    });
+
     document.addEventListener('DOMContentLoaded', initContributionPage);
-</script>
+  </script>
 </body>
 </html>
