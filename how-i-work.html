@@ -1,149 +1,704 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>How I Work | Victor Kipruto Rop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&display=swap');
-        body { font-family: 'DM Mono', monospace; background: #f5f0e8; color: #0a0e14; }
-        .dark body { background: #0a0e14; color: #f5f0e8; }
-        h1, h2, h3 { font-family: 'DM Serif Display', serif; }
-        .bg-card { background: #ede8de; }
-        .dark .bg-card { background: #18181b; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Work — Engineering Principles & Process | Victor Kipruto Rop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Light Mode Tokens (Default) */
+    :root {
+      --ink: #0a0e14;         /* Near-black navy */
+      --paper: #f5f0e8;       /* Warm cream */
+      --accent: #c8401a;      /* Burnt terracotta/rust */
+      --blue: #1a4fd6;        /* Primary accent blue */
+      --muted: #7a7060;       /* Warm taupe-grey */
+      --rule: #d4cec2;        /* Light warm grey */
+      --card: #ede8de;        /* Slightly darker cream */
+      --code-bg: #030712;
+      --card-shadow: 0 10px 25px -5px rgba(10, 14, 20, 0.05);
+      --svg-stroke: #0a0e14;
+      --svg-bg: #f5f0e8;
+    }
+
+    /* Dark Mode Tokens (body.dark-mode) */
+    body.dark-mode {
+      --ink: #f5f0e8;         /* Swapped with --paper */
+      --paper: #0a0e14;       /* Swapped with --ink */
+      --accent: #ff4b2b;      /* Saturated bright red-orange */
+      --blue: #3b82f6;        /* Bright accent blue */
+      --muted: #a1a1aa;       /* Slate muted text */
+      --rule: #27272a;        /* Border rule dark */
+      --card: #18181b;        /* Card dark surface */
+      --code-bg: #090d16;
+      --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      --svg-stroke: #f5f0e8;
+      --svg-bg: #18181b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--paper);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-link {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1px solid transparent;
+    }
+
+    .nav-link.active, .nav-link:hover {
+      border-color: var(--rule);
+      background: var(--card);
+    }
+
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .theme-toggle:hover { border-color: var(--accent); }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 60px 0 40px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 50px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: var(--card);
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.6;
+    }
+
+    /* Core Principles Grid */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 70px;
+    }
+
+    .principle-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+
+    .principle-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .principle-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .principle-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Process Step-by-Step Section */
+    .process-section {
+      margin-bottom: 80px;
+    }
+
+    .process-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+    }
+
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 40px;
+      bottom: 40px;
+      width: 2px;
+      background: var(--rule);
+      z-index: 1;
+    }
+
+    .timeline-step {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .step-content {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+    }
+
+    .step-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 4px 10px;
+      border-radius: 100px;
+      color: var(--muted);
+    }
+
+    .step-description {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .step-deliverables {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+
+    .step-deliverables-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .step-deliverables ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+    }
+
+    .step-deliverables li {
+      font-size: 0.88rem;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-deliverables li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Diagram Block */
+    .diagram-container {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 32px;
+      margin: 50px 0 80px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .diagram-header {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .diagram-svg-wrap {
+      width: 100%;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    svg.pipeline-diagram {
+      width: 100%;
+      min-width: 700px;
+      height: auto;
+    }
+
+    /* Stack & Tools Matrix */
+    .stack-section {
+      margin-bottom: 80px;
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .stack-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .stack-category {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .stack-items {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .stack-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Footer CTA */
+    .cta-banner {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 48px 32px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 12px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.2rem; }
+      .process-timeline::before { left: 20px; }
+      .timeline-step { grid-template-columns: 40px 1fr; gap: 16px; }
+      .step-icon { width: 40px; height: 40px; font-size: 0.95rem; }
+      .step-content { padding: 20px; }
+      .step-deliverables ul { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="bg-[#f5f0e8] text-[#0a0e14] dark:bg-[#0a0e14] dark:text-[#f5f0e8]">
+<body class="dark-mode">
 
-<main class="container mx-auto px-6 py-12 max-w-5xl">
-    <!-- HERO -->
-    <section class="text-center mb-20">
-        <h1 class="text-6xl font-bold mb-6">How I Work</h1>
-        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">My approach to designing, building, deploying, and maintaining reliable data platforms and scalable systems.</p>
-        <div class="flex gap-4 justify-center">
-            <a href="index.html#projects" class="bg-[#c8401a] text-white px-8 py-3 rounded hover:bg-black transition">View Projects</a>
-            <a href="assets/Victor_Kipruto_Resume.pdf" class="border border-[#c8401a] text-[#c8401a] px-8 py-3 rounded hover:bg-[#c8401a] hover:text-white transition">Download Resume</a>
-        </div>
+  <!-- Navigation Header -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#" class="brand">victor_rop<span>.data()</span></a>
+      <div class="nav-right">
+        <a href="#process" class="nav-link active">How I Work</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Mode">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="page-hero">
+      <span class="badge">ENGINEERING METHODOLOGY</span>
+      <h1 class="hero-title">How I Build Reliability into Data Infrastructure</h1>
+      <p class="hero-subtitle">
+        Building streaming data pipelines, transaction reconciliation systems, and platform abstractions requires deliberate tradeoffs. Here is the framework I use to go from raw event webhooks to battle-tested production pipelines.
+      </p>
     </section>
 
-    <!-- PHILOSOPHY -->
-    <section class="mb-20">
-        <h2 class="text-4xl mb-10">My Engineering Philosophy</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-10">I believe great data systems should be reliable, scalable, observable, secure, and easy to maintain.</p>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-card p-6 rounded-lg"><h3>Simplicity</h3></div>
-            <div class="bg-card p-6 rounded-lg"><h3>Automation</h3></div>
-            <div class="bg-card p-6 rounded-lg"><h3>Data Quality</h3></div>
-            <div class="bg-card p-6 rounded-lg"><h3>Scalability</h3></div>
-            <div class="bg-card p-6 rounded-lg"><h3>Security</h3></div>
-            <div class="bg-card p-6 rounded-lg"><h3>Documentation</h3></div>
+    <!-- Core Engineering Principles -->
+    <section>
+      <h2 class="section-title">Core Principles</h2>
+      <p class="section-subtitle">Rules that guide every system design call across CampusHub, MyChama, and PesaGuard.</p>
+      
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-num">01 // ARCHITECTURE</div>
+          <h3>Events Over Nightly Batches</h3>
+          <p>Treat incoming data (like M-Pesa/Daraja webhooks) as reactive real-time events rather than static database rows inspected hours later[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span).</p>
         </div>
+
+        <div class="principle-card">
+          <div class="principle-num">02 // GOVERNANCE</div>
+          <h3>Governance as First-Class Code</h3>
+          <p>Schema validation, access logging, and Kenyan Data Protection Act compliance are automated inline directly in CI/CD pipeline code[span_2](start_span)[span_2](end_span).</p>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-num">03 // PLATFORM THINKING</div>
+          <h3>Refuse to Solve Plumbing Twice</h3>
+          <p>Extract reusable ingestion components, auth mechanisms, and monitoring dashboards after they appear in two live projects[span_3](start_span)[span_3](end_span).</p>
+        </div>
+      </div>
     </section>
 
-    <!-- WHY I WORK THIS WAY -->
-    <section class="mb-20 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
-        <h2 class="text-4xl mb-6">Why I Work This Way</h2>
-        <div class="space-y-4 text-gray-600 dark:text-gray-400">
-            <p>Data engineering isn't just about moving data; it's about building trust. My structured approach is designed to eliminate ambiguity, reduce technical debt, and ensure that every pipeline I build delivers consistent business value.</p>
-            <p>By enforcing rigorous phases like discovery, architecture, and validation, I minimize costly production incidents and ensure the systems we build today are robust enough for the challenges of tomorrow.</p>
-        </div>
+    <!-- Interactive Flow Diagram -->
+    <section class="diagram-container">
+      <div class="diagram-header">
+        <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 6px;">End-to-End Pipeline Architecture</h2>
+        <p class="section-subtitle" style="margin-bottom: 0;">Standard event-driven ingestion, processing, and compliance topology[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span)</p>
+      </div>
+      
+      <div class="diagram-svg-wrap">
+        <svg class="pipeline-diagram" viewBox="0 0 850 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Flow Line Backing -->
+          <path d="M 110 110 L 740 110" stroke="var(--rule)" stroke-width="4" stroke-dasharray="6 6"/>
+
+          <!-- Node 1: Ingestion -->
+          <g transform="translate(30, 50)">
+            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--accent)" stroke-width="2"/>
+            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 01: INGESTION</text>
+            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">Daraja Webhook</text>
+            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Schema Validation &amp;</text>
+            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Signature Verification</text>
+          </g>
+
+          <!-- Node 2: Streaming -->
+          <g transform="translate(240, 50)">
+            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--rule)" stroke-width="2"/>
+            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 02: EVENT STREAM</text>
+            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">Kafka Bus</text>
+            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Event Ordering &amp;</text>
+            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Deduplication Buffer</text>
+          </g>
+
+          <!-- Node 3: Processing -->
+          <g transform="translate(450, 50)">
+            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--rule)" stroke-width="2"/>
+            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 03: COMPUTE</text>
+            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">PyFlink Consumer</text>
+            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Anomaly Detection &amp;</text>
+            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Reconciliation Rules</text>
+          </g>
+
+          <!-- Node 4: Storage & Audit -->
+          <g transform="translate(660, 50)">
+            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--rule)" stroke-width="2"/>
+            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 04: GOVERNANCE</text>
+            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">Audit & Ledger Store</text>
+            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Immutable Lineage &amp;</text>
+            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Auto-Retention Purge</text>
+          </g>
+
+          <!-- Status Indicator Below -->
+          <rect x="310" y="210" width="230" height="32" rx="16" fill="var(--paper)" stroke="var(--rule)" stroke-width="1"/>
+          <circle cx="330" cy="226" r="4" fill="#10b981"/>
+          <text x="342" y="230" fill="var(--ink)" font-family="Fira Code" font-size="11">Active Subsecond Stream</text>
+        </svg>
+      </div>
     </section>
 
-    <!-- LIFECYCLE -->
-    <section class="mb-20">
-        <h2 class="text-4xl mb-10">My Project Lifecycle</h2>
-        <div class="space-y-12 border-l-2 border-[#c8401a] pl-8">
-            <!-- [Existing Phases] -->
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <h3 class="text-2xl mb-2">Phase 1: Discovery & Requirements</h3>
-                    <p class="text-gray-400">Activities: Stakeholder meetings, requirement gathering, data source identification, success metrics, risk analysis.</p>
-                </div>
-                <div class="bg-card p-4 rounded">
-                    <p class="text-sm"><strong>Deliverables:</strong> Requirements document, solution proposal, architecture draft.</p>
-                </div>
+    <!-- Detailed 4-Step Process -->
+    <section class="process-section" id="process">
+      <h2 class="section-title">Step-by-Step Delivery Process</h2>
+      <p class="section-subtitle">How a system moves from operational requirements to long-term automated infrastructure.</p>
+
+      <div class="process-timeline">
+        <!-- Step 1 -->
+        <div class="timeline-step">
+          <div class="step-icon">01</div>
+          <div class="step-content">
+            <div class="step-header">
+              <h3 class="step-title">Domain Analysis & Risk Modeling</h3>
+              <span class="step-tag">Phase 1: Architecture</span>
             </div>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <h3 class="text-2xl mb-2">Phase 2: Architecture & Planning</h3>
-                    <p class="text-gray-400">Activities: Data flow design, infrastructure planning, technology selection, cost estimation, security review.</p>
-                </div>
-                <div class="bg-card p-4 rounded">
-                    <p class="text-sm"><strong>Deliverables:</strong> Architecture diagrams, technical design documents, sprint plan.</p>
-                </div>
+            <p class="step-description">
+              Before writing any pipeline code, I map out failure modes, edge cases (e.g., duplicate M-Pesa webhooks, out-of-order execution), and compliance boundaries (ODPC Data Protection Act constraints)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span).
+            </p>
+            <div class="step-deliverables">
+              <div class="step-deliverables-title">Key Outputs</div>
+              <ul>
+                <li>Failure mode & retry trade-off matrix[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span)</li>
+                <li>Lawful basis PII mapping schema[span_11](start_span)[span_11](end_span)</li>
+                <li>Idempotency boundary definitions[span_12](start_span)[span_12](end_span)</li>
+              </ul>
             </div>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <h3 class="text-2xl mb-2">Phase 3: Development</h3>
-                    <p class="text-gray-400">Activities: Pipeline development, ETL implementation, infrastructure setup, testing, documentation.</p>
-                </div>
-                <div class="bg-card p-4 rounded">
-                    <p class="text-sm"><strong>Deliverables:</strong> Source code, automated tests, deployment scripts.</p>
-                </div>
-            </div>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <h3 class="text-2xl mb-2">Phase 4: Deployment</h3>
-                    <p class="text-gray-400">Activities: CI/CD execution, monitoring setup, validation, performance testing.</p>
-                </div>
-                <div class="bg-card p-4 rounded">
-                    <p class="text-sm"><strong>Deliverables:</strong> Production deployment, monitoring dashboards, runbooks.</p>
-                </div>
-            </div>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <h3 class="text-2xl mb-2">Phase 5: Optimization</h3>
-                    <p class="text-gray-400">Activities: Cost optimization, performance tuning, scaling, continuous improvements.</p>
-                </div>
-                <div class="bg-card p-4 rounded">
-                    <p class="text-sm"><strong>Deliverables:</strong> Optimization reports, updated architecture.</p>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <div class="mt-16 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
-            <h3 class="text-2xl mb-6 text-center">Applied Example: Real-Time MPESA Streaming Platform</h3>
-            <div class="space-y-4">
-                <p><strong>Requirement:</strong> Process 10k transactions/sec with sub-second latency.</p>
-                <p><strong>Architecture:</strong> Webhook -> Kafka -> Flink -> BigQuery.</p>
-                <p><strong>Optimization:</strong> Partitioning tuning and Flink checkpointing optimization reduced latency by 40%.</p>
+        <!-- Step 2 -->
+        <div class="timeline-step">
+          <div class="step-icon">02</div>
+          <div class="step-content">
+            <div class="step-header">
+              <h3 class="step-title">Schema Contract & Ingestion Design</h3>
+              <span class="step-tag">Phase 2: Ingestion</span>
             </div>
+            <p class="step-description">
+              Designing strict schema contracts right at the entry point to catch malformed, corrupted, or unexpected payload fields before they leak into downstream models[span_13](start_span)[span_13](end_span).
+            </p>
+            <div class="step-deliverables">
+              <div class="step-deliverables-title">Key Outputs</div>
+              <ul>
+                <li>Strict JSON/Avro payloads validation[span_14](start_span)[span_14](end_span)</li>
+                <li>Webhook signature authentication[span_15](start_span)[span_15](end_span)</li>
+                <li>DLQ (Dead Letter Queue) routing[span_16](start_span)[span_16](end_span)</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <div class="mt-16 bg-white dark:bg-[#18181b] p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
-            <h3 class="text-2xl mb-6 text-center">Development Workflow Diagram</h3>
-            <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-            <div class="mermaid">
-                graph LR
-                    A[Planning] --> B[Design]
-                    B --> C[Build]
-                    C --> D[Test]
-                    D --> E[Deploy]
-                    E --> F[Monitor]
-                    F --> G[Improve]
-                    G --> A
+        <!-- Step 3 -->
+        <div class="timeline-step">
+          <div class="step-icon">03</div>
+          <div class="step-content">
+            <div class="step-header">
+              <h3 class="step-title">Stream Computing & Anomaly Rules</h3>
+              <span class="step-tag">Phase 3: Processing</span>
             </div>
+            <p class="step-description">
+              Implementing event-driven streaming with PyFlink/Kafka consumers to perform near-real-time statistical anomaly detection, flag reconciliation mismatches, and run ledger validation[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span).
+            </p>
+            <div class="step-deliverables">
+              <div class="step-deliverables-title">Key Outputs</div>
+              <ul>
+                <li>Near real-time anomaly flagging[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span)</li>
+                <li>Stateful stream join handlers[span_21](start_span)[span_21](end_span)[span_22](start_span)[span_22](end_span)</li>
+                <li>Event ordering windowing functions[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)</li>
+              </ul>
+            </div>
+          </div>
         </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-step">
+          <div class="step-icon">04</div>
+          <div class="step-content">
+            <div class="step-header">
+              <h3 class="step-title">Observability & Automated Governance</h3>
+              <span class="step-tag">Phase 4: Production</span>
+            </div>
+            <p class="step-description">
+              Wiring up Prometheus metrics, Grafana dashboards, line-level data access logging, and automated retention enforcement so the system operates cleanly without manual interventions[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span).
+            </p>
+            <div class="step-deliverables">
+              <div class="step-deliverables-title">Key Outputs</div>
+              <ul>
+                <li>Prometheus lag & throughput metrics[span_27](start_span)[span_27](end_span)</li>
+                <li>Line-level audit trail logs[span_28](start_span)[span_28](end_span)</li>
+                <li>Automated data retention purges[span_29](start_span)[span_29](end_span)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- TECH STACK -->
-    <section class="mb-20">
-        <h2 class="text-4xl mb-10">Technology Stack</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-card p-4 rounded text-center">Python</div>
-            <div class="bg-card p-4 rounded text-center">SQL</div>
-            <div class="bg-card p-4 rounded text-center">Apache Airflow</div>
-            <div class="bg-card p-4 rounded text-center">Apache Kafka</div>
-            <div class="bg-card p-4 rounded text-center">AWS/GCP</div>
-            <div class="bg-card p-4 rounded text-center">Docker/K8s</div>
-            <div class="bg-card p-4 rounded text-center">Terraform</div>
-            <div class="bg-card p-4 rounded text-center">PostgreSQL</div>
+    <!-- Production Stack Grid -->
+    <section class="stack-section">
+      <h2 class="section-title">Production Tech Stack</h2>
+      <p class="section-subtitle">Technologies and tools selected for durability, speed, and maintainability.</p>
+
+      <div class="stack-grid">
+        <div class="stack-card">
+          <div class="stack-category">STREAMING & BUS</div>
+          <div class="stack-items">Apache Kafka, PyFlink</div>
+          <div class="stack-desc">Real-time event streams, stateful processing, and windowed aggregations[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).</div>
         </div>
+
+        <div class="stack-card">
+          <div class="stack-category">BACKEND & API</div>
+          <div class="stack-items">Python, Django, FastAPI</div>
+          <div class="stack-desc">Rest APIs, Daraja webhook handlers, and web backend infrastructure[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span)[span_34](start_span)[span_34](end_span).</div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-category">OBSERVABILITY</div>
+          <div class="stack-items">Prometheus, Grafana</div>
+          <div class="stack-desc">Consumer lag tracking, throughput monitors, and alerting thresholds[span_35](start_span)[span_35](end_span).</div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-category">GOVERNANCE</div>
+          <div class="stack-items">Git CI/CD, ODPC DPA '19</div>
+          <div class="stack-desc">Schema enforcement, access logging, and automated retention purges[span_36](start_span)[span_36](end_span).</div>
+        </div>
+      </div>
     </section>
 
-    <a href="index.html" class="text-[#c8401a] hover:underline">← Back to Portfolio</a>
-</main>
+    <!-- Bottom Call to Action -->
+    <section class="cta-banner">
+      <h2>Interested in discussing data infrastructure?</h2>
+      <p>Whether it's event-driven architecture, Daraja integrations, or building resilient data pipelines, I'm always open to technical discussions[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span).</p>
+      <a href="mailto:contact@victorrop.com" class="cta-btn">Get in Touch</a>
+    </section>
+  </main>
+
+  <script>
+    // Theme Switch Logic
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+    });
+  </script>
 </body>
 </html>
+
