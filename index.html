@@ -1,461 +1,2346 @@
 <!DOCTYPE html>
-<html lang="en" style="scroll-behavior: smooth;">
+<html lang="en" data-blog-post="portfolio-home">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Victor Kipruto Rop | Data Engineer</title>
-<meta name="description" content="Portfolio of Victor Kipruto Rop, Data Engineer based in Nairobi."/>
+<title>Victor Kipruto Rop — Data Engineer Portfolio</title>
+<meta name="description" content="Portfolio of Victor Kipruto Rop, a Data Engineer specializing in scalable pipelines, ETL design, and data architecture using Airflow, Kafka, and Python."/>
+<meta name="keywords" content="Data Engineer, ETL, Airflow, Kafka, Python, SQL, Nairobi, Kenya, Victor Kipruto Rop, Portfolio"/>
+<meta name="author" content="Victor Kipruto Rop"/>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://github.com/Victor-Kipruto-Rop"/>
+<meta property="og:title" content="Victor Kipruto Rop — Data Engineer"/>
+<meta property="og:description" content="Building production-grade data systems that scale. Explore my projects and technical expertise."/>
+<meta property="og:image" content="assets/1.jpeg"/>
 
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:url" content="https://github.com/Victor-Kipruto-Rop"/>
+<meta property="twitter:title" content="Victor Kipruto Rop — Data Engineer"/>
+<meta property="twitter:description" content="Building production-grade data systems that scale. Explore my projects and technical expertise."/>
+<meta property="twitter:image" content="assets/1.jpeg"/>
+
+<!-- RSS Discovery Link -->
+<link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml">
+
+<link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
+<style>
+  link[rel="icon"] { border-radius: 50%; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
   :root {
-    --bg: #050505;
-    --surface: #111111;
-    --fg: #F3F4F6;
-    --muted: #9CA3AF;
-    --border: #27272A;
-    --accent: #00FF66; /* Terminal Green */
-    --accent-dim: rgba(0, 255, 102, 0.1);
+    --ink:    #0a0e14;
+    --paper:  #f5f0e8;
+    --accent: #c8401a;
+    --blue:   #1a4fd6;
+    --muted:  #7a7060;
+    --rule:   #d4cec2;
+    --card:   #ede8de;
+    --hero-top: 100px;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
   
+  body.dark-mode {
+    --ink:    #f5f0e8;
+    --paper:  #0a0e14;
+    --accent: #ff4b2b;
+    --blue:   #3b82f6;
+    --muted:  #a1a1aa;
+    --rule:   #27272a;
+    --card:   #18181b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
   body {
-    background-color: var(--bg);
-    color: var(--fg);
-    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
     line-height: 1.6;
-    display: flex;
     overflow-x: hidden;
-  }
-
-  ::selection {
-    background: var(--accent);
-    color: #000;
-  }
-
-  /* Typography */
-  h1, h2, h3, .mono {
-    font-family: 'JetBrains Mono', monospace;
-  }
-  h1 { font-size: 2.5rem; letter-spacing: -0.05em; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
-  h2 { font-size: 1.5rem; color: var(--fg); border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 2rem; }
-  h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
-  p { color: var(--muted); margin-bottom: 1.5rem; }
-  a { color: var(--fg); text-decoration: none; transition: color 0.2s; }
-  a:hover { color: var(--accent); }
-
-  /* Layout */
-  .sidebar {
-    width: 320px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: var(--bg);
-    border-right: 1px solid var(--border);
-    padding: 3rem 2rem;
-    display: flex;
-    flex-direction: column;
-    z-index: 10;
-  }
-
-  .main-content {
-    margin-left: 320px;
-    padding: 4rem;
-    max-width: 1000px;
-    width: 100%;
-  }
-
-  /* Sidebar Elements */
-  .profile-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    object-fit: cover;
-    margin-bottom: 1.5rem;
-    filter: grayscale(100%);
-    transition: filter 0.3s;
-  }
-  .sidebar:hover .profile-img { filter: grayscale(0%); }
-
-  .nav-menu {
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    flex-grow: 1;
-  }
-  .nav-menu a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .nav-menu a::before {
-    content: '>';
-    color: var(--accent);
+    cursor: none;
     opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.2s;
+    transition: opacity 0.8s ease-in, background 0.3s ease, color 0.3s ease;
   }
-  .nav-menu a:hover::before, .nav-menu a.active::before {
-    opacity: 1;
-    transform: translateX(0);
+  
+  /* ── Theme Toggle ── */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    position: relative; z-index: 102;
   }
-  .nav-menu a:hover, .nav-menu a.active { color: var(--accent); }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--card); }
+  .theme-toggle .fa-sun { display: none; }
+  body.dark-mode .theme-toggle .fa-moon { display: none; }
+  body.dark-mode .theme-toggle .fa-sun { display: block; }
+  body.loaded { opacity: 1; }
 
-  .socials {
-    display: flex;
-    gap: 1rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
+  /* ── Pre-loader ── */
+  #preloader {
+    position: fixed; inset: 0; z-index: 10000;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+  }
+  #preloader.hidden { transform: translateY(-100%); }
+  .loader-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--paper);
+    overflow: hidden;
+  }
+  .loader-text span {
+    display: inline-block;
+    transform: translateY(100%);
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* Sections */
-  section {
-    margin-bottom: 6rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.6s forwards;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes slideUp { 
+    to { 
+      transform: translateY(0); 
+      opacity: 1;
+    } 
   }
 
-  /* Status Indicator */
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    padding: 0.5rem 1rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    margin-bottom: 2rem;
-  }
-  .status-dot {
-    width: 8px;
-    height: 8px;
+  /* ── Custom cursor ── */
+  #cursor {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    width: 10px; height: 10px;
     background: var(--accent);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent);
-    animation: pulse 2s infinite;
+    pointer-events: none;
+    transition: transform 0.15s ease, opacity 0.2s;
   }
-  @keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+  #cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 9998;
+    width: 36px; height: 36px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1), width 0.3s, height 0.3s, border-color 0.3s;
+  }
+  body.dark-mode #cursor-ring { border-color: #ff4b2b; }
+  body:has(a:hover) #cursor-ring,
+  body:has(button:hover) #cursor-ring { width: 56px; height: 56px; border-color: var(--accent); }
+
+  /* ── Noise overlay ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 9990;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
   }
 
-  /* Grid & Cards */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 72px;
+    background: transparent;
+    transition: background 0.3s ease;
+    gap: 20px;
   }
+  .nav-right {
+    display: flex; align-items: center; gap: 16px;
+  }
+  @media (max-width: 720px) {
+    nav { padding: 16px 20px; gap: 12px; }
+    .nav-logo { font-size: 16px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 10px; letter-spacing: 0.08em; }
+    .theme-toggle { width: 36px; height: 36px; font-size: 14px; }
+  }
+  @media (max-width: 480px) {
+    nav { padding: 14px 16px; gap: 8px; }
+    .nav-logo { font-size: 14px; }
+    .nav-username { font-size: 11px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 9px; }
+    .theme-toggle { width: 32px; height: 32px; font-size: 12px; }
+  }
+  body.dark-mode nav { mix-blend-mode: normal; }
+  /* Light mode only blending for paper effect */
+  body:not(.dark-mode) nav { mix-blend-mode: multiply; }
+  .nav-logo {
+    display:flex; align-items:center; gap:8px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; letter-spacing: -0.5px;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-username { font-family: 'DM Mono', monospace; font-size:13px; color:var(--muted); font-weight:700; text-decoration:none; transition: color 0.3s ease; }
+  body.dark-mode .nav-username { color: var(--ink); }
+
+  /* ── Hamburger Menu ── */
+  .hamburger {
+    display: none; background: none; border: none; cursor: pointer; padding: 8px;
+    align-items: center; justify-content: center; font-size: 28px;
+    color: var(--ink); position: relative; z-index: 101;
+  }
+  .hamburger-close { display: none; }
+  .hamburger.active .hamburger-icon { display: none; }
+  .hamburger.active .hamburger-close { display: inline; }
   
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    transition: all 0.3s ease;
+  .nav-links {
+    display: flex; gap: 32px; align-items: center;
+  }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  body.dark-mode .nav-links a { color: var(--ink); opacity: 0.8; }
+  body.dark-mode .nav-links a:hover { opacity: 1; color: var(--accent); }
+  
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0;
+      display: none; flex-direction: column; gap: 0;
+      background: var(--paper); border-bottom: 1px solid var(--rule);
+      padding: 0; max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .nav-links.active {
+      display: flex; max-height: 500px; padding: 16px 0;
+    }
+    .nav-links a {
+      padding: 12px 20px; font-size: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-links a:last-of-type { border-bottom: none; }
+  }
+
+  /* ── Hero ── */
+  #hero {
+    min-height: 75vh;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-items: center; /* center both columns so name and image align vertically */
     position: relative;
     overflow: hidden;
   }
-  .card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 96px 60px;
+    position: relative; z-index: 3;
+    gap: 18px;
+    max-width: 900px; width: 100%;
   }
-  .card:hover {
-    border-color: var(--muted);
-    transform: translateY(-4px);
+  .hero-right {
+    display: flex; align-items: center; justify-content: center; padding-top: 0;
   }
-  .card:hover::after { transform: scaleX(1); }
+  .hero-right-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; padding-right: 96px; }
+  @media (max-width: 1024px) {
+    .hero-left { padding: 0 48px 40px; }
+    .hero-right-inner { padding-right: 48px; }
+  }
+  @media (max-width: 768px) {
+    .hero-left { padding: 70px 24px 40px; }
+    .hero-right-inner { padding-right: 0; }
+  }
+  @media (max-width: 480px) {
+    .hero-left { padding: 60px 18px 32px; gap: 14px; }
+  }
+  .hero-prof { width: 360px; height: 360px; object-fit: cover; border-radius: 50%; border: none; box-shadow: 0 22px 48px rgba(10,14,20,0.14); overflow: hidden; }
+  @media (max-width: 1024px) { .hero-prof { width: 260px; height: 260px; } }
+  @media (max-width: 720px) { .hero-prof { width: 220px; height: 220px; } }
+  .hero-sub { display: flex; gap: 12px; width: 100%; justify-content: center; }
+  .hero-social { display:flex; gap:28px; align-items:center; }
+  .social-link { display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--ink); }
+  .social-icon { width:40px; height:40px; border-radius:8px; background: var(--ink); color: var(--paper); display:flex; align-items:center; justify-content:center; border: none; transition: transform 0.14s, box-shadow 0.14s; }
+  .social-label { font-family: 'Syne', sans-serif; font-size: 14px; font-weight:600; color:var(--ink); }
+  .social-link:hover .social-icon { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(10,14,20,0.06); }
+  .social-icon i { font-size:16px; }
+  .sub-item { display: flex; flex-direction: column; gap: 6px; }
+  .sub-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  .sub-desc { font-family: 'Syne', sans-serif; font-size: 13px; color: var(--muted); font-weight: 600; }
 
-  /* Skills Matrix */
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+  @media (max-width: 1024px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { padding-top: 40px; }
+    .hero-prof { width: 220px; height: 220px; border-radius: 50%; }
+    .hero-left { padding: 48px 32px; }
   }
-  .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--accent);
+  @media (max-width: 720px) {
+    #hero { min-height: auto; padding-top: 60px; }
+    .hero-left { padding: 24px 20px 32px 20px; gap: 14px; }
+    .hero-right-inner { padding-right: 0; gap: 16px; }
+    .hero-prof { width: 180px; height: 180px; }
+    .hero-social { gap: 16px; flex-wrap: wrap; }
+    .social-link { font-size: 12px; }
+    .social-icon { width: 36px; height: 36px; }
+  }
+  @media (max-width: 480px) {
+    #hero { padding-top: 55px; }
+    .hero-left { padding: 20px 16px 24px 16px; }
+    .hero-prof { width: 160px; height: 160px; }
+    .hero-social { gap: 12px; }
+    .social-icon { width: 32px; height: 32px; font-size: 14px; }
+    .hero-name { font-size: 32px; }
+    .social-label { font-size: 11px; }
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #ff4b2b; margin-bottom: 24px;
+    font-weight: 700; display: inline-block;
+    opacity: 0; max-width: 100%; word-break: break-word;
+    /* entrance + subtle attention pulse */
+    animation: fadeUp 0.6s 0.12s forwards, pulseAttention 1.6s 1s infinite ease-in-out;
+  }
+  @media (max-width: 480px) {
+    .hero-eyebrow { font-size: 10px; letter-spacing: 0.12em; margin-bottom: 16px; }
+  }
+  @keyframes pulseAttention {
+    0%   { transform: translateY(0) scale(1); text-shadow: 0 0 0 rgba(255,75,43,0); }
+    50%  { transform: translateY(-2px) scale(1.02); text-shadow: 0 8px 22px rgba(255,75,43,0.14); }
+    100% { transform: translateY(0) scale(1); text-shadow: 0 0 0 rgba(255,75,43,0); }
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 0.95; letter-spacing: -2px;
+    color: var(--ink); margin-bottom: 8px; max-width: 100%; word-wrap: break-word;
+    /* Animation handled by JS staggered reveal */
+  }
+  @media (max-width: 480px) {
+    .hero-name { letter-spacing: -1px; }
+  }
+  .hero-name em {
+    font-style: italic; color: var(--accent);
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(14px, 2vw, 20px); font-weight: 600;
+    color: var(--muted); margin-bottom: 40px; letter-spacing: 0.01em;
+    opacity: 0; animation: fadeUp 0.9s 0.5s forwards; max-width: 100%; word-wrap: break-word;
+  }
+  @media (max-width: 480px) {
+    .hero-title { margin-bottom: 28px; letter-spacing: 0em; }
+  }
+  .hero-desc {
+    max-width: 440px; width: 100%;
+    font-size: 13px; line-height: 1.75; color: var(--muted);
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
+  }
+  @media (max-width: 480px) {
+    .hero-desc { font-size: 12px; line-height: 1.65; margin-bottom: 32px; }
+  }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .btn-primary {
+    display: inline-block; padding: 14px 32px;
+    background: var(--accent); color: var(--paper);
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; border: 1px solid var(--accent);
+    transition: background 0.25s, color 0.25s;
+  }
+  .btn-primary:hover { background: var(--ink); border-color: var(--ink); }
+  .btn-ghost {
+    display: inline-block; padding: 14px 32px;
+    background: transparent; color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; border: 1px solid var(--accent);
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .btn-ghost:hover { border-color: var(--ink); background: var(--accent); color: var(--paper); }
+
+
+
+
+  .hero-counter {
+    position: absolute; bottom: 48px; right: 48px;
+    font-family: 'DM Serif Display', serif; font-size: 80px;
+    color: rgba(245,240,232,0.08); line-height: 1;
+    pointer-events: none; user-select: none;
   }
 
-  /* Forms & Buttons */
-  .form-group { margin-bottom: 1.5rem; }
-  input, textarea {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--fg);
-    padding: 1rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.875rem;
-    transition: border-color 0.3s;
+  /* Scrolling ticker - modern */
+  .ticker-wrap {
+    background: transparent; overflow: hidden;
+    padding: 14px 0; display:flex; align-items:center;
+    border-top: 1px solid rgba(10,14,20,0.04);
   }
-  input:focus, textarea:focus { outline: none; border-color: var(--accent); }
-  textarea { min-height: 120px; resize: vertical; }
+  .ticker {
+    display: flex; gap: 18px;
+    animation: ticker 20s linear infinite;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .ticker span {
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px;
+    letter-spacing: 0.06em; text-transform: none;
+    color: var(--ink); padding: 8px 18px; border-radius: 999px;
+    background: linear-gradient(90deg, rgba(200,64,26,0.06), rgba(26,79,214,0.03));
+    border: 1px solid rgba(10,14,20,0.04);
+  }
+  .ticker span::after { content: ''; }
+  .ticker-wrap:hover .ticker { animation-play-state: paused; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  .btn {
-    display: inline-block;
-    background: var(--fg);
-    color: var(--bg);
-    padding: 0.75rem 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
+  /* ── Sections ── */
+  section { padding: 96px 72px; }
+  @media (max-width: 1024px) { section { padding: 64px 48px; } }
+  @media (max-width: 720px) { section { padding: 48px 32px; } }
+  @media (max-width: 480px) { section { padding: 32px 20px; } }
+  .section-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
   }
-  .btn:hover { background: var(--accent); }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.05; letter-spacing: -1px;
+    color: var(--ink); margin-bottom: 48px;
+    text-align: center; max-width: 100%; width: 100%; word-wrap: break-word;
+  }
+  @media (max-width: 480px) {
+    .section-title { letter-spacing: -0.5px; margin-bottom: 32px; }
+  }
 
-  /* Terminal Block */
-  .terminal {
-    background: #000;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.875rem;
+  /* ── Why Hire Me ── */
+  #why { background: var(--paper); border-top: 1px solid var(--rule); }
+  #why .section-label { color: var(--accent); }
+  #why .section-title { color: var(--ink); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
-  .terminal-header {
-    display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;
+  .why-card {
+    background: var(--paper); padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(10,14,20,0.06);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s;
   }
-  .term-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); }
-  .term-line { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
-  .term-prompt { color: var(--accent); }
+  .why-card.visible { opacity: 1; transform: translateY(0); }
+  .why-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(10,14,20,0.09); }
+  .why-num {
+    font-family: 'DM Serif Display', serif; font-size: 36px;
+    color: var(--accent); line-height: 1; margin-bottom: 12px;
+  }
+  .why-card h3 {
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+    color: var(--ink); margin-bottom: 8px; letter-spacing: 0.01em;
+  }
+  .why-card p {
+    font-size: 13px; line-height: 1.6; color: var(--muted); max-width: 100%;
+  }
+  .why-summary { max-width: 900px; width: 100%; margin: 0 auto; padding: 28px; background: transparent; }
+  .why-summary .why-text { font-size: 18px; line-height: 1.9; color: var(--muted); text-align: center; font-family: 'Syne', sans-serif; max-width: 100%; }
 
-  /* Responsive */
-  .hamburger { display: none; }
+  /* ── Skills ── */
+  #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
+  .skills-wrap { max-width: 1180px; width: 100%; margin: 12px auto 0; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; }
+  .skill-pill { display:inline-block; padding:10px 14px; border-radius:999px; background: var(--paper); color: var(--ink); border:1px solid var(--rule); font-family: 'DM Mono', monospace; font-size:14px; box-shadow: 0 6px 18px rgba(10,14,20,0.04); cursor: pointer; transition: all 0.2s ease; }
+  .skill-pill:hover { background: var(--card); transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 1100px) { #skills { padding: 28px 16px; } .skill-pill { font-size:13px; padding:8px 12px; } }
+  @media (max-width: 720px) { #skills { padding: 20px 12px; } .skill-pill { width:100%; text-align:center; } }
+
+  /* ── Projects ── */
+  #projects { background: transparent; color: var(--ink); border-top: 1px solid var(--rule); position: relative; padding: 32px 0 56px; }
+  .projects-wrap { max-width: 1180px; margin: 0 auto; position: relative; padding: 0 22px; }
+  .projects-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 18px; }
+  .section-title { color: var(--ink); margin: 0; font-size: 20px; }
+  .section-title::after { content: ''; display:block; width:56px; height:4px; background: var(--accent); border-radius:4px; margin-top:10px; opacity:0.9; }
+  .project-count { margin-left:8px; color: var(--muted); font-size:14px; font-weight:700; }
+
+  .projects-grid { display:flex; gap:24px; align-items:stretch; overflow-x:hidden; scroll-behavior:smooth; padding-bottom:8px; padding-top:6px; scroll-snap-type: x mandatory; }
+  .projects-grid::-webkit-scrollbar{display:none}
+
+  .project-card {
+    min-width: calc((100% - 48px) / 3); flex: 0 0 calc((100% - 48px) / 3); display: flex; flex-direction: column; background: var(--paper); padding: 0; border-radius: 12px; overflow:hidden;
+    box-shadow: 0 10px 30px rgba(10,14,20,0.04); border: 1px solid var(--rule);
+    opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s;
+    scroll-snap-align: start; cursor: pointer;
+  }
+  .project-card.visible { opacity: 1; transform: translateY(0); }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 45px rgba(10,14,20,0.09); border-color: var(--accent); }
   
-  @media (max-width: 900px) {
-    body { flex-direction: column; }
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-      padding: 2rem;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-    }
-    .main-content {
-      margin-left: 0;
-      padding: 2rem;
-    }
-    .nav-menu { display: none; } /* Hide for simplicity in redesign, could add JS toggle */
+  /* ── Project Modal Specifics ── */
+  .project-modal-image { width: 100%; height: 240px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--rule); }
+  .project-modal-meta { display: flex; gap: 16px; margin-bottom: 16px; font-size: 13px; color: var(--accent); font-family: 'DM Mono', monospace; }
+  .project-modal-section-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .project-modal-list { padding-left: 18px; margin-bottom: 16px; }
+  .project-modal-list li { margin-bottom: 6px; }
+  .project-thumb { height: 160px; width:100%; display:block; object-fit:cover; background: #f0efe9; }
+  .project-content { display:flex; flex-direction:column; gap:8px; padding:14px 18px; flex:1; }
+  .project-title { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--ink); margin: 0 0 6px 0; font-weight:700; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin:0; }
+  .project-stack { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .stack-badge { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); background: rgba(200,64,26,0.06); padding:6px 10px; border-radius:8px; border: 1px solid rgba(200,64,26,0.12); display:inline-flex; align-items:center; gap:8px; }
+  .stack-icon { display:inline-flex; width:18px; height:18px; flex:0 0 18px; }
+  .tool-icon { width:18px; height:18px; display:block; }
+  .project-actions { margin-top: 12px; display:flex; gap:10px; }
+
+  .project-controls { position: static; display:flex; gap:12px; align-items:center; pointer-events:auto; }
+  .project-btn { background: transparent; border: 1px solid var(--rule); width:46px; height:46px; border-radius:999px; display:flex; align-items:center; justify-content:center; cursor:pointer; color: var(--ink); transition: all 0.3s ease; }
+  .project-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .project-btn svg { width:18px; height:18px; color: currentColor; }
+
+  @media (max-width: 1100px) { .project-card { min-width: calc((100% - 24px) / 2); flex:0 0 calc((100% - 24px) / 2); } }
+  @media (max-width: 720px) { .projects-wrap { padding: 0 12px; } .project-card { min-width: calc(100% - 40px); flex:0 0 calc(100% - 40px); } }
+  @media (max-width: 540px) { .projects-grid { gap:14px; } .project-controls { display:flex; padding:0 4px; } .project-btn { width:40px; height:40px; } }
+  @media (max-width: 420px) { .project-card { min-width: calc(100vw - 64px); flex: 0 0 calc(100vw - 64px); } }
+
+  /* Formspree success / error banners */
+  .fs-success, .fs-error { display:none; padding:12px 18px; border-radius:10px; text-align:center; font-weight:700; max-width:720px; margin: 0 auto 16px; }
+  .fs-success.visible { display:block; background: var(--accent); color: #fff; box-shadow: 0 12px 30px rgba(200,64,26,0.12); }
+  .fs-error.visible { display:block; background: #fff2f0; color: var(--ink); border:1px solid rgba(200,64,26,0.12); }
+  .fs-success small, .fs-error small { display:block; font-weight:400; margin-top:6px; font-size:13px; color: rgba(255,255,255,0.9); }
+  @media (max-width: 540px) { .fs-success, .fs-error { padding:10px 14px; font-size:14px; } }
+  .btn-sm { padding: 8px 12px; font-size: 12px; border-radius: 8px; text-decoration: none; display:inline-flex; align-items:center; gap:8px; border: 1px solid var(--accent); }
+  .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--ink); }
+  .btn-primary-sm { background: var(--accent); color: var(--paper); border: 1px solid var(--accent); }
+  .btn-sm i { font-size: 14px; }
+  @media (max-width: 1200px) { .projects-grid{ grid-template-columns: repeat(2,1fr);} }
+  @media (max-width: 720px) { .projects-grid{ grid-template-columns: 1fr;} }
+
+  /* ── About ── */
+  #about { border-top: 1px solid var(--rule); }
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 700px) 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .about-text { grid-column: 2; }
+  @media (max-width: 1024px) {
+    .about-layout { grid-template-columns: 1fr; }
+    .about-text { grid-column: auto; }
+  }
+  .about-photo-wrap {
+    position: relative;
+    display: flex; justify-content: center;
+  }
+  .about-photo-wrap::before {
+    content: '';
+    position: absolute; top: 20px; left: 20px; right: -20px; bottom: -20px;
+    border: none; z-index: 0;
+  }
+  .about-photo {
+    width: 320px; height: 400px; object-fit: cover;
+    position: relative; z-index: 1;
+    filter: grayscale(20%);
+    border-radius: 8px;
+    border: 6px solid rgba(10,14,20,0.06);
+    box-shadow: 0 12px 30px rgba(10,14,20,0.12);
+    background-clip: padding-box;
+  }
+  .about-text h2 { margin-bottom: 24px; }
+  .about-body { font-size: 13px; line-height: 1.9; color: var(--muted); margin-bottom: 32px; }
+  .about-facts { display: flex; flex-direction: column; gap: 12px; }
+  .about-fact {
+    display: flex; gap: 16px; align-items: baseline;
+    padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+  }
+  .fact-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); min-width: 100px;
+  }
+  .fact-value { font-size: 12.5px; color: var(--ink); }
+
+  /* ── Contact ── */
+  #contact { background: var(--paper); border-top: 1px solid var(--rule); }
+  #contact .section-title { color: var(--ink); }
+  #contact .section-label { color: var(--accent); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-link {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 12px; border-radius: 10px;
+    background: var(--paper); border: 1px solid var(--rule);
+    color: var(--ink); text-decoration: none;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+    transition: transform 0.14s, box-shadow 0.14s, color 0.14s;
+  }
+  .contact-link:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(10,14,20,0.06); color: var(--accent); }
+  .contact-link-arrow { font-size: 14px; }
+  .contact-note { font-size: 13px; color: var(--muted); }
+  .contact-avail {
+    margin-top: 20px; display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    color: #8aba72;
+  }
+  .avail-dot { width: 8px; height: 8px; border-radius: 50%; background: #8aba72; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:0.35 } }
+
+  /* ── Footer ── */
+  footer {
+    background: transparent; padding: 24px 72px;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted);
+  }
+  footer p {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.08em; margin: 0;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 0.85; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 120px 24px 40px; }
+    .hero-right { height: auto; padding-bottom: 40px; }
+    .hero-right-inner { padding-right: 0; }
+    section { padding: 64px 24px; }
+    .why-grid, .about-layout, .contact-layout, .skills-layout { grid-template-columns: 1fr; gap: 24px; }
+    .about-layout { gap: 40px; }
+    .contact-layout { gap: 48px; }
+    .hero-photo, .about-photo { width: 100%; height: auto; aspect-ratio: 4/5; }
+    .about-photo-wrap::before { display: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+    .contact-row { flex-direction: column; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-name { font-size: 36px; }
+    .hero-title { font-size: 16px; }
+    .section-title { font-size: 28px; }
+    .hero-cta { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-ghost { text-align: center; width: 100%; }
+    #cursor, #cursor-ring { display: none; }
+    body { cursor: auto; }
+  }
+
+  /* Contact form styles */
+  .contact-form { max-width: 760px; margin: 24px auto 0; display:flex; flex-direction:column; gap:12px; }
+  .contact-row { display:flex; gap:12px; }
+  .contact-row .field { flex:1; }
+  .contact-form input, .contact-form textarea { width:100%; padding:12px 14px; border:1px solid var(--rule); border-radius:8px; font-family: 'DM Mono', monospace; font-size:14px; }
+  .contact-form textarea { min-height:120px; resize:vertical; }
+  .contact-note.small { font-size:13px; color:var(--muted); text-align:center; margin-top:8px; }
+
+  /* ── Blog & Experience ── */
+  .blog-grid, .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .blog-card, .testimonial-card {
+    background: var(--paper); padding: 32px;
+    border-radius: 12px; border: 1.5px solid var(--rule);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .blog-card:hover, .testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(10,14,20,0.08);
+    border-color: var(--accent);
+  }
+  .blog-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 12px; display: block; }
+  .blog-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
+  .blog-excerpt { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+  
+  .experience-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 16px; }
+  .experience-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); margin: 0 0 4px 0; }
+  .experience-company { font-family: 'Syne', sans-serif; font-size: 12px; color: var(--accent); font-weight: 600; margin: 0; text-transform: uppercase; letter-spacing: 0.08em; }
+  .experience-date { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); margin: 0; white-space: nowrap; }
+  .experience-desc { font-size: 13px; color: var(--ink); line-height: 1.7; margin-bottom: 16px; }
+  .experience-skills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag { display: inline-block; padding: 4px 10px; background: var(--card); color: var(--ink); border-radius: 4px; font-size: 11px; font-family: 'DM Mono', monospace; border: 1px solid var(--rule); }
+  
+  
+  .testimonial-text::before { content: '“'; position: absolute; top: -20px; left: -10px; font-size: 60px; color: var(--accent); opacity: 0.2; font-family: 'DM Serif Display', serif; }
+  .testimonial-author { display: flex; align-items: center; gap: 16px; }
+  .author-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+  .author-info h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); }
+  .author-info p { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+  /* ── Expertise & Contributions ── */
+  #expertise, #contributions { border-top: 1px solid var(--rule); }
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .expertise-card {
+    background: var(--paper); padding: 32px;
+    border-radius: 12px; border: 1.5px solid var(--rule);
+    transition: all 0.3s ease;
+  }
+  .expertise-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(10,14,20,0.08);
+    border-color: var(--accent);
+  }
+  .expertise-icon { font-size: 32px; color: var(--accent); margin-bottom: 16px; }
+  .expertise-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+  .expertise-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+  .contributions-list {
+    margin-top: 48px;
+    padding-left: 24px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contributions-list li {
+    font-size: 14px; color: var(--muted); margin-bottom: 12px;
+    line-height: 1.7;
+  }
+  .contributions-list li i { color: var(--accent); margin-right: 12px; }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute; top: -40px; left: 0;
+    background: var(--accent); color: white;
+    padding: 8px; z-index: 1000;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 0; }
+  .gh-chart { overflow:auto; padding:12px 18px; border-radius:8px; border:1px solid var(--rule); background:var(--paper); transition: background 0.3s ease; }
+  body.dark-mode #gh-chart { filter: invert(0.9) hue-rotate(180deg) brightness(1.2); mix-blend-mode: screen; }
+
+  /* ── Top Repositories ── */
+  .top-repos-section { margin-top: 48px; }
+  .top-repos-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  .top-repos-title::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
+  .top-repos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .repo-item { 
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; 
+    transition: all 0.3s ease; cursor: pointer; display: flex; flex-direction: column; gap: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  }
+  .repo-item:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+  .repo-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; justify-content: space-between; }
+  .repo-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; flex-grow: 1; }
+  .repo-stats { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .repo-lang { display: flex; align-items: center; gap: 6px; }
+  .repo-lang-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .repo-stars { display: flex; align-items: center; gap: 4px; }
+
+  @media (max-width: 720px) {
+    .top-repos-grid { grid-template-columns: 1fr; }
   }
 </style>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Victor Kipruto Rop",
+  "jobTitle": "Data Engineer",
+  "url": "https://github.com/Victor-Kipruto-Rop",
+  "sameAs": [
+    "https://www.linkedin.com/in/victor-kipruto-rop",
+    "https://github.com/Victor-Kipruto-Rop",
+    "https://www.linkedin.com/in/victor-kipruto-rop"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Nairobi",
+    "addressCountry": "Kenya"
+  }
+}
+</script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
 </head>
 <body>
 
-<aside class="sidebar">
-  <img src="assets/1.jpeg" alt="Victor Kipruto" class="profile-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzIyMiIvPjwvc3ZnPg=='">
-  <div class="mono" style="font-size: 0.875rem; color: var(--accent); margin-bottom: 0.5rem;">SYS_ADMIN / DE</div>
-  <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Victor Kipruto Rop</h1>
-  <p style="font-size: 0.875rem; margin-bottom: 0;">Data Engineer building resilient, scalable pipelines. Nairobi, KE.</p>
-  
-  <nav class="nav-menu">
-    <a href="#about" class="active">01. About</a>
-    <a href="#experience">02. Experience</a>
-    <a href="#projects">03. Projects</a>
-    <a href="#infrastructure">04. Tech Stack</a>
-    <a href="#contact">05. Contact</a>
-  </nav>
+<div id="preloader">
+  <div class="loader-text"><span>Victor Kipruto Rop</span></div>
+</div>
 
-  <div class="socials" style="margin-top: auto;">
-    <a href="#">GH://victor-k</a>
-    <a href="#">IN://v-kipruto</a>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener">
+    <img src="assets/1.jpeg" alt="Victor Kipruto Rop" style="height: 48px; width: 48px; border-radius: 50%; object-fit: cover; display: block;"/>
+    <span class="nav-username">@Victor-Kipruto-Rop</span>
+  </a>
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger-icon">☰</span>
+      <span class="hamburger-close">✕</span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#blog">Blog</a>
+      <a href="#github-activity">Activity</a>
+      <a href="#send-message">Contact</a>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
   </div>
-</aside>
+</nav>
 
-<main class="main-content">
-  
-  <section id="hero" style="animation-delay: 0.1s;">
-    <div class="status">
-      <div class="status-dot"></div>
-      Available for Internships · 2026
-    </div>
-    <h1>Architecting data flows <br>for scale and reliability.</h1>
-    <p style="max-width: 600px; font-size: 1.125rem;">
-      I design and deploy production-grade data infrastructure. Specialized in low-latency streaming (Kafka/Flink), robust ETL automation (Airflow), and enterprise data warehouse modeling.
+<main id="main-content">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">// AVAILABLE FOR INTERNSHIPS · 2026</p>
+    <h1 class="hero-name" id="hero-name">Victor Kipruto Rop</h1>
+    <p class="hero-title">Data Engineer · Pipeline Architect · Data Architect</p>
+    <p class="hero-desc">
+      Building production-grade data systems that scale — from Kafka streams to Airflow orchestration. Experienced in designing reliable ETL, low-latency streaming, and warehouse modelling. Based in Nairobi, Kenya.
     </p>
-  </section>
-
-  <section id="about" style="animation-delay: 0.2s;">
-    <h2>01. About_Me</h2>
-    <div class="terminal">
-      <div class="terminal-header">
-        <div class="term-dot" style="background:#ff5f56"></div>
-        <div class="term-dot" style="background:#ffbd2e"></div>
-        <div class="term-dot" style="background:#27c93f"></div>
-      </div>
-      <div class="term-line">
-        <span class="term-prompt">victor@server:~$</span>
-        <span>cat background.txt</span>
-      </div>
-      <div style="color: var(--muted); margin-bottom: 1rem;">
-        Final-year BSc Data Science student at The Cooperative University of Kenya. My core philosophy is that clean, deterministic data engineering is the foundation of any successful AI or analytics initiative.
-      </div>
-      <div class="term-line">
-        <span class="term-prompt">victor@server:~$</span>
-        <span>systemctl status interests</span>
-      </div>
-      <div style="color: var(--muted);">
-        Active: Distributed systems, East African tech infrastructure, open-source data tooling, and optimizing query engines.
-      </div>
-      <div class="term-line" style="margin-top:1rem;">
-        <span class="term-prompt">victor@server:~$</span><span class="cursor" style="animation: pulse 1s infinite;">_</span>
-      </div>
+    <div class="hero-cta">
+      <a class="btn-primary magnetic" href="#projects">View Projects</a>
+      <a class="btn-ghost magnetic" href="#send-message">Hire Me</a>
+      <a class="btn-ghost magnetic" href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" aria-label="Schedule a call">Schedule Call</a>
+      <a class="btn-ghost magnetic" href="#" onclick="openCvModal(); return false;" aria-label="View or Download Victor's Resume CV">View/Download CV</a>
     </div>
-  </section>
-
-  <section id="experience" style="animation-delay: 0.3s;">
-    <h2>02. Execution_Log</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="mono" style="font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem;">2022 - PRESENT</div>
-        <h3>BSc Data Science</h3>
-        <p style="font-size: 0.875rem;">The Cooperative University of Kenya. Focused on advanced data structures, algorithmic design, and data engineering principles.</p>
-      </div>
-      <div class="card">
-        <div class="mono" style="font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem;">2025 - 2026</div>
-        <h3>Independent Infrastructure Dev</h3>
-        <p style="font-size: 0.875rem;">Designed containerized data workflows. Built and managed end-to-end cloud ETL systems handling simulated real-time transaction loads.</p>
-      </div>
-      <div class="card">
-        <div class="mono" style="font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem;">CERTIFICATION</div>
-        <h3>IBM Big Data Foundations</h3>
-        <p style="font-size: 0.875rem;">Mastered concepts in Hadoop ecosystems, MapReduce, distributed computing, and enterprise data lifecycle management.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" style="animation-delay: 0.4s;">
-    <h2>03. Deployed_Systems</h2>
-    <div style="display: flex; flex-direction: column; gap: 2rem;">
-      
-      <div class="card" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start;">
-        <div>
-          <h3 class="mono" style="color: var(--accent);">mpesa-stream-ingest</h3>
-          <p style="font-size: 0.875rem; margin-top: 1rem;">Real-time event processing architecture.</p>
-          <a href="#" class="mono" style="font-size: 0.75rem; text-decoration: underline;">[View Repository]</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-inner">
+      <img class="hero-prof" src="assets/1.jpeg" alt="Victor Kipruto Rop" loading="lazy" decoding="async"/>
+      <div class="hero-sub">
+        <div class="hero-social">
+          <a class="social-link" href="mailto:kiprutovictor39@gmail.com" aria-label="Email" title="Email">
+            <span class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><path d="M125.4 128C91.5 128 64 155.5 64 189.4C64 190.3 64 191.1 64.1 192L64 192L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 192L575.9 192C575.9 191.1 576 190.3 576 189.4C576 155.5 548.5 128 514.6 128L125.4 128zM528 256.3L528 448C528 456.8 520.8 464 512 464L128 464C119.2 464 112 456.8 112 448L112 256.3L266.8 373.7C298.2 397.6 341.7 397.6 373.2 373.7L528 256.3zM112 189.4C112 182 118 176 125.4 176L514.6 176C522 176 528 182 528 189.4C528 193.6 526 197.6 522.7 200.1L344.2 335.5C329.9 346.3 310.1 346.3 295.8 335.5L117.3 200.1C114 197.6 112 193.6 112 189.4z"/></svg>
+            </span>
+            <span class="social-label">Email</span>
+          </a>
+          <a class="social-link" href="tel:+254723484552" aria-label="Phone" title="Call">
+            <span class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.21z"/></svg>
+            </span>
+            <span class="social-label">Phone</span>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/victor-kipruto-rop" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <span class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg>
+            </span>
+            <span class="social-label">LinkedIn</span>
+          </a>
+          <a class="social-link" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <span class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg>
+            </span>
+            <span class="social-label">GitHub</span>
+          </a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">// 02</p>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-layout">
+    <div class="about-text">
+      <p class="about-body">
+        I'm a final-year BSc Data Science student at The Cooperative University of Kenya, building a career at the intersection of scalable systems and trustworthy data. My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
+      </p>
+      <p class="about-body">
+        Outside of building pipelines, I'm drawn to the growing data ecosystem across East Africa and the opportunity to work on infrastructure that has real operational impact — whether in aviation safety, energy, or financial services.
+      </p>
+      <div class="about-facts">
+        <div class="about-fact">
+          <span class="fact-label">University</span>
+          <span class="fact-value">The Cooperative University of Kenya</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Degree</span>
+          <span class="fact-value">BSc Data Science · Expected 2027</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Location</span>
+          <span class="fact-value">Nairobi, Kenya</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Status</span>
+          <span class="fact-value">Open to Data Engineering internships</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">GitHub</span>
+          <span class="fact-value">github.com/Victor-Kipruto-Rop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">// 03</p>
+  <h2 class="section-title">Learning & Project Experience</h2>
+  <div class="experience-grid">
+    <div class="experience-card reveal">
+      <div class="experience-header">
         <div>
-          <p>A high-throughput streaming pipeline capturing Safaricom Daraja API webhooks. Events are published to Kafka topics, processed in-flight via Apache Flink, and loaded into a dimensional model using dbt.</p>
-          <div class="tags">
-            <span class="tag">Kafka</span> <span class="tag">Flink</span> <span class="tag">dbt</span> <span class="tag">PostgreSQL</span>
+          <h3 class="experience-title">Final-Year BSc Data Science Student</h3>
+          <p class="experience-company">The Cooperative University of Kenya</p>
+        </div>
+        <p class="experience-date">2022 - Present</p>
+      </div>
+      <p class="experience-desc">Over the past year, I've specialized in data engineering and have built production-grade data systems through hands-on projects. Designed and implemented scalable ETL pipelines, real-time stream processing with Kafka, and warehouse infrastructure. These projects have equipped me with deep technical skills in Python, SQL, Airflow orchestration, and cloud architecture.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Apache Airflow</span>
+        <span class="skill-tag">Kafka</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">ETL/ELT</span>
+      </div>
+    </div>
+    <div class="experience-card reveal" style="transition-delay:0.1s">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Hands-On Project Development</h3>
+          <p class="experience-company">Building Real-World Data Infrastructure</p>
+        </div>
+        <p class="experience-date">Last 12 Months</p>
+      </div>
+      <p class="experience-desc">Completed 5 major projects involving data pipeline design, cloud ETL systems, real-time transaction streaming, and warehouse optimization. Each project has significantly strengthened my understanding of production systems, best practices, and scalable architecture. I'm committed to continuous learning, eager to gain from experienced professionals, and passionate about building reliable data systems that drive organizational value.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Cloud Architecture</span>
+        <span class="skill-tag">System Design</span>
+        <span class="skill-tag">CI/CD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// 04</p>
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="skills-wrap">
+    <div class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</div>
+    <div class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</div>
+    <div class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</div>
+    <div class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</div>
+    <div class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</div>
+    <div class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</div>
+    <div class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</div>
+    <div class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</div>
+    <div class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</div>
+    <div class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</div>
+    <div class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</div>
+    <div class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</div>
+    <div class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</div>
+    <div class="skill-pill" onclick="openSkillModal('Docker')">Docker</div>
+    <div class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</div>
+    <div class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</div>
+    <div class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</div>
+    <div class="skill-pill" onclick="openSkillModal('Python')">Python</div>
+    <div class="skill-pill" onclick="openSkillModal('SQL')">SQL</div>
+    <div class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</div>
+    <div class="skill-pill" onclick="openSkillModal('Git')">Git</div>
+    <div class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">// 05</p>
+  <h2 class="section-title">Professional Certifications</h2>
+  <div class="experience-grid">
+    <div class="experience-card reveal">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Big Data Foundations</h3>
+          <p class="experience-company">IBM / Cognitive Class</p>
+        </div>
+        <p class="experience-date">2026</p>
+      </div>
+      <p class="experience-desc">Comprehensive training in big data concepts, Hadoop ecosystem, and distributed computing fundamentals.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Big Data</span>
+        <span class="skill-tag">Hadoop</span>
+        <span class="skill-tag">IBM Cloud</span>
+      </div>
+      <div style="margin-top:16px;">
+        <button onclick="openCertModal('assets/certifications/IBM_BD0101EN_Certificate_Cognitive_Class.pdf')" class="btn-sm btn-primary-sm magnetic">View Certificate</button>
+      </div>
+    </div>
+    <div class="experience-card reveal" style="transition-delay:0.1s">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Enterprise Design Thinking</h3>
+          <p class="experience-company">IBM</p>
+        </div>
+        <p class="experience-date">2026</p>
+      </div>
+      <p class="experience-desc">Mastered user-centered design principles and collaboration techniques for solving complex business problems.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Design Thinking</span>
+        <span class="skill-tag">User Experience</span>
+        <span class="skill-tag">Problem Solving</span>
+      </div>
+      <div style="margin-top:16px;">
+        <button onclick="openCertModal('assets/certifications/IBM_Design_Thinking.pdf')" class="btn-sm btn-outline magnetic">View Certificate</button>
+      </div>
+    </div>
+    <div class="experience-card reveal" style="transition-delay:0.2s">
+      <div class="experience-header">
+        <div>
+          <h3 class="experience-title">Professional Development</h3>
+          <p class="experience-company">Verified Credential</p>
+        </div>
+        <p class="experience-date">2026</p>
+      </div>
+      <p class="experience-desc">Continued learning and specialization in scalable data systems and engineering best practices.</p>
+      <div class="experience-skills">
+        <span class="skill-tag">Data Engineering</span>
+        <span class="skill-tag">Systems Architecture</span>
+      </div>
+      <div style="margin-top:16px;">
+        <button onclick="openCertModal('assets/certifications/Professional_Development.pdf')" class="btn-sm btn-outline magnetic">View Certificate</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// 06</p>
+  <div class="projects-wrap">
+    <div class="projects-header">
+      <h2 class="section-title">Projects <span class="project-count">(5)</span></h2>
+      <div class="project-controls">
+        <button class="project-btn project-prev" aria-label="Previous projects" onclick="scrollProjects(-1)">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="project-btn project-next" aria-label="Next projects" onclick="scrollProjects(1)">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <div class="project-card reveal" onclick="openProjectModal({title: 'Data Engineering — Full Project', desc: 'Designed and automated a complete star schema architecture with cloud-based data ingestion and optimised analytical queries for BI reporting.', stack: ['Python', 'SQL', 'ETL', 'Cloud Storage'], img: 'assets/images/1.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project'})">
+        <img class="project-thumb" src="assets/images/1.jpeg" alt="Data Engineering thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Data Engineering — Full Project</p>
+          <p class="project-desc">Designed and automated a complete star schema architecture with cloud-based data ingestion and optimised analytical queries for BI reporting.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">SQL</span>
+            <span class="stack-badge">ETL</span>
+            <span class="stack-badge">Cloud Storage</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View project">View Project</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View README">Readme</a>
           </div>
         </div>
       </div>
 
-      <div class="card" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start;">
-        <div>
-          <h3 class="mono" style="color: var(--accent);">cloud-etl-engine</h3>
-          <p style="font-size: 0.875rem; margin-top: 1rem;">Automated batched data orchestration.</p>
-          <a href="#" class="mono" style="font-size: 0.75rem; text-decoration: underline;">[View Repository]</a>
+      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
+        <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Cloud ETL Pipeline</p>
+          <p class="project-desc">Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Airflow</span>
+            <span class="stack-badge">Docker</span>
+            <span class="stack-badge">Pytest</span>
+            <span class="stack-badge">GitHub Actions</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline" target="_blank" rel="noopener">View</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline" target="_blank" rel="noopener">Readme</a>
+          </div>
         </div>
-        <div>
-          <p>Dockerized multi-stage ETL application. Features include synthetic data generation, rigorous deduplication layers, rule-based validation (Pytest), and orchestration via Apache Airflow.</p>
-          <div class="tags">
-            <span class="tag">Airflow</span> <span class="tag">Docker</span> <span class="tag">Python</span> <span class="tag">Pytest</span>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.16s" onclick="openProjectModal({title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python', 'PostgreSQL', 'Connection Pooling'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'})">
+        <img class="project-thumb" src="assets/images/3.jpeg" alt="Mpesa pipeline thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Mpesa / Safaricom Pipeline</p>
+          <p class="project-desc">High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">Connection Pooling</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-" target="_blank" rel="noopener">View</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-" target="_blank" rel="noopener">Readme</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.24s" onclick="openProjectModal({title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python', 'Kafka', 'Flink', 'dbt', 'Terraform', 'BigQuery', 'Airflow', 'Grafana'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'})">
+        <img class="project-thumb" src="assets/images/4.jpeg" alt="Streaming thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Real-Time Transaction Streaming (MPESA)</p>
+          <p class="project-desc">A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Kafka</span>
+            <span class="stack-badge">Flink</span>
+            <span class="stack-badge">dbt</span>
+            <span class="stack-badge">Terraform</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener">View</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener">Readme</a>
           </div>
         </div>
       </div>
 
     </div>
-  </section>
+    <div class="flex justify-center mt-12">
+      <a href="https://github.com/Victor-Kipruto-Rop?tab=repositories" target="_blank" rel="noopener" class="btn-primary">View More Projects →</a>
+    </div>
+  </div>
+</section>
 
-  <section id="infrastructure" style="animation-delay: 0.5s;">
-    <h2>04. Infrastructure_&_Tools</h2>
-    <div class="card">
-      <div class="tags" style="gap: 1rem;">
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Apache Airflow</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Apache Kafka</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Python 3.x</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">PostgreSQL</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Docker</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">SQL</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">dbt</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">CI/CD Pipelines</span>
-        <span class="tag" style="font-size: 1rem; padding: 0.5rem 1rem;">Dimensional Modeling</span>
+
+<!-- BLOG -->
+<section id="blog">
+  <p class="section-label">// 06</p>
+  <h2 class="section-title">Technical Blog</h2>
+  <div class="blog-grid">
+    <div class="blog-card reveal">
+      <span class="blog-date">June 5, 2026 · 5 min read</span>
+      <h3 class="blog-title">Welcome to My Technical Blog</h3>
+      <p class="blog-excerpt">An introduction to my technical blog where I share insights on data engineering, ETL pipelines, and real-time systems.</p>
+      <a href="post.html?id=first-post" class="btn-ghost btn-sm">Read Article</a>
+    </div>
+    <div class="blog-card reveal" style="transition-delay:0.1s">
+      <span class="blog-date">June 4, 2026 · 12 min read</span>
+      <h3 class="blog-title">Data Engineering Fundamentals: Building Scalable Systems</h3>
+      <p class="blog-excerpt">A comprehensive guide to data engineering fundamentals, covering architecture principles, ETL design patterns, and production-grade best practices.</p>
+      <a href="post.html?id=data-engineering" class="btn-ghost btn-sm">Read Article</a>
+    </div>
+    <div class="blog-card reveal" style="transition-delay:0.2s">
+      <span class="blog-date">May 28, 2026 · 14 min read</span>
+      <h3 class="blog-title">Advanced Airflow Patterns & Optimization</h3>
+      <p class="blog-excerpt">Deep dive into dynamic DAG generation, custom operators, monitoring strategies, and scaling Airflow to production workloads.</p>
+      <a href="post.html?id=airflow-advanced" class="btn-ghost btn-sm">Read Article</a>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="blog.html" class="btn-primary" style="display:inline-block;padding:12px 24px;background:var(--accent);color:var(--paper);border-radius:4px;text-decoration:none;margin-right:12px;">Browse All Articles (6+)</a>
+    <button onclick="openSubscriptionModal()" class="btn-secondary" style="display:inline-block;padding:12px 24px;background:var(--muted);color:var(--paper);border-radius:4px;text-decoration:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;">📧 Subscribe for Updates</button>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-label">// 07</p>
+  <h2 class="section-title">Testimonials & Feedback</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px">
+    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
+      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6">&quot;Victor's ability to design scalable data pipelines is exceptional. His Airflow implementations are production-ready and well-documented. A great addition to any data team.&quot;</p>
+      <p style="font-weight:600;color:var(--accent);margin-bottom:4px">Data Engineering Mentor</p>
+      <p style="color:var(--muted);font-size:13px">Project Lead • The Cooperative University</p>
+    </div>
+    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
+      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6">&quot;Demonstrates exceptional understanding of cloud infrastructure, CI/CD pipelines, and distributed systems. Eager to learn and collaborate effectively with the team.&quot;</p>
+      <p style="font-weight:600;color:var(--accent);margin-bottom:4px">DevOps & Infrastructure Review</p>
+      <p style="color:var(--muted);font-size:13px">Technical Assessment • GitHub Projects</p>
+    </div>
+    <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
+      <p style="font-style:italic;color:var(--ink);margin-bottom:16px;line-height:1.6">&quot;Proficient in ETL architectures, real-time streaming with Kafka, and warehouse modelling. Shows strong fundamentals and brings fresh perspectives to complex problems.&quot;</p>
+      <p style="font-weight:600;color:var(--accent);margin-bottom:4px">Data Architecture Review</p>
+      <p style="color:var(--muted);font-size:13px">Technical Feedback • Project Collaboration</p>
+    </div>
+  </div>
+<!-- SERVICES / EXPERTISE -->
+<section id="expertise">
+  <p class="section-label">// 08</p>
+  <h2 class="section-title">How I Work</h2>
+  <div class="expertise-grid">
+    <div class="expertise-card reveal" onclick="openSkillModal('Pipeline Design')">
+      <div class="expertise-icon"><i class="fas fa-project-diagram"></i></div>
+      <h3 class="expertise-title">Pipeline Design</h3>
+      <p class="expertise-desc">I design resilient ETL/ELT frameworks. By treating data pipelines as software, I ensure modularity, observability, and scalability from the very first row.</p>
+    </div>
+    <div class="expertise-card reveal" style="transition-delay:0.1s" onclick="openSkillModal('Orchestration')">
+      <div class="expertise-icon"><i class="fas fa-clock"></i></div>
+      <h3 class="expertise-title">Orchestration</h3>
+      <p class="expertise-desc">I leverage Apache Airflow to turn complex, interdependent data tasks into deterministic, automated workflows with robust alerting and retry strategies.</p>
+    </div>
+    <div class="expertise-card reveal" style="transition-delay:0.2s" onclick="openSkillModal('Data Modelling')">
+      <div class="expertise-icon"><i class="fas fa-database"></i></div>
+      <h3 class="expertise-title">Data Modelling</h3>
+      <p class="expertise-desc">I bridge raw data to business value using dimensional modelling (Star/Snowflake), optimized for high-performance analytical query engines.</p>
+    </div>
+    <div class="expertise-card reveal" style="transition-delay:0.3s" onclick="openSkillModal('Data CI/CD')">
+      <div class="expertise-icon"><i class="fas fa-infinity"></i></div>
+      <h3 class="expertise-title">Data CI/CD</h3>
+      <p class="expertise-desc">I treat data infrastructure with engineering rigor, implementing automated unit testing (Pytest) and deployment pipelines for constant reliability.</p>
+    </div>
+  </div>
+  <div class="flex justify-center mt-12">
+    <a href="how-i-work.html" class="btn-primary">View Comprehensive Engineering Approach →</a>
+  </div>
+</section>
+
+<!-- CONTRIBUTIONS -->
+<section id="contributions">
+  <p class="section-label">// 09</p>
+  <h2 class="section-title">Talks & Contributions</h2>
+  <div class="contributions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-top: 48px;">
+    <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule);">
+        <i class="fas fa-code-branch" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
+        <h4 style="font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 8px;">Open Source Contribution</h4>
+        <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Improved error-handling documentation and resolved critical race conditions in a widely used Python data processing library.</p>
+        <a href="contributions.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View All Contributions →</a>
+    </div>
+    <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule); transition-delay: 0.1s;">
+        <i class="fas fa-microphone" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
+        <h4 style="font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 8px;">Tech Talk</h4>
+        <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Delivered a technical session on "Designing Fault-Tolerant Data Pipelines with Airflow" to 100+ students at a university tech meetup.</p>
+        <a href="talks.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View All Talks →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    });
+</script>
+
+<!-- GITHUB ACTIVITY -->
+<section id="github-activity">
+  <p class="section-label">// 07</p>
+  <div class="github-wrap">
+    <div class="github-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <h2 class="section-title">GitHub Activity <span class="project-count" id="gh-count"></span></h2>
+      <a class="gh-username" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" style="text-decoration:none;color:var(--muted);font-weight:700;display:inline-flex;gap:8px;align-items:center;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.262.82-.582 0-.287-.01-1.044-.016-2.05-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 013.003-.404c1.02.005 2.045.138 3.004.404 2.29-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.81 1.096.81 2.21 0 1.596-.014 2.882-.014 3.274 0 .323.217.699.825.58C20.565 21.796 24 17.298 24 12c0-6.63-5.373-12-12-12z"/></svg>
+        <span>@Victor-Kipruto-Rop</span>
+      </a>
+    </div>
+    <p id="gh-sub" style="color:var(--muted);margin-top:8px;margin-bottom:12px;">Loading recent activity…</p>
+    <div class="gh-chart">
+      <img id="gh-chart" src="https://ghchart.rshah.org/40c463/Victor-Kipruto-Rop" alt="Victor Kipruto Rop's GitHub contributions" style="width:100%;max-width:980px;display:block;" />
+    </div>
+    <div class="gh-legend" style="display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);">
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:13px;">
+        <span>Less</span>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="width:14px;height:14px;border:1px solid var(--rule);border-radius:3px;display:inline-block;background:#ebedf0"></span>
+          <span style="width:14px;height:14px;border:1px solid #76ff5e;border-radius:3px;display:inline-block;background:#76ff5e" title="Few contributions"></span>
+          <span style="width:14px;height:14px;border:1px solid #4caf50;border-radius:3px;display:inline-block;background:#4caf50" title="Several contributions"></span>
+          <span style="width:14px;height:14px;border:1px solid #2e8b57;border-radius:3px;display:inline-block;background:#2e8b57" title="More contributions"></span>
+          <span style="width:14px;height:14px;border:1px solid #0d4a2a;border-radius:3px;display:inline-block;background:#0d4a2a" title="Many contributions"></span>
+        </div>
+        <span>More</span>
       </div>
     </div>
-  </section>
 
-  <section id="contact" style="animation-delay: 0.6s; margin-bottom: 2rem;">
-    <h2>05. Open_Connection</h2>
-    <div class="grid" style="grid-template-columns: 1fr 1fr;">
-      <div>
-        <p>Currently open to internship opportunities, technical discussions, or collaborations on data infrastructure projects.</p>
-        <div class="mono" style="margin-top: 2rem;">
-          <p>EMAIL: <a href="mailto:kiprutovictor39@gmail.com" style="color: var(--accent);">kiprutovictor39@gmail.com</a></p>
-          <p>CALENDAR: <a href="https://calendly.com/kiprutovictor39" target="_blank" style="color: var(--accent);">Schedule a sync</a></p>
-        </div>
+    <div class="top-repos-section">
+      <h3 class="top-repos-title">Top Repositories</h3>
+      <div id="top-repos-container" class="top-repos-grid">
+        <p style="color:var(--muted);font-family:'DM Mono',monospace;">Loading repositories…</p>
       </div>
-      <form style="background: var(--surface); padding: 2rem; border: 1px solid var(--border);">
-        <div class="form-group">
-          <input type="text" placeholder="name = input('Name: ')" required>
+    </div>
+  </div>
+</section>
+
+
+<!-- SEND MESSAGE -->
+<section id="send-message">
+  <p class="section-label">// 07</p>
+  <h2 class="section-title">Get in Touch</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin:48px 0;align-items:start">
+    <div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Schedule a Call</h3>
+      <p style="color:var(--muted);margin-bottom:16px;">Want to discuss data engineering, project collaboration, or just chat about pipelines? Book a time that works for you.</p>
+      <a href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block">Schedule on Calendly →</a>
+    </div>
+    <div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Send a Message</h3>
+      <p style="color:var(--muted);margin-bottom:16px;">Prefer email? Send me a message and I'll get back to you within 24 hours.</p>
+      <div data-fs-success class="fs-success" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">✓ Thanks — your message was sent.</div>
+      <div data-fs-error class="fs-error" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">⚠ Oops — there was an error. Please try again.</div>
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/xkoagvvk" method="POST">
+        <div class="contact-row">
+          <input class="field" type="text" name="name" placeholder="Your name" required data-fs-field />
+          <input class="field" type="email" name="email" placeholder="Your email" required data-fs-field />
         </div>
-        <div class="form-group">
-          <input type="email" placeholder="email = input('Email: ')" required>
+        <input type="text" name="subject" placeholder="Subject" required data-fs-field />
+        <textarea name="message" placeholder="Message" required data-fs-field></textarea>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:8px;">
+          <button type="submit" class="btn-primary" data-fs-submit-btn>Send Message</button>
+          <button type="reset" class="btn-ghost">Reset</button>
         </div>
-        <div class="form-group">
-          <textarea placeholder="message = input('Payload: ')" required></textarea>
-        </div>
-        <button type="submit" class="btn">sys.exit(send_payload())</button>
       </form>
+      <p class="contact-note small">Powered by <a href="https://formspree.io" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">Formspree</a></p>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Victor Kipruto Rop. All rights reserved.</p>
+</footer>
+
+<!-- CV Action Modal Component -->
+<div class="cv-modal-overlay" id="cvModalOverlay" role="dialog" aria-labelledby="cvModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="cv-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:400px;width:90%;padding:32px;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);text-align:center;">
+    <h2 id="cvModalTitle" style="font-size:20px;font-weight:700;margin-bottom:24px;font-family:'Syne',sans-serif;color:var(--ink);">Choose CV Action</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="assets/Victor_Kipruto_Resume.pdf" target="_blank" class="btn-primary" style="text-decoration:none;display:block;width:100%;">View Resume</a>
+      <button onclick="downloadCv()" class="btn-outline" style="width:100%;padding:14px;cursor:pointer;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">Download Resume</button>
+      <button onclick="closeCvModal()" class="btn-ghost" style="width:100%;margin-top:8px;">Close</button>
+    </div>
+    <div id="cvSuccessMsg" style="display:none; margin-top:20px; padding:12px; border-radius:8px; background:#4ade80; color:white; font-size:13px; font-weight:600;">✅ Resume download started!</div>
+  </div>
+</div>
+
+<!-- Certificate Viewer Modal -->
+<div class="cert-modal-overlay" id="certModalOverlay" role="dialog" aria-labelledby="certModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);z-index:10000;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="cert-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-width:900px;width:90%;height:90vh;display:flex;flex-direction:column;position:relative;border:1px solid var(--rule);">
+    <div style="padding:16px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="certModalTitle" style="font-size:18px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--ink);">Certificate Viewer</h2>
+      <button onclick="closeCertModal()" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;">✕</button>
+    </div>
+    <iframe id="certModalIframe" src="" style="width:100%;height:100%;border:none;flex:1;"></iframe>
+    <div style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;">
+        <p style="font-size:12px; color:var(--muted); font-family:'DM Mono',monospace;">Note: Certificates are for viewing only.</p>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Simple intersection observer for scroll reveals
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-menu a');
+  function openCvModal() {
+    document.getElementById('cvModalOverlay').style.display = 'flex';
+  }
+  function closeCvModal() {
+    document.getElementById('cvModalOverlay').style.display = 'none';
+    document.getElementById('cvSuccessMsg').style.display = 'none';
+  }
+  function downloadCv() {
+    const link = document.createElement('a');
+    link.href = 'assets/Victor_Kipruto_Resume.pdf';
+    link.download = 'Victor_Kipruto_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    document.getElementById('cvSuccessMsg').style.display = 'block';
+    setTimeout(closeCvModal, 2000);
+  }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        // Highlight active nav
-        let id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if(link.getAttribute('href') === '#' + id) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  }, { threshold: 0.3 });
+  function openCertModal(url) {
+    const overlay = document.getElementById('certModalOverlay');
+    const iframe = document.getElementById('certModalIframe');
+    iframe.src = url;
+    overlay.style.display = 'flex';
+  }
+  function closeCertModal() {
+    const overlay = document.getElementById('certModalOverlay');
+    const iframe = document.getElementById('certModalIframe');
+    iframe.src = '';
+    overlay.style.display = 'none';
+  }
+</script>
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  
+  // Check for saved theme - default to dark mode
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    body.classList.remove('dark-mode');
+  } else {
+    body.classList.add('dark-mode');
+  }
 
-  sections.forEach(section => {
-    observer.observe(section);
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
   });
+
+  // Pre-loader and Page Entrance
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const heroName = document.getElementById('hero-name');
+    
+    // Split hero name into characters for staggered reveal
+    if (heroName) {
+      const text = heroName.textContent;
+      heroName.innerHTML = text.split('').map((char, i) => 
+        `<span style="display:inline-block; animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards ${0.5 + i * 0.03}s; transform: translateY(100%); opacity: 0;">${char === ' ' ? '&nbsp;' : char}</span>`
+      ).join('');
+      // Apply fadeUp to children manually since we replaced innerHTML
+      Array.from(heroName.children).forEach(span => {
+        span.style.opacity = '1'; 
+      });
+    }
+
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+      document.body.classList.add('loaded');
+    }, 1000);
+  });
+
+  // Magnetic Buttons
+  const magneticBtns = document.querySelectorAll('.magnetic');
+  magneticBtns.forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+    });
+  });
+
+  // 3D Tilt for Cards
+  function applyTilt(elements) {
+    elements.forEach(el => {
+      el.addEventListener('mousemove', e => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+  }
+  // Apply initially to "Why Hire Me" cards
+  applyTilt(document.querySelectorAll('.why-card'));
+  applyTilt(document.querySelectorAll('.blog-card'));
+  applyTilt(document.querySelectorAll('.experience-card'));
+
+  // Cursor
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  document.addEventListener('mousemove', e => {
+    cur.style.transform  = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
+    ring.style.transform = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
+  });
+
+  // Scroll reveal
+  window.obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => window.obs.observe(el));
+
+
+  // Projects horizontal scroll helper
+  const projectsGrid = document.getElementById('projects-grid');
+  const prevBtn = document.querySelector('.project-prev');
+  const nextBtn = document.querySelector('.project-next');
+  function scrollProjects(dir){
+    if(!projectsGrid) return;
+    const card = projectsGrid.querySelector('.project-card');
+    const cardWidth = card ? Math.round(card.getBoundingClientRect().width) : 320;
+    const gap = 24;
+    const offset = (cardWidth + gap) * 1 * dir; // scroll one card per click
+    projectsGrid.scrollBy({ left: offset, behavior: 'smooth' });
+  }
+  // Arrow visibility updater
+  function updateProjectArrows(){
+    if(!projectsGrid || !prevBtn || !nextBtn) return;
+    const isMobile = window.innerWidth <= 540;
+    const left = Math.round(projectsGrid.scrollLeft);
+    const max = projectsGrid.scrollWidth - projectsGrid.clientWidth;
+    if(isMobile){ prevBtn.style.opacity='1'; nextBtn.style.opacity='1'; prevBtn.style.pointerEvents='auto'; nextBtn.style.pointerEvents='auto'; return; }
+    if(left <= 8){ prevBtn.style.opacity='0'; prevBtn.style.pointerEvents='none'; } else { prevBtn.style.opacity='1'; prevBtn.style.pointerEvents='auto'; }
+    if(left >= Math.round(max - 8)){ nextBtn.style.opacity='0'; nextBtn.style.pointerEvents='none'; } else { nextBtn.style.opacity='1'; nextBtn.style.pointerEvents='auto'; }
+  }
+  // Optional keyboard support
+  document.addEventListener('keydown', (e) => {
+    if(document.activeElement && ['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)) return;
+    if(e.key === 'ArrowRight') scrollProjects(1);
+    if(e.key === 'ArrowLeft') scrollProjects(-1);
+  });
+  if(projectsGrid){ projectsGrid.addEventListener('scroll', updateProjectArrows); }
+  window.addEventListener('resize', updateProjectArrows);
+  // initial arrows state
+  updateProjectArrows();
+  document.addEventListener('DOMContentLoaded', () => { setTimeout(updateProjectArrows, 120); });
+
+  // Formspree error handling (Success is handled via redirect)
+  const fsError = document.querySelector('[data-fs-error]');
+  const contactForm = document.getElementById('contact-form');
+
+  // Skills displayed as tag lists — no percentage fills. Skill-cards are already animated via the `.reveal` observer.
+
+  // Fetch GitHub repos and render project cards dynamically
+  function escapeHtml(str){ return str ? String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
+  async function fetchRepos(){
+    try{
+      const res = await fetch('https://api.github.com/users/Victor-Kipruto-Rop/repos?per_page=100');
+      if(!res.ok) throw new Error('GitHub API error');
+      const repos = await res.json();
+      // exclude personal/placeholder repos
+      const deKeywords = ['data', 'engineer', 'etl', 'airflow', 'spark', 'sql', 'warehouse', 'pipeline', 'kafka', 'flink', 'dbt', 'bigquery', 'snowflake', 'analytics', 'streaming'];
+      const filtered = (Array.isArray(repos) ? repos.filter(r => {
+        if (!r || !r.name) return false;
+        if (r.name.toLowerCase() === 'victor-kipruto-rop' || r.name.toLowerCase() === 'kipruto45') return false;
+        const nameDesc = (r.name + ' ' + (r.description || '')).toLowerCase();
+        const isMatch = deKeywords.some(keyword => nameDesc.includes(keyword));
+        if (isMatch) console.log('Match found:', r.name);
+        return isMatch;
+      }) : []);
+
+      console.log('Filtered projects count:', filtered.length);
+      // sort by popularity (stars) then recent activity
+      filtered.sort((a,b)=> {
+        const starsA = a.stargazers_count || 0; const starsB = b.stargazers_count || 0;
+        if(starsB !== starsA) return starsB - starsA;
+        return new Date(b.pushed_at) - new Date(a.pushed_at);
+      });
+
+      // show all relevant projects
+      const display = filtered;
+      console.log('Displaying projects:', display.map(p => p.name));
+      // Map specific repos to images
+      const projectImageMap = {
+        'Real_Time_Transaction_Streaming-MPESA-': 'assets/images/4.jpeg',
+        'cloud-etl-pipeline': 'assets/images/2.jpeg',
+        'Data-Enginerring-full-project': 'assets/images/1.jpeg',
+        'mpesa_safaricom-pipeline-': 'assets/images/3.jpeg'
+      };
+      
+      const grid = document.getElementById('projects-grid');
+      if(!grid) return;
+      grid.innerHTML = '';
+
+      // fetch extra details per repo (topics, full description) and contents to infer tools
+      const cards = await Promise.all(display.map(async (r, idx) => {
+        let details = r;
+        try{
+          const dres = await fetch(r.url, { headers: { Accept: 'application/vnd.github.mercy-preview+json' } });
+          if(dres.ok) details = await dres.json();
+        }catch(e){ /* ignore */ }
+
+        const topics = (details.topics && details.topics.length) ? details.topics : [];
+        const language = details.language || r.language || '';
+
+        const owner = r.owner && r.owner.login ? r.owner.login : 'Victor-Kipruto-Rop';
+        const repoName = r.name;
+        let contents = [];
+        try{
+          const cres = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents`);
+          if(cres.ok) contents = await cres.json();
+        }catch(e){ /* ignore */ }
+        const fileNames = (Array.isArray(contents) ? contents.map(c=>c.name.toLowerCase()) : []);
+        const dirNames = (Array.isArray(contents) ? contents.filter(c=>c.type==='dir').map(c=>c.name.toLowerCase()) : []);
+
+        const found = new Set();
+        if(fileNames.includes('dockerfile') || fileNames.some(n=>n.includes('dockerfile'))) found.add('Docker');
+        if(fileNames.includes('docker-compose.yml') || fileNames.includes('docker-compose.yaml')) found.add('Docker Compose');
+        if(fileNames.includes('requirements.txt') || fileNames.includes('pipfile') || fileNames.includes('pyproject.toml')) found.add('Python');
+        if(fileNames.includes('package.json')) found.add('Node.js');
+        if(fileNames.some(n=>n.endsWith('.ipynb'))) found.add('Jupyter');
+        if(fileNames.some(n=>n.endsWith('.sql'))) found.add('SQL');
+        if(fileNames.some(n=>n.includes('kafka'))) found.add('Kafka');
+        if(fileNames.some(n=>n.endsWith('.tf')) || fileNames.some(n=>n.includes('terraform'))) found.add('Terraform');
+        if(fileNames.some(n=>n.includes('spark')||n.includes('pyspark'))) found.add('Apache Spark');
+        if(fileNames.some(n=>n.includes('snowflake'))) found.add('Snowflake');
+
+        if(dirNames.includes('dags') || dirNames.includes('airflow')) found.add('Apache Airflow');
+        if(dirNames.includes('notebooks') || dirNames.includes('nb')) found.add('Jupyter');
+        if(dirNames.includes('.github')){
+          try{
+            const wres = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/.github/workflows`);
+            if(wres.ok){ const wf = await wres.json(); if(Array.isArray(wf) && wf.length) found.add('GitHub Actions'); }
+          }catch(e){}
+        }
+
+        let readmeText = '';
+        try{
+          const rres = await fetch(`https://api.github.com/repos/${owner}/${repoName}/readme`);
+          if(rres.ok){
+            const rjson = await rres.json();
+            if(rjson && rjson.content){
+              try{ 
+                readmeText = atob(rjson.content.replace(/\n/g,''));
+                const ltxt = readmeText.toLowerCase();
+                if(ltxt.includes('snowflake')) found.add('Snowflake');
+                if(ltxt.includes('spark')) found.add('Apache Spark');
+                if(ltxt.includes('airflow')) found.add('Apache Airflow');
+                if(ltxt.includes('kafka')) found.add('Kafka');
+                if(ltxt.includes('dbt')) found.add('dbt');
+              }catch(e){}
+            }
+          }
+        }catch(e){}
+
+        const tools = [];
+        found.forEach(t => tools.push(t));
+        if(language && !tools.includes(language)) tools.push(language);
+        topics.forEach(t => { if(!tools.includes(t)) tools.push(t); });
+        if(!tools.length) tools.push(language || 'Repo');
+        const toolsTrim = tools.slice(0,8);
+
+        let desc = (details.description || r.description || '').trim();
+        if(!desc && readmeText){
+          const p = readmeText.split(/\n\n+/).find(s=>s.trim().length>20) || readmeText;
+          desc = p.replace(/[#_*`>-]/g,'').trim().slice(0,260);
+          if(desc.length === 260) desc += '...';
+        }
+        if(!desc) desc = `${r.name.replace(/[-_]/g,' ')} — ${toolsTrim.join(', ')}.`;
+
+        const card = document.createElement('div');
+        card.className = 'project-card reveal';
+        card.style.transitionDelay = (idx * 0.08) + 's';
+        
+        // Use mapped image or fallback to a default image
+        const thumb = projectImageMap[r.name] || 'assets/images/1.jpeg';
+        
+        const projectData = {
+          title: r.name.replace(/[-_]/g, ' '),
+          desc: desc,
+          stack: toolsTrim,
+          img: thumb,
+          view: r.html_url
+        };
+        
+        card.onclick = () => openProjectModal(projectData);
+        
+        card.innerHTML = `
+          <img class="project-thumb" src="${thumb}" alt="${escapeHtml(r.name)}" loading="lazy" />
+          <div class="project-content">
+            <p class="project-title">${escapeHtml(r.name.replace(/[-_]/g, ' '))}</p>
+            <p class="project-desc">${escapeHtml(desc)}</p>
+            <div class="project-stack">
+              ${toolsTrim.map(t => `<span class="stack-badge">${escapeHtml(t)}</span>`).join('')}
+            </div>
+            <div class="project-actions">
+              <a class="btn-sm btn-primary-sm" href="${r.html_url}" target="_blank" rel="noopener" aria-label="View project ${escapeHtml(r.name)} on GitHub">View</a>
+              <a class="btn-sm btn-outline" href="${r.html_url}/blob/main/README.md" target="_blank" rel="noopener" aria-label="Read documentation for ${escapeHtml(r.name)}">Readme</a>
+            </div>
+          </div>
+        `;
+        return card;
+      }));
+
+      cards.forEach(card => {
+        grid.appendChild(card);
+        if(window.obs) window.obs.observe(card);
+      });
+      applyTilt(cards);
+      setTimeout(updateProjectArrows, 120);
+    } catch(e) {
+      console.error('fetchRepos failed', e);
+      ensureStaticProjects();
+    }
+  }
+
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+  
+
+  // Fetch Top Repositories from GitHub
+  async function fetchTopRepos() {
+    const container = document.getElementById('top-repos-container');
+    if (!container) return;
+
+    const renderRepos = (repos) => {
+      container.innerHTML = '';
+      const langColors = { 'Python': '#3572A5', 'SQL': '#e38c00', 'JavaScript': '#f1e05a' };
+
+      repos.forEach(repo => {
+        const item = document.createElement('div');
+        item.className = 'repo-item';
+        item.onclick = () => window.open(repo.html_url, '_blank');
+        const lang = repo.language || 'Markdown';
+        const color = langColors[lang] || '#8b8b8b';
+        item.innerHTML = `
+          <div class="repo-name">${escapeHtml(repo.name)} <i class="fab fa-github opacity-50"></i></div>
+          <p class="repo-desc">${escapeHtml(repo.description || 'No description available.')}</p>
+          <div class="repo-stats">
+            <span class="repo-lang"><span class="repo-lang-dot" style="background: ${color};"></span>${escapeHtml(lang)}</span>
+            <span class="repo-stars"><i class="fas fa-star text-yellow-400"></i>${repo.stargazers_count || 0}</span>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    };
+
+    try {
+      const res = await fetch('https://api.github.com/users/Victor-Kipruto-Rop/repos?per_page=100');
+      if (!res.ok) throw new Error('API limit reached');
+      const repos = await res.json();
+      // ... (existing filtering logic) ...
+      const deKeywords = ['data', 'engineer', 'etl', 'airflow', 'spark', 'sql', 'warehouse', 'pipeline', 'kafka', 'flink', 'dbt', 'bigquery', 'snowflake', 'analytics', 'streaming'];
+      const filtered = repos.filter(r => r && r.name && r.name.toLowerCase() !== 'victor-kipruto-rop' && r.name.toLowerCase() !== 'kipruto45');
+      filtered.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0));
+      renderRepos(filtered.slice(0, 6));
+    } catch (e) {
+      console.warn('Using fallback data due to API error:', e);
+      fetch('data/top_repos_fallback.json')
+        .then(res => res.json())
+        .then(renderRepos)
+        .catch(() => { container.innerHTML = '<p class="text-center text-muted">Unable to load repositories.</p>'; });
+    }
+  }
+
+  // Call loadGitHubActivity and fetchRepos on load
+  document.addEventListener('DOMContentLoaded', ()=>{ 
+  loadGitHubActivity(); 
+  fetchRepos();
+  fetchTopRepos();
+  ensureStaticProjects(); // fallback if fetchRepos takes too long or fails
+  });
+  // ensure projects are visible: if projects-grid is empty, populate static fallback cards
+  function ensureStaticProjects(){
+    const grid = document.getElementById('projects-grid');
+    if(!grid) return;
+    if(grid.children.length > 0) return; // already populated
+    const staticProjects = [
+      { img: 'assets/images/1.jpeg', title: 'Data Engineering — Full Project', desc: 'Designed and automated a complete star schema architecture with cloud-based data ingestion and optimised analytical queries for BI reporting.', stack: ['Python','SQL','ETL','Cloud Storage'], view: 'https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project' },
+      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow','Docker','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
+      { img: 'assets/images/3.jpeg', title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python','PostgreSQL','Connection Pooling'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
+      { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming (MPESA)', desc: 'Kafka producer/consumer architecture for continuous MPESA transaction ingestion and live analytical processing at low latency.', stack: ['Kafka','Python','Stream Processing'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' }
+    ];
+    grid.innerHTML = '';
+    staticProjects.forEach((p, idx) => {
+      const card = document.createElement('div');
+      card.className = 'project-card reveal';
+      card.style.transitionDelay = (idx*0.08)+'s';
+      card.onclick = () => openProjectModal(p);
+      card.innerHTML = `\n        <img class="project-thumb" src="${p.img}" alt="${p.title}" loading="lazy" />\n        <div class="project-content">\n          <p class="project-title">${p.title}</p>\n          <p class="project-desc">${p.desc}</p>\n          <div class="project-stack">${p.stack.map(s=>`<span class="stack-badge">${s}</span>`).join('')}</div>\n          <div class="project-actions">\n            <a class="btn-sm btn-primary-sm" href="${p.view}" target="_blank" rel="noopener" aria-label="View project ${p.title}">View</a>\n            <a class="btn-sm btn-outline" href="${p.view}" target="_blank" rel="noopener" aria-label="Read documentation for ${p.title}">Readme</a>\n          </div>\n        </div>`;
+      grid.appendChild(card);
+      if(window.obs) window.obs.observe(card);
+    });
+    applyTilt(grid.querySelectorAll('.project-card'));
+    setTimeout(updateProjectArrows, 120);
+  }
+
+  // load GitHub activity (profile + stats)
+  async function loadGitHubActivity(){
+    const sub = document.getElementById('gh-sub');
+    const ghCount = document.getElementById('gh-count');
+
+    try{
+      const ures = await fetch('https://api.github.com/users/Victor-Kipruto-Rop');
+      if(ures.ok){
+        const user = await ures.json();
+        if(ghCount) ghCount.textContent = `(${user.public_repos})`;
+        if(sub) sub.textContent = `${user.public_repos} public repositories · ${user.followers} followers · Nairobi, Kenya`;
+        return;
+      }
+    }catch(e){ /* continue to fallback */ }
+
+    if(ghCount) ghCount.textContent = '(See profile)';
+    if(sub) sub.textContent = `Contributions calendar and activity (last year) — data shown directly from GitHub. Visit @Victor-Kipruto-Rop on GitHub for full profile details.`;
+  }
+
+  // Contact form integration (Formspree AJAX)
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { 
+    formElement: '#contact-form', 
+    formId: 'xkoagvvk',
+    onSuccess: (form, data) => {
+      window.location.href = 'success.html';
+    }
+  });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<!-- Analytics & Visitor Intelligence Tracking -->
+<script src="dashboard/tracker.js"></script>
+<script src="dashboard/visitor-intel.js"></script>
+<script src="dashboard/analytics-advanced.js"></script>
+<script src="integration/blog-tracker.js"></script>
+
+<!-- Project Modal Component -->
+<div class="project-modal-overlay" id="projectModalOverlay" role="dialog" aria-labelledby="projectModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="project-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:800px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
+    <div class="project-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:10;">
+      <h2 id="projectModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--ink);">Project Details</h2>
+      <button class="project-modal-close" id="projectModalClose" aria-label="Close project modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="project-modal-content" style="padding:32px;">
+      <img id="projectModalImage" class="project-modal-image" src="" alt="Project Preview">
+      <div class="project-modal-meta">
+        <span id="projectModalTime"></span>
+        <span id="projectModalCategory"></span>
+      </div>
+      <div id="projectModalDescription" style="font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:24px;"></div>
+      
+      <div class="project-modal-section-title">Tools & Technologies</div>
+      <div id="projectModalStack" class="project-stack" style="margin-bottom:24px;"></div>
+      
+      <div id="projectModalFeaturesSection">
+        <div class="project-modal-section-title">Key Features & Achievements</div>
+        <ul id="projectModalFeatures" class="project-modal-list" style="font-size:15px;line-height:1.7;color:var(--muted);"></ul>
+      </div>
+    </div>
+    <div class="project-modal-footer" style="padding:24px;border-top:1px solid var(--rule);display:flex;gap:12px;justify-content:flex-end;background:rgba(0,0,0,0.02);position:sticky;bottom:0;z-index:10;">
+      <a id="projectModalGithub" href="#" target="_blank" class="btn-sm btn-primary-sm" style="text-decoration:none;">GitHub Repository</a>
+      <button onclick="closeProjectModal()" class="btn-sm btn-outline" style="cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Skill Modal Component -->
+<div class="skill-modal-overlay" id="skillModalOverlay" role="dialog" aria-labelledby="skillModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="skill-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:500px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
+    <div class="skill-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="skillModalTitle" style="font-size:20px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--accent);">Skill Details</h2>
+      <button class="skill-modal-close" id="skillModalClose" aria-label="Close skill modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="skill-modal-content" style="padding:24px;">
+      <div id="skillModalBody" style="font-size:15px;line-height:1.7;color:var(--muted);font-family:'DM Mono',monospace;">
+        <!-- Content will be injected by JavaScript -->
+      </div>
+    </div>
+    <div class="skill-modal-footer" style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;background:rgba(0,0,0,0.02);">
+      <button onclick="closeSkillModal()" class="btn-sm btn-outline" style="cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Subscription Modal Component -->
+<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="subscription-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;">
+    <div class="subscription-modal-header" style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="subscriptionModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;">Subscribe for Updates</h2>
+      <button class="subscription-modal-close" id="subscriptionModalClose" aria-label="Close subscription modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="subscription-modal-content" style="padding:32px 24px;">
+      <div class="subscription-option-tabs" style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
+        <button class="subscription-tab active" data-tab="feed" aria-label="Feed subscription options" style="flex:1;min-width:140px;padding:12px 16px;background:var(--card);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+          <i class="fas fa-rss"></i> <span>Feed</span>
+        </button>
+        <button class="subscription-tab" data-tab="email" aria-label="Email subscription" style="flex:1;min-width:140px;padding:12px 16px;background:var(--card);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+          <i class="fas fa-envelope"></i> <span>Email</span>
+        </button>
+        <button class="subscription-tab" data-tab="messaging" aria-label="Messaging apps" style="flex:1;min-width:140px;padding:12px 16px;background:var(--card);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+          <i class="fas fa-comment"></i> <span>Messages</span>
+        </button>
+      </div>
+
+      <!-- Feed Tab -->
+      <div class="subscription-form active" id="feedTab" style="display:block;">
+        <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+          <button class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-rss" style="color:var(--accent);"></i>
+            </div>
+            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">RSS Feed</div>
+            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</div>
+          </button>
+
+          <button class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-book-reader" style="color:#3498db;"></i>
+            </div>
+            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Inoreader</div>
+            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</div>
+          </button>
+
+          <button class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-layer-group" style="color:#2ecc71;"></i>
+            </div>
+            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Feedly</div>
+            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</div>
+          </button>
+
+          <button class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-link" style="color:var(--accent);"></i>
+            </div>
+            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Copy URL</div>
+            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Manual subscription</div>
+          </button>
+        </div>
+
+        <div class="subscription-rss-copy" id="rssUrlSection" style="background:var(--card);padding:16px;border-radius:8px;margin-top:16px;border:1px solid var(--rule);display:none;">
+          <div class="subscription-rss-label" style="font-size:12px;font-weight:600;margin-bottom:8px;text-transform:uppercase;opacity:0.7;">RSS Feed URL</div>
+          <div class="subscription-rss-url" style="display:flex;gap:8px;align-items:center;">
+            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;color:var(--ink);">
+            <button class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Tab -->
+      <form class="subscription-form" id="emailTab" style="display:none;">
+        <div class="subscription-form-group" style="margin-bottom:16px;">
+          <label for="emailName" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Name</label>
+          <input type="text" id="emailName" required placeholder="Your name" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:border-color 0.3s ease;">
+        </div>
+        <div class="subscription-form-group" style="margin-bottom:16px;">
+          <label for="emailAddress" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Email Address</label>
+          <input type="email" id="emailAddress" required placeholder="your@email.com" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:border-color 0.3s ease;">
+        </div>
+        <button type="submit" class="subscription-form-submit" style="width:100%;padding:12px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s ease;">Subscribe to Email Updates</button>
+      </form>
+
+      <!-- Messaging Tab -->
+      <div class="subscription-form" id="messagingTab" style="display:none;">
+        <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+          <button class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fab fa-telegram" style="color:#0088cc;"></i>
+            </div>
+            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Telegram</div>
+            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Instant notifications</div>
+          </button>
+
+          <button class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fab fa-x-twitter" style="color:var(--ink);"></i>
+            </div>
+            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Twitter/X</div>
+            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Social updates</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Notification -->
+      <div class="subscription-notification" id="subscriptionNotification" role="alert" style="margin-top:20px;padding:16px;background:#4ade80;color:white;border-radius:8px;text-align:center;display:none;animation:slideDown 0.3s ease;">
+        ✅ Thanks for subscribing to Victor Kipruto's developer updates.
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .subscription-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .subscription-option:hover { border-color: var(--accent); background: var(--card); transform: translateY(-2px); }
+  .subscription-copy-btn:hover { opacity: 0.9; }
+</style>
+
+<script>
+  // Analytics tracking
+  const subscriptionAnalytics = {
+    init() {
+      const defaults = {
+        rss_clicks: 0,
+        inoreader_clicks: 0,
+        feedly_clicks: 0,
+        email_subscriptions: 0,
+        telegram_subscriptions: 0,
+        copy_clicks: 0
+      };
+      if (!localStorage.getItem('subscriptionAnalytics')) {
+        localStorage.setItem('subscriptionAnalytics', JSON.stringify(defaults));
+      }
+    },
+    track(event) {
+      const analytics = JSON.parse(localStorage.getItem('subscriptionAnalytics') || '{}');
+      if (analytics[event] !== undefined) {
+        analytics[event]++;
+        localStorage.setItem('subscriptionAnalytics', JSON.stringify(analytics));
+      }
+    },
+    get(event) {
+      const analytics = JSON.parse(localStorage.getItem('subscriptionAnalytics') || '{}');
+      return analytics[event] || 0;
+    },
+    getAll() {
+      return JSON.parse(localStorage.getItem('subscriptionAnalytics') || '{}');
+    }
+  };
+
+  // Project Modal Management
+  const projectExtendedData = {
+    'Data Engineering — Full Project': {
+      time: 'Feb 2026 - April 2026',
+      category: 'Data Architecture',
+      features: [
+        'Implemented a complete Star Schema architecture for retail analytics.',
+        'Automated cloud-based data ingestion from multiple source systems.',
+        'Optimized complex SQL queries, reducing report generation time by 60%.',
+        'Built a custom monitoring dashboard for pipeline health tracking.'
+      ]
+    },
+    'Cloud ETL Pipeline': {
+      time: 'Jan 2026 - Feb 2026',
+      category: 'Infrastructure & Automation',
+      features: [
+        'Multi-stage ETL orchestrations using Apache Airflow.',
+        'Robust data validation engine with custom rule definitions.',
+        'Automated deduplication logic handling millions of records.',
+        'Full CI/CD integration with GitHub Actions and Docker.'
+      ]
+    },
+    'Mpesa / Safaricom Pipeline': {
+      time: 'Nov 2025 - Dec 2025',
+      category: 'FinTech Data Systems',
+      features: [
+        'High-throughput ingestion system for mobile transaction data.',
+        'Chunked reading strategies to handle large CSV/JSON exports efficiently.',
+        'Optimized batch inserts into PostgreSQL using connection pooling.',
+        'Implemented transaction-level data integrity checks.'
+      ]
+    },
+    'Real-Time Transaction Streaming (MPESA)': {
+      time: 'Dec 2025 - Jan 2026',
+      category: 'FinTech Streaming Architecture',
+      features: [
+        '<strong>Situation:</strong> High-throughput ingestion of mobile transaction data required real-time analytics with sub-second latency.',
+        '<strong>Task:</strong> Design a distributed streaming architecture to process Safaricom Daraja API webhooks.',
+        '<strong>Action:</strong> Implemented a Kafka-Flink pipeline with dbt modelling for both PostgreSQL and BigQuery storage.',
+        '<strong>Result:</strong> Achieved sub-second end-to-end latency and automated fraud monitoring for FinTech analytics.'
+      ]
+    }
+  };
+
+  const projectModal = {
+    overlay: document.getElementById('projectModalOverlay'),
+    title: document.getElementById('projectModalTitle'),
+    image: document.getElementById('projectModalImage'),
+    time: document.getElementById('projectModalTime'),
+    category: document.getElementById('projectModalCategory'),
+    description: document.getElementById('projectModalDescription'),
+    stack: document.getElementById('projectModalStack'),
+    features: document.getElementById('projectModalFeatures'),
+    featuresSection: document.getElementById('projectModalFeaturesSection'),
+    github: document.getElementById('projectModalGithub'),
+    closeBtn: document.getElementById('projectModalClose'),
+
+    init() {
+      this.closeBtn.addEventListener('click', () => this.close());
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) this.close();
+      });
+    },
+
+    open(data) {
+      const extended = projectExtendedData[data.title] || {};
+      
+      this.title.textContent = data.title;
+      this.image.src = data.img || 'assets/images/1.jpeg';
+      this.time.textContent = extended.time || 'Project Completion: 2026';
+      this.category.textContent = ' · ' + (extended.category || 'Engineering');
+      this.description.textContent = data.desc;
+      
+      // Render Stack
+      this.stack.innerHTML = (data.stack || []).map(t => `<span class="stack-badge">${t}</span>`).join('');
+      
+      // Render Features
+      if (extended.features && extended.features.length) {
+        this.featuresSection.style.display = 'block';
+        this.features.innerHTML = extended.features.map(f => `<li>${f}</li>`).join('');
+      } else {
+        this.featuresSection.style.display = 'none';
+      }
+      
+      this.github.href = data.view || '#';
+      
+      this.overlay.style.display = 'flex';
+      this.overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+      this.overlay.style.display = 'none';
+      this.overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    },
+
+    isOpen() {
+      return this.overlay.style.display === 'flex';
+    }
+  };
+
+  window.openProjectModal = (data) => projectModal.open(data);
+  window.closeProjectModal = () => projectModal.close();
+
+  // Skill Modal Management
+  const skillData = {
+    'Apache Airflow': 'Expertise in orchestrating complex data pipelines, managing DAGs, and ensuring reliable ETL workflows through automated scheduling and monitoring.',
+    'ETL Design': 'Specialized in designing scalable Extract, Transform, Load processes that efficiently handle large volumes of data while maintaining high performance and data integrity.',
+    'DAG Management': 'Proficient in creating, monitoring, and optimizing Directed Acyclic Graphs (DAGs) to ensure complex workflows are executed in the correct order with proper error handling.',
+    'Apache Kafka': 'Hands-on experience with real-time stream processing, including setting up brokers, managing topics, and building high-throughput data ingestion systems.',
+    'Stream Processing': 'Developing real-time data processing engines that transform and analyze data on-the-fly to provide immediate business insights and reactive systems.',
+    'Producers & Consumers': 'Implementing robust Kafka producers and consumers in Python to facilitate distributed data streaming and event-driven microservices architecture.',
+    'Star Schema': 'Designing optimized data warehouse schemas using the Star Schema approach to simplify complex queries and significantly improve business intelligence reporting performance.',
+    'Dimensional Modelling': 'Applying Kimball methodologies to create intuitive, performant, and flexible data models that bridge the gap between raw data and business users.',
+    'OLAP Queries': 'Mastery of writing complex SQL for Online Analytical Processing to extract deep multi-dimensional insights from massive historical datasets.',
+    'Data Warehousing': 'End-to-end experience building and maintaining modern data warehouses as the "single source of truth" for organizational data and analytics.',
+    'Deduplication': 'Implementing sophisticated data cleansing and deduplication strategies at scale to ensure data quality and prevent redundant information in production systems.',
+    'Validation Rule Engines': 'Architecting automated validation systems that enforce data quality standards and business rules across entire data lifecycles.',
+    'Anomaly Detection': 'Developing and deploying statistical models and algorithms to identify outliers and potential data quality issues in real-time and batch pipelines.',
+    'Docker': 'Advanced containerization skills for packaging data tools and applications, ensuring consistent environments across development, testing, and production.',
+    'GitHub Actions': 'Automating full-scale CI/CD pipelines, unit testing, and deployment workflows directly within the GitHub ecosystem for rapid and reliable delivery.',
+    'Pipeline Design': 'Designing resilient and scalable ETL/ELT frameworks. I treat data pipelines as software, ensuring modularity, observability, and robust error handling to guarantee data quality from source to destination.',
+    'Orchestration': 'Leveraging Apache Airflow to orchestrate complex, interdependent data workflows. I design deterministic, automated processes with comprehensive monitoring, retries, and alerting to minimize downtime.',
+    'Data Modelling': 'Bridging raw data to business value through dimensional modelling (Star/Snowflake schemas). I optimize models for high-performance analytical queries in OLAP systems.',
+    'Data CI/CD': 'Treating data infrastructure with engineering rigor. I implement automated unit/integration testing (e.g., Pytest) and deployment pipelines to ensure continuous reliability in production.',
+    'Pytest': 'Rigorous testing approach using Pytest to build comprehensive unit and integration test suites, ensuring production-grade reliability for data engineering code.',
+    'CI/CD Pipelines': 'Designing and managing end-to-end automated delivery pipelines that enable frequent, low-risk software and data infrastructure updates.',
+    'Python': 'Expert proficiency in Python for data engineering, building automation tools, complex scripting, and backend system development.',
+    'SQL': 'Mastery of advanced SQL across multiple dialects (PostgreSQL, MySQL, etc.), including query optimization, window functions, and complex CTEs.',
+    'PostgreSQL': 'Deep experience with PostgreSQL as a primary transactional and analytical database, including performance tuning, schema design, and administration.',
+    'Git': 'Professional version control management using Git, including collaborative workflows, branching strategies, and repository maintenance.',
+    'Docker Compose': 'Proficiency in orchestrating multi-container local development environments to replicate complex production infrastructures with ease.'
+  };
+
+  const skillModal = {
+    overlay: document.getElementById('skillModalOverlay'),
+    body: document.getElementById('skillModalBody'),
+    title: document.getElementById('skillModalTitle'),
+    closeBtn: document.getElementById('skillModalClose'),
+
+    init() {
+      this.closeBtn.addEventListener('click', () => this.close());
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) this.close();
+      });
+    },
+
+    open(skillName) {
+      const description = skillData[skillName] || 'Details coming soon...';
+      this.title.textContent = skillName;
+      this.body.textContent = description;
+      this.overlay.style.display = 'flex';
+      this.overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+      this.overlay.style.display = 'none';
+      this.overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    },
+
+    isOpen() {
+      return this.overlay.style.display === 'flex';
+    }
+  };
+
+  window.openSkillModal = (name) => skillModal.open(name);
+  window.closeSkillModal = () => skillModal.close();
+
+  // Modal management
+  const subscriptionModal = {
+    overlay: document.getElementById('subscriptionModalOverlay'),
+    modal: document.querySelector('.subscription-modal'),
+    closeBtn: document.getElementById('subscriptionModalClose'),
+    rssUrlInput: document.getElementById('rssUrlInput'),
+    copyRssBtn: document.getElementById('copyRssBtn'),
+    notification: document.getElementById('subscriptionNotification'),
+
+    init() {
+      subscriptionAnalytics.init();
+      this.setupEventListeners();
+    },
+
+    setupEventListeners() {
+      this.closeBtn.addEventListener('click', () => this.close());
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.close();
+      });
+
+      document.querySelectorAll('.subscription-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => this.switchTab(e.target.closest('button').dataset.tab));
+      });
+
+      document.querySelectorAll('[data-option]').forEach(option => {
+        option.addEventListener('click', (e) => this.handleFeedOption(e.target.closest('[data-option]').dataset.option));
+      });
+
+      document.getElementById('emailTab').addEventListener('submit', (e) => this.handleEmailSubmit(e));
+
+      this.copyRssBtn.addEventListener('click', () => this.copyRssUrl());
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) this.close();
+      });
+    },
+
+    open() {
+      this.overlay.style.display = 'flex';
+      this.overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+      this.overlay.style.display = 'none';
+      this.overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    },
+
+    isOpen() {
+      return this.overlay.style.display === 'flex';
+    },
+
+    switchTab(tabName) {
+      document.querySelectorAll('.subscription-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+      });
+
+      document.querySelectorAll('.subscription-form').forEach(form => {
+        form.style.display = form.id === tabName + 'Tab' ? 'block' : 'none';
+      });
+
+      document.getElementById('rssUrlSection').style.display = tabName === 'feed' ? 'block' : 'none';
+    },
+
+    handleFeedOption(option) {
+      subscriptionAnalytics.track(option + '_clicks');
+
+      const rssUrl = 'https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml';
+      const inoreaderUrl = 'https://www.inoreader.com/?add_feed=' + encodeURIComponent(rssUrl);
+      const feedlyUrl = 'https://feedly.com/i/subscription/feed/' + encodeURIComponent(rssUrl);
+
+      const urls = {
+        rss: rssUrl,
+        inoreader: inoreaderUrl,
+        feedly: feedlyUrl,
+        'copy-url': null
+      };
+
+      if (option === 'copy-url') {
+        this.copyRssUrl();
+      } else if (urls[option]) {
+        window.open(urls[option], '_blank');
+        this.showNotification();
+      }
+    },
+
+    handleEmailSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('emailName').value.trim();
+      const email = document.getElementById('emailAddress').value.trim();
+
+      if (!name || !email) return;
+
+      const subscribers = JSON.parse(localStorage.getItem('emailSubscribers') || '[]');
+      const subscriber = { name, email, date: new Date().toISOString() };
+
+      if (!subscribers.some(s => s.email === email)) {
+        subscribers.push(subscriber);
+        localStorage.setItem('emailSubscribers', JSON.stringify(subscribers));
+        subscriptionAnalytics.track('email_subscriptions');
+      }
+
+      document.getElementById('emailTab').reset();
+      this.showNotification();
+      setTimeout(() => this.close(), 2000);
+    },
+
+    copyRssUrl() {
+      const url = this.rssUrlInput.value;
+      navigator.clipboard.writeText(url).then(() => {
+        subscriptionAnalytics.track('copy_clicks');
+        const originalText = this.copyRssBtn.innerHTML;
+        this.copyRssBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => {
+          this.copyRssBtn.innerHTML = originalText;
+        }, 2000);
+      });
+    },
+
+    showNotification() {
+      this.notification.style.display = 'block';
+      setTimeout(() => {
+        this.notification.style.display = 'none';
+      }, 4000);
+    }
+  };
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      subscriptionModal.init();
+      skillModal.init();
+      projectModal.init();
+    });
+  } else {
+    subscriptionModal.init();
+    skillModal.init();
+    projectModal.init();
+  }
+
+  // Expose for external access
+  window.openSubscriptionModal = () => subscriptionModal.open();
+  window.getSubscriptionAnalytics = () => subscriptionAnalytics.getAll();
 </script>
 
 </body>
