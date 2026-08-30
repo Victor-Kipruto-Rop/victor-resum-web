@@ -414,7 +414,7 @@ def get_base_styles():
 def template_welcome(name: str, email: str) -> str:
     """Enhanced welcome email for new subscribers - Blog design with modern icons"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     return f"""
     <!DOCTYPE html>
@@ -457,8 +457,8 @@ def template_welcome(name: str, email: str) -> str:
             <div class="email-section">
               <h2>Get Started Now</h2>
               <p>Explore my latest articles and get caught up on everything you've missed:</p>
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Start Reading Blog</a>
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/" class="secondary-button">View Portfolio</a>
+              <a href="https://victorkipruto.com/blog.html" class="cta-button">Start Reading Blog</a>
+              <a href="https://victorkipruto.com/" class="secondary-button">View Portfolio</a>
             </div>
             
             <div class="content-grid">
@@ -490,7 +490,7 @@ def template_welcome(name: str, email: str) -> str:
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer • Full Stack Developer • Tech Content Creator</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
@@ -510,8 +510,8 @@ def template_welcome(name: str, email: str) -> str:
 def template_new_blog_post(name: str, email: str, post_title: str, post_excerpt: str, post_slug: str, read_time: int, image_url: str = None) -> str:
     """Enhanced new blog post notification"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
-    post_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={post_slug}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    post_url = f"https://victorkipruto.com/post.html?id={post_slug}"
     
     image_html = ""
     if image_url:
@@ -574,7 +574,7 @@ def template_new_blog_post(name: str, email: str, post_title: str, post_excerpt:
             <div class="content-grid">
               <div class="grid-item">
                 <h3>More Articles</h3>
-                <p><a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html">Browse All</a></p>
+                <p><a href="https://victorkipruto.com/blog.html">Browse All</a></p>
               </div>
               <div class="grid-item">
                 <h3>Code Examples</h3>
@@ -586,7 +586,7 @@ def template_new_blog_post(name: str, email: str, post_title: str, post_excerpt:
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
@@ -606,7 +606,7 @@ def template_new_blog_post(name: str, email: str, post_title: str, post_excerpt:
 def template_weekly_digest(name: str, email: str, posts: list) -> str:
     """Enhanced weekly digest"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     posts_html = ""
     for i, post in enumerate(posts, 1):
@@ -623,7 +623,7 @@ def template_weekly_digest(name: str, email: str, posts: list) -> str:
               <h3 style="color: #2d3748; font-size: 18px; margin: 8px 0; font-weight: 700;">{title}</h3>
               <p style="color: #718096; margin: 8px 0; font-size: 13px;">⏱️ {read_time} min read</p>
               <p style="color: #4a5568; margin: 12px 0; font-size: 14px; line-height: 1.6;">{excerpt}</p>
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={post_id}" class="secondary-button" style="margin-top: 12px;">Read Article →</a>
+              <a href="https://victorkipruto.com/post.html?id={post_id}" class="secondary-button" style="margin-top: 12px;">Read Article →</a>
             </div>
           </div>
         </div>
@@ -655,7 +655,7 @@ def template_weekly_digest(name: str, email: str, posts: list) -> str:
             {posts_html}
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Browse All Articles</a>
+              <a href="https://victorkipruto.com/blog.html" class="cta-button">Browse All Articles</a>
             </div>
             
             <div class="success-box">
@@ -667,14 +667,14 @@ def template_weekly_digest(name: str, email: str, posts: list) -> str:
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
               <a href="https://linkedin.com/in/victor-kipruto-rop">LinkedIn</a>
             </div>
             <p class="unsubscribe-notice">
               © 2024 Victor Kipruto. All rights reserved.<br>
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html?frequency=daily">Change Frequency</a> • <a href="{unsubscribe_url}">Unsubscribe</a>
+              <a href="https://victorkipruto.com/blog.html?frequency=daily">Change Frequency</a> • <a href="{unsubscribe_url}">Unsubscribe</a>
             </p>
           </div>
         </div>
@@ -687,7 +687,7 @@ def template_weekly_digest(name: str, email: str, posts: list) -> str:
 def template_trending_content(name: str, email: str, trending_posts: list, top_post_stats: dict) -> str:
     """Alert for trending/viral content"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     trending_html = ""
     for i, post in enumerate(trending_posts[:5], 1):
@@ -702,7 +702,7 @@ def template_trending_content(name: str, email: str, trending_posts: list, top_p
           <div style="font-size: 13px; color: #a16207; margin-bottom: 10px;">
             👁️ <strong>{views:,} views</strong> • 📈 <strong>{growth} growth</strong>
           </div>
-          <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={slug}" class="secondary-button" style="font-size: 13px; padding: 10px 16px;">View Article →</a>
+          <a href="https://victorkipruto.com/post.html?id={slug}" class="secondary-button" style="font-size: 13px; padding: 10px 16px;">View Article →</a>
         </div>
         """
     
@@ -739,14 +739,14 @@ def template_trending_content(name: str, email: str, trending_posts: list, top_p
             
             <div class="email-section">
               <p><strong>Why This Matters:</strong> These trending articles represent the topics readers are most interested in. If you haven't read them yet, they're definitely worth your time!</p>
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Explore More Articles</a>
+              <a href="https://victorkipruto.com/blog.html" class="cta-button">Explore More Articles</a>
             </div>
           </div>
           
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
@@ -765,7 +765,7 @@ def template_trending_content(name: str, email: str, trending_posts: list, top_p
 def template_activity_recap(name: str, email: str, month: str, stats: dict) -> str:
     """Monthly activity recap"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     return f"""
     <!DOCTYPE html>
@@ -823,14 +823,14 @@ def template_activity_recap(name: str, email: str, month: str, stats: dict) -> s
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Full Dashboard</a>
+              <a href="https://victorkipruto.com/dashboard/hub.html" class="cta-button">View Full Dashboard</a>
             </div>
           </div>
           
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
@@ -849,7 +849,7 @@ def template_activity_recap(name: str, email: str, month: str, stats: dict) -> s
 def template_subscriber_milestone(name: str, email: str, milestone: int, celebration_message: str = "") -> str:
     """Celebrate subscriber milestones"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     return f"""
     <!DOCTYPE html>
@@ -910,7 +910,7 @@ def template_subscriber_milestone(name: str, email: str, milestone: int, celebra
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
@@ -929,7 +929,7 @@ def template_subscriber_milestone(name: str, email: str, milestone: int, celebra
 def template_viral_alert(name: str, email: str, post_title: str, current_views: int, viral_threshold: int, growth_rate: str) -> str:
     """Alert when content becomes viral"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     return f"""
     <!DOCTYPE html>
@@ -985,7 +985,7 @@ def template_viral_alert(name: str, email: str, post_title: str, current_views: 
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">View All Articles</a>
+              <a href="https://victorkipruto.com/blog.html" class="cta-button">View All Articles</a>
             </div>
           </div>
           
@@ -1011,7 +1011,7 @@ def template_viral_alert(name: str, email: str, post_title: str, current_views: 
 def template_event_announcement(name: str, email: str, event_title: str, event_date: str, event_description: str, event_url: str = None) -> str:
     """Project or event announcement"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     button_html = f'<a href="{event_url}" class="cta-button">🎯 Learn More →</a>' if event_url else ""
     
     return f"""
@@ -1056,7 +1056,7 @@ def template_event_announcement(name: str, email: str, event_title: str, event_d
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
@@ -1075,7 +1075,7 @@ def template_event_announcement(name: str, email: str, event_title: str, event_d
 def template_recruiter_alert(name: str, email: str, recruiter_info: dict) -> str:
     """Recruiter interest detected"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     company = recruiter_info.get('company', 'Top Company')
     position = recruiter_info.get('position', 'Senior Engineer')
     
@@ -1128,7 +1128,7 @@ def template_recruiter_alert(name: str, email: str, recruiter_info: dict) -> str
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/resume.html" class="cta-button">View Your Resume</a>
+              <a href="https://victorkipruto.com/resume.html" class="cta-button">View Your Resume</a>
             </div>
           </div>
           
@@ -1154,7 +1154,7 @@ def template_recruiter_alert(name: str, email: str, recruiter_info: dict) -> str
 def template_recommended_reads(name: str, email: str, reading_history: list, recommended_posts: list) -> str:
     """Personalized recommendations"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     recommendations_html = ""
     for i, post in enumerate(recommended_posts[:5], 1):
@@ -1171,7 +1171,7 @@ def template_recommended_reads(name: str, email: str, reading_history: list, rec
               <p style="color: #718096; font-size: 13px; margin: 8px 0; line-height: 1.6;">{excerpt}</p>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
                 <span style="color: #667eea; font-weight: 700; font-size: 12px;">Match: {relevance}</span>
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={slug}" class="secondary-button" style="font-size: 12px; padding: 8px 14px;">Read →</a>
+                <a href="https://victorkipruto.com/post.html?id={slug}" class="secondary-button" style="font-size: 12px; padding: 8px 14px;">Read →</a>
               </div>
             </div>
           </div>
@@ -1208,14 +1208,14 @@ def template_recommended_reads(name: str, email: str, reading_history: list, rec
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" class="cta-button">Explore All Articles</a>
+              <a href="https://victorkipruto.com/blog.html" class="cta-button">Explore All Articles</a>
             </div>
           </div>
           
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>
@@ -1234,7 +1234,7 @@ def template_recommended_reads(name: str, email: str, reading_history: list, rec
 def template_notification(name: str, email: str, title: str, message: str, icon: str = "🔔", action_text: str = "Learn More", action_url: str = None) -> str:
     """Generic notification template"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     button_html = f'<a href="{action_url}" class="cta-button">{action_text} →</a>' if action_url else ""
     
     return f"""
@@ -1261,14 +1261,14 @@ def template_notification(name: str, email: str, title: str, message: str, icon:
             </div>
             
             <div class="success-box">
-              <strong>Need help?</strong> Reply to this email or visit my <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">portfolio</a>.
+              <strong>Need help?</strong> Reply to this email or visit my <a href="https://victorkipruto.com/">portfolio</a>.
             </div>
           </div>
           
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
             </div>
             <p class="unsubscribe-notice">
@@ -1286,7 +1286,7 @@ def template_notification(name: str, email: str, title: str, message: str, icon:
 def template_dashboard_alert(name: str, email: str, alert_title: str, metrics: dict, recommendation: str) -> str:
     """Dashboard alert for metrics"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     metrics_html = ""
     for metric, value in metrics.items():
@@ -1329,7 +1329,7 @@ def template_dashboard_alert(name: str, email: str, alert_title: str, metrics: d
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Full Dashboard</a>
+              <a href="https://victorkipruto.com/dashboard/hub.html" class="cta-button">View Full Dashboard</a>
             </div>
           </div>
           
@@ -1350,7 +1350,7 @@ def template_dashboard_alert(name: str, email: str, alert_title: str, metrics: d
 def template_engagement_summary(name: str, email: str, period: str, engagement_stats: dict) -> str:
     """Reader engagement summary"""
     token = generate_unsubscribe_token(email)
-    unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
+    unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={urllib.parse.quote(email)}"
     
     return f"""
     <!DOCTYPE html>
@@ -1408,14 +1408,14 @@ def template_engagement_summary(name: str, email: str, period: str, engagement_s
             </div>
             
             <div class="email-section">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/hub.html" class="cta-button">View Detailed Analytics</a>
+              <a href="https://victorkipruto.com/dashboard/hub.html" class="cta-button">View Detailed Analytics</a>
             </div>
           </div>
           
           <div class="email-footer">
             <p><strong>Victor Kipruto Rop</strong><br>Data Engineer & Full Stack Developer</p>
             <div class="footer-links">
-              <a href="https://victor-kipruto-rop.github.io/victor-resum-web/">Portfolio</a>
+              <a href="https://victorkipruto.com/">Portfolio</a>
               <a href="https://github.com/kipruto45">GitHub</a>
               <a href="https://twitter.com/Victor_Kipruto">Twitter</a>
             </div>

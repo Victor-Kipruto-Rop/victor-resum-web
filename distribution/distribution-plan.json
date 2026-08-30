@@ -7,7 +7,7 @@
       "twitter": {
         "platform": "twitter",
         "thread": [
-          "\ud83e\uddf5 Just published: Designing a Modern Data Lakehouse: From Architecture to Implementation\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+          "\ud83e\uddf5 Just published: Designing a Modern Data Lakehouse: From Architecture to Implementation\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
           "h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...",
           "Read the full article, save it, and share it with your network!\n\n#data-lakehouse #delta-lake #apache-spark"
         ],
@@ -21,14 +21,14 @@
         "mentions": [
           "@VictorKipruto"
         ],
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+        "url": "https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
         "postType": "thread"
       },
       "linkedin": {
         "platform": "linkedin",
         "postType": "article",
-        "text": "\ud83d\udcda New Blog Post: Designing a Modern Data Lakehouse: From Architecture to Implementation\n\nh2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\n\nKey Topics:\n\u2022 data-lakehouse\n\u2022 delta-lake\n\u2022 apache-spark\n\u2022 snowflake\n\u2022 architecture\n\nRead the full article: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\n\n#DataEngineering #Analytics #SoftwareEngineering",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+        "text": "\ud83d\udcda New Blog Post: Designing a Modern Data Lakehouse: From Architecture to Implementation\n\nh2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\n\nKey Topics:\n\u2022 data-lakehouse\n\u2022 delta-lake\n\u2022 apache-spark\n\u2022 snowflake\n\u2022 architecture\n\nRead the full article: https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\n\n#DataEngineering #Analytics #SoftwareEngineering",
+        "url": "https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
         "image": "assets/images/cloud-infrastructure.png",
         "hashtags": [
           "data-lakehouse",
@@ -41,8 +41,8 @@
       "devto": {
         "platform": "devto",
         "postType": "crosspost",
-        "frontmatter": "---\ntitle: Designing a Modern Data Lakehouse: From Architecture to Implementation\ndescription: h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\ntags: data-lakehouse,delta-lake,apache-spark,snowflake,architecture\npublished: true\ncover_image: assets/images/cloud-infrastructure.png\nseries: Architecture\n---\n\nRead the full article with code examples on my blog: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+        "frontmatter": "---\ntitle: Designing a Modern Data Lakehouse: From Architecture to Implementation\ndescription: h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\ntags: data-lakehouse,delta-lake,apache-spark,snowflake,architecture\npublished: true\ncover_image: assets/images/cloud-infrastructure.png\nseries: Architecture\n---\n\nRead the full article with code examples on my blog: https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+        "url": "https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
         "tags": [
           "data-lakehouse",
           "delta-lake",
@@ -56,15 +56,15 @@
         "postType": "newsletter",
         "subject": "\ud83d\udcda Designing a Modern Data Lakehouse: From Architecture to Implementation",
         "preview": "h2The Lakehouse Paradigm/h2pThe data lakehouse com...",
-        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Designing a Modern Data Lakehouse: From Architecture to Implementation</h2>\n<p>h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...</p>\n\n<p>\n  <strong>Category:</strong> Architecture<br>\n  <strong>Read Time:</strong> 15 min<br>\n  <strong>Published:</strong> 2026-06-09T03:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>data-lakehouse</li><li>delta-lake</li><li>apache-spark</li><li>snowflake</li><li>architecture</li>\n</ul>\n\n<p>\n  <a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Designing a Modern Data Lakehouse: From Architecture to Implementation</h2>\n<p>h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...</p>\n\n<p>\n  <strong>Category:</strong> Architecture<br>\n  <strong>Read Time:</strong> 15 min<br>\n  <strong>Published:</strong> 2026-06-09T03:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>data-lakehouse</li><li>delta-lake</li><li>apache-spark</li><li>snowflake</li><li>architecture</li>\n</ul>\n\n<p>\n  <a href=\"https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
+        "url": "https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
         "category": "Architecture"
       },
       "telegram": {
         "platform": "telegram",
         "postType": "channel_message",
-        "message": "\ud83d\udcdd <b>Designing a Modern Data Lakehouse: From Architecture to Implementation</b>\n\nh2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\n\n\ud83c\udff7\ufe0f Tags: data-lakehouse, delta-lake, apache-spark, snowflake, architecture\n\u23f1\ufe0f Read time: 15 min\n\n<a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\">Read Full Article</a>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+        "message": "\ud83d\udcdd <b>Designing a Modern Data Lakehouse: From Architecture to Implementation</b>\n\nh2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\n\n\ud83c\udff7\ufe0f Tags: data-lakehouse, delta-lake, apache-spark, snowflake, architecture\n\u23f1\ufe0f Read time: 15 min\n\n<a href=\"https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation\">Read Full Article</a>",
+        "url": "https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
         "parse_mode": "HTML"
       }
     },
@@ -84,7 +84,7 @@
       "twitter": {
         "platform": "twitter",
         "thread": [
-          "\ud83e\uddf5 Just published: Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+          "\ud83e\uddf5 Just published: Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
           "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...",
           "Read the full article, save it, and share it with your network!\n\n#apache-spark #big-data #performance"
         ],
@@ -98,14 +98,14 @@
         "mentions": [
           "@VictorKipruto"
         ],
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+        "url": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
         "postType": "thread"
       },
       "linkedin": {
         "platform": "linkedin",
         "postType": "article",
-        "text": "\ud83d\udcda New Blog Post: Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing\n\nh2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...\n\nKey Topics:\n\u2022 apache-spark\n\u2022 big-data\n\u2022 performance\n\u2022 shuffle\n\u2022 distributed-computing\n\nRead the full article: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing\n\n#DataEngineering #Analytics #SoftwareEngineering",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+        "text": "\ud83d\udcda New Blog Post: Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing\n\nh2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...\n\nKey Topics:\n\u2022 apache-spark\n\u2022 big-data\n\u2022 performance\n\u2022 shuffle\n\u2022 distributed-computing\n\nRead the full article: https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing\n\n#DataEngineering #Analytics #SoftwareEngineering",
+        "url": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
         "image": "assets/images/data-engineering-fundamentals.png",
         "hashtags": [
           "apache-spark",
@@ -118,8 +118,8 @@
       "devto": {
         "platform": "devto",
         "postType": "crosspost",
-        "frontmatter": "---\ntitle: Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing\ndescription: h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...\ntags: apache-spark,big-data,performance,shuffle,distributed-computing\npublished: true\ncover_image: assets/images/data-engineering-fundamentals.png\nseries: Data Engineering\n---\n\nRead the full article with code examples on my blog: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+        "frontmatter": "---\ntitle: Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing\ndescription: h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...\ntags: apache-spark,big-data,performance,shuffle,distributed-computing\npublished: true\ncover_image: assets/images/data-engineering-fundamentals.png\nseries: Data Engineering\n---\n\nRead the full article with code examples on my blog: https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+        "url": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
         "tags": [
           "apache-spark",
           "big-data",
@@ -133,15 +133,15 @@
         "postType": "newsletter",
         "subject": "\ud83d\udcda Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
         "preview": "h2Understanding Spark Shuffle/h2pThe shuffle is th...",
-        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing</h2>\n<p>h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...</p>\n\n<p>\n  <strong>Category:</strong> Data Engineering<br>\n  <strong>Read Time:</strong> 16 min<br>\n  <strong>Published:</strong> 2026-06-08T23:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>apache-spark</li><li>big-data</li><li>performance</li><li>shuffle</li><li>distributed-computing</li>\n</ul>\n\n<p>\n  <a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing</h2>\n<p>h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...</p>\n\n<p>\n  <strong>Category:</strong> Data Engineering<br>\n  <strong>Read Time:</strong> 16 min<br>\n  <strong>Published:</strong> 2026-06-08T23:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>apache-spark</li><li>big-data</li><li>performance</li><li>shuffle</li><li>distributed-computing</li>\n</ul>\n\n<p>\n  <a href=\"https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
+        "url": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
         "category": "Data Engineering"
       },
       "telegram": {
         "platform": "telegram",
         "postType": "channel_message",
-        "message": "\ud83d\udcdd <b>Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing</b>\n\nh2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...\n\n\ud83c\udff7\ufe0f Tags: apache-spark, big-data, performance, shuffle, distributed-computing\n\u23f1\ufe0f Read time: 16 min\n\n<a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing\">Read Full Article</a>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+        "message": "\ud83d\udcdd <b>Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing</b>\n\nh2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...\n\n\ud83c\udff7\ufe0f Tags: apache-spark, big-data, performance, shuffle, distributed-computing\n\u23f1\ufe0f Read time: 16 min\n\n<a href=\"https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing\">Read Full Article</a>",
+        "url": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
         "parse_mode": "HTML"
       }
     },
@@ -161,7 +161,7 @@
       "twitter": {
         "platform": "twitter",
         "thread": [
-          "\ud83e\uddf5 Just published: Optimizing Snowflake Virtual Warehouses for Cost and Performance\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+          "\ud83e\uddf5 Just published: Optimizing Snowflake Virtual Warehouses for Cost and Performance\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
           "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...",
           "Read the full article, save it, and share it with your network!\n\n#snowflake #cost-optimization #performance"
         ],
@@ -175,14 +175,14 @@
         "mentions": [
           "@VictorKipruto"
         ],
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+        "url": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
         "postType": "thread"
       },
       "linkedin": {
         "platform": "linkedin",
         "postType": "article",
-        "text": "\ud83d\udcda New Blog Post: Optimizing Snowflake Virtual Warehouses for Cost and Performance\n\nh2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...\n\nKey Topics:\n\u2022 snowflake\n\u2022 cost-optimization\n\u2022 performance\n\u2022 cloud\n\u2022 data-warehouse\n\nRead the full article: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance\n\n#DataEngineering #Analytics #SoftwareEngineering",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+        "text": "\ud83d\udcda New Blog Post: Optimizing Snowflake Virtual Warehouses for Cost and Performance\n\nh2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...\n\nKey Topics:\n\u2022 snowflake\n\u2022 cost-optimization\n\u2022 performance\n\u2022 cloud\n\u2022 data-warehouse\n\nRead the full article: https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance\n\n#DataEngineering #Analytics #SoftwareEngineering",
+        "url": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
         "image": "assets/images/python-optimization.png",
         "hashtags": [
           "snowflake",
@@ -195,8 +195,8 @@
       "devto": {
         "platform": "devto",
         "postType": "crosspost",
-        "frontmatter": "---\ntitle: Optimizing Snowflake Virtual Warehouses for Cost and Performance\ndescription: h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...\ntags: snowflake,cost-optimization,performance,cloud,data-warehouse\npublished: true\ncover_image: assets/images/python-optimization.png\nseries: Cloud\n---\n\nRead the full article with code examples on my blog: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+        "frontmatter": "---\ntitle: Optimizing Snowflake Virtual Warehouses for Cost and Performance\ndescription: h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...\ntags: snowflake,cost-optimization,performance,cloud,data-warehouse\npublished: true\ncover_image: assets/images/python-optimization.png\nseries: Cloud\n---\n\nRead the full article with code examples on my blog: https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+        "url": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
         "tags": [
           "snowflake",
           "cost-optimization",
@@ -210,15 +210,15 @@
         "postType": "newsletter",
         "subject": "\ud83d\udcda Optimizing Snowflake Virtual Warehouses for Cost and Performance",
         "preview": "h2The Cost-Performance Trade-off/h2pSnowflake's pa...",
-        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Optimizing Snowflake Virtual Warehouses for Cost and Performance</h2>\n<p>h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...</p>\n\n<p>\n  <strong>Category:</strong> Cloud<br>\n  <strong>Read Time:</strong> 12 min<br>\n  <strong>Published:</strong> 2026-06-08T19:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>snowflake</li><li>cost-optimization</li><li>performance</li><li>cloud</li><li>data-warehouse</li>\n</ul>\n\n<p>\n  <a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Optimizing Snowflake Virtual Warehouses for Cost and Performance</h2>\n<p>h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...</p>\n\n<p>\n  <strong>Category:</strong> Cloud<br>\n  <strong>Read Time:</strong> 12 min<br>\n  <strong>Published:</strong> 2026-06-08T19:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>snowflake</li><li>cost-optimization</li><li>performance</li><li>cloud</li><li>data-warehouse</li>\n</ul>\n\n<p>\n  <a href=\"https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
+        "url": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
         "category": "Cloud"
       },
       "telegram": {
         "platform": "telegram",
         "postType": "channel_message",
-        "message": "\ud83d\udcdd <b>Optimizing Snowflake Virtual Warehouses for Cost and Performance</b>\n\nh2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...\n\n\ud83c\udff7\ufe0f Tags: snowflake, cost-optimization, performance, cloud, data-warehouse\n\u23f1\ufe0f Read time: 12 min\n\n<a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance\">Read Full Article</a>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+        "message": "\ud83d\udcdd <b>Optimizing Snowflake Virtual Warehouses for Cost and Performance</b>\n\nh2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...\n\n\ud83c\udff7\ufe0f Tags: snowflake, cost-optimization, performance, cloud, data-warehouse\n\u23f1\ufe0f Read time: 12 min\n\n<a href=\"https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance\">Read Full Article</a>",
+        "url": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
         "parse_mode": "HTML"
       }
     },
@@ -238,7 +238,7 @@
       "twitter": {
         "platform": "twitter",
         "thread": [
-          "\ud83e\uddf5 Just published: Production-Grade Python Testing Strategies for Data Pipelines\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+          "\ud83e\uddf5 Just published: Production-Grade Python Testing Strategies for Data Pipelines\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
           "h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...",
           "Read the full article, save it, and share it with your network!\n\n#python #testing #data-pipelines"
         ],
@@ -252,14 +252,14 @@
         "mentions": [
           "@VictorKipruto"
         ],
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+        "url": "https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
         "postType": "thread"
       },
       "linkedin": {
         "platform": "linkedin",
         "postType": "article",
-        "text": "\ud83d\udcda New Blog Post: Production-Grade Python Testing Strategies for Data Pipelines\n\nh2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...\n\nKey Topics:\n\u2022 python\n\u2022 testing\n\u2022 data-pipelines\n\u2022 pytest\n\u2022 ci-cd\n\nRead the full article: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines\n\n#DataEngineering #Analytics #SoftwareEngineering",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+        "text": "\ud83d\udcda New Blog Post: Production-Grade Python Testing Strategies for Data Pipelines\n\nh2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...\n\nKey Topics:\n\u2022 python\n\u2022 testing\n\u2022 data-pipelines\n\u2022 pytest\n\u2022 ci-cd\n\nRead the full article: https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines\n\n#DataEngineering #Analytics #SoftwareEngineering",
+        "url": "https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
         "image": "assets/images/sql-optimization.png",
         "hashtags": [
           "python",
@@ -272,8 +272,8 @@
       "devto": {
         "platform": "devto",
         "postType": "crosspost",
-        "frontmatter": "---\ntitle: Production-Grade Python Testing Strategies for Data Pipelines\ndescription: h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...\ntags: python,testing,data-pipelines,pytest,ci-cd\npublished: true\ncover_image: assets/images/sql-optimization.png\nseries: Best Practices\n---\n\nRead the full article with code examples on my blog: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+        "frontmatter": "---\ntitle: Production-Grade Python Testing Strategies for Data Pipelines\ndescription: h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...\ntags: python,testing,data-pipelines,pytest,ci-cd\npublished: true\ncover_image: assets/images/sql-optimization.png\nseries: Best Practices\n---\n\nRead the full article with code examples on my blog: https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+        "url": "https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
         "tags": [
           "python",
           "testing",
@@ -287,15 +287,15 @@
         "postType": "newsletter",
         "subject": "\ud83d\udcda Production-Grade Python Testing Strategies for Data Pipelines",
         "preview": "h2Why Testing Data Pipelines is Different/h2pTesti...",
-        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Production-Grade Python Testing Strategies for Data Pipelines</h2>\n<p>h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...</p>\n\n<p>\n  <strong>Category:</strong> Best Practices<br>\n  <strong>Read Time:</strong> 13 min<br>\n  <strong>Published:</strong> 2026-06-08T15:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>python</li><li>testing</li><li>data-pipelines</li><li>pytest</li><li>ci-cd</li>\n</ul>\n\n<p>\n  <a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Production-Grade Python Testing Strategies for Data Pipelines</h2>\n<p>h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...</p>\n\n<p>\n  <strong>Category:</strong> Best Practices<br>\n  <strong>Read Time:</strong> 13 min<br>\n  <strong>Published:</strong> 2026-06-08T15:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>python</li><li>testing</li><li>data-pipelines</li><li>pytest</li><li>ci-cd</li>\n</ul>\n\n<p>\n  <a href=\"https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
+        "url": "https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
         "category": "Best Practices"
       },
       "telegram": {
         "platform": "telegram",
         "postType": "channel_message",
-        "message": "\ud83d\udcdd <b>Production-Grade Python Testing Strategies for Data Pipelines</b>\n\nh2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...\n\n\ud83c\udff7\ufe0f Tags: python, testing, data-pipelines, pytest, ci-cd\n\u23f1\ufe0f Read time: 13 min\n\n<a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines\">Read Full Article</a>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
+        "message": "\ud83d\udcdd <b>Production-Grade Python Testing Strategies for Data Pipelines</b>\n\nh2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You're testing data transformations, schema val...\n\n\ud83c\udff7\ufe0f Tags: python, testing, data-pipelines, pytest, ci-cd\n\u23f1\ufe0f Read time: 13 min\n\n<a href=\"https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines\">Read Full Article</a>",
+        "url": "https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines",
         "parse_mode": "HTML"
       }
     },
@@ -315,7 +315,7 @@
       "twitter": {
         "platform": "twitter",
         "thread": [
-          "\ud83e\uddf5 Just published: Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+          "\ud83e\uddf5 Just published: Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana\n\nKey insights inside \ud83e\uddf5\ud83d\udc47\n\nhttps://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
           "h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...",
           "Read the full article, save it, and share it with your network!\n\n#flink #kafka #grafana"
         ],
@@ -329,14 +329,14 @@
         "mentions": [
           "@VictorKipruto"
         ],
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+        "url": "https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
         "postType": "thread"
       },
       "linkedin": {
         "platform": "linkedin",
         "postType": "article",
-        "text": "\ud83d\udcda New Blog Post: Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana\n\nh2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...\n\nKey Topics:\n\u2022 flink\n\u2022 kafka\n\u2022 grafana\n\u2022 real-time\n\u2022 streaming\n\nRead the full article: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana\n\n#DataEngineering #Analytics #SoftwareEngineering",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+        "text": "\ud83d\udcda New Blog Post: Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana\n\nh2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...\n\nKey Topics:\n\u2022 flink\n\u2022 kafka\n\u2022 grafana\n\u2022 real-time\n\u2022 streaming\n\nRead the full article: https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana\n\n#DataEngineering #Analytics #SoftwareEngineering",
+        "url": "https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
         "image": "assets/images/dbt-fundamentals.png",
         "hashtags": [
           "flink",
@@ -350,8 +350,8 @@
       "devto": {
         "platform": "devto",
         "postType": "crosspost",
-        "frontmatter": "---\ntitle: Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana\ndescription: h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...\ntags: flink,kafka,grafana,real-time,streaming\npublished: true\ncover_image: assets/images/dbt-fundamentals.png\nseries: Analytics\n---\n\nRead the full article with code examples on my blog: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+        "frontmatter": "---\ntitle: Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana\ndescription: h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...\ntags: flink,kafka,grafana,real-time,streaming\npublished: true\ncover_image: assets/images/dbt-fundamentals.png\nseries: Analytics\n---\n\nRead the full article with code examples on my blog: https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+        "url": "https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
         "tags": [
           "flink",
           "kafka",
@@ -365,15 +365,15 @@
         "postType": "newsletter",
         "subject": "\ud83d\udcda Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
         "preview": "h2The Real-Time Dashboard Challenge/h2pBuilding re...",
-        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana</h2>\n<p>h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...</p>\n\n<p>\n  <strong>Category:</strong> Analytics<br>\n  <strong>Read Time:</strong> 14 min<br>\n  <strong>Published:</strong> 2026-06-08T11:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>flink</li><li>kafka</li><li>grafana</li><li>real-time</li><li>streaming</li><li>monitoring</li>\n</ul>\n\n<p>\n  <a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+        "body_html": "<html>\n<body style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\">\n<h2>Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana</h2>\n<p>h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...</p>\n\n<p>\n  <strong>Category:</strong> Analytics<br>\n  <strong>Read Time:</strong> 14 min<br>\n  <strong>Published:</strong> 2026-06-08T11:12:42.902384Z\n</p>\n\n<h3>Key Topics:</h3>\n<ul>\n  <li>flink</li><li>kafka</li><li>grafana</li><li>real-time</li><li>streaming</li><li>monitoring</li>\n</ul>\n\n<p>\n  <a href=\"https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana\" style=\"background: #0066cc; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;\">\n    Read Article\n  </a>\n</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">\n  Victor Kipruto's Data Engineering & Analytics Blog\n</p>\n</body>\n</html>",
+        "url": "https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
         "category": "Analytics"
       },
       "telegram": {
         "platform": "telegram",
         "postType": "channel_message",
-        "message": "\ud83d\udcdd <b>Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana</b>\n\nh2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...\n\n\ud83c\udff7\ufe0f Tags: flink, kafka, grafana, real-time, streaming\n\u23f1\ufe0f Read time: 14 min\n\n<a href=\"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana\">Read Full Article</a>",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+        "message": "\ud83d\udcdd <b>Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana</b>\n\nh2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...\n\n\ud83c\udff7\ufe0f Tags: flink, kafka, grafana, real-time, streaming\n\u23f1\ufe0f Read time: 14 min\n\n<a href=\"https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana\">Read Full Article</a>",
+        "url": "https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
         "parse_mode": "HTML"
       }
     },

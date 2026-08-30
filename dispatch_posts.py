@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 import urllib.request, urllib.error
 
 load_dotenv()
-BLOG_URL = "https://victor-kipruto-rop.github.io/victor-resum-web/blog.html"
-POST_URL = "https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id="
+BLOG_URL = "https://victorkipruto.com/blog.html"
+POST_URL = "https://victorkipruto.com/post.html?id="
 
 # Load posts
 with open("blog/posts.json") as f:

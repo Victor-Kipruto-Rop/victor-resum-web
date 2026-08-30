@@ -168,7 +168,7 @@ def simulate_posting():
     print(f"   Title: {sample_blog_post['title']}")
     print(f"   Excerpt: {sample_blog_post['excerpt'][:60]}...")
     print(f"   Tags: {', '.join(sample_blog_post['tags'])}")
-    print(f"   URL: https://victorkirpruto.dev/posts/{sample_blog_post['slug']}")
+    print(f"   URL: https://victorkipruto.com/posts/{sample_blog_post['slug']}")
     
     results = {}
     
@@ -177,7 +177,7 @@ def simulate_posting():
     twitter_threads = [
         f"🧵 Thread: {sample_blog_post['title']}\n\nLet me share insights on modern data engineering patterns...",
         f"🔗 {sample_blog_post['excerpt']}",
-        f"📚 Read the full article: https://victorkirpruto.dev/posts/{sample_blog_post['slug']}",
+        f"📚 Read the full article: https://victorkipruto.com/posts/{sample_blog_post['slug']}",
         f"#DataEngineering #Kafka #Python #Architecture"
     ]
     print_info(f"   Would create thread with {len(twitter_threads)} tweets")
@@ -188,7 +188,7 @@ def simulate_posting():
     
     # LinkedIn simulation
     print(f"\n💼 LINKEDIN:")
-    linkedin_post = f"{sample_blog_post['title']}\n\n{sample_blog_post['excerpt']}\n\nRead more: https://victorkirpruto.dev/posts/{sample_blog_post['slug']}"
+    linkedin_post = f"{sample_blog_post['title']}\n\n{sample_blog_post['excerpt']}\n\nRead more: https://victorkipruto.com/posts/{sample_blog_post['slug']}"
     print_info(f"   Post length: {len(linkedin_post)} chars")
     print_info(f"   Format: Article with featured image")
     print_info(f"   Tags: {', '.join(sample_blog_post['tags'][:3])}")
@@ -199,7 +199,7 @@ def simulate_posting():
     print(f"\n👨‍💻 DEV.TO:")
     print_info(f"   Title: {sample_blog_post['title']}")
     print_info(f"   Tags: {', '.join(sample_blog_post['tags'][:5])}")
-    print_info(f"   Canonical URL: https://victorkirpruto.dev/posts/{sample_blog_post['slug']}")
+    print_info(f"   Canonical URL: https://victorkipruto.com/posts/{sample_blog_post['slug']}")
     print_info(f"   Status: Published")
     results['devto_article'] = True
     print_success("   Ready to post (DRY-RUN)")
@@ -215,7 +215,7 @@ def simulate_posting():
     
     # Telegram simulation
     print(f"\n✈️  TELEGRAM:")
-    telegram_message = f"📰 NEW POST\n\n{sample_blog_post['title']}\n\n{sample_blog_post['excerpt']}\n\n🔗 Read: https://victorkirpruto.dev/posts/{sample_blog_post['slug']}\n\n#{', #'.join(sample_blog_post['tags'][:3])}"
+    telegram_message = f"📰 NEW POST\n\n{sample_blog_post['title']}\n\n{sample_blog_post['excerpt']}\n\n🔗 Read: https://victorkipruto.com/posts/{sample_blog_post['slug']}\n\n#{', #'.join(sample_blog_post['tags'][:3])}"
     print_info(f"   Message length: {len(telegram_message)} chars")
     print_info(f"   Channel: Set via TELEGRAM_CHANNEL_ID")
     results['telegram_chars'] = len(telegram_message)

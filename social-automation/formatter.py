@@ -227,7 +227,7 @@ if __name__ == "__main__":
     test_post = {
         "title": "Getting Started with Airflow",
         "content": "# Getting Started\n\nApache Airflow is a **powerful** orchestration tool.\n\n## Features\n- DAGs\n- Scheduling\n- Monitoring",
-        "url": "https://victorkirpruto.dev/posts/airflow",
+        "url": "https://victorkipruto.com/posts/airflow",
         "tags": ["airflow", "data-engineering"]
     }
 

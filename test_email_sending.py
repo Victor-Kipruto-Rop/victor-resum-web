@@ -96,7 +96,7 @@ def test_template_rendering():
                     # Validate
                     if html and len(html) > 500:
                         token = generate_unsubscribe_token(email)
-                        unsubscribe_url = f"https://victorkirpruto.dev/unsubscribe.html?token={token}&email={email}"
+                        unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={email}"
                         
                         print_info(f"  ✓ {name:20} - {len(html):6} bytes - Token: {token}")
                         results['success'] += 1

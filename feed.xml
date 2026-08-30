@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Victor Kipruto - Developer Blog</title>
-    <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog</link>
+    <link>https://victorkipruto.com/blog</link>
     <description>Advanced insights on Data Engineering, Analytics Engineering, and System Design</description>
     <language>en-us</language>
     <lastBuildDate>Wed, 08 Jul 2026 10:20:00 GMT</lastBuildDate>
-    <atom:link href="https://victor-kipruto-rop.github.io/victor-resum-web/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://victorkipruto.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Designing a Modern Data Lakehouse: From Architecture to Implementation</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation</guid>
+      <link>https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation</link>
+      <guid>https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation</guid>
       <pubDate>Tue, 09 Jun 2026 03:12:42 GMT</pubDate>
       <description>h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...</description>
       <category>Architecture</category>
@@ -23,8 +23,8 @@
     </item>
     <item>
       <title>Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing</guid>
+      <link>https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing</link>
+      <guid>https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing</guid>
       <pubDate>Mon, 08 Jun 2026 23:12:42 GMT</pubDate>
       <description>h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...</description>
       <category>Data Engineering</category>
@@ -37,8 +37,8 @@
     </item>
     <item>
       <title>Optimizing Snowflake Virtual Warehouses for Cost and Performance</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance</guid>
+      <link>https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance</link>
+      <guid>https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance</guid>
       <pubDate>Mon, 08 Jun 2026 19:12:42 GMT</pubDate>
       <description>h2The Cost-Performance Trade-off/h2pSnowflake&amp;apos;s pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...</description>
       <category>Cloud</category>
@@ -51,8 +51,8 @@
     </item>
     <item>
       <title>Production-Grade Python Testing Strategies for Data Pipelines</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/production-grade-python-testing-strategies-for-data-pipelines</guid>
+      <link>https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines</link>
+      <guid>https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines</guid>
       <pubDate>Mon, 08 Jun 2026 15:12:42 GMT</pubDate>
       <description>h2Why Testing Data Pipelines is Different/h2pTesting data pipelines requires a fundamentally different approach than testing traditional software. You&amp;apos;re testing data transformations, schema val...</description>
       <category>Best Practices</category>
@@ -65,8 +65,8 @@
     </item>
     <item>
       <title>Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana</guid>
+      <link>https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana</link>
+      <guid>https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana</guid>
       <pubDate>Mon, 08 Jun 2026 11:12:42 GMT</pubDate>
       <description>h2The Real-Time Dashboard Challenge/h2pBuilding real-time dashboards that update every second requires a streaming pipeline that ingests events, computes rolling aggregations, and pushes metrics...</description>
       <category>Analytics</category>
@@ -80,8 +80,8 @@
     </item>
     <item>
       <title>Advanced Kubernetes Patterns for Data Engineers</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/advanced-kubernetes-patterns</guid>
+      <link>https://victorkipruto.com/blog/posts/advanced-kubernetes-patterns</link>
+      <guid>https://victorkipruto.com/blog/posts/advanced-kubernetes-patterns</guid>
       <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
       <description>Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads. Learn operators, StatefulSets, monitoring, and GitOps workflows.</description>
       <category>Infrastructure</category>
@@ -93,8 +93,8 @@
     </item>
     <item>
       <title>Building Data Pipelines with Apache Airflow</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow</guid>
+      <link>https://victorkipruto.com/blog/posts/building-data-pipelines-airflow</link>
+      <guid>https://victorkipruto.com/blog/posts/building-data-pipelines-airflow</guid>
       <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
       <description>Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns.</description>
       <category>Data Engineering</category>
@@ -106,8 +106,8 @@
     </item>
     <item>
       <title>dbt Best Practices: Structuring Your Data Models</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices</guid>
+      <link>https://victorkipruto.com/blog/posts/dbt-best-practices</link>
+      <guid>https://victorkipruto.com/blog/posts/dbt-best-practices</guid>
       <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
       <description>Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks.</description>
       <category>Data Transformation</category>
@@ -119,8 +119,8 @@
     </item>
     <item>
       <title>Data Quality Frameworks: Great Expectations vs Soda</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/data-quality-frameworks-comparison</guid>
+      <link>https://victorkipruto.com/blog/posts/data-quality-frameworks-comparison</link>
+      <guid>https://victorkipruto.com/blog/posts/data-quality-frameworks-comparison</guid>
       <pubDate>Fri, 08 May 2026 00:00:00 GMT</pubDate>
       <description>Comprehensive comparison of modern data quality tools. Implementation guide with Python examples and integration patterns.</description>
       <category>Data Quality</category>
@@ -132,8 +132,8 @@
     </item>
     <item>
       <title>Python Performance Optimization for Data Processing</title>
-      <link>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization</link>
-      <guid>https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization</guid>
+      <link>https://victorkipruto.com/blog/posts/python-performance-optimization</link>
+      <guid>https://victorkipruto.com/blog/posts/python-performance-optimization</guid>
       <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
       <description>Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques.</description>
       <category>Python</category>

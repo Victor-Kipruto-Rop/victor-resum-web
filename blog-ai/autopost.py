@@ -58,7 +58,7 @@ def run_autopost_cycle():
         
         # 4. Notify Subscribers
         logger.info("📧 Sending subscriber notifications...")
-        post_url = f"https://victorkirpruto.dev/post.html?id={metadata.get('id', 'latest')}"
+        post_url = f"https://victorkipruto.com/post.html?id={metadata.get('id', 'latest')}"
         notification_data = {
             "title": title,
             "excerpt": metadata.get("excerpt", ""),

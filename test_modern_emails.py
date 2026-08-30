@@ -119,7 +119,7 @@ def generate_preview(template_name, email_sample="subscriber@example.com", **kwa
             event_title="Launching Advanced Data Engineering Course",
             event_date="Coming July 2024",
             event_description="An in-depth course covering real-world data engineering patterns and best practices.",
-            event_url="https://victor-kipruto-rop.github.io/victor-resum-web/courses"
+            event_url="https://victorkipruto.com/courses"
         )
     
     elif template_name == 'recruiter_alert':
@@ -152,7 +152,7 @@ def generate_preview(template_name, email_sample="subscriber@example.com", **kwa
             message="Check out the new analytics dashboard on your blog!",
             icon="🎉",
             action_text="View Dashboard",
-            action_url="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard"
+            action_url="https://victorkipruto.com/dashboard"
         )
     
     elif template_name == 'dashboard_alert':
@@ -256,7 +256,7 @@ def main():
     print("\nGenerating unsubscribe tokens:\n")
     for email in test_emails:
         token = generate_unsubscribe_token(email)
-        unsubscribe_url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={email}"
+        unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={email}"
         print(f"Email: {email}")
         print(f"Token: {token}")
         print(f"URL: {unsubscribe_url}\n")
@@ -299,7 +299,7 @@ def main():
    token = generate_unsubscribe_token("john@example.com")
 
 4. Unsubscribe URL:
-   url = f"https://victor-kipruto-rop.github.io/victor-resum-web/unsubscribe.html?token={token}&email={email}"
+   url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={email}"
 
 5. Send via Resend API:
    response = requests.post(
