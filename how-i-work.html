@@ -7,10 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D3BGPZ2LCR');
+  </script>
   
   <style>
     /* Light Mode Tokens (Default) */
-    :root {
+:root {
       --ink: #0a0e14;         /* Near-black navy */
       --paper: #f5f0e8;       /* Warm cream */
       --accent: #c8401a;      /* Burnt terracotta/rust */
@@ -53,7 +61,7 @@
       line-height: 1.6;
     }
 
-    .container {
+.container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 0 24px;
@@ -69,14 +77,14 @@
       border-bottom: 1px solid var(--rule);
     }
 
-    .nav-inner {
+.nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 80px;
     }
 
-    .brand {
+.brand {
       font-family: 'Fira Code', monospace;
       font-size: 1.25rem;
       font-weight: 700;
@@ -84,15 +92,15 @@
       text-decoration: none;
     }
 
-    .brand span { color: var(--accent); }
+.brand span { color: var(--accent); }
 
-    .nav-right {
+.nav-right {
       display: flex;
       align-items: center;
       gap: 16px;
     }
 
-    .nav-link {
+.nav-link {
       color: var(--ink);
       text-decoration: none;
       font-size: 0.9rem;
@@ -102,12 +110,12 @@
       border: 1px solid transparent;
     }
 
-    .nav-link.active, .nav-link:hover {
+.nav-link.active,.nav-link:hover {
       border-color: var(--rule);
       background: var(--card);
     }
 
-    .theme-toggle {
+.theme-toggle {
       background: var(--card);
       border: 1px solid var(--rule);
       color: var(--ink);
@@ -121,16 +129,16 @@
       font-size: 1.1rem;
     }
 
-    .theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle:hover { border-color: var(--accent); }
 
     /* Page Hero */
-    .page-hero {
+.page-hero {
       padding: 60px 0 40px;
       border-bottom: 1px solid var(--rule);
       margin-bottom: 50px;
     }
 
-    .badge {
+.badge {
       display: inline-block;
       padding: 4px 14px;
       background: var(--card);
@@ -145,7 +153,7 @@
       letter-spacing: 0.05em;
     }
 
-    .hero-title {
+.hero-title {
       font-family: 'Playfair Display', serif;
       font-size: 3rem;
       line-height: 1.15;
@@ -153,7 +161,7 @@
       color: var(--ink);
     }
 
-    .hero-subtitle {
+.hero-subtitle {
       font-size: 1.2rem;
       color: var(--muted);
       max-width: 760px;
@@ -161,27 +169,27 @@
     }
 
     /* Core Principles Grid */
-    .section-title {
+.section-title {
       font-family: 'Playfair Display', serif;
       font-size: 2.1rem;
       margin-bottom: 12px;
       color: var(--ink);
     }
 
-    .section-subtitle {
+.section-subtitle {
       font-size: 1rem;
       color: var(--muted);
       margin-bottom: 36px;
     }
 
-    .principles-grid {
+.principles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
       margin-bottom: 70px;
     }
 
-    .principle-card {
+.principle-card {
       background: var(--card);
       border: 1px solid var(--rule);
       border-radius: 16px;
@@ -191,7 +199,7 @@
       box-shadow: var(--card-shadow);
     }
 
-    .principle-num {
+.principle-num {
       font-family: 'Fira Code', monospace;
       font-size: 0.85rem;
       color: var(--accent);
@@ -199,32 +207,32 @@
       margin-bottom: 12px;
     }
 
-    .principle-card h3 {
+.principle-card h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.35rem;
       margin-bottom: 12px;
       color: var(--ink);
     }
 
-    .principle-card p {
+.principle-card p {
       font-size: 0.95rem;
       color: var(--muted);
       line-height: 1.6;
     }
 
     /* Process Step-by-Step Section */
-    .process-section {
+.process-section {
       margin-bottom: 80px;
     }
 
-    .process-timeline {
+.process-timeline {
       display: flex;
       flex-direction: column;
       gap: 32px;
       position: relative;
     }
 
-    .process-timeline::before {
+.process-timeline::before {
       content: '';
       position: absolute;
       left: 24px;
@@ -235,7 +243,7 @@
       z-index: 1;
     }
 
-    .timeline-step {
+.timeline-step {
       display: grid;
       grid-template-columns: 50px 1fr;
       gap: 24px;
@@ -243,7 +251,7 @@
       z-index: 2;
     }
 
-    .step-icon {
+.step-icon {
       width: 50px;
       height: 50px;
       border-radius: 50%;
@@ -258,7 +266,7 @@
       font-size: 1.1rem;
     }
 
-    .step-content {
+.step-content {
       background: var(--card);
       border: 1px solid var(--rule);
       border-radius: 18px;
@@ -266,7 +274,7 @@
       box-shadow: var(--card-shadow);
     }
 
-    .step-header {
+.step-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -275,13 +283,13 @@
       margin-bottom: 12px;
     }
 
-    .step-title {
+.step-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       color: var(--ink);
     }
 
-    .step-tag {
+.step-tag {
       font-family: 'Fira Code', monospace;
       font-size: 0.75rem;
       background: var(--paper);
@@ -291,20 +299,20 @@
       color: var(--muted);
     }
 
-    .step-description {
+.step-description {
       font-size: 1rem;
       color: var(--muted);
       margin-bottom: 20px;
     }
 
-    .step-deliverables {
+.step-deliverables {
       background: var(--paper);
       border: 1px solid var(--rule);
       border-radius: 12px;
       padding: 18px 20px;
     }
 
-    .step-deliverables-title {
+.step-deliverables-title {
       font-family: 'Fira Code', monospace;
       font-size: 0.8rem;
       text-transform: uppercase;
@@ -314,14 +322,14 @@
       font-weight: 600;
     }
 
-    .step-deliverables ul {
+.step-deliverables ul {
       list-style: none;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 8px;
     }
 
-    .step-deliverables li {
+.step-deliverables li {
       font-size: 0.88rem;
       color: var(--ink);
       display: flex;
@@ -329,14 +337,14 @@
       gap: 8px;
     }
 
-    .step-deliverables li::before {
+.step-deliverables li::before {
       content: '✓';
       color: var(--accent);
       font-weight: bold;
     }
 
     /* Diagram Block */
-    .diagram-container {
+.diagram-container {
       background: var(--card);
       border: 1px solid var(--rule);
       border-radius: 20px;
@@ -345,12 +353,12 @@
       box-shadow: var(--card-shadow);
     }
 
-    .diagram-header {
+.diagram-header {
       margin-bottom: 24px;
       text-align: center;
     }
 
-    .diagram-svg-wrap {
+.diagram-svg-wrap {
       width: 100%;
       overflow-x: auto;
       padding: 10px 0;
@@ -363,24 +371,24 @@
     }
 
     /* Stack & Tools Matrix */
-    .stack-section {
+.stack-section {
       margin-bottom: 80px;
     }
 
-    .stack-grid {
+.stack-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
     }
 
-    .stack-card {
+.stack-card {
       background: var(--card);
       border: 1px solid var(--rule);
       border-radius: 14px;
       padding: 20px;
     }
 
-    .stack-category {
+.stack-category {
       font-family: 'Fira Code', monospace;
       font-size: 0.8rem;
       color: var(--accent);
@@ -388,20 +396,20 @@
       font-weight: 600;
     }
 
-    .stack-items {
+.stack-items {
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--ink);
     }
 
-    .stack-desc {
+.stack-desc {
       font-size: 0.82rem;
       color: var(--muted);
       margin-top: 6px;
     }
 
     /* Footer CTA */
-    .cta-banner {
+.cta-banner {
       background: var(--card);
       border: 1px solid var(--rule);
       border-radius: 20px;
@@ -410,19 +418,19 @@
       margin-bottom: 80px;
     }
 
-    .cta-banner h2 {
+.cta-banner h2 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
       margin-bottom: 12px;
     }
 
-    .cta-banner p {
+.cta-banner p {
       color: var(--muted);
       max-width: 550px;
       margin: 0 auto 24px;
     }
 
-    .cta-btn {
+.cta-btn {
       display: inline-block;
       background: var(--accent);
       color: #ffffff;
@@ -434,27 +442,73 @@
       transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .cta-btn:hover {
+.cta-btn:hover {
       opacity: 0.9;
       transform: translateY(-2px);
     }
 
     @media (max-width: 768px) {
-      .hero-title { font-size: 2.2rem; }
-      .process-timeline::before { left: 20px; }
-      .timeline-step { grid-template-columns: 40px 1fr; gap: 16px; }
-      .step-icon { width: 40px; height: 40px; font-size: 0.95rem; }
-      .step-content { padding: 20px; }
-      .step-deliverables ul { grid-template-columns: 1fr; }
+.hero-title { font-size: 2.2rem; }
+.process-timeline::before { left: 20px; }
+.timeline-step { grid-template-columns: 40px 1fr; gap: 16px; }
+.step-icon { width: 40px; height: 40px; font-size: 0.95rem; }
+.step-content { padding: 20px; }
+.step-deliverables ul { grid-template-columns: 1fr; }
+    }
+
+    /* Scroll Progress Bar */
+    #scrollProgress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 200;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Animated pipeline diagram */
+    .pipeline-diagram .flow-line {
+      stroke-dashoffset: 0;
+      animation: flowDash 1.2s linear infinite;
+    }
+    @keyframes flowDash {
+      to { stroke-dashoffset: -24; }
+    }
+    .pipeline-diagram .status-dot {
+      animation: statusPulse 2s ease-in-out infinite;
+      transform-origin: center;
+    }
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(1.3); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pipeline-diagram .flow-line, .pipeline-diagram .status-dot { animation: none; }
     }
   </style>
 </head>
 <body class="dark-mode">
+  <div id="scrollProgress"></div>
 
   <!-- Navigation Header -->
   <header>
     <div class="container nav-inner">
-      <a href="#" class="brand">victor_rop<span>.data()</span></a>
+      <a href="index.html" class="brand">victor_rop<span>.data()</span></a>
       <div class="nav-right">
         <a href="#process" class="nav-link active">How I Work</a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle Mode">☀️</button>
@@ -478,22 +532,22 @@
       <p class="section-subtitle">Rules that guide every system design call across CampusHub, MyChama, and PesaGuard.</p>
       
       <div class="principles-grid">
-        <div class="principle-card">
+        <div class="principle-card reveal">
           <div class="principle-num">01 // ARCHITECTURE</div>
           <h3>Events Over Nightly Batches</h3>
-          <p>Treat incoming data (like M-Pesa/Daraja webhooks) as reactive real-time events rather than static database rows inspected hours later[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span).</p>
+          <p>Treat incoming data (like M-Pesa/Daraja webhooks) as reactive real-time events rather than static database rows inspected hours later.</p>
         </div>
 
-        <div class="principle-card">
+        <div class="principle-card reveal">
           <div class="principle-num">02 // GOVERNANCE</div>
           <h3>Governance as First-Class Code</h3>
-          <p>Schema validation, access logging, and Kenyan Data Protection Act compliance are automated inline directly in CI/CD pipeline code[span_2](start_span)[span_2](end_span).</p>
+          <p>Schema validation, access logging, and Kenyan Data Protection Act compliance are automated inline directly in CI/CD pipeline code.</p>
         </div>
 
-        <div class="principle-card">
+        <div class="principle-card reveal">
           <div class="principle-num">03 // PLATFORM THINKING</div>
           <h3>Refuse to Solve Plumbing Twice</h3>
-          <p>Extract reusable ingestion components, auth mechanisms, and monitoring dashboards after they appear in two live projects[span_3](start_span)[span_3](end_span).</p>
+          <p>Extract reusable ingestion components, auth mechanisms, and monitoring dashboards after they appear in two live projects.</p>
         </div>
       </div>
     </section>
@@ -502,13 +556,13 @@
     <section class="diagram-container">
       <div class="diagram-header">
         <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 6px;">End-to-End Pipeline Architecture</h2>
-        <p class="section-subtitle" style="margin-bottom: 0;">Standard event-driven ingestion, processing, and compliance topology[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span)</p>
+        <p class="section-subtitle" style="margin-bottom: 0;">Standard event-driven ingestion, processing, and compliance topology</p>
       </div>
       
       <div class="diagram-svg-wrap">
         <svg class="pipeline-diagram" viewBox="0 0 850 260" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Flow Line Backing -->
-          <path d="M 110 110 L 740 110" stroke="var(--rule)" stroke-width="4" stroke-dasharray="6 6"/>
+          <path class="flow-line" d="M 110 110 L 740 110" stroke="var(--rule)" stroke-width="4" stroke-dasharray="6 6"/>
 
           <!-- Node 1: Ingestion -->
           <g transform="translate(30, 50)">
@@ -548,7 +602,7 @@
 
           <!-- Status Indicator Below -->
           <rect x="310" y="210" width="230" height="32" rx="16" fill="var(--paper)" stroke="var(--rule)" stroke-width="1"/>
-          <circle cx="330" cy="226" r="4" fill="#10b981"/>
+          <circle class="status-dot" cx="330" cy="226" r="4" fill="#10b981"/>
           <text x="342" y="230" fill="var(--ink)" font-family="Fira Code" font-size="11">Active Subsecond Stream</text>
         </svg>
       </div>
@@ -561,7 +615,7 @@
 
       <div class="process-timeline">
         <!-- Step 1 -->
-        <div class="timeline-step">
+        <div class="timeline-step reveal">
           <div class="step-icon">01</div>
           <div class="step-content">
             <div class="step-header">
@@ -569,21 +623,21 @@
               <span class="step-tag">Phase 1: Architecture</span>
             </div>
             <p class="step-description">
-              Before writing any pipeline code, I map out failure modes, edge cases (e.g., duplicate M-Pesa webhooks, out-of-order execution), and compliance boundaries (ODPC Data Protection Act constraints)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span).
+              Before writing any pipeline code, I map out failure modes, edge cases (e.g., duplicate M-Pesa webhooks, out-of-order execution), and compliance boundaries (ODPC Data Protection Act constraints).
             </p>
             <div class="step-deliverables">
               <div class="step-deliverables-title">Key Outputs</div>
               <ul>
-                <li>Failure mode & retry trade-off matrix[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span)</li>
-                <li>Lawful basis PII mapping schema[span_11](start_span)[span_11](end_span)</li>
-                <li>Idempotency boundary definitions[span_12](start_span)[span_12](end_span)</li>
+                <li>Failure mode & retry trade-off matrix</li>
+                <li>Lawful basis PII mapping schema</li>
+                <li>Idempotency boundary definitions</li>
               </ul>
             </div>
           </div>
         </div>
 
         <!-- Step 2 -->
-        <div class="timeline-step">
+        <div class="timeline-step reveal">
           <div class="step-icon">02</div>
           <div class="step-content">
             <div class="step-header">
@@ -591,21 +645,21 @@
               <span class="step-tag">Phase 2: Ingestion</span>
             </div>
             <p class="step-description">
-              Designing strict schema contracts right at the entry point to catch malformed, corrupted, or unexpected payload fields before they leak into downstream models[span_13](start_span)[span_13](end_span).
+              Designing strict schema contracts right at the entry point to catch malformed, corrupted, or unexpected payload fields before they leak into downstream models.
             </p>
             <div class="step-deliverables">
               <div class="step-deliverables-title">Key Outputs</div>
               <ul>
-                <li>Strict JSON/Avro payloads validation[span_14](start_span)[span_14](end_span)</li>
-                <li>Webhook signature authentication[span_15](start_span)[span_15](end_span)</li>
-                <li>DLQ (Dead Letter Queue) routing[span_16](start_span)[span_16](end_span)</li>
+                <li>Strict JSON/Avro payloads validation</li>
+                <li>Webhook signature authentication</li>
+                <li>DLQ (Dead Letter Queue) routing</li>
               </ul>
             </div>
           </div>
         </div>
 
         <!-- Step 3 -->
-        <div class="timeline-step">
+        <div class="timeline-step reveal">
           <div class="step-icon">03</div>
           <div class="step-content">
             <div class="step-header">
@@ -613,21 +667,21 @@
               <span class="step-tag">Phase 3: Processing</span>
             </div>
             <p class="step-description">
-              Implementing event-driven streaming with PyFlink/Kafka consumers to perform near-real-time statistical anomaly detection, flag reconciliation mismatches, and run ledger validation[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span).
+              Implementing event-driven streaming with PyFlink/Kafka consumers to perform near-real-time statistical anomaly detection, flag reconciliation mismatches, and run ledger validation.
             </p>
             <div class="step-deliverables">
               <div class="step-deliverables-title">Key Outputs</div>
               <ul>
-                <li>Near real-time anomaly flagging[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span)</li>
-                <li>Stateful stream join handlers[span_21](start_span)[span_21](end_span)[span_22](start_span)[span_22](end_span)</li>
-                <li>Event ordering windowing functions[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)</li>
+                <li>Near real-time anomaly flagging</li>
+                <li>Stateful stream join handlers</li>
+                <li>Event ordering windowing functions</li>
               </ul>
             </div>
           </div>
         </div>
 
         <!-- Step 4 -->
-        <div class="timeline-step">
+        <div class="timeline-step reveal">
           <div class="step-icon">04</div>
           <div class="step-content">
             <div class="step-header">
@@ -635,14 +689,14 @@
               <span class="step-tag">Phase 4: Production</span>
             </div>
             <p class="step-description">
-              Wiring up Prometheus metrics, Grafana dashboards, line-level data access logging, and automated retention enforcement so the system operates cleanly without manual interventions[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span).
+              Wiring up Prometheus metrics, Grafana dashboards, line-level data access logging, and automated retention enforcement so the system operates cleanly without manual interventions.
             </p>
             <div class="step-deliverables">
               <div class="step-deliverables-title">Key Outputs</div>
               <ul>
-                <li>Prometheus lag & throughput metrics[span_27](start_span)[span_27](end_span)</li>
-                <li>Line-level audit trail logs[span_28](start_span)[span_28](end_span)</li>
-                <li>Automated data retention purges[span_29](start_span)[span_29](end_span)</li>
+                <li>Prometheus lag & throughput metrics</li>
+                <li>Line-level audit trail logs</li>
+                <li>Automated data retention purges</li>
               </ul>
             </div>
           </div>
@@ -659,25 +713,25 @@
         <div class="stack-card">
           <div class="stack-category">STREAMING & BUS</div>
           <div class="stack-items">Apache Kafka, PyFlink</div>
-          <div class="stack-desc">Real-time event streams, stateful processing, and windowed aggregations[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).</div>
+          <div class="stack-desc">Real-time event streams, stateful processing, and windowed aggregations.</div>
         </div>
 
         <div class="stack-card">
           <div class="stack-category">BACKEND & API</div>
           <div class="stack-items">Python, Django, FastAPI</div>
-          <div class="stack-desc">Rest APIs, Daraja webhook handlers, and web backend infrastructure[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span)[span_34](start_span)[span_34](end_span).</div>
+          <div class="stack-desc">Rest APIs, Daraja webhook handlers, and web backend infrastructure.</div>
         </div>
 
         <div class="stack-card">
           <div class="stack-category">OBSERVABILITY</div>
           <div class="stack-items">Prometheus, Grafana</div>
-          <div class="stack-desc">Consumer lag tracking, throughput monitors, and alerting thresholds[span_35](start_span)[span_35](end_span).</div>
+          <div class="stack-desc">Consumer lag tracking, throughput monitors, and alerting thresholds.</div>
         </div>
 
         <div class="stack-card">
           <div class="stack-category">GOVERNANCE</div>
           <div class="stack-items">Git CI/CD, ODPC DPA '19</div>
-          <div class="stack-desc">Schema enforcement, access logging, and automated retention purges[span_36](start_span)[span_36](end_span).</div>
+          <div class="stack-desc">Schema enforcement, access logging, and automated retention purges.</div>
         </div>
       </div>
     </section>
@@ -685,19 +739,57 @@
     <!-- Bottom Call to Action -->
     <section class="cta-banner">
       <h2>Interested in discussing data infrastructure?</h2>
-      <p>Whether it's event-driven architecture, Daraja integrations, or building resilient data pipelines, I'm always open to technical discussions[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span).</p>
-      <a href="mailto:contact@victorrop.com" class="cta-btn">Get in Touch</a>
+      <p>Whether it's event-driven architecture, Daraja integrations, or building resilient data pipelines, I'm always open to technical discussions.</p>
+      <a href="mailto:kiprutovictor39@gmail.com" class="cta-btn">Get in Touch</a>
     </section>
   </main>
 
   <script>
-    // Theme Switch Logic
+    // Theme Switch Logic (persisted across pages, matching index.html/resume.html)
     const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    } else {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
     themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      const isDark = document.body.classList.contains('dark-mode');
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
       themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
+
+    // Scroll-reveal for principle cards and timeline steps
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && revealEls.length) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(el => revealObserver.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+
+    // Scroll progress bar
+    const scrollProgress = document.getElementById('scrollProgress');
+    function updateScrollProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress);
+    updateScrollProgress();
   </script>
 </body>
 </html>
