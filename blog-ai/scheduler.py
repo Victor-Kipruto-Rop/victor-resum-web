@@ -103,7 +103,7 @@ class BlogScheduler:
             "excerpt": metadata_dict.get("excerpt", ""),
             "read_time": metadata_dict.get("read_time", 10),
             "tags": metadata_dict.get("tags", []),
-            "url": f"https://victorkirpruto.dev/post.html?id={metadata_dict.get('id', title.lower().replace(' ', '-'))}",
+            "url": f"https://victorkipruto.com/post.html?id={metadata_dict.get('id', title.lower().replace(' ', '-'))}",
             "published_date": datetime.now().strftime("%B %d, %Y"),
             "author": self.config["author"]["name"]
         }
@@ -193,7 +193,7 @@ def main():
             "excerpt": "Learn best practices for building scalable data pipelines.",
             "read_time": 12,
             "tags": ["Data Engineering", "Pipelines", "Best Practices"],
-            "url": "https://victorkirpruto.dev/post.html?id=test-post",
+            "url": "https://victorkipruto.com/post.html?id=test-post",
             "published_date": datetime.now().strftime("%B %d, %Y"),
             "author": scheduler.config["author"]["name"]
         }

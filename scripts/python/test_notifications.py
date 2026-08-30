@@ -30,7 +30,7 @@ def test_email_templates():
             "title": "Advanced Kubernetes Patterns for Data Engineers",
             "slug": "advanced-kubernetes-patterns",
             "description": "Master production-ready Kubernetes deployment patterns specifically designed for data engineering workloads.",
-            "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png",
+            "image": "https://victorkipruto.com/assets/images/kubernetes-patterns.png",
             "readTime": 12
         }
     ]
@@ -68,7 +68,7 @@ def test_email_templates():
             message=post['description'],
             icon="📝",
             action_text="Read Article",
-            action_url=f"https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={post['slug']}"
+            action_url=f"https://victorkipruto.com/post.html?id={post['slug']}"
         )
         print(f"     ✅ Generated {len(notif_email)} characters")
 
@@ -166,7 +166,7 @@ def test_email_with_all_templates():
             "Master production-ready Kubernetes...",
             "advanced-kubernetes-patterns",
             12,
-            "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/kubernetes-patterns.png"
+            "https://victorkipruto.com/assets/images/kubernetes-patterns.png"
         )),
         ("Notification Email", lambda: template_notification(
             "John Doe",

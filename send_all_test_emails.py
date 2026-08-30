@@ -95,7 +95,7 @@ TEST_DATA = {
         'event_title': 'Advanced Data Engineering Masterclass',
         'event_date': 'July 15, 2026',
         'event_description': 'In-depth exploration of modern data engineering practices.',
-        'event_url': 'https://victor-kipruto-rop.github.io/victor-resum-web/',
+        'event_url': 'https://victorkipruto.com/',
         'subject': 'New Masterclass: Advanced Data Engineering'
     },
     'recruiter_alert': {
@@ -121,7 +121,7 @@ TEST_DATA = {
         'title': 'New Technical Resource',
         'message': 'Comprehensive guide on modern data engineering practices.',
         'action_text': 'Read the Guide',
-        'action_url': 'https://victor-kipruto-rop.github.io/victor-resum-web/blog.html',
+        'action_url': 'https://victorkipruto.com/blog.html',
         'subject': 'New Technical Resource Available'
     },
     'dashboard_alert': {

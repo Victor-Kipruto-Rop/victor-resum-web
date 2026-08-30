@@ -44,16 +44,16 @@ def generate_previews():
     
     test_cases = [
         ('welcome', [name, target_email]),
-        ('new_blog_post', [name, target_email, "Scaling Data Pipelines", "How to handle millions of events with Python and Kafka.", "scaling-pipelines", 8, "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/1.jpeg"]),
+        ('new_blog_post', [name, target_email, "Scaling Data Pipelines", "How to handle millions of events with Python and Kafka.", "scaling-pipelines", 8, "https://victorkipruto.com/assets/images/1.jpeg"]),
         ('weekly_digest', [name, target_email, sample_posts]),
         ('trending_content', [name, target_email, sample_posts, sample_posts[0]]),
         ('activity_recap', [name, target_email, "June 2026", sample_stats]),
         ('subscriber_milestone', [name, target_email, 100]),
         ('viral_alert', [name, target_email, "Scaling Data Pipelines", 5000, 1000, "10% per hour"]),
-        ('event_announcement', [name, target_email, "Data Engineering Trends 2026", "June 15, 2026", "Join us for a deep dive into the future of data engineering.", "https://victor-kipruto-rop.github.io/victor-resum-web/"]),
+        ('event_announcement', [name, target_email, "Data Engineering Trends 2026", "June 15, 2026", "Join us for a deep dive into the future of data engineering.", "https://victorkipruto.com/"]),
         ('recruiter_alert', [name, target_email, recruiter_info]),
         ('recommended_reads', [name, target_email, sample_posts, sample_posts]),
-        ('notification', [name, target_email, "Security Update", "Please review your account security settings.", "🔒", "Update Now", "https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/login.html"]),
+        ('notification', [name, target_email, "Security Update", "Please review your account security settings.", "🔒", "Update Now", "https://victorkipruto.com/dashboard/login.html"]),
         ('dashboard_alert', [name, target_email, "High Latency Detected", sample_metrics, "Optimize database queries"]),
         ('engagement_summary', [name, target_email, "May 2026", sample_stats])
     ]

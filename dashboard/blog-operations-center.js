@@ -1427,7 +1427,7 @@ function generatePlatformUrl(platform, post) {
     medium: 'https://medium.com/new-story',
     devto: 'https://dev.to/new',
     telegram: 'https://t.me/share/url?url=',
-    blog: 'https://victor-kipruto-rop.github.io/victor-resum-web/blog.html'
+    blog: 'https://victorkipruto.com/blog.html'
   };
 
   return baseUrls[platform] || '#';

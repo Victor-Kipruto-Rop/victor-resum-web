@@ -118,7 +118,7 @@ if __name__ == "__main__":
             "title": "Test Article",
             "markdown": "# Test\n\nThis is a test article.",
             "tags": ["dataengineering"],
-            "canonical_url": "https://victorkirpruto.dev"
+            "canonical_url": "https://victorkipruto.com"
         },
         {"date": datetime.now().isoformat()}
     )

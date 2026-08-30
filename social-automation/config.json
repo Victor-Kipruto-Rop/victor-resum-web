@@ -10,8 +10,8 @@
   "blog": {
     "title": "Technical Blog - Victor Kipruto Rop",
     "description": "Data Engineering, Analytics, and Software Architecture insights",
-    "url": "https://victorkirpruto.dev",
-    "rss_feed": "https://victorkirpruto.dev/feed.xml"
+    "url": "https://victorkipruto.com",
+    "rss_feed": "https://victorkipruto.com/feed.xml"
   },
   "platforms": {
     "linkedin": {
@@ -142,7 +142,7 @@
     },
     "blog_update": {
       "enabled": true,
-      "url": "https://victorkirpruto.dev/webhook/dispatch",
+      "url": "https://victorkipruto.com/webhook/dispatch",
       "trigger_on": ["new_post"]
     }
   },

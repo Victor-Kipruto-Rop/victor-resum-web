@@ -38,7 +38,7 @@ def test_linkedin():
     content = {
         "title": "Test Blog Post Integration",
         "excerpt": "This is a test post to verify LinkedIn API integration for the DBOS platform.",
-        "url": "https://victorkirpruto.dev/blog.html"
+        "url": "https://victorkipruto.com/blog.html"
     }
     
     metadata = {

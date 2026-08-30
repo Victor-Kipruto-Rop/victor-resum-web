@@ -198,7 +198,7 @@ class SubscriptionService:
                 "excerpt": post_data.get("excerpt", post_data.get("description", "")),
                 "read_time": post_data.get("readTime", 10),
                 "tags": post_data.get("tags", []),
-                "url": post_data.get("url", f"https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id={post_data.get('id', 'post')}"),
+                "url": post_data.get("url", f"https://victorkipruto.com/post.html?id={post_data.get('id', 'post')}"),
                 "published_date": datetime.now().strftime("%B %d, %Y"),
                 "author": "Victor Kipruto Rop"
             }
@@ -314,7 +314,7 @@ def main():
     elif args.action == "notify":
         post_data = {
             "title": args.post_title or "New Blog Post",
-            "url": args.post_url or "https://victor-kipruto-rop.github.io/victor-resum-web/blog.html",
+            "url": args.post_url or "https://victorkipruto.com/blog.html",
             "excerpt": "A new article has been published.",
             "readTime": 10,
             "tags": ["data-engineering"]

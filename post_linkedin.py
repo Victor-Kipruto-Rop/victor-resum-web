@@ -17,8 +17,8 @@ person_urn = profile["sub"]
 name = f"{profile.get('given_name', '')} {profile.get('family_name', '')}"
 print(f"Connected as: {name} (URN: {person_urn})")
 
-POST_URL = "https://victor-kipruto-rop.github.io/victor-resum-web/post.html?id="
-BLOG_URL = "https://victor-kipruto-rop.github.io/victor-resum-web/blog.html"
+POST_URL = "https://victorkipruto.com/post.html?id="
+BLOG_URL = "https://victorkipruto.com/blog.html"
 
 posts = [
     ("Building a Modern Data Lakehouse: From Architecture to Implementation", "data-lakehouse-architecture-from-architecture-to-implementation", ["DataLakehouse", "DeltaLake", "ApacheSpark", "DataEngineering"]),

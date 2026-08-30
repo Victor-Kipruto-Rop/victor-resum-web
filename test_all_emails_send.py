@@ -28,7 +28,7 @@ TEST_DATA = {
         'post_excerpt': 'Learn how to design and implement production-grade data pipelines using Apache Airflow. We\'ll cover DAGs, operators, sensors, and real-world optimization techniques.',
         'post_slug': 'airflow-data-pipelines',
         'read_time': 12,
-        'image_url': 'https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-engineering.jpg'
+        'image_url': 'https://victorkipruto.com/assets/images/data-engineering.jpg'
     },
     'weekly_digest': {
         'name': RECIPIENT_NAME,
@@ -127,7 +127,7 @@ TEST_DATA = {
         'event_title': 'Advanced Data Engineering Masterclass',
         'event_date': 'July 15, 2026',
         'event_description': 'Join me for an in-depth exploration of modern data engineering practices. We\'ll cover data pipeline architecture, distributed systems, and production deployment strategies.',
-        'event_url': 'https://victor-kipruto-rop.github.io/victor-resum-web/'
+        'event_url': 'https://victorkipruto.com/'
     },
     'recruiter_alert': {
         'name': RECIPIENT_NAME,
@@ -171,7 +171,7 @@ TEST_DATA = {
         'title': 'New Technical Resource Available',
         'message': 'I\'ve just published a comprehensive guide on modern data engineering practices. This resource covers architecture patterns, tools, and real-world implementation strategies.',
         'action_text': 'Read the Guide',
-        'action_url': 'https://victor-kipruto-rop.github.io/victor-resum-web/blog.html'
+        'action_url': 'https://victorkipruto.com/blog.html'
     },
     'dashboard_alert': {
         'name': RECIPIENT_NAME,

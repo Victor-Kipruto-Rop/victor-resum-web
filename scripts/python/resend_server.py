@@ -93,7 +93,7 @@ def build_welcome_html(name):
                 <li>Project updates and announcements</li>
             </ul>
             <div style="text-align: center; margin: 32px 0;">
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" style="display: inline-block; padding: 14px 28px; background: #ff4b2b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Read the Blog →</a>
+                <a href="https://victorkipruto.com/blog.html" style="display: inline-block; padding: 14px 28px; background: #ff4b2b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Read the Blog →</a>
             </div>
             <p style="font-size: 13px; color: #7a8299; border-top: 1px solid #2d3445; padding-top: 20px; margin-top: 32px;">© 2026 Victor Kipruto Rop · Data Engineer · Nairobi, Kenya</p>
         </div>
@@ -217,7 +217,7 @@ class NotificationHandler(BaseHTTPRequestHandler):
                 if notif_type == 'new_post':
                     post_title = body.get('postTitle', 'New Blog Post')
                     post_excerpt = body.get('postExcerpt', 'A new article has been published.')
-                    post_url = body.get('postUrl', 'https://victor-kipruto-rop.github.io/victor-resum-web/blog.html')
+                    post_url = body.get('postUrl', 'https://victorkipruto.com/blog.html')
                     html = build_new_post_html(post_title, post_excerpt, post_url)
                     subject = f'New Post: {post_title}'
                 else:

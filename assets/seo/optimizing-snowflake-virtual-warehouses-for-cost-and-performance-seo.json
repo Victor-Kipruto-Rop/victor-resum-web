@@ -2,13 +2,13 @@
   "slug": "optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
   "metaTitle": "Optimizing Snowflake Virtual Warehouses for Cost and Pe...",
   "metaDescription": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size Learn more on my blog.",
-  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+  "canonicalUrl": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
   "openGraph": {
     "og:title": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
     "og:description": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...",
-    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+    "og:image": "https://victorkipruto.com/assets/images/python-optimization.png",
     "og:type": "article",
-    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+    "og:url": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
     "og:site_name": "Victor Kipruto - Developer",
     "article:published_time": "2026-06-08T19:12:42.902384Z",
     "article:modified_time": "2026-06-08T19:12:42.902384Z",
@@ -18,7 +18,7 @@
     "twitter:card": "summary_large_image",
     "twitter:title": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
     "twitter:description": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...",
-    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+    "twitter:image": "https://victorkipruto.com/assets/images/python-optimization.png",
     "twitter:creator": "@VictorKipruto",
     "twitter:site": "@VictorKipruto"
   },
@@ -28,26 +28,26 @@
       "@type": "BlogPosting",
       "headline": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
       "description": "h2The Cost-Performance Trade-off/h2pSnowflake's pay-per-use model means every query costs money. This guide shows how to right-size your virtual warehouses and reduce your bill by 40-60% without...",
-      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+      "image": "https://victorkipruto.com/assets/images/python-optimization.png",
       "datePublished": "2026-06-08T19:12:42.902384Z",
       "dateModified": "2026-06-08T19:12:42.902384Z",
       "author": {
         "@type": "Person",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
+        "@id": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
       },
       "keywords": "",
       "articleSection": "Cloud",
-      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
+      "articleBody": "Read the full article at https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
     },
     "breadcrumb": {
       "@context": "https://schema.org",
@@ -57,25 +57,25 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          "item": "https://victorkipruto.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Blog",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          "item": "https://victorkipruto.com/blog"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Cloud",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/cloud"
+          "item": "https://victorkipruto.com/blog/categories/cloud"
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
+          "item": "https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance"
         }
       ]
     }

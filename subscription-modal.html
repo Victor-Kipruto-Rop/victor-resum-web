@@ -446,7 +446,7 @@
         <div class="subscription-rss-copy" id="rssUrlSection">
           <div class="subscription-rss-label">RSS Feed URL</div>
           <div class="subscription-rss-url">
-            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml">
+            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victorkipruto.com/rss.xml">
             <button class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard">
               <i class="fas fa-copy"></i>
               <span>Copy</span>
@@ -611,7 +611,7 @@
     handleFeedOption(option) {
       subscriptionAnalytics.track(option + '_clicks');
 
-      const rssUrl = 'https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml';
+      const rssUrl = 'https://victorkipruto.com/rss.xml';
       const inoreaderUrl = 'https://www.inoreader.com/?add_feed=' + encodeURIComponent(rssUrl);
       const feedlyUrl = 'https://feedly.com/i/subscription/feed/' + encodeURIComponent(rssUrl);
 
