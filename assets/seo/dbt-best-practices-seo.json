@@ -2,13 +2,13 @@
   "slug": "dbt-best-practices",
   "metaTitle": "dbt Best Practices: Structuring Your Data Models",
   "metaDescription": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks. Learn more on my blog.",
-  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices",
+  "canonicalUrl": "https://victorkipruto.com/blog/posts/dbt-best-practices",
   "openGraph": {
     "og:title": "dbt Best Practices: Structuring Your Data Models",
     "og:description": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks.",
-    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-best-practices.png",
+    "og:image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/dbt-best-practices.png",
     "og:type": "article",
-    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices",
+    "og:url": "https://victorkipruto.com/blog/posts/dbt-best-practices",
     "og:site_name": "Victor Kipruto - Developer",
     "article:published_time": "2026-05-15T00:00:00Z",
     "article:modified_time": "2026-05-20T14:20:00Z",
@@ -18,7 +18,7 @@
     "twitter:card": "summary_large_image",
     "twitter:title": "dbt Best Practices: Structuring Your Data Models",
     "twitter:description": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks.",
-    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-best-practices.png",
+    "twitter:image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/dbt-best-practices.png",
     "twitter:creator": "@VictorKipruto",
     "twitter:site": "@VictorKipruto"
   },
@@ -28,26 +28,26 @@
       "@type": "BlogPosting",
       "headline": "dbt Best Practices: Structuring Your Data Models",
       "description": "Learn proven patterns for organizing dbt projects at scale. Includes layering strategy, macro development, and testing frameworks.",
-      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/dbt-best-practices.png",
+      "image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/dbt-best-practices.png",
       "datePublished": "2026-05-15T00:00:00Z",
       "dateModified": "2026-05-20T14:20:00Z",
       "author": {
         "@type": "Person",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices"
+        "@id": "https://victorkipruto.com/blog/posts/dbt-best-practices"
       },
       "keywords": "dbt best practices, data modeling, analytics engineering",
       "articleSection": "Data Transformation",
-      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices"
+      "articleBody": "Read the full article at https://victorkipruto.com/blog/posts/dbt-best-practices"
     },
     "breadcrumb": {
       "@context": "https://schema.org",
@@ -57,25 +57,25 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          "item": "https://victorkipruto.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Blog",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          "item": "https://victorkipruto.com/blog"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Data Transformation",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-transformation"
+          "item": "https://victorkipruto.com/blog/categories/data-transformation"
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": "dbt Best Practices: Structuring Your Data Models",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/dbt-best-practices"
+          "item": "https://victorkipruto.com/blog/posts/dbt-best-practices"
         }
       ]
     }

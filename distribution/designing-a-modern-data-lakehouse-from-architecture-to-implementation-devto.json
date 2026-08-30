@@ -1,8 +1,8 @@
 {
   "platform": "devto",
   "postType": "crosspost",
-  "frontmatter": "---\ntitle: Designing a Modern Data Lakehouse: From Architecture to Implementation\ndescription: h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\ntags: data-lakehouse,delta-lake,apache-spark,snowflake,architecture\npublished: true\ncover_image: assets/images/cloud-infrastructure.png\nseries: Architecture\n---\n\nRead the full article with code examples on my blog: https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
-  "url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+  "frontmatter": "---\ntitle: Designing a Modern Data Lakehouse: From Architecture to Implementation\ndescription: h2The Lakehouse Paradigm/h2pThe data lakehouse combines the flexibility and cost-efficiency of data lakes with the reliability and performance of data warehouses. By adding a metadata layer with...\ntags: data-lakehouse,delta-lake,apache-spark,snowflake,architecture\npublished: true\ncover_image: assets/images/cloud-infrastructure.png\nseries: Architecture\n---\n\nRead the full article with code examples on my blog: https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+  "url": "https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation",
   "tags": [
     "data-lakehouse",
     "delta-lake",

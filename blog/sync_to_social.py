@@ -58,7 +58,7 @@ def format_blog_title(post: Dict) -> str:
     """Format blog title for social media"""
     return post.get('title', 'New Blog Post')
 
-def format_twitter_post(post: Dict, blog_url: str = "https://victor-kipruto-rop.github.io/victor-resum-web/blog") -> str:
+def format_twitter_post(post: Dict, blog_url: str = "https://victorkipruto.com/blog") -> str:
     """Format post for Twitter"""
     title = post.get('title', 'New Blog Post')
     slug = post.get('slug', post.get('id', 'post'))
@@ -77,7 +77,7 @@ def format_twitter_post(post: Dict, blog_url: str = "https://victor-kipruto-rop.
     
     return tweet
 
-def format_telegram_post(post: Dict, blog_url: str = "https://victor-kipruto-rop.github.io/victor-resum-web/blog") -> str:
+def format_telegram_post(post: Dict, blog_url: str = "https://victorkipruto.com/blog") -> str:
     """Format post for Telegram"""
     title = post.get('title', 'New Blog Post')
     description = post.get('description', post.get('excerpt', ''))

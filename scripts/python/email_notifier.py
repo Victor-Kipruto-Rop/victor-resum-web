@@ -84,7 +84,7 @@ class EmailNotifier:
             return False
     
     def send_blog_published(self, title: str, slug: str, summary: str, 
-                           category: str, url_base: str = "https://victor-kipruto-rop.github.io/victor-resum-web") -> bool:
+                           category: str, url_base: str = "https://victorkipruto.com") -> bool:
         """Send blog published email"""
         blog_url = f"{url_base}/blog/posts/{slug}"
         

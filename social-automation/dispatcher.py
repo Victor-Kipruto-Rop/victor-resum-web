@@ -250,7 +250,7 @@ class SocialDispatcher:
         return {
             "title": "Blog Post",  # Extract from frontmatter or content
             "content": content,
-            "url": f"https://victorkirpruto.dev/posts/{Path(markdown_path).stem}.html",
+            "url": f"https://victorkipruto.com/posts/{Path(markdown_path).stem}.html",
             "date": datetime.now().isoformat()
         }
 

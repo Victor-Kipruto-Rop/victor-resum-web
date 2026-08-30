@@ -78,7 +78,7 @@ def welcome_html():
                 <li>🔔 Project updates and announcements</li>
             </ul>
             <div style="text-align: center; margin: 36px 0;">
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" style="display: inline-block; padding: 16px 32px; background: #ff4b2b; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">Read the Blog →</a>
+                <a href="https://victorkipruto.com/blog.html" style="display: inline-block; padding: 16px 32px; background: #ff4b2b; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">Read the Blog →</a>
             </div>
             <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin-bottom: 24px;">
                 <p style="font-size: 13px; color: #7a8299; margin: 0;">🏷️ Topics: Data Engineering, ETL Pipelines, Streaming, Cloud Architecture</p>
@@ -102,7 +102,7 @@ def new_post_html():
                 <span style="padding: 4px 10px; background: rgba(16,185,129,0.2); color: #10b981; border-radius: 4px; font-size: 12px;">Cloud</span>
             </div>
             <div style="text-align: center; margin: 36px 0;">
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" style="display: inline-block; padding: 16px 32px; background: #ff4b2b; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">Read Article →</a>
+                <a href="https://victorkipruto.com/blog.html" style="display: inline-block; padding: 16px 32px; background: #ff4b2b; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">Read Article →</a>
             </div>
             <p style="font-size: 13px; color: #7a8299; border-top: 1px solid #2d3445; padding-top: 20px;">© 2026 Victor Kipruto Rop · Data Engineer</p>
         </div>
@@ -128,7 +128,7 @@ def custom_html():
                 </ul>
             </div>
             <div style="text-align: center; margin: 36px 0;">
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/blog-operations-center.html" style="display: inline-block; padding: 16px 32px; background: #3b82f6; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">Open Dashboard →</a>
+                <a href="https://victorkipruto.com/dashboard/blog-operations-center.html" style="display: inline-block; padding: 16px 32px; background: #3b82f6; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">Open Dashboard →</a>
             </div>
             <p style="font-size: 13px; color: #7a8299; border-top: 1px solid #2d3445; padding-top: 20px;">© 2026 Victor Kipruto Rop · DBOS Notifications</p>
         </div>
@@ -152,7 +152,7 @@ def admin_alert_html():
                 <p><strong>Status:</strong> <span style="color: #10b981; font-weight: 700;">✓ All successful</span></p>
             </div>
             <div style="text-align: center; margin: 36px 0;">
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/blog-operations-center.html" style="display: inline-block; padding: 16px 32px; background: #f59e0b; color: #0f1419; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">View Dashboard →</a>
+                <a href="https://victorkipruto.com/dashboard/blog-operations-center.html" style="display: inline-block; padding: 16px 32px; background: #f59e0b; color: #0f1419; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">View Dashboard →</a>
             </div>
             <p style="font-size: 13px; color: #7a8299; border-top: 1px solid #2d3445; padding-top: 20px;">© 2026 DBOS · Automated Admin Notification</p>
         </div>
@@ -183,7 +183,7 @@ def weekly_digest_html():
                 <p><strong>📝 Top Post:</strong> Data Engineering Full Project Guide</p>
             </div>
             <div style="text-align: center; margin: 36px 0;">
-                <a href="https://victor-kipruto-rop.github.io/victor-resum-web/blog.html" style="display: inline-block; padding: 16px 32px; background: #10b981; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">View All Posts →</a>
+                <a href="https://victorkipruto.com/blog.html" style="display: inline-block; padding: 16px 32px; background: #10b981; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px;">View All Posts →</a>
             </div>
             <p style="font-size: 13px; color: #7a8299; border-top: 1px solid #2d3445; padding-top: 20px;">© 2026 Victor Kipruto Rop · Weekly Digest</p>
         </div>
