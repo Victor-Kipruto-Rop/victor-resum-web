@@ -3,8 +3,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Technical Blog - Victor Kipruto Rop</title>
-    <link>https://victorkirpruto.dev/blog.html</link>
-    <atom:link href="https://victorkirpruto.dev/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>https://victorkipruto.com/blog.html</link>
+    <atom:link href="https://victorkipruto.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Data Engineering, Analytics, and Software Architecture insights</description>
     <language>en-us</language>
     <lastBuildDate>Thu, 06 Jun 2024 07:45:00 GMT</lastBuildDate>
@@ -12,9 +12,9 @@
 
     <!-- Channel Image -->
     <image>
-      <url>https://victorkirpruto.dev/assets/images/blog-logo.png</url>
+      <url>https://victorkipruto.com/og-image.png</url>
       <title>Victor Kipruto Rop - Technical Blog</title>
-      <link>https://victorkirpruto.dev/blog.html</link>
+      <link>https://victorkipruto.com/blog.html</link>
     </image>
 
     <!-- Author/Managing Editor -->
@@ -29,8 +29,8 @@
     <!-- Sample Blog Post 1 -->
     <item>
       <title>Data Engineering Fundamentals</title>
-      <link>https://victorkirpruto.dev/posts/data-engineering.html</link>
-      <guid isPermaLink="true">https://victorkirpruto.dev/posts/data-engineering.html</guid>
+      <link>https://victorkipruto.com/blog.html</link>
+      <guid isPermaLink="true">https://victorkipruto.com/blog.html</guid>
       <pubDate>Thu, 06 Jun 2024 09:00:00 GMT</pubDate>
       <lastBuildDate>Thu, 06 Jun 2024 09:00:00 GMT</lastBuildDate>
       <author>Victor Kipruto Rop</author>
@@ -48,14 +48,14 @@
         </ul>
         <p>Read the full article on our blog for detailed code examples and best practices.</p>
       ]]></content:encoded>
-      <comments>https://victorkirpruto.dev/posts/data-engineering.html#comments</comments>
+      <comments>https://victorkipruto.com/blog.html#comments</comments>
     </item>
 
     <!-- Sample Blog Post 2 -->
     <item>
       <title>Building Scalable Data Pipelines</title>
-      <link>https://victorkirpruto.dev/posts/scalable-pipelines.html</link>
-      <guid isPermaLink="true">https://victorkirpruto.dev/posts/scalable-pipelines.html</guid>
+      <link>https://victorkipruto.com/posts/scalable-pipelines.html</link>
+      <guid isPermaLink="true">https://victorkipruto.com/posts/scalable-pipelines.html</guid>
       <pubDate>Wed, 29 May 2024 10:30:00 GMT</pubDate>
       <lastBuildDate>Wed, 29 May 2024 10:30:00 GMT</lastBuildDate>
       <author>Victor Kipruto Rop</author>
@@ -78,8 +78,8 @@
     <!-- Sample Blog Post 3 -->
     <item>
       <title>Real-Time Analytics with Kafka and ClickHouse</title>
-      <link>https://victorkirpruto.dev/posts/realtime-analytics.html</link>
-      <guid isPermaLink="true">https://victorkirpruto.dev/posts/realtime-analytics.html</guid>
+      <link>https://victorkipruto.com/posts/realtime-analytics.html</link>
+      <guid isPermaLink="true">https://victorkipruto.com/posts/realtime-analytics.html</guid>
       <pubDate>Fri, 17 May 2024 14:20:00 GMT</pubDate>
       <lastBuildDate>Fri, 17 May 2024 14:20:00 GMT</lastBuildDate>
       <author>Victor Kipruto Rop</author>

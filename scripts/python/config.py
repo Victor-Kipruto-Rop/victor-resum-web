@@ -8,8 +8,8 @@ class Config:
     """Central configuration for DBOS"""
     
     # Base URLs
-    BASE_URL = 'https://victor-kipruto-rop.github.io/victor-resum-web'
-    GITHUB_PAGES_URL = 'https://victor-kipruto-rop.github.io/victor-resum-web'
+    BASE_URL = 'https://victorkipruto.com'
+    GITHUB_PAGES_URL = 'https://victorkipruto.com'
     
     # Local paths
     BLOG_DIR = 'blog'

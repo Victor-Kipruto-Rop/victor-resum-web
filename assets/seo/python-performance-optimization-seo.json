@@ -2,13 +2,13 @@
   "slug": "python-performance-optimization",
   "metaTitle": "Python Performance Optimization for Data Processing",
   "metaDescription": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques. Learn more on my blog.",
-  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization",
+  "canonicalUrl": "https://victorkipruto.com/blog/posts/python-performance-optimization",
   "openGraph": {
     "og:title": "Python Performance Optimization for Data Processing",
     "og:description": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques.",
-    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+    "og:image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/python-optimization.png",
     "og:type": "article",
-    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization",
+    "og:url": "https://victorkipruto.com/blog/posts/python-performance-optimization",
     "og:site_name": "Victor Kipruto - Developer",
     "article:published_time": "2026-04-30T00:00:00Z",
     "article:modified_time": "2026-05-18T11:45:00Z",
@@ -18,7 +18,7 @@
     "twitter:card": "summary_large_image",
     "twitter:title": "Python Performance Optimization for Data Processing",
     "twitter:description": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques.",
-    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+    "twitter:image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/python-optimization.png",
     "twitter:creator": "@VictorKipruto",
     "twitter:site": "@VictorKipruto"
   },
@@ -28,26 +28,26 @@
       "@type": "BlogPosting",
       "headline": "Python Performance Optimization for Data Processing",
       "description": "Master Python performance optimization for data processing. Covers profiling, async patterns, and production-grade techniques.",
-      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/python-optimization.png",
+      "image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/python-optimization.png",
       "datePublished": "2026-04-30T00:00:00Z",
       "dateModified": "2026-05-18T11:45:00Z",
       "author": {
         "@type": "Person",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization"
+        "@id": "https://victorkipruto.com/blog/posts/python-performance-optimization"
       },
       "keywords": "python optimization, performance tuning, profiling",
       "articleSection": "Python",
-      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization"
+      "articleBody": "Read the full article at https://victorkipruto.com/blog/posts/python-performance-optimization"
     },
     "breadcrumb": {
       "@context": "https://schema.org",
@@ -57,25 +57,25 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          "item": "https://victorkipruto.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Blog",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          "item": "https://victorkipruto.com/blog"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Python",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/python"
+          "item": "https://victorkipruto.com/blog/categories/python"
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": "Python Performance Optimization for Data Processing",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/python-performance-optimization"
+          "item": "https://victorkipruto.com/blog/posts/python-performance-optimization"
         }
       ]
     }

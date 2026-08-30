@@ -31,7 +31,7 @@ def prepare_distribution():
                 "category": latest['category'],
                 "tags": latest['tags'],
                 "image": latest.get('image', ''),
-                "url": f"https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/{latest['slug']}.html"
+                "url": f"https://victorkipruto.com/blog/posts/{latest['slug']}.html"
             }
             
             with open('distribution-content.json', 'w') as f:

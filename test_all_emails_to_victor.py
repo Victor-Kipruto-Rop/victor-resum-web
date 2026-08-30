@@ -46,16 +46,16 @@ def test_all_emails(target_email):
     
     test_cases = [
         ('welcome', "Welcome to Victor's Blog", [name, target_email]),
-        ('new_blog_post', "New Post: Scaling Data Pipelines", [name, target_email, "Scaling Data Pipelines", "How to handle millions of events with Python and Kafka.", "scaling-pipelines", 8, "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/1.jpeg"]),
+        ('new_blog_post', "New Post: Scaling Data Pipelines", [name, target_email, "Scaling Data Pipelines", "How to handle millions of events with Python and Kafka.", "scaling-pipelines", 8, "https://victorkipruto.com/assets/images/1.jpeg"]),
         ('weekly_digest', "Your Weekly Tech Digest", [name, target_email, sample_posts]),
         ('trending_content', "Your post is trending!", [name, target_email, sample_posts, sample_posts[0]]),
         ('activity_recap', "Weekly Activity Recap", [name, target_email, "June 2026", sample_stats]),
         ('subscriber_milestone', "You've reached a milestone!", [name, target_email, 100]),
         ('viral_alert', "🔥 YOUR POST IS VIRAL", [name, target_email, "Scaling Data Pipelines", 5000, 1000, "10% per hour"]),
-        ('event_announcement', "Live Webinar: Data Engineering Trends", [name, target_email, "Data Engineering Trends 2026", "June 15, 2026", "Join us for a deep dive into the future of data engineering.", "https://victor-kipruto-rop.github.io/victor-resum-web/"]),
+        ('event_announcement', "Live Webinar: Data Engineering Trends", [name, target_email, "Data Engineering Trends 2026", "June 15, 2026", "Join us for a deep dive into the future of data engineering.", "https://victorkipruto.com/"]),
         ('recruiter_alert', "💼 New Recruiter Activity", [name, target_email, recruiter_info]),
         ('recommended_reads', "Recommended for you", [name, target_email, sample_posts, sample_posts]),
-        ('notification', "System Notification", [name, target_email, "Security Update", "Please review your account security settings.", "🔒", "Update Now", "https://victor-kipruto-rop.github.io/victor-resum-web/dashboard/login.html"]),
+        ('notification', "System Notification", [name, target_email, "Security Update", "Please review your account security settings.", "🔒", "Update Now", "https://victorkipruto.com/dashboard/login.html"]),
         ('dashboard_alert', "🚨 System Alert", [name, target_email, "High Latency Detected", sample_metrics, "Optimize database queries"]),
         ('engagement_summary', "Monthly Engagement Summary", [name, target_email, "May 2026", sample_stats])
     ]

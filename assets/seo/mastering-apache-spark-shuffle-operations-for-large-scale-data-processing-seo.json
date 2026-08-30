@@ -2,13 +2,13 @@
   "slug": "mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
   "metaTitle": "Mastering Apache Spark Shuffle Operations for Large-Sca...",
   "metaDescription": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data Learn more on my blog.",
-  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+  "canonicalUrl": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
   "openGraph": {
     "og:title": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
     "og:description": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...",
-    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-engineering-fundamentals.png",
+    "og:image": "https://victorkipruto.com/assets/images/data-engineering-fundamentals.png",
     "og:type": "article",
-    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+    "og:url": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
     "og:site_name": "Victor Kipruto - Developer",
     "article:published_time": "2026-06-08T23:12:42.902384Z",
     "article:modified_time": "2026-06-08T23:12:42.902384Z",
@@ -18,7 +18,7 @@
     "twitter:card": "summary_large_image",
     "twitter:title": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
     "twitter:description": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...",
-    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-engineering-fundamentals.png",
+    "twitter:image": "https://victorkipruto.com/assets/images/data-engineering-fundamentals.png",
     "twitter:creator": "@VictorKipruto",
     "twitter:site": "@VictorKipruto"
   },
@@ -28,26 +28,26 @@
       "@type": "BlogPosting",
       "headline": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
       "description": "h2Understanding Spark Shuffle/h2pThe shuffle is the most expensive operation in Apache Spark. It involves redistributing data across partitions, which requires network I/O, disk I/O, and seriali...",
-      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/data-engineering-fundamentals.png",
+      "image": "https://victorkipruto.com/assets/images/data-engineering-fundamentals.png",
       "datePublished": "2026-06-08T23:12:42.902384Z",
       "dateModified": "2026-06-08T23:12:42.902384Z",
       "author": {
         "@type": "Person",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
+        "@id": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
       },
       "keywords": "",
       "articleSection": "Data Engineering",
-      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
+      "articleBody": "Read the full article at https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
     },
     "breadcrumb": {
       "@context": "https://schema.org",
@@ -57,25 +57,25 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          "item": "https://victorkipruto.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Blog",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          "item": "https://victorkipruto.com/blog"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Data Engineering",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-engineering"
+          "item": "https://victorkipruto.com/blog/categories/data-engineering"
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
+          "item": "https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing"
         }
       ]
     }

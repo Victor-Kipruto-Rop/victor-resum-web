@@ -292,8 +292,8 @@ class EmailNotifier:
             <div style="font-size: 13px; line-height: 1.8; color: #7a7060;">
                 <p>You received this email because you're subscribed to {self.config['blog']['title']}.</p>
                 <p style="margin-top: 10px;">
-                    <a href="https://victorkirpruto.dev/blog.html">Visit Blog</a> · 
-                    <a href="https://victorkirpruto.dev">Portfolio</a> · 
+                    <a href="https://victorkipruto.com/blog.html">Visit Blog</a> · 
+                    <a href="https://victorkipruto.com">Portfolio</a> · 
                     <a href="https://twitter.com/{self.config['author']['twitter'].lstrip('@')}">Follow on Twitter</a>
                 </p>
             </div>
@@ -314,7 +314,7 @@ class EmailNotifier:
         """Send verification email"""
         subject = f"Verify your subscription to {self.config['blog']['title']}"
         
-        verify_url = f"https://victorkirpruto.dev/api/verify-email?token={token}"
+        verify_url = f"https://victorkipruto.com/api/verify-email?token={token}"
         
         html_content = f"""
 <!DOCTYPE html>
@@ -373,7 +373,7 @@ class EmailNotifier:
                 if not token:
                     token = hashlib.sha256(email.encode()).hexdigest()[:16]
                 
-                unsubscribe_url = f"https://victorkirpruto.dev/unsubscribe.html?token={token}&email={email}"
+                unsubscribe_url = f"https://victorkipruto.com/unsubscribe.html?token={token}&email={email}"
                 html_content = template_html.replace("UNSUBSCRIBE_LINK", unsubscribe_url)
                 
                 self._send_email(email, subject, html_content)

@@ -2,13 +2,13 @@
   "slug": "building-data-pipelines-airflow",
   "metaTitle": "Building Data Pipelines with Apache Airflow | Victor Kipruto",
   "metaDescription": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns. Learn more on my blog.",
-  "canonicalUrl": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow",
+  "canonicalUrl": "https://victorkipruto.com/blog/posts/building-data-pipelines-airflow",
   "openGraph": {
     "og:title": "Building Data Pipelines with Apache Airflow",
     "og:description": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns.",
-    "og:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/airflow-pipelines.png",
+    "og:image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/airflow-pipelines.png",
     "og:type": "article",
-    "og:url": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow",
+    "og:url": "https://victorkipruto.com/blog/posts/building-data-pipelines-airflow",
     "og:site_name": "Victor Kipruto - Developer",
     "article:published_time": "2026-05-25T00:00:00Z",
     "article:modified_time": "2026-06-01T10:00:00Z",
@@ -18,7 +18,7 @@
     "twitter:card": "summary_large_image",
     "twitter:title": "Building Data Pipelines with Apache Airflow",
     "twitter:description": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns.",
-    "twitter:image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/airflow-pipelines.png",
+    "twitter:image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/airflow-pipelines.png",
     "twitter:creator": "@VictorKipruto",
     "twitter:site": "@VictorKipruto"
   },
@@ -28,26 +28,26 @@
       "@type": "BlogPosting",
       "headline": "Building Data Pipelines with Apache Airflow",
       "description": "Complete guide to building scalable, production-ready data pipelines using Apache Airflow. From basics to advanced DAG patterns.",
-      "image": "https://victor-kipruto-rop.github.io/victor-resum-web/https://victor-kipruto-rop.github.io/victor-resum-web/assets/images/airflow-pipelines.png",
+      "image": "https://victorkipruto.com/https://victorkipruto.com/assets/images/airflow-pipelines.png",
       "datePublished": "2026-05-25T00:00:00Z",
       "dateModified": "2026-06-01T10:00:00Z",
       "author": {
         "@type": "Person",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Victor Kipruto",
-        "url": "https://victor-kipruto-rop.github.io/victor-resum-web"
+        "url": "https://victorkipruto.com"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow"
+        "@id": "https://victorkipruto.com/blog/posts/building-data-pipelines-airflow"
       },
       "keywords": "apache airflow, data pipelines, etl workflows",
       "articleSection": "Data Engineering",
-      "articleBody": "Read the full article at https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow"
+      "articleBody": "Read the full article at https://victorkipruto.com/blog/posts/building-data-pipelines-airflow"
     },
     "breadcrumb": {
       "@context": "https://schema.org",
@@ -57,25 +57,25 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web"
+          "item": "https://victorkipruto.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Blog",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog"
+          "item": "https://victorkipruto.com/blog"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Data Engineering",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/categories/data-engineering"
+          "item": "https://victorkipruto.com/blog/categories/data-engineering"
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": "Building Data Pipelines with Apache Airflow",
-          "item": "https://victor-kipruto-rop.github.io/victor-resum-web/blog/posts/building-data-pipelines-airflow"
+          "item": "https://victorkipruto.com/blog/posts/building-data-pipelines-airflow"
         }
       ]
     }

@@ -67,7 +67,7 @@ class TelegramNotifier:
             return False
     
     def send_blog_published(self, title: str, slug: str, seo_score: int, 
-                            category: str, url_base: str = "https://victor-kipruto-rop.github.io/victor-resum-web") -> bool:
+                            category: str, url_base: str = "https://victorkipruto.com") -> bool:
         """Send blog published alert"""
         message = f"""
 *Blog Published Successfully* ✅
@@ -93,7 +93,7 @@ Please check the GitHub Actions workflow and fix the issue.
         return self.send_alert("❌ BLOG PUBLISHING FAILED", message, "critical", {"title": title})
     
     def send_viral_detected(self, title: str, views: int, growth_rate: float, 
-                            viral_score: int, url_base: str = "https://victor-kipruto-rop.github.io/victor-resum-web") -> bool:
+                            viral_score: int, url_base: str = "https://victorkipruto.com") -> bool:
         """Send viral content alert"""
         message = f"""
 *🔥 VIRAL CONTENT DETECTED* 🔥

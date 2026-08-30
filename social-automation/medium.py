@@ -115,7 +115,7 @@ if __name__ == "__main__":
             "title": "Test Story",
             "html": "<h1>Test</h1><p>This is a test story.</p>",
             "tags": ["dataengineering"],
-            "canonical_url": "https://victorkirpruto.dev"
+            "canonical_url": "https://victorkipruto.com"
         },
         {"date": datetime.now().isoformat()}
     )

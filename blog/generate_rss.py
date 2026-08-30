@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 from urllib.parse import urljoin
 
-SITE_URL = "https://victor-kipruto-rop.github.io/victor-resum-web"
+SITE_URL = "https://victorkipruto.com"
 BLOG_DIR = os.path.dirname(__file__)
 POSTS_FILE = os.path.join(BLOG_DIR, "posts.json")
 RSS_FILE = os.path.join(BLOG_DIR, "feed.xml")

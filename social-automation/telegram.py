@@ -140,7 +140,7 @@ if __name__ == "__main__":
         {
             "title": "New Blog Post",
             "excerpt": "Check out my latest article on data engineering!",
-            "url": "https://victorkirpruto.dev/posts/example"
+            "url": "https://victorkipruto.com/posts/example"
         },
         {"date": datetime.now().isoformat()}
     )
