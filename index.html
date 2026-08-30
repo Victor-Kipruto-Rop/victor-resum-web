@@ -591,6 +591,19 @@
   .project-modal-section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
   .project-modal-list { padding-left: 18px; margin-bottom: 16px; }
   .project-modal-list li { margin-bottom: 6px; }
+  .case-study-item { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+  .case-study-num {
+    font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 700;
+    color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-radius: 8px; width: 30px; height: 30px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .case-study-body { flex: 1; min-width: 0; }
+  .case-study-label {
+    font-family: 'Fira Code', monospace; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 4px; font-weight: 700;
+  }
+  .case-study-text { font-size: 14.5px; line-height: 1.7; color: var(--ink); }
   .project-thumb { height: 160px; width:100%; display:block; object-fit:cover; background: #f0efe9; }
   .project-content { display:flex; flex-direction:column; gap:8px; padding:14px 18px; flex:1; }
   .project-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; color: var(--ink); margin: 0 0 6px 0; font-weight:700; }
@@ -1211,20 +1224,20 @@
 
     <div class="projects-grid" id="projects-grid">
 
-      <div class="project-card reveal" onclick="openProjectModal({title: 'Data Engineering — Full Project', desc: 'Designed and automated a complete star schema architecture with cloud-based data ingestion and optimised analytical queries for BI reporting.', stack: ['Python', 'SQL', 'ETL', 'Cloud Storage'], img: 'assets/images/1.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project'})">
-        <img class="project-thumb" src="assets/images/1.jpeg" alt="Data Engineering thumbnail" />
+      <div class="project-card reveal" onclick="openProjectModal({title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''})">
+        <img class="project-thumb" src="assets/images/5.jpeg" alt="PesaGuard thumbnail" />
         <div class="project-content">
-          <p class="project-title">Data Engineering — Full Project</p>
-          <p class="project-desc">Designed and automated a complete star schema architecture with cloud-based data ingestion and optimised analytical queries for BI reporting.</p>
+          <p class="project-title">PesaGuard</p>
+          <p class="project-desc">Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.</p>
           <div class="project-stack">
+            <span class="stack-badge">Flask</span>
             <span class="stack-badge">Python</span>
-            <span class="stack-badge">SQL</span>
-            <span class="stack-badge">ETL</span>
-            <span class="stack-badge">Cloud Storage</span>
+            <span class="stack-badge">Next.js</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">Daraja API</span>
           </div>
           <div class="project-actions">
-            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View project">View Project</a>
-            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project" target="_blank" rel="noopener" title="View README">Readme</a>
+            <span class="btn-sm btn-outline" style="cursor:default;">Private Repository · Live Pilot</span>
           </div>
         </div>
       </div>
@@ -1876,12 +1889,11 @@
     }
   }
 
-  // Call loadGitHubActivity and fetchRepos on load
+  // Call loadGitHubActivity and render the curated case-study projects on load
   document.addEventListener('DOMContentLoaded', ()=>{ 
   loadGitHubActivity(); 
-  fetchRepos();
+  ensureStaticProjects();
   fetchTopRepos();
-  ensureStaticProjects(); // fallback if fetchRepos takes too long or fails
   });
   // ensure projects are visible: if projects-grid is empty, populate static fallback cards
   function ensureStaticProjects(){
@@ -1889,7 +1901,7 @@
     if(!grid) return;
     if(grid.children.length > 0) return; // already populated
     const staticProjects = [
-      { img: 'assets/images/1.jpeg', title: 'Data Engineering — Full Project', desc: 'Designed and automated a complete star schema architecture with cloud-based data ingestion and optimised analytical queries for BI reporting.', stack: ['Python','SQL','ETL','Cloud Storage'], view: 'https://github.com/Victor-Kipruto-Rop/Data-Enginerring-full-project' },
+      { img: 'assets/images/5.jpeg', title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask','Python','Next.js','PostgreSQL','Daraja API'], view: '' },
       { img: 'assets/images/2.jpeg', title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow','Docker','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
       { img: 'assets/images/3.jpeg', title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python','PostgreSQL','Connection Pooling'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
       { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python','Kafka','Flink','dbt','Terraform','BigQuery','Airflow','Grafana'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' }
@@ -1900,7 +1912,10 @@
       card.className = 'project-card reveal';
       card.style.transitionDelay = (idx*0.08)+'s';
       card.onclick = () => openProjectModal(p);
-      card.innerHTML = `\n        <img class="project-thumb" src="${p.img}" alt="${p.title}" loading="lazy" />\n        <div class="project-content">\n          <p class="project-title">${p.title}</p>\n          <p class="project-desc">${p.desc}</p>\n          <div class="project-stack">${p.stack.map(s=>`<span class="stack-badge">${s}</span>`).join('')}</div>\n          <div class="project-actions">\n            <a class="btn-sm btn-primary-sm" href="${p.view}" target="_blank" rel="noopener" aria-label="View project ${p.title}">View</a>\n            <a class="btn-sm btn-outline" href="${p.view}" target="_blank" rel="noopener" aria-label="Read documentation for ${p.title}">Readme</a>\n          </div>\n        </div>`;
+      const actions = p.view
+        ? `<a class="btn-sm btn-primary-sm" href="${p.view}" target="_blank" rel="noopener" aria-label="View project ${p.title}">View</a>\n            <a class="btn-sm btn-outline" href="${p.view}" target="_blank" rel="noopener" aria-label="Read documentation for ${p.title}">Readme</a>`
+        : `<span class="btn-sm btn-outline" style="cursor:default;">Private Repository · Live Pilot</span>`;
+      card.innerHTML = `\n        <img class="project-thumb" src="${p.img}" alt="${p.title}" loading="lazy" />\n        <div class="project-content">\n          <p class="project-title">${p.title}</p>\n          <p class="project-desc">${p.desc}</p>\n          <div class="project-stack">${p.stack.map(s=>`<span class="stack-badge">${s}</span>`).join('')}</div>\n          <div class="project-actions">\n            ${actions}\n          </div>\n        </div>`;
       grid.appendChild(card);
       if(window.obs) window.obs.observe(card);
     });
@@ -1962,6 +1977,8 @@
       <div class="project-modal-section-title">Tools & Technologies</div>
       <div id="projectModalStack" class="project-stack" style="margin-bottom:24px;"></div>
       
+      <div id="projectModalCaseStudySection"></div>
+
       <div id="projectModalFeaturesSection">
         <div class="project-modal-section-title">Key Features & Achievements</div>
         <ul id="projectModalFeatures" class="project-modal-list" style="font-size:15px;line-height:1.7;color:var(--muted);"></ul>
@@ -2144,47 +2161,99 @@
 
   // Project Modal Management
   const projectExtendedData = {
-    'Data Engineering — Full Project': {
-      time: 'Feb 2026 - April 2026',
-      category: 'Data Architecture',
-      features: [
-        'Implemented a complete Star Schema architecture for retail analytics.',
-        'Automated cloud-based data ingestion from multiple source systems.',
-        'Optimized complex SQL queries, reducing report generation time by 60%.',
-        'Built a custom monitoring dashboard for pipeline health tracking.'
-      ]
+    'PesaGuard': {
+      time: '2026 — Ongoing (Live Pilot)',
+      category: 'FinTech Reconciliation & Fraud Detection',
+      caseStudy: {
+        problem: 'Kenyan SACCOs, e-commerce operators, and small fintechs receive M-Pesa payments through Safaricom\'s Daraja API but have no reliable way to reconcile incoming transactions against their own ledgers or catch anomalies in real time — reconciliation is typically a manual, end-of-day spreadsheet exercise.',
+        requirements: 'Real-time ingestion of Daraja webhook callbacks; guaranteed exactly-once processing (Safaricom retries webhooks, so duplicates are a certainty, not an edge case); an audit trail finance teams can trust; a system that degrades safely rather than silently losing a transaction.',
+        architecture: 'Flask/Python backend, Next.js 14 frontend, PostgreSQL via Supabase, deployed on Render. A target-state Backend Software Architecture Specification (BSAS) was also produced, scoping the system out to enterprise scale (100M transactions/day) — 12 subsystems and 10 frontend pages mapped end to end — so today\'s MVP decisions don\'t box in later growth.',
+        dataFlow: 'Daraja sends a webhook → request hits the Flask ingestion endpoint → idempotency check against a processed-events store → reconciliation engine matches the transaction to expected records → result persisted to Postgres → surfaced on the Next.js dashboard.',
+        techDecisions: 'Flask over a heavier framework for a lean MVP; Supabase Postgres over a self-managed database to remove ops overhead while validating product-market fit with the pilot customer; Render for zero-maintenance deployment at this stage — deliberately framed as MVP-stage choices, with the BSAS defining where each would need to change at scale.',
+        implementation: 'The core reconciliation engine matches incoming Daraja events against expected transaction records. Webhook idempotency was implemented via idempotency_keys and processed_events guards enforced across models.py, event_store.py, and reconciliation_engine.py, so a retried webhook can never be double-counted.',
+        dataQuality: 'Every incoming webhook is checked against its idempotency key before it touches business logic, so retries and duplicate deliveries are filtered before they can corrupt a balance. Input validation on webhook payloads is the next hardening item in progress.',
+        errorHandling: 'The idempotency layer is the first line of defense — a duplicate or malformed event is caught and logged rather than silently reprocessed. A traceable audit trail and verified backup/restore are treated as pre-launch requirements, not nice-to-haves.',
+        performance: 'Not yet load-tested against production-scale volume — the current milestone is correctness with a single pilot customer, with the BSAS defining the path to 100M transactions/day once the fundamentals are proven.',
+        observability: 'Alerting is on the hardening checklist with an explicit requirement that it be proven to fire end-to-end, not just configured and assumed to work.',
+        security: 'A SECURITY.md policy is published on the related public repo; input validation and a full audit trail are treated as blocking requirements before new feature work.',
+        results: 'Live with one pilot customer processing real M-Pesa transactions. Webhook idempotency — the highest-priority unshipped risk — has shipped and is verified across the reconciliation engine.',
+        lessonsLearned: 'Planning had been outpacing implementation — a large body of architecture and roadmap documents existed before idempotency, the actual highest-risk gap, was closed. The lesson applied going forward: ship the boring, high-risk plumbing before new features, no matter how much design work already exists.'
+      }
     },
     'Cloud ETL Pipeline': {
       time: 'Jan 2026 - Feb 2026',
       category: 'Infrastructure & Automation',
-      features: [
-        'Multi-stage ETL orchestrations using Apache Airflow.',
-        'Robust data validation engine with custom rule definitions.',
-        'Automated deduplication logic handling millions of records.',
-        'Full CI/CD integration with GitHub Actions and Docker.'
-      ]
+      caseStudy: {
+        problem: 'Teams need to trust their data before they trust their dashboards — a pipeline that silently lets duplicate or malformed records through produces analytics nobody can rely on, and manual QA doesn\'t scale past a handful of source files.',
+        requirements: 'Reproducible runs regardless of environment, automatic detection of duplicate or invalid records before they reach a warehouse, and a pipeline that fails loudly rather than passing bad data downstream.',
+        architecture: 'A multi-stage ETL orchestrated by Apache Airflow DAGs, with each stage (generate → validate → deduplicate → load) built as a discrete, independently retryable task, containerised with Docker for environment parity between local development and CI.',
+        dataFlow: 'Synthetic source data is generated → ingested into staging → passed through a rule-based validation engine → deduplicated → loaded to its destination, with Airflow tracking task-level state and dependencies at every hop.',
+        techDecisions: 'Airflow for orchestration because the pipeline is genuinely multi-stage with real dependencies between steps, not a simple cron job. Docker so the exact same pipeline runs identically in CI as on a laptop. Pytest and GitHub Actions so validation-engine logic is tested on every push, not spot-checked manually.',
+        implementation: 'A rule-based validation engine checks each record against defined constraints before it\'s allowed downstream. Deduplication runs as its own DAG stage rather than being bolted onto ingestion, so it can be tested and reasoned about independently.',
+        dataQuality: 'Validation rules run before deduplication and before load — bad records are caught at the earliest possible stage rather than being cleaned up after the fact.',
+        errorHandling: 'Airflow\'s task-level retry and failure states are used directly — a failed validation or load step fails that DAG run visibly instead of continuing silently with partial data.',
+        performance: 'Deduplication and validation are separate, composable stages precisely so each can be scaled or optimised independently as data volume grows, rather than needing to rewrite one monolithic transform step.',
+        observability: 'Airflow\'s UI provides task-level run history and logs for every stage, so a failure can be traced to the exact task and input batch that caused it.',
+        security: 'Runs are containerised and CI-gated, so no pipeline code reaches a trusted branch without first passing its automated test suite.',
+        results: 'A CI/CD-ready pipeline where every push is validated by Pytest through GitHub Actions before merge, with reproducible Docker-based runs removing "works on my machine" as a failure mode.',
+        lessonsLearned: 'Building the validation engine as its own testable stage, rather than inline checks scattered through ingestion code, made it far easier to add new rules later without risking regressions elsewhere in the pipeline.'
+      }
     },
     'Mpesa / Safaricom Pipeline': {
       time: 'Nov 2025 - Dec 2025',
       category: 'FinTech Data Systems',
-      features: [
-        'High-throughput ingestion system for mobile transaction data.',
-        'Chunked reading strategies to handle large CSV/JSON exports efficiently.',
-        'Optimized batch inserts into PostgreSQL using connection pooling.',
-        'Implemented transaction-level data integrity checks.'
-      ]
+      caseStudy: {
+        problem: 'MPESA transaction exports arrive as large CSV/JSON files too big to load into memory at once, and naive row-by-row inserts into Postgres are far too slow to keep up with real transaction volumes.',
+        requirements: 'Ingest large export files without exhausting memory, guarantee no transaction is recorded twice, and write to Postgres fast enough that ingestion doesn\'t become the bottleneck.',
+        architecture: 'A Python ingestion layer reads exports in fixed-size chunks rather than loading the whole file, deduplicates against existing records, and writes through a pooled set of Postgres connections rather than opening a new connection per batch.',
+        dataFlow: 'Export file → chunked reader → in-memory dedup check per chunk → batch-formatted insert → connection pool → Postgres, chunk by chunk until the file is exhausted.',
+        techDecisions: 'Chunked reads instead of loading the full file, because export sizes can exceed available memory. Connection pooling instead of per-batch connections, because connection setup/teardown overhead dominates at scale. Batch inserts instead of row-by-row, because round-trips are the real cost, not the data itself.',
+        implementation: 'Deduplication logic runs on transaction reference IDs before a chunk is committed, so the same export re-run twice doesn\'t double-count transactions.',
+        dataQuality: 'Transaction-level integrity checks confirm required fields are present and well-formed before a record is allowed into a batch insert.',
+        errorHandling: 'A malformed record within a chunk is isolated and logged rather than failing the entire chunk, so one bad row doesn\'t block the rest of a large file from loading.',
+        performance: 'Chunked reads keep memory usage flat regardless of file size, and batch inserts through a connection pool trade a small amount of per-record latency for dramatically higher overall throughput.',
+        observability: 'Each chunk\'s outcome (rows read, deduplicated, inserted, rejected) is logged, giving a clear per-file audit trail of exactly what happened during a given ingestion run.',
+        security: 'Connection pool credentials are handled outside application code, and only well-formed, validated records ever reach a write operation against the database.',
+        results: 'A pipeline able to ingest large MPESA export files without memory pressure, with deduplication and batch inserts removing both double-counted transactions and the round-trip overhead of row-by-row writes.',
+        lessonsLearned: 'The real bottleneck wasn\'t data volume — it was connection overhead. Pooling connections had a bigger impact on throughput than any amount of query micro-optimisation.'
+      }
     },
     'Real-Time Transaction Streaming (MPESA)': {
       time: 'Dec 2025 - Jan 2026',
       category: 'FinTech Streaming Architecture',
-      features: [
-        '<strong>Situation:</strong> High-throughput ingestion of mobile transaction data required real-time analytics with sub-second latency.',
-        '<strong>Task:</strong> Design a distributed streaming architecture to process Safaricom Daraja API webhooks.',
-        '<strong>Action:</strong> Implemented a Kafka-Flink pipeline with dbt modelling for both PostgreSQL and BigQuery storage.',
-        '<strong>Result:</strong> Achieved sub-second end-to-end latency and automated fraud monitoring for FinTech analytics.'
-      ]
+      caseStudy: {
+        problem: 'Batch ingestion (as in the earlier MPESA pipeline) means fraud and anomalies are only visible after the fact — by the time a batch job runs, a fraudulent pattern has already had hours to play out.',
+        requirements: 'Sub-second visibility from a Daraja webhook event to an analytics-ready record; a pipeline that scales horizontally as event volume grows rather than needing a rewrite; infrastructure that\'s reproducible, not hand-configured.',
+        architecture: 'Daraja webhooks are ingested into Kafka topics, processed by Flink for stateful stream processing, modelled with dbt, and written to both PostgreSQL (operational) and BigQuery (analytical) stores. Airflow orchestrates the batch/dbt side, Grafana handles monitoring, and Terraform provisions the infrastructure as code.',
+        dataFlow: 'Daraja webhook → Kafka producer → Kafka topic → Flink stream processing job → dual-write to PostgreSQL and BigQuery → dbt models transform the BigQuery side into analytics-ready tables → Grafana dashboards read the result.',
+        techDecisions: 'Kafka as the ingestion backbone because it decouples producers from consumers and buffers bursts in webhook traffic. Flink over simpler stream processing because it supports the stateful, windowed logic fraud detection needs. dbt so transformation logic is version-controlled SQL, not buried in scripts. Terraform so the whole stack can be rebuilt identically rather than depending on manually-clicked cloud console configuration.',
+        implementation: 'A distributed Kafka-Flink pipeline processes Daraja webhook events as they arrive, with dbt models handling the transformation layer once data lands in BigQuery.',
+        dataQuality: 'dbt\'s testing framework validates model assumptions (uniqueness, not-null, referential checks) on every run, so a broken upstream assumption is caught in the transformation layer rather than silently propagating into a dashboard.',
+        errorHandling: 'Flink\'s stateful processing model allows the pipeline to track and recover from processing failures at the event level rather than needing to reprocess an entire batch.',
+        performance: 'The Kafka-Flink combination was specifically chosen to hit sub-second end-to-end latency from webhook receipt to processed record, rather than the minutes-to-hours latency of the earlier batch-based pipeline.',
+        observability: 'Grafana dashboards provide real-time visibility into pipeline health and throughput, so a slowdown or backlog is visible immediately rather than discovered only when a downstream report looks wrong.',
+        security: 'Infrastructure is provisioned through Terraform rather than manual cloud console changes, so access and configuration are version-controlled and auditable rather than tribal knowledge.',
+        results: 'Achieved sub-second end-to-end latency from webhook to processed record, with automated fraud-monitoring signals now running on live rather than batch-delayed data.',
+        lessonsLearned: 'Moving from the earlier batch MPESA pipeline to this streaming architecture made clear how much fraud detection specifically depends on latency — the same detection logic is far less useful run against data that\'s already hours old.'
+      }
     }
   };
+
+  const CASE_STUDY_LABELS = [
+    ['problem', 'Problem'],
+    ['requirements', 'Requirements'],
+    ['architecture', 'Architecture'],
+    ['dataFlow', 'Data Flow'],
+    ['techDecisions', 'Technology Decisions'],
+    ['implementation', 'Implementation'],
+    ['dataQuality', 'Data Quality'],
+    ['errorHandling', 'Error Handling'],
+    ['performance', 'Performance'],
+    ['observability', 'Observability'],
+    ['security', 'Security'],
+    ['results', 'Results'],
+    ['lessonsLearned', 'Lessons Learned']
+  ];
 
   const projectModal = {
     overlay: document.getElementById('projectModalOverlay'),
@@ -2194,6 +2263,7 @@
     category: document.getElementById('projectModalCategory'),
     description: document.getElementById('projectModalDescription'),
     stack: document.getElementById('projectModalStack'),
+    caseStudySection: document.getElementById('projectModalCaseStudySection'),
     features: document.getElementById('projectModalFeatures'),
     featuresSection: document.getElementById('projectModalFeaturesSection'),
     github: document.getElementById('projectModalGithub'),
@@ -2221,15 +2291,32 @@
       // Render Stack
       this.stack.innerHTML = (data.stack || []).map(t => `<span class="stack-badge">${t}</span>`).join('');
       
-      // Render Features
-      if (extended.features && extended.features.length) {
+      // Render Case Study (13-point breakdown) if present
+      if (extended.caseStudy) {
+        this.featuresSection.style.display = 'none';
+        this.caseStudySection.innerHTML = '<div class="project-modal-section-title">Engineering Case Study</div>' +
+          CASE_STUDY_LABELS.map(([key, label], i) => {
+            const text = extended.caseStudy[key];
+            if (!text) return '';
+            const num = String(i + 1).padStart(2, '0');
+            return `<div class="case-study-item"><span class="case-study-num">${num}</span><div class="case-study-body"><div class="case-study-label">${label}</div><div class="case-study-text">${text}</div></div></div>`;
+          }).join('');
+      } else if (extended.features && extended.features.length) {
+        this.caseStudySection.innerHTML = '';
         this.featuresSection.style.display = 'block';
         this.features.innerHTML = extended.features.map(f => `<li>${f}</li>`).join('');
       } else {
+        this.caseStudySection.innerHTML = '';
         this.featuresSection.style.display = 'none';
       }
       
-      this.github.href = data.view || '#';
+      if (data.view) {
+        this.github.style.display = '';
+        this.github.href = data.view;
+        this.github.textContent = 'GitHub Repository';
+      } else {
+        this.github.style.display = 'none';
+      }
       
       this.overlay.style.display = 'flex';
       this.overlay.setAttribute('aria-hidden', 'false');
