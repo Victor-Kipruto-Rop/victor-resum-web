@@ -30,7 +30,7 @@
   link[rel="icon"] { border-radius: 50%; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"/>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
@@ -62,13 +62,23 @@
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
     font-size: 14px;
     line-height: 1.6;
     overflow-x: hidden;
     cursor: none;
     opacity: 0;
     transition: opacity 0.8s ease-in, background 0.3s ease, color 0.3s ease;
+  }
+
+  #scrollProgress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--accent);
+    z-index: 999;
+    transition: width 0.1s ease-out;
   }
   
   /* ── Theme Toggle ── */
@@ -99,7 +109,7 @@
   }
   #preloader.hidden { transform: translateY(-100%); }
   .loader-text {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 32px; color: var(--paper);
     overflow: hidden;
   }
@@ -179,11 +189,11 @@
   body:not(.dark-mode) nav { mix-blend-mode: multiply; }
   .nav-logo {
     display:flex; align-items:center; gap:8px;
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 18px; letter-spacing: -0.5px;
     color: var(--ink); text-decoration: none;
   }
-  .nav-username { font-family: 'DM Mono', monospace; font-size:13px; color:var(--muted); font-weight:700; text-decoration:none; transition: color 0.3s ease; }
+  .nav-username { font-family: 'Fira Code', monospace; font-size:13px; color:var(--muted); font-weight:700; text-decoration:none; transition: color 0.3s ease; }
   body.dark-mode .nav-username { color: var(--ink); }
 
   /* ── Hamburger Menu ── */
@@ -200,7 +210,7 @@
     display: flex; gap: 32px; align-items: center;
   }
   .nav-links a {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--muted); text-decoration: none;
     transition: color 0.3s;
@@ -264,12 +274,12 @@
   .hero-social { display:flex; gap:28px; align-items:center; }
   .social-link { display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--ink); }
   .social-icon { width:40px; height:40px; border-radius:8px; background: var(--ink); color: var(--paper); display:flex; align-items:center; justify-content:center; border: none; transition: transform 0.14s, box-shadow 0.14s; }
-  .social-label { font-family: 'Syne', sans-serif; font-size: 14px; font-weight:600; color:var(--ink); }
+  .social-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight:600; color:var(--ink); }
   .social-link:hover .social-icon { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(10,14,20,0.06); }
   .social-icon i { font-size:16px; }
   .sub-item { display: flex; flex-direction: column; gap: 6px; }
-  .sub-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-  .sub-desc { font-family: 'Syne', sans-serif; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .sub-title { font-family: 'Fira Code', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  .sub-desc { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--muted); font-weight: 600; }
 
   @media (max-width: 1024px) {
     #hero { grid-template-columns: 1fr; }
@@ -296,7 +306,7 @@
     .social-label { font-size: 11px; }
   }
   .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     color: #ff4b2b; margin-bottom: 24px;
     font-weight: 700; display: inline-block;
@@ -313,7 +323,7 @@
     100% { transform: translateY(0) scale(1); text-shadow: 0 0 0 rgba(255,75,43,0); }
   }
   .hero-name {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(42px, 6vw, 68px);
     line-height: 0.95; letter-spacing: -2px;
     color: var(--ink); margin-bottom: 8px; max-width: 100%; word-wrap: break-word;
@@ -326,7 +336,7 @@
     font-style: italic; color: var(--accent);
   }
   .hero-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(14px, 2vw, 20px); font-weight: 600;
     color: var(--muted); margin-bottom: 40px; letter-spacing: 0.01em;
     opacity: 0; animation: fadeUp 0.9s 0.5s forwards; max-width: 100%; word-wrap: break-word;
@@ -350,7 +360,7 @@
   .btn-primary {
     display: inline-block; padding: 14px 32px;
     background: var(--accent); color: var(--paper);
-    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-family: 'Fira Code', monospace; font-size: 11px;
     letter-spacing: 0.12em; text-transform: uppercase;
     text-decoration: none; border: 1px solid var(--accent);
     transition: background 0.25s, color 0.25s;
@@ -359,7 +369,7 @@
   .btn-ghost {
     display: inline-block; padding: 14px 32px;
     background: transparent; color: var(--ink);
-    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-family: 'Fira Code', monospace; font-size: 11px;
     letter-spacing: 0.12em; text-transform: uppercase;
     text-decoration: none; border: 1px solid var(--accent);
     transition: border-color 0.25s, color 0.25s;
@@ -371,7 +381,7 @@
 
   .hero-counter {
     position: absolute; bottom: 48px; right: 48px;
-    font-family: 'DM Serif Display', serif; font-size: 80px;
+    font-family: 'Playfair Display', serif; font-size: 80px;
     color: rgba(245,240,232,0.08); line-height: 1;
     pointer-events: none; user-select: none;
   }
@@ -389,7 +399,7 @@
     will-change: transform;
   }
   .ticker span {
-    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 13px;
     letter-spacing: 0.06em; text-transform: none;
     color: var(--ink); padding: 8px 18px; border-radius: 999px;
     background: linear-gradient(90deg, rgba(200,64,26,0.06), rgba(26,79,214,0.03));
@@ -405,12 +415,12 @@
   @media (max-width: 720px) { section { padding: 48px 32px; } }
   @media (max-width: 480px) { section { padding: 32px 20px; } }
   .section-label {
-    font-family: 'DM Mono', monospace; font-size: 10px;
+    font-family: 'Fira Code', monospace; font-size: 10px;
     letter-spacing: 0.25em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 12px;
   }
   .section-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(32px, 4vw, 52px);
     line-height: 1.05; letter-spacing: -1px;
     color: var(--ink); margin-bottom: 48px;
@@ -439,23 +449,23 @@
   .why-card.visible { opacity: 1; transform: translateY(0); }
   .why-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(10,14,20,0.09); }
   .why-num {
-    font-family: 'DM Serif Display', serif; font-size: 36px;
+    font-family: 'Playfair Display', serif; font-size: 36px;
     color: var(--accent); line-height: 1; margin-bottom: 12px;
   }
   .why-card h3 {
-    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700;
     color: var(--ink); margin-bottom: 8px; letter-spacing: 0.01em;
   }
   .why-card p {
     font-size: 13px; line-height: 1.6; color: var(--muted); max-width: 100%;
   }
   .why-summary { max-width: 900px; width: 100%; margin: 0 auto; padding: 28px; background: transparent; }
-  .why-summary .why-text { font-size: 18px; line-height: 1.9; color: var(--muted); text-align: center; font-family: 'Syne', sans-serif; max-width: 100%; }
+  .why-summary .why-text { font-size: 18px; line-height: 1.9; color: var(--muted); text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; max-width: 100%; }
 
   /* ── Skills ── */
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
   .skills-wrap { max-width: 1180px; width: 100%; margin: 12px auto 0; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; }
-  .skill-pill { display:inline-block; padding:10px 14px; border-radius:999px; background: var(--paper); color: var(--ink); border:1px solid var(--rule); font-family: 'DM Mono', monospace; font-size:14px; box-shadow: 0 6px 18px rgba(10,14,20,0.04); cursor: pointer; transition: all 0.2s ease; }
+  .skill-pill { display:inline-block; padding:10px 14px; border-radius:999px; background: var(--paper); color: var(--ink); border:1px solid var(--rule); font-family: 'Fira Code', monospace; font-size:14px; box-shadow: 0 6px 18px rgba(10,14,20,0.04); cursor: pointer; transition: all 0.2s ease; }
   .skill-pill:hover { background: var(--card); transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
   @media (max-width: 1100px) { #skills { padding: 28px 16px; } .skill-pill { font-size:13px; padding:8px 12px; } }
   @media (max-width: 720px) { #skills { padding: 20px 12px; } .skill-pill { width:100%; text-align:center; } }
@@ -482,16 +492,16 @@
   
   /* ── Project Modal Specifics ── */
   .project-modal-image { width: 100%; height: 240px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--rule); }
-  .project-modal-meta { display: flex; gap: 16px; margin-bottom: 16px; font-size: 13px; color: var(--accent); font-family: 'DM Mono', monospace; }
-  .project-modal-section-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .project-modal-meta { display: flex; gap: 16px; margin-bottom: 16px; font-size: 13px; color: var(--accent); font-family: 'Fira Code', monospace; }
+  .project-modal-section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
   .project-modal-list { padding-left: 18px; margin-bottom: 16px; }
   .project-modal-list li { margin-bottom: 6px; }
   .project-thumb { height: 160px; width:100%; display:block; object-fit:cover; background: #f0efe9; }
   .project-content { display:flex; flex-direction:column; gap:8px; padding:14px 18px; flex:1; }
-  .project-title { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--ink); margin: 0 0 6px 0; font-weight:700; }
+  .project-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; color: var(--ink); margin: 0 0 6px 0; font-weight:700; }
   .project-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin:0; }
   .project-stack { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-  .stack-badge { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); background: rgba(200,64,26,0.06); padding:6px 10px; border-radius:8px; border: 1px solid rgba(200,64,26,0.12); display:inline-flex; align-items:center; gap:8px; }
+  .stack-badge { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--accent); background: rgba(200,64,26,0.06); padding:6px 10px; border-radius:8px; border: 1px solid rgba(200,64,26,0.12); display:inline-flex; align-items:center; gap:8px; }
   .stack-icon { display:inline-flex; width:18px; height:18px; flex:0 0 18px; }
   .tool-icon { width:18px; height:18px; display:block; }
   .project-actions { margin-top: 12px; display:flex; gap:10px; }
@@ -558,7 +568,7 @@
     padding-bottom: 12px; border-bottom: 1px solid var(--rule);
   }
   .fact-label {
-    font-family: 'DM Mono', monospace; font-size: 10px;
+    font-family: 'Fira Code', monospace; font-size: 10px;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--accent); min-width: 100px;
   }
@@ -575,7 +585,7 @@
     padding: 10px 12px; border-radius: 10px;
     background: var(--paper); border: 1px solid var(--rule);
     color: var(--ink); text-decoration: none;
-    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600;
     transition: transform 0.14s, box-shadow 0.14s, color 0.14s;
   }
   .contact-link:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(10,14,20,0.06); color: var(--accent); }
@@ -583,7 +593,7 @@
   .contact-note { font-size: 13px; color: var(--muted); }
   .contact-avail {
     margin-top: 20px; display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.1em;
     color: #8aba72;
   }
   .avail-dot { width: 8px; height: 8px; border-radius: 50%; background: #8aba72; animation: pulse 2s infinite; }
@@ -597,7 +607,7 @@
     color: var(--muted);
   }
   footer p {
-    font-family: 'DM Mono', monospace; font-size: 11px;
+    font-family: 'Fira Code', monospace; font-size: 11px;
     color: var(--muted); letter-spacing: 0.08em; margin: 0;
   }
 
@@ -641,7 +651,7 @@
   .contact-form { max-width: 760px; margin: 24px auto 0; display:flex; flex-direction:column; gap:12px; }
   .contact-row { display:flex; gap:12px; }
   .contact-row .field { flex:1; }
-  .contact-form input, .contact-form textarea { width:100%; padding:12px 14px; border:1px solid var(--rule); border-radius:8px; font-family: 'DM Mono', monospace; font-size:14px; }
+  .contact-form input, .contact-form textarea { width:100%; padding:12px 14px; border:1px solid var(--rule); border-radius:8px; font-family: 'Fira Code', monospace; font-size:14px; }
   .contact-form textarea { min-height:120px; resize:vertical; }
   .contact-note.small { font-size:13px; color:var(--muted); text-align:center; margin-top:8px; }
 
@@ -662,24 +672,24 @@
     box-shadow: 0 20px 40px rgba(10,14,20,0.08);
     border-color: var(--accent);
   }
-  .blog-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 12px; display: block; }
-  .blog-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
+  .blog-date { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--accent); margin-bottom: 12px; display: block; }
+  .blog-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
   .blog-excerpt { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
   
   .experience-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 16px; }
-  .experience-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); margin: 0 0 4px 0; }
-  .experience-company { font-family: 'Syne', sans-serif; font-size: 12px; color: var(--accent); font-weight: 600; margin: 0; text-transform: uppercase; letter-spacing: 0.08em; }
-  .experience-date { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); margin: 0; white-space: nowrap; }
+  .experience-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--ink); margin: 0 0 4px 0; }
+  .experience-company { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: var(--accent); font-weight: 600; margin: 0; text-transform: uppercase; letter-spacing: 0.08em; }
+  .experience-date { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--muted); margin: 0; white-space: nowrap; }
   .experience-desc { font-size: 13px; color: var(--ink); line-height: 1.7; margin-bottom: 16px; }
   .experience-skills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag { display: inline-block; padding: 4px 10px; background: var(--card); color: var(--ink); border-radius: 4px; font-size: 11px; font-family: 'DM Mono', monospace; border: 1px solid var(--rule); }
+  .skill-tag { display: inline-block; padding: 4px 10px; background: var(--card); color: var(--ink); border-radius: 4px; font-size: 11px; font-family: 'Fira Code', monospace; border: 1px solid var(--rule); }
   
   
-  .testimonial-text::before { content: '“'; position: absolute; top: -20px; left: -10px; font-size: 60px; color: var(--accent); opacity: 0.2; font-family: 'DM Serif Display', serif; }
+  .testimonial-text::before { content: '“'; position: absolute; top: -20px; left: -10px; font-size: 60px; color: var(--accent); opacity: 0.2; font-family: 'Playfair Display', serif; }
   .testimonial-author { display: flex; align-items: center; gap: 16px; }
   .author-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
-  .author-info h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); }
-  .author-info p { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .author-info h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); }
+  .author-info p { font-size: 11px; color: var(--muted); font-family: 'Fira Code', monospace; }
 
   /* ── Expertise & Contributions ── */
   #expertise, #contributions { border-top: 1px solid var(--rule); }
@@ -700,7 +710,7 @@
     border-color: var(--accent);
   }
   .expertise-icon { font-size: 32px; color: var(--accent); margin-bottom: 16px; }
-  .expertise-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+  .expertise-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
   .expertise-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
 
   .contributions-list {
@@ -729,7 +739,7 @@
 
   /* ── Top Repositories ── */
   .top-repos-section { margin-top: 48px; }
-  .top-repos-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  .top-repos-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
   .top-repos-title::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
   .top-repos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
   .repo-item { 
@@ -738,9 +748,9 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.02);
   }
   .repo-item:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
-  .repo-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; justify-content: space-between; }
+  .repo-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; justify-content: space-between; }
   .repo-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; flex-grow: 1; }
-  .repo-stats { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .repo-stats { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--muted); font-family: 'Fira Code', monospace; }
   .repo-lang { display: flex; align-items: center; gap: 6px; }
   .repo-lang-dot { width: 10px; height: 10px; border-radius: 50%; }
   .repo-stars { display: flex; align-items: center; gap: 4px; }
@@ -781,6 +791,7 @@
 </script>
 </head>
 <body>
+<div id="scrollProgress"></div>
 
 <div id="preloader">
   <div class="loader-text"><span>Victor Kipruto Rop</span></div>
@@ -1174,7 +1185,7 @@
   </div>
   <div style="text-align:center;margin-top:40px;">
     <a href="blog.html" class="btn-primary" style="display:inline-block;padding:12px 24px;background:var(--accent);color:var(--paper);border-radius:4px;text-decoration:none;margin-right:12px;">Browse All Articles (6+)</a>
-    <button onclick="openSubscriptionModal()" class="btn-secondary" style="display:inline-block;padding:12px 24px;background:var(--muted);color:var(--paper);border-radius:4px;text-decoration:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;">📧 Subscribe for Updates</button>
+    <button onclick="openSubscriptionModal()" class="btn-secondary" style="display:inline-block;padding:12px 24px;background:var(--muted);color:var(--paper);border-radius:4px;text-decoration:none;border:none;cursor:pointer;font-family:'Fira Code',monospace;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;">📧 Subscribe for Updates</button>
   </div>
 </section>
 
@@ -1199,6 +1210,8 @@
       <p style="color:var(--muted);font-size:13px">Technical Feedback • Project Collaboration</p>
     </div>
   </div>
+</section>
+
 <!-- SERVICES / EXPERTISE -->
 <section id="expertise">
   <p class="section-label">// 08</p>
@@ -1237,13 +1250,13 @@
   <div class="contributions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-top: 48px;">
     <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule);">
         <i class="fas fa-code-branch" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
-        <h4 style="font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 8px;">Open Source Contribution</h4>
+        <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; margin-bottom: 8px;">Open Source Contribution</h4>
         <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Improved error-handling documentation and resolved critical race conditions in a widely used Python data processing library.</p>
         <a href="contributions.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View All Contributions →</a>
     </div>
     <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule); transition-delay: 0.1s;">
         <i class="fas fa-microphone" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
-        <h4 style="font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 8px;">Tech Talk</h4>
+        <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; margin-bottom: 8px;">Tech Talk</h4>
         <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Delivered a technical session on "Designing Fault-Tolerant Data Pipelines with Airflow" to 100+ students at a university tech meetup.</p>
         <a href="talks.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View All Talks →</a>
     </div>
@@ -1288,7 +1301,7 @@
     <div class="top-repos-section">
       <h3 class="top-repos-title">Top Repositories</h3>
       <div id="top-repos-container" class="top-repos-grid">
-        <p style="color:var(--muted);font-family:'DM Mono',monospace;">Loading repositories…</p>
+        <p style="color:var(--muted);font-family:'Fira Code',monospace;">Loading repositories…</p>
       </div>
     </div>
   </div>
@@ -1301,12 +1314,12 @@
   <h2 class="section-title">Get in Touch</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin:48px 0;align-items:start">
     <div>
-      <h3 style="font-family:'Syne',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Schedule a Call</h3>
+      <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Schedule a Call</h3>
       <p style="color:var(--muted);margin-bottom:16px;">Want to discuss data engineering, project collaboration, or just chat about pipelines? Book a time that works for you.</p>
       <a href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block">Schedule on Calendly →</a>
     </div>
     <div>
-      <h3 style="font-family:'Syne',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Send a Message</h3>
+      <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Send a Message</h3>
       <p style="color:var(--muted);margin-bottom:16px;">Prefer email? Send me a message and I'll get back to you within 24 hours.</p>
       <div data-fs-success class="fs-success" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">✓ Thanks — your message was sent.</div>
       <div data-fs-error class="fs-error" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">⚠ Oops — there was an error. Please try again.</div>
@@ -1337,10 +1350,10 @@
 <!-- CV Action Modal Component -->
 <div class="cv-modal-overlay" id="cvModalOverlay" role="dialog" aria-labelledby="cvModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
   <div class="cv-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:400px;width:90%;padding:32px;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);text-align:center;">
-    <h2 id="cvModalTitle" style="font-size:20px;font-weight:700;margin-bottom:24px;font-family:'Syne',sans-serif;color:var(--ink);">Choose CV Action</h2>
+    <h2 id="cvModalTitle" style="font-size:20px;font-weight:700;margin-bottom:24px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);">Choose CV Action</h2>
     <div style="display:flex;flex-direction:column;gap:12px;">
       <a href="assets/Victor_Kipruto_Resume.pdf" target="_blank" class="btn-primary" style="text-decoration:none;display:block;width:100%;">View Resume</a>
-      <button onclick="downloadCv()" class="btn-outline" style="width:100%;padding:14px;cursor:pointer;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">Download Resume</button>
+      <button onclick="downloadCv()" class="btn-outline" style="width:100%;padding:14px;cursor:pointer;border-radius:8px;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">Download Resume</button>
       <button onclick="closeCvModal()" class="btn-ghost" style="width:100%;margin-top:8px;">Close</button>
     </div>
     <div id="cvSuccessMsg" style="display:none; margin-top:20px; padding:12px; border-radius:8px; background:#4ade80; color:white; font-size:13px; font-weight:600;">✅ Resume download started!</div>
@@ -1351,12 +1364,12 @@
 <div class="cert-modal-overlay" id="certModalOverlay" role="dialog" aria-labelledby="certModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);z-index:10000;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
   <div class="cert-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-width:900px;width:90%;height:90vh;display:flex;flex-direction:column;position:relative;border:1px solid var(--rule);">
     <div style="padding:16px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
-      <h2 id="certModalTitle" style="font-size:18px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--ink);">Certificate Viewer</h2>
+      <h2 id="certModalTitle" style="font-size:18px;font-weight:700;margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);">Certificate Viewer</h2>
       <button onclick="closeCertModal()" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;">✕</button>
     </div>
     <iframe id="certModalIframe" src="" style="width:100%;height:100%;border:none;flex:1;"></iframe>
     <div style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;">
-        <p style="font-size:12px; color:var(--muted); font-family:'DM Mono',monospace;">Note: Certificates are for viewing only.</p>
+        <p style="font-size:12px; color:var(--muted); font-family:'Fira Code',monospace;">Note: Certificates are for viewing only.</p>
     </div>
   </div>
 </div>
@@ -1826,7 +1839,7 @@
 <div class="project-modal-overlay" id="projectModalOverlay" role="dialog" aria-labelledby="projectModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
   <div class="project-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:800px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
     <div class="project-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:10;">
-      <h2 id="projectModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--ink);">Project Details</h2>
+      <h2 id="projectModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);">Project Details</h2>
       <button class="project-modal-close" id="projectModalClose" aria-label="Close project modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
     </div>
     <div class="project-modal-content" style="padding:32px;">
@@ -1856,11 +1869,11 @@
 <div class="skill-modal-overlay" id="skillModalOverlay" role="dialog" aria-labelledby="skillModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
   <div class="skill-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:500px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
     <div class="skill-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
-      <h2 id="skillModalTitle" style="font-size:20px;font-weight:700;margin:0;font-family:'Syne',sans-serif;color:var(--accent);">Skill Details</h2>
+      <h2 id="skillModalTitle" style="font-size:20px;font-weight:700;margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--accent);">Skill Details</h2>
       <button class="skill-modal-close" id="skillModalClose" aria-label="Close skill modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
     </div>
     <div class="skill-modal-content" style="padding:24px;">
-      <div id="skillModalBody" style="font-size:15px;line-height:1.7;color:var(--muted);font-family:'DM Mono',monospace;">
+      <div id="skillModalBody" style="font-size:15px;line-height:1.7;color:var(--muted);font-family:'Fira Code',monospace;">
         <!-- Content will be injected by JavaScript -->
       </div>
     </div>
@@ -1874,7 +1887,7 @@
 <div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
   <div class="subscription-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;">
     <div class="subscription-modal-header" style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
-      <h2 id="subscriptionModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'DM Serif Display',serif;">Subscribe for Updates</h2>
+      <h2 id="subscriptionModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'Playfair Display',serif;">Subscribe for Updates</h2>
       <button class="subscription-modal-close" id="subscriptionModalClose" aria-label="Close subscription modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
     </div>
     <div class="subscription-modal-content" style="padding:32px 24px;">
@@ -1929,7 +1942,7 @@
         <div class="subscription-rss-copy" id="rssUrlSection" style="background:var(--card);padding:16px;border-radius:8px;margin-top:16px;border:1px solid var(--rule);display:none;">
           <div class="subscription-rss-label" style="font-size:12px;font-weight:600;margin-bottom:8px;text-transform:uppercase;opacity:0.7;">RSS Feed URL</div>
           <div class="subscription-rss-url" style="display:flex;gap:8px;align-items:center;">
-            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;color:var(--ink);">
+            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://victor-kipruto-rop.github.io/victor-resum-web/rss.xml" style="flex:1;padding:10px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;font-size:12px;font-family:'Fira Code',monospace;color:var(--ink);">
             <button class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
               <i class="fas fa-copy"></i> Copy
             </button>
@@ -1941,11 +1954,11 @@
       <form class="subscription-form" id="emailTab" style="display:none;">
         <div class="subscription-form-group" style="margin-bottom:16px;">
           <label for="emailName" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Name</label>
-          <input type="text" id="emailName" required placeholder="Your name" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:border-color 0.3s ease;">
+          <input type="text" id="emailName" required placeholder="Your name" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'Fira Code',monospace;transition:border-color 0.3s ease;">
         </div>
         <div class="subscription-form-group" style="margin-bottom:16px;">
           <label for="emailAddress" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Email Address</label>
-          <input type="email" id="emailAddress" required placeholder="your@email.com" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'DM Mono',monospace;transition:border-color 0.3s ease;">
+          <input type="email" id="emailAddress" required placeholder="your@email.com" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'Fira Code',monospace;transition:border-color 0.3s ease;">
         </div>
         <button type="submit" class="subscription-form-submit" style="width:100%;padding:12px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s ease;">Subscribe to Email Updates</button>
       </form>
@@ -2342,6 +2355,19 @@
   // Expose for external access
   window.openSubscriptionModal = () => subscriptionModal.open();
   window.getSubscriptionAnalytics = () => subscriptionAnalytics.getAll();
+
+  // Scroll progress bar
+  const scrollProgress = document.getElementById('scrollProgress');
+  function updateScrollProgress() {
+    if (!scrollProgress) return;
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollProgress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('resize', updateScrollProgress);
+  updateScrollProgress();
 </script>
 
 </body>
