@@ -692,7 +692,7 @@
   .author-info p { font-size: 11px; color: var(--muted); font-family: 'Fira Code', monospace; }
 
   /* ── Expertise & Contributions ── */
-  #expertise, #contributions { border-top: 1px solid var(--rule); }
+  #expertise { border-top: 1px solid var(--rule); }
   .expertise-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -782,7 +782,6 @@
 </script>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -1161,7 +1160,7 @@
 
 <!-- BLOG -->
 <section id="blog">
-  <p class="section-label">// 06</p>
+  <p class="section-label">// 07</p>
   <h2 class="section-title">Technical Blog</h2>
   <div class="blog-grid">
     <div class="blog-card reveal">
@@ -1191,7 +1190,7 @@
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <p class="section-label">// 07</p>
+  <p class="section-label">// 08</p>
   <h2 class="section-title">Testimonials & Feedback</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px">
     <div style="background:var(--card);padding:24px;border-radius:12px;border-left:4px solid var(--accent)">
@@ -1214,7 +1213,7 @@
 
 <!-- SERVICES / EXPERTISE -->
 <section id="expertise">
-  <p class="section-label">// 08</p>
+  <p class="section-label">// 09</p>
   <h2 class="section-title">How I Work</h2>
   <div class="expertise-grid">
     <div class="expertise-card reveal" onclick="openSkillModal('Pipeline Design')">
@@ -1243,35 +1242,9 @@
   </div>
 </section>
 
-<!-- CONTRIBUTIONS -->
-<section id="contributions">
-  <p class="section-label">// 09</p>
-  <h2 class="section-title">Talks & Contributions</h2>
-  <div class="contributions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-top: 48px;">
-    <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule);">
-        <i class="fas fa-code-branch" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
-        <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; margin-bottom: 8px;">Open Source Contribution</h4>
-        <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Improved error-handling documentation and resolved critical race conditions in a widely used Python data processing library.</p>
-        <a href="contributions.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View All Contributions →</a>
-    </div>
-    <div class="contribution-item reveal" style="background: var(--card); padding: 24px; border-radius: 12px; border: 1px solid var(--rule); transition-delay: 0.1s;">
-        <i class="fas fa-microphone" style="color: var(--accent); font-size: 24px; margin-bottom: 16px;"></i>
-        <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; margin-bottom: 8px;">Tech Talk</h4>
-        <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Delivered a technical session on "Designing Fault-Tolerant Data Pipelines with Airflow" to 100+ students at a university tech meetup.</p>
-        <a href="talks.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600;">View All Talks →</a>
-    </div>
-  </div>
-</section>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
-    });
-</script>
-
 <!-- GITHUB ACTIVITY -->
 <section id="github-activity">
-  <p class="section-label">// 07</p>
+  <p class="section-label">// 10</p>
   <div class="github-wrap">
     <div class="github-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
       <h2 class="section-title">GitHub Activity <span class="project-count" id="gh-count"></span></h2>
@@ -1310,7 +1283,7 @@
 
 <!-- SEND MESSAGE -->
 <section id="send-message">
-  <p class="section-label">// 07</p>
+  <p class="section-label">// 11</p>
   <h2 class="section-title">Get in Touch</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin:48px 0;align-items:start">
     <div>
