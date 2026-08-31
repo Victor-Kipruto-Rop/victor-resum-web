@@ -576,6 +576,93 @@
   .projects-grid { display:flex; gap:24px; align-items:stretch; overflow-x:hidden; scroll-behavior:smooth; padding-bottom:8px; padding-top:6px; scroll-snap-type: x mandatory; }
   .projects-grid::-webkit-scrollbar{display:none}
 
+  /* ── Flagship Project (PesaGuard) ── */
+  .flagship-project {
+    background: var(--ink); color: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .flagship-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    padding: 7px 14px; border-radius: 999px; margin-bottom: 20px;
+  }
+  .flagship-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 42px);
+    color: var(--paper); margin-bottom: 8px; line-height: 1.1;
+  }
+  .flagship-tagline {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px;
+    color: color-mix(in srgb, var(--paper) 65%, transparent); margin-bottom: 36px;
+  }
+  .flagship-body { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: start; }
+
+  .flagship-pipeline { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .pipeline-step {
+    width: 100%; text-align: center;
+    font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--paper);
+    background: color-mix(in srgb, var(--paper) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--paper) 16%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+  }
+  .pipeline-step.is-accent { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  .pipeline-arrow { color: var(--accent); font-size: 18px; line-height: 1; padding: 6px 0; }
+
+  .flagship-dashboard {
+    background: #0d1420;
+    border: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
+    border-radius: var(--radius-md);
+    padding: 28px;
+  }
+  .dashboard-status {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--paper) 55%, transparent); margin-bottom: 24px;
+  }
+  .dashboard-status .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: statusPulseDot 1.6s ease-in-out infinite; }
+  @keyframes statusPulseDot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  }
+  .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .dashboard-stat { }
+  .dashboard-value {
+    font-family: 'Fira Code', monospace; font-size: clamp(22px, 2.4vw, 30px); font-weight: 700;
+    color: var(--paper); display: block; line-height: 1.1; margin-bottom: 6px;
+  }
+  .dashboard-value.status-live { color: #22c55e; font-size: 18px; }
+  .dashboard-label {
+    font-family: 'Fira Code', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--paper) 45%, transparent);
+  }
+  .dashboard-caption {
+    font-size: 11.5px; color: color-mix(in srgb, var(--paper) 40%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--paper) 12%, transparent);
+    padding-top: 14px; line-height: 1.5;
+  }
+  .flagship-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 36px; }
+  .flagship-footer .stack-badge { background: color-mix(in srgb, var(--paper) 10%, transparent); color: var(--paper); border-color: color-mix(in srgb, var(--paper) 18%, transparent); }
+  .flagship-footer .btn-primary { margin-left: auto; }
+
+  @media (max-width: 900px) {
+    .flagship-body { grid-template-columns: 1fr; }
+    .flagship-project { padding: 32px 24px; }
+  }
+  @media (max-width: 480px) {
+    .flagship-footer .btn-primary { margin-left: 0; width: 100%; text-align: center; }
+    .dashboard-grid { gap: 16px; }
+  }
+
   .project-card {
     min-width: calc((100% - 48px) / 3); flex: 0 0 calc((100% - 48px) / 3); display: flex; flex-direction: column; background: var(--paper); padding: 0; border-radius: var(--radius-md); overflow:hidden;
     box-shadow: var(--shadow-sm); border: 1px solid var(--rule);
@@ -1222,25 +1309,63 @@
       </div>
     </div>
 
-    <div class="projects-grid" id="projects-grid">
+    <div class="flagship-project">
+      <span class="flagship-badge">★ Flagship Project</span>
+      <h3 class="flagship-title">PesaGuard</h3>
+      <p class="flagship-tagline">Real-time FinTech reconciliation infrastructure</p>
 
-      <div class="project-card reveal" onclick="openProjectModal({title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''})">
-        <img class="project-thumb" src="assets/images/5.jpeg" alt="PesaGuard thumbnail" />
-        <div class="project-content">
-          <p class="project-title">PesaGuard</p>
-          <p class="project-desc">Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.</p>
-          <div class="project-stack">
-            <span class="stack-badge">Flask</span>
-            <span class="stack-badge">Python</span>
-            <span class="stack-badge">Next.js</span>
-            <span class="stack-badge">PostgreSQL</span>
-            <span class="stack-badge">Daraja API</span>
+      <div class="flagship-body">
+        <div class="flagship-pipeline">
+          <div class="pipeline-step is-accent">TRANSACTIONS</div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">INGESTION</div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">VALIDATION</div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">RECONCILIATION</div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">EXCEPTION DETECTION</div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">ALERTING</div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step is-accent">ANALYTICS</div>
+        </div>
+
+        <div class="flagship-dashboard">
+          <div class="dashboard-status"><span class="dot"></span> Control-Room Interface — Illustrative Preview</div>
+          <div class="dashboard-grid">
+            <div class="dashboard-stat">
+              <span class="dashboard-value">1,284</span>
+              <span class="dashboard-label">Transactions / Min</span>
+            </div>
+            <div class="dashboard-stat">
+              <span class="dashboard-value">17</span>
+              <span class="dashboard-label">Open Exceptions</span>
+            </div>
+            <div class="dashboard-stat">
+              <span class="dashboard-value">12,482</span>
+              <span class="dashboard-label">Customers Live</span>
+            </div>
+            <div class="dashboard-stat">
+              <span class="dashboard-value status-live">● LIVE</span>
+              <span class="dashboard-label">System Status</span>
+            </div>
           </div>
-          <div class="project-actions">
-            <span class="btn-sm btn-outline" style="cursor:default;">Private Repository · Live Pilot</span>
-          </div>
+          <p class="dashboard-caption">Sample data illustrating the PesaGuard control-room dashboard UI. The product is currently live with one pilot customer; these figures represent the interface at target scale, not current production traffic.</p>
         </div>
       </div>
+
+      <div class="flagship-footer">
+        <span class="stack-badge">Flask</span>
+        <span class="stack-badge">Python</span>
+        <span class="stack-badge">Next.js</span>
+        <span class="stack-badge">PostgreSQL</span>
+        <span class="stack-badge">Daraja API</span>
+        <button class="btn-primary" onclick="openProjectModal({title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''})">View Full Case Study →</button>
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
 
       <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
         <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL thumbnail" />
@@ -1901,7 +2026,6 @@
     if(!grid) return;
     if(grid.children.length > 0) return; // already populated
     const staticProjects = [
-      { img: 'assets/images/5.jpeg', title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask','Python','Next.js','PostgreSQL','Daraja API'], view: '' },
       { img: 'assets/images/2.jpeg', title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow','Docker','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
       { img: 'assets/images/3.jpeg', title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python','PostgreSQL','Connection Pooling'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
       { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python','Kafka','Flink','dbt','Terraform','BigQuery','Airflow','Grafana'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' }
