@@ -1133,8 +1133,8 @@
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#certifications">Certifications</a>
-      <a href="#blog">Blog</a>
-      <a href="#github-activity">Activity</a>
+      <a href="blog.html">Blog</a>
+      <a href="github-activity.html">Activity</a>
       <a href="#send-message">Contact</a>
     </div>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
@@ -1518,110 +1518,9 @@
 </section>
 
 
-<!-- BLOG -->
-<section id="blog">
-  <p class="section-label">// 07</p>
-  <h2 class="section-title">Technical Blog</h2>
-  <div class="blog-grid">
-    <div class="blog-card reveal">
-      <span class="blog-date">June 5, 2026 · 5 min read</span>
-      <h3 class="blog-title">Welcome to My Technical Blog</h3>
-      <p class="blog-excerpt">An introduction to my technical blog where I share insights on data engineering, ETL pipelines, and real-time systems.</p>
-      <a href="post.html?id=first-post" class="btn-ghost btn-sm">Read Article</a>
-    </div>
-    <div class="blog-card reveal" style="transition-delay:0.1s">
-      <span class="blog-date">June 4, 2026 · 12 min read</span>
-      <h3 class="blog-title">Data Engineering Fundamentals: Building Scalable Systems</h3>
-      <p class="blog-excerpt">A comprehensive guide to data engineering fundamentals, covering architecture principles, ETL design patterns, and production-grade best practices.</p>
-      <a href="post.html?id=data-engineering" class="btn-ghost btn-sm">Read Article</a>
-    </div>
-    <div class="blog-card reveal" style="transition-delay:0.2s">
-      <span class="blog-date">May 28, 2026 · 14 min read</span>
-      <h3 class="blog-title">Advanced Airflow Patterns & Optimization</h3>
-      <p class="blog-excerpt">Deep dive into dynamic DAG generation, custom operators, monitoring strategies, and scaling Airflow to production workloads.</p>
-      <a href="post.html?id=airflow-advanced" class="btn-ghost btn-sm">Read Article</a>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:40px;">
-    <a href="blog.html" class="btn-primary" style="display:inline-block;padding:12px 24px;background:var(--accent);color:var(--paper);border-radius:4px;text-decoration:none;margin-right:12px;">Browse All Articles (6+)</a>
-    <button onclick="openSubscriptionModal()" class="btn-secondary" style="display:inline-block;padding:12px 24px;background:var(--muted);color:var(--paper);border-radius:4px;text-decoration:none;border:none;cursor:pointer;font-family:'Fira Code',monospace;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;">📧 Subscribe for Updates</button>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<!-- SERVICES / EXPERTISE -->
-<section id="expertise">
-  <p class="section-label">// 08</p>
-  <h2 class="section-title">How I Work</h2>
-  <div class="expertise-grid">
-    <div class="expertise-card reveal" onclick="openSkillModal('Pipeline Design')">
-      <div class="expertise-icon"><i class="fas fa-project-diagram"></i></div>
-      <h3 class="expertise-title">Pipeline Design</h3>
-      <p class="expertise-desc">I design resilient ETL/ELT frameworks. By treating data pipelines as software, I ensure modularity, observability, and scalability from the very first row.</p>
-    </div>
-    <div class="expertise-card reveal" style="transition-delay:0.1s" onclick="openSkillModal('Orchestration')">
-      <div class="expertise-icon"><i class="fas fa-clock"></i></div>
-      <h3 class="expertise-title">Orchestration</h3>
-      <p class="expertise-desc">I leverage Apache Airflow to turn complex, interdependent data tasks into deterministic, automated workflows with robust alerting and retry strategies.</p>
-    </div>
-    <div class="expertise-card reveal" style="transition-delay:0.2s" onclick="openSkillModal('Data Modelling')">
-      <div class="expertise-icon"><i class="fas fa-database"></i></div>
-      <h3 class="expertise-title">Data Modelling</h3>
-      <p class="expertise-desc">I bridge raw data to business value using dimensional modelling (Star/Snowflake), optimized for high-performance analytical query engines.</p>
-    </div>
-    <div class="expertise-card reveal" style="transition-delay:0.3s" onclick="openSkillModal('Data CI/CD')">
-      <div class="expertise-icon"><i class="fas fa-infinity"></i></div>
-      <h3 class="expertise-title">Data CI/CD</h3>
-      <p class="expertise-desc">I treat data infrastructure with engineering rigor, implementing automated unit testing (Pytest) and deployment pipelines for constant reliability.</p>
-    </div>
-  </div>
-  <div class="flex justify-center mt-12">
-    <a href="how-i-work.html" class="btn-primary">View Comprehensive Engineering Approach →</a>
-  </div>
-</section>
-
-<!-- GITHUB ACTIVITY -->
-<section id="github-activity">
-  <p class="section-label">// 09</p>
-  <div class="github-wrap">
-    <div class="github-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <h2 class="section-title">GitHub Activity <span class="project-count" id="gh-count"></span></h2>
-      <a class="gh-username" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" style="text-decoration:none;color:var(--muted);font-weight:700;display:inline-flex;gap:8px;align-items:center;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.262.82-.582 0-.287-.01-1.044-.016-2.05-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.76-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 013.003-.404c1.02.005 2.045.138 3.004.404 2.29-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.81 1.096.81 2.21 0 1.596-.014 2.882-.014 3.274 0 .323.217.699.825.58C20.565 21.796 24 17.298 24 12c0-6.63-5.373-12-12-12z"/></svg>
-        <span>@Victor-Kipruto-Rop</span>
-      </a>
-    </div>
-    <p id="gh-sub" style="color:var(--muted);margin-top:8px;margin-bottom:12px;">Loading recent activity…</p>
-    <div class="gh-chart">
-      <img id="gh-chart" src="https://ghchart.rshah.org/40c463/Victor-Kipruto-Rop" alt="Victor Kipruto Rop's GitHub contributions" style="width:100%;max-width:980px;display:block;" />
-    </div>
-    <div class="gh-legend" style="display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);">
-      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:13px;">
-        <span>Less</span>
-        <div style="display:flex;gap:6px;align-items:center">
-          <span style="width:14px;height:14px;border:1px solid var(--rule);border-radius:3px;display:inline-block;background:#ebedf0"></span>
-          <span style="width:14px;height:14px;border:1px solid #76ff5e;border-radius:3px;display:inline-block;background:#76ff5e" title="Few contributions"></span>
-          <span style="width:14px;height:14px;border:1px solid #4caf50;border-radius:3px;display:inline-block;background:#4caf50" title="Several contributions"></span>
-          <span style="width:14px;height:14px;border:1px solid #2e8b57;border-radius:3px;display:inline-block;background:#2e8b57" title="More contributions"></span>
-          <span style="width:14px;height:14px;border:1px solid #0d4a2a;border-radius:3px;display:inline-block;background:#0d4a2a" title="Many contributions"></span>
-        </div>
-        <span>More</span>
-      </div>
-    </div>
-
-    <div class="top-repos-section">
-      <h3 class="top-repos-title">Top Repositories</h3>
-      <div id="top-repos-container" class="top-repos-grid">
-        <p style="color:var(--muted);font-family:'Fira Code',monospace;">Loading repositories…</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- SEND MESSAGE -->
 <section id="send-message">
-  <p class="section-label">// 10</p>
+  <p class="section-label">// 07</p>
   <h2 class="section-title">Get in Touch</h2>
   <div style="max-width:560px;margin:48px auto 0;">
     <div>
@@ -2043,56 +1942,9 @@
   }
   
 
-  // Fetch Top Repositories from GitHub
-  async function fetchTopRepos() {
-    const container = document.getElementById('top-repos-container');
-    if (!container) return;
-
-    const renderRepos = (repos) => {
-      container.innerHTML = '';
-      const langColors = { 'Python': '#3572A5', 'SQL': '#e38c00', 'JavaScript': '#f1e05a' };
-
-      repos.forEach(repo => {
-        const item = document.createElement('div');
-        item.className = 'repo-item';
-        item.onclick = () => window.open(repo.html_url, '_blank');
-        const lang = repo.language || 'Markdown';
-        const color = langColors[lang] || '#8b8b8b';
-        item.innerHTML = `
-          <div class="repo-name">${escapeHtml(repo.name)} <i class="fab fa-github opacity-50"></i></div>
-          <p class="repo-desc">${escapeHtml(repo.description || 'No description available.')}</p>
-          <div class="repo-stats">
-            <span class="repo-lang"><span class="repo-lang-dot" style="background: ${color};"></span>${escapeHtml(lang)}</span>
-            <span class="repo-stars"><i class="fas fa-star text-yellow-400"></i>${repo.stargazers_count || 0}</span>
-          </div>
-        `;
-        container.appendChild(item);
-      });
-    };
-
-    try {
-      const res = await fetch('https://api.github.com/users/Victor-Kipruto-Rop/repos?per_page=100');
-      if (!res.ok) throw new Error('API limit reached');
-      const repos = await res.json();
-      // ... (existing filtering logic) ...
-      const deKeywords = ['data', 'engineer', 'etl', 'airflow', 'spark', 'sql', 'warehouse', 'pipeline', 'kafka', 'flink', 'dbt', 'bigquery', 'snowflake', 'analytics', 'streaming'];
-      const filtered = repos.filter(r => r && r.name && r.name.toLowerCase() !== 'victor-kipruto-rop' && r.name.toLowerCase() !== 'kipruto45');
-      filtered.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0));
-      renderRepos(filtered.slice(0, 6));
-    } catch (e) {
-      console.warn('Using fallback data due to API error:', e);
-      fetch('data/top_repos_fallback.json')
-        .then(res => res.json())
-        .then(renderRepos)
-        .catch(() => { container.innerHTML = '<p class="text-center text-muted">Unable to load repositories.</p>'; });
-    }
-  }
-
-  // Call loadGitHubActivity and render the curated case-study projects on load
+  // Call render for the curated case-study projects on load
   document.addEventListener('DOMContentLoaded', ()=>{ 
-  loadGitHubActivity(); 
   ensureStaticProjects();
-  fetchTopRepos();
   });
   // ensure projects are visible: if projects-grid is empty, populate static fallback cards
   function ensureStaticProjects(){
@@ -2119,25 +1971,6 @@
     });
     applyTilt(grid.querySelectorAll('.project-card'));
     setTimeout(updateProjectArrows, 120);
-  }
-
-  // load GitHub activity (profile + stats)
-  async function loadGitHubActivity(){
-    const sub = document.getElementById('gh-sub');
-    const ghCount = document.getElementById('gh-count');
-
-    try{
-      const ures = await fetch('https://api.github.com/users/Victor-Kipruto-Rop');
-      if(ures.ok){
-        const user = await ures.json();
-        if(ghCount) ghCount.textContent = `(${user.public_repos})`;
-        if(sub) sub.textContent = `${user.public_repos} public repositories · ${user.followers} followers · Nairobi, Kenya`;
-        return;
-      }
-    }catch(e){ /* continue to fallback */ }
-
-    if(ghCount) ghCount.textContent = '(See profile)';
-    if(sub) sub.textContent = `Contributions calendar and activity (last year) — data shown directly from GitHub. Visit @Victor-Kipruto-Rop on GitHub for full profile details.`;
   }
 
   // Contact form integration (Formspree AJAX)
