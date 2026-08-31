@@ -836,7 +836,7 @@
     color: var(--muted); text-transform: uppercase; margin-bottom: 12px;
   }
   .footer-links {
-    display: flex; flex-wrap: wrap; gap: 10px 28px;
+    display: flex; flex-direction: column; gap: 10px;
   }
   .footer-links a {
     font-family: 'Fira Code', monospace; font-size: 13px;
@@ -878,7 +878,7 @@
     .about-photo-wrap::before { display: none; }
     footer { padding: 24px; }
     .footer-top { flex-direction: column; gap: 20px; text-align: center; }
-    .footer-links { justify-content: center; }
+    .footer-links { align-items: center; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     .contact-row { flex-direction: column; }
   }
