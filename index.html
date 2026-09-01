@@ -559,11 +559,49 @@
 
   /* ── Skills ── */
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
-  .skills-wrap { max-width: 1180px; width: 100%; margin: 12px auto 0; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start; }
-  .skill-pill { display:inline-block; padding:10px 14px; border-radius:999px; background: var(--paper); color: var(--ink); border:1px solid var(--rule); font-family: 'Fira Code', monospace; font-size:14px; box-shadow: 0 6px 18px rgba(10,14,20,0.04); cursor: pointer; transition: all 0.2s ease; }
-  .skill-pill:hover { background: var(--card); transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
-  @media (max-width: 1100px) { #skills { padding: 28px 16px; } .skill-pill { font-size:13px; padding:8px 12px; } }
-  @media (max-width: 720px) { #skills { padding: 20px 12px; } .skill-pill { width:100%; text-align:center; } }
+  .skills-grid {
+    max-width: 1180px; width: 100%; margin: 48px auto 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .skill-category {
+    position: relative; overflow: hidden;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 26px 24px;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .skill-category::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    background: var(--accent); opacity: 0.75;
+  }
+  .skill-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(10,14,20,0.08);
+    border-color: var(--accent);
+  }
+  body.dark-mode .skill-category:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .skill-category-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .skill-category-icon {
+    width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px;
+    background: var(--paper); border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-size: 14px;
+  }
+  .skill-category-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin: 0; }
+  .skill-pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill {
+    display: inline-flex; align-items: center;
+    padding: 7px 13px; border-radius: 999px;
+    background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
+    font-family: 'Fira Code', monospace; font-size: 12.5px;
+    cursor: pointer; transition: all 0.2s ease;
+  }
+  .skill-pill:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
+  @media (max-width: 720px) {
+    #skills { padding: 20px 12px; }
+    .skills-grid { grid-template-columns: 1fr; gap: 18px; }
+    .skill-category { padding: 22px 20px; }
+  }
 
   /* ── Projects ── */
   #projects { background: transparent; color: var(--ink); border-top: 1px solid var(--rule); position: relative; padding: 32px 0 56px; }
@@ -1378,29 +1416,77 @@
 <section id="skills">
   <p class="section-label">// 04</p>
   <h2 class="section-title">Technical Skills</h2>
-  <div class="skills-wrap">
-    <div class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</div>
-    <div class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</div>
-    <div class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</div>
-    <div class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</div>
-    <div class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</div>
-    <div class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</div>
-    <div class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</div>
-    <div class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</div>
-    <div class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</div>
-    <div class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</div>
-    <div class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</div>
-    <div class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</div>
-    <div class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</div>
-    <div class="skill-pill" onclick="openSkillModal('Docker')">Docker</div>
-    <div class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</div>
-    <div class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</div>
-    <div class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</div>
-    <div class="skill-pill" onclick="openSkillModal('Python')">Python</div>
-    <div class="skill-pill" onclick="openSkillModal('SQL')">SQL</div>
-    <div class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</div>
-    <div class="skill-pill" onclick="openSkillModal('Git')">Git</div>
-    <div class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</div>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-diagram-project"></i></div>
+        <h3 class="skill-category-title">Orchestration & Pipelines</h3>
+      </div>
+      <div class="skill-pill-group">
+        <div class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</div>
+        <div class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</div>
+        <div class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</div>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-bolt"></i></div>
+        <h3 class="skill-category-title">Streaming & Real-Time</h3>
+      </div>
+      <div class="skill-pill-group">
+        <div class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</div>
+        <div class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</div>
+        <div class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</div>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-database"></i></div>
+        <h3 class="skill-category-title">Data Modeling & Warehousing</h3>
+      </div>
+      <div class="skill-pill-group">
+        <div class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</div>
+        <div class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</div>
+        <div class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</div>
+        <div class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</div>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-shield-halved"></i></div>
+        <h3 class="skill-category-title">Data Quality & Reliability</h3>
+      </div>
+      <div class="skill-pill-group">
+        <div class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</div>
+        <div class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</div>
+        <div class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</div>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-code"></i></div>
+        <h3 class="skill-category-title">Languages & Databases</h3>
+      </div>
+      <div class="skill-pill-group">
+        <div class="skill-pill" onclick="openSkillModal('Python')">Python</div>
+        <div class="skill-pill" onclick="openSkillModal('SQL')">SQL</div>
+        <div class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</div>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-gears"></i></div>
+        <h3 class="skill-category-title">DevOps & Testing</h3>
+      </div>
+      <div class="skill-pill-group">
+        <div class="skill-pill" onclick="openSkillModal('Docker')">Docker</div>
+        <div class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</div>
+        <div class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</div>
+        <div class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</div>
+        <div class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</div>
+        <div class="skill-pill" onclick="openSkillModal('Git')">Git</div>
+      </div>
+    </div>
   </div>
 </section>
 
