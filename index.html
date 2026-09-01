@@ -1259,6 +1259,85 @@
     .fab, .fab-top { transition: opacity 0.2s ease; }
     .fab:hover, .fab:active { transform: none; }
   }
+
+  /* ══════════════════ ADVANCED TRANSITIONS: scroll-reveal ══════════════════ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    will-change: opacity, transform;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ══════════════════ MICRO-INTERACTIONS: nav scroll-spy ══════════════════ */
+  .nav-links a { position: relative; padding-bottom: 3px; }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -2px;
+    width: 0; height: 1.5px; background: var(--accent);
+    transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .nav-links a:hover::after, .nav-links a.active-link::after { width: 100%; }
+  .nav-links a.active-link { color: var(--accent); }
+  body.dark-mode .nav-links a.active-link { color: var(--accent); opacity: 1; }
+
+  /* ══════════════════ MICRO-INTERACTIONS: press feedback ══════════════════ */
+  .btn-primary:active, .btn-ghost:active, .cta-btn:active,
+  .skill-pill:active, .cert-view-btn:active, .about-fact:active,
+  .experience-card:active, .cert-card:active, .skill-category:active {
+    transform: scale(0.97);
+  }
+  .btn-primary, .btn-ghost { transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.25s, border-color 0.25s; }
+
+  /* ══════════════════ TYPOGRAPHY REFINEMENT ══════════════════ */
+  .hero-name, .section-title { text-wrap: balance; }
+  .stat-value, .experience-date, .cert-year, .hero-eyebrow,
+  .about-fact .fact-value, .skill-category-title {
+    font-variant-numeric: tabular-nums;
+  }
+  .about-body, .experience-desc, .cert-desc { max-width: 62ch; }
+
+  /* ══════════════════ DARK FINTECH VISUAL SYSTEM (dark mode only) ══════════════════ */
+  body.dark-mode::after {
+    content: '';
+    position: fixed; inset: 0; z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--accent) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--accent) 7%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.6;
+  }
+  body.dark-mode .stat-value {
+    text-shadow: 0 0 22px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  body.dark-mode .experience-card:hover,
+  body.dark-mode .cert-card:hover,
+  body.dark-mode .skill-category:hover,
+  body.dark-mode .about-fact:hover {
+    box-shadow: 0 0 0 1px var(--accent), 0 20px 45px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  body.dark-mode .experience-date,
+  body.dark-mode .cert-year {
+    background: color-mix(in srgb, var(--accent) 8%, var(--paper));
+  }
+
+  /* ══════════════════ CUSTOM ILLUSTRATION: hero pipeline motif ══════════════════ */
+  .hero-illustration {
+    position: absolute; top: 0; right: 0;
+    width: min(52vw, 720px); height: 100%;
+    pointer-events: none; z-index: 0;
+    opacity: 0.5;
+    color: var(--rule);
+  }
+  body.dark-mode .hero-illustration { color: var(--accent); opacity: 0.16; }
+  #hero { position: relative; overflow: hidden; }
+  #hero > * { position: relative; z-index: 1; }
+  @media (max-width: 900px) {
+    .hero-illustration { display: none; }
+  }
 </style>
 
 <!-- Structured Data -->
@@ -1343,6 +1422,25 @@
 
 <!-- HERO -->
 <section id="hero">
+  <svg class="hero-illustration" viewBox="0 0 720 600" fill="none" aria-hidden="true" focusable="false">
+    <path d="M40 520 C 180 520, 200 380, 320 360 S 480 260, 560 200 S 620 90, 690 60" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.7"/>
+    <path d="M40 560 C 190 560, 230 440, 340 420 S 500 320, 580 260 S 630 140, 690 110" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-opacity="0.35"/>
+    <circle cx="40" cy="520" r="6" fill="currentColor" fill-opacity="0.8"/>
+    <circle cx="320" cy="360" r="8" fill="currentColor" fill-opacity="0.6"/>
+    <circle cx="560" cy="200" r="7" fill="currentColor" fill-opacity="0.7"/>
+    <circle cx="690" cy="60" r="9" fill="currentColor" fill-opacity="0.9"/>
+    <rect x="300" y="342" width="16" height="16" rx="3" transform="rotate(20 308 350)" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5"/>
+    <rect x="540" y="182" width="14" height="14" rx="3" transform="rotate(-15 547 189)" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5"/>
+    <g stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25">
+      <line x1="0" y1="80" x2="720" y2="80"/>
+      <line x1="0" y1="200" x2="720" y2="200"/>
+      <line x1="0" y1="320" x2="720" y2="320"/>
+      <line x1="0" y1="440" x2="720" y2="440"/>
+      <line x1="120" y1="0" x2="120" y2="600"/>
+      <line x1="360" y1="0" x2="360" y2="600"/>
+      <line x1="600" y1="0" x2="600" y2="600"/>
+    </g>
+  </svg>
   <div class="hero-left">
     <p class="hero-eyebrow">// AVAILABLE FOR INTERNSHIPS · 2026</p>
     <h1 class="hero-name" id="hero-name">Victor Kipruto Rop</h1>
@@ -1969,6 +2067,28 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => window.obs.observe(el));
+
+  // Nav scroll-spy: highlight the active section link with a sliding underline
+  (function () {
+    const navAnchorLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if (!navAnchorLinks.length) return;
+    const idToLink = new Map(navAnchorLinks.map(a => [a.getAttribute('href').slice(1), a]));
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const link = idToLink.get(entry.target.id);
+          if (link) {
+            navAnchorLinks.forEach(a => a.classList.remove('active-link'));
+            link.classList.add('active-link');
+          }
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    idToLink.forEach((link, id) => {
+      const el = document.getElementById(id);
+      if (el) spy.observe(el);
+    });
+  })();
 
 
   // Projects horizontal scroll helper
