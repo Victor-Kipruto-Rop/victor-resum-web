@@ -168,7 +168,7 @@
   }
 
   /* ── Nav ── */
-  nav {
+  .site-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 20px 72px;
@@ -180,23 +180,23 @@
     display: flex; align-items: center; gap: 16px;
   }
   @media (max-width: 720px) {
-    nav { padding: 16px 20px; gap: 12px; }
+    .site-nav { padding: 16px 20px; gap: 12px; }
     .nav-logo { font-size: 16px; }
     .nav-links { gap: 16px; }
     .nav-links a { font-size: 10px; letter-spacing: 0.08em; }
     .theme-toggle { width: 36px; height: 36px; font-size: 14px; }
   }
   @media (max-width: 480px) {
-    nav { padding: 14px 16px; gap: 8px; }
+    .site-nav { padding: 14px 16px; gap: 8px; }
     .nav-logo { font-size: 14px; }
     .nav-username { font-size: 11px; }
     .nav-links { gap: 12px; }
     .nav-links a { font-size: 9px; }
     .theme-toggle { width: 32px; height: 32px; font-size: 12px; }
   }
-  body.dark-mode nav { mix-blend-mode: normal; }
+  body.dark-mode .site-nav { mix-blend-mode: normal; }
   /* Light mode only blending for paper effect */
-  body:not(.dark-mode) nav { mix-blend-mode: multiply; }
+  body:not(.dark-mode) .site-nav { mix-blend-mode: multiply; }
   .nav-logo {
     display:flex; align-items:center; gap:8px;
     font-family: 'Playfair Display', serif;
@@ -865,7 +865,7 @@
 
   /* ── Mobile ── */
   @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
+    .site-nav { padding: 16px 24px; }
     .nav-links { display: none; }
     #hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 80px 24px 40px; }
@@ -1194,7 +1194,7 @@
 <div id="cursor-ring"></div>
 
 <!-- NAV -->
-<nav>
+<nav class="site-nav">
   <a class="nav-logo" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener">
     <img src="assets/1.jpeg" alt="Victor Kipruto Rop" style="height: 48px; width: 48px; border-radius: 50%; object-fit: cover; display: block;"/>
     <span class="nav-username">@Victor-Kipruto-Rop</span>
