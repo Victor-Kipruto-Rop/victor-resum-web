@@ -561,6 +561,12 @@
 
   /* ── Skills ── */
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
+  .skills-hint {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Fira Code', monospace; font-size: 12px; color: var(--muted);
+    margin-top: 12px;
+  }
+  .skills-hint i { color: var(--accent); font-size: 12px; }
   .skills-grid {
     max-width: 1180px; width: 100%; margin: 48px auto 0;
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1714,6 +1720,7 @@
 <section id="skills">
   <p class="section-label">// 04</p>
   <h2 class="section-title">Technical Skills</h2>
+  <p class="skills-hint"><i class="fas fa-hand-pointer"></i> Tap any skill for why I use it, where I've used it, and the project behind it</p>
   <div class="skills-grid">
     <div class="skill-category">
       <div class="skill-category-header">
