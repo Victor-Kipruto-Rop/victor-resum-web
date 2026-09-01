@@ -28,8 +28,6 @@
       --card: #ede8de;        /* Slightly darker cream */
       --code-bg: #030712;
       --card-shadow: 0 10px 25px -5px rgba(10, 14, 20, 0.05);
-      --svg-stroke: #0a0e14;
-      --svg-bg: #f5f0e8;
     }
 
     /* Dark Mode Tokens (body.dark-mode) */
@@ -43,8 +41,6 @@
       --card: #18181b;        /* Card dark surface */
       --code-bg: #090d16;
       --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-      --svg-stroke: #f5f0e8;
-      --svg-bg: #18181b;
     }
 
     * {
@@ -274,100 +270,16 @@
       box-shadow: var(--card-shadow);
     }
 
-.step-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
 .step-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       color: var(--ink);
-    }
-
-.step-tag {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.75rem;
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      padding: 4px 10px;
-      border-radius: 100px;
-      color: var(--muted);
+      margin-bottom: 12px;
     }
 
 .step-description {
       font-size: 1rem;
       color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-.step-deliverables {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      padding: 18px 20px;
-    }
-
-.step-deliverables-title {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-.step-deliverables ul {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 8px;
-    }
-
-.step-deliverables li {
-      font-size: 0.88rem;
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-.step-deliverables li::before {
-      content: '✓';
-      color: var(--accent);
-      font-weight: bold;
-    }
-
-    /* Diagram Block */
-.diagram-container {
-      background: var(--card);
-      border: 1px solid var(--rule);
-      border-radius: 20px;
-      padding: 32px;
-      margin: 50px 0 80px;
-      box-shadow: var(--card-shadow);
-    }
-
-.diagram-header {
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-.diagram-svg-wrap {
-      width: 100%;
-      overflow-x: auto;
-      padding: 10px 0;
-    }
-
-    svg.pipeline-diagram {
-      width: 100%;
-      min-width: 700px;
-      height: auto;
     }
 
     /* Stack & Tools Matrix */
@@ -453,7 +365,6 @@
 .timeline-step { grid-template-columns: 40px 1fr; gap: 16px; }
 .step-icon { width: 40px; height: 40px; font-size: 0.95rem; }
 .step-content { padding: 20px; }
-.step-deliverables ul { grid-template-columns: 1fr; }
     }
 
     /* Scroll Progress Bar */
@@ -479,26 +390,6 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
-    }
-
-    /* Animated pipeline diagram */
-    .pipeline-diagram .flow-line {
-      stroke-dashoffset: 0;
-      animation: flowDash 1.2s linear infinite;
-    }
-    @keyframes flowDash {
-      to { stroke-dashoffset: -24; }
-    }
-    .pipeline-diagram .status-dot {
-      animation: statusPulse 2s ease-in-out infinite;
-      transform-origin: center;
-    }
-    @keyframes statusPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.55; transform: scale(1.3); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .pipeline-diagram .flow-line, .pipeline-diagram .status-dot { animation: none; }
     }
   </style>
 </head>
@@ -552,62 +443,6 @@
       </div>
     </section>
 
-    <!-- Interactive Flow Diagram -->
-    <section class="diagram-container">
-      <div class="diagram-header">
-        <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 6px;">End-to-End Pipeline Architecture</h2>
-        <p class="section-subtitle" style="margin-bottom: 0;">Standard event-driven ingestion, processing, and compliance topology</p>
-      </div>
-      
-      <div class="diagram-svg-wrap">
-        <svg class="pipeline-diagram" viewBox="0 0 850 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Flow Line Backing -->
-          <path class="flow-line" d="M 110 110 L 740 110" stroke="var(--rule)" stroke-width="4" stroke-dasharray="6 6"/>
-
-          <!-- Node 1: Ingestion -->
-          <g transform="translate(30, 50)">
-            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--accent)" stroke-width="2"/>
-            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 01: INGESTION</text>
-            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">Daraja Webhook</text>
-            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Schema Validation &amp;</text>
-            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Signature Verification</text>
-          </g>
-
-          <!-- Node 2: Streaming -->
-          <g transform="translate(240, 50)">
-            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--rule)" stroke-width="2"/>
-            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 02: EVENT STREAM</text>
-            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">Kafka Bus</text>
-            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Event Ordering &amp;</text>
-            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Deduplication Buffer</text>
-          </g>
-
-          <!-- Node 3: Processing -->
-          <g transform="translate(450, 50)">
-            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--rule)" stroke-width="2"/>
-            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 03: COMPUTE</text>
-            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">PyFlink Consumer</text>
-            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Anomaly Detection &amp;</text>
-            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Reconciliation Rules</text>
-          </g>
-
-          <!-- Node 4: Storage & Audit -->
-          <g transform="translate(660, 50)">
-            <rect x="0" y="0" width="160" height="120" rx="12" fill="var(--svg-bg)" stroke="var(--rule)" stroke-width="2"/>
-            <text x="80" y="38" text-anchor="middle" fill="var(--accent)" font-family="Fira Code" font-size="11" font-weight="600">STEP 04: GOVERNANCE</text>
-            <text x="80" y="62" text-anchor="middle" fill="var(--ink)" font-family="Plus Jakarta Sans" font-size="14" font-weight="700">Audit & Ledger Store</text>
-            <text x="80" y="82" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Immutable Lineage &amp;</text>
-            <text x="80" y="96" text-anchor="middle" fill="var(--muted)" font-family="Plus Jakarta Sans" font-size="11">Auto-Retention Purge</text>
-          </g>
-
-          <!-- Status Indicator Below -->
-          <rect x="310" y="210" width="230" height="32" rx="16" fill="var(--paper)" stroke="var(--rule)" stroke-width="1"/>
-          <circle class="status-dot" cx="330" cy="226" r="4" fill="#10b981"/>
-          <text x="342" y="230" fill="var(--ink)" font-family="Fira Code" font-size="11">Active Subsecond Stream</text>
-        </svg>
-      </div>
-    </section>
-
     <!-- Detailed 4-Step Process -->
     <section class="process-section" id="process">
       <h2 class="section-title">Step-by-Step Delivery Process</h2>
@@ -618,21 +453,10 @@
         <div class="timeline-step reveal">
           <div class="step-icon">01</div>
           <div class="step-content">
-            <div class="step-header">
-              <h3 class="step-title">Domain Analysis & Risk Modeling</h3>
-              <span class="step-tag">Phase 1: Architecture</span>
-            </div>
+            <h3 class="step-title">Domain Analysis & Risk Modeling</h3>
             <p class="step-description">
-              Before writing any pipeline code, I map out failure modes, edge cases (e.g., duplicate M-Pesa webhooks, out-of-order execution), and compliance boundaries (ODPC Data Protection Act constraints).
+              Map failure modes, edge cases (e.g., duplicate M-Pesa webhooks, out-of-order execution), and compliance boundaries before writing any pipeline code.
             </p>
-            <div class="step-deliverables">
-              <div class="step-deliverables-title">Key Outputs</div>
-              <ul>
-                <li>Failure mode & retry trade-off matrix</li>
-                <li>Lawful basis PII mapping schema</li>
-                <li>Idempotency boundary definitions</li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -640,21 +464,10 @@
         <div class="timeline-step reveal">
           <div class="step-icon">02</div>
           <div class="step-content">
-            <div class="step-header">
-              <h3 class="step-title">Schema Contract & Ingestion Design</h3>
-              <span class="step-tag">Phase 2: Ingestion</span>
-            </div>
+            <h3 class="step-title">Schema Contract & Ingestion Design</h3>
             <p class="step-description">
-              Designing strict schema contracts right at the entry point to catch malformed, corrupted, or unexpected payload fields before they leak into downstream models.
+              Strict schema contracts at the entry point catch malformed or unexpected payload fields before they leak into downstream models.
             </p>
-            <div class="step-deliverables">
-              <div class="step-deliverables-title">Key Outputs</div>
-              <ul>
-                <li>Strict JSON/Avro payloads validation</li>
-                <li>Webhook signature authentication</li>
-                <li>DLQ (Dead Letter Queue) routing</li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -662,21 +475,10 @@
         <div class="timeline-step reveal">
           <div class="step-icon">03</div>
           <div class="step-content">
-            <div class="step-header">
-              <h3 class="step-title">Stream Computing & Anomaly Rules</h3>
-              <span class="step-tag">Phase 3: Processing</span>
-            </div>
+            <h3 class="step-title">Stream Computing & Anomaly Rules</h3>
             <p class="step-description">
-              Implementing event-driven streaming with PyFlink/Kafka consumers to perform near-real-time statistical anomaly detection, flag reconciliation mismatches, and run ledger validation.
+              Event-driven streaming with PyFlink/Kafka consumers performs near-real-time anomaly detection and reconciliation validation.
             </p>
-            <div class="step-deliverables">
-              <div class="step-deliverables-title">Key Outputs</div>
-              <ul>
-                <li>Near real-time anomaly flagging</li>
-                <li>Stateful stream join handlers</li>
-                <li>Event ordering windowing functions</li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -684,21 +486,10 @@
         <div class="timeline-step reveal">
           <div class="step-icon">04</div>
           <div class="step-content">
-            <div class="step-header">
-              <h3 class="step-title">Observability & Automated Governance</h3>
-              <span class="step-tag">Phase 4: Production</span>
-            </div>
+            <h3 class="step-title">Observability & Automated Governance</h3>
             <p class="step-description">
-              Wiring up Prometheus metrics, Grafana dashboards, line-level data access logging, and automated retention enforcement so the system operates cleanly without manual interventions.
+              Metrics, dashboards, and access logging are wired up so the system operates cleanly without manual intervention.
             </p>
-            <div class="step-deliverables">
-              <div class="step-deliverables-title">Key Outputs</div>
-              <ul>
-                <li>Prometheus lag & throughput metrics</li>
-                <li>Line-level audit trail logs</li>
-                <li>Automated data retention purges</li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>
