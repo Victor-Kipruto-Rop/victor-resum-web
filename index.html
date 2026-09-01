@@ -763,46 +763,69 @@
   #about { border-top: 1px solid var(--rule); }
   .about-layout {
     display: grid;
-    grid-template-columns: 1fr minmax(0, 700px) 1fr;
-    gap: 24px;
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    gap: 56px;
     align-items: start;
+    margin-top: 48px;
   }
-  .about-text { grid-column: 2; }
-  @media (max-width: 1024px) {
-    .about-layout { grid-template-columns: 1fr; }
-    .about-text { grid-column: auto; }
+  @media (max-width: 900px) {
+    .about-layout { grid-template-columns: 1fr; gap: 36px; }
   }
-  .about-photo-wrap {
+  .about-photo-frame {
     position: relative;
-    display: flex; justify-content: center;
+    width: 100%;
+    max-width: 300px;
   }
-  .about-photo-wrap::before {
+  .about-photo-frame::before {
     content: '';
-    position: absolute; top: 20px; left: 20px; right: -20px; bottom: -20px;
-    border: none; z-index: 0;
+    position: absolute; top: 16px; left: -16px; right: 16px; bottom: -16px;
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    z-index: 0;
   }
   .about-photo {
-    width: 320px; height: 400px; object-fit: cover;
     position: relative; z-index: 1;
-    filter: grayscale(20%);
-    border-radius: 8px;
-    border: 6px solid rgba(10,14,20,0.06);
-    box-shadow: 0 12px 30px rgba(10,14,20,0.12);
-    background-clip: padding-box;
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: grayscale(35%) contrast(1.02);
+    box-shadow: 0 24px 48px rgba(10,14,20,0.18);
+  }
+  body.dark-mode .about-photo { box-shadow: 0 24px 48px rgba(0,0,0,0.5); }
+  .about-role-chip {
+    position: absolute; z-index: 2; left: 18px; bottom: -16px;
+    background: var(--accent); color: var(--paper);
+    font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
+    padding: 8px 14px; border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(10,14,20,0.25);
+    white-space: nowrap;
   }
   .about-text h2 { margin-bottom: 24px; }
-  .about-body { font-size: 13px; line-height: 1.9; color: var(--muted); margin-bottom: 32px; }
-  .about-facts { display: flex; flex-direction: column; gap: 12px; }
+  .about-lead {
+    font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600;
+    color: var(--ink); line-height: 1.55; margin-bottom: 20px;
+  }
+  .about-body { font-size: 13.5px; line-height: 1.9; color: var(--muted); margin-bottom: 32px; }
+  .about-facts {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  }
+  @media (max-width: 480px) {
+    .about-facts { grid-template-columns: 1fr; }
+  }
   .about-fact {
-    display: flex; gap: 16px; align-items: baseline;
-    padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 5px;
+    padding: 14px 16px;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 10px;
+    transition: border-color 0.25s ease;
   }
+  .about-fact:hover { border-color: var(--accent); }
   .fact-label {
-    font-family: 'Fira Code', monospace; font-size: 10px;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); min-width: 100px;
+    font-family: 'Fira Code', monospace; font-size: 11px;
+    color: var(--muted);
   }
-  .fact-value { font-size: 12.5px; color: var(--ink); }
+  .fact-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--ink); font-weight: 600; }
 
   /* ── Contact ── */
   #contact { background: var(--paper); border-top: 1px solid var(--rule); }
@@ -1335,9 +1358,16 @@
   <p class="section-label">// 02</p>
   <h2 class="section-title">About Me</h2>
   <div class="about-layout">
+    <div class="about-photo-frame">
+      <img class="about-photo" src="assets/myprofile.jpeg" alt="Victor Kipruto Rop" loading="lazy" />
+      <span class="about-role-chip">Data Engineer in training</span>
+    </div>
     <div class="about-text">
+      <p class="about-lead">
+        I'm a final-year BSc Data Science student at The Cooperative University of Kenya, building a career at the intersection of scalable systems and trustworthy data.
+      </p>
       <p class="about-body">
-        I'm a final-year BSc Data Science student at The Cooperative University of Kenya, building a career at the intersection of scalable systems and trustworthy data. My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
+        My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
       </p>
       <p class="about-body">
         Outside of building pipelines, I'm drawn to the growing data ecosystem across East Africa and the opportunity to work on infrastructure that has real operational impact — whether in aviation safety, energy, or financial services.
