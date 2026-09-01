@@ -57,3 +57,11 @@ subscribers.db
 .tmp/
 temp/
 *.tmp
+
+# Sensitive / internal artifacts — never expose on the public site
+dashboard/
+email_previews/
+data/subscribers.json
+data/test_emails*.json
+data/test_emails_all/
+data/test_emails_sent/
