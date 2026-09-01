@@ -599,6 +599,7 @@
     cursor: pointer; transition: all 0.2s ease;
   }
   .skill-pill:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
+  .skill-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   @media (max-width: 720px) {
     #skills { padding: 20px 12px; }
     .skills-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -1655,9 +1656,9 @@
         <h3 class="skill-category-title">Orchestration & Pipelines</h3>
       </div>
       <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</div>
-        <div class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</div>
-        <div class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</div>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</button>
       </div>
     </div>
     <div class="skill-category">
@@ -1666,9 +1667,9 @@
         <h3 class="skill-category-title">Streaming & Real-Time</h3>
       </div>
       <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</div>
-        <div class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</div>
-        <div class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</div>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</button>
       </div>
     </div>
     <div class="skill-category">
@@ -1677,10 +1678,10 @@
         <h3 class="skill-category-title">Data Modeling & Warehousing</h3>
       </div>
       <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</div>
-        <div class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</div>
-        <div class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</div>
-        <div class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</div>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</button>
       </div>
     </div>
     <div class="skill-category">
@@ -1689,9 +1690,9 @@
         <h3 class="skill-category-title">Data Quality & Reliability</h3>
       </div>
       <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</div>
-        <div class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</div>
-        <div class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</div>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</button>
       </div>
     </div>
     <div class="skill-category">
@@ -1700,9 +1701,9 @@
         <h3 class="skill-category-title">Languages & Databases</h3>
       </div>
       <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Python')">Python</div>
-        <div class="skill-pill" onclick="openSkillModal('SQL')">SQL</div>
-        <div class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</div>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Python')">Python</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('SQL')">SQL</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</button>
       </div>
     </div>
     <div class="skill-category">
@@ -1711,12 +1712,12 @@
         <h3 class="skill-category-title">DevOps & Testing</h3>
       </div>
       <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Docker')">Docker</div>
-        <div class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</div>
-        <div class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</div>
-        <div class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</div>
-        <div class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</div>
-        <div class="skill-pill" onclick="openSkillModal('Git')">Git</div>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Docker')">Docker</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Git')">Git</button>
       </div>
     </div>
   </div>
@@ -2561,6 +2562,22 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .skill-detail-block { margin-bottom: 20px; }
+  .skill-detail-label {
+    font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 8px 0;
+  }
+  .skill-detail-text { font-size: 14px; line-height: 1.7; color: var(--ink); margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .skill-detail-project-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600;
+    color: var(--ink); background: var(--paper); border: 1px solid var(--rule);
+    padding: 9px 16px; border-radius: 999px; cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .skill-detail-project-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .skill-detail-project-link i { font-size: 11px; }
   .subscription-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
   .subscription-option:hover { border-color: var(--accent); background: var(--card); transform: translateY(-2px); }
   .subscription-copy-btn:hover { opacity: 0.9; }
@@ -2777,33 +2794,124 @@
   window.closeProjectModal = () => projectModal.close();
 
   // Skill Modal Management
+  const projectLookup = {
+    'PesaGuard': {title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''},
+    'Cloud ETL Pipeline': {title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
+    'Mpesa / Safaricom Pipeline': {title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python', 'PostgreSQL', 'Connection Pooling'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'},
+    'Real-Time Transaction Streaming (MPESA)': {title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python', 'Kafka', 'Flink', 'dbt', 'Terraform', 'BigQuery', 'Airflow', 'Grafana'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'}
+  };
+
   const skillData = {
-    'Apache Airflow': 'Expertise in orchestrating complex data pipelines, managing DAGs, and ensuring reliable ETL workflows through automated scheduling and monitoring.',
-    'ETL Design': 'Specialized in designing scalable Extract, Transform, Load processes that efficiently handle large volumes of data while maintaining high performance and data integrity.',
-    'DAG Management': 'Proficient in creating, monitoring, and optimizing Directed Acyclic Graphs (DAGs) to ensure complex workflows are executed in the correct order with proper error handling.',
-    'Apache Kafka': 'Hands-on experience with real-time stream processing, including setting up brokers, managing topics, and building high-throughput data ingestion systems.',
-    'Stream Processing': 'Developing real-time data processing engines that transform and analyze data on-the-fly to provide immediate business insights and reactive systems.',
-    'Producers & Consumers': 'Implementing robust Kafka producers and consumers in Python to facilitate distributed data streaming and event-driven microservices architecture.',
-    'Star Schema': 'Designing optimized data warehouse schemas using the Star Schema approach to simplify complex queries and significantly improve business intelligence reporting performance.',
-    'Dimensional Modelling': 'Applying Kimball methodologies to create intuitive, performant, and flexible data models that bridge the gap between raw data and business users.',
-    'OLAP Queries': 'Mastery of writing complex SQL for Online Analytical Processing to extract deep multi-dimensional insights from massive historical datasets.',
-    'Data Warehousing': 'End-to-end experience building and maintaining modern data warehouses as the "single source of truth" for organizational data and analytics.',
-    'Deduplication': 'Implementing sophisticated data cleansing and deduplication strategies at scale to ensure data quality and prevent redundant information in production systems.',
-    'Validation Rule Engines': 'Architecting automated validation systems that enforce data quality standards and business rules across entire data lifecycles.',
-    'Anomaly Detection': 'Developing and deploying statistical models and algorithms to identify outliers and potential data quality issues in real-time and batch pipelines.',
-    'Docker': 'Advanced containerization skills for packaging data tools and applications, ensuring consistent environments across development, testing, and production.',
-    'GitHub Actions': 'Automating full-scale CI/CD pipelines, unit testing, and deployment workflows directly within the GitHub ecosystem for rapid and reliable delivery.',
-    'Pipeline Design': 'Designing resilient and scalable ETL/ELT frameworks. I treat data pipelines as software, ensuring modularity, observability, and robust error handling to guarantee data quality from source to destination.',
-    'Orchestration': 'Leveraging Apache Airflow to orchestrate complex, interdependent data workflows. I design deterministic, automated processes with comprehensive monitoring, retries, and alerting to minimize downtime.',
-    'Data Modelling': 'Bridging raw data to business value through dimensional modelling (Star/Snowflake schemas). I optimize models for high-performance analytical queries in OLAP systems.',
-    'Data CI/CD': 'Treating data infrastructure with engineering rigor. I implement automated unit/integration testing (e.g., Pytest) and deployment pipelines to ensure continuous reliability in production.',
-    'Pytest': 'Rigorous testing approach using Pytest to build comprehensive unit and integration test suites, ensuring production-grade reliability for data engineering code.',
-    'CI/CD Pipelines': 'Designing and managing end-to-end automated delivery pipelines that enable frequent, low-risk software and data infrastructure updates.',
-    'Python': 'Expert proficiency in Python for data engineering, building automation tools, complex scripting, and backend system development.',
-    'SQL': 'Mastery of advanced SQL across multiple dialects (PostgreSQL, MySQL, etc.), including query optimization, window functions, and complex CTEs.',
-    'PostgreSQL': 'Deep experience with PostgreSQL as a primary transactional and analytical database, including performance tuning, schema design, and administration.',
-    'Git': 'Professional version control management using Git, including collaborative workflows, branching strategies, and repository maintenance.',
-    'Docker Compose': 'Proficiency in orchestrating multi-container local development environments to replicate complex production infrastructures with ease.'
+    'Apache Airflow': {
+      why: "Airflow gives pipelines explicit dependencies, retries, and visibility instead of a black-box cron job — when something fails at 2am, I can see exactly which task and why.",
+      where: "Orchestrating the multi-stage generate → validate → deduplicate → load DAG, with each stage built as an independently retryable task.",
+      project: "Cloud ETL Pipeline"
+    },
+    'ETL Design': {
+      why: "A pipeline is only as trustworthy as its weakest transformation step — I design each stage to be testable and reversible in isolation.",
+      where: "Structuring the ingestion-to-warehouse flow so validation and deduplication run as separate, composable stages rather than one monolithic transform.",
+      project: "Cloud ETL Pipeline"
+    },
+    'DAG Management': {
+      why: "Explicit task dependencies make failure modes predictable — I'd rather see a DAG fail loudly at the right node than silently pass bad data downstream.",
+      where: "Managing task-level retries, failure states, and dependency ordering across the ETL pipeline's Airflow DAGs.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Apache Kafka': {
+      why: "Real financial events don't wait for a batch window — Kafka lets the system react to a transaction the moment it happens, not hours later.",
+      where: "Ingesting M-Pesa transaction events into a distributed Kafka-Flink pipeline for real-time analytics and fraud monitoring.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Stream Processing': {
+      why: "Fraud and anomaly windows are measured in seconds, not overnight ETL runs — stream processing is what makes real-time monitoring possible at all.",
+      where: "Building the Flink-based transformation layer that processes MPESA transaction events as they arrive.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Producers & Consumers': {
+      why: "Decoupling producers from consumers means the ingestion layer and the processing layer can fail, scale, or deploy independently.",
+      where: "Implementing the webhook-to-Kafka producer layer and the downstream Flink consumers for the MPESA streaming pipeline.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Star Schema': {
+      why: "A well-designed star schema means analysts can write a five-line query instead of a five-join nightmare.",
+      where: "Structuring the warehouse layer that Airflow loads into for BigQuery analytics.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Dimensional Modelling': {
+      why: "Kimball-style modelling keeps the business logic in the schema, not scattered across a dozen ad-hoc queries.",
+      where: "Designing fact and dimension tables for transaction analytics reporting.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'OLAP Queries': {
+      why: "Multi-dimensional analysis only works if the underlying queries are actually fast — I optimize for the questions the business will ask, not just the ones it's asked so far.",
+      where: "Writing the BigQuery analytical queries powering transaction volume and reconciliation reporting.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Data Warehousing': {
+      why: "A warehouse is only a \"single source of truth\" if people actually trust it — that trust is earned through consistent, validated loads.",
+      where: "Building the BigQuery warehouse layer that downstream dashboards and Grafana monitoring read from.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Deduplication': {
+      why: "Safaricom retries webhook deliveries — treating duplicates as a certainty rather than an edge case is what keeps a ledger honest.",
+      where: "Implementing idempotency-key based deduplication so a retried webhook can never be double-counted.",
+      project: "PesaGuard"
+    },
+    'Validation Rule Engines': {
+      why: "Catching a bad record at the earliest possible stage is far cheaper than debugging a corrupted dashboard three steps downstream.",
+      where: "Building the rule-based validation engine that checks every record against defined constraints before it's allowed downstream.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Anomaly Detection': {
+      why: "Reconciliation isn't just matching — it's knowing when something doesn't match, and surfacing that fast enough for someone to act on it.",
+      where: "Powering the open-anomalies count on the PesaGuard admin dashboard.",
+      project: "PesaGuard"
+    },
+    'Docker': {
+      why: "\"Works on my machine\" isn't an acceptable failure mode — containerizing a pipeline means CI runs the exact same environment as my laptop.",
+      where: "Containerizing the ETL pipeline for environment parity between local development and GitHub Actions CI.",
+      project: "Cloud ETL Pipeline"
+    },
+    'GitHub Actions': {
+      why: "Tests that only run when I remember to run them aren't really tests — CI makes validation non-optional.",
+      where: "Gating every push with an automated Pytest suite before code reaches a trusted branch.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Pytest': {
+      why: "Data engineering code fails silently more often than it crashes loudly — a real test suite is what catches that before production does.",
+      where: "Testing the validation-engine and idempotency logic that the reconciliation system depends on.",
+      project: "PesaGuard"
+    },
+    'CI/CD Pipelines': {
+      why: "Frequent, low-risk deploys beat rare, high-risk ones — automation is what makes that trade-off possible.",
+      where: "Automating the build-test-deploy flow for the ETL pipeline via GitHub Actions.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Python': {
+      why: "Python is where I express most of my engineering logic — from ingestion scripts to reconciliation engines to test suites.",
+      where: "Writing the Flask backend, reconciliation engine, and idempotency guards across models.py and reconciliation_engine.py.",
+      project: "PesaGuard"
+    },
+    'SQL': {
+      why: "Most \"the pipeline is slow\" problems are actually \"the query is slow\" problems — SQL fluency is non-negotiable for this work.",
+      where: "Writing analytical queries and schema definitions across every pipeline I've built.",
+      project: "Mpesa / Safaricom Pipeline"
+    },
+    'PostgreSQL': {
+      why: "I default to Postgres because its reliability and tooling let me spend time on the data model, not fighting the database.",
+      where: "Storing transaction records with chunked reads, deduplication, and optimized batch inserts.",
+      project: "Mpesa / Safaricom Pipeline"
+    },
+    'Git': {
+      why: "A clean commit history is documentation — I use branching and commit discipline so the reasoning behind a change is never lost.",
+      where: "Managing version control and collaborative workflows across every project in this portfolio.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Docker Compose': {
+      why: "Local development should mirror production topology — Compose lets me spin up the full multi-service stack with one command.",
+      where: "Orchestrating multi-container local environments that replicate the ETL pipeline's production infrastructure.",
+      project: "Cloud ETL Pipeline"
+    }
   };
 
   const skillModal = {
@@ -2823,9 +2931,34 @@
     },
 
     open(skillName) {
-      const description = skillData[skillName] || 'Details coming soon...';
+      const data = skillData[skillName];
       this.title.textContent = skillName;
-      this.body.textContent = description;
+      if (!data) {
+        this.body.innerHTML = '<p style="margin:0;">Details coming soon...</p>';
+      } else {
+        const proj = projectLookup[data.project];
+        this.body.innerHTML = `
+          <div class="skill-detail-block">
+            <p class="skill-detail-label">Why I Use It</p>
+            <p class="skill-detail-text">${data.why}</p>
+          </div>
+          <div class="skill-detail-block">
+            <p class="skill-detail-label">Where I've Used It</p>
+            <p class="skill-detail-text">${data.where}</p>
+          </div>
+          <div class="skill-detail-block" style="margin-bottom:0;">
+            <p class="skill-detail-label">Project</p>
+            <button type="button" class="skill-detail-project-link" id="skillDetailProjectBtn">${data.project} <i class="fas fa-arrow-up-right-from-square"></i></button>
+          </div>
+        `;
+        const projBtn = document.getElementById('skillDetailProjectBtn');
+        if (projBtn && proj) {
+          projBtn.addEventListener('click', () => {
+            this.close();
+            openProjectModal(proj);
+          });
+        }
+      }
       this.overlay.style.display = 'flex';
       this.overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
