@@ -1040,6 +1040,13 @@
     border-radius: 999px; background: var(--paper);
   }
   .experience-desc { font-size: 13.5px; color: var(--muted); line-height: 1.75; margin-bottom: 18px; }
+  .experience-subsection { margin-bottom: 16px; }
+  .experience-subsection:last-of-type { margin-bottom: 0; }
+  .experience-subsection-label {
+    font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .experience-subsection-text { font-size: 13.5px; color: var(--muted); line-height: 1.75; margin: 0; }
   .experience-skills { display: flex; flex-wrap: wrap; gap: 8px; }
   .skill-tag { display: inline-block; padding: 4px 10px; background: var(--card); color: var(--ink); border-radius: 4px; font-size: 11px; font-family: 'Fira Code', monospace; border: 1px solid var(--rule); }
 
@@ -1564,6 +1571,40 @@
       <div class="experience-card">
         <div class="experience-header">
           <div>
+            <h3 class="experience-title">PesaGuard — FinTech Reconciliation Platform</h3>
+            <p class="experience-company">Independent Product · Live Pilot</p>
+          </div>
+          <span class="experience-date">2026 – Ongoing</span>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">What I built</p>
+          <p class="experience-subsection-text">A real-time M-Pesa reconciliation and anomaly-detection platform: a Flask backend that ingests Safaricom Daraja webhook events, an idempotency-guarded reconciliation engine, a PostgreSQL data layer, and a Next.js 14 admin dashboard for monitoring transactions, match rates, and open anomalies.</p>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">What problem I solved</p>
+          <p class="experience-subsection-text">Kenyan SACCOs, e-commerce operators, and small fintechs had no reliable way to reconcile M-Pesa payments against their own ledgers — it was typically a manual, end-of-day spreadsheet exercise. Worse, Safaricom retries webhook deliveries, so duplicate transactions were a certainty, not an edge case, with nothing in place to catch them.</p>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">Technologies</p>
+          <div class="experience-skills">
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Daraja API</span>
+          </div>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">Impact</p>
+          <p class="experience-subsection-text">Live in production with one pilot customer processing real M-Pesa transactions. Shipped webhook idempotency — the highest-priority risk in the system — verified end-to-end across the reconciliation engine, so a retried or duplicate webhook can never be double-counted. Also produced a target-state architecture spec scoping the platform to 100M transactions/day.</p>
+        </div>
+      </div>
+    </div>
+    <div class="experience-item reveal" style="transition-delay:0.1s">
+      <div class="experience-node"></div>
+      <div class="experience-card">
+        <div class="experience-header">
+          <div>
             <h3 class="experience-title">Final-Year BSc Data Science Student</h3>
             <p class="experience-company">The Cooperative University of Kenya</p>
           </div>
@@ -1579,7 +1620,7 @@
         </div>
       </div>
     </div>
-    <div class="experience-item reveal" style="transition-delay:0.15s">
+    <div class="experience-item reveal" style="transition-delay:0.2s">
       <div class="experience-node"></div>
       <div class="experience-card">
         <div class="experience-header">
