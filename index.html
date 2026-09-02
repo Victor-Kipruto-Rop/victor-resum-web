@@ -606,6 +606,7 @@
   }
   .skill-pill:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
   .skill-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
   @media (max-width: 720px) {
     #skills { padding: 20px 12px; }
     .skills-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -1254,30 +1255,7 @@
     transition: top 0.2s;
   }
   .skip-link:focus { top: 0; }
-  .gh-chart { overflow:auto; padding:12px 18px; border-radius:8px; border:1px solid var(--rule); background:var(--paper); transition: background 0.3s ease; }
-  body.dark-mode #gh-chart { filter: invert(0.9) hue-rotate(180deg) brightness(1.2); mix-blend-mode: screen; }
 
-  /* ── Top Repositories ── */
-  .top-repos-section { margin-top: 48px; }
-  .top-repos-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-  .top-repos-title::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
-  .top-repos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-  .repo-item { 
-    background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; 
-    transition: all 0.3s ease; cursor: pointer; display: flex; flex-direction: column; gap: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-  }
-  .repo-item:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
-  .repo-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; display: flex; align-items: center; justify-content: space-between; }
-  .repo-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; flex-grow: 1; }
-  .repo-stats { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--muted); font-family: 'Fira Code', monospace; }
-  .repo-lang { display: flex; align-items: center; gap: 6px; }
-  .repo-lang-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .repo-stars { display: flex; align-items: center; gap: 4px; }
-
-  @media (max-width: 720px) {
-    .top-repos-grid { grid-template-columns: 1fr; }
-  }
   @media (max-width: 480px) {
     .expertise-grid { grid-template-columns: 1fr; }
   }
@@ -2038,8 +2016,13 @@
       </div>
 
     </div>
+    <div class="flex justify-center mt-12">
+      <a href="https://github.com/Victor-Kipruto-Rop?tab=repositories" target="_blank" rel="noopener" class="btn-primary">View More Projects →</a>
+    </div>
   </div>
 </section>
+
+
 
 
 <!-- SEND MESSAGE -->
