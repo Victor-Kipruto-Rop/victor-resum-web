@@ -563,7 +563,7 @@
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
   .skills-grid {
     max-width: 1180px; width: 100%; margin: 48px auto 0;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 24px;
   }
   .skill-category {
@@ -590,15 +590,25 @@
     color: var(--accent); font-size: 14px;
   }
   .skill-category-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin: 0; }
-  .skill-pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-pill {
-    display: inline-flex; align-items: center;
-    padding: 7px 13px; border-radius: 999px;
-    background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
-    font-family: 'Fira Code', monospace; font-size: 12.5px;
-    cursor: pointer; transition: all 0.2s ease;
+  .skill-card-grid { display: flex; flex-direction: column; gap: 14px; }
+  .skill-card {
+    padding: 14px 16px; border-radius: 10px;
+    background: var(--paper); border: 1px solid var(--rule);
+    cursor: default;
   }
-  .skill-pill:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
+  .skill-card-name {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--ink); margin: 0 0 8px;
+  }
+  .skill-card-row {
+    font-size: 12.5px; line-height: 1.6; color: var(--ink); margin: 0 0 4px;
+  }
+  .skill-card-row:last-child { margin-bottom: 0; }
+  .skill-card-label {
+    display: block;
+    font-family: 'Fira Code', monospace; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 2px;
+  }
   @media (max-width: 720px) {
     #skills { padding: 20px 12px; }
     .skills-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -1262,7 +1272,7 @@
 
   /* ══════════════════ MICRO-INTERACTIONS: press feedback ══════════════════ */
   .btn-primary:active, .btn-ghost:active, .cta-btn:active,
-  .skill-pill:active, .cert-view-btn:active, .about-fact:active,
+  .cert-view-btn:active, .about-fact:active,
   .experience-card:active, .cert-card:active, .skill-category:active {
     transform: scale(0.97);
   }
@@ -1590,10 +1600,25 @@
         <div class="skill-category-icon"><i class="fas fa-diagram-project"></i></div>
         <h3 class="skill-category-title">Orchestration & Pipelines</h3>
       </div>
-      <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</div>
-        <div class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</div>
-        <div class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</div>
+      <div class="skill-card-grid">
+        <div class="skill-card">
+          <h4 class="skill-card-name">Apache Airflow</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Reliable, observable orchestration for multi-stage pipelines with real dependencies between steps.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Orchestrating ETL DAGs and coordinating batch/dbt transformation stages.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline · Real-Time Transaction Streaming</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">ETL Design</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Clean separation between extract, transform, and load stages makes each one independently testable.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Structuring a multi-stage pipeline as discrete, retryable tasks.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">DAG Management</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Explicit task dependencies catch ordering bugs before they reach production.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Defining and monitoring task-level state across pipeline runs.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
       </div>
     </div>
     <div class="skill-category">
@@ -1601,10 +1626,25 @@
         <div class="skill-category-icon"><i class="fas fa-bolt"></i></div>
         <h3 class="skill-category-title">Streaming & Real-Time</h3>
       </div>
-      <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</div>
-        <div class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</div>
-        <div class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</div>
+      <div class="skill-card-grid">
+        <div class="skill-card">
+          <h4 class="skill-card-name">Apache Kafka</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Decouples producers from consumers and absorbs bursts in event traffic without losing data.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Ingesting Daraja webhook events as a durable, replayable stream.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Real-Time Transaction Streaming (MPESA)</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Stream Processing</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Sub-second visibility on fraud/anomaly signals requires processing events as they arrive, not in hourly batches.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Stateful, windowed processing of live transaction events.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Real-Time Transaction Streaming (MPESA)</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Producers & Consumers</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Well-designed producer/consumer contracts keep services decoupled and independently deployable.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Publishing and consuming transaction events across the streaming pipeline.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Real-Time Transaction Streaming (MPESA)</p>
+        </div>
       </div>
     </div>
     <div class="skill-category">
@@ -1612,11 +1652,31 @@
         <div class="skill-category-icon"><i class="fas fa-database"></i></div>
         <h3 class="skill-category-title">Data Modeling & Warehousing</h3>
       </div>
-      <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</div>
-        <div class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</div>
-        <div class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</div>
-        <div class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</div>
+      <div class="skill-card-grid">
+        <div class="skill-card">
+          <h4 class="skill-card-name">Star Schema</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Simplifies analytical queries and keeps BI reporting fast even as fact tables grow.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Dimensional modelling coursework as part of my Data Science degree.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Academic coursework — Cooperative University of Kenya</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Dimensional Modelling</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Kimball-style modelling bridges raw data and business-readable reporting.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Designing fact/dimension schemas for analytical datasets.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Academic coursework — Cooperative University of Kenya</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">OLAP Queries</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Multi-dimensional analysis needs query patterns that plain OLTP schemas don't support well.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Writing analytical SQL against dimensional models.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Academic coursework — Cooperative University of Kenya</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Data Warehousing</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>A well-modelled warehouse is the difference between "a report exists" and "a report can be trusted."</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Structuring the analytical (BigQuery) side of a streaming pipeline for downstream reporting.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Real-Time Transaction Streaming (MPESA)</p>
+        </div>
       </div>
     </div>
     <div class="skill-category">
@@ -1624,10 +1684,25 @@
         <div class="skill-category-icon"><i class="fas fa-shield-halved"></i></div>
         <h3 class="skill-category-title">Data Quality & Reliability</h3>
       </div>
-      <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</div>
-        <div class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</div>
-        <div class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</div>
+      <div class="skill-card-grid">
+        <div class="skill-card">
+          <h4 class="skill-card-name">Deduplication</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Retried webhooks and re-run exports make duplicates a certainty, not an edge case.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Filtering duplicate transaction records before they reach a warehouse or ledger.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline · Mpesa/Safaricom Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Validation Rule Engines</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Catching bad data at the earliest possible stage is far cheaper than cleaning it up after load.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Building a rule-based validation stage that runs before deduplication and load.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Anomaly Detection</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Reconciliation and fraud monitoring are only useful if they catch issues before they compound.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Flagging transaction mismatches and reconciliation exceptions in real time.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>PesaGuard · Real-Time Transaction Streaming (MPESA)</p>
+        </div>
       </div>
     </div>
     <div class="skill-category">
@@ -1635,10 +1710,25 @@
         <div class="skill-category-icon"><i class="fas fa-code"></i></div>
         <h3 class="skill-category-title">Languages & Databases</h3>
       </div>
-      <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Python')">Python</div>
-        <div class="skill-pill" onclick="openSkillModal('SQL')">SQL</div>
-        <div class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</div>
+      <div class="skill-card-grid">
+        <div class="skill-card">
+          <h4 class="skill-card-name">Python</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>The common language across ingestion scripts, stream processors, and backend services I build.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Core implementation language across every project I've shipped.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>PesaGuard · Cloud ETL Pipeline · Mpesa/Safaricom Pipeline · Real-Time Transaction Streaming</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">SQL</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Most data problems are ultimately answered with a well-written query, not more code.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Writing and optimizing queries against PostgreSQL for reconciliation and transactional data.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>PesaGuard · Mpesa/Safaricom Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">PostgreSQL</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>A dependable relational store for both operational and reconciliation data.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Primary datastore for transaction records and reconciliation state.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>PesaGuard · Mpesa/Safaricom Pipeline</p>
+        </div>
       </div>
     </div>
     <div class="skill-category">
@@ -1646,13 +1736,43 @@
         <div class="skill-category-icon"><i class="fas fa-gears"></i></div>
         <h3 class="skill-category-title">DevOps & Testing</h3>
       </div>
-      <div class="skill-pill-group">
-        <div class="skill-pill" onclick="openSkillModal('Docker')">Docker</div>
-        <div class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</div>
-        <div class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</div>
-        <div class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</div>
-        <div class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</div>
-        <div class="skill-pill" onclick="openSkillModal('Git')">Git</div>
+      <div class="skill-card-grid">
+        <div class="skill-card">
+          <h4 class="skill-card-name">Docker</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>"Works on my machine" isn't good enough for a pipeline that has to run identically in CI and production.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Containerizing pipeline stages for environment parity.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Docker Compose</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Multi-service local environments need to boot with one command, not a setup doc.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Local development environments mirroring containerized production pipelines.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">GitHub Actions</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Automated CI gates mean broken code can't reach a trusted branch.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Running the test suite on every push before merge.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Pytest</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>A validation engine you can't test with confidence is a validation engine you can't trust.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Unit-testing pipeline validation and deduplication logic.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">CI/CD Pipelines</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Frequent, low-risk deploys depend on automation, not manual checklists.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Wiring test-gated deployment for pipeline code.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>Cloud ETL Pipeline</p>
+        </div>
+        <div class="skill-card">
+          <h4 class="skill-card-name">Git</h4>
+          <p class="skill-card-row"><span class="skill-card-label">Why I use it</span>Version control discipline is non-negotiable once more than one change is in flight.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Where I've used it</span>Branching, code review, and collaborative workflows across every repository I maintain.</p>
+          <p class="skill-card-row"><span class="skill-card-label">Project</span>All projects</p>
+        </div>
       </div>
     </div>
   </div>
