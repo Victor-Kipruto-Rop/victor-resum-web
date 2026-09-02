@@ -1580,7 +1580,7 @@
     <span class="stat-label">Certifications</span>
   </div>
   <div class="stat-item reveal" style="transition-delay: 0.3s">
-    <span class="stat-value">2027</span>
+    <span class="stat-value">2028</span>
     <span class="stat-label">Expected Graduation</span>
   </div>
 </div>
@@ -1598,7 +1598,7 @@
     </div>
     <div class="about-text">
       <p class="about-lead">
-        I'm a final-year BSc Data Science student at The Cooperative University of Kenya, building a career at the intersection of scalable systems and trustworthy data.
+        I'm a BSc Data Science student at The Cooperative University of Kenya, building a career at the intersection of scalable systems and trustworthy data.
       </p>
       <p class="about-body">
         My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
@@ -1613,7 +1613,7 @@
         </div>
         <div class="about-fact">
           <span class="fact-label">Degree</span>
-          <span class="fact-value">BSc Data Science · Expected 2027</span>
+          <span class="fact-value">BSc Data Science · Expected August 2028</span>
         </div>
         <div class="about-fact">
           <span class="fact-label">Location</span>
@@ -1677,10 +1677,10 @@
       <div class="experience-card">
         <div class="experience-header">
           <div>
-            <h3 class="experience-title">Final-Year BSc Data Science Student</h3>
+            <h3 class="experience-title">BSc Data Science Student</h3>
             <p class="experience-company">The Cooperative University of Kenya</p>
           </div>
-          <span class="experience-date">2022 – Present</span>
+          <span class="experience-date">Expected Aug 2028</span>
         </div>
         <p class="experience-desc">Over the past year, I've specialized in data engineering and have built production-grade data systems through hands-on projects. Designed and implemented scalable ETL pipelines, real-time stream processing with Kafka, and warehouse infrastructure. These projects have equipped me with deep technical skills in Python, SQL, Airflow orchestration, and cloud architecture.</p>
         <div class="experience-skills">
@@ -1754,6 +1754,7 @@
         <button type="button" class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('SCD Type 2')">SCD Type 2</button>
       </div>
     </div>
     <div class="skill-category">
@@ -1776,6 +1777,8 @@
         <button type="button" class="skill-pill" onclick="openSkillModal('Python')">Python</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('SQL')">SQL</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('MySQL')">MySQL</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Shell / Bash')">Shell / Bash</button>
       </div>
     </div>
     <div class="skill-category">
@@ -1790,6 +1793,30 @@
         <button type="button" class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('Git')">Git</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('AWS (S3, EC2)')">AWS (S3, EC2)</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-layer-group"></i></div>
+        <h3 class="skill-category-title">Data Processing Libraries</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Pandas')">Pandas</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('NumPy')">NumPy</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('SQLAlchemy')">SQLAlchemy</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Faker')">Faker</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-chart-line"></i></div>
+        <h3 class="skill-category-title">Visualisation & Analysis</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Grafana')">Grafana</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Plotly')">Plotly</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Jupyter Notebooks')">Jupyter Notebooks</button>
       </div>
     </div>
   </div>
@@ -1852,7 +1879,7 @@
   <p class="section-label">// 06</p>
   <div class="projects-wrap">
     <div class="projects-header">
-      <h2 class="section-title">Projects <span class="project-count">(4)</span></h2>
+      <h2 class="section-title">Projects <span class="project-count">(6)</span></h2>
     </div>
 
     <div class="flagship-project">
@@ -1912,14 +1939,17 @@
 
     <div class="projects-grid" id="projects-grid">
 
-      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
-        <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL thumbnail" />
+      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Kenyan Market ETL Pipeline', desc: 'Idempotent upsert pipeline with custom deduplication logic that aggregates conflicting records instead of dropping them. 38/38 passing unit tests, CI on Python 3.8–3.11, and a Grafana-connected PostgreSQL output layer for live market data dashboards.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Grafana', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
+        <img class="project-thumb" src="assets/images/2.jpeg" alt="Kenyan Market ETL Pipeline thumbnail" />
         <div class="project-content">
-          <p class="project-title">Cloud ETL Pipeline</p>
-          <p class="project-desc">Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.</p>
+          <p class="project-title">Kenyan Market ETL Pipeline</p>
+          <p class="project-desc">An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.</p>
           <div class="project-stack">
-            <span class="stack-badge">Airflow</span>
-            <span class="stack-badge">Docker</span>
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">Pandas</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">SQLAlchemy</span>
+            <span class="stack-badge">Grafana</span>
             <span class="stack-badge">Pytest</span>
             <span class="stack-badge">GitHub Actions</span>
           </div>
@@ -1930,15 +1960,19 @@
         </div>
       </div>
 
-      <div class="project-card reveal" style="transition-delay:0.16s" onclick="openProjectModal({title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python', 'PostgreSQL', 'Connection Pooling'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'})">
-        <img class="project-thumb" src="assets/images/3.jpeg" alt="Mpesa pipeline thumbnail" />
+      <div class="project-card reveal" style="transition-delay:0.16s" onclick="openProjectModal({title: 'M-Pesa Airflow Transaction Pipeline', desc: 'A DAG-orchestrated ETL pipeline for M-Pesa transaction processing with a configurable synthetic data generator (Faker) producing realistic Kenyan phone number distributions, a config-driven multi-stage cleaning pipeline, and a fully containerised, reproducible Airflow + PostgreSQL stack.', stack: ['Apache Airflow', 'Python', 'Faker', 'PostgreSQL', 'Docker Compose', 'Pytest', 'GitHub Actions'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'})">
+        <img class="project-thumb" src="assets/images/3.jpeg" alt="M-Pesa Airflow Transaction Pipeline thumbnail" />
         <div class="project-content">
-          <p class="project-title">Mpesa / Safaricom Pipeline</p>
-          <p class="project-desc">High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.</p>
+          <p class="project-title">M-Pesa Airflow Transaction Pipeline</p>
+          <p class="project-desc">DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command — CI runs at a 100% test pass rate gating all merges.</p>
           <div class="project-stack">
+            <span class="stack-badge">Apache Airflow</span>
             <span class="stack-badge">Python</span>
+            <span class="stack-badge">Faker</span>
             <span class="stack-badge">PostgreSQL</span>
-            <span class="stack-badge">Connection Pooling</span>
+            <span class="stack-badge">Docker Compose</span>
+            <span class="stack-badge">Pytest</span>
+            <span class="stack-badge">GitHub Actions</span>
           </div>
           <div class="project-actions">
             <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-" target="_blank" rel="noopener">View</a>
@@ -1947,24 +1981,58 @@
         </div>
       </div>
 
-      <div class="project-card reveal" style="transition-delay:0.24s" onclick="openProjectModal({title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python', 'Kafka', 'Flink', 'dbt', 'Terraform', 'BigQuery', 'Airflow', 'Grafana'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'})">
-        <img class="project-thumb" src="assets/images/4.jpeg" alt="Streaming thumbnail" />
+      <div class="project-card reveal" style="transition-delay:0.24s" onclick="openProjectModal({title: 'Real-Time Transaction Streaming System', desc: 'A Kafka producer/consumer model for live transaction ingestion with real-time aggregation and low-latency throughput, consumer-group design for horizontal scalability, exactly-once semantics to prevent double-counting, and live Plotly visualisations inside Jupyter.', stack: ['Apache Kafka', 'Python', 'Jupyter', 'Plotly', 'Docker Compose', 'GitHub Actions'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'})">
+        <img class="project-thumb" src="assets/images/4.jpeg" alt="Real-Time Transaction Streaming System thumbnail" />
         <div class="project-content">
-          <p class="project-title">Real-Time Transaction Streaming (MPESA)</p>
-          <p class="project-desc">A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.</p>
+          <p class="project-title">Real-Time Transaction Streaming System</p>
+          <p class="project-desc">Kafka producer/consumer model for live transaction ingestion, with consumer-group design for horizontal scalability and exactly-once semantics to prevent double-counting — plus live Plotly visualisations rendered straight from the consumer layer in Jupyter.</p>
           <div class="project-stack">
+            <span class="stack-badge">Apache Kafka</span>
             <span class="stack-badge">Python</span>
-            <span class="stack-badge">Kafka</span>
-            <span class="stack-badge">Flink</span>
-            <span class="stack-badge">dbt</span>
-            <span class="stack-badge">Terraform</span>
-            <span class="stack-badge">BigQuery</span>
-            <span class="stack-badge">Airflow</span>
-            <span class="stack-badge">Grafana</span>
+            <span class="stack-badge">Jupyter</span>
+            <span class="stack-badge">Plotly</span>
+            <span class="stack-badge">Docker Compose</span>
+            <span class="stack-badge">GitHub Actions</span>
           </div>
           <div class="project-actions">
             <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener">View</a>
             <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-" target="_blank" rel="noopener">Readme</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.32s" onclick="openProjectModal({title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and switching to 5,000-row batch execution, with Extract/Transform/Load separated into independent Docker microservices.', stack: ['Python', 'Docker', 'AWS S3', 'PostgreSQL', 'SQLAlchemy'], img: 'assets/images/2.jpeg', view: ''})">
+        <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL Ingestion Pipeline thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Cloud ETL Ingestion Pipeline</p>
+          <p class="project-desc">Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection — cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">Docker</span>
+            <span class="stack-badge">AWS S3</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">SQLAlchemy</span>
+          </div>
+          <div class="project-actions">
+            <span class="btn-sm btn-outline" style="cursor:default;">Private Repository</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.4s" onclick="openProjectModal({title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''})">
+        <img class="project-thumb" src="assets/images/3.jpeg" alt="End-to-End SQL Pipeline Portfolio thumbnail" />
+        <div class="project-content">
+          <p class="project-title">End-to-End SQL Pipeline Portfolio</p>
+          <p class="project-desc">Multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 on customer dimensions and recursive CTE queries surfacing revenue shifts, fraud signals, and retention metrics.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">AWS S3</span>
+            <span class="stack-badge">SQLAlchemy</span>
+            <span class="stack-badge">SCD Type 2</span>
+          </div>
+          <div class="project-actions">
+            <span class="btn-sm btn-outline" style="cursor:default;">Private Repository</span>
           </div>
         </div>
       </div>
@@ -2460,9 +2528,11 @@
     if(!grid) return;
     if(grid.children.length > 0) return; // already populated
     const staticProjects = [
-      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow','Docker','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
-      { img: 'assets/images/3.jpeg', title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python','PostgreSQL','Connection Pooling'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
-      { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python','Kafka','Flink','dbt','Terraform','BigQuery','Airflow','Grafana'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' }
+      { img: 'assets/images/2.jpeg', title: 'Kenyan Market ETL Pipeline', desc: 'An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.', stack: ['Python','Pandas','PostgreSQL','SQLAlchemy','Grafana','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
+      { img: 'assets/images/3.jpeg', title: 'M-Pesa Airflow Transaction Pipeline', desc: 'DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command.', stack: ['Apache Airflow','Python','Faker','PostgreSQL','Docker Compose','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
+      { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming System', desc: 'Kafka producer/consumer model for live transaction ingestion, with consumer-group design for horizontal scalability and exactly-once semantics to prevent double-counting, plus live Plotly visualisations rendered from the consumer layer in Jupyter.', stack: ['Apache Kafka','Python','Jupyter','Plotly','Docker Compose','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' },
+      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection — cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.', stack: ['Python','Docker','AWS S3','PostgreSQL','SQLAlchemy'], view: '' },
+      { img: 'assets/images/3.jpeg', title: 'End-to-End SQL Pipeline Portfolio', desc: 'Multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 on customer dimensions and recursive CTE queries surfacing revenue shifts, fraud signals, and retention metrics.', stack: ['Python','PostgreSQL','AWS S3','SQLAlchemy','SCD Type 2'], view: '' }
     ];
     grid.innerHTML = '';
     staticProjects.forEach((p, idx) => {
@@ -2890,61 +2960,63 @@
   // Skill Modal Management
   const projectLookup = {
     'PesaGuard': {title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''},
-    'Cloud ETL Pipeline': {title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
-    'Mpesa / Safaricom Pipeline': {title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python', 'PostgreSQL', 'Connection Pooling'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'},
-    'Real-Time Transaction Streaming (MPESA)': {title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python', 'Kafka', 'Flink', 'dbt', 'Terraform', 'BigQuery', 'Airflow', 'Grafana'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'}
+    'Kenyan Market ETL Pipeline': {title: 'Kenyan Market ETL Pipeline', desc: 'An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Grafana', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
+    'M-Pesa Airflow Transaction Pipeline': {title: 'M-Pesa Airflow Transaction Pipeline', desc: 'DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command.', stack: ['Apache Airflow', 'Python', 'Faker', 'PostgreSQL', 'Docker Compose', 'Pytest', 'GitHub Actions'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'},
+    'Real-Time Transaction Streaming System': {title: 'Real-Time Transaction Streaming System', desc: 'A Kafka producer/consumer model for live transaction ingestion with real-time aggregation and low-latency throughput, consumer-group design for horizontal scalability, exactly-once semantics to prevent double-counting, and live Plotly visualisations inside Jupyter.', stack: ['Apache Kafka', 'Python', 'Jupyter', 'Plotly', 'Docker Compose', 'GitHub Actions'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'},
+    'Cloud ETL Ingestion Pipeline': {title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and switching to 5,000-row batch execution.', stack: ['Python', 'Docker', 'AWS S3', 'PostgreSQL', 'SQLAlchemy'], img: 'assets/images/2.jpeg', view: ''},
+    'End-to-End SQL Pipeline Portfolio': {title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''}
   };
 
   const skillData = {
     'Apache Airflow': {
       why: "Airflow gives pipelines explicit dependencies, retries, and visibility instead of a black-box cron job — when something fails at 2am, I can see exactly which task and why.",
-      where: "Orchestrating the multi-stage generate → validate → deduplicate → load DAG, with each stage built as an independently retryable task.",
-      project: "Cloud ETL Pipeline"
+      where: "Building the DAG-orchestrated ETL pipeline for M-Pesa transaction processing, with each cleaning stage as an independently retryable task.",
+      project: "M-Pesa Airflow Transaction Pipeline"
     },
     'ETL Design': {
       why: "A pipeline is only as trustworthy as its weakest transformation step — I design each stage to be testable and reversible in isolation.",
       where: "Structuring the ingestion-to-warehouse flow so validation and deduplication run as separate, composable stages rather than one monolithic transform.",
-      project: "Cloud ETL Pipeline"
+      project: "Kenyan Market ETL Pipeline"
     },
     'DAG Management': {
       why: "Explicit task dependencies make failure modes predictable — I'd rather see a DAG fail loudly at the right node than silently pass bad data downstream.",
-      where: "Managing task-level retries, failure states, and dependency ordering across the ETL pipeline's Airflow DAGs.",
-      project: "Cloud ETL Pipeline"
+      where: "Managing task-level retries, failure states, and dependency ordering across the M-Pesa pipeline's Airflow DAGs.",
+      project: "M-Pesa Airflow Transaction Pipeline"
     },
     'Apache Kafka': {
       why: "Real financial events don't wait for a batch window — Kafka lets the system react to a transaction the moment it happens, not hours later.",
-      where: "Ingesting M-Pesa transaction events into a distributed Kafka-Flink pipeline for real-time analytics and fraud monitoring.",
-      project: "Real-Time Transaction Streaming (MPESA)"
+      where: "Building a Kafka producer/consumer model for live transaction ingestion with real-time aggregation and low-latency throughput.",
+      project: "Real-Time Transaction Streaming System"
     },
     'Stream Processing': {
       why: "Fraud and anomaly windows are measured in seconds, not overnight ETL runs — stream processing is what makes real-time monitoring possible at all.",
-      where: "Building the Flink-based transformation layer that processes MPESA transaction events as they arrive.",
-      project: "Real-Time Transaction Streaming (MPESA)"
+      where: "Aggregating streaming transaction data in real time with a consumer-group design built for horizontal scalability.",
+      project: "Real-Time Transaction Streaming System"
     },
     'Producers & Consumers': {
       why: "Decoupling producers from consumers means the ingestion layer and the processing layer can fail, scale, or deploy independently.",
-      where: "Implementing the webhook-to-Kafka producer layer and the downstream Flink consumers for the MPESA streaming pipeline.",
-      project: "Real-Time Transaction Streaming (MPESA)"
+      where: "Designing the producer/consumer model with exactly-once semantics to prevent double-counting in downstream aggregations.",
+      project: "Real-Time Transaction Streaming System"
     },
     'Star Schema': {
       why: "A well-designed star schema means analysts can write a five-line query instead of a five-join nightmare.",
-      where: "Structuring the warehouse layer that Airflow loads into for BigQuery analytics.",
-      project: "Real-Time Transaction Streaming (MPESA)"
+      where: "Designing a star schema warehouse in a multi-tier data lake pattern, from CSV staging through OLTP models.",
+      project: "End-to-End SQL Pipeline Portfolio"
     },
     'Dimensional Modelling': {
       why: "Kimball-style modelling keeps the business logic in the schema, not scattered across a dozen ad-hoc queries.",
-      where: "Designing fact and dimension tables for transaction analytics reporting.",
-      project: "Real-Time Transaction Streaming (MPESA)"
+      where: "Deploying SCD Type 2 on customer dimensions to preserve full historical change timelines.",
+      project: "End-to-End SQL Pipeline Portfolio"
     },
     'OLAP Queries': {
       why: "Multi-dimensional analysis only works if the underlying queries are actually fast — I optimize for the questions the business will ask, not just the ones it's asked so far.",
-      where: "Writing the BigQuery analytical queries powering transaction volume and reconciliation reporting.",
-      project: "Real-Time Transaction Streaming (MPESA)"
+      where: "Writing recursive CTE queries to surface cross-platform revenue shifts, fraud signals, and customer retention metrics.",
+      project: "End-to-End SQL Pipeline Portfolio"
     },
     'Data Warehousing': {
       why: "A warehouse is only a \"single source of truth\" if people actually trust it — that trust is earned through consistent, validated loads.",
-      where: "Building the BigQuery warehouse layer that downstream dashboards and Grafana monitoring read from.",
-      project: "Real-Time Transaction Streaming (MPESA)"
+      where: "Building a multi-tier data lake pattern — from CSV staging through OLTP models into a star schema warehouse.",
+      project: "End-to-End SQL Pipeline Portfolio"
     },
     'Deduplication': {
       why: "Safaricom retries webhook deliveries — treating duplicates as a certainty rather than an edge case is what keeps a ledger honest.",
@@ -2953,8 +3025,8 @@
     },
     'Validation Rule Engines': {
       why: "Catching a bad record at the earliest possible stage is far cheaper than debugging a corrupted dashboard three steps downstream.",
-      where: "Building the rule-based validation engine that checks every record against defined constraints before it's allowed downstream.",
-      project: "Cloud ETL Pipeline"
+      where: "Building a config-driven rule engine for the multi-stage cleaning pipeline — rules are configurable, not hardcoded.",
+      project: "M-Pesa Airflow Transaction Pipeline"
     },
     'Anomaly Detection': {
       why: "Reconciliation isn't just matching — it's knowing when something doesn't match, and surfacing that fast enough for someone to act on it.",
@@ -2963,13 +3035,13 @@
     },
     'Docker': {
       why: "\"Works on my machine\" isn't an acceptable failure mode — containerizing a pipeline means CI runs the exact same environment as my laptop.",
-      where: "Containerizing the ETL pipeline for environment parity between local development and GitHub Actions CI.",
-      project: "Cloud ETL Pipeline"
+      where: "Separating Extract, Transform, and Load into independent Docker microservices with exponential-backoff retry on transient failures.",
+      project: "Cloud ETL Ingestion Pipeline"
     },
     'GitHub Actions': {
       why: "Tests that only run when I remember to run them aren't really tests — CI makes validation non-optional.",
       where: "Gating every push with an automated Pytest suite before code reaches a trusted branch.",
-      project: "Cloud ETL Pipeline"
+      project: "Kenyan Market ETL Pipeline"
     },
     'Pytest': {
       why: "Data engineering code fails silently more often than it crashes loudly — a real test suite is what catches that before production does.",
@@ -2979,7 +3051,7 @@
     'CI/CD Pipelines': {
       why: "Frequent, low-risk deploys beat rare, high-risk ones — automation is what makes that trade-off possible.",
       where: "Automating the build-test-deploy flow for the ETL pipeline via GitHub Actions.",
-      project: "Cloud ETL Pipeline"
+      project: "Kenyan Market ETL Pipeline"
     },
     'Python': {
       why: "Python is where I express most of my engineering logic — from ingestion scripts to reconciliation engines to test suites.",
@@ -2988,23 +3060,78 @@
     },
     'SQL': {
       why: "Most \"the pipeline is slow\" problems are actually \"the query is slow\" problems — SQL fluency is non-negotiable for this work.",
-      where: "Writing analytical queries and schema definitions across every pipeline I've built.",
-      project: "Mpesa / Safaricom Pipeline"
+      where: "Writing recursive CTE queries to surface cross-platform revenue shifts, fraud signals, and customer retention metrics across a multi-tier data lake.",
+      project: "End-to-End SQL Pipeline Portfolio"
     },
     'PostgreSQL': {
       why: "I default to Postgres because its reliability and tooling let me spend time on the data model, not fighting the database.",
-      where: "Storing transaction records with chunked reads, deduplication, and optimized batch inserts.",
-      project: "Mpesa / Safaricom Pipeline"
+      where: "Tuning connection pooling and batch execution size to cut a 1.6M+ row load from 4 minutes down to 45 seconds.",
+      project: "Cloud ETL Ingestion Pipeline"
     },
     'Git': {
       why: "A clean commit history is documentation — I use branching and commit discipline so the reasoning behind a change is never lost.",
       where: "Managing version control and collaborative workflows across every project in this portfolio.",
-      project: "Cloud ETL Pipeline"
+      project: "Kenyan Market ETL Pipeline"
     },
     'Docker Compose': {
       why: "Local development should mirror production topology — Compose lets me spin up the full multi-service stack with one command.",
-      where: "Orchestrating multi-container local environments that replicate the ETL pipeline's production infrastructure.",
-      project: "Cloud ETL Pipeline"
+      where: "Containerising the complete Airflow and PostgreSQL stack so the environment is fully reproducible with a single command.",
+      project: "M-Pesa Airflow Transaction Pipeline"
+    },
+    'MySQL': {
+      why: "Being fluent across both PostgreSQL and MySQL means I'm not locked into one vendor's quirks when a team already has infrastructure decisions made.",
+      where: "Applying relational database fundamentals — schema design, window functions, and complex CTEs — interchangeably across PostgreSQL and MySQL.",
+      project: "Kenyan Market ETL Pipeline"
+    },
+    'Shell / Bash': {
+      why: "Automation lives in the shell — CI steps, container entrypoints, and quick data checks all start with a script, not a GUI.",
+      where: "Scripting CI/CD automation steps and container orchestration commands across every pipeline project.",
+      project: "Cloud ETL Ingestion Pipeline"
+    },
+    'AWS (S3, EC2)': {
+      why: "Cloud-native storage and compute are the default for production data infra — S3 for durable object storage, EC2 when I need control over the runtime.",
+      where: "Using S3 as the ingestion source for a cloud-hosted pipeline processing 1.6M+ rows at 70,000 rows/sec.",
+      project: "Cloud ETL Ingestion Pipeline"
+    },
+    'Pandas': {
+      why: "Pandas is where exploratory data wrangling happens fast — before a transformation earns a permanent place in a pipeline, I prototype it in a DataFrame.",
+      where: "Writing the custom deduplication logic that aggregates quantities on conflicting records instead of dropping them.",
+      project: "Kenyan Market ETL Pipeline"
+    },
+    'NumPy': {
+      why: "Vectorized operations matter once a dataset gets large enough that a Python for-loop becomes the actual bottleneck.",
+      where: "Supporting numerical operations underneath the Pandas-based transformation logic in the market data ETL pipeline.",
+      project: "Kenyan Market ETL Pipeline"
+    },
+    'SQLAlchemy': {
+      why: "An ORM layer means the same codebase can target different databases without rewriting every query by hand.",
+      where: "Managing the PostgreSQL output layer and connection handling across the ETL pipeline's database interactions.",
+      project: "Kenyan Market ETL Pipeline"
+    },
+    'Faker': {
+      why: "Testing a pipeline against realistic data — not just placeholder strings — catches edge cases that synthetic filler data never will.",
+      where: "Generating a configurable synthetic data feed with realistic Kenyan phone number distributions for pipeline testing.",
+      project: "M-Pesa Airflow Transaction Pipeline"
+    },
+    'Grafana': {
+      why: "A pipeline without a dashboard is a pipeline nobody's actually watching — Grafana turns pipeline output into something a team can monitor live.",
+      where: "Connecting the PostgreSQL output layer to live operational dashboards tracking market data trends.",
+      project: "Kenyan Market ETL Pipeline"
+    },
+    'Plotly': {
+      why: "Interactive charts let you actually explore an anomaly instead of squinting at a static image.",
+      where: "Producing live visualisation outputs directly from the Kafka consumer layer for immediate feedback on streaming data.",
+      project: "Real-Time Transaction Streaming System"
+    },
+    'Jupyter Notebooks': {
+      why: "Notebooks are where I validate an idea against real data before it becomes production code — fast iteration matters before commitment.",
+      where: "Prototyping streaming data visualisations and validating consumer output during development of the transaction streaming system.",
+      project: "Real-Time Transaction Streaming System"
+    },
+    'SCD Type 2': {
+      why: "Overwriting a dimension record destroys history — SCD Type 2 preserves every version of the truth, which matters when you need to know what was believed last quarter.",
+      where: "Deploying Type 2 slowly-changing dimensions on customer records to preserve full historical change timelines.",
+      project: "End-to-End SQL Pipeline Portfolio"
     }
   };
 
