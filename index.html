@@ -561,6 +561,12 @@
 
   /* ── Skills ── */
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
+  .skills-hint {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Fira Code', monospace; font-size: 12px; color: var(--muted);
+    margin-top: 12px;
+  }
+  .skills-hint i { color: var(--accent); font-size: 12px; }
   .skills-grid {
     max-width: 1180px; width: 100%; margin: 48px auto 0;
     display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -968,30 +974,95 @@
   }
 
   /* Contact form styles */
-  .contact-form { max-width: 760px; margin: 24px auto 0; display:flex; flex-direction:column; gap:12px; }
-  .contact-row { display:flex; gap:12px; }
-  .contact-row .field { flex:1; }
+  .contact-layout {
+    display: grid;
+    grid-template-columns: minmax(240px, 380px) 1fr;
+    gap: 56px;
+    align-items: start;
+    margin-top: 48px;
+  }
+  @media (max-width: 900px) {
+    .contact-layout { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  .contact-lead {
+    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600;
+    color: var(--ink); line-height: 1.5; margin-bottom: 18px;
+  }
+  .contact-sub { font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; max-width: 42ch; }
+  .contact-meta {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Fira Code', monospace; font-size: 12px; color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .contact-status-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #2ecc71;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #2ecc71 25%, transparent);
+    flex-shrink: 0;
+  }
+  .contact-email-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600;
+    color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 4px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .contact-email-link:hover { color: var(--accent); border-color: var(--accent); }
+  .contact-email-link i { color: var(--accent); }
+
+  .contact-form-card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 18px;
+    padding: 36px 32px;
+    box-shadow: 0 24px 48px rgba(10,14,20,0.08);
+  }
+  body.dark-mode .contact-form-card { box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+  @media (max-width: 480px) {
+    .contact-form-card { padding: 26px 20px; }
+  }
+
+  .contact-form { display:flex; flex-direction:column; gap:18px; }
+  .contact-row { display:flex; gap:16px; }
+  @media (max-width: 540px) { .contact-row { flex-direction: column; gap: 18px; } }
+
+  .form-field { position: relative; flex: 1; }
   .contact-form input, .contact-form textarea {
-    width:100%; padding:12px 14px; border:1px solid var(--rule); border-radius:8px;
+    width:100%; padding:18px 14px 8px; border:1px solid var(--rule); border-radius:8px;
     font-family: 'Fira Code', monospace; font-size:14px;
-    background: var(--card); color: var(--ink); caret-color: var(--accent);
+    background: var(--paper); color: var(--ink); caret-color: var(--accent);
     transition: border-color 0.2s ease, background 0.2s ease;
   }
-  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); opacity: 1; }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: transparent; }
   .contact-form input:focus, .contact-form textarea:focus {
     outline: none; border-color: var(--accent);
   }
+  .form-field label {
+    position: absolute; left: 14px; top: 16px;
+    font-family: 'Fira Code', monospace; font-size: 14px; color: var(--muted);
+    pointer-events: none; transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .form-field input:focus + label,
+  .form-field input:not(:placeholder-shown) + label,
+  .form-field textarea:focus + label,
+  .form-field textarea:not(:placeholder-shown) + label {
+    top: 6px; font-size: 10px; color: var(--accent); letter-spacing: 0.04em;
+  }
+  .form-field textarea ~ label { top: 16px; }
+  .form-field textarea:focus ~ label,
+  .form-field textarea:not(:placeholder-shown) ~ label { top: 6px; }
+
   /* Prevent browser autofill from overriding theme colors */
   .contact-form input:-webkit-autofill,
   .contact-form input:-webkit-autofill:hover,
   .contact-form input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px var(--card) inset;
+    -webkit-box-shadow: 0 0 0 1000px var(--paper) inset;
     -webkit-text-fill-color: var(--ink);
     caret-color: var(--accent);
     transition: background-color 9999s ease-in-out 0s;
   }
-  .contact-form textarea { min-height:120px; resize:vertical; }
-  .contact-note.small { font-size:13px; color:var(--muted); text-align:center; margin-top:8px; }
+  .contact-form textarea { min-height:140px; resize:vertical; }
+  .contact-actions { display:flex; gap:12px; align-items:center; margin-top: 4px; }
+  .contact-note.small { font-size:13px; color:var(--muted); text-align:center; margin-top:16px; }
 
   /* ── Experience Timeline ── */
   .experience-timeline {
@@ -1050,6 +1121,13 @@
     border-radius: 999px; background: var(--paper);
   }
   .experience-desc { font-size: 13.5px; color: var(--muted); line-height: 1.75; margin-bottom: 18px; }
+  .experience-subsection { margin-bottom: 16px; }
+  .experience-subsection:last-of-type { margin-bottom: 0; }
+  .experience-subsection-label {
+    font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .experience-subsection-text { font-size: 13.5px; color: var(--muted); line-height: 1.75; margin: 0; }
   .experience-skills { display: flex; flex-wrap: wrap; gap: 8px; }
   .skill-tag { display: inline-block; padding: 4px 10px; background: var(--card); color: var(--ink); border-radius: 4px; font-size: 11px; font-family: 'Fira Code', monospace; border: 1px solid var(--rule); }
 
@@ -1551,6 +1629,40 @@
       <div class="experience-card">
         <div class="experience-header">
           <div>
+            <h3 class="experience-title">PesaGuard — FinTech Reconciliation Platform</h3>
+            <p class="experience-company">Independent Product · Live Pilot</p>
+          </div>
+          <span class="experience-date">2026 – Ongoing</span>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">What I built</p>
+          <p class="experience-subsection-text">A real-time M-Pesa reconciliation and anomaly-detection platform: a Flask backend that ingests Safaricom Daraja webhook events, an idempotency-guarded reconciliation engine, a PostgreSQL data layer, and a Next.js 14 admin dashboard for monitoring transactions, match rates, and open anomalies.</p>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">What problem I solved</p>
+          <p class="experience-subsection-text">Kenyan SACCOs, e-commerce operators, and small fintechs had no reliable way to reconcile M-Pesa payments against their own ledgers — it was typically a manual, end-of-day spreadsheet exercise. Worse, Safaricom retries webhook deliveries, so duplicate transactions were a certainty, not an edge case, with nothing in place to catch them.</p>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">Technologies</p>
+          <div class="experience-skills">
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Daraja API</span>
+          </div>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">Impact</p>
+          <p class="experience-subsection-text">Live in production with one pilot customer processing real M-Pesa transactions. Shipped webhook idempotency — the highest-priority risk in the system — verified end-to-end across the reconciliation engine, so a retried or duplicate webhook can never be double-counted. Also produced a target-state architecture spec scoping the platform to 100M transactions/day.</p>
+        </div>
+      </div>
+    </div>
+    <div class="experience-item reveal" style="transition-delay:0.1s">
+      <div class="experience-node"></div>
+      <div class="experience-card">
+        <div class="experience-header">
+          <div>
             <h3 class="experience-title">Final-Year BSc Data Science Student</h3>
             <p class="experience-company">The Cooperative University of Kenya</p>
           </div>
@@ -1566,7 +1678,7 @@
         </div>
       </div>
     </div>
-    <div class="experience-item reveal" style="transition-delay:0.15s">
+    <div class="experience-item reveal" style="transition-delay:0.2s">
       <div class="experience-node"></div>
       <div class="experience-card">
         <div class="experience-header">
@@ -1594,6 +1706,7 @@
 <section id="skills">
   <p class="section-label">// 04</p>
   <h2 class="section-title">Technical Skills</h2>
+  <p class="skills-hint"><i class="fas fa-hand-pointer"></i> Tap any skill for why I use it, where I've used it, and the project behind it</p>
   <div class="skills-grid">
     <div class="skill-category">
       <div class="skill-category-header">
@@ -1966,20 +2079,42 @@
 <section id="send-message">
   <p class="section-label">// 07</p>
   <h2 class="section-title">Get in Touch</h2>
-  <div style="max-width:560px;margin:48px auto 0;">
-    <div>
-      <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;margin-bottom:16px;color:var(--ink)">Send a Message</h3>
-      <p style="color:var(--muted);margin-bottom:16px;">Prefer email? Send me a message and I'll get back to you within 24 hours.</p>
+  <div class="contact-layout">
+    <div class="contact-intro">
+      <p class="contact-lead">Have a data infrastructure problem worth solving? I'd like to hear about it.</p>
+      <p class="contact-sub">Whether it's a reconciliation system, a streaming pipeline, or an internship opportunity — send a message and I'll get back to you within 24 hours.</p>
+      <div class="contact-meta">
+        <span class="contact-status-dot"></span>
+        <span>Open to Data Engineering internships</span>
+      </div>
+      <a href="mailto:kiprutovictor39@gmail.com" class="contact-email-link">
+        <i class="fas fa-envelope"></i> kiprutovictor39@gmail.com
+      </a>
+    </div>
+
+    <div class="contact-form-card">
       <div data-fs-success class="fs-success" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">✓ Thanks — your message was sent.</div>
       <div data-fs-error class="fs-error" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">⚠ Oops — there was an error. Please try again.</div>
       <form id="contact-form" class="contact-form" action="https://formspree.io/f/xkoagvvk" method="POST">
         <div class="contact-row">
-          <input class="field" type="text" name="name" placeholder="Your name" required data-fs-field />
-          <input class="field" type="email" name="email" placeholder="Your email" required data-fs-field />
+          <div class="form-field">
+            <input class="field" id="cf-name" type="text" name="name" placeholder=" " required data-fs-field />
+            <label for="cf-name">Your name</label>
+          </div>
+          <div class="form-field">
+            <input class="field" id="cf-email" type="email" name="email" placeholder=" " required data-fs-field />
+            <label for="cf-email">Your email</label>
+          </div>
         </div>
-        <input type="text" name="subject" placeholder="Subject" required data-fs-field />
-        <textarea name="message" placeholder="Message" required data-fs-field></textarea>
-        <div style="display:flex;gap:12px;justify-content:center;margin-top:8px;">
+        <div class="form-field">
+          <input id="cf-subject" type="text" name="subject" placeholder=" " required data-fs-field />
+          <label for="cf-subject">Subject</label>
+        </div>
+        <div class="form-field">
+          <textarea id="cf-message" name="message" placeholder=" " required data-fs-field></textarea>
+          <label for="cf-message">Message</label>
+        </div>
+        <div class="contact-actions">
           <button type="submit" class="btn-primary" data-fs-submit-btn>Send Message</button>
           <button type="reset" class="btn-ghost">Reset</button>
         </div>
@@ -2622,6 +2757,22 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .skill-detail-block { margin-bottom: 20px; }
+  .skill-detail-label {
+    font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 8px 0;
+  }
+  .skill-detail-text { font-size: 14px; line-height: 1.7; color: var(--ink); margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .skill-detail-project-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600;
+    color: var(--ink); background: var(--paper); border: 1px solid var(--rule);
+    padding: 9px 16px; border-radius: 999px; cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .skill-detail-project-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .skill-detail-project-link i { font-size: 11px; }
   .subscription-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
   .subscription-option:hover { border-color: var(--accent); background: var(--card); transform: translateY(-2px); }
   .subscription-copy-btn:hover { opacity: 0.9; }
@@ -2838,33 +2989,124 @@
   window.closeProjectModal = () => projectModal.close();
 
   // Skill Modal Management
+  const projectLookup = {
+    'PesaGuard': {title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''},
+    'Cloud ETL Pipeline': {title: 'Cloud ETL Pipeline', desc: 'Multi-stage ETL with synthetic data generation, deduplication and a rule-based validation engine. Containerised and CI/CD-ready.', stack: ['Airflow', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
+    'Mpesa / Safaricom Pipeline': {title: 'Mpesa / Safaricom Pipeline', desc: 'High-throughput ingestion system for MPESA transaction data with chunked reads, deduplication and optimised batch inserts.', stack: ['Python', 'PostgreSQL', 'Connection Pooling'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'},
+    'Real-Time Transaction Streaming (MPESA)': {title: 'Real-Time Transaction Streaming (MPESA)', desc: 'A high-performance streaming architecture designed to ingest Safaricom Daraja API events via webhooks, processing them through a distributed Kafka-Flink pipeline for real-time FinTech analytics and fraud monitoring.', stack: ['Python', 'Kafka', 'Flink', 'dbt', 'Terraform', 'BigQuery', 'Airflow', 'Grafana'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'}
+  };
+
   const skillData = {
-    'Apache Airflow': 'Expertise in orchestrating complex data pipelines, managing DAGs, and ensuring reliable ETL workflows through automated scheduling and monitoring.',
-    'ETL Design': 'Specialized in designing scalable Extract, Transform, Load processes that efficiently handle large volumes of data while maintaining high performance and data integrity.',
-    'DAG Management': 'Proficient in creating, monitoring, and optimizing Directed Acyclic Graphs (DAGs) to ensure complex workflows are executed in the correct order with proper error handling.',
-    'Apache Kafka': 'Hands-on experience with real-time stream processing, including setting up brokers, managing topics, and building high-throughput data ingestion systems.',
-    'Stream Processing': 'Developing real-time data processing engines that transform and analyze data on-the-fly to provide immediate business insights and reactive systems.',
-    'Producers & Consumers': 'Implementing robust Kafka producers and consumers in Python to facilitate distributed data streaming and event-driven microservices architecture.',
-    'Star Schema': 'Designing optimized data warehouse schemas using the Star Schema approach to simplify complex queries and significantly improve business intelligence reporting performance.',
-    'Dimensional Modelling': 'Applying Kimball methodologies to create intuitive, performant, and flexible data models that bridge the gap between raw data and business users.',
-    'OLAP Queries': 'Mastery of writing complex SQL for Online Analytical Processing to extract deep multi-dimensional insights from massive historical datasets.',
-    'Data Warehousing': 'End-to-end experience building and maintaining modern data warehouses as the "single source of truth" for organizational data and analytics.',
-    'Deduplication': 'Implementing sophisticated data cleansing and deduplication strategies at scale to ensure data quality and prevent redundant information in production systems.',
-    'Validation Rule Engines': 'Architecting automated validation systems that enforce data quality standards and business rules across entire data lifecycles.',
-    'Anomaly Detection': 'Developing and deploying statistical models and algorithms to identify outliers and potential data quality issues in real-time and batch pipelines.',
-    'Docker': 'Advanced containerization skills for packaging data tools and applications, ensuring consistent environments across development, testing, and production.',
-    'GitHub Actions': 'Automating full-scale CI/CD pipelines, unit testing, and deployment workflows directly within the GitHub ecosystem for rapid and reliable delivery.',
-    'Pipeline Design': 'Designing resilient and scalable ETL/ELT frameworks. I treat data pipelines as software, ensuring modularity, observability, and robust error handling to guarantee data quality from source to destination.',
-    'Orchestration': 'Leveraging Apache Airflow to orchestrate complex, interdependent data workflows. I design deterministic, automated processes with comprehensive monitoring, retries, and alerting to minimize downtime.',
-    'Data Modelling': 'Bridging raw data to business value through dimensional modelling (Star/Snowflake schemas). I optimize models for high-performance analytical queries in OLAP systems.',
-    'Data CI/CD': 'Treating data infrastructure with engineering rigor. I implement automated unit/integration testing (e.g., Pytest) and deployment pipelines to ensure continuous reliability in production.',
-    'Pytest': 'Rigorous testing approach using Pytest to build comprehensive unit and integration test suites, ensuring production-grade reliability for data engineering code.',
-    'CI/CD Pipelines': 'Designing and managing end-to-end automated delivery pipelines that enable frequent, low-risk software and data infrastructure updates.',
-    'Python': 'Expert proficiency in Python for data engineering, building automation tools, complex scripting, and backend system development.',
-    'SQL': 'Mastery of advanced SQL across multiple dialects (PostgreSQL, MySQL, etc.), including query optimization, window functions, and complex CTEs.',
-    'PostgreSQL': 'Deep experience with PostgreSQL as a primary transactional and analytical database, including performance tuning, schema design, and administration.',
-    'Git': 'Professional version control management using Git, including collaborative workflows, branching strategies, and repository maintenance.',
-    'Docker Compose': 'Proficiency in orchestrating multi-container local development environments to replicate complex production infrastructures with ease.'
+    'Apache Airflow': {
+      why: "Airflow gives pipelines explicit dependencies, retries, and visibility instead of a black-box cron job — when something fails at 2am, I can see exactly which task and why.",
+      where: "Orchestrating the multi-stage generate → validate → deduplicate → load DAG, with each stage built as an independently retryable task.",
+      project: "Cloud ETL Pipeline"
+    },
+    'ETL Design': {
+      why: "A pipeline is only as trustworthy as its weakest transformation step — I design each stage to be testable and reversible in isolation.",
+      where: "Structuring the ingestion-to-warehouse flow so validation and deduplication run as separate, composable stages rather than one monolithic transform.",
+      project: "Cloud ETL Pipeline"
+    },
+    'DAG Management': {
+      why: "Explicit task dependencies make failure modes predictable — I'd rather see a DAG fail loudly at the right node than silently pass bad data downstream.",
+      where: "Managing task-level retries, failure states, and dependency ordering across the ETL pipeline's Airflow DAGs.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Apache Kafka': {
+      why: "Real financial events don't wait for a batch window — Kafka lets the system react to a transaction the moment it happens, not hours later.",
+      where: "Ingesting M-Pesa transaction events into a distributed Kafka-Flink pipeline for real-time analytics and fraud monitoring.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Stream Processing': {
+      why: "Fraud and anomaly windows are measured in seconds, not overnight ETL runs — stream processing is what makes real-time monitoring possible at all.",
+      where: "Building the Flink-based transformation layer that processes MPESA transaction events as they arrive.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Producers & Consumers': {
+      why: "Decoupling producers from consumers means the ingestion layer and the processing layer can fail, scale, or deploy independently.",
+      where: "Implementing the webhook-to-Kafka producer layer and the downstream Flink consumers for the MPESA streaming pipeline.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Star Schema': {
+      why: "A well-designed star schema means analysts can write a five-line query instead of a five-join nightmare.",
+      where: "Structuring the warehouse layer that Airflow loads into for BigQuery analytics.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Dimensional Modelling': {
+      why: "Kimball-style modelling keeps the business logic in the schema, not scattered across a dozen ad-hoc queries.",
+      where: "Designing fact and dimension tables for transaction analytics reporting.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'OLAP Queries': {
+      why: "Multi-dimensional analysis only works if the underlying queries are actually fast — I optimize for the questions the business will ask, not just the ones it's asked so far.",
+      where: "Writing the BigQuery analytical queries powering transaction volume and reconciliation reporting.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Data Warehousing': {
+      why: "A warehouse is only a \"single source of truth\" if people actually trust it — that trust is earned through consistent, validated loads.",
+      where: "Building the BigQuery warehouse layer that downstream dashboards and Grafana monitoring read from.",
+      project: "Real-Time Transaction Streaming (MPESA)"
+    },
+    'Deduplication': {
+      why: "Safaricom retries webhook deliveries — treating duplicates as a certainty rather than an edge case is what keeps a ledger honest.",
+      where: "Implementing idempotency-key based deduplication so a retried webhook can never be double-counted.",
+      project: "PesaGuard"
+    },
+    'Validation Rule Engines': {
+      why: "Catching a bad record at the earliest possible stage is far cheaper than debugging a corrupted dashboard three steps downstream.",
+      where: "Building the rule-based validation engine that checks every record against defined constraints before it's allowed downstream.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Anomaly Detection': {
+      why: "Reconciliation isn't just matching — it's knowing when something doesn't match, and surfacing that fast enough for someone to act on it.",
+      where: "Powering the open-anomalies count on the PesaGuard admin dashboard.",
+      project: "PesaGuard"
+    },
+    'Docker': {
+      why: "\"Works on my machine\" isn't an acceptable failure mode — containerizing a pipeline means CI runs the exact same environment as my laptop.",
+      where: "Containerizing the ETL pipeline for environment parity between local development and GitHub Actions CI.",
+      project: "Cloud ETL Pipeline"
+    },
+    'GitHub Actions': {
+      why: "Tests that only run when I remember to run them aren't really tests — CI makes validation non-optional.",
+      where: "Gating every push with an automated Pytest suite before code reaches a trusted branch.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Pytest': {
+      why: "Data engineering code fails silently more often than it crashes loudly — a real test suite is what catches that before production does.",
+      where: "Testing the validation-engine and idempotency logic that the reconciliation system depends on.",
+      project: "PesaGuard"
+    },
+    'CI/CD Pipelines': {
+      why: "Frequent, low-risk deploys beat rare, high-risk ones — automation is what makes that trade-off possible.",
+      where: "Automating the build-test-deploy flow for the ETL pipeline via GitHub Actions.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Python': {
+      why: "Python is where I express most of my engineering logic — from ingestion scripts to reconciliation engines to test suites.",
+      where: "Writing the Flask backend, reconciliation engine, and idempotency guards across models.py and reconciliation_engine.py.",
+      project: "PesaGuard"
+    },
+    'SQL': {
+      why: "Most \"the pipeline is slow\" problems are actually \"the query is slow\" problems — SQL fluency is non-negotiable for this work.",
+      where: "Writing analytical queries and schema definitions across every pipeline I've built.",
+      project: "Mpesa / Safaricom Pipeline"
+    },
+    'PostgreSQL': {
+      why: "I default to Postgres because its reliability and tooling let me spend time on the data model, not fighting the database.",
+      where: "Storing transaction records with chunked reads, deduplication, and optimized batch inserts.",
+      project: "Mpesa / Safaricom Pipeline"
+    },
+    'Git': {
+      why: "A clean commit history is documentation — I use branching and commit discipline so the reasoning behind a change is never lost.",
+      where: "Managing version control and collaborative workflows across every project in this portfolio.",
+      project: "Cloud ETL Pipeline"
+    },
+    'Docker Compose': {
+      why: "Local development should mirror production topology — Compose lets me spin up the full multi-service stack with one command.",
+      where: "Orchestrating multi-container local environments that replicate the ETL pipeline's production infrastructure.",
+      project: "Cloud ETL Pipeline"
+    }
   };
 
   const skillModal = {
@@ -2884,9 +3126,34 @@
     },
 
     open(skillName) {
-      const description = skillData[skillName] || 'Details coming soon...';
+      const data = skillData[skillName];
       this.title.textContent = skillName;
-      this.body.textContent = description;
+      if (!data) {
+        this.body.innerHTML = '<p style="margin:0;">Details coming soon...</p>';
+      } else {
+        const proj = projectLookup[data.project];
+        this.body.innerHTML = `
+          <div class="skill-detail-block">
+            <p class="skill-detail-label">Why I Use It</p>
+            <p class="skill-detail-text">${data.why}</p>
+          </div>
+          <div class="skill-detail-block">
+            <p class="skill-detail-label">Where I've Used It</p>
+            <p class="skill-detail-text">${data.where}</p>
+          </div>
+          <div class="skill-detail-block" style="margin-bottom:0;">
+            <p class="skill-detail-label">Project</p>
+            <button type="button" class="skill-detail-project-link" id="skillDetailProjectBtn">${data.project} <i class="fas fa-arrow-up-right-from-square"></i></button>
+          </div>
+        `;
+        const projBtn = document.getElementById('skillDetailProjectBtn');
+        if (projBtn && proj) {
+          projBtn.addEventListener('click', () => {
+            this.close();
+            openProjectModal(proj);
+          });
+        }
+      }
       this.overlay.style.display = 'flex';
       this.overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
