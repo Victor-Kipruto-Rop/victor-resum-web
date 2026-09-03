@@ -2844,61 +2844,99 @@
         lessonsLearned: 'Planning had been outpacing implementation — a large body of architecture and roadmap documents existed before idempotency, the actual highest-risk gap, was closed. The lesson applied going forward: ship the boring, high-risk plumbing before new features, no matter how much design work already exists.'
       }
     },
-    'Cloud ETL Pipeline': {
+    'Kenyan Market ETL Pipeline': {
       time: 'Jan 2026 - Feb 2026',
       category: 'Infrastructure & Automation',
       caseStudy: {
-        problem: 'Teams need to trust their data before they trust their dashboards — a pipeline that silently lets duplicate or malformed records through produces analytics nobody can rely on, and manual QA doesn\'t scale past a handful of source files.',
-        requirements: 'Reproducible runs regardless of environment, automatic detection of duplicate or invalid records before they reach a warehouse, and a pipeline that fails loudly rather than passing bad data downstream.',
-        architecture: 'A multi-stage ETL orchestrated by Apache Airflow DAGs, with each stage (generate → validate → deduplicate → load) built as a discrete, independently retryable task, containerised with Docker for environment parity between local development and CI.',
-        dataFlow: 'Synthetic source data is generated → ingested into staging → passed through a rule-based validation engine → deduplicated → loaded to its destination, with Airflow tracking task-level state and dependencies at every hop.',
-        techDecisions: 'Airflow for orchestration because the pipeline is genuinely multi-stage with real dependencies between steps, not a simple cron job. Docker so the exact same pipeline runs identically in CI as on a laptop. Pytest and GitHub Actions so validation-engine logic is tested on every push, not spot-checked manually.',
-        implementation: 'A rule-based validation engine checks each record against defined constraints before it\'s allowed downstream. Deduplication runs as its own DAG stage rather than being bolted onto ingestion, so it can be tested and reasoned about independently.',
-        dataQuality: 'Validation rules run before deduplication and before load — bad records are caught at the earliest possible stage rather than being cleaned up after the fact.',
-        errorHandling: 'Airflow\'s task-level retry and failure states are used directly — a failed validation or load step fails that DAG run visibly instead of continuing silently with partial data.',
-        performance: 'Deduplication and validation are separate, composable stages precisely so each can be scaled or optimised independently as data volume grows, rather than needing to rewrite one monolithic transform step.',
-        observability: 'Airflow\'s UI provides task-level run history and logs for every stage, so a failure can be traced to the exact task and input batch that caused it.',
-        security: 'Runs are containerised and CI-gated, so no pipeline code reaches a trusted branch without first passing its automated test suite.',
-        results: 'A CI/CD-ready pipeline where every push is validated by Pytest through GitHub Actions before merge, with reproducible Docker-based runs removing "works on my machine" as a failure mode.',
-        lessonsLearned: 'Building the validation engine as its own testable stage, rather than inline checks scattered through ingestion code, made it far easier to add new rules later without risking regressions elsewhere in the pipeline.'
+        problem: 'Market data feeds arrive with overlapping and sometimes conflicting records for the same entity — a naive dedup pass that simply drops duplicates silently discards legitimate updates and corrections.',
+        requirements: 'Idempotent re-runs (the same source file processed twice must not corrupt state), conflicting records reconciled rather than dropped, and verified correctness across every Python version the pipeline needs to support.',
+        architecture: 'A Pandas-based transformation layer feeding an idempotent upsert pattern into PostgreSQL via SQLAlchemy, with Grafana connected directly to the output tables for live dashboards.',
+        dataFlow: 'Source records → Pandas cleaning/normalisation → custom deduplication logic that aggregates conflicting records rather than discarding them → idempotent upsert into PostgreSQL → Grafana dashboards read the live table.',
+        techDecisions: 'Pandas for the transformation layer because the dataset fits comfortably in memory and vectorised operations made the aggregation logic far simpler than hand-rolled loops. SQLAlchemy for the upsert layer so conflict-resolution SQL stays explicit and testable. Grafana connected directly to Postgres rather than a separate BI layer, since the dashboard just needs to read live tables, not a full warehouse.',
+        implementation: 'Deduplication is implemented as an aggregation step — when two records disagree on a field, the pipeline merges them by a defined rule rather than keeping one and silently losing the other.',
+        dataQuality: '38/38 unit tests pass, covering the deduplication/aggregation logic specifically, since that\'s the piece most likely to silently produce wrong results if a rule is misapplied.',
+        errorHandling: 'Idempotent upserts mean a failed or re-run job can be safely retried without producing duplicate or corrupted rows.',
+        performance: 'Pandas\' vectorised operations keep the transformation stage fast even as record volume grows, avoiding row-by-row Python loops.',
+        observability: 'Grafana is connected directly to the PostgreSQL output layer, so pipeline output is visible on a live dashboard rather than requiring a manual query to check.',
+        security: 'Database credentials are handled through SQLAlchemy\'s connection configuration, kept out of pipeline code.',
+        results: '38/38 passing tests, CI verified on Python 3.8 through 3.11, and a live Grafana-connected output layer for market data dashboards.',
+        lessonsLearned: 'Treating deduplication as "drop whichever record you saw last" is silent data loss. Reconciling conflicting values explicitly is more work but changes the pipeline from optimistic to actually correct.'
       }
     },
-    'Mpesa / Safaricom Pipeline': {
+    'M-Pesa Airflow Transaction Pipeline': {
       time: 'Nov 2025 - Dec 2025',
       category: 'FinTech Data Systems',
       caseStudy: {
-        problem: 'MPESA transaction exports arrive as large CSV/JSON files too big to load into memory at once, and naive row-by-row inserts into Postgres are far too slow to keep up with real transaction volumes.',
-        requirements: 'Ingest large export files without exhausting memory, guarantee no transaction is recorded twice, and write to Postgres fast enough that ingestion doesn\'t become the bottleneck.',
-        architecture: 'A Python ingestion layer reads exports in fixed-size chunks rather than loading the whole file, deduplicates against existing records, and writes through a pooled set of Postgres connections rather than opening a new connection per batch.',
-        dataFlow: 'Export file → chunked reader → in-memory dedup check per chunk → batch-formatted insert → connection pool → Postgres, chunk by chunk until the file is exhausted.',
-        techDecisions: 'Chunked reads instead of loading the full file, because export sizes can exceed available memory. Connection pooling instead of per-batch connections, because connection setup/teardown overhead dominates at scale. Batch inserts instead of row-by-row, because round-trips are the real cost, not the data itself.',
-        implementation: 'Deduplication logic runs on transaction reference IDs before a chunk is committed, so the same export re-run twice doesn\'t double-count transactions.',
-        dataQuality: 'Transaction-level integrity checks confirm required fields are present and well-formed before a record is allowed into a batch insert.',
-        errorHandling: 'A malformed record within a chunk is isolated and logged rather than failing the entire chunk, so one bad row doesn\'t block the rest of a large file from loading.',
-        performance: 'Chunked reads keep memory usage flat regardless of file size, and batch inserts through a connection pool trade a small amount of per-record latency for dramatically higher overall throughput.',
-        observability: 'Each chunk\'s outcome (rows read, deduplicated, inserted, rejected) is logged, giving a clear per-file audit trail of exactly what happened during a given ingestion run.',
-        security: 'Connection pool credentials are handled outside application code, and only well-formed, validated records ever reach a write operation against the database.',
-        results: 'A pipeline able to ingest large MPESA export files without memory pressure, with deduplication and batch inserts removing both double-counted transactions and the round-trip overhead of row-by-row writes.',
-        lessonsLearned: 'The real bottleneck wasn\'t data volume — it was connection overhead. Pooling connections had a bigger impact on throughput than any amount of query micro-optimisation.'
+        problem: 'Testing an M-Pesa ingestion pipeline against real transaction data isn\'t practical or safe — it needs realistic-looking test data without ever touching actual customer records.',
+        requirements: 'A synthetic data generator realistic enough to exercise real edge cases, a cleaning pipeline configurable without code changes, and a stack that runs identically for every contributor and in CI.',
+        architecture: 'Airflow DAGs orchestrate a configurable synthetic data generator (Faker) into a multi-stage, config-driven cleaning pipeline, writing to PostgreSQL, all fully containerised via Docker Compose.',
+        dataFlow: 'Faker generates synthetic M-Pesa-style transactions with realistic Kenyan phone number distributions → an Airflow DAG stages clean and validate the data → cleaned records land in PostgreSQL.',
+        techDecisions: 'Faker over hand-written fixtures because realistic phone number and transaction distributions catch edge cases fixed test data wouldn\'t. A config-driven cleaning pipeline over hardcoded rules so cleaning logic can change without touching pipeline code. Docker Compose so the whole Airflow + PostgreSQL stack starts identically for any contributor or CI run.',
+        implementation: 'The cleaning pipeline reads its rules from configuration, so stages like field normalisation and validation are driven by config files rather than being hardcoded into DAG tasks.',
+        dataQuality: 'Multi-stage cleaning validates each transformation before the next stage runs, and the generated data\'s realistic phone number distributions mean tests exercise genuine edge cases.',
+        errorHandling: 'Airflow\'s task-level retry and failure states apply to each cleaning stage independently, so one bad batch doesn\'t require rerunning the whole DAG.',
+        performance: 'Containerised, reproducible runs mean performance characteristics stay consistent between a contributor\'s laptop and CI, not something that only shows up in production.',
+        observability: 'Pytest coverage plus GitHub Actions CI mean pipeline correctness is checked automatically on every push, not just spot-checked manually.',
+        security: 'Fully synthetic data means the pipeline can be developed, tested, and demoed without ever touching real customer transaction data.',
+        results: 'A fully containerised, reproducible Airflow + PostgreSQL stack with config-driven cleaning and realistic synthetic test data.',
+        lessonsLearned: 'Investing in a realistic synthetic data generator upfront paid off more than expected — most of the genuinely interesting edge cases in the cleaning pipeline were found via Faker-generated data, not by staring at the code.'
       }
     },
-    'Real-Time Transaction Streaming (MPESA)': {
+    'Real-Time Transaction Streaming System': {
       time: 'Dec 2025 - Jan 2026',
       category: 'FinTech Streaming Architecture',
       caseStudy: {
-        problem: 'Batch ingestion (as in the earlier MPESA pipeline) means fraud and anomalies are only visible after the fact — by the time a batch job runs, a fraudulent pattern has already had hours to play out.',
-        requirements: 'Sub-second visibility from a Daraja webhook event to an analytics-ready record; a pipeline that scales horizontally as event volume grows rather than needing a rewrite; infrastructure that\'s reproducible, not hand-configured.',
-        architecture: 'Daraja webhooks are ingested into Kafka topics, processed by Flink for stateful stream processing, modelled with dbt, and written to both PostgreSQL (operational) and BigQuery (analytical) stores. Airflow orchestrates the batch/dbt side, Grafana handles monitoring, and Terraform provisions the infrastructure as code.',
-        dataFlow: 'Daraja webhook → Kafka producer → Kafka topic → Flink stream processing job → dual-write to PostgreSQL and BigQuery → dbt models transform the BigQuery side into analytics-ready tables → Grafana dashboards read the result.',
-        techDecisions: 'Kafka as the ingestion backbone because it decouples producers from consumers and buffers bursts in webhook traffic. Flink over simpler stream processing because it supports the stateful, windowed logic fraud detection needs. dbt so transformation logic is version-controlled SQL, not buried in scripts. Terraform so the whole stack can be rebuilt identically rather than depending on manually-clicked cloud console configuration.',
-        implementation: 'A distributed Kafka-Flink pipeline processes Daraja webhook events as they arrive, with dbt models handling the transformation layer once data lands in BigQuery.',
-        dataQuality: 'dbt\'s testing framework validates model assumptions (uniqueness, not-null, referential checks) on every run, so a broken upstream assumption is caught in the transformation layer rather than silently propagating into a dashboard.',
-        errorHandling: 'Flink\'s stateful processing model allows the pipeline to track and recover from processing failures at the event level rather than needing to reprocess an entire batch.',
-        performance: 'The Kafka-Flink combination was specifically chosen to hit sub-second end-to-end latency from webhook receipt to processed record, rather than the minutes-to-hours latency of the earlier batch-based pipeline.',
-        observability: 'Grafana dashboards provide real-time visibility into pipeline health and throughput, so a slowdown or backlog is visible immediately rather than discovered only when a downstream report looks wrong.',
-        security: 'Infrastructure is provisioned through Terraform rather than manual cloud console changes, so access and configuration are version-controlled and auditable rather than tribal knowledge.',
-        results: 'Achieved sub-second end-to-end latency from webhook to processed record, with automated fraud-monitoring signals now running on live rather than batch-delayed data.',
-        lessonsLearned: 'Moving from the earlier batch MPESA pipeline to this streaming architecture made clear how much fraud detection specifically depends on latency — the same detection logic is far less useful run against data that\'s already hours old.'
+        problem: 'A single consumer processing a transaction stream becomes a throughput ceiling, and without exactly-once guarantees, consumer restarts or rebalances risk double-counting transactions.',
+        requirements: 'Horizontal scalability on the consumer side, exactly-once processing semantics, and low-latency real-time aggregation visible as it happens.',
+        architecture: 'A Kafka producer/consumer model with consumer-group design, feeding real-time aggregation logic visualised live via Plotly inside Jupyter, running in a Docker Compose stack.',
+        dataFlow: 'Producer publishes transaction events to a Kafka topic → a consumer group processes partitions in parallel → real-time aggregation logic updates running totals → Plotly renders live visualisations inside a Jupyter notebook.',
+        techDecisions: 'Kafka\'s consumer-group model chosen specifically for horizontal scalability — adding consumers increases throughput without redesigning the pipeline. Exactly-once semantics implemented deliberately rather than accepting at-least-once delivery, since double-counted transactions would corrupt aggregates. Jupyter + Plotly for visualisation because it made iterating on the aggregation logic and immediately seeing the result the fastest feedback loop.',
+        implementation: 'Exactly-once semantics are enforced at the consumer level so a rebalance or restart can\'t cause a transaction to be counted twice in the aggregate.',
+        dataQuality: 'Exactly-once processing is itself a data-quality guarantee — it\'s the difference between an aggregate you can trust and one that silently drifts upward every time a consumer restarts.',
+        errorHandling: 'Consumer-group rebalancing is handled as a normal operational event, not a failure mode, since exactly-once semantics mean a rebalance can\'t corrupt in-flight aggregation state.',
+        performance: 'Consumer-group parallelism is what actually delivers low-latency throughput at scale — a single consumer would cap throughput regardless of how optimised its processing logic was.',
+        observability: 'Live Plotly visualisations inside Jupyter mean aggregation behaviour is visible in real time during development, not just inferred from logs after the fact.',
+        security: 'Runs inside an isolated Docker Compose network, with topic-level access scoped to only the producer and consumer-group services that need it.',
+        results: 'A horizontally scalable consumer-group architecture with exactly-once semantics and live real-time aggregation visualisation.',
+        lessonsLearned: 'Exactly-once semantics are far easier to design in from the start than to retrofit — once an aggregate can silently double-count under a specific failure condition, finding every place that assumption leaked in is much harder than building it in correctly the first time.'
+      }
+    },
+    'Cloud ETL Ingestion Pipeline': {
+      time: '2026',
+      category: 'High-Throughput Data Ingestion',
+      caseStudy: {
+        problem: 'Loading large CSV exports row-by-row into Postgres was slow enough to become a bottleneck, and files with inconsistent or unknown encodings caused ingestion failures.',
+        requirements: 'Handle files far larger than available memory, auto-detect and correctly handle inconsistent file encodings, and cut load time without sacrificing correctness.',
+        architecture: 'Extract, Transform, and Load are separated into independent Docker microservices, reading from AWS S3 and writing to PostgreSQL via SQLAlchemy.',
+        dataFlow: 'Source files land in S3 → the Extract service reads them in chunks with automatic encoding detection → the Transform service cleans and shapes the data → the Load service batch-inserts into PostgreSQL.',
+        techDecisions: 'Chunked reading over loading whole files into memory, since some sources exceeded available RAM. Automatic encoding detection because upstream files arrived with inconsistent encodings that would otherwise fail ingestion outright. Separate microservices for Extract/Transform/Load specifically so each stage could be scaled, redeployed, or debugged independently rather than as one monolithic job. 5,000-row batch execution and tuned connection pooling, found by profiling, to replace the naive per-row insert pattern that was the actual bottleneck.',
+        implementation: 'Batch execution at 5,000 rows per insert, combined with a tuned connection pool, replaced the original per-row insert pattern that was consuming most of the load time.',
+        dataQuality: 'Automatic encoding detection at the extract stage means malformed-encoding files are corrected before they ever reach the transform logic, rather than producing corrupted text downstream.',
+        errorHandling: 'Each of the three services (Extract, Transform, Load) can fail and be retried independently, since they\'re separate Docker services rather than steps inside one script.',
+        performance: 'Processed 1.6M+ rows at roughly 70,000 rows/sec with peak memory held under 300MB, and cut full load time from 4 minutes to 45 seconds by switching from per-row inserts to 5,000-row batches with tuned connection pooling.',
+        observability: 'Because each stage is its own service, its logs and resource usage can be inspected independently, making it clear which stage is the bottleneck if load time regresses.',
+        security: 'AWS S3 access is scoped through service-level credentials rather than the pipeline embedding one broad, shared key.',
+        results: '1.6M+ rows processed at ~70,000 rows/sec, peak memory under 300MB, and full load time cut from 4 minutes to 45 seconds.',
+        lessonsLearned: 'The real bottleneck wasn\'t reading the data or transforming it — it was the insert pattern. Profiling before optimising mattered: batching inserts and tuning the connection pool had a far bigger impact than anything done to the extract or transform stages.'
+      }
+    },
+    'End-to-End SQL Pipeline Portfolio': {
+      time: '2026',
+      category: 'Data Warehousing & Analytics',
+      caseStudy: {
+        problem: 'A single flat table can\'t answer "what did this customer\'s profile look like at the time of this transaction" once that customer\'s attributes have changed since — historical state gets lost.',
+        requirements: 'Preserve full historical change timelines for customer dimensions, not just current state; support genuinely cross-platform analytical questions; and structure data so complex queries are tractable rather than requiring ad-hoc joins across raw tables.',
+        architecture: 'A multi-tier data lake pattern — CSV staging in S3, OLTP-style models for transactional accuracy, then a star schema warehouse in PostgreSQL for analytical querying.',
+        dataFlow: 'Raw CSVs staged in S3 → loaded into OLTP-style models via SQLAlchemy → transformed into a star schema warehouse, with SCD Type 2 applied specifically to customer dimension changes → analytical queries run against the warehouse.',
+        techDecisions: 'SCD Type 2 (versioned rows with valid-from/valid-to ranges) over simply overwriting dimension values, because the whole point of the warehouse was to answer historical questions correctly, not just reflect current state. Recursive CTEs over application-side loops for hierarchical/sequential analysis, since the database is far better positioned to do that work set-based than Python is row-by-row.',
+        implementation: 'Customer dimension changes are captured with SCD Type 2 versioning, so a query against any historical date returns the customer\'s attributes as they actually were at that time, not as they are now.',
+        dataQuality: 'The star schema\'s fact/dimension separation, combined with SCD Type 2 on dimensions, means historical queries are correct by construction rather than depending on the analyst remembering that "current state" doesn\'t equal "state at the time."',
+        errorHandling: 'Staging data in S3 before it touches the OLTP or warehouse layers means a bad load can be re-run from the staged source without re-extracting from the original files.',
+        performance: 'Recursive CTEs push sequential/hierarchical analysis down into PostgreSQL\'s query engine, which is materially faster than pulling data out and looping over it in application code.',
+        observability: 'The multi-tier structure (staging → OLTP → warehouse) means a data quality issue can be isolated to a specific tier rather than requiring a full end-to-end investigation.',
+        security: 'S3 staging and the warehouse layer use separate access scopes, so credentials for raw file staging don\'t also grant access to the modelled warehouse.',
+        results: 'A working star schema warehouse with SCD Type 2 customer history and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.',
+        lessonsLearned: 'SCD Type 2 is more upfront modelling work than just overwriting rows, but it\'s the difference between a warehouse that can actually answer "why did this change" questions and one that can only ever describe the present.'
       }
     }
   };
