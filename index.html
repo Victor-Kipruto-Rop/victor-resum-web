@@ -1954,17 +1954,17 @@
 
     <div class="projects-grid" id="projects-grid">
 
-      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Kenyan Market ETL Pipeline', desc: 'Idempotent upsert pipeline with custom deduplication logic that aggregates conflicting records instead of dropping them. 38/38 passing unit tests, CI on Python 3.8–3.11, and a Grafana-connected PostgreSQL output layer for live market data dashboards.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Grafana', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
-        <img class="project-thumb" src="assets/images/2.jpeg" alt="Kenyan Market ETL Pipeline thumbnail" />
+      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Cloud ETL Pipeline', desc: 'Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
+        <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL Pipeline thumbnail" />
         <div class="project-content">
-          <p class="project-title">Kenyan Market ETL Pipeline</p>
-          <p class="project-desc">An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.</p>
+          <p class="project-title">Cloud ETL Pipeline</p>
+          <p class="project-desc">Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.</p>
           <div class="project-stack">
             <span class="stack-badge">Python</span>
             <span class="stack-badge">Pandas</span>
             <span class="stack-badge">PostgreSQL</span>
             <span class="stack-badge">SQLAlchemy</span>
-            <span class="stack-badge">Grafana</span>
+            <span class="stack-badge">Docker</span>
             <span class="stack-badge">Pytest</span>
             <span class="stack-badge">GitHub Actions</span>
           </div>
@@ -2016,25 +2016,7 @@
         </div>
       </div>
 
-      <div class="project-card reveal" style="transition-delay:0.32s" onclick="openProjectModal({title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and switching to 5,000-row batch execution, with Extract/Transform/Load separated into independent Docker microservices.', stack: ['Python', 'Docker', 'AWS S3', 'PostgreSQL', 'SQLAlchemy'], img: 'assets/images/2.jpeg', view: ''})">
-        <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL Ingestion Pipeline thumbnail" />
-        <div class="project-content">
-          <p class="project-title">Cloud ETL Ingestion Pipeline</p>
-          <p class="project-desc">Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection — cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.</p>
-          <div class="project-stack">
-            <span class="stack-badge">Python</span>
-            <span class="stack-badge">Docker</span>
-            <span class="stack-badge">AWS S3</span>
-            <span class="stack-badge">PostgreSQL</span>
-            <span class="stack-badge">SQLAlchemy</span>
-          </div>
-          <div class="project-actions">
-            <span class="btn-sm btn-outline" style="cursor:default;">Private Repository</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal" style="transition-delay:0.4s" onclick="openProjectModal({title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''})">
+      <div class="project-card reveal" style="transition-delay:0.32s" onclick="openProjectModal({title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''})">
         <img class="project-thumb" src="assets/images/3.jpeg" alt="End-to-End SQL Pipeline Portfolio thumbnail" />
         <div class="project-content">
           <p class="project-title">End-to-End SQL Pipeline Portfolio</p>
@@ -2048,6 +2030,36 @@
           </div>
           <div class="project-actions">
             <span class="btn-sm btn-outline" style="cursor:default;">Private Repository</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.4s" onclick="openProjectModal({title: 'Streaming Pipeline', desc: 'A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.', stack: ['Python'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/streaming-pipeline'})">
+        <img class="project-thumb" src="assets/images/4.jpeg" alt="Streaming Pipeline thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Streaming Pipeline</p>
+          <p class="project-desc">A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/streaming-pipeline" target="_blank" rel="noopener">View</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/streaming-pipeline" target="_blank" rel="noopener">Readme</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.48s" onclick="openProjectModal({title: 'Early Portfolio Site', desc: 'My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.', stack: ['Python'], img: 'assets/images/5.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio'})">
+        <img class="project-thumb" src="assets/images/5.jpeg" alt="Early Portfolio Site thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Early Portfolio Site</p>
+          <p class="project-desc">My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio" target="_blank" rel="noopener">View</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio" target="_blank" rel="noopener">Readme</a>
           </div>
         </div>
       </div>
@@ -2572,11 +2584,12 @@
     if(!grid) return;
     if(grid.children.length > 0) return; // already populated
     const staticProjects = [
-      { img: 'assets/images/2.jpeg', title: 'Kenyan Market ETL Pipeline', desc: 'An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.', stack: ['Python','Pandas','PostgreSQL','SQLAlchemy','Grafana','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
+      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Pipeline', desc: 'Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.', stack: ['Python','Pandas','PostgreSQL','SQLAlchemy','Docker','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
       { img: 'assets/images/3.jpeg', title: 'M-Pesa Airflow Transaction Pipeline', desc: 'DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command.', stack: ['Apache Airflow','Python','Faker','PostgreSQL','Docker Compose','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
       { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming System', desc: 'Kafka producer/consumer model for live transaction ingestion, with consumer-group design for horizontal scalability and exactly-once semantics to prevent double-counting, plus live Plotly visualisations rendered from the consumer layer in Jupyter.', stack: ['Apache Kafka','Python','Jupyter','Plotly','Docker Compose','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' },
-      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection — cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.', stack: ['Python','Docker','AWS S3','PostgreSQL','SQLAlchemy'], view: '' },
-      { img: 'assets/images/3.jpeg', title: 'End-to-End SQL Pipeline Portfolio', desc: 'Multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 on customer dimensions and recursive CTE queries surfacing revenue shifts, fraud signals, and retention metrics.', stack: ['Python','PostgreSQL','AWS S3','SQLAlchemy','SCD Type 2'], view: '' }
+      { img: 'assets/images/3.jpeg', title: 'End-to-End SQL Pipeline Portfolio', desc: 'Multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 on customer dimensions and recursive CTE queries surfacing revenue shifts, fraud signals, and retention metrics.', stack: ['Python','PostgreSQL','AWS S3','SQLAlchemy','SCD Type 2'], view: '' },
+      { img: 'assets/images/4.jpeg', title: 'Streaming Pipeline', desc: 'A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.', stack: ['Python'], view: 'https://github.com/Victor-Kipruto-Rop/streaming-pipeline' },
+      { img: 'assets/images/5.jpeg', title: 'Early Portfolio Site', desc: 'My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.', stack: ['Python'], view: 'https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio' }
     ];
     grid.innerHTML = '';
     staticProjects.forEach((p, idx) => {
@@ -2844,23 +2857,23 @@
         lessonsLearned: 'Planning had been outpacing implementation — a large body of architecture and roadmap documents existed before idempotency, the actual highest-risk gap, was closed. The lesson applied going forward: ship the boring, high-risk plumbing before new features, no matter how much design work already exists.'
       }
     },
-    'Kenyan Market ETL Pipeline': {
+    'Cloud ETL Pipeline': {
       time: 'Jan 2026 - Feb 2026',
       category: 'Infrastructure & Automation',
       caseStudy: {
-        problem: 'Market data feeds arrive with overlapping and sometimes conflicting records for the same entity — a naive dedup pass that simply drops duplicates silently discards legitimate updates and corrections.',
-        requirements: 'Idempotent re-runs (the same source file processed twice must not corrupt state), conflicting records reconciled rather than dropped, and verified correctness across every Python version the pipeline needs to support.',
-        architecture: 'A Pandas-based transformation layer feeding an idempotent upsert pattern into PostgreSQL via SQLAlchemy, with Grafana connected directly to the output tables for live dashboards.',
-        dataFlow: 'Source records → Pandas cleaning/normalisation → custom deduplication logic that aggregates conflicting records rather than discarding them → idempotent upsert into PostgreSQL → Grafana dashboards read the live table.',
-        techDecisions: 'Pandas for the transformation layer because the dataset fits comfortably in memory and vectorised operations made the aggregation logic far simpler than hand-rolled loops. SQLAlchemy for the upsert layer so conflict-resolution SQL stays explicit and testable. Grafana connected directly to Postgres rather than a separate BI layer, since the dashboard just needs to read live tables, not a full warehouse.',
-        implementation: 'Deduplication is implemented as an aggregation step — when two records disagree on a field, the pipeline merges them by a defined rule rather than keeping one and silently losing the other.',
-        dataQuality: '38/38 unit tests pass, covering the deduplication/aggregation logic specifically, since that\'s the piece most likely to silently produce wrong results if a rule is misapplied.',
-        errorHandling: 'Idempotent upserts mean a failed or re-run job can be safely retried without producing duplicate or corrupted rows.',
-        performance: 'Pandas\' vectorised operations keep the transformation stage fast even as record volume grows, avoiding row-by-row Python loops.',
-        observability: 'Grafana is connected directly to the PostgreSQL output layer, so pipeline output is visible on a live dashboard rather than requiring a manual query to check.',
-        security: 'Database credentials are handled through SQLAlchemy\'s connection configuration, kept out of pipeline code.',
-        results: '38/38 passing tests, CI verified on Python 3.8 through 3.11, and a live Grafana-connected output layer for market data dashboards.',
-        lessonsLearned: 'Treating deduplication as "drop whichever record you saw last" is silent data loss. Reconciling conflicting values explicitly is more work but changes the pipeline from optimistic to actually correct.'
+        problem: 'Loading large CSV exports row-by-row into Postgres was slow enough to become a bottleneck, and a pipeline re-run after a partial failure risked producing duplicate or corrupted rows.',
+        requirements: 'Handle over a million records without exhausting memory, guarantee that a failed or re-run job never corrupts state, and cut load time meaningfully without sacrificing correctness.',
+        architecture: 'A Python pipeline using Pandas for transformation and SQLAlchemy for the PostgreSQL write layer, containerised with Docker.',
+        dataFlow: 'Source files → chunked reading with automatic encoding detection → Pandas cleaning and deduplication → idempotent batch upserts into PostgreSQL.',
+        techDecisions: 'Pandas for the transformation layer because vectorised operations made deduplication logic far simpler than row-by-row loops. Idempotent upserts, rather than plain inserts, specifically so a failed or re-run job can\'t corrupt state — that\'s what fault tolerance actually means in a batch pipeline like this. Docker so the pipeline runs identically in CI and production.',
+        implementation: 'Deduplication is implemented as an aggregation step — conflicting records are merged by a defined rule rather than one being silently dropped — and the whole write path is idempotent so re-running the pipeline never double-counts a row.',
+        dataQuality: 'Automatic encoding detection at the read stage catches malformed files before they reach the transform logic, and the deduplication/aggregation step prevents conflicting records from silently overwriting one another.',
+        errorHandling: 'Idempotent batch upserts mean a failed job can simply be re-run from the start without manual cleanup or risk of duplicated data.',
+        performance: 'Processed over 1.6 million records at roughly 70,000 rows/sec with peak memory held under 300MB, cutting full load time from 4 minutes to 45 seconds by moving from per-row inserts to batched execution with a tuned connection pool.',
+        observability: 'CI-gated test runs on every push mean regressions in the transformation or deduplication logic are caught before merge, not after deployment.',
+        security: 'Database credentials are handled through configuration rather than embedded in pipeline code.',
+        results: 'A fault-tolerant, idempotent ETL pipeline processing 1.6M+ records at ~70,000 rows/sec with load time cut from 4 minutes to 45 seconds.',
+        lessonsLearned: 'The real bottleneck wasn\'t reading or transforming the data — it was the insert pattern. Batching writes and making the pipeline idempotent had a far bigger impact on both reliability and speed than anything done to the read or transform stages.'
       }
     },
     'M-Pesa Airflow Transaction Pipeline': {
@@ -2901,25 +2914,6 @@
         lessonsLearned: 'Exactly-once semantics are far easier to design in from the start than to retrofit — once an aggregate can silently double-count under a specific failure condition, finding every place that assumption leaked in is much harder than building it in correctly the first time.'
       }
     },
-    'Cloud ETL Ingestion Pipeline': {
-      time: '2026',
-      category: 'High-Throughput Data Ingestion',
-      caseStudy: {
-        problem: 'Loading large CSV exports row-by-row into Postgres was slow enough to become a bottleneck, and files with inconsistent or unknown encodings caused ingestion failures.',
-        requirements: 'Handle files far larger than available memory, auto-detect and correctly handle inconsistent file encodings, and cut load time without sacrificing correctness.',
-        architecture: 'Extract, Transform, and Load are separated into independent Docker microservices, reading from AWS S3 and writing to PostgreSQL via SQLAlchemy.',
-        dataFlow: 'Source files land in S3 → the Extract service reads them in chunks with automatic encoding detection → the Transform service cleans and shapes the data → the Load service batch-inserts into PostgreSQL.',
-        techDecisions: 'Chunked reading over loading whole files into memory, since some sources exceeded available RAM. Automatic encoding detection because upstream files arrived with inconsistent encodings that would otherwise fail ingestion outright. Separate microservices for Extract/Transform/Load specifically so each stage could be scaled, redeployed, or debugged independently rather than as one monolithic job. 5,000-row batch execution and tuned connection pooling, found by profiling, to replace the naive per-row insert pattern that was the actual bottleneck.',
-        implementation: 'Batch execution at 5,000 rows per insert, combined with a tuned connection pool, replaced the original per-row insert pattern that was consuming most of the load time.',
-        dataQuality: 'Automatic encoding detection at the extract stage means malformed-encoding files are corrected before they ever reach the transform logic, rather than producing corrupted text downstream.',
-        errorHandling: 'Each of the three services (Extract, Transform, Load) can fail and be retried independently, since they\'re separate Docker services rather than steps inside one script.',
-        performance: 'Processed 1.6M+ rows at roughly 70,000 rows/sec with peak memory held under 300MB, and cut full load time from 4 minutes to 45 seconds by switching from per-row inserts to 5,000-row batches with tuned connection pooling.',
-        observability: 'Because each stage is its own service, its logs and resource usage can be inspected independently, making it clear which stage is the bottleneck if load time regresses.',
-        security: 'AWS S3 access is scoped through service-level credentials rather than the pipeline embedding one broad, shared key.',
-        results: '1.6M+ rows processed at ~70,000 rows/sec, peak memory under 300MB, and full load time cut from 4 minutes to 45 seconds.',
-        lessonsLearned: 'The real bottleneck wasn\'t reading the data or transforming it — it was the insert pattern. Profiling before optimising mattered: batching inserts and tuning the connection pool had a far bigger impact than anything done to the extract or transform stages.'
-      }
-    },
     'End-to-End SQL Pipeline Portfolio': {
       time: '2026',
       category: 'Data Warehousing & Analytics',
@@ -2937,6 +2931,44 @@
         security: 'S3 staging and the warehouse layer use separate access scopes, so credentials for raw file staging don\'t also grant access to the modelled warehouse.',
         results: 'A working star schema warehouse with SCD Type 2 customer history and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.',
         lessonsLearned: 'SCD Type 2 is more upfront modelling work than just overwriting rows, but it\'s the difference between a warehouse that can actually answer "why did this change" questions and one that can only ever describe the present.'
+      }
+    },
+    'Streaming Pipeline': {
+      time: '2026',
+      category: 'Real-Time Data Systems',
+      caseStudy: {
+        problem: 'Continuous data streams need to be ingested and analysed as they arrive, not batched and processed after the fact.',
+        requirements: 'Scalable ingestion that keeps up with a continuous stream, a processing layer that transforms data in near real time, and analytics that stay current with incoming data rather than lagging behind it.',
+        architecture: 'A Python-based streaming pipeline covering ingestion, processing, transformation, and analytics as distinct stages for continuous data streams.',
+        dataFlow: 'Continuous stream ingested → processed and transformed in near real time → surfaced for analytics.',
+        techDecisions: 'Python across all four stages (ingestion, processing, transformation, analytics) to keep the pipeline maintainable as one coherent codebase rather than mixing languages across stages.',
+        implementation: 'The pipeline is structured as four distinct stages so continuous data keeps moving through it without needing to be captured and processed in discrete batches.',
+        dataQuality: 'Processing and transformation are kept as separate stages specifically so data can be validated and shaped before it reaches the analytics layer.',
+        errorHandling: 'Stage separation means an issue in one part of the pipeline, like transformation, doesn\'t require rebuilding the ingestion or processing logic to fix.',
+        performance: 'Built specifically for scalable ingestion of continuous streams, rather than for one-off batch loads.',
+        observability: 'The staged architecture makes it possible to inspect data at each point in the pipeline rather than only at the final output.',
+        security: 'As an exploratory project, security wasn\'t the primary focus — the emphasis was on getting a working streaming architecture end to end.',
+        results: 'A working end-to-end streaming pipeline covering ingestion through analytics for continuous data streams.',
+        lessonsLearned: 'Structuring the pipeline as four explicit stages, rather than one continuous script, made it much easier to reason about where in the pipeline a given piece of data actually was at any point in time.'
+      }
+    },
+    'Early Portfolio Site': {
+      time: 'Earlier project',
+      category: 'Personal Site',
+      caseStudy: {
+        problem: 'Early on, I needed a public, deployable showcase of my work — without one, there was no way for anyone outside a direct conversation to see what I\'d actually built.',
+        requirements: 'Something realistic to ship solo, host for free, and iterate on as my skill set and project list grew.',
+        architecture: 'A personal portfolio site built and published under my earlier GitHub handle, before I consolidated my work under this account.',
+        dataFlow: 'Not applicable — this was a personal site project, not a data pipeline.',
+        techDecisions: 'Kept the stack simple and shippable rather than reaching for infrastructure I hadn\'t yet needed to learn — the goal was getting something real online, not demonstrating every tool at once.',
+        implementation: 'Built and iterated on solo, as my first real public-facing project.',
+        dataQuality: 'Not applicable to a personal site project.',
+        errorHandling: 'Not applicable to a personal site project.',
+        performance: 'Not a focus area — the goal was existing online, not optimisation.',
+        observability: 'Not applicable to a personal site project.',
+        security: 'Not applicable to a personal site project.',
+        results: '19 stars and 1 fork on a project with no promotion behind it — modest but genuine external interest in an early personal site.',
+        lessonsLearned: 'Building this first version directly informed decisions in my current portfolio — from picking a maintainable content structure to being deliberate about what a portfolio should actually communicate to a visitor, rather than just listing tools.'
       }
     }
   };
@@ -3042,11 +3074,12 @@
   // Skill Modal Management
   const projectLookup = {
     'PesaGuard': {title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''},
-    'Kenyan Market ETL Pipeline': {title: 'Kenyan Market ETL Pipeline', desc: 'An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Grafana', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
+    'Cloud ETL Pipeline': {title: 'Cloud ETL Pipeline', desc: 'Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
     'M-Pesa Airflow Transaction Pipeline': {title: 'M-Pesa Airflow Transaction Pipeline', desc: 'DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command.', stack: ['Apache Airflow', 'Python', 'Faker', 'PostgreSQL', 'Docker Compose', 'Pytest', 'GitHub Actions'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'},
     'Real-Time Transaction Streaming System': {title: 'Real-Time Transaction Streaming System', desc: 'A Kafka producer/consumer model for live transaction ingestion with real-time aggregation and low-latency throughput, consumer-group design for horizontal scalability, exactly-once semantics to prevent double-counting, and live Plotly visualisations inside Jupyter.', stack: ['Apache Kafka', 'Python', 'Jupyter', 'Plotly', 'Docker Compose', 'GitHub Actions'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'},
-    'Cloud ETL Ingestion Pipeline': {title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and switching to 5,000-row batch execution.', stack: ['Python', 'Docker', 'AWS S3', 'PostgreSQL', 'SQLAlchemy'], img: 'assets/images/2.jpeg', view: ''},
-    'End-to-End SQL Pipeline Portfolio': {title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''}
+    'End-to-End SQL Pipeline Portfolio': {title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''},
+    'Streaming Pipeline': {title: 'Streaming Pipeline', desc: 'A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.', stack: ['Python'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/streaming-pipeline'},
+    'Early Portfolio Site': {title: 'Early Portfolio Site', desc: 'My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.', stack: ['Python'], img: 'assets/images/5.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio'}
   };
 
   const skillData = {
@@ -3058,7 +3091,7 @@
     'ETL Design': {
       why: "A pipeline is only as trustworthy as its weakest transformation step — I design each stage to be testable and reversible in isolation.",
       where: "Structuring the ingestion-to-warehouse flow so validation and deduplication run as separate, composable stages rather than one monolithic transform.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'DAG Management': {
       why: "Explicit task dependencies make failure modes predictable — I'd rather see a DAG fail loudly at the right node than silently pass bad data downstream.",
@@ -3118,12 +3151,12 @@
     'Docker': {
       why: "\"Works on my machine\" isn't an acceptable failure mode — containerizing a pipeline means CI runs the exact same environment as my laptop.",
       where: "Separating Extract, Transform, and Load into independent Docker microservices with exponential-backoff retry on transient failures.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'GitHub Actions': {
       why: "Tests that only run when I remember to run them aren't really tests — CI makes validation non-optional.",
       where: "Gating every push with an automated Pytest suite before code reaches a trusted branch.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Pytest': {
       why: "Data engineering code fails silently more often than it crashes loudly — a real test suite is what catches that before production does.",
@@ -3133,7 +3166,7 @@
     'CI/CD Pipelines': {
       why: "Frequent, low-risk deploys beat rare, high-risk ones — automation is what makes that trade-off possible.",
       where: "Automating the build-test-deploy flow for the ETL pipeline via GitHub Actions.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Python': {
       why: "Python is where I express most of my engineering logic — from ingestion scripts to reconciliation engines to test suites.",
@@ -3148,12 +3181,12 @@
     'PostgreSQL': {
       why: "I default to Postgres because its reliability and tooling let me spend time on the data model, not fighting the database.",
       where: "Tuning connection pooling and batch execution size to cut a 1.6M+ row load from 4 minutes down to 45 seconds.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Git': {
       why: "A clean commit history is documentation — I use branching and commit discipline so the reasoning behind a change is never lost.",
       where: "Managing version control and collaborative workflows across every project in this portfolio.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Docker Compose': {
       why: "Local development should mirror production topology — Compose lets me spin up the full multi-service stack with one command.",
@@ -3163,32 +3196,32 @@
     'MySQL': {
       why: "Being fluent across both PostgreSQL and MySQL means I'm not locked into one vendor's quirks when a team already has infrastructure decisions made.",
       where: "Applying relational database fundamentals — schema design, window functions, and complex CTEs — interchangeably across PostgreSQL and MySQL.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Shell / Bash': {
       why: "Automation lives in the shell — CI steps, container entrypoints, and quick data checks all start with a script, not a GUI.",
       where: "Scripting CI/CD automation steps and container orchestration commands across every pipeline project.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'AWS (S3, EC2)': {
       why: "Cloud-native storage and compute are the default for production data infra — S3 for durable object storage, EC2 when I need control over the runtime.",
       where: "Using S3 as the ingestion source for a cloud-hosted pipeline processing 1.6M+ rows at 70,000 rows/sec.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Pandas': {
       why: "Pandas is where exploratory data wrangling happens fast — before a transformation earns a permanent place in a pipeline, I prototype it in a DataFrame.",
       where: "Writing the custom deduplication logic that aggregates quantities on conflicting records instead of dropping them.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'NumPy': {
       why: "Vectorized operations matter once a dataset gets large enough that a Python for-loop becomes the actual bottleneck.",
       where: "Supporting numerical operations underneath the Pandas-based transformation logic in the market data ETL pipeline.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'SQLAlchemy': {
       why: "An ORM layer means the same codebase can target different databases without rewriting every query by hand.",
       where: "Managing the PostgreSQL output layer and connection handling across the ETL pipeline's database interactions.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Faker': {
       why: "Testing a pipeline against realistic data — not just placeholder strings — catches edge cases that synthetic filler data never will.",
@@ -3198,7 +3231,7 @@
     'Grafana': {
       why: "A pipeline without a dashboard is a pipeline nobody's actually watching — Grafana turns pipeline output into something a team can monitor live.",
       where: "Connecting the PostgreSQL output layer to live operational dashboards tracking market data trends.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Plotly': {
       why: "Interactive charts let you actually explore an anomaly instead of squinting at a static image.",
