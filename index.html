@@ -253,9 +253,9 @@
   /* ── Hero ── */
   #hero {
     min-height: 75vh;
-    display: grid;
-    grid-template-columns: 60% 40%;
-    align-items: center; /* center both columns so name and image align vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     overflow: hidden;
   }
@@ -289,16 +289,14 @@
     50% { transform: translate(-30px, 30px) scale(1.08); }
   }
   .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
     padding: 0 96px 60px;
     position: relative; z-index: 3;
     gap: 18px;
-    max-width: 900px; width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
   }
-  .hero-right {
-    display: flex; align-items: center; justify-content: center; padding-top: 0;
-  }
-  .hero-right-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; }
   @media (max-width: 1024px) {
     .hero-left { padding: 0 48px 40px; }
   }
@@ -308,40 +306,20 @@
   @media (max-width: 480px) {
     .hero-left { padding: 60px 18px 32px; gap: 14px; }
   }
-  .hero-prof { width: 360px; height: 360px; object-fit: cover; border-radius: 50%; border: none; box-shadow: 0 22px 48px rgba(10,14,20,0.14); overflow: hidden; }
-  @media (max-width: 1024px) { .hero-prof { width: 260px; height: 260px; } }
-  @media (max-width: 720px) { .hero-prof { width: 220px; height: 220px; } }
-  .hero-sub { display: flex; gap: 12px; width: 100%; justify-content: center; }
-  .hero-social { display:flex; gap:28px; align-items:center; }
-  .social-link { display:flex; align-items:center; text-decoration:none; color:var(--ink); }
-  .social-icon { width:40px; height:40px; border-radius:8px; background: var(--ink); color: var(--paper); display:flex; align-items:center; justify-content:center; border: none; transition: transform 0.14s, box-shadow 0.14s; }
-  .social-link:hover .social-icon { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(10,14,20,0.06); }
-  .social-icon i { font-size:16px; }
   .sub-item { display: flex; flex-direction: column; gap: 6px; }
   .sub-title { font-family: 'Fira Code', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
   .sub-desc { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--muted); font-weight: 600; }
 
   @media (max-width: 1024px) {
-    #hero { grid-template-columns: 1fr; }
-    .hero-right { padding-top: 40px; }
-    .hero-prof { width: 220px; height: 220px; border-radius: 50%; }
     .hero-left { padding: 48px 32px; }
   }
   @media (max-width: 720px) {
     #hero { min-height: auto; padding-top: 60px; }
     .hero-left { padding: 24px 20px 32px 20px; gap: 14px; }
-    .hero-right-inner { gap: 16px; }
-    .hero-prof { width: 180px; height: 180px; }
-    .hero-social { gap: 16px; flex-wrap: wrap; }
-    .social-icon { width: 36px; height: 36px; }
   }
   @media (max-width: 480px) {
     #hero { padding-top: 55px; }
     .hero-left { padding: 16px 16px 20px 16px; gap: 10px; }
-    .hero-prof { width: 120px; height: 120px; }
-    .hero-right-inner { gap: 10px; }
-    .hero-social { gap: 10px; }
-    .social-icon { width: 30px; height: 30px; font-size: 13px; }
   }
   .hero-eyebrow {
     font-family: 'Fira Code', monospace;
@@ -606,7 +584,6 @@
   }
   .skill-pill:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
   .skill-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
   @media (max-width: 720px) {
     #skills { padding: 20px 12px; }
     .skills-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -894,54 +871,61 @@
 
   /* ── Footer ── */
   footer {
-    position: relative;
-    background: var(--card); padding: 64px 72px 28px;
-    border-top: 1px solid var(--rule);
+    background: var(--card); padding: 64px 72px 32px;
+    border-top: 3px solid var(--accent);
+    display: flex; flex-direction: column; gap: 40px;
     color: var(--muted);
   }
-  footer::before {
-    content: '';
-    position: absolute; top: -1px; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
-    opacity: 0.6;
+  .footer-main {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px;
   }
-  .footer-inner {
-    display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 48px;
-    padding-bottom: 40px; margin-bottom: 24px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .footer-wordmark {
+  .footer-brand { padding-right: 16px; }
+  .footer-logo {
     font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
-    color: var(--ink); text-decoration: none; display: inline-block; margin-bottom: 12px;
-    transition: color 0.2s ease;
+    color: var(--ink); margin-bottom: 12px;
   }
-  .footer-wordmark:hover { color: var(--accent); }
-  .footer-tagline { font-size: 13px; line-height: 1.7; color: var(--muted); max-width: 34ch; margin-bottom: 16px; }
-  .footer-status { display: flex; align-items: center; gap: 8px; font-family: 'Fira Code', monospace; font-size: 11.5px; color: var(--ink); }
-  .footer-status-dot {
-    width: 7px; height: 7px; border-radius: 50%; background: #2ecc71; flex-shrink: 0;
-    box-shadow: 0 0 0 3px color-mix(in srgb, #2ecc71 25%, transparent);
+  .footer-tagline {
+    font-size: 13.5px; line-height: 1.7; color: var(--muted); margin-bottom: 18px; max-width: 320px;
+  }
+  .footer-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.04em;
+    color: var(--ink); font-weight: 600;
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 7px 14px; border-radius: 999px;
+  }
+  .footer-status .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #22c55e; flex-shrink: 0;
+    animation: statusPulseDot 1.6s ease-in-out infinite;
   }
   .footer-links-label {
     font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.08em;
-    color: var(--muted); text-transform: uppercase; margin-bottom: 14px;
+    color: var(--ink); text-transform: uppercase; font-weight: 700; margin-bottom: 16px;
+  }
+  .footer-links {
+    display: flex; flex-direction: column; gap: 12px;
   }
   .footer-links { display: flex; flex-direction: column; gap: 11px; align-items: flex-start; }
   .footer-links a {
     position: relative; width: fit-content; padding-bottom: 2px;
     font-family: 'Fira Code', monospace; font-size: 13px;
-    color: var(--ink); text-decoration: none;
-    display: flex; align-items: center; gap: 8px;
+    color: var(--muted); text-decoration: none;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
-  .footer-links a::after {
-    content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px;
-    background: var(--accent); transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+  .footer-links a:hover { color: var(--accent); border-color: var(--accent); transform: translateX(3px); }
+  .footer-social { display: flex; flex-wrap: wrap; gap: 10px; }
+  .footer-social-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--paper); border: 1px solid var(--rule); color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
-  .footer-links a:hover { color: var(--accent); }
-  .footer-links a:hover::after { width: 100%; }
-  .footer-links a i { color: var(--accent); font-size: 12px; width: 14px; text-align: center; flex-shrink: 0; }
+  .footer-social-icon:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); box-shadow: var(--shadow-sm); }
   .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 24px; border-top: 1px solid var(--rule);
   }
   .footer-top-link {
     display: inline-flex; align-items: center; gap: 6px;
@@ -955,9 +939,13 @@
     font-family: 'Fira Code', monospace; font-size: 11px;
     color: var(--muted); letter-spacing: 0.08em; margin: 0;
   }
-  @media (max-width: 900px) {
-    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer-top-btn {
+    font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.06em;
+    background: transparent; border: 1px solid var(--rule); color: var(--muted);
+    padding: 8px 16px; border-radius: 999px; cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
+  .footer-top-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
   /* ── Animations ── */
   @keyframes fadeUp {
@@ -972,9 +960,7 @@
   @media (max-width: 768px) {
     .site-nav { padding: 16px 24px; }
     .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 80px 24px 40px; }
-    .hero-right { height: auto; padding-bottom: 40px; }
     section { padding: 64px 24px; }
     .why-grid, .about-layout, .contact-layout, .skills-layout { grid-template-columns: 1fr; gap: 24px; }
     .about-layout { gap: 40px; }
@@ -982,7 +968,9 @@
     .hero-photo, .about-photo { width: 100%; height: auto; aspect-ratio: 4/5; }
     .about-photo-wrap::before { display: none; }
     footer { padding: 40px 24px 24px; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .footer-main { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+    .footer-brand { grid-column: 1 / -1; padding-right: 0; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     .contact-row { flex-direction: column; }
   }
 
@@ -1342,6 +1330,9 @@
     .fab-whatsapp { left: max(14px, env(safe-area-inset-left)); }
     .fab-top { right: max(14px, env(safe-area-inset-right)); }
     .fab svg { width: 22px; height: 22px; }
+    .footer-main { grid-template-columns: 1fr; gap: 28px; }
+    .footer-brand { grid-column: auto; }
+    .footer-tagline { max-width: 100%; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1542,35 +1533,6 @@
       <a class="btn-ghost magnetic" href="#send-message">Hire Me</a>
       <a class="btn-ghost magnetic" href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" aria-label="Schedule a call">Schedule Call</a>
       <a class="btn-ghost magnetic" href="#" onclick="openCvModal(); return false;" aria-label="View or Download Victor's Resume CV">View/Download CV</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-right-inner">
-      <img class="hero-prof" src="assets/1.jpeg" alt="Victor Kipruto Rop" loading="lazy" decoding="async"/>
-      <div class="hero-sub">
-        <div class="hero-social">
-          <a class="social-link" href="mailto:kiprutovictor39@gmail.com" aria-label="Email" title="Email">
-            <span class="social-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><path d="M125.4 128C91.5 128 64 155.5 64 189.4C64 190.3 64 191.1 64.1 192L64 192L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 192L575.9 192C575.9 191.1 576 190.3 576 189.4C576 155.5 548.5 128 514.6 128L125.4 128zM528 256.3L528 448C528 456.8 520.8 464 512 464L128 464C119.2 464 112 456.8 112 448L112 256.3L266.8 373.7C298.2 397.6 341.7 397.6 373.2 373.7L528 256.3zM112 189.4C112 182 118 176 125.4 176L514.6 176C522 176 528 182 528 189.4C528 193.6 526 197.6 522.7 200.1L344.2 335.5C329.9 346.3 310.1 346.3 295.8 335.5L117.3 200.1C114 197.6 112 193.6 112 189.4z"/></svg>
-            </span>
-          </a>
-          <a class="social-link" href="tel:+254723484552" aria-label="Phone" title="Call">
-            <span class="social-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.21z"/></svg>
-            </span>
-          </a>
-          <a class="social-link" href="https://www.linkedin.com/in/victor-kipruto-rop" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
-            <span class="social-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg>
-            </span>
-          </a>
-          <a class="social-link" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-            <span class="social-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:18px;height:18px;fill:currentColor;display:block" aria-hidden="true"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg>
-            </span>
-          </a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1949,17 +1911,17 @@
 
     <div class="projects-grid" id="projects-grid">
 
-      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Kenyan Market ETL Pipeline', desc: 'Idempotent upsert pipeline with custom deduplication logic that aggregates conflicting records instead of dropping them. 38/38 passing unit tests, CI on Python 3.8–3.11, and a Grafana-connected PostgreSQL output layer for live market data dashboards.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Grafana', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
-        <img class="project-thumb" src="assets/images/2.jpeg" alt="Kenyan Market ETL Pipeline thumbnail" />
+      <div class="project-card reveal" style="transition-delay:0.08s" onclick="openProjectModal({title: 'Cloud ETL Pipeline', desc: 'Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'})">
+        <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL Pipeline thumbnail" />
         <div class="project-content">
-          <p class="project-title">Kenyan Market ETL Pipeline</p>
-          <p class="project-desc">An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.</p>
+          <p class="project-title">Cloud ETL Pipeline</p>
+          <p class="project-desc">Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.</p>
           <div class="project-stack">
             <span class="stack-badge">Python</span>
             <span class="stack-badge">Pandas</span>
             <span class="stack-badge">PostgreSQL</span>
             <span class="stack-badge">SQLAlchemy</span>
-            <span class="stack-badge">Grafana</span>
+            <span class="stack-badge">Docker</span>
             <span class="stack-badge">Pytest</span>
             <span class="stack-badge">GitHub Actions</span>
           </div>
@@ -2011,25 +1973,7 @@
         </div>
       </div>
 
-      <div class="project-card reveal" style="transition-delay:0.32s" onclick="openProjectModal({title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and switching to 5,000-row batch execution, with Extract/Transform/Load separated into independent Docker microservices.', stack: ['Python', 'Docker', 'AWS S3', 'PostgreSQL', 'SQLAlchemy'], img: 'assets/images/2.jpeg', view: ''})">
-        <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL Ingestion Pipeline thumbnail" />
-        <div class="project-content">
-          <p class="project-title">Cloud ETL Ingestion Pipeline</p>
-          <p class="project-desc">Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.</p>
-          <div class="project-stack">
-            <span class="stack-badge">Python</span>
-            <span class="stack-badge">Docker</span>
-            <span class="stack-badge">AWS S3</span>
-            <span class="stack-badge">PostgreSQL</span>
-            <span class="stack-badge">SQLAlchemy</span>
-          </div>
-          <div class="project-actions">
-            <span class="btn-sm btn-outline" style="cursor:default;">Private Repository</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal" style="transition-delay:0.4s" onclick="openProjectModal({title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''})">
+      <div class="project-card reveal" style="transition-delay:0.32s" onclick="openProjectModal({title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''})">
         <img class="project-thumb" src="assets/images/3.jpeg" alt="End-to-End SQL Pipeline Portfolio thumbnail" />
         <div class="project-content">
           <p class="project-title">End-to-End SQL Pipeline Portfolio</p>
@@ -2043,6 +1987,36 @@
           </div>
           <div class="project-actions">
             <span class="btn-sm btn-outline" style="cursor:default;">Private Repository</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.4s" onclick="openProjectModal({title: 'Streaming Pipeline', desc: 'A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.', stack: ['Python'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/streaming-pipeline'})">
+        <img class="project-thumb" src="assets/images/4.jpeg" alt="Streaming Pipeline thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Streaming Pipeline</p>
+          <p class="project-desc">A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/streaming-pipeline" target="_blank" rel="noopener">View</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/streaming-pipeline" target="_blank" rel="noopener">Readme</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.48s" onclick="openProjectModal({title: 'Early Portfolio Site', desc: 'My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.', stack: ['Python'], img: 'assets/images/5.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio'})">
+        <img class="project-thumb" src="assets/images/5.jpeg" alt="Early Portfolio Site thumbnail" />
+        <div class="project-content">
+          <p class="project-title">Early Portfolio Site</p>
+          <p class="project-desc">My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Python</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-sm btn-primary-sm" href="https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio" target="_blank" rel="noopener">View</a>
+            <a class="btn-sm btn-outline" href="https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio" target="_blank" rel="noopener">Readme</a>
           </div>
         </div>
       </div>
@@ -2112,33 +2086,51 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div>
-      <a href="index.html" class="footer-wordmark">Victor Kipruto Rop</a>
-      <p class="footer-tagline">Data Engineer building reconciliation systems, streaming pipelines, and reliable data infrastructure.</p>
-      <div class="footer-status"><span class="footer-status-dot"></span> Open to Data Engineering internships</div>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <p class="footer-logo">Victor Kipruto Rop</p>
+      <p class="footer-tagline">Data engineer building real-time reconciliation and streaming infrastructure for East African FinTech.</p>
+      <div class="footer-status"><span class="dot"></span>Open to internships &amp; collaboration</div>
     </div>
-    <div>
-      <p class="footer-links-label">Quick Links</p>
-      <nav class="footer-links" aria-label="Footer quick links">
-        <a href="blog.html">Technical Blog</a>
+    <div class="footer-col">
+      <p class="footer-links-label">Explore</p>
+      <nav class="footer-links" aria-label="Footer explore links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
         <a href="how-i-work.html">How I Work</a>
+        <a href="blog.html">Technical Blog</a>
+      </nav>
+    </div>
+    <div class="footer-col">
+      <p class="footer-links-label">Resources</p>
+      <nav class="footer-links" aria-label="Footer resource links">
         <a href="github-activity.html">GitHub Activity</a>
         <a href="top-repositories.html">Top Repositories</a>
+        <a href="#skills">Technical Skills</a>
+        <a href="#send-message">Get in Touch</a>
       </nav>
     </div>
-    <div>
+    <div class="footer-col">
       <p class="footer-links-label">Connect</p>
-      <nav class="footer-links" aria-label="Footer social links">
-        <a href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://www.linkedin.com/in/victor-kipruto-rop" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="mailto:kiprutovictor39@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-      </nav>
+      <div class="footer-social">
+        <a class="footer-social-icon" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg>
+        </a>
+        <a class="footer-social-icon" href="https://www.linkedin.com/in/victor-kipruto-rop" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg>
+        </a>
+        <a class="footer-social-icon" href="mailto:kiprutovictor39@gmail.com" aria-label="Email" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M125.4 128C91.5 128 64 155.5 64 189.4C64 190.3 64 191.1 64.1 192L64 192L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 192L575.9 192C575.9 191.1 576 190.3 576 189.4C576 155.5 548.5 128 514.6 128L125.4 128zM528 256.3L528 448C528 456.8 520.8 464 512 464L128 464C119.2 464 112 456.8 112 448L112 256.3L266.8 373.7C298.2 397.6 341.7 397.6 373.2 373.7L528 256.3zM112 189.4C112 182 118 176 125.4 176L514.6 176C522 176 528 182 528 189.4C528 193.6 526 197.6 522.7 200.1L344.2 335.5C329.9 346.3 310.1 346.3 295.8 335.5L117.3 200.1C114 197.6 112 193.6 112 189.4z"/></svg>
+        </a>
+        <a class="footer-social-icon" href="tel:+254723484552" aria-label="Phone" title="Call">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.21z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Victor Kipruto Rop. All rights reserved.</p>
-    <button type="button" class="footer-top-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top <i class="fas fa-arrow-up"></i></button>
+    <button type="button" class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Back to top ↑</button>
   </div>
 </footer>
 
@@ -2549,11 +2541,12 @@
     if(!grid) return;
     if(grid.children.length > 0) return; // already populated
     const staticProjects = [
-      { img: 'assets/images/2.jpeg', title: 'Kenyan Market ETL Pipeline', desc: 'An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.', stack: ['Python','Pandas','PostgreSQL','SQLAlchemy','Grafana','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
+      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Pipeline', desc: 'Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.', stack: ['Python','Pandas','PostgreSQL','SQLAlchemy','Docker','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
       { img: 'assets/images/3.jpeg', title: 'M-Pesa Airflow Transaction Pipeline', desc: 'DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command.', stack: ['Apache Airflow','Python','Faker','PostgreSQL','Docker Compose','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
       { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming System', desc: 'Kafka producer/consumer model for live transaction ingestion, with consumer-group design for horizontal scalability and exactly-once semantics to prevent double-counting, plus live Plotly visualisations rendered from the consumer layer in Jupyter.', stack: ['Apache Kafka','Python','Jupyter','Plotly','Docker Compose','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' },
-      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.', stack: ['Python','Docker','AWS S3','PostgreSQL','SQLAlchemy'], view: '' },
-      { img: 'assets/images/3.jpeg', title: 'End-to-End SQL Pipeline Portfolio', desc: 'Multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 on customer dimensions and recursive CTE queries surfacing revenue shifts, fraud signals, and retention metrics.', stack: ['Python','PostgreSQL','AWS S3','SQLAlchemy','SCD Type 2'], view: '' }
+      { img: 'assets/images/3.jpeg', title: 'End-to-End SQL Pipeline Portfolio', desc: 'Multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 on customer dimensions and recursive CTE queries surfacing revenue shifts, fraud signals, and retention metrics.', stack: ['Python','PostgreSQL','AWS S3','SQLAlchemy','SCD Type 2'], view: '' },
+      { img: 'assets/images/4.jpeg', title: 'Streaming Pipeline', desc: 'A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.', stack: ['Python'], view: 'https://github.com/Victor-Kipruto-Rop/streaming-pipeline' },
+      { img: 'assets/images/5.jpeg', title: 'Early Portfolio Site', desc: 'My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.', stack: ['Python'], view: 'https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio' }
     ];
     grid.innerHTML = '';
     staticProjects.forEach((p, idx) => {
@@ -2825,57 +2818,114 @@
       time: 'Jan 2026 - Feb 2026',
       category: 'Infrastructure & Automation',
       caseStudy: {
-        problem: 'Teams need to trust their data before they trust their dashboards. A pipeline that silently lets duplicate or malformed records through produces analytics nobody can rely on, and manual QA doesn\'t scale past a handful of source files.',
-        requirements: 'Reproducible runs regardless of environment, automatic detection of duplicate or invalid records before they reach a warehouse, and a pipeline that fails loudly rather than passing bad data downstream.',
-        architecture: 'A multi-stage ETL orchestrated by Apache Airflow DAGs, with each stage (generate → validate → deduplicate → load) built as a discrete, independently retryable task, containerised with Docker for environment parity between local development and CI.',
-        dataFlow: 'Synthetic source data is generated → ingested into staging → passed through a rule-based validation engine → deduplicated → loaded to its destination, with Airflow tracking task-level state and dependencies at every hop.',
-        techDecisions: 'Airflow for orchestration because the pipeline is genuinely multi-stage with real dependencies between steps, not a simple cron job. Docker so the exact same pipeline runs identically in CI as on a laptop. Pytest and GitHub Actions so validation-engine logic is tested on every push, not spot-checked manually.',
-        implementation: 'A rule-based validation engine checks each record against defined constraints before it\'s allowed downstream. Deduplication runs as its own DAG stage rather than being bolted onto ingestion, so it can be tested and reasoned about independently.',
-        dataQuality: 'Validation rules run before deduplication and before load. Bad records are caught at the earliest possible stage rather than being cleaned up after the fact.',
-        errorHandling: 'Airflow\'s task-level retry and failure states are used directly. A failed validation or load step fails that DAG run visibly instead of continuing silently with partial data.',
-        performance: 'Deduplication and validation are separate, composable stages precisely so each can be scaled or optimised independently as data volume grows, rather than needing to rewrite one monolithic transform step.',
-        observability: 'Airflow\'s UI provides task-level run history and logs for every stage, so a failure can be traced to the exact task and input batch that caused it.',
-        security: 'Runs are containerised and CI-gated, so no pipeline code reaches a trusted branch without first passing its automated test suite.',
-        results: 'A CI/CD-ready pipeline where every push is validated by Pytest through GitHub Actions before merge, with reproducible Docker-based runs removing "works on my machine" as a failure mode.',
-        lessonsLearned: 'Building the validation engine as its own testable stage, rather than inline checks scattered through ingestion code, made it far easier to add new rules later without risking regressions elsewhere in the pipeline.'
+        problem: 'Loading large CSV exports row-by-row into Postgres was slow enough to become a bottleneck, and a pipeline re-run after a partial failure risked producing duplicate or corrupted rows.',
+        requirements: 'Handle over a million records without exhausting memory, guarantee that a failed or re-run job never corrupts state, and cut load time meaningfully without sacrificing correctness.',
+        architecture: 'A Python pipeline using Pandas for transformation and SQLAlchemy for the PostgreSQL write layer, containerised with Docker.',
+        dataFlow: 'Source files → chunked reading with automatic encoding detection → Pandas cleaning and deduplication → idempotent batch upserts into PostgreSQL.',
+        techDecisions: 'Pandas for the transformation layer because vectorised operations made deduplication logic far simpler than row-by-row loops. Idempotent upserts, rather than plain inserts, specifically so a failed or re-run job can\'t corrupt state. That\'s what fault tolerance actually means in a batch pipeline like this. Docker so the pipeline runs identically in CI and production.',
+        implementation: 'Deduplication is implemented as an aggregation step, conflicting records are merged by a defined rule rather than one being silently dropped, and the whole write path is idempotent so re-running the pipeline never double-counts a row.',
+        dataQuality: 'Automatic encoding detection at the read stage catches malformed files before they reach the transform logic, and the deduplication/aggregation step prevents conflicting records from silently overwriting one another.',
+        errorHandling: 'Idempotent batch upserts mean a failed job can simply be re-run from the start without manual cleanup or risk of duplicated data.',
+        performance: 'Processed over 1.6 million records at roughly 70,000 rows/sec with peak memory held under 300MB, cutting full load time from 4 minutes to 45 seconds by moving from per-row inserts to batched execution with a tuned connection pool.',
+        observability: 'CI-gated test runs on every push mean regressions in the transformation or deduplication logic are caught before merge, not after deployment.',
+        security: 'Database credentials are handled through configuration rather than embedded in pipeline code.',
+        results: 'A fault-tolerant, idempotent ETL pipeline processing 1.6M+ records at ~70,000 rows/sec with load time cut from 4 minutes to 45 seconds.',
+        lessonsLearned: 'The real bottleneck wasn\'t reading or transforming the data. It was the insert pattern. Batching writes and making the pipeline idempotent had a far bigger impact on both reliability and speed than anything done to the read or transform stages.'
       }
     },
-    'Mpesa / Safaricom Pipeline': {
+    'M-Pesa Airflow Transaction Pipeline': {
       time: 'Nov 2025 - Dec 2025',
       category: 'FinTech Data Systems',
       caseStudy: {
-        problem: 'MPESA transaction exports arrive as large CSV/JSON files too big to load into memory at once, and naive row-by-row inserts into Postgres are far too slow to keep up with real transaction volumes.',
-        requirements: 'Ingest large export files without exhausting memory, guarantee no transaction is recorded twice, and write to Postgres fast enough that ingestion doesn\'t become the bottleneck.',
-        architecture: 'A Python ingestion layer reads exports in fixed-size chunks rather than loading the whole file, deduplicates against existing records, and writes through a pooled set of Postgres connections rather than opening a new connection per batch.',
-        dataFlow: 'Export file → chunked reader → in-memory dedup check per chunk → batch-formatted insert → connection pool → Postgres, chunk by chunk until the file is exhausted.',
-        techDecisions: 'Chunked reads instead of loading the full file, because export sizes can exceed available memory. Connection pooling instead of per-batch connections, because connection setup/teardown overhead dominates at scale. Batch inserts instead of row-by-row, because round-trips are the real cost, not the data itself.',
-        implementation: 'Deduplication logic runs on transaction reference IDs before a chunk is committed, so the same export re-run twice doesn\'t double-count transactions.',
-        dataQuality: 'Transaction-level integrity checks confirm required fields are present and well-formed before a record is allowed into a batch insert.',
-        errorHandling: 'A malformed record within a chunk is isolated and logged rather than failing the entire chunk, so one bad row doesn\'t block the rest of a large file from loading.',
-        performance: 'Chunked reads keep memory usage flat regardless of file size, and batch inserts through a connection pool trade a small amount of per-record latency for dramatically higher overall throughput.',
-        observability: 'Each chunk\'s outcome (rows read, deduplicated, inserted, rejected) is logged, giving a clear per-file audit trail of exactly what happened during a given ingestion run.',
-        security: 'Connection pool credentials are handled outside application code, and only well-formed, validated records ever reach a write operation against the database.',
-        results: 'A pipeline able to ingest large MPESA export files without memory pressure, with deduplication and batch inserts removing both double-counted transactions and the round-trip overhead of row-by-row writes.',
-        lessonsLearned: 'The real bottleneck wasn\'t data volume. It was connection overhead. Pooling connections had a bigger impact on throughput than any amount of query micro-optimisation.'
+        problem: 'Testing an M-Pesa ingestion pipeline against real transaction data isn\'t practical or safe. It needs realistic-looking test data without ever touching actual customer records.',
+        requirements: 'A synthetic data generator realistic enough to exercise real edge cases, a cleaning pipeline configurable without code changes, and a stack that runs identically for every contributor and in CI.',
+        architecture: 'Airflow DAGs orchestrate a configurable synthetic data generator (Faker) into a multi-stage, config-driven cleaning pipeline, writing to PostgreSQL, all fully containerised via Docker Compose.',
+        dataFlow: 'Faker generates synthetic M-Pesa-style transactions with realistic Kenyan phone number distributions → an Airflow DAG stages clean and validate the data → cleaned records land in PostgreSQL.',
+        techDecisions: 'Faker over hand-written fixtures because realistic phone number and transaction distributions catch edge cases fixed test data wouldn\'t. A config-driven cleaning pipeline over hardcoded rules so cleaning logic can change without touching pipeline code. Docker Compose so the whole Airflow + PostgreSQL stack starts identically for any contributor or CI run.',
+        implementation: 'The cleaning pipeline reads its rules from configuration, so stages like field normalisation and validation are driven by config files rather than being hardcoded into DAG tasks.',
+        dataQuality: 'Multi-stage cleaning validates each transformation before the next stage runs, and the generated data\'s realistic phone number distributions mean tests exercise genuine edge cases.',
+        errorHandling: 'Airflow\'s task-level retry and failure states apply to each cleaning stage independently, so one bad batch doesn\'t require rerunning the whole DAG.',
+        performance: 'Containerised, reproducible runs mean performance characteristics stay consistent between a contributor\'s laptop and CI, not something that only shows up in production.',
+        observability: 'Pytest coverage plus GitHub Actions CI mean pipeline correctness is checked automatically on every push, not just spot-checked manually.',
+        security: 'Fully synthetic data means the pipeline can be developed, tested, and demoed without ever touching real customer transaction data.',
+        results: 'A fully containerised, reproducible Airflow + PostgreSQL stack with config-driven cleaning and realistic synthetic test data.',
+        lessonsLearned: 'Investing in a realistic synthetic data generator upfront paid off more than expected. Most of the genuinely interesting edge cases in the cleaning pipeline were found via Faker-generated data, not by staring at the code.'
       }
     },
-    'Real-Time Transaction Streaming (MPESA)': {
+    'Real-Time Transaction Streaming System': {
       time: 'Dec 2025 - Jan 2026',
       category: 'FinTech Streaming Architecture',
       caseStudy: {
-        problem: 'Batch ingestion (as in the earlier MPESA pipeline) means fraud and anomalies are only visible after the fact. By the time a batch job runs, a fraudulent pattern has already had hours to play out.',
-        requirements: 'Sub-second visibility from a Daraja webhook event to an analytics-ready record; a pipeline that scales horizontally as event volume grows rather than needing a rewrite; infrastructure that\'s reproducible, not hand-configured.',
-        architecture: 'Daraja webhooks are ingested into Kafka topics, processed by Flink for stateful stream processing, modelled with dbt, and written to both PostgreSQL (operational) and BigQuery (analytical) stores. Airflow orchestrates the batch/dbt side, Grafana handles monitoring, and Terraform provisions the infrastructure as code.',
-        dataFlow: 'Daraja webhook → Kafka producer → Kafka topic → Flink stream processing job → dual-write to PostgreSQL and BigQuery → dbt models transform the BigQuery side into analytics-ready tables → Grafana dashboards read the result.',
-        techDecisions: 'Kafka as the ingestion backbone because it decouples producers from consumers and buffers bursts in webhook traffic. Flink over simpler stream processing because it supports the stateful, windowed logic fraud detection needs. dbt so transformation logic is version-controlled SQL, not buried in scripts. Terraform so the whole stack can be rebuilt identically rather than depending on manually-clicked cloud console configuration.',
-        implementation: 'A distributed Kafka-Flink pipeline processes Daraja webhook events as they arrive, with dbt models handling the transformation layer once data lands in BigQuery.',
-        dataQuality: 'dbt\'s testing framework validates model assumptions (uniqueness, not-null, referential checks) on every run, so a broken upstream assumption is caught in the transformation layer rather than silently propagating into a dashboard.',
-        errorHandling: 'Flink\'s stateful processing model allows the pipeline to track and recover from processing failures at the event level rather than needing to reprocess an entire batch.',
-        performance: 'The Kafka-Flink combination was specifically chosen to hit sub-second end-to-end latency from webhook receipt to processed record, rather than the minutes-to-hours latency of the earlier batch-based pipeline.',
-        observability: 'Grafana dashboards provide real-time visibility into pipeline health and throughput, so a slowdown or backlog is visible immediately rather than discovered only when a downstream report looks wrong.',
-        security: 'Infrastructure is provisioned through Terraform rather than manual cloud console changes, so access and configuration are version-controlled and auditable rather than tribal knowledge.',
-        results: 'Achieved sub-second end-to-end latency from webhook to processed record, with automated fraud-monitoring signals now running on live rather than batch-delayed data.',
-        lessonsLearned: 'Moving from the earlier batch MPESA pipeline to this streaming architecture made clear how much fraud detection specifically depends on latency. The same detection logic is far less useful run against data that\'s already hours old.'
+        problem: 'A single consumer processing a transaction stream becomes a throughput ceiling, and without exactly-once guarantees, consumer restarts or rebalances risk double-counting transactions.',
+        requirements: 'Horizontal scalability on the consumer side, exactly-once processing semantics, and low-latency real-time aggregation visible as it happens.',
+        architecture: 'A Kafka producer/consumer model with consumer-group design, feeding real-time aggregation logic visualised live via Plotly inside Jupyter, running in a Docker Compose stack.',
+        dataFlow: 'Producer publishes transaction events to a Kafka topic → a consumer group processes partitions in parallel → real-time aggregation logic updates running totals → Plotly renders live visualisations inside a Jupyter notebook.',
+        techDecisions: 'Kafka\'s consumer-group model chosen specifically for horizontal scalability. Adding consumers increases throughput without redesigning the pipeline. Exactly-once semantics implemented deliberately rather than accepting at-least-once delivery, since double-counted transactions would corrupt aggregates. Jupyter + Plotly for visualisation because it made iterating on the aggregation logic and immediately seeing the result the fastest feedback loop.',
+        implementation: 'Exactly-once semantics are enforced at the consumer level so a rebalance or restart can\'t cause a transaction to be counted twice in the aggregate.',
+        dataQuality: 'Exactly-once processing is itself a data-quality guarantee. It\'s the difference between an aggregate you can trust and one that silently drifts upward every time a consumer restarts.',
+        errorHandling: 'Consumer-group rebalancing is handled as a normal operational event, not a failure mode, since exactly-once semantics mean a rebalance can\'t corrupt in-flight aggregation state.',
+        performance: 'Consumer-group parallelism is what actually delivers low-latency throughput at scale. A single consumer would cap throughput regardless of how optimised its processing logic was.',
+        observability: 'Live Plotly visualisations inside Jupyter mean aggregation behaviour is visible in real time during development, not just inferred from logs after the fact.',
+        security: 'Runs inside an isolated Docker Compose network, with topic-level access scoped to only the producer and consumer-group services that need it.',
+        results: 'A horizontally scalable consumer-group architecture with exactly-once semantics and live real-time aggregation visualisation.',
+        lessonsLearned: 'Exactly-once semantics are far easier to design in from the start than to retrofit. Once an aggregate can silently double-count under a specific failure condition, finding every place that assumption leaked in is much harder than building it in correctly the first time.'
+      }
+    },
+    'End-to-End SQL Pipeline Portfolio': {
+      time: '2026',
+      category: 'Data Warehousing & Analytics',
+      caseStudy: {
+        problem: 'A single flat table can\'t answer "what did this customer\'s profile look like at the time of this transaction" once that customer\'s attributes have changed since. Historical state gets lost.',
+        requirements: 'Preserve full historical change timelines for customer dimensions, not just current state; support genuinely cross-platform analytical questions; and structure data so complex queries are tractable rather than requiring ad-hoc joins across raw tables.',
+        architecture: 'A multi-tier data lake pattern. CSV staging in S3, OLTP-style models for transactional accuracy, then a star schema warehouse in PostgreSQL for analytical querying.',
+        dataFlow: 'Raw CSVs staged in S3 → loaded into OLTP-style models via SQLAlchemy → transformed into a star schema warehouse, with SCD Type 2 applied specifically to customer dimension changes → analytical queries run against the warehouse.',
+        techDecisions: 'SCD Type 2 (versioned rows with valid-from/valid-to ranges) over simply overwriting dimension values, because the whole point of the warehouse was to answer historical questions correctly, not just reflect current state. Recursive CTEs over application-side loops for hierarchical/sequential analysis, since the database is far better positioned to do that work set-based than Python is row-by-row.',
+        implementation: 'Customer dimension changes are captured with SCD Type 2 versioning, so a query against any historical date returns the customer\'s attributes as they actually were at that time, not as they are now.',
+        dataQuality: 'The star schema\'s fact/dimension separation, combined with SCD Type 2 on dimensions, means historical queries are correct by construction rather than depending on the analyst remembering that "current state" doesn\'t equal "state at the time."',
+        errorHandling: 'Staging data in S3 before it touches the OLTP or warehouse layers means a bad load can be re-run from the staged source without re-extracting from the original files.',
+        performance: 'Recursive CTEs push sequential/hierarchical analysis down into PostgreSQL\'s query engine, which is materially faster than pulling data out and looping over it in application code.',
+        observability: 'The multi-tier structure (staging → OLTP → warehouse) means a data quality issue can be isolated to a specific tier rather than requiring a full end-to-end investigation.',
+        security: 'S3 staging and the warehouse layer use separate access scopes, so credentials for raw file staging don\'t also grant access to the modelled warehouse.',
+        results: 'A working star schema warehouse with SCD Type 2 customer history and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.',
+        lessonsLearned: 'SCD Type 2 is more upfront modelling work than just overwriting rows, but it\'s the difference between a warehouse that can actually answer "why did this change" questions and one that can only ever describe the present.'
+      }
+    },
+    'Streaming Pipeline': {
+      time: '2026',
+      category: 'Real-Time Data Systems',
+      caseStudy: {
+        problem: 'Continuous data streams need to be ingested and analysed as they arrive, not batched and processed after the fact.',
+        requirements: 'Scalable ingestion that keeps up with a continuous stream, a processing layer that transforms data in near real time, and analytics that stay current with incoming data rather than lagging behind it.',
+        architecture: 'A Python-based streaming pipeline covering ingestion, processing, transformation, and analytics as distinct stages for continuous data streams.',
+        dataFlow: 'Continuous stream ingested → processed and transformed in near real time → surfaced for analytics.',
+        techDecisions: 'Python across all four stages (ingestion, processing, transformation, analytics) to keep the pipeline maintainable as one coherent codebase rather than mixing languages across stages.',
+        implementation: 'The pipeline is structured as four distinct stages so continuous data keeps moving through it without needing to be captured and processed in discrete batches.',
+        dataQuality: 'Processing and transformation are kept as separate stages specifically so data can be validated and shaped before it reaches the analytics layer.',
+        errorHandling: 'Stage separation means an issue in one part of the pipeline, like transformation, doesn\'t require rebuilding the ingestion or processing logic to fix.',
+        performance: 'Built specifically for scalable ingestion of continuous streams, rather than for one-off batch loads.',
+        observability: 'The staged architecture makes it possible to inspect data at each point in the pipeline rather than only at the final output.',
+        security: 'As an exploratory project, security wasn\'t the primary focus. The emphasis was on getting a working streaming architecture end to end.',
+        results: 'A working end-to-end streaming pipeline covering ingestion through analytics for continuous data streams.',
+        lessonsLearned: 'Structuring the pipeline as four explicit stages, rather than one continuous script, made it much easier to reason about where in the pipeline a given piece of data actually was at any point in time.'
+      }
+    },
+    'Early Portfolio Site': {
+      time: 'Earlier project',
+      category: 'Personal Site',
+      caseStudy: {
+        problem: 'Early on, I needed a public, deployable showcase of my work. Without one, there was no way for anyone outside a direct conversation to see what I\'d actually built.',
+        requirements: 'Something realistic to ship solo, host for free, and iterate on as my skill set and project list grew.',
+        architecture: 'A personal portfolio site built and published under my earlier GitHub handle, before I consolidated my work under this account.',
+        dataFlow: 'Not applicable. This was a personal site project, not a data pipeline.',
+        techDecisions: 'Kept the stack simple and shippable rather than reaching for infrastructure I hadn\'t yet needed to learn. The goal was getting something real online, not demonstrating every tool at once.',
+        implementation: 'Built and iterated on solo, as my first real public-facing project.',
+        dataQuality: 'Not applicable to a personal site project.',
+        errorHandling: 'Not applicable to a personal site project.',
+        performance: 'Not a focus area. The goal was existing online, not optimisation.',
+        observability: 'Not applicable to a personal site project.',
+        security: 'Not applicable to a personal site project.',
+        results: '19 stars and 1 fork on a project with no promotion behind it. Modest but genuine external interest in an early personal site.',
+        lessonsLearned: 'Building this first version directly informed decisions in my current portfolio. From picking a maintainable content structure to being deliberate about what a portfolio should actually communicate to a visitor, rather than just listing tools.'
       }
     }
   };
@@ -2981,11 +3031,12 @@
   // Skill Modal Management
   const projectLookup = {
     'PesaGuard': {title: 'PesaGuard', desc: 'Real-time M-Pesa reconciliation and anomaly detection SaaS for Kenyan SACCOs, e-commerce operators, and small fintechs, built on a Flask backend and Next.js 14 frontend.', stack: ['Flask', 'Python', 'Next.js', 'PostgreSQL', 'Daraja API'], img: 'assets/images/5.jpeg', view: ''},
-    'Kenyan Market ETL Pipeline': {title: 'Kenyan Market ETL Pipeline', desc: 'An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Grafana', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
+    'Cloud ETL Pipeline': {title: 'Cloud ETL Pipeline', desc: 'Processed 1.6M+ records at ~70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Idempotent batch upserts and aggregation-based deduplication give the pipeline fault tolerance, cutting full load time from 4 minutes to 45 seconds.', stack: ['Python', 'Pandas', 'PostgreSQL', 'SQLAlchemy', 'Docker', 'Pytest', 'GitHub Actions'], img: 'assets/images/2.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline'},
     'M-Pesa Airflow Transaction Pipeline': {title: 'M-Pesa Airflow Transaction Pipeline', desc: 'DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command.', stack: ['Apache Airflow', 'Python', 'Faker', 'PostgreSQL', 'Docker Compose', 'Pytest', 'GitHub Actions'], img: 'assets/images/3.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-'},
     'Real-Time Transaction Streaming System': {title: 'Real-Time Transaction Streaming System', desc: 'A Kafka producer/consumer model for live transaction ingestion with real-time aggregation and low-latency throughput, consumer-group design for horizontal scalability, exactly-once semantics to prevent double-counting, and live Plotly visualisations inside Jupyter.', stack: ['Apache Kafka', 'Python', 'Jupyter', 'Plotly', 'Docker Compose', 'GitHub Actions'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-'},
-    'Cloud ETL Ingestion Pipeline': {title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and switching to 5,000-row batch execution.', stack: ['Python', 'Docker', 'AWS S3', 'PostgreSQL', 'SQLAlchemy'], img: 'assets/images/2.jpeg', view: ''},
-    'End-to-End SQL Pipeline Portfolio': {title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''}
+    'End-to-End SQL Pipeline Portfolio': {title: 'End-to-End SQL Pipeline Portfolio', desc: 'A multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 deployed on customer dimensions to preserve full historical change timelines, and recursive CTE queries surfacing cross-platform revenue shifts, fraud signals, and retention metrics.', stack: ['Python', 'PostgreSQL', 'AWS S3', 'SQLAlchemy', 'SCD Type 2'], img: 'assets/images/3.jpeg', view: ''},
+    'Streaming Pipeline': {title: 'Streaming Pipeline', desc: 'A real-time data streaming pipeline for scalable ingestion, processing, transformation, and analytics of continuous data streams.', stack: ['Python'], img: 'assets/images/4.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/streaming-pipeline'},
+    'Early Portfolio Site': {title: 'Early Portfolio Site', desc: 'My first public portfolio project, built under an earlier GitHub handle before consolidating my work under this account.', stack: ['Python'], img: 'assets/images/5.jpeg', view: 'https://github.com/Victor-Kipruto-Rop/kipruto45-victor-kipruto-rop-portfolio'}
   };
 
   const skillData = {
@@ -2997,7 +3048,7 @@
     'ETL Design': {
       why: "A pipeline is only as trustworthy as its weakest transformation step. I design each stage to be testable and reversible in isolation.",
       where: "Structuring the ingestion-to-warehouse flow so validation and deduplication run as separate, composable stages rather than one monolithic transform.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'DAG Management': {
       why: "Explicit task dependencies make failure modes predictable. I'd rather see a DAG fail loudly at the right node than silently pass bad data downstream.",
@@ -3057,12 +3108,12 @@
     'Docker': {
       why: "\"Works on my machine\" isn't an acceptable failure mode. Containerizing a pipeline means CI runs the exact same environment as my laptop.",
       where: "Separating Extract, Transform, and Load into independent Docker microservices with exponential-backoff retry on transient failures.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'GitHub Actions': {
       why: "Tests that only run when I remember to run them aren't really tests. CI makes validation non-optional.",
       where: "Gating every push with an automated Pytest suite before code reaches a trusted branch.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Pytest': {
       why: "Data engineering code fails silently more often than it crashes loudly. A real test suite is what catches that before production does.",
@@ -3072,7 +3123,7 @@
     'CI/CD Pipelines': {
       why: "Frequent, low-risk deploys beat rare, high-risk ones. Automation is what makes that trade-off possible.",
       where: "Automating the build-test-deploy flow for the ETL pipeline via GitHub Actions.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Python': {
       why: "Python is where I express most of my engineering logic. From ingestion scripts to reconciliation engines to test suites.",
@@ -3087,12 +3138,12 @@
     'PostgreSQL': {
       why: "I default to Postgres because its reliability and tooling let me spend time on the data model, not fighting the database.",
       where: "Tuning connection pooling and batch execution size to cut a 1.6M+ row load from 4 minutes down to 45 seconds.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Git': {
       why: "A clean commit history is documentation. I use branching and commit discipline so the reasoning behind a change is never lost.",
       where: "Managing version control and collaborative workflows across every project in this portfolio.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Docker Compose': {
       why: "Local development should mirror production topology. Compose lets me spin up the full multi-service stack with one command.",
@@ -3102,32 +3153,32 @@
     'MySQL': {
       why: "Being fluent across both PostgreSQL and MySQL means I'm not locked into one vendor's quirks when a team already has infrastructure decisions made.",
       where: "Applying relational database fundamentals, schema design, window functions, and complex CTEs, interchangeably across PostgreSQL and MySQL.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Shell / Bash': {
       why: "Automation lives in the shell. CI steps, container entrypoints, and quick data checks all start with a script, not a GUI.",
       where: "Scripting CI/CD automation steps and container orchestration commands across every pipeline project.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'AWS (S3, EC2)': {
       why: "Cloud-native storage and compute are the default for production data infra. S3 for durable object storage, EC2 when I need control over the runtime.",
       where: "Using S3 as the ingestion source for a cloud-hosted pipeline processing 1.6M+ rows at 70,000 rows/sec.",
-      project: "Cloud ETL Ingestion Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Pandas': {
       why: "Pandas is where exploratory data wrangling happens fast. Before a transformation earns a permanent place in a pipeline, I prototype it in a DataFrame.",
       where: "Writing the custom deduplication logic that aggregates quantities on conflicting records instead of dropping them.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'NumPy': {
       why: "Vectorized operations matter once a dataset gets large enough that a Python for-loop becomes the actual bottleneck.",
       where: "Supporting numerical operations underneath the Pandas-based transformation logic in the market data ETL pipeline.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'SQLAlchemy': {
       why: "An ORM layer means the same codebase can target different databases without rewriting every query by hand.",
       where: "Managing the PostgreSQL output layer and connection handling across the ETL pipeline's database interactions.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Faker': {
       why: "Testing a pipeline against realistic data, not just placeholder strings, catches edge cases that synthetic filler data never will.",
@@ -3137,7 +3188,7 @@
     'Grafana': {
       why: "A pipeline without a dashboard is a pipeline nobody's actually watching. Grafana turns pipeline output into something a team can monitor live.",
       where: "Connecting the PostgreSQL output layer to live operational dashboards tracking market data trends.",
-      project: "Kenyan Market ETL Pipeline"
+      project: "Cloud ETL Pipeline"
     },
     'Plotly': {
       why: "Interactive charts let you actually explore an anomaly instead of squinting at a static image.",
