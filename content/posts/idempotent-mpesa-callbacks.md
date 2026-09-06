@@ -28,4 +28,4 @@ RETURNING status;
 
 ## Conclusion
 
-Idempotency is both a design and operational concern. With a small set of patterns—durable keys, conditional updates, and clear status transitions—you can make Daraja callbacks safe to retry.
+Idempotency is both a design and operational concern. With a small set of patterns, durable keys, conditional updates, and clear status transitions, you can make Daraja callbacks safe to retry.

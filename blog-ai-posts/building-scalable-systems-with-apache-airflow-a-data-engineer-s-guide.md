@@ -1,6 +1,6 @@
 # Building Scalable Systems with Apache Airflow: A Data Engineer's Guide
 
-In data engineering, a pipeline that runs flawlessly with a few gigabytes of data will often break catastrophically when scaled to petabytes. As orchestration needs grow, Apache Airflow transitions from a simple cron-scheduler replacement into the critical backbone of your data infrastructure—but only if you design it to scale.
+In data engineering, a pipeline that runs flawlessly with a few gigabytes of data will often break catastrophically when scaled to petabytes. As orchestration needs grow, Apache Airflow transitions from a simple cron-scheduler replacement into the critical backbone of your data infrastructure. But only if you design it to scale.
 
 When I first started building data pipelines, Airflow seemed deceptively simple: write a few Python tasks, link them with `>>`, and let the scheduler do the work. However, as organizations scale, they inevitably face the "Airflow Wall." This is the point where the metadata database bottlenecks, workers run out of memory (OOM), DAG parsing latencies spike, and scheduler loops lag, turning a reliable orchestration tool into a source of constant production fires. 
 
@@ -264,7 +264,7 @@ To resolve this bottleneck, the data engineering team implemented **Building Sca
 
 ## Conclusion & Next Steps
 
-Scaling your Apache Airflow architecture doesn’t have to mean throwing more compute power at the problem. By structuring your pipelines around modern practices—such as dynamic task mapping, custom storage backends, and async operators—you can build an infrastructure capable of processing enterprise-grade data pipelines without breaking the bank.
+Scaling your Apache Airflow architecture doesn’t have to mean throwing more compute power at the problem. By structuring your pipelines around modern practices, such as dynamic task mapping, custom storage backends, and async operators, you can build an infrastructure capable of processing enterprise-grade data pipelines without breaking the bank.
 
 What scaling bottlenecks are you currently hitting in your data platforms? Are you looking to migrate from Celery to Kubernetes, or have you implemented a custom XCom backend? Let me know in the comments below, or connect with me to discuss design patterns!
 

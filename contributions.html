@@ -713,7 +713,7 @@
         case 'PushEvent':
           const commitCount = event.payload?.commits?.length || 1;
           const message = event.payload?.commits?.[0]?.message || 'pushed updates';
-          return `<a class="project-title" style="font-size: 0.85rem;" href="${repoUrl}" target="_blank" rel="noopener">Pushed ${commitCount} commit${commitCount > 1 ? 's' : ''} to ${repoName}</a> — <span style="color: var(--muted);">${message}</span>`;
+          return `<a class="project-title" style="font-size: 0.85rem;" href="${repoUrl}" target="_blank" rel="noopener">Pushed ${commitCount} commit${commitCount > 1 ? 's' : ''} to ${repoName}</a>: <span style="color: var(--muted);">${message}</span>`;
         case 'CreateEvent':
           return `<a class="project-title" style="font-size: 0.85rem;" href="${repoUrl}" target="_blank" rel="noopener">Created repository ${repoName}</a>`;
         case 'WatchEvent':
