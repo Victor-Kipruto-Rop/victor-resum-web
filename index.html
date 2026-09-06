@@ -894,35 +894,69 @@
 
   /* ── Footer ── */
   footer {
-    background: transparent; padding: 32px 72px;
+    position: relative;
+    background: var(--card); padding: 64px 72px 28px;
     border-top: 1px solid var(--rule);
-    display: flex; flex-direction: column; gap: 20px;
     color: var(--muted);
   }
-  .footer-top {
-    display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;
+  footer::before {
+    content: '';
+    position: absolute; top: -1px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
+    opacity: 0.6;
+  }
+  .footer-inner {
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 48px;
+    padding-bottom: 40px; margin-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .footer-wordmark {
+    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+    color: var(--ink); text-decoration: none; display: inline-block; margin-bottom: 12px;
+    transition: color 0.2s ease;
+  }
+  .footer-wordmark:hover { color: var(--accent); }
+  .footer-tagline { font-size: 13px; line-height: 1.7; color: var(--muted); max-width: 34ch; margin-bottom: 16px; }
+  .footer-status { display: flex; align-items: center; gap: 8px; font-family: 'Fira Code', monospace; font-size: 11.5px; color: var(--ink); }
+  .footer-status-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #2ecc71; flex-shrink: 0;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #2ecc71 25%, transparent);
   }
   .footer-links-label {
     font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.08em;
-    color: var(--muted); text-transform: uppercase; margin-bottom: 12px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 14px;
   }
-  .footer-links {
-    display: flex; flex-direction: column; gap: 10px;
-  }
+  .footer-links { display: flex; flex-direction: column; gap: 11px; align-items: flex-start; }
   .footer-links a {
+    position: relative; width: fit-content; padding-bottom: 2px;
     font-family: 'Fira Code', monospace; font-size: 13px;
     color: var(--ink); text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    display: flex; align-items: center; gap: 8px;
   }
-  .footer-links a:hover { color: var(--accent); border-color: var(--accent); }
+  .footer-links a::after {
+    content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px;
+    background: var(--accent); transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-links a:hover::after { width: 100%; }
+  .footer-links a i { color: var(--accent); font-size: 12px; width: 14px; text-align: center; flex-shrink: 0; }
   .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 16px; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
   }
+  .footer-top-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; cursor: pointer; padding: 0;
+    font-family: 'Fira Code', monospace; font-size: 11px; color: var(--muted);
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .footer-top-link:hover { color: var(--accent); transform: translateY(-2px); }
+  .footer-top-link i { font-size: 10px; }
   footer p {
     font-family: 'Fira Code', monospace; font-size: 11px;
     color: var(--muted); letter-spacing: 0.08em; margin: 0;
+  }
+  @media (max-width: 900px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   }
 
   /* ── Animations ── */
@@ -947,9 +981,7 @@
     .contact-layout { gap: 48px; }
     .hero-photo, .about-photo { width: 100%; height: auto; aspect-ratio: 4/5; }
     .about-photo-wrap::before { display: none; }
-    footer { padding: 24px; }
-    .footer-top { flex-direction: column; gap: 20px; text-align: left; align-items: flex-start; }
-    .footer-links { align-items: flex-start; }
+    footer { padding: 40px 24px 24px; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     .contact-row { flex-direction: column; }
   }
@@ -1503,7 +1535,7 @@
     <h1 class="hero-name" id="hero-name">Victor Kipruto Rop</h1>
     <p class="hero-title">Data Engineer · Pipeline Architect · Data Architect</p>
     <p class="hero-desc">
-      Building production-grade data systems that scale — from Kafka streams to Airflow orchestration. Experienced in designing reliable ETL, low-latency streaming, and warehouse modelling. Based in Nairobi, Kenya.
+      Building production-grade data systems that scale. From Kafka streams to Airflow orchestration. Experienced in designing reliable ETL, low-latency streaming, and warehouse modelling. Based in Nairobi, Kenya.
     </p>
     <div class="hero-cta">
       <a class="btn-primary magnetic" href="#projects">View Projects</a>
@@ -1582,7 +1614,7 @@
         My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
       </p>
       <p class="about-body">
-        Outside of building pipelines, I'm drawn to the growing data ecosystem across East Africa and the opportunity to work on infrastructure that has real operational impact — whether in aviation safety, energy, or financial services.
+        Outside of building pipelines, I'm drawn to the growing data ecosystem across East Africa and the opportunity to work on infrastructure that has real operational impact. Whether in aviation safety, energy, or financial services.
       </p>
       <div class="about-facts">
         <div class="about-fact">
@@ -1621,7 +1653,7 @@
       <div class="experience-card">
         <div class="experience-header">
           <div>
-            <h3 class="experience-title">PesaGuard — FinTech Reconciliation Platform</h3>
+            <h3 class="experience-title">PesaGuard: FinTech Reconciliation Platform</h3>
             <p class="experience-company">Independent Product · Live Pilot</p>
           </div>
           <span class="experience-date">2026 – Ongoing</span>
@@ -1632,7 +1664,7 @@
         </div>
         <div class="experience-subsection">
           <p class="experience-subsection-label">What problem I solved</p>
-          <p class="experience-subsection-text">Kenyan SACCOs, e-commerce operators, and small fintechs had no reliable way to reconcile M-Pesa payments against their own ledgers — it was typically a manual, end-of-day spreadsheet exercise. Worse, Safaricom retries webhook deliveries, so duplicate transactions were a certainty, not an edge case, with nothing in place to catch them.</p>
+          <p class="experience-subsection-text">Kenyan SACCOs, e-commerce operators, and small fintechs had no reliable way to reconcile M-Pesa payments against their own ledgers. It was typically a manual, end-of-day spreadsheet exercise. Worse, Safaricom retries webhook deliveries, so duplicate transactions were a certainty, not an edge case, with nothing in place to catch them.</p>
         </div>
         <div class="experience-subsection">
           <p class="experience-subsection-label">Technologies</p>
@@ -1646,7 +1678,7 @@
         </div>
         <div class="experience-subsection">
           <p class="experience-subsection-label">Impact</p>
-          <p class="experience-subsection-text">Live in production with one pilot customer processing real M-Pesa transactions. Shipped webhook idempotency — the highest-priority risk in the system — verified end-to-end across the reconciliation engine, so a retried or duplicate webhook can never be double-counted. Also produced a target-state architecture spec scoping the platform to 100M transactions/day.</p>
+          <p class="experience-subsection-text">Live in production with one pilot customer processing real M-Pesa transactions. Shipped webhook idempotency, the highest-priority risk in the system, verified end-to-end across the reconciliation engine, so a retried or duplicate webhook can never be double-counted. Also produced a target-state architecture spec scoping the platform to 100M transactions/day.</p>
         </div>
       </div>
     </div>
@@ -1883,7 +1915,7 @@
         </div>
 
         <div class="flagship-dashboard">
-          <div class="dashboard-status"><span class="dot"></span> PesaGuard Admin Dashboard — Product UI</div>
+          <div class="dashboard-status"><span class="dot"></span> PesaGuard Admin Dashboard: Product UI</div>
           <img src="assets/images/pesaguard-dashboard-ui.png" alt="PesaGuard admin dashboard: transactions processed, reconciliation match rate, open anomalies, system uptime, and live activity feed" loading="lazy" style="width:100%;height:auto;border-radius:var(--radius-sm);border:1px solid color-mix(in srgb, var(--fp-text) 14%, transparent);margin-bottom:16px;" />
           <p class="dashboard-caption">Screenshot of the actual PesaGuard admin dashboard interface. The product is currently live with one pilot customer; the activity and volume shown reflect the interface at target scale, not current production traffic.</p>
         </div>
@@ -1942,7 +1974,7 @@
         <img class="project-thumb" src="assets/images/3.jpeg" alt="M-Pesa Airflow Transaction Pipeline thumbnail" />
         <div class="project-content">
           <p class="project-title">M-Pesa Airflow Transaction Pipeline</p>
-          <p class="project-desc">DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command — CI runs at a 100% test pass rate gating all merges.</p>
+          <p class="project-desc">DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command. CI runs at a 100% test pass rate gating all merges.</p>
           <div class="project-stack">
             <span class="stack-badge">Apache Airflow</span>
             <span class="stack-badge">Python</span>
@@ -1963,7 +1995,7 @@
         <img class="project-thumb" src="assets/images/4.jpeg" alt="Real-Time Transaction Streaming System thumbnail" />
         <div class="project-content">
           <p class="project-title">Real-Time Transaction Streaming System</p>
-          <p class="project-desc">Kafka producer/consumer model for live transaction ingestion, with consumer-group design for horizontal scalability and exactly-once semantics to prevent double-counting — plus live Plotly visualisations rendered straight from the consumer layer in Jupyter.</p>
+          <p class="project-desc">Kafka producer/consumer model for live transaction ingestion, with consumer-group design for horizontal scalability and exactly-once semantics to prevent double-counting. Plus live Plotly visualisations rendered straight from the consumer layer in Jupyter.</p>
           <div class="project-stack">
             <span class="stack-badge">Apache Kafka</span>
             <span class="stack-badge">Python</span>
@@ -1983,7 +2015,7 @@
         <img class="project-thumb" src="assets/images/2.jpeg" alt="Cloud ETL Ingestion Pipeline thumbnail" />
         <div class="project-content">
           <p class="project-title">Cloud ETL Ingestion Pipeline</p>
-          <p class="project-desc">Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection — cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.</p>
+          <p class="project-desc">Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.</p>
           <div class="project-stack">
             <span class="stack-badge">Python</span>
             <span class="stack-badge">Docker</span>
@@ -2032,7 +2064,7 @@
   <div class="contact-layout">
     <div class="contact-intro">
       <p class="contact-lead">Have a data infrastructure problem worth solving? I'd like to hear about it.</p>
-      <p class="contact-sub">Whether it's a reconciliation system, a streaming pipeline, or an internship opportunity — send a message and I'll get back to you within 24 hours.</p>
+      <p class="contact-sub">Whether it's a reconciliation system, a streaming pipeline, or an internship opportunity. Send a message and I'll get back to you within 24 hours.</p>
       <div class="contact-meta">
         <span class="contact-status-dot"></span>
         <span>Open to Data Engineering internships</span>
@@ -2043,8 +2075,8 @@
     </div>
 
     <div class="contact-form-card">
-      <div data-fs-success class="fs-success" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">✓ Thanks — your message was sent.</div>
-      <div data-fs-error class="fs-error" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">⚠ Oops — there was an error. Please try again.</div>
+      <div data-fs-success class="fs-success" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">✓ Thanks. Your message was sent.</div>
+      <div data-fs-error class="fs-error" style="display:none; text-align:center; margin-bottom:12px;color:var(--accent)">⚠ Oops. There was an error. Please try again.</div>
       <form id="contact-form" class="contact-form" action="https://formspree.io/f/xkoagvvk" method="POST">
         <div class="contact-row">
           <div class="form-field">
@@ -2080,7 +2112,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-wordmark">Victor Kipruto Rop</a>
+      <p class="footer-tagline">Data Engineer building reconciliation systems, streaming pipelines, and reliable data infrastructure.</p>
+      <div class="footer-status"><span class="footer-status-dot"></span> Open to Data Engineering internships</div>
+    </div>
     <div>
       <p class="footer-links-label">Quick Links</p>
       <nav class="footer-links" aria-label="Footer quick links">
@@ -2093,14 +2130,15 @@
     <div>
       <p class="footer-links-label">Connect</p>
       <nav class="footer-links" aria-label="Footer social links">
-        <a href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/victor-kipruto-rop" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:kiprutovictor39@gmail.com">Email</a>
+        <a href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/victor-kipruto-rop" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="mailto:kiprutovictor39@gmail.com"><i class="fas fa-envelope"></i> Email</a>
       </nav>
     </div>
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Victor Kipruto Rop. All rights reserved.</p>
+    <button type="button" class="footer-top-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top <i class="fas fa-arrow-up"></i></button>
   </div>
 </footer>
 
@@ -2316,7 +2354,7 @@
   const fsError = document.querySelector('[data-fs-error]');
   const contactForm = document.getElementById('contact-form');
 
-  // Skills displayed as tag lists — no percentage fills. Skill-cards are already animated via the `.reveal` observer.
+  // Skills displayed as tag lists. No percentage fills. Skill-cards are already animated via the `.reveal` observer.
 
   // Fetch GitHub repos and render project cards dynamically
   function escapeHtml(str){ return str ? String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
@@ -2433,7 +2471,7 @@
           desc = p.replace(/[#_*`>-]/g,'').trim().slice(0,260);
           if(desc.length === 260) desc += '...';
         }
-        if(!desc) desc = `${r.name.replace(/[-_]/g,' ')} — ${toolsTrim.join(', ')}.`;
+        if(!desc) desc = `${r.name.replace(/[-_]/g,' ')}. ${toolsTrim.join(', ')}.`;
 
         const card = document.createElement('div');
         card.className = 'project-card reveal';
@@ -2514,7 +2552,7 @@
       { img: 'assets/images/2.jpeg', title: 'Kenyan Market ETL Pipeline', desc: 'An idempotent upsert pipeline that can re-run at any point without producing duplicate rows, with custom deduplication logic that aggregates conflicting records rather than dropping them, and 38/38 passing unit tests gating every push.', stack: ['Python','Pandas','PostgreSQL','SQLAlchemy','Grafana','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/cloud-etl-pipeline' },
       { img: 'assets/images/3.jpeg', title: 'M-Pesa Airflow Transaction Pipeline', desc: 'DAG-orchestrated M-Pesa transaction processing with a Faker-driven synthetic data generator, a rule-engine-based multi-stage cleaning pipeline, and a Docker Compose stack reproducible with a single command.', stack: ['Apache Airflow','Python','Faker','PostgreSQL','Docker Compose','Pytest','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/mpesa_safaricom-pipeline-' },
       { img: 'assets/images/4.jpeg', title: 'Real-Time Transaction Streaming System', desc: 'Kafka producer/consumer model for live transaction ingestion, with consumer-group design for horizontal scalability and exactly-once semantics to prevent double-counting, plus live Plotly visualisations rendered from the consumer layer in Jupyter.', stack: ['Apache Kafka','Python','Jupyter','Plotly','Docker Compose','GitHub Actions'], view: 'https://github.com/Victor-Kipruto-Rop/Real_Time_Transaction_Streaming-MPESA-' },
-      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection — cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.', stack: ['Python','Docker','AWS S3','PostgreSQL','SQLAlchemy'], view: '' },
+      { img: 'assets/images/2.jpeg', title: 'Cloud ETL Ingestion Pipeline', desc: 'Processed 1.6M+ rows at 70,000 rows/sec with peak memory under 300MB via chunked reading and automatic encoding detection. Cut full load time from 4 minutes to 45 seconds by tuning connection pooling and batch execution.', stack: ['Python','Docker','AWS S3','PostgreSQL','SQLAlchemy'], view: '' },
       { img: 'assets/images/3.jpeg', title: 'End-to-End SQL Pipeline Portfolio', desc: 'Multi-tier data lake pattern from CSV staging through OLTP models into a star schema warehouse, with SCD Type 2 on customer dimensions and recursive CTE queries surfacing revenue shifts, fraud signals, and retention metrics.', stack: ['Python','PostgreSQL','AWS S3','SQLAlchemy','SCD Type 2'], view: '' }
     ];
     grid.innerHTML = '';
@@ -2765,36 +2803,36 @@
   // Project Modal Management
   const projectExtendedData = {
     'PesaGuard': {
-      time: '2026 — Ongoing (Live Pilot)',
+      time: '2026, Ongoing (Live Pilot)',
       category: 'FinTech Reconciliation & Fraud Detection',
       caseStudy: {
-        problem: 'Kenyan SACCOs, e-commerce operators, and small fintechs receive M-Pesa payments through Safaricom\'s Daraja API but have no reliable way to reconcile incoming transactions against their own ledgers or catch anomalies in real time — reconciliation is typically a manual, end-of-day spreadsheet exercise.',
+        problem: 'Kenyan SACCOs, e-commerce operators, and small fintechs receive M-Pesa payments through Safaricom\'s Daraja API but have no reliable way to reconcile incoming transactions against their own ledgers or catch anomalies in real time. Reconciliation is typically a manual, end-of-day spreadsheet exercise.',
         requirements: 'Real-time ingestion of Daraja webhook callbacks; guaranteed exactly-once processing (Safaricom retries webhooks, so duplicates are a certainty, not an edge case); an audit trail finance teams can trust; a system that degrades safely rather than silently losing a transaction.',
-        architecture: 'Flask/Python backend, Next.js 14 frontend, PostgreSQL via Supabase, deployed on Render. A target-state Backend Software Architecture Specification (BSAS) was also produced, scoping the system out to enterprise scale (100M transactions/day) — 12 subsystems and 10 frontend pages mapped end to end — so today\'s MVP decisions don\'t box in later growth.',
+        architecture: 'Flask/Python backend, Next.js 14 frontend, PostgreSQL via Supabase, deployed on Render. A target-state Backend Software Architecture Specification (BSAS) was also produced, scoping the system out to enterprise scale (100M transactions/day), 12 subsystems and 10 frontend pages mapped end to end, so today\'s MVP decisions don\'t box in later growth.',
         dataFlow: 'Daraja sends a webhook → request hits the Flask ingestion endpoint → idempotency check against a processed-events store → reconciliation engine matches the transaction to expected records → result persisted to Postgres → surfaced on the Next.js dashboard.',
-        techDecisions: 'Flask over a heavier framework for a lean MVP; Supabase Postgres over a self-managed database to remove ops overhead while validating product-market fit with the pilot customer; Render for zero-maintenance deployment at this stage — deliberately framed as MVP-stage choices, with the BSAS defining where each would need to change at scale.',
+        techDecisions: 'Flask over a heavier framework for a lean MVP; Supabase Postgres over a self-managed database to remove ops overhead while validating product-market fit with the pilot customer; Render for zero-maintenance deployment at this stage. Deliberately framed as MVP-stage choices, with the BSAS defining where each would need to change at scale.',
         implementation: 'The core reconciliation engine matches incoming Daraja events against expected transaction records. Webhook idempotency was implemented via idempotency_keys and processed_events guards enforced across models.py, event_store.py, and reconciliation_engine.py, so a retried webhook can never be double-counted.',
         dataQuality: 'Every incoming webhook is checked against its idempotency key before it touches business logic, so retries and duplicate deliveries are filtered before they can corrupt a balance. Input validation on webhook payloads is the next hardening item in progress.',
-        errorHandling: 'The idempotency layer is the first line of defense — a duplicate or malformed event is caught and logged rather than silently reprocessed. A traceable audit trail and verified backup/restore are treated as pre-launch requirements, not nice-to-haves.',
-        performance: 'Not yet load-tested against production-scale volume — the current milestone is correctness with a single pilot customer, with the BSAS defining the path to 100M transactions/day once the fundamentals are proven.',
+        errorHandling: 'The idempotency layer is the first line of defense. A duplicate or malformed event is caught and logged rather than silently reprocessed. A traceable audit trail and verified backup/restore are treated as pre-launch requirements, not nice-to-haves.',
+        performance: 'Not yet load-tested against production-scale volume. The current milestone is correctness with a single pilot customer, with the BSAS defining the path to 100M transactions/day once the fundamentals are proven.',
         observability: 'Alerting is on the hardening checklist with an explicit requirement that it be proven to fire end-to-end, not just configured and assumed to work.',
         security: 'A SECURITY.md policy is published on the related public repo; input validation and a full audit trail are treated as blocking requirements before new feature work.',
-        results: 'Live with one pilot customer processing real M-Pesa transactions. Webhook idempotency — the highest-priority unshipped risk — has shipped and is verified across the reconciliation engine.',
-        lessonsLearned: 'Planning had been outpacing implementation — a large body of architecture and roadmap documents existed before idempotency, the actual highest-risk gap, was closed. The lesson applied going forward: ship the boring, high-risk plumbing before new features, no matter how much design work already exists.'
+        results: 'Live with one pilot customer processing real M-Pesa transactions. Webhook idempotency, the highest-priority unshipped risk, has shipped and is verified across the reconciliation engine.',
+        lessonsLearned: 'Planning had been outpacing implementation. A large body of architecture and roadmap documents existed before idempotency, the actual highest-risk gap, was closed. The lesson applied going forward: ship the boring, high-risk plumbing before new features, no matter how much design work already exists.'
       }
     },
     'Cloud ETL Pipeline': {
       time: 'Jan 2026 - Feb 2026',
       category: 'Infrastructure & Automation',
       caseStudy: {
-        problem: 'Teams need to trust their data before they trust their dashboards — a pipeline that silently lets duplicate or malformed records through produces analytics nobody can rely on, and manual QA doesn\'t scale past a handful of source files.',
+        problem: 'Teams need to trust their data before they trust their dashboards. A pipeline that silently lets duplicate or malformed records through produces analytics nobody can rely on, and manual QA doesn\'t scale past a handful of source files.',
         requirements: 'Reproducible runs regardless of environment, automatic detection of duplicate or invalid records before they reach a warehouse, and a pipeline that fails loudly rather than passing bad data downstream.',
         architecture: 'A multi-stage ETL orchestrated by Apache Airflow DAGs, with each stage (generate → validate → deduplicate → load) built as a discrete, independently retryable task, containerised with Docker for environment parity between local development and CI.',
         dataFlow: 'Synthetic source data is generated → ingested into staging → passed through a rule-based validation engine → deduplicated → loaded to its destination, with Airflow tracking task-level state and dependencies at every hop.',
         techDecisions: 'Airflow for orchestration because the pipeline is genuinely multi-stage with real dependencies between steps, not a simple cron job. Docker so the exact same pipeline runs identically in CI as on a laptop. Pytest and GitHub Actions so validation-engine logic is tested on every push, not spot-checked manually.',
         implementation: 'A rule-based validation engine checks each record against defined constraints before it\'s allowed downstream. Deduplication runs as its own DAG stage rather than being bolted onto ingestion, so it can be tested and reasoned about independently.',
-        dataQuality: 'Validation rules run before deduplication and before load — bad records are caught at the earliest possible stage rather than being cleaned up after the fact.',
-        errorHandling: 'Airflow\'s task-level retry and failure states are used directly — a failed validation or load step fails that DAG run visibly instead of continuing silently with partial data.',
+        dataQuality: 'Validation rules run before deduplication and before load. Bad records are caught at the earliest possible stage rather than being cleaned up after the fact.',
+        errorHandling: 'Airflow\'s task-level retry and failure states are used directly. A failed validation or load step fails that DAG run visibly instead of continuing silently with partial data.',
         performance: 'Deduplication and validation are separate, composable stages precisely so each can be scaled or optimised independently as data volume grows, rather than needing to rewrite one monolithic transform step.',
         observability: 'Airflow\'s UI provides task-level run history and logs for every stage, so a failure can be traced to the exact task and input batch that caused it.',
         security: 'Runs are containerised and CI-gated, so no pipeline code reaches a trusted branch without first passing its automated test suite.',
@@ -2818,14 +2856,14 @@
         observability: 'Each chunk\'s outcome (rows read, deduplicated, inserted, rejected) is logged, giving a clear per-file audit trail of exactly what happened during a given ingestion run.',
         security: 'Connection pool credentials are handled outside application code, and only well-formed, validated records ever reach a write operation against the database.',
         results: 'A pipeline able to ingest large MPESA export files without memory pressure, with deduplication and batch inserts removing both double-counted transactions and the round-trip overhead of row-by-row writes.',
-        lessonsLearned: 'The real bottleneck wasn\'t data volume — it was connection overhead. Pooling connections had a bigger impact on throughput than any amount of query micro-optimisation.'
+        lessonsLearned: 'The real bottleneck wasn\'t data volume. It was connection overhead. Pooling connections had a bigger impact on throughput than any amount of query micro-optimisation.'
       }
     },
     'Real-Time Transaction Streaming (MPESA)': {
       time: 'Dec 2025 - Jan 2026',
       category: 'FinTech Streaming Architecture',
       caseStudy: {
-        problem: 'Batch ingestion (as in the earlier MPESA pipeline) means fraud and anomalies are only visible after the fact — by the time a batch job runs, a fraudulent pattern has already had hours to play out.',
+        problem: 'Batch ingestion (as in the earlier MPESA pipeline) means fraud and anomalies are only visible after the fact. By the time a batch job runs, a fraudulent pattern has already had hours to play out.',
         requirements: 'Sub-second visibility from a Daraja webhook event to an analytics-ready record; a pipeline that scales horizontally as event volume grows rather than needing a rewrite; infrastructure that\'s reproducible, not hand-configured.',
         architecture: 'Daraja webhooks are ingested into Kafka topics, processed by Flink for stateful stream processing, modelled with dbt, and written to both PostgreSQL (operational) and BigQuery (analytical) stores. Airflow orchestrates the batch/dbt side, Grafana handles monitoring, and Terraform provisions the infrastructure as code.',
         dataFlow: 'Daraja webhook → Kafka producer → Kafka topic → Flink stream processing job → dual-write to PostgreSQL and BigQuery → dbt models transform the BigQuery side into analytics-ready tables → Grafana dashboards read the result.',
@@ -2837,7 +2875,7 @@
         observability: 'Grafana dashboards provide real-time visibility into pipeline health and throughput, so a slowdown or backlog is visible immediately rather than discovered only when a downstream report looks wrong.',
         security: 'Infrastructure is provisioned through Terraform rather than manual cloud console changes, so access and configuration are version-controlled and auditable rather than tribal knowledge.',
         results: 'Achieved sub-second end-to-end latency from webhook to processed record, with automated fraud-monitoring signals now running on live rather than batch-delayed data.',
-        lessonsLearned: 'Moving from the earlier batch MPESA pipeline to this streaming architecture made clear how much fraud detection specifically depends on latency — the same detection logic is far less useful run against data that\'s already hours old.'
+        lessonsLearned: 'Moving from the earlier batch MPESA pipeline to this streaming architecture made clear how much fraud detection specifically depends on latency. The same detection logic is far less useful run against data that\'s already hours old.'
       }
     }
   };
@@ -2952,27 +2990,27 @@
 
   const skillData = {
     'Apache Airflow': {
-      why: "Airflow gives pipelines explicit dependencies, retries, and visibility instead of a black-box cron job — when something fails at 2am, I can see exactly which task and why.",
+      why: "Airflow gives pipelines explicit dependencies, retries, and visibility instead of a black-box cron job. When something fails at 2am, I can see exactly which task and why.",
       where: "Building the DAG-orchestrated ETL pipeline for M-Pesa transaction processing, with each cleaning stage as an independently retryable task.",
       project: "M-Pesa Airflow Transaction Pipeline"
     },
     'ETL Design': {
-      why: "A pipeline is only as trustworthy as its weakest transformation step — I design each stage to be testable and reversible in isolation.",
+      why: "A pipeline is only as trustworthy as its weakest transformation step. I design each stage to be testable and reversible in isolation.",
       where: "Structuring the ingestion-to-warehouse flow so validation and deduplication run as separate, composable stages rather than one monolithic transform.",
       project: "Kenyan Market ETL Pipeline"
     },
     'DAG Management': {
-      why: "Explicit task dependencies make failure modes predictable — I'd rather see a DAG fail loudly at the right node than silently pass bad data downstream.",
+      why: "Explicit task dependencies make failure modes predictable. I'd rather see a DAG fail loudly at the right node than silently pass bad data downstream.",
       where: "Managing task-level retries, failure states, and dependency ordering across the M-Pesa pipeline's Airflow DAGs.",
       project: "M-Pesa Airflow Transaction Pipeline"
     },
     'Apache Kafka': {
-      why: "Real financial events don't wait for a batch window — Kafka lets the system react to a transaction the moment it happens, not hours later.",
+      why: "Real financial events don't wait for a batch window. Kafka lets the system react to a transaction the moment it happens, not hours later.",
       where: "Building a Kafka producer/consumer model for live transaction ingestion with real-time aggregation and low-latency throughput.",
       project: "Real-Time Transaction Streaming System"
     },
     'Stream Processing': {
-      why: "Fraud and anomaly windows are measured in seconds, not overnight ETL runs — stream processing is what makes real-time monitoring possible at all.",
+      why: "Fraud and anomaly windows are measured in seconds, not overnight ETL runs. Stream processing is what makes real-time monitoring possible at all.",
       where: "Aggregating streaming transaction data in real time with a consumer-group design built for horizontal scalability.",
       project: "Real-Time Transaction Streaming System"
     },
@@ -2992,57 +3030,57 @@
       project: "End-to-End SQL Pipeline Portfolio"
     },
     'OLAP Queries': {
-      why: "Multi-dimensional analysis only works if the underlying queries are actually fast — I optimize for the questions the business will ask, not just the ones it's asked so far.",
+      why: "Multi-dimensional analysis only works if the underlying queries are actually fast. I optimize for the questions the business will ask, not just the ones it's asked so far.",
       where: "Writing recursive CTE queries to surface cross-platform revenue shifts, fraud signals, and customer retention metrics.",
       project: "End-to-End SQL Pipeline Portfolio"
     },
     'Data Warehousing': {
-      why: "A warehouse is only a \"single source of truth\" if people actually trust it — that trust is earned through consistent, validated loads.",
-      where: "Building a multi-tier data lake pattern — from CSV staging through OLTP models into a star schema warehouse.",
+      why: "A warehouse is only a \"single source of truth\" if people actually trust it. That trust is earned through consistent, validated loads.",
+      where: "Building a multi-tier data lake pattern. From CSV staging through OLTP models into a star schema warehouse.",
       project: "End-to-End SQL Pipeline Portfolio"
     },
     'Deduplication': {
-      why: "Safaricom retries webhook deliveries — treating duplicates as a certainty rather than an edge case is what keeps a ledger honest.",
+      why: "Safaricom retries webhook deliveries. Treating duplicates as a certainty rather than an edge case is what keeps a ledger honest.",
       where: "Implementing idempotency-key based deduplication so a retried webhook can never be double-counted.",
       project: "PesaGuard"
     },
     'Validation Rule Engines': {
       why: "Catching a bad record at the earliest possible stage is far cheaper than debugging a corrupted dashboard three steps downstream.",
-      where: "Building a config-driven rule engine for the multi-stage cleaning pipeline — rules are configurable, not hardcoded.",
+      where: "Building a config-driven rule engine for the multi-stage cleaning pipeline. Rules are configurable, not hardcoded.",
       project: "M-Pesa Airflow Transaction Pipeline"
     },
     'Anomaly Detection': {
-      why: "Reconciliation isn't just matching — it's knowing when something doesn't match, and surfacing that fast enough for someone to act on it.",
+      why: "Reconciliation isn't just matching. It's knowing when something doesn't match, and surfacing that fast enough for someone to act on it.",
       where: "Powering the open-anomalies count on the PesaGuard admin dashboard.",
       project: "PesaGuard"
     },
     'Docker': {
-      why: "\"Works on my machine\" isn't an acceptable failure mode — containerizing a pipeline means CI runs the exact same environment as my laptop.",
+      why: "\"Works on my machine\" isn't an acceptable failure mode. Containerizing a pipeline means CI runs the exact same environment as my laptop.",
       where: "Separating Extract, Transform, and Load into independent Docker microservices with exponential-backoff retry on transient failures.",
       project: "Cloud ETL Ingestion Pipeline"
     },
     'GitHub Actions': {
-      why: "Tests that only run when I remember to run them aren't really tests — CI makes validation non-optional.",
+      why: "Tests that only run when I remember to run them aren't really tests. CI makes validation non-optional.",
       where: "Gating every push with an automated Pytest suite before code reaches a trusted branch.",
       project: "Kenyan Market ETL Pipeline"
     },
     'Pytest': {
-      why: "Data engineering code fails silently more often than it crashes loudly — a real test suite is what catches that before production does.",
+      why: "Data engineering code fails silently more often than it crashes loudly. A real test suite is what catches that before production does.",
       where: "Testing the validation-engine and idempotency logic that the reconciliation system depends on.",
       project: "PesaGuard"
     },
     'CI/CD Pipelines': {
-      why: "Frequent, low-risk deploys beat rare, high-risk ones — automation is what makes that trade-off possible.",
+      why: "Frequent, low-risk deploys beat rare, high-risk ones. Automation is what makes that trade-off possible.",
       where: "Automating the build-test-deploy flow for the ETL pipeline via GitHub Actions.",
       project: "Kenyan Market ETL Pipeline"
     },
     'Python': {
-      why: "Python is where I express most of my engineering logic — from ingestion scripts to reconciliation engines to test suites.",
+      why: "Python is where I express most of my engineering logic. From ingestion scripts to reconciliation engines to test suites.",
       where: "Writing the Flask backend, reconciliation engine, and idempotency guards across models.py and reconciliation_engine.py.",
       project: "PesaGuard"
     },
     'SQL': {
-      why: "Most \"the pipeline is slow\" problems are actually \"the query is slow\" problems — SQL fluency is non-negotiable for this work.",
+      why: "Most \"the pipeline is slow\" problems are actually \"the query is slow\" problems. SQL fluency is non-negotiable for this work.",
       where: "Writing recursive CTE queries to surface cross-platform revenue shifts, fraud signals, and customer retention metrics across a multi-tier data lake.",
       project: "End-to-End SQL Pipeline Portfolio"
     },
@@ -3052,32 +3090,32 @@
       project: "Cloud ETL Ingestion Pipeline"
     },
     'Git': {
-      why: "A clean commit history is documentation — I use branching and commit discipline so the reasoning behind a change is never lost.",
+      why: "A clean commit history is documentation. I use branching and commit discipline so the reasoning behind a change is never lost.",
       where: "Managing version control and collaborative workflows across every project in this portfolio.",
       project: "Kenyan Market ETL Pipeline"
     },
     'Docker Compose': {
-      why: "Local development should mirror production topology — Compose lets me spin up the full multi-service stack with one command.",
+      why: "Local development should mirror production topology. Compose lets me spin up the full multi-service stack with one command.",
       where: "Containerising the complete Airflow and PostgreSQL stack so the environment is fully reproducible with a single command.",
       project: "M-Pesa Airflow Transaction Pipeline"
     },
     'MySQL': {
       why: "Being fluent across both PostgreSQL and MySQL means I'm not locked into one vendor's quirks when a team already has infrastructure decisions made.",
-      where: "Applying relational database fundamentals — schema design, window functions, and complex CTEs — interchangeably across PostgreSQL and MySQL.",
+      where: "Applying relational database fundamentals, schema design, window functions, and complex CTEs, interchangeably across PostgreSQL and MySQL.",
       project: "Kenyan Market ETL Pipeline"
     },
     'Shell / Bash': {
-      why: "Automation lives in the shell — CI steps, container entrypoints, and quick data checks all start with a script, not a GUI.",
+      why: "Automation lives in the shell. CI steps, container entrypoints, and quick data checks all start with a script, not a GUI.",
       where: "Scripting CI/CD automation steps and container orchestration commands across every pipeline project.",
       project: "Cloud ETL Ingestion Pipeline"
     },
     'AWS (S3, EC2)': {
-      why: "Cloud-native storage and compute are the default for production data infra — S3 for durable object storage, EC2 when I need control over the runtime.",
+      why: "Cloud-native storage and compute are the default for production data infra. S3 for durable object storage, EC2 when I need control over the runtime.",
       where: "Using S3 as the ingestion source for a cloud-hosted pipeline processing 1.6M+ rows at 70,000 rows/sec.",
       project: "Cloud ETL Ingestion Pipeline"
     },
     'Pandas': {
-      why: "Pandas is where exploratory data wrangling happens fast — before a transformation earns a permanent place in a pipeline, I prototype it in a DataFrame.",
+      why: "Pandas is where exploratory data wrangling happens fast. Before a transformation earns a permanent place in a pipeline, I prototype it in a DataFrame.",
       where: "Writing the custom deduplication logic that aggregates quantities on conflicting records instead of dropping them.",
       project: "Kenyan Market ETL Pipeline"
     },
@@ -3092,12 +3130,12 @@
       project: "Kenyan Market ETL Pipeline"
     },
     'Faker': {
-      why: "Testing a pipeline against realistic data — not just placeholder strings — catches edge cases that synthetic filler data never will.",
+      why: "Testing a pipeline against realistic data, not just placeholder strings, catches edge cases that synthetic filler data never will.",
       where: "Generating a configurable synthetic data feed with realistic Kenyan phone number distributions for pipeline testing.",
       project: "M-Pesa Airflow Transaction Pipeline"
     },
     'Grafana': {
-      why: "A pipeline without a dashboard is a pipeline nobody's actually watching — Grafana turns pipeline output into something a team can monitor live.",
+      why: "A pipeline without a dashboard is a pipeline nobody's actually watching. Grafana turns pipeline output into something a team can monitor live.",
       where: "Connecting the PostgreSQL output layer to live operational dashboards tracking market data trends.",
       project: "Kenyan Market ETL Pipeline"
     },
@@ -3107,12 +3145,12 @@
       project: "Real-Time Transaction Streaming System"
     },
     'Jupyter Notebooks': {
-      why: "Notebooks are where I validate an idea against real data before it becomes production code — fast iteration matters before commitment.",
+      why: "Notebooks are where I validate an idea against real data before it becomes production code. Fast iteration matters before commitment.",
       where: "Prototyping streaming data visualisations and validating consumer output during development of the transaction streaming system.",
       project: "Real-Time Transaction Streaming System"
     },
     'SCD Type 2': {
-      why: "Overwriting a dimension record destroys history — SCD Type 2 preserves every version of the truth, which matters when you need to know what was believed last quarter.",
+      why: "Overwriting a dimension record destroys history. SCD Type 2 preserves every version of the truth, which matters when you need to know what was believed last quarter.",
       where: "Deploying Type 2 slowly-changing dimensions on customer records to preserve full historical change timelines.",
       project: "End-to-End SQL Pipeline Portfolio"
     }
