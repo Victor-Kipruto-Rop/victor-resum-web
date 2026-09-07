@@ -58,7 +58,7 @@ subscribers.db
 temp/
 *.tmp
 
-# Sensitive / internal artifacts — never expose on the public site
+# Sensitive / internal artifacts: never expose on the public site
 dashboard/
 email_previews/
 data/subscribers.json

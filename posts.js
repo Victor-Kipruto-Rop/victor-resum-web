@@ -1,5 +1,5 @@
 /**
- * Posts Data Management — Enhanced with analytics, categories, trending, and featured flags
+ * Posts Data Management. Enhanced with analytics, categories, trending, and featured flags
  */
 
 window.posts = {
@@ -209,7 +209,7 @@ window.posts = {
   },
 
   /* ═══════════════════════════════════════════════════════════════════
-     NEW DETAILED BLOG POSTS — June 2026
+     NEW DETAILED BLOG POSTS. June 2026
      ═══════════════════════════════════════════════════════════════════ */
 
   'medallion-architecture-delta-lake': {
@@ -230,7 +230,7 @@ window.posts = {
     image: 'assets/images/cloud-infrastructure.png',
     content: `
       <h2>Why the Medallion Architecture?</h2>
-      <p>As data teams scale from handling megabytes to terabytes of daily ingestion, the flat data lake approach quickly becomes unmanageable. Data arrives in inconsistent formats, quality degrades over time, and downstream consumers lose trust in the pipeline outputs. The <strong>Medallion Architecture</strong>—also known as the Bronze-Silver-Gold pattern—solves this by introducing explicit, progressive layers of data refinement.</p>
+      <p>As data teams scale from handling megabytes to terabytes of daily ingestion, the flat data lake approach quickly becomes unmanageable. Data arrives in inconsistent formats, quality degrades over time, and downstream consumers lose trust in the pipeline outputs. The <strong>Medallion Architecture</strong>, also known as the Bronze-Silver-Gold pattern, solves this by introducing explicit, progressive layers of data refinement.</p>
       <p>Originally popularized by Databricks, this architecture has become the de facto standard for building lakehouse platforms. Each layer serves a distinct purpose:</p>
       <ul>
         <li><strong>Bronze Layer:</strong> Raw, immutable data as-is from the source system. This is your system of record.</li>
@@ -251,8 +251,8 @@ spark = (SparkSession.builder
     .getOrCreate())</code></pre>
 
       <h2>The Bronze Layer: Ingesting Raw Data</h2>
-      <p>The Bronze layer is where all raw data lands. The key principle here is <strong>append-only, schema-on-read</strong>. You capture everything exactly as it arrives—no transformations, no filtering. This gives you a complete audit trail and the ability to reprocess from scratch if needed.</p>
-      <pre><code># Bronze layer ingestion — raw JSON events
+      <p>The Bronze layer is where all raw data lands. The key principle here is <strong>append-only, schema-on-read</strong>. You capture everything exactly as it arrives. No transformations, no filtering. This gives you a complete audit trail and the ability to reprocess from scratch if needed.</p>
+      <pre><code># Bronze layer ingestion. Raw JSON events
 from pyspark.sql.functions import current_timestamp, input_file_name
 
 raw_events = (spark.read
@@ -276,13 +276,13 @@ bronze_df = (raw_events
       <ul>
         <li>Always add metadata columns: <code>_ingested_at</code>, <code>_source_file</code>, <code>_event_date</code></li>
         <li>Partition by date for efficient data pruning and retention management</li>
-        <li>Use append-only mode—never overwrite Bronze data</li>
+        <li>Use append-only mode. Never overwrite Bronze data</li>
         <li>Enable Delta Lake change data feed (CDF) for downstream lineage tracking</li>
       </ul>
 
       <h2>The Silver Layer: Cleansing and Conforming</h2>
       <p>The Silver layer applies business rules to produce a clean, validated dataset. This is where you enforce schemas, remove duplicates, handle null values, and conform data from multiple sources into a unified model.</p>
-      <pre><code># Silver layer — deduplicate and cleanse
+      <pre><code># Silver layer. Deduplicate and cleanse
 from pyspark.sql.window import Window
 
 # Read from Bronze
@@ -314,7 +314,7 @@ delta_table = DeltaTable.forPath(spark, "/mnt/lakehouse/silver/events")
 
       <h2>The Gold Layer: Business Aggregates</h2>
       <p>The Gold layer contains business-ready aggregates that power dashboards, reports, and ML features. These tables are optimized for query performance with materialized aggregates, pre-computed joins, and appropriate partitioning strategies.</p>
-      <pre><code># Gold layer — daily revenue aggregation
+      <pre><code># Gold layer. Daily revenue aggregation
 silver_orders = spark.read.format("delta").load("/mnt/lakehouse/silver/orders")
 silver_products = spark.read.format("delta").load("/mnt/lakehouse/silver/products")
 
@@ -339,14 +339,14 @@ gold_daily_revenue = (silver_orders
     .save("/mnt/lakehouse/gold/daily_revenue"))</code></pre>
 
       <h2>Advanced Patterns: Time Travel and Schema Evolution</h2>
-      <p>One of Delta Lake's most powerful features is <strong>time travel</strong>—the ability to query any historical version of your data. Combined with schema evolution, this makes the Medallion architecture incredibly resilient:</p>
+      <p>One of Delta Lake's most powerful features is <strong>time travel</strong>. The ability to query any historical version of your data. Combined with schema evolution, this makes the Medallion architecture incredibly resilient:</p>
       <pre><code># Query data as it was 3 days ago
 historical_df = (spark.read
     .format("delta")
     .option("versionAsOf", "2026-06-05")
     .load("/mnt/lakehouse/silver/events"))
 
-# Schema evolution — add new columns safely
+# Schema evolution. Add new columns safely
 new_events = spark.read.json("/mnt/sources/new_events_v2/")
 (new_events.write
     .format("delta")
@@ -360,7 +360,7 @@ new_events = spark.read.json("/mnt/sources/new_events_v2/")
         <li><strong>Z-Ordering:</strong> Co-locate related data for faster point lookups. Apply Z-Order on columns commonly used in WHERE clauses.</li>
         <li><strong>VACUUM:</strong> Remove old file versions to reclaim storage. Set a retention period (e.g., 168 hours) and run VACUUM on a schedule.</li>
         <li><strong>Auto-Optimize:</strong> Enable automatic file compaction to maintain optimal file sizes (target: 128MB-1GB per file).</li>
-        <li><strong>Liquid Clustering:</strong> The next evolution beyond partitioning—automatically organizes data based on query patterns.</li>
+        <li><strong>Liquid Clustering:</strong> The next evolution beyond partitioning. Automatically organizes data based on query patterns.</li>
       </ul>
 
       <h2>Conclusion</h2>
@@ -378,7 +378,7 @@ new_events = spark.read.json("/mnt/sources/new_events_v2/")
     isDraft: false,
     featured: true,
     trending: true,
-    excerpt: 'A complete guide to Apache Kafka Connect—the framework for building scalable, fault-tolerant data integration pipelines between Kafka and external systems without writing a single line of consumer/producer code. Learn how to configure source connectors for PostgreSQL, MySQL, and MongoDB, sink connectors for Elasticsearch, S3, and Snowflake, and master Single Message Transforms (SMTs) for real-time data shaping. Covers exactly-once delivery semantics, dead letter queues, schema registry integration, monitoring with JMX metrics, and production deployment strategies for standalone and distributed modes. Includes battle-tested configurations from processing over 100 million records daily in production environments.',
+    excerpt: 'A complete guide to Apache Kafka Connect. The framework for building scalable, fault-tolerant data integration pipelines between Kafka and external systems without writing a single line of consumer/producer code. Learn how to configure source connectors for PostgreSQL, MySQL, and MongoDB, sink connectors for Elasticsearch, S3, and Snowflake, and master Single Message Transforms (SMTs) for real-time data shaping. Covers exactly-once delivery semantics, dead letter queues, schema registry integration, monitoring with JMX metrics, and production deployment strategies for standalone and distributed modes. Includes battle-tested configurations from processing over 100 million records daily in production environments.',
     views: 2780,
     likes: 203,
     shares: 82,
@@ -386,7 +386,7 @@ new_events = spark.read.json("/mnt/sources/new_events_v2/")
     image: 'assets/images/kafka-streaming.png',
     content: `
       <h2>Why Kafka Connect?</h2>
-      <p>Every data engineering team eventually faces the same challenge: moving data between systems reliably. You might need to replicate PostgreSQL CDC events to Elasticsearch, stream application logs to S3 for archival, or push real-time metrics to InfluxDB. The naive approach—writing custom Kafka producers and consumers for each integration—leads to duplicated effort, inconsistent error handling, and maintenance nightmares.</p>
+      <p>Every data engineering team eventually faces the same challenge: moving data between systems reliably. You might need to replicate PostgreSQL CDC events to Elasticsearch, stream application logs to S3 for archival, or push real-time metrics to InfluxDB. The naive approach, writing custom Kafka producers and consumers for each integration, leads to duplicated effort, inconsistent error handling, and maintenance nightmares.</p>
       <p><strong>Kafka Connect</strong> solves this with a framework-based approach. It provides a standard interface for connecting Kafka to external systems, with built-in support for fault tolerance, offset management, schema evolution, and parallelism. You configure connectors declaratively, and the framework handles the hard parts.</p>
 
       <h2>Core Concepts</h2>
@@ -518,7 +518,7 @@ connect.connect-metrics:type=task-metrics,connector=<name>,task=<id>
     image: 'assets/images/cloud-infrastructure.png',
     content: `
       <h2>Why Terraform for Data Infrastructure?</h2>
-      <p>Data infrastructure is uniquely complex—you're managing compute clusters, storage systems, networking, IAM policies, monitoring, and orchestration, all of which need to work together seamlessly. Manual configuration leads to drift, undocumented changes, and environment inconsistencies that cause production incidents.</p>
+      <p>Data infrastructure is uniquely complex. You're managing compute clusters, storage systems, networking, IAM policies, monitoring, and orchestration, all of which need to work together seamlessly. Manual configuration leads to drift, undocumented changes, and environment inconsistencies that cause production incidents.</p>
       <p><strong>Terraform</strong> treats infrastructure as code, giving you version control, peer review, automated testing, and reproducible deployments across environments. For data platforms specifically, Terraform's declarative approach ensures your infrastructure always matches your desired state.</p>
 
       <h2>Project Structure for Data Platforms</h2>
@@ -661,7 +661,7 @@ jobs:
         working-directory: terraform/environments/prod</code></pre>
 
       <h2>Conclusion</h2>
-      <p>Infrastructure as Code is not optional for modern data platforms—it's essential. Terraform provides the tooling, ecosystem, and patterns to manage complex data infrastructure at scale. By investing in modular, well-tested Terraform code, you gain the ability to spin up entire data platforms in minutes, replicate environments for testing, and maintain compliance through auditable infrastructure changes.</p>
+      <p>Infrastructure as Code is not optional for modern data platforms. It's essential. Terraform provides the tooling, ecosystem, and patterns to manage complex data infrastructure at scale. By investing in modular, well-tested Terraform code, you gain the ability to spin up entire data platforms in minutes, replicate environments for testing, and maintain compliance through auditable infrastructure changes.</p>
     `
   },
 
@@ -683,7 +683,7 @@ jobs:
     image: 'assets/images/real-time-analytics.png',
     content: `
       <h2>The Feature Store Problem</h2>
-      <p>In production ML systems, the hardest part isn't training the model—it's serving features consistently between training and inference. When your training pipeline computes features differently than your serving system, you get <strong>training-serving skew</strong>, which silently degrades model performance. A <strong>feature store</strong> solves this by providing a shared, versioned layer for feature computation and serving.</p>
+      <p>In production ML systems, the hardest part isn't training the model. It's serving features consistently between training and inference. When your training pipeline computes features differently than your serving system, you get <strong>training-serving skew</strong>, which silently degrades model performance. A <strong>feature store</strong> solves this by providing a shared, versioned layer for feature computation and serving.</p>
 
       <h2>Architecture Overview</h2>
       <p>A production feature store consists of three core components:</p>
@@ -865,7 +865,7 @@ class FeatureStore:
     isDraft: false,
     featured: false,
     trending: true,
-    excerpt: 'A comprehensive guide to building data observability into your organization—monitoring data freshness, volume, schema changes, and quality across your entire pipeline. Learn how to implement automated data lineage tracking that maps dependencies from source to dashboard, set up anomaly detection for proactive alerting on data issues before they impact stakeholders, and build a data quality scorecard for organizational visibility. Covers open-source tools like OpenLineage, Marquez, and Elementary, as well as commercial platforms like Monte Carlo and Bigeye. Includes practical implementations of freshness checks, volume monitors, schema change detectors, and custom data contracts that prevent bad data from reaching downstream consumers. Real-world examples from monitoring 500+ tables across 20 data pipelines.',
+    excerpt: 'A comprehensive guide to building data observability into your organization. Monitoring data freshness, volume, schema changes, and quality across your entire pipeline. Learn how to implement automated data lineage tracking that maps dependencies from source to dashboard, set up anomaly detection for proactive alerting on data issues before they impact stakeholders, and build a data quality scorecard for organizational visibility. Covers open-source tools like OpenLineage, Marquez, and Elementary, as well as commercial platforms like Monte Carlo and Bigeye. Includes practical implementations of freshness checks, volume monitors, schema change detectors, and custom data contracts that prevent bad data from reaching downstream consumers. Real-world examples from monitoring 500+ tables across 20 data pipelines.',
     views: 2650,
     likes: 195,
     shares: 76,
@@ -873,7 +873,7 @@ class FeatureStore:
     image: 'assets/images/data-quality-frameworks.png',
     content: `
       <h2>What is Data Observability?</h2>
-      <p>Software engineering has long relied on observability—logs, metrics, and traces—to understand system behavior and debug issues. Data engineering needs the same rigor. <strong>Data observability</strong> is the practice of monitoring your data pipelines and datasets to detect, diagnose, and resolve data quality issues before they impact business decisions.</p>
+      <p>Software engineering has long relied on observability, logs, metrics, and traces, to understand system behavior and debug issues. Data engineering needs the same rigor. <strong>Data observability</strong> is the practice of monitoring your data pipelines and datasets to detect, diagnose, and resolve data quality issues before they impact business decisions.</p>
       <p>The five pillars of data observability mirror the concept from software engineering:</p>
       <ul>
         <li><strong>Freshness:</strong> Is your data up to date? When was the last update?</li>
@@ -1095,7 +1095,7 @@ quality_scorecard = {
 }</code></pre>
 
       <h2>Conclusion</h2>
-      <p>Data observability is not a luxury—it's a necessity for any organization that makes decisions based on data. By implementing monitoring across freshness, volume, schema, distribution, and lineage, you transform data quality from a reactive firefighting exercise into a proactive, measurable practice. Start with the basics (freshness and volume), add schema monitoring, and progressively build toward full lineage tracking. The investment pays for itself the first time it prevents a bad data incident from reaching your executives' dashboards.</p>
+      <p>Data observability is not a luxury. It's a necessity for any organization that makes decisions based on data. By implementing monitoring across freshness, volume, schema, distribution, and lineage, you transform data quality from a reactive firefighting exercise into a proactive, measurable practice. Start with the basics (freshness and volume), add schema monitoring, and progressively build toward full lineage tracking. The investment pays for itself the first time it prevents a bad data incident from reaching your executives' dashboards.</p>
     `
   }
 };

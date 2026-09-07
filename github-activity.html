@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Activity — Victor Kipruto Rop</title>
+  <title>GitHub Activity | Victor Kipruto Rop</title>
 <meta name="description" content="Live GitHub contribution activity, stats, and profile overview for Victor Kipruto Rop."/>
 <link rel="canonical" href="https://victorkipruto.com/github-activity.html"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://victorkipruto.com/github-activity.html"/>
-<meta property="og:title" content="GitHub Activity — Victor Kipruto Rop"/>
+<meta property="og:title" content="GitHub Activity | Victor Kipruto Rop"/>
 <meta property="og:description" content="Live GitHub contribution activity, stats, and profile overview for Victor Kipruto Rop."/>
 <meta property="og:site_name" content="Victor Kipruto Rop"/>
 <meta property="og:image" content="https://victorkipruto.com/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="GitHub Activity — Victor Kipruto Rop"/>
+<meta name="twitter:title" content="GitHub Activity | Victor Kipruto Rop"/>
 <meta name="twitter:description" content="Live GitHub contribution activity, stats, and profile overview for Victor Kipruto Rop."/>
 <meta name="twitter:image" content="https://victorkipruto.com/og-image.png"/>
 <link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
@@ -156,7 +156,7 @@
       <span class="badge">DEVELOPER ACTIVITY</span>
       <h1 class="hero-title">GitHub Activity</h1>
       <p class="hero-subtitle">
-        A live look at my contribution history and public work on GitHub — pipelines, tooling, and experiments, committed as they happen.
+        A live look at my contribution history and public work on GitHub. Pipelines, tooling, and experiments, committed as they happen.
       </p>
     </section>
 
@@ -187,9 +187,9 @@
       </div>
 
       <div class="stats-grid" id="stats-grid">
-        <div class="stat-card"><div class="stat-num" id="stat-repos">—</div><div class="stat-label">Public Repositories</div></div>
-        <div class="stat-card"><div class="stat-num" id="stat-followers">—</div><div class="stat-label">Followers</div></div>
-        <div class="stat-card"><div class="stat-num" id="stat-following">—</div><div class="stat-label">Following</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-repos">N/A</div><div class="stat-label">Public Repositories</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-followers">N/A</div><div class="stat-label">Followers</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-following">N/A</div><div class="stat-label">Following</div></div>
         <div class="stat-card"><div class="stat-num">Nairobi, KE</div><div class="stat-label">Location</div></div>
       </div>
     </section>
@@ -258,7 +258,7 @@
     window.addEventListener('resize', updateScrollProgress);
     updateScrollProgress();
 
-    // Load GitHub activity (profile + stats) — same source of truth as index.html
+    // Load GitHub activity (profile + stats). Same source of truth as index.html
     async function loadGitHubActivity() {
       const sub = document.getElementById('gh-sub');
       const ghCount = document.getElementById('gh-count');
@@ -268,14 +268,14 @@
           const user = await ures.json();
           if (ghCount) ghCount.textContent = `(${user.public_repos})`;
           if (sub) sub.textContent = `${user.public_repos} public repositories · ${user.followers} followers · Nairobi, Kenya`;
-          document.getElementById('stat-repos').textContent = user.public_repos ?? '—';
-          document.getElementById('stat-followers').textContent = user.followers ?? '—';
-          document.getElementById('stat-following').textContent = user.following ?? '—';
+          document.getElementById('stat-repos').textContent = user.public_repos ?? 'N/A';
+          document.getElementById('stat-followers').textContent = user.followers ?? 'N/A';
+          document.getElementById('stat-following').textContent = user.following ?? 'N/A';
           return;
         }
       } catch (e) { /* fall through */ }
       if (ghCount) ghCount.textContent = '(See profile)';
-      if (sub) sub.textContent = 'Contributions calendar and activity (last year) — data shown directly from GitHub. Visit @Victor-Kipruto-Rop on GitHub for full profile details.';
+      if (sub) sub.textContent = 'Contributions calendar and activity (last year). Data shown directly from GitHub. Visit @Victor-Kipruto-Rop on GitHub for full profile details.';
     }
     loadGitHubActivity();
   </script>
