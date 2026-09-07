@@ -4,6 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page Not Found | Victor Kipruto Rop</title>
+  <script>
+    (function () {
+      var OLD_TO_NEW = {
+        '/blog.html': '/blog',
+        '/how-i-work.html': '/how-i-work',
+        '/github-activity.html': '/github-activity',
+        '/top-repositories.html': '/top-repositories',
+        '/contributions.html': '/contributions',
+        '/talks.html': '/talks',
+        '/success.html': '/success',
+        '/subscribe.html': '/subscribe',
+        '/subscribe-rss.html': '/subscribe-rss',
+        '/unsubscribe.html': '/unsubscribe',
+        '/post.html': '/post'
+      };
+      var path = window.location.pathname;
+      var target = OLD_TO_NEW[path];
+      if (target) {
+        window.location.replace(target + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://victorkipruto.com/404.html"/>
 <meta property="og:title" content="Page Not Found | Victor Kipruto Rop"/>
