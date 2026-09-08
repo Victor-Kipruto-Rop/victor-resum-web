@@ -2,148 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://victorkipruto.com/</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://victorkipruto.com/blog.html</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://victorkipruto.com/projects</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://victorkipruto.com/resume.html</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/talks.html</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/contributions.html</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/subscribe.html</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/how-i-work.html</loc>
-    <lastmod>2026-08-30</lastmod>
+    <loc>https://victorkipruto.com/contact</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victorkipruto.com/blog</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://victorkipruto.com/how-i-work</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://victorkipruto.com/github-activity</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://victorkipruto.com/success.html</loc>
-    <lastmod>2026-08-30</lastmod>
+    <loc>https://victorkipruto.com/top-repositories</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://victorkipruto.com/contributions</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://victorkipruto.com/talks</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://victorkipruto.com/subscribe</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/unsubscribe.html</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-</urlset>
-
-  <url>
-    <loc>https://victorkipruto.com/blog/tags/shuffle</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/tags/snowflake</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/tags/soda</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/tags/sql</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/tags/streaming</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/tags/testing</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/designing-a-modern-data-lakehouse-from-architecture-to-implementation</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/mastering-apache-spark-shuffle-operations-for-large-scale-data-processing</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/optimizing-snowflake-virtual-warehouses-for-cost-and-performance</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/production-grade-python-testing-strategies-for-data-pipelines</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/advanced-kubernetes-patterns</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/building-data-pipelines-airflow</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/dbt-best-practices</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/data-quality-frameworks-comparison</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://victorkipruto.com/blog/posts/python-performance-optimization</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
 </urlset>

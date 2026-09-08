@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title id="page-title">Blog Post | Victor Kipruto Rop</title>
 <meta name="description" id="page-desc" content="Technical blog post by Victor Kipruto Rop"/>
-<link rel="canonical" href="https://victorkipruto.com/post.html"/>
+<link rel="canonical" href="https://victorkipruto.com/post"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" id="og-title" content="Blog Post | Victor Kipruto Rop"/>
 <meta property="og:description" id="og-desc" content="Technical blog post by Victor Kipruto Rop"/>
@@ -15,7 +15,7 @@
 <meta name="twitter:title" id="twitter-title" content="Blog Post | Victor Kipruto Rop"/>
 <meta name="twitter:description" id="twitter-desc" content="Technical blog post by Victor Kipruto Rop"/>
 <meta name="twitter:image" content="https://victorkipruto.com/og-image.png"/>
-<link rel="icon" href="assets/1.jpeg" type="image/jpeg"/>
+<link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -151,12 +151,12 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Victor Kipruto Rop</a>
+  <a href="/" class="nav-logo">Victor Kipruto Rop</a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#projects">Projects</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="index.html#send-message">Contact</a>
+    <a href="/">Home</a>
+    <a href="/projects">Projects</a>
+    <a href="/#blog">Blog</a>
+    <a href="/contact">Contact</a>
   </div>
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
     <i class="fas fa-moon"></i>
@@ -199,11 +199,11 @@
   </div>
 
   <div class="post-navigation">
-    <a class="post-nav-link post-nav-prev" href="blog.html">
+    <a class="post-nav-link post-nav-prev" href="/blog">
       <i class="fas fa-arrow-left"></i>
       <span>Back to Blog</span>
     </a>
-    <a class="post-nav-link" href="index.html#projects">
+    <a class="post-nav-link" href="/projects">
       <span>See Projects</span>
       <i class="fas fa-arrow-right"></i>
     </a>
@@ -214,7 +214,7 @@
   <p>© 2026 Victor Kipruto Rop · Built with focus on data integrity and clear communication.</p>
 </footer>
 
-<script src="posts.js"></script>
+<script src="/posts.js"></script>
 <script>
   // Load post data based on URL parameter
   async function initPost() {
@@ -263,7 +263,7 @@
         <div style="text-align: center; padding: 48px 0;">
           <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: var(--accent); margin-bottom: 24px;"></i>
           <p>Sorry, the article you're looking for doesn't exist or has been moved.</p>
-          <a href="blog.html" class="back-link" style="margin-top: 24px; display: inline-flex;"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+          <a href="/blog" class="back-link" style="margin-top: 24px; display: inline-flex;"><i class="fas fa-arrow-left"></i> Back to Blog</a>
         </div>
       `;
     }

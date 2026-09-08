@@ -3,7 +3,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Technical Blog - Victor Kipruto Rop</title>
-    <link>https://victorkipruto.com/blog.html</link>
+    <link>https://victorkipruto.com/blog</link>
     <atom:link href="https://victorkipruto.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Data Engineering, Analytics, and Software Architecture insights</description>
     <language>en-us</language>
@@ -14,7 +14,7 @@
     <image>
       <url>https://victorkipruto.com/og-image.png</url>
       <title>Victor Kipruto Rop - Technical Blog</title>
-      <link>https://victorkipruto.com/blog.html</link>
+      <link>https://victorkipruto.com/blog</link>
     </image>
 
     <!-- Author/Managing Editor -->
@@ -29,8 +29,8 @@
     <!-- Sample Blog Post 1 -->
     <item>
       <title>Data Engineering Fundamentals</title>
-      <link>https://victorkipruto.com/blog.html</link>
-      <guid isPermaLink="true">https://victorkipruto.com/blog.html</guid>
+      <link>https://victorkipruto.com/blog</link>
+      <guid isPermaLink="true">https://victorkipruto.com/blog</guid>
       <pubDate>Thu, 06 Jun 2024 09:00:00 GMT</pubDate>
       <lastBuildDate>Thu, 06 Jun 2024 09:00:00 GMT</lastBuildDate>
       <author>Victor Kipruto Rop</author>
@@ -48,7 +48,7 @@
         </ul>
         <p>Read the full article on our blog for detailed code examples and best practices.</p>
       ]]></content:encoded>
-      <comments>https://victorkipruto.com/blog.html#comments</comments>
+      <comments>https://victorkipruto.com/blog#comments</comments>
     </item>
 
     <!-- Sample Blog Post 2 -->
