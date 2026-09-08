@@ -178,6 +178,19 @@
       line-height: 1.6;
     }
 
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 32px;
+      margin-top: 32px; padding-top: 28px;
+      border-top: 1px solid var(--rule);
+    }
+    .hero-stat-value {
+      font-family: 'Fira Code', monospace; font-size: 1.6rem; font-weight: 700;
+      color: var(--accent); font-variant-numeric: tabular-nums;
+    }
+    .hero-stat-label {
+      font-size: 0.78rem; color: var(--muted); margin-top: 2px;
+    }
+
     /* Core Principles Grid */
 .section-title {
       font-family: 'Playfair Display', serif;
@@ -207,7 +220,23 @@
       position: relative;
       overflow: hidden;
       box-shadow: var(--card-shadow);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
     }
+    .principle-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(10,14,20,0.1);
+    }
+    body.dark-mode .principle-card:hover {
+      box-shadow: 0 0 0 1px var(--accent), 0 20px 40px rgba(255,75,43,0.15);
+    }
+    .principle-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--paper); border: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .principle-icon svg { width: 20px; height: 20px; }
 
 .principle-num {
       font-family: 'Fira Code', monospace;
@@ -229,6 +258,48 @@
       color: var(--muted);
       line-height: 1.6;
     }
+    .principle-practice {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--rule);
+      font-family: 'Fira Code', monospace; font-size: 0.78rem; color: var(--ink);
+    }
+    .principle-practice span.tag { color: var(--accent); font-weight: 600; }
+
+    /* Pull-quote */
+    .pull-quote {
+      margin: 0 0 80px;
+      padding: 40px 44px;
+      border-left: 3px solid var(--accent);
+      background: var(--card);
+      border-radius: 0 16px 16px 0;
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .pull-quote cite {
+      display: block; margin-top: 16px;
+      font-family: 'Fira Code', monospace; font-style: normal; font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Trade-offs */
+    .tradeoffs-section { margin-bottom: 80px; }
+    .tradeoffs-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;
+    }
+    .tradeoff-card {
+      background: var(--card); border: 1px solid var(--rule); border-radius: 14px;
+      padding: 24px; display: flex; flex-direction: column; gap: 12px;
+    }
+    .tradeoff-row { display: flex; gap: 10px; font-size: 0.9rem; line-height: 1.6; }
+    .tradeoff-row .label { font-family: 'Fira Code', monospace; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; padding-top: 2px; }
+    .tradeoff-row.choose .label { color: #2ecc71; }
+    .tradeoff-row.defer .label { color: var(--muted); }
+    .tradeoff-row span:last-child { color: var(--ink); }
 
     /* Process Step-by-Step Section */
 .process-section {
@@ -282,7 +353,22 @@
       border-radius: 18px;
       padding: 32px;
       box-shadow: var(--card-shadow);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
     }
+    .step-content:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .step-outcome {
+      display: flex; align-items: baseline; gap: 8px;
+      margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--rule);
+      font-size: 0.85rem;
+    }
+    .step-outcome .label {
+      font-family: 'Fira Code', monospace; font-size: 0.7rem; font-weight: 700;
+      color: var(--accent); flex-shrink: 0;
+    }
+    .step-outcome span:last-child { color: var(--muted); }
 
 .step-title {
       font-family: 'Playfair Display', serif;
@@ -312,6 +398,15 @@
       border: 1px solid var(--rule);
       border-radius: 14px;
       padding: 20px;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .stack-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 16px 32px rgba(10,14,20,0.08);
+    }
+    body.dark-mode .stack-card:hover {
+      box-shadow: 0 0 0 1px var(--accent), 0 16px 32px rgba(255,75,43,0.12);
     }
 
 .stack-category {
@@ -463,33 +558,71 @@
       <p class="hero-subtitle">
         Building streaming data pipelines, transaction reconciliation systems, and platform abstractions requires deliberate tradeoffs. Here is the framework I use to go from raw event webhooks to battle-tested production pipelines.
       </p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-value">6</div>
+          <div class="hero-stat-label">Production data systems shipped</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">100M/day</div>
+          <div class="hero-stat-label">Transaction scale scoped in architecture spec</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">Zero</div>
+          <div class="hero-stat-label">Duplicate transactions from webhook retries</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">38/38</div>
+          <div class="hero-stat-label">Tests passing, gating every deploy</div>
+        </div>
+      </div>
     </section>
 
     <!-- Core Engineering Principles -->
     <section>
       <h2 class="section-title">Core Principles</h2>
-      <p class="section-subtitle">Rules that guide every system design call across CampusHub, MyChama, and PesaGuard.</p>
+      <p class="section-subtitle">Rules that guide every system design call, from webhook ingestion to warehouse schema.</p>
       
       <div class="principles-grid">
         <div class="principle-card reveal">
+          <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 L4 14h6l-1 8 9-12h-6z"/></svg></div>
           <div class="principle-num">01 // ARCHITECTURE</div>
           <h3>Events Over Nightly Batches</h3>
           <p>Treat incoming data (like M-Pesa/Daraja webhooks) as reactive real-time events rather than static database rows inspected hours later.</p>
+          <div class="principle-practice"><span class="tag">In practice:</span> PesaGuard's Flask backend processes Daraja webhooks as they arrive.</div>
         </div>
 
-        <div class="principle-card reveal">
+        <div class="principle-card reveal" style="transition-delay:0.08s">
+          <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7z"/></svg></div>
           <div class="principle-num">02 // GOVERNANCE</div>
           <h3>Governance as First-Class Code</h3>
           <p>Schema validation, access logging, and Kenyan Data Protection Act compliance are automated inline directly in CI/CD pipeline code.</p>
+          <div class="principle-practice"><span class="tag">In practice:</span> GitHub Actions gates every push with an automated Pytest suite.</div>
         </div>
 
-        <div class="principle-card reveal">
+        <div class="principle-card reveal" style="transition-delay:0.16s">
+          <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
           <div class="principle-num">03 // PLATFORM THINKING</div>
           <h3>Refuse to Solve Plumbing Twice</h3>
           <p>Extract reusable ingestion components, auth mechanisms, and monitoring dashboards after they appear in two live projects.</p>
+          <div class="principle-practice"><span class="tag">In practice:</span> Deduplication logic shared across the ETL and M-Pesa pipelines.</div>
+        </div>
+
+        <div class="principle-card reveal" style="transition-delay:0.24s">
+          <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div class="principle-num">04 // RELIABILITY</div>
+          <h3>Idempotency Is Not Optional</h3>
+          <p>Any system that receives webhooks will receive duplicates. I design the retry path before I design the happy path.</p>
+          <div class="principle-practice"><span class="tag">In practice:</span> Idempotency-key deduplication so a retried webhook is never double-counted.</div>
         </div>
       </div>
     </section>
+
+    <!-- Pull Quote -->
+    <div class="pull-quote reveal">
+      <p>"A pipeline that only works when nothing goes wrong isn't a pipeline. It's a demo."</p>
+      <cite>The assumption behind every retry path, validation rule, and idempotency check I write</cite>
+    </div>
 
     <!-- Detailed 4-Step Process -->
     <section class="process-section" id="process">
@@ -505,6 +638,7 @@
             <p class="step-description">
               Map failure modes, edge cases (e.g., duplicate M-Pesa webhooks, out-of-order execution), and compliance boundaries before writing any pipeline code.
             </p>
+            <div class="step-outcome"><span class="label">OUTCOME</span><span>Identified webhook idempotency as PesaGuard's highest-priority risk before writing the reconciliation engine.</span></div>
           </div>
         </div>
 
@@ -516,6 +650,7 @@
             <p class="step-description">
               Strict schema contracts at the entry point catch malformed or unexpected payload fields before they leak into downstream models.
             </p>
+            <div class="step-outcome"><span class="label">OUTCOME</span><span>A config-driven rule engine for the M-Pesa cleaning pipeline, so validation rules never need a code change.</span></div>
           </div>
         </div>
 
@@ -525,8 +660,9 @@
           <div class="step-content">
             <h3 class="step-title">Stream Computing & Anomaly Rules</h3>
             <p class="step-description">
-              Event-driven streaming with PyFlink/Kafka consumers performs near-real-time anomaly detection and reconciliation validation.
+              Event-driven streaming with Kafka consumers performs near-real-time aggregation, with consumer-group design built for horizontal scalability.
             </p>
+            <div class="step-outcome"><span class="label">OUTCOME</span><span>Exactly-once semantics in the streaming system, so retried events can never be double-counted downstream.</span></div>
           </div>
         </div>
 
@@ -538,7 +674,44 @@
             <p class="step-description">
               Metrics, dashboards, and access logging are wired up so the system operates cleanly without manual intervention.
             </p>
+            <div class="step-outcome"><span class="label">OUTCOME</span><span>Grafana dashboards connected directly to the PostgreSQL output layer for live operational visibility.</span></div>
           </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="timeline-step reveal">
+          <div class="step-icon">05</div>
+          <div class="step-content">
+            <h3 class="step-title">Scope for the Next Order of Magnitude</h3>
+            <p class="step-description">
+              Once a system is stable at current load, I write down what breaks first at 10x and 100x scale, before that becomes an incident.
+            </p>
+            <div class="step-outcome"><span class="label">OUTCOME</span><span>A target-state architecture spec scoping PesaGuard to 100M transactions/day, mapped across 12 subsystems.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deliberate Trade-offs -->
+    <section class="tradeoffs-section">
+      <h2 class="section-title">Trade-offs I Make Deliberately</h2>
+      <p class="section-subtitle">Good engineering is choosing the right constraint for the current stage, not the most impressive one.</p>
+      <div class="tradeoffs-grid">
+        <div class="tradeoff-card reveal">
+          <div class="tradeoff-row choose"><span class="label">CHOOSE</span><span>A managed platform like Render for zero-maintenance deployment</span></div>
+          <div class="tradeoff-row defer"><span class="label">DEFER</span><span>Self-hosted Kubernetes, until traffic actually justifies the operational overhead</span></div>
+        </div>
+        <div class="tradeoff-card reveal" style="transition-delay:0.08s">
+          <div class="tradeoff-row choose"><span class="label">CHOOSE</span><span>Shipping idempotency correctness before any UI polish</span></div>
+          <div class="tradeoff-row defer"><span class="label">DEFER</span><span>Feature breadth, until the data itself can be trusted</span></div>
+        </div>
+        <div class="tradeoff-card reveal" style="transition-delay:0.16s">
+          <div class="tradeoff-row choose"><span class="label">CHOOSE</span><span>PostgreSQL as the default store, for its reliability and tooling</span></div>
+          <div class="tradeoff-row defer"><span class="label">DEFER</span><span>Exotic database choices, unless a specific access pattern demands them</span></div>
+        </div>
+        <div class="tradeoff-card reveal" style="transition-delay:0.24s">
+          <div class="tradeoff-row choose"><span class="label">CHOOSE</span><span>Writing the architecture spec for 100M tx/day now, while it's cheap</span></div>
+          <div class="tradeoff-row defer"><span class="label">DEFER</span><span>Building for that scale today, before the system needs it</span></div>
         </div>
       </div>
     </section>
@@ -579,7 +752,10 @@
     <section class="cta-banner">
       <h2>Interested in discussing data infrastructure?</h2>
       <p>Whether it's event-driven architecture, Daraja integrations, or building resilient data pipelines, I'm always open to technical discussions.</p>
-      <a href="mailto:kiprutovictor39@gmail.com" class="cta-btn">Get in Touch</a>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="mailto:kiprutovictor39@gmail.com" class="cta-btn">Get in Touch</a>
+        <a href="/projects" class="cta-btn" style="background:transparent; border:1px solid var(--rule); color:var(--ink);">See the Projects</a>
+      </div>
     </section>
   </main>
   <!-- FOOTER -->
