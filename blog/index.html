@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Engineering & FinTech Systems | Victor Kipruto Rop</title>
 <meta name="description" content="Technical articles on data engineering, ETL pipelines, streaming systems, and FinTech infrastructure by Victor Kipruto Rop."/>
-<link rel="canonical" href="https://victorkipruto.com/blog"/>
+<link rel="canonical" href="https://www.victorkipruto.com/blog"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://victorkipruto.com/blog"/>
+<meta property="og:url" content="https://www.victorkipruto.com/blog"/>
 <meta property="og:title" content="Data Engineering & FinTech Systems | Victor Kipruto Rop"/>
 <meta property="og:description" content="Technical articles on data engineering, ETL pipelines, streaming systems, and FinTech infrastructure by Victor Kipruto Rop."/>
 <meta property="og:site_name" content="Victor Kipruto Rop"/>
-<meta property="og:image" content="https://victorkipruto.com/og-image.png"/>
+<meta property="og:image" content="https://www.victorkipruto.com/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Data Engineering & FinTech Systems | Victor Kipruto Rop"/>
 <meta name="twitter:description" content="Technical articles on data engineering, ETL pipelines, streaming systems, and FinTech infrastructure by Victor Kipruto Rop."/>
-<meta name="twitter:image" content="https://victorkipruto.com/og-image.png"/>
+<meta name="twitter:image" content="https://www.victorkipruto.com/og-image.png"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -442,17 +442,17 @@
     <!-- View 1: Main Blog Home -->
     <div id="blogHomeView">
       <section class="hero-section">
-        <a href="#blog-1" class="featured-card">
+        <a href="#blog-6" class="featured-card">
           <div class="featured-img-wrap">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="Streaming Architecture" class="featured-img">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Performance engineering dashboard" class="featured-img">
           </div>
           <div class="featured-content">
-            <span class="badge">Streaming Architecture</span>
-            <h1 class="featured-title">Why I'm Building PesaGuard on Event-Driven Architecture, Not Batch</h1>
-            <p class="card-excerpt">Batch processing is no longer the center of gravity in 2026 data systems. Here is why Daraja and M-Pesa fraud detection requires instant stream ingestion over overnight batch jobs.</p>
+            <span class="badge">Performance</span>
+            <h1 class="featured-title">The Real Cost of a Slow Batch Load: What Cutting 4 Minutes to 45 Seconds Actually Taught Me</h1>
+            <p class="card-excerpt">2026's data engineering conversation has shifted from "can it scale" to "what does it cost to run." Here's the exact tuning work that took one ingestion pipeline from a 4-minute load to 45 seconds.</p>
             <div class="meta-text">
               <span>By Victor Kipruto Rop</span> • 
-              <span>July 2026</span> • 
+              <span>Sep 2026</span> • 
               <span>6 min read</span>
             </div>
           </div>
@@ -462,6 +462,8 @@
       <div class="controls-bar">
         <div class="categories" id="categoryContainer">
           <button class="cat-btn active" data-category="All">All Topics</button>
+          <button class="cat-btn" data-category="Data Architecture">Data Architecture</button>
+          <button class="cat-btn" data-category="Performance">Performance</button>
           <button class="cat-btn" data-category="Streaming">Streaming</button>
           <button class="cat-btn" data-category="Platform Engineering">Platform Engineering</button>
           <button class="cat-btn" data-category="Governance">Governance</button>
@@ -508,6 +510,81 @@
   <script>
     // Full Article Repository
     const articles = [
+      {
+        id: "blog-6",
+        title: "The Real Cost of a Slow Batch Load: What Cutting 4 Minutes to 45 Seconds Actually Taught Me",
+        category: "Performance",
+        author: "Victor Kipruto Rop",
+        date: "Sep 06, 2026",
+        readTime: "6 min read",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+        excerpt: "2026's data engineering conversation has shifted from \"can it scale\" to \"what does it cost to run.\" Here's the exact tuning work that took one ingestion pipeline from a 4-minute load to 45 seconds.",
+        content: `
+          <p>For most of 2025, the data engineering conversation I kept running into was about capability: can your pipeline handle the volume, can it handle the velocity, can it handle the next order of magnitude. Walking into 2026, the conversation I actually see everywhere now is different. It's about cost. Compute is not free, and "it eventually finishes" stopped being an acceptable answer for a job that runs on a schedule and burns money every time it does.</p>
+          <p>I hit that shift directly while building the Cloud ETL Ingestion Pipeline. The first working version loaded 1.6 million rows in just under 4 minutes. It worked. It also would have been embarrassing to leave alone.</p>
+
+          <h2>Where the 4 minutes actually went</h2>
+          <p>The instinct when a load is slow is to blame the data volume. That's rarely where the time goes. Profiling the pipeline showed three separate costs stacking on top of each other:</p>
+          <ul>
+            <li><strong>Reading the whole file into memory first.</strong> The original loader read the full source file before processing a single row, so peak memory scaled directly with file size, and nothing downstream could start until the read finished.</li>
+            <li><strong>One connection, one row at a time.</strong> Every insert opened a round trip to PostgreSQL individually. At 1.6 million rows, that's 1.6 million network round trips before you've done anything else.</li>
+            <li><strong>No encoding assumption.</strong> The loader tried a default encoding first and fell back on failure, which meant re-reading files that didn't match on the first pass.</li>
+          </ul>
+
+          <h2>The three fixes, in the order I made them</h2>
+          <pre><code>BEFORE                                  AFTER
+Full-file read into memory              Chunked reading, fixed-size buffers
+        |                                      |
+        v                                      v
+Peak memory scales with file size       Peak memory under 300MB regardless of file size
+
+Row-by-row INSERT                       5,000-row batch execution
+        |                                      |
+        v                                      v
+1.6M network round trips                ~320 round trips
+
+Encoding: try, fail, retry              Automatic encoding detection up front
+        |                                      |
+        v                                      v
+Wasted first-pass reads                 One read, correct encoding, first try</code></pre>
+          <p>None of these three changes are exotic. Chunked reading, batched writes, and upfront encoding detection are close to first-year data engineering material. That's the point. The 4-minute version wasn't slow because the problem was hard. It was slow because nobody had gone back and asked why it was slow.</p>
+
+          <h2>What it actually bought</h2>
+          <p>After the three changes: full load time dropped from 4 minutes to 45 seconds, throughput landed at roughly 70,000 rows per second, and peak memory stayed under 300MB regardless of source file size, because chunked reading decoupled memory use from file size entirely. Extract, Transform, and Load also got split into independent Docker microservices with exponential-backoff retry, so a transient cloud failure in one stage no longer means restarting the whole job from zero.</p>
+
+          <h2>The honest trade-off</h2>
+          <p>Batching writes means you're no longer inserting rows the instant they're ready, you're holding them until a batch fills or a timeout fires. For a pipeline where "eventually consistent within a few seconds" is fine, that's a non-issue. For something like PesaGuard's reconciliation engine, where a transaction needs to be checked close to the moment it happens, batched writes are the wrong tool, which is exactly why that system stays event-driven instead. Performance tuning isn't a single set of best practices you apply everywhere. It's picking the right cost to pay for the latency your specific pipeline actually needs.</p>
+        `
+      },
+      {
+        id: "blog-5",
+        title: "Why I'm Not Rushing to Put PesaGuard on Iceberg (Yet)",
+        category: "Data Architecture",
+        author: "Victor Kipruto Rop",
+        date: "Sep 03, 2026",
+        readTime: "5 min read",
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+        excerpt: "Iceberg Summit 2026 declared the adoption question settled. For a solo builder running one pilot customer on Postgres, the actual question is different: settled for who, and at what scale?",
+        content: `
+          <p>The read I keep coming across from this year's Iceberg Summit is that the adoption argument is over. Nobody there was trying to convince anyone to adopt Apache Iceberg anymore; the conversation had already moved to what to build once you're on it. Catalog choice, compaction strategy, REST interoperability across Spark, Trino, and Flink. Enterprise data teams settled the "should we" question and moved on to "how do we operate this well."</p>
+          <p>I read that and immediately asked myself whether PesaGuard should be on Iceberg. The honest answer is: not yet, and being clear on why matters more than following the trend.</p>
+
+          <h2>What Iceberg actually solves</h2>
+          <p>Iceberg is an open table format that puts ACID transactions, schema evolution, and time travel on top of plain files sitting in object storage, so multiple engines (Spark, Trino, Flink, DuckDB) can all read and write the same tables without locking you into one vendor's proprietary format. That's a real problem for a team running petabytes across multiple compute engines that all need to agree on one source of truth without copying data between them.</p>
+          <p>PesaGuard, today, is a Flask backend and a Next.js frontend, backed by PostgreSQL through Supabase, serving one pilot customer. There's exactly one engine touching that data: Postgres itself. The multi-engine interoperability problem Iceberg solves doesn't exist yet, because there's only one engine in the picture.</p>
+
+          <h2>What actually matters at this stage</h2>
+          <p>The real risk to PesaGuard right now isn't table format lock-in. It's the same risk it's always been: can the reconciliation engine be trusted. Webhook idempotency, correct handling of Daraja's retry behavior, catching a real anomaly without burying it in false positives. None of that gets easier by migrating to a lakehouse. If anything, taking on Iceberg's operational surface, catalog choice, compaction jobs, snapshot expiration, before the core product logic is fully proven would be spending complexity budget in the wrong place.</p>
+          <p>That's not an argument against Iceberg. It's an argument against adopting infrastructure ahead of the problem that justifies it.</p>
+
+          <h2>Where it does fit into the plan</h2>
+          <p>The target-state architecture spec I wrote scoping PesaGuard to 100 million transactions/day already assumes this conversation happens eventually, just not now. At pilot scale, a single Postgres instance is boring, well-understood infrastructure, and boring is correct when you're still validating whether the product itself works. The spec maps out where an open table format becomes the right call: the point where transaction volume needs multiple compute engines reading the same historical data concurrently, for example a Postgres OLTP layer for live reconciliation alongside a Spark or Flink job doing longer-range fraud analysis over the same table.</p>
+          <p>Writing that down now, while it's cheap, means the migration path exists before it's urgent. Building it now, before it's needed, would just mean maintaining infrastructure whose only job is looking prepared.</p>
+
+          <h2>The honest trade-off</h2>
+          <p>Adopting boring, current-scale infrastructure risks a harder migration later if growth outpaces the plan. Adopting future-scale infrastructure now risks operational overhead with no corresponding benefit today. I'm choosing the first risk deliberately, because the cost of being wrong about "we'll migrate later" is a known, bounded engineering project. The cost of being wrong about "we need this complexity now" is time spent operating infrastructure that never earns its keep.</p>
+        `
+      },
       {
         id: "blog-1",
         title: "Why I'm Building PesaGuard on Event-Driven Architecture, Not Batch",
