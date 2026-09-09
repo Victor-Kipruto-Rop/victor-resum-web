@@ -4,100 +4,78 @@
   <channel>
     <title>Technical Blog - Victor Kipruto Rop</title>
     <link>https://www.victorkipruto.com/blog</link>
-    <atom:link href="https://www.victorkipruto.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>Data Engineering, Analytics, and Software Architecture insights</description>
+    <atom:link href="https://www.victorkipruto.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Data engineering, FinTech infrastructure, and streaming systems insights</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Jun 2024 07:45:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2026 09:00:00 GMT</lastBuildDate>
     <ttl>1440</ttl>
 
-    <!-- Channel Image -->
     <image>
       <url>https://www.victorkipruto.com/og-image.png</url>
       <title>Victor Kipruto Rop - Technical Blog</title>
       <link>https://www.victorkipruto.com/blog</link>
     </image>
 
-    <!-- Author/Managing Editor -->
-    <managingEditor>victor@victorkirpruto.dev</managingEditor>
-    <webMaster>victor@victorkirpruto.dev</webMaster>
+    <managingEditor>kiprutovictor39@gmail.com (Victor Kipruto Rop)</managingEditor>
+    <webMaster>kiprutovictor39@gmail.com (Victor Kipruto Rop)</webMaster>
 
-    <!-- Category -->
-    <category>Technology</category>
     <category>Data Engineering</category>
-    <category>Analytics</category>
+    <category>FinTech</category>
+    <category>Streaming Systems</category>
 
-    <!-- Sample Blog Post 1 -->
     <item>
-      <title>Data Engineering Fundamentals</title>
-      <link>https://www.victorkipruto.com/blog</link>
-      <guid isPermaLink="true">https://www.victorkipruto.com/blog</guid>
-      <pubDate>Thu, 06 Jun 2024 09:00:00 GMT</pubDate>
-      <lastBuildDate>Thu, 06 Jun 2024 09:00:00 GMT</lastBuildDate>
+      <title>The Real Cost of a Slow Batch Load: What Cutting 4 Minutes to 45 Seconds Actually Taught Me</title>
+      <link>https://www.victorkipruto.com/blog#blog-6</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-6</guid>
+      <pubDate>Sun, 06 Sep 2026 09:00:00 GMT</pubDate>
       <author>Victor Kipruto Rop</author>
-      <category>Data Engineering</category>
-      <category>Fundamentals</category>
-      <category>ETL</category>
-      <description>Learn the core concepts of data engineering including ETL pipelines, data warehousing, and best practices for building scalable data systems.</description>
-      <content:encoded><![CDATA[
-        <p>Data engineering is the practice of designing and building systems for collecting, storing, and analyzing data. In this comprehensive guide, we explore:</p>
-        <ul>
-          <li>ETL vs ELT paradigms</li>
-          <li>Data warehouse architecture</li>
-          <li>Real-time vs batch processing</li>
-          <li>Best practices and tools</li>
-        </ul>
-        <p>Read the full article on our blog for detailed code examples and best practices.</p>
-      ]]></content:encoded>
-      <comments>https://www.victorkipruto.com/blog#comments</comments>
+      <category>Performance</category>
+      <description>2026's data engineering conversation has shifted from \"can it scale\" to \"what does it cost to run.\" Here's the exact tuning work that took one ingestion pipeline from a 4-minute load to 45 seconds.</description>
     </item>
-
-    <!-- Sample Blog Post 2 -->
     <item>
-      <title>Building Scalable Data Pipelines</title>
-      <link>https://www.victorkipruto.com/posts/scalable-pipelines.html</link>
-      <guid isPermaLink="true">https://www.victorkipruto.com/posts/scalable-pipelines.html</guid>
-      <pubDate>Wed, 29 May 2024 10:30:00 GMT</pubDate>
-      <lastBuildDate>Wed, 29 May 2024 10:30:00 GMT</lastBuildDate>
+      <title>Why I'm Not Rushing to Put PesaGuard on Iceberg (Yet)</title>
+      <link>https://www.victorkipruto.com/blog#blog-5</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-5</guid>
+      <pubDate>Thu, 03 Sep 2026 09:00:00 GMT</pubDate>
       <author>Victor Kipruto Rop</author>
-      <category>Data Engineering</category>
-      <category>Architecture</category>
-      <category>Apache Airflow</category>
-      <description>Learn how to design and implement data pipelines that scale from thousands to millions of records using Apache Airflow, Spark, and modern data stack tools.</description>
-      <content:encoded><![CDATA[
-        <p>Building scalable data pipelines is essential for modern data organizations. This guide covers:</p>
-        <ul>
-          <li>Orchestration with Apache Airflow</li>
-          <li>Distributed processing with Spark</li>
-          <li>Monitoring and alerting</li>
-          <li>Cost optimization strategies</li>
-        </ul>
-        <p>Includes practical examples and code snippets for immediate implementation.</p>
-      ]]></content:encoded>
+      <category>Data Architecture</category>
+      <description>Iceberg Summit 2026 declared the adoption question settled. For a solo builder running one pilot customer on Postgres, the actual question is different: settled for who, and at what scale?</description>
     </item>
-
-    <!-- Sample Blog Post 3 -->
     <item>
-      <title>Real-Time Analytics with Kafka and ClickHouse</title>
-      <link>https://www.victorkipruto.com/posts/realtime-analytics.html</link>
-      <guid isPermaLink="true">https://www.victorkipruto.com/posts/realtime-analytics.html</guid>
-      <pubDate>Fri, 17 May 2024 14:20:00 GMT</pubDate>
-      <lastBuildDate>Fri, 17 May 2024 14:20:00 GMT</lastBuildDate>
+      <title>Why I'm Building PesaGuard on Event-Driven Architecture, Not Batch</title>
+      <link>https://www.victorkipruto.com/blog#blog-1</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-1</guid>
+      <pubDate>Sun, 26 Jul 2026 09:00:00 GMT</pubDate>
       <author>Victor Kipruto Rop</author>
-      <category>Real-Time Analytics</category>
-      <category>Apache Kafka</category>
-      <category>ClickHouse</category>
-      <description>Explore how to build real-time analytics systems using Apache Kafka for streaming ingestion and ClickHouse for sub-second query performance on massive datasets.</description>
-      <content:encoded><![CDATA[
-        <p>Real-time analytics enables organizations to make decisions based on current data. Learn how to:</p>
-        <ul>
-          <li>Set up Kafka clusters for high-throughput streaming</li>
-          <li>Configure ClickHouse for real-time analytics</li>
-          <li>Build resilient data pipelines</li>
-          <li>Monitor system performance</li>
-        </ul>
-        <p>Complete with architecture diagrams and production-ready configurations.</p>
-      ]]></content:encoded>
+      <category>Streaming</category>
+      <description>Batch processing is no longer the center of gravity in 2026 data systems. Here is why Daraja and M-Pesa fraud detection requires instant stream ingestion over overnight batch jobs.</description>
     </item>
-
+    <item>
+      <title>What 'Platform Engineering' Means for a Solo Data Engineer</title>
+      <link>https://www.victorkipruto.com/blog#blog-2</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-2</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Platform Engineering</category>
+      <description>The 2026 shift is moving away from tool-hoarding toward internal data platforms. How I apply modular platform thinking across CampusHub, MyChama, and PesaGuard.</description>
+    </item>
+    <item>
+      <title>Governance-as-Code for M-Pesa Data Pipelines</title>
+      <link>https://www.victorkipruto.com/blog#blog-3</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-3</guid>
+      <pubDate>Wed, 15 Jul 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Governance</category>
+      <description>Automation-first compliance: enforcing automated audit trails, line-level data lineage, and Kenyan Data Protection Act requirements directly inside Git CI/CD.</description>
+    </item>
+    <item>
+      <title>AI Copilots Didn't Replace My Pipeline Work: They Changed What 'Junior' Means</title>
+      <link>https://www.victorkipruto.com/blog#blog-4</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-4</guid>
+      <pubDate>Wed, 08 Jul 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>AI Workflows</category>
+      <description>AI tools draft SQL, write boilerplate connectors, and debug errors automatically. Where engineer judgment matters most in an AI-assisted world.</description>
+    </item>
   </channel>
 </rss>

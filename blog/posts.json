@@ -10,7 +10,31 @@
       "data-lakehouse",
       "delta-lake",
       "apache-spark",
-      "snowflake",
+      "snowflake"
+    ],
+    "image": "https://www.victorkipruto.com/assets/images/data-lakehouse.png",
+    "status": "published",
+    "seoKeywords": [
+      "data lakehouse",
+      "delta lake",
+      "apache spark"
+    ],
+    "readTime": 12,
+    "featured": true,
+    "trending": false,
+    "views": 0,
+    "likes": 0,
+    "shares": 0,
+    "comments": 0,
+    "engagementScore": 0
+  },
+  {
+    "id": "data-quality-frameworks-for-modern-pipelines",
+    "slug": "data-quality-frameworks-for-modern-pipelines",
+    "title": "Data Quality Frameworks for Modern Pipelines",
+    "description": "An overview of data quality and testing frameworks for production pipelines.",
+    "publishDate": "2026-06-09T03:12:42.902384Z",
+    "category": "Data Quality",
     "tags": [
       "data-quality",
       "testing",
