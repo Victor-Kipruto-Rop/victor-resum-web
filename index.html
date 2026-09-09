@@ -26,6 +26,8 @@
 <!-- RSS Discovery Link -->
 <link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="https://www.victorkipruto.com/rss.xml">
 
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <style>
   link[rel="icon"] { border-radius: 50%; }
@@ -1968,9 +1970,10 @@
   const themeToggle = document.getElementById('theme-toggle');
   const body = document.body;
   
-  // Check for saved theme - default to dark mode
+  // Check for saved theme - fall back to system preference, then dark mode
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
     body.classList.remove('dark-mode');
   } else {
     body.classList.add('dark-mode');
@@ -2356,7 +2359,7 @@
       <button class="project-modal-close" id="projectModalClose" aria-label="Close project modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
     </div>
     <div class="project-modal-content" style="padding:32px;">
-      <img id="projectModalImage" class="project-modal-image" src="" alt="Project Preview">
+      <img id="projectModalImage" class="project-modal-image" src="" alt="Project Preview" loading="lazy">
       <div class="project-modal-meta">
         <span id="projectModalTime"></span>
         <span id="projectModalCategory"></span>

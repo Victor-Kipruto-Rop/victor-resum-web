@@ -15,6 +15,8 @@
 <meta name="twitter:title" id="twitter-title" content="Blog Post | Victor Kipruto Rop"/>
 <meta name="twitter:description" id="twitter-desc" content="Technical blog post by Victor Kipruto Rop"/>
 <meta name="twitter:image" content="https://www.victorkipruto.com/og-image.png"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
@@ -274,8 +276,9 @@
   // Theme toggle
   const themeToggle = document.getElementById('theme-toggle');
   const savedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
   
-  if (savedTheme === 'light') {
+  if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
     document.body.classList.remove('dark-mode');
   } else {
     document.body.classList.add('dark-mode');

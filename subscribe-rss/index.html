@@ -22,7 +22,9 @@
   <link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="https://www.victorkipruto.com/rss.xml">
   
   <!-- Favicon -->
-  <link rel="icon" href="/assets/1.jpeg" type="image/jpeg">
+  <link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
+<link rel="icon" href="/assets/1.jpeg" type="image/jpeg">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -487,7 +489,8 @@
     // Theme Management
     const themeToggle = document.getElementById('themeToggle');
     const themeToggleNav = document.getElementById('themeToggleNav');
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     
     const updateThemeUI = (isDark) => {
       if (themeToggle) {
@@ -495,7 +498,7 @@
       }
     };
 
-    if (savedTheme === 'dark') {
+    if (savedTheme === 'dark' || (!savedTheme && !prefersLight)) {
       document.body.classList.add('dark-mode');
       updateThemeUI(true);
     }

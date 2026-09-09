@@ -16,6 +16,8 @@
 <meta name="twitter:title" content="Manage Subscription | Victor Kipruto Rop"/>
 <meta name="twitter:description" content="Manage your email subscription preferences for Victor Kipruto Rop's blog updates."/>
 <meta name="twitter:image" content="https://www.victorkipruto.com/og-image.png"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -155,6 +157,15 @@
 </style>
 </head>
 <body class="dark-mode">
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (saved === 'light' || (!saved && prefersLight)) {
+      document.body.classList.remove('dark-mode');
+    }
+  })();
+</script>
 
 <nav>
   <a href="/" class="nav-logo">Victor Kipruto Rop</a>

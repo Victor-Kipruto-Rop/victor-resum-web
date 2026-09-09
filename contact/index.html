@@ -26,6 +26,8 @@
 <!-- RSS Discovery Link -->
 <link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="https://www.victorkipruto.com/rss.xml">
 
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <style>
   link[rel="icon"] { border-radius: 50%; }
@@ -1665,7 +1667,8 @@
   
   // Check for saved theme - default to dark mode
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
     body.classList.remove('dark-mode');
   } else {
     body.classList.add('dark-mode');

@@ -15,6 +15,8 @@
 <meta name="twitter:description" content="Thank you for your message. Victor Kipruto Rop will get back to you soon."/>
 <meta name="twitter:image" content="https://www.victorkipruto.com/og-image.png"/>
 <meta name="description" content="Thank you for your message. Victor Kipruto Rop will get back to you soon."/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono&family=Syne:wght@600&display=swap" rel="stylesheet"/>
@@ -158,7 +160,8 @@
     const body = document.body;
     
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && !prefersLight)) {
       body.classList.add('dark-mode');
     }
 

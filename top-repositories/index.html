@@ -16,6 +16,8 @@
 <meta name="twitter:title" content="Top Repositories | Victor Kipruto Rop"/>
 <meta name="twitter:description" content="A curated look at Victor Kipruto Rop's most active and starred GitHub repositories."/>
 <meta name="twitter:image" content="https://www.victorkipruto.com/og-image.png"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -185,7 +187,8 @@
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
       body.classList.remove('dark-mode');
       themeToggle.textContent = '🌙';
     } else {

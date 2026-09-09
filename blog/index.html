@@ -16,6 +16,8 @@
 <meta name="twitter:title" content="Data Engineering & FinTech Systems | Victor Kipruto Rop"/>
 <meta name="twitter:description" content="Technical articles on data engineering, ETL pipelines, streaming systems, and FinTech infrastructure by Victor Kipruto Rop."/>
 <meta name="twitter:image" content="https://www.victorkipruto.com/og-image.png"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -425,7 +427,7 @@
     }
 </style>
 </head>
-<body class="dark-mode">
+<body>
 
   <!-- Navigation Header -->
   <header>
@@ -751,10 +753,19 @@ Retention clock starts (auto-purge at policy limit)</code></pre>
     const backBtn = document.getElementById('backBtn');
 
     // Theme Switch Logic
+    const savedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
+      themeToggle.textContent = '🌙';
+    } else {
+      document.body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       const isDark = document.body.classList.contains('dark-mode');
       themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
     // Render Cards Grid
@@ -804,6 +815,37 @@ Retention clock starts (auto-purge at policy limit)</code></pre>
         <img src="${art.image}" alt="${art.title}" class="article-hero-img">
         <div class="article-content-body">${art.content}</div>
       `;
+
+      injectArticleSchema(art);
+      document.title = art.title + ' | Victor Kipruto Rop';
+    }
+
+    // Dynamically add/replace BlogPosting structured data for the currently viewed article
+    function injectArticleSchema(art) {
+      let script = document.getElementById('article-schema');
+      if (!script) {
+        script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.id = 'article-schema';
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": art.title,
+        "description": art.excerpt,
+        "image": art.image,
+        "datePublished": art.date,
+        "author": { "@type": "Person", "name": art.author, "url": "https://www.victorkipruto.com/" },
+        "publisher": { "@type": "Person", "name": "Victor Kipruto Rop" },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.victorkipruto.com/blog#" + art.id }
+      });
+    }
+
+    function removeArticleSchema() {
+      const script = document.getElementById('article-schema');
+      if (script) script.remove();
+      document.title = 'Data Engineering & FinTech Systems | Victor Kipruto Rop';
     }
 
     // Hash Router
@@ -819,6 +861,7 @@ Retention clock starts (auto-purge at policy limit)</code></pre>
         blogHomeView.style.display = 'block';
         singleArticleView.style.display = 'none';
         backBtn.style.display = 'none';
+        removeArticleSchema();
         renderGrid();
       }
     }
