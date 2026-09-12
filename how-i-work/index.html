@@ -536,7 +536,23 @@
       .site-footer .footer-top { flex-direction: column; gap: 20px; text-align: left; align-items: flex-start; }
       .site-footer .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
+
+    .breadcrumb { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 6px; opacity: 0.5; }
+    .breadcrumb [aria-current="page"] { color: var(--ink); }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.victorkipruto.com/"},
+    {"@type": "ListItem", "position": 2, "name": "How I Work", "item": "https://www.victorkipruto.com/how-i-work"}
+  ]
+}
+</script>
 </head>
 <body class="dark-mode">
   <div id="scrollProgress"></div>
@@ -553,9 +569,14 @@
   </header>
 
   <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span class="sep">/</span> <span aria-current="page">How I Work</span>
+    </nav>
+
     <!-- Hero Section -->
     <section class="page-hero">
       <span class="badge">ENGINEERING METHODOLOGY</span>
+      <p style="font-family:'Fira Code',monospace;font-size:0.75rem;color:var(--muted);margin-top:12px;">Last updated September 2026</p>
       <h1 class="hero-title">How I Build Reliability into Data Infrastructure</h1>
       <p class="hero-subtitle">
         Building streaming data pipelines, transaction reconciliation systems, and platform abstractions requires deliberate tradeoffs. Here is the framework I use to go from raw event webhooks to battle-tested production pipelines.

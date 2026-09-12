@@ -140,6 +140,12 @@
     .post-container { padding: 0 16px 80px; }
     nav { padding: 12px; }
   }
+
+    .breadcrumb { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 6px; opacity: 0.5; }
+    .breadcrumb [aria-current="page"] { color: var(--ink); }
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
@@ -172,6 +178,9 @@
 </header>
 
 <main class="post-container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a> <span class="sep">/</span> <a href="/blog">Blog</a> <span class="sep">/</span> <span aria-current="page">Article</span>
+  </nav>
   <article id="post-content">
     <p>Loading content...</p>
   </article>

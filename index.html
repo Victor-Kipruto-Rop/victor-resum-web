@@ -539,6 +539,27 @@
   .why-summary { max-width: 900px; width: 100%; margin: 0 auto; padding: 28px; background: transparent; }
   .why-summary .why-text { font-size: 18px; line-height: 1.9; color: var(--muted); text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; max-width: 100%; }
 
+  /* ── Impact / By the Numbers ── */
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px; margin-top: 48px;
+  }
+  .impact-card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 26px 24px; text-align: left;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .impact-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(10,14,20,0.08); }
+  body.dark-mode .impact-card:hover { box-shadow: 0 0 0 1px var(--accent), 0 20px 40px rgba(255,75,43,0.15); }
+  .impact-value {
+    font-family: 'Fira Code', monospace; font-size: 2.1rem; font-weight: 700;
+    color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1;
+    margin-bottom: 12px;
+  }
+  body.dark-mode .impact-value { text-shadow: 0 0 22px color-mix(in srgb, var(--accent) 45%, transparent); }
+  .impact-unit { font-size: 1.1rem; color: var(--muted); font-weight: 500; }
+  .impact-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
   /* ── Skills ── */
   #skills { background: transparent; color: var(--ink); padding: 36px 18px; border-top: 1px solid var(--rule); }
   .skills-hint {
@@ -1578,7 +1599,7 @@
         My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
       </p>
       <p class="about-body">
-        Outside of building pipelines, I'm drawn to the growing data ecosystem across East Africa and the opportunity to work on infrastructure that has real operational impact. Whether in aviation safety, energy, or financial services.
+        Most of that work has centered on Kenya's mobile money rails specifically: M-Pesa transaction pipelines, Safaricom's Daraja API, and the reconciliation problems that come with a payment network processing at national scale. It's a narrow, underserved niche globally, and one where the infrastructure challenges are genuinely different from a typical Stripe or PayPal integration.
       </p>
       <div class="about-facts">
         <div class="about-fact">
@@ -1848,12 +1869,38 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
-
-
-
-
-<!-- SEND MESSAGE -->
+<!-- BY THE NUMBERS -->
+<section id="impact" aria-label="Impact by the numbers">
+  <p class="section-label">// 06</p>
+  <h2 class="section-title">Impact, By the Numbers</h2>
+  <p class="section-subtitle">What the work has actually produced, not just what it uses.</p>
+  <div class="impact-grid">
+    <div class="impact-card reveal">
+      <div class="impact-value">70,000<span class="impact-unit">/sec</span></div>
+      <div class="impact-label">Peak ingestion throughput on the Cloud ETL Ingestion Pipeline</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.06s">
+      <div class="impact-value">38<span class="impact-unit">/38</span></div>
+      <div class="impact-label">Tests passing, gating every deploy to the Kenyan Market ETL Pipeline</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.12s">
+      <div class="impact-value">100M<span class="impact-unit">/day</span></div>
+      <div class="impact-label">Transaction scale scoped in PesaGuard's target-state architecture spec</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.18s">
+      <div class="impact-value">Zero</div>
+      <div class="impact-label">Duplicate transactions from Daraja webhook retries, by design</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.24s">
+      <div class="impact-value">4min &rarr; 45s</div>
+      <div class="impact-label">Full batch load time cut via connection pooling and batch tuning</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.3s">
+      <div class="impact-value">6</div>
+      <div class="impact-label">Production data systems shipped, from streaming to reconciliation</div>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -2533,6 +2580,22 @@
   .subscription-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
   .subscription-option:hover { border-color: var(--accent); background: var(--card); transform: translateY(-2px); }
   .subscription-copy-btn:hover { opacity: 0.9; }
+
+  /* ── Print stylesheet ── */
+  @media print {
+    .site-nav, footer, .fab, .fab-whatsapp, .fab-top, #cursor, #cursor-ring,
+    #scrollProgress, .hero-illustration, .skip-link, .contact-form-card,
+    .cert-seal, .expertise-icon { display: none !important; }
+    body { background: #fff !important; color: #000 !important; cursor: auto !important; }
+    body::before, body::after { display: none !important; }
+    * { box-shadow: none !important; text-shadow: none !important; animation: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    a { color: #000 !important; text-decoration: underline; }
+    .section-title, h1, h2, h3 { color: #000 !important; }
+    .impact-value, .stat-value { color: #000 !important; }
+    section { page-break-inside: avoid; }
+    .about-photo-frame::before { display: none; }
+  }
 </style>
 
 <script>

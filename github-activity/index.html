@@ -137,7 +137,23 @@
       .site-footer .footer-top { flex-direction: column; gap: 20px; text-align: left; align-items: flex-start; }
       .site-footer .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
+
+    .breadcrumb { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 6px; opacity: 0.5; }
+    .breadcrumb [aria-current="page"] { color: var(--ink); }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.victorkipruto.com/"},
+    {"@type": "ListItem", "position": 2, "name": "GitHub Activity", "item": "https://www.victorkipruto.com/github-activity"}
+  ]
+}
+</script>
 </head>
 <body class="dark-mode">
   <div id="scrollProgress"></div>
@@ -154,6 +170,10 @@
   </header>
 
   <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span class="sep">/</span> <span aria-current="page">GitHub Activity</span>
+    </nav>
+
     <section class="page-hero">
       <span class="badge">DEVELOPER ACTIVITY</span>
       <h1 class="hero-title">GitHub Activity</h1>
@@ -265,6 +285,7 @@
     async function loadGitHubActivity() {
       const sub = document.getElementById('gh-sub');
       const ghCount = document.getElementById('gh-count');
+      const CACHE_KEY = 'gh_stats_cache';
       try {
         const ures = await fetch('https://api.github.com/users/Victor-Kipruto-Rop');
         if (ures.ok) {
@@ -274,9 +295,26 @@
           document.getElementById('stat-repos').textContent = user.public_repos ?? 'N/A';
           document.getElementById('stat-followers').textContent = user.followers ?? 'N/A';
           document.getElementById('stat-following').textContent = user.following ?? 'N/A';
+          localStorage.setItem(CACHE_KEY, JSON.stringify({
+            repos: user.public_repos, followers: user.followers, following: user.following, cachedAt: Date.now()
+          }));
           return;
         }
       } catch (e) { /* fall through */ }
+
+      // API failed (e.g. rate-limited) - use last known values if we have them
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (cached) {
+          document.getElementById('stat-repos').textContent = cached.repos ?? 'N/A';
+          document.getElementById('stat-followers').textContent = cached.followers ?? 'N/A';
+          document.getElementById('stat-following').textContent = cached.following ?? 'N/A';
+          if (ghCount) ghCount.textContent = `(${cached.repos})`;
+          if (sub) sub.textContent = `${cached.repos} public repositories · ${cached.followers} followers · Nairobi, Kenya (cached)`;
+          return;
+        }
+      } catch (e) { /* no valid cache, fall through to generic message */ }
+
       if (ghCount) ghCount.textContent = '(See profile)';
       if (sub) sub.textContent = 'Contributions calendar and activity (last year). Data shown directly from GitHub. Visit @Victor-Kipruto-Rop on GitHub for full profile details.';
     }

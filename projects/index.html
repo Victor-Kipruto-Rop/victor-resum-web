@@ -31,6 +31,12 @@
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
 <style>
   link[rel="icon"] { border-radius: 50%; }
+
+    .breadcrumb { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 6px; opacity: 0.5; }
+    .breadcrumb [aria-current="page"] { color: var(--ink); }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"/>
@@ -1459,6 +1465,16 @@
   gtag('js', new Date());
   gtag('config', 'G-D3BGPZ2LCR');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.victorkipruto.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.victorkipruto.com/projects"}
+  ]
+}
+</script>
 </head>
 <body>
 <div id="scrollProgress"></div>
@@ -1501,6 +1517,9 @@
 </nav>
 
 <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb" style="max-width:1180px;margin:100px auto 0;padding:0 24px;">
+  <a href="/">Home</a> <span class="sep">/</span> <span aria-current="page">Projects</span>
+</nav>
 <section id="projects">
   <p class="section-label">// 06</p>
   <div class="projects-wrap">
