@@ -66,7 +66,7 @@ def generate_image(post_id, title, category, image_path):
     try:
         title_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 60)
         category_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 36)
-    except:
+    except Exception:
         title_font = ImageFont.load_default()
         category_font = ImageFont.load_default()
     
@@ -137,7 +137,7 @@ def generate_image(post_id, title, category, image_path):
     # Add corner text
     try:
         footer_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24)
-    except:
+    except Exception:
         footer_font = ImageFont.load_default()
     
     draw.text(

@@ -4,6 +4,7 @@ DBOS PHASE 1: Blog Rendering Engine
 Generates HTML blog pages from posts.json
 """
 
+import html
 import json
 import os
 from datetime import datetime
@@ -215,7 +216,83 @@ class BlogRenderingEngine:
                 f.write(html)
         
         print(f"✓ Generated {len(tags)} tag pages")
-    
+
+    def generate_post_pages(self):
+        """Generate an individual page for every published post.
+
+        Without this step, every "Read Article" link on the homepage,
+        category pages, and tag pages points at a URL that was never
+        actually created (a 404). Posts without a full `body` field in
+        posts.json get an honest placeholder instead of fabricated
+        content.
+        """
+        posts_dir = self.output_dir.parent / 'posts'
+        posts_dir.mkdir(parents=True, exist_ok=True)
+
+        published = [p for p in self.posts if p.get('status') == 'published']
+        generated = 0
+
+        for post in published:
+            date_obj = datetime.fromisoformat(post['publishDate'].replace('Z', '+00:00'))
+            formatted_date = date_obj.strftime('%B %d, %Y')
+
+            tags_html = "\n".join(
+                f'                <span class="tag">#{tag}</span>'
+                for tag in post.get('tags', [])
+            )
+
+            body = post.get('body')
+            if body:
+                body_html = body
+                placeholder_html = ''
+            else:
+                body_html = f"<p>{html.escape(post['description'])}</p>"
+                placeholder_html = f'''            <div class="placeholder-note">
+                This post's full write-up is still being drafted. Here's the summary in
+                the meantime: {html.escape(post['description'])}
+            </div>
+'''
+
+            page = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{html.escape(post['title'])} | Blog</title>
+    <meta name="description" content="{html.escape(post['description'])}">
+    <link rel="stylesheet" href="/assets/css/blog.css">
+</head>
+<body>
+    <div class="blog-container">
+        <article class="post-article">
+            <div class="post-meta">
+                <span class="category">{html.escape(post['category'])}</span>
+                <span class="date">{formatted_date}</span>
+                <span class="read-time">📖 {post['readTime']} min read</span>
+            </div>
+            <h1>{html.escape(post['title'])}</h1>
+            <div class="post-tags">
+{tags_html}
+            </div>
+            <div class="post-body">
+{body_html}
+            </div>
+{placeholder_html}        </article>
+        <a href="/blog" class="back-link">← Back to Blog</a>
+    </div>
+    <script src="/analytics/tracker.js"></script>
+</body>
+</html>
+'''
+
+            post_dir = posts_dir / post['slug']
+            post_dir.mkdir(parents=True, exist_ok=True)
+            with open(post_dir / 'index.html', 'w') as f:
+                f.write(page)
+            generated += 1
+
+        print(f"✓ Generated {generated} post pages")
+
     def run(self):
         """Execute blog rendering"""
         print("\n🚀 DBOS PHASE 1: Blog Rendering Engine\n")
@@ -223,6 +300,7 @@ class BlogRenderingEngine:
         self.generate_blog_homepage()
         self.generate_category_pages()
         self.generate_tag_pages()
+        self.generate_post_pages()
         print("\n✅ Blog rendering complete!\n")
 
 if __name__ == '__main__':

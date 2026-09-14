@@ -54,7 +54,7 @@ class ContentValidator:
         try:
             datetime.fromisoformat(post.get('publishDate', ''))
             self.passes.append(f"[{post_id}] Valid publish date")
-        except:
+        except Exception:
             self.issues.append(f"[{post_id}] Invalid publish date format")
         
         # Tags validation

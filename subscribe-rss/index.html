@@ -359,133 +359,12 @@
   gtag('js', new Date());
   gtag('config', 'G-D3BGPZ2LCR');
 </script>
-</head>
-<body>
-  <nav style="position: sticky; top: 0; background: var(--paper); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); z-index: 100;">
-    <a href="/" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--accent); text-decoration: none; font-weight: 600;">Victor Kipruto Rop</a>
-    <div style="display: flex; gap: 20px; align-items: center;">
-      <a href="/" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.2s;">Home</a>
-      <a href="/blog" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Blog</a>
-      <a href="/projects" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Projects</a>
-      <button class="theme-toggle-nav" id="themeToggleNav" aria-label="Toggle dark/light mode" style="background: transparent; border: 1px solid var(--rule); color: var(--ink); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 14px; margin-left: 20px;">
-        <i class="fas fa-moon"></i>
-        <i class="fas fa-sun" style="display: none;"></i>
-      </button>
-    </div>
-  </nav>
 
-  <style>
+<style>
     .theme-toggle-nav .fa-sun { display: none; }
     body.dark-mode .theme-toggle-nav .fa-moon { display: none; }
     body.dark-mode .theme-toggle-nav .fa-sun { display: block; }
   </style>
-
-  <header>
-    <h1>Developer Updates</h1>
-    <p class="subtitle">Stay informed with insights on data engineering, architecture, and best practices</p>
-  </header>
-
-  <main>
-    <a href="/" class="back-link">
-      <i class="fas fa-arrow-left"></i>
-      <span>Back to Portfolio</span>
-    </a>
-
-    <!-- Subscription Options -->
-    <div class="subscription-options">
-      <div class="subscription-option-card">
-        <div class="option-icon">
-          <i class="fas fa-rss" style="color: #ff4b2b;"></i>
-        </div>
-        <h2 class="option-title">RSS Feed</h2>
-        <p class="option-description">Subscribe to the raw RSS feed and use your favorite feed reader</p>
-        <a href="https://www.victorkipruto.com/rss.xml" class="option-button" target="_blank">Subscribe</a>
-      </div>
-
-      <div class="subscription-option-card">
-        <div class="option-icon">
-          <i class="fas fa-book-reader" style="color: #3498db;"></i>
-        </div>
-        <h2 class="option-title">Inoreader</h2>
-        <p class="option-description">Use Inoreader to manage and organize your feeds with advanced features</p>
-        <a href="https://www.inoreader.com/?add_feed=https://www.victorkipruto.com/rss.xml" class="option-button" target="_blank">Subscribe</a>
-      </div>
-
-      <div class="subscription-option-card">
-        <div class="option-icon">
-          <i class="fas fa-layer-group" style="color: #2ecc71;"></i>
-        </div>
-        <h2 class="option-title">Feedly</h2>
-        <p class="option-description">Keep all your feeds in one beautiful and intuitive interface</p>
-        <a href="https://feedly.com/i/subscription/feed/https://www.victorkipruto.com/rss.xml" class="option-button" target="_blank">Subscribe</a>
-      </div>
-
-      <div class="subscription-option-card">
-        <div class="option-icon">
-          <i class="fas fa-envelope" style="color: #9b59b6;"></i>
-        </div>
-        <h2 class="option-title">Email</h2>
-        <p class="option-description">Get new articles delivered directly to your inbox</p>
-        <button class="option-button" onclick="openSubscriptionModal()" style="width: 100%;">Subscribe</button>
-      </div>
-    </div>
-
-    <!-- Benefits Section -->
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="fas fa-bell"></i>
-        </div>
-        <h3 class="benefit-title">Early Access</h3>
-        <p class="benefit-text">Be the first to know about new articles and content releases</p>
-      </div>
-
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="fas fa-code"></i>
-        </div>
-        <h3 class="benefit-title">Code Examples</h3>
-        <p class="benefit-text">Real-world code samples and best practices from production systems</p>
-      </div>
-
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="fas fa-graduation-cap"></i>
-        </div>
-        <h3 class="benefit-title">Deep Dives</h3>
-        <p class="benefit-text">Comprehensive guides on data engineering, architecture, and design patterns</p>
-      </div>
-    </div>
-
-    <!-- Statistics -->
-    <div class="stats-section">
-      <h2 class="stats-title">Reader Insights</h2>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">6+</div>
-          <div class="stat-label">Articles Published</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" id="subscriberCount">0</div>
-          <div class="stat-label">Active Subscribers</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">8-12 min</div>
-          <div class="stat-label">Avg. Read Time</div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-    <i class="fas fa-moon"></i>
-  </button>
-
-  <!-- Subscription Modal (inlined - script-src include of an HTML file cannot work in browsers) -->
-<!-- Subscription Modal Component -->
-<!-- Include this in your HTML or integrate the styles and script into your pages -->
-
 <style id="subscription-modal-styles">
   /* Dark Mode Variables */
   :root {
@@ -865,6 +744,130 @@
     }
   }
 </style>
+</head>
+<body>
+  <nav style="position: sticky; top: 0; background: var(--paper); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); z-index: 100;">
+    <a href="/" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--accent); text-decoration: none; font-weight: 600;">Victor Kipruto Rop</a>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <a href="/" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.2s;">Home</a>
+      <a href="/blog" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Blog</a>
+      <a href="/projects" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none;">Projects</a>
+      <button class="theme-toggle-nav" id="themeToggleNav" aria-label="Toggle dark/light mode" style="background: transparent; border: 1px solid var(--rule); color: var(--ink); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 14px; margin-left: 20px;">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun" style="display: none;"></i>
+      </button>
+    </div>
+  </nav>
+
+  
+
+  <header>
+    <h1>Developer Updates</h1>
+    <p class="subtitle">Stay informed with insights on data engineering, architecture, and best practices</p>
+  </header>
+
+  <main>
+    <a href="/" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Portfolio</span>
+    </a>
+
+    <!-- Subscription Options -->
+    <div class="subscription-options">
+      <div class="subscription-option-card">
+        <div class="option-icon">
+          <i class="fas fa-rss" style="color: #ff4b2b;"></i>
+        </div>
+        <h2 class="option-title">RSS Feed</h2>
+        <p class="option-description">Subscribe to the raw RSS feed and use your favorite feed reader</p>
+        <a href="https://www.victorkipruto.com/rss.xml" class="option-button" target="_blank">Subscribe</a>
+      </div>
+
+      <div class="subscription-option-card">
+        <div class="option-icon">
+          <i class="fas fa-book-reader" style="color: #3498db;"></i>
+        </div>
+        <h2 class="option-title">Inoreader</h2>
+        <p class="option-description">Use Inoreader to manage and organize your feeds with advanced features</p>
+        <a href="https://www.inoreader.com/?add_feed=https://www.victorkipruto.com/rss.xml" class="option-button" target="_blank">Subscribe</a>
+      </div>
+
+      <div class="subscription-option-card">
+        <div class="option-icon">
+          <i class="fas fa-layer-group" style="color: #2ecc71;"></i>
+        </div>
+        <h2 class="option-title">Feedly</h2>
+        <p class="option-description">Keep all your feeds in one beautiful and intuitive interface</p>
+        <a href="https://feedly.com/i/subscription/feed/https://www.victorkipruto.com/rss.xml" class="option-button" target="_blank">Subscribe</a>
+      </div>
+
+      <div class="subscription-option-card">
+        <div class="option-icon">
+          <i class="fas fa-envelope" style="color: #9b59b6;"></i>
+        </div>
+        <h2 class="option-title">Email</h2>
+        <p class="option-description">Get new articles delivered directly to your inbox</p>
+        <button class="option-button" onclick="openSubscriptionModal()" style="width: 100%;">Subscribe</button>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-bell"></i>
+        </div>
+        <h3 class="benefit-title">Early Access</h3>
+        <p class="benefit-text">Be the first to know about new articles and content releases</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h3 class="benefit-title">Code Examples</h3>
+        <p class="benefit-text">Real-world code samples and best practices from production systems</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 class="benefit-title">Deep Dives</h3>
+        <p class="benefit-text">Comprehensive guides on data engineering, architecture, and design patterns</p>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-section">
+      <h2 class="stats-title">Reader Insights</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Articles Published</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="subscriberCount">0</div>
+          <div class="stat-label">Active Subscribers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">8-12 min</div>
+          <div class="stat-label">Avg. Read Time</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Subscription Modal (inlined - script-src include of an HTML file cannot work in browsers) -->
+<!-- Subscription Modal Component -->
+<!-- Include this in your HTML or integrate the styles and script into your pages -->
+
+
 
 <!-- Modal HTML -->
 <div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true">
@@ -896,35 +899,35 @@
       <div class="subscription-form active" id="feedTab">
         <div class="subscription-options-container">
           <button class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed">
-            <div class="subscription-option-icon">
+            <span class="subscription-option-icon">
               <i class="fas fa-rss" style="color: var(--sub-accent);"></i>
-            </div>
-            <div class="subscription-option-label">RSS Feed</div>
-            <div class="subscription-option-desc">Raw feed format</div>
+            </span>
+            <span class="subscription-option-label">RSS Feed</span>
+            <span class="subscription-option-desc">Raw feed format</span>
           </button>
 
           <button class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader">
-            <div class="subscription-option-icon">
+            <span class="subscription-option-icon">
               <i class="fas fa-book-reader" style="color: #3498db;"></i>
-            </div>
-            <div class="subscription-option-label">Inoreader</div>
-            <div class="subscription-option-desc">Powerful RSS reader</div>
+            </span>
+            <span class="subscription-option-label">Inoreader</span>
+            <span class="subscription-option-desc">Powerful RSS reader</span>
           </button>
 
           <button class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly">
-            <div class="subscription-option-icon">
+            <span class="subscription-option-icon">
               <i class="fas fa-layer-group" style="color: #2ecc71;"></i>
-            </div>
-            <div class="subscription-option-label">Feedly</div>
-            <div class="subscription-option-desc">Popular feed reader</div>
+            </span>
+            <span class="subscription-option-label">Feedly</span>
+            <span class="subscription-option-desc">Popular feed reader</span>
           </button>
 
           <button class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL">
-            <div class="subscription-option-icon">
+            <span class="subscription-option-icon">
               <i class="fas fa-link" style="color: var(--sub-accent);"></i>
-            </div>
-            <div class="subscription-option-label">Copy URL</div>
-            <div class="subscription-option-desc">Manual subscription</div>
+            </span>
+            <span class="subscription-option-label">Copy URL</span>
+            <span class="subscription-option-desc">Manual subscription</span>
           </button>
         </div>
 
@@ -957,19 +960,19 @@
       <div class="subscription-form" id="messagingTab">
         <div class="subscription-options-container">
           <button class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram">
-            <div class="subscription-option-icon">
+            <span class="subscription-option-icon">
               <i class="fab fa-telegram" style="color: #0088cc;"></i>
-            </div>
-            <div class="subscription-option-label">Telegram</div>
-            <div class="subscription-option-desc">Instant notifications</div>
+            </span>
+            <span class="subscription-option-label">Telegram</span>
+            <span class="subscription-option-desc">Instant notifications</span>
           </button>
 
           <button class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X">
-            <div class="subscription-option-icon">
+            <span class="subscription-option-icon">
               <i class="fab fa-x-twitter" style="color: #000;"></i>
-            </div>
-            <div class="subscription-option-label">Twitter/X</div>
-            <div class="subscription-option-desc">Social updates</div>
+            </span>
+            <span class="subscription-option-label">Twitter/X</span>
+            <span class="subscription-option-desc">Social updates</span>
           </button>
         </div>
       </div>

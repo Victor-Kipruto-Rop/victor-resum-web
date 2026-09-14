@@ -83,7 +83,7 @@ class NotificationSystem:
                 try:
                     with open(self.log_file, 'a') as f:
                         f.write(log_msg + '\n')
-                except:
+                except Exception:
                     pass
         
         return SimpleLogger()
@@ -283,7 +283,7 @@ class NotificationSystem:
         try:
             with open(results_file, 'w') as f:
                 json.dump(results, f, indent=2)
-        except:
+        except Exception:
             pass
         
         return results

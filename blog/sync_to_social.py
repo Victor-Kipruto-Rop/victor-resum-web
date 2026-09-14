@@ -44,7 +44,7 @@ def load_sync_state() -> Dict:
         if SYNC_STATE_FILE.exists():
             with open(SYNC_STATE_FILE, 'r') as f:
                 return json.load(f)
-    except:
+    except Exception:
         pass
     return {"synced_posts": {}, "last_sync": None}
 

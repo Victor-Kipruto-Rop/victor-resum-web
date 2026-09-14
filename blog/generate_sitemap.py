@@ -37,7 +37,7 @@ def format_date(date_str):
     try:
         dt = datetime.fromisoformat(date_str)
         return dt.strftime('%Y-%m-%d')
-    except:
+    except Exception:
         return datetime.now().strftime('%Y-%m-%d')
 
 def generate_sitemap():

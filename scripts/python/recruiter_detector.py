@@ -178,7 +178,7 @@ class RecruiterDetector:
         try:
             import ipaddress
             return ipaddress.ip_address(ip) in ipaddress.ip_network(cidr_range)
-        except:
+        except Exception:
             return False
     
     def _is_linkedin_referrer(self, referrer: str) -> bool:

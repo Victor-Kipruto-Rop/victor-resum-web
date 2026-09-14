@@ -381,6 +381,12 @@
   gtag('js', new Date());
   gtag('config', 'G-D3BGPZ2LCR');
 </script>
+
+<style>
+    .theme-toggle-nav .fa-sun { display: none; }
+    body.dark-mode .theme-toggle-nav .fa-moon { display: none; }
+    body.dark-mode .theme-toggle-nav .fa-sun { display: block; }
+  </style>
 </head>
   <body>
   
@@ -398,11 +404,7 @@
     </div>
   </nav>
 
-  <style>
-    .theme-toggle-nav .fa-sun { display: none; }
-    body.dark-mode .theme-toggle-nav .fa-moon { display: none; }
-    body.dark-mode .theme-toggle-nav .fa-sun { display: block; }
-  </style>
+  
 
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <i class="fas fa-moon"></i>

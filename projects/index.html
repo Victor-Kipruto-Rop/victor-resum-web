@@ -1475,6 +1475,31 @@
   ]
 }
 </script>
+
+<style>
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .skill-detail-block { margin-bottom: 20px; }
+  .skill-detail-label {
+    font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 8px 0;
+  }
+  .skill-detail-text { font-size: 14px; line-height: 1.7; color: var(--ink); margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .skill-detail-project-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600;
+    color: var(--ink); background: var(--paper); border: 1px solid var(--rule);
+    padding: 9px 16px; border-radius: 999px; cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .skill-detail-project-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .skill-detail-project-link i { font-size: 11px; }
+  .subscription-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .subscription-option:hover { border-color: var(--accent); background: var(--card); transform: translateY(-2px); }
+  .subscription-copy-btn:hover { opacity: 0.9; }
+</style>
 </head>
 <body>
 <div id="scrollProgress"></div>
@@ -1772,7 +1797,7 @@
       <h2 id="certModalTitle" style="font-size:18px;font-weight:700;margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);">Certificate Viewer</h2>
       <button onclick="closeCertModal()" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;">✕</button>
     </div>
-    <iframe id="certModalIframe" src="" style="width:100%;height:100%;border:none;flex:1;"></iframe>
+    <iframe id="certModalIframe" style="width:100%;height:100%;border:none;flex:1;"></iframe>
     <div style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;">
         <p style="font-size:12px; color:var(--muted); font-family:'Fira Code',monospace;">Note: Certificates are for viewing only.</p>
     </div>
@@ -2204,7 +2229,7 @@
       <button class="project-modal-close" id="projectModalClose" aria-label="Close project modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
     </div>
     <div class="project-modal-content" style="padding:32px;">
-      <img id="projectModalImage" class="project-modal-image" src="" alt="Project Preview">
+      <img id="projectModalImage" class="project-modal-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="Project Preview">
       <div class="project-modal-meta">
         <span id="projectModalTime"></span>
         <span id="projectModalCategory"></span>
@@ -2270,35 +2295,35 @@
       <div class="subscription-form active" id="feedTab" style="display:block;">
         <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
           <button class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-rss" style="color:var(--accent);"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">RSS Feed</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</div>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">RSS Feed</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</span>
           </button>
 
           <button class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-book-reader" style="color:#3498db;"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Inoreader</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</div>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Inoreader</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</span>
           </button>
 
           <button class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-layer-group" style="color:#2ecc71;"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Feedly</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</div>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Feedly</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</span>
           </button>
 
           <button class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fas fa-link" style="color:var(--accent);"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Copy URL</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Manual subscription</div>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Copy URL</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Manual subscription</span>
           </button>
         </div>
 
@@ -2330,19 +2355,19 @@
       <div class="subscription-form" id="messagingTab" style="display:none;">
         <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
           <button class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fab fa-telegram" style="color:#0088cc;"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Telegram</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Instant notifications</div>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Telegram</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Instant notifications</span>
           </button>
 
           <button class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
-            <div class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
               <i class="fab fa-x-twitter" style="color:var(--ink);"></i>
-            </div>
-            <div class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Twitter/X</div>
-            <div class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Social updates</div>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Twitter/X</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Social updates</span>
           </button>
         </div>
       </div>
@@ -2355,30 +2380,7 @@
   </div>
 </div>
 
-<style>
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  .skill-detail-block { margin-bottom: 20px; }
-  .skill-detail-label {
-    font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--accent); margin: 0 0 8px 0;
-  }
-  .skill-detail-text { font-size: 14px; line-height: 1.7; color: var(--ink); margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-  .skill-detail-project-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600;
-    color: var(--ink); background: var(--paper); border: 1px solid var(--rule);
-    padding: 9px 16px; border-radius: 999px; cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .skill-detail-project-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-  .skill-detail-project-link i { font-size: 11px; }
-  .subscription-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
-  .subscription-option:hover { border-color: var(--accent); background: var(--card); transform: translateY(-2px); }
-  .subscription-copy-btn:hover { opacity: 0.9; }
-</style>
+
 
 <script>
   // Analytics tracking
