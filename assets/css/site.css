@@ -1281,6 +1281,10 @@ link[rel="icon"] { border-radius: 50%; }
 
   /* WhatsApp FAB lives bottom-right per spec; scroll-to-top moves to
      bottom-left so the two buttons don't stack on top of each other. */
+  @keyframes fabIdlePulse {
+    0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1), 0 0 0 0 rgba(37,211,102,0.4); }
+    50%      { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1), 0 0 0 9px rgba(37,211,102,0); }
+  }
   @keyframes fabPulseRing {
     0%   { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 0 0 0 rgba(37,211,102,0.55); }
     70%  { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 0 0 14px rgba(37,211,102,0); }
@@ -1290,6 +1294,7 @@ link[rel="icon"] { border-radius: 50%; }
     right: max(20px, env(safe-area-inset-right));
     background: #25D366;
     color: #fff;
+    animation: fabIdlePulse 2.8s ease-in-out infinite;
   }
   .fab-whatsapp svg { fill: #fff; }
   .fab-whatsapp:hover {
@@ -1412,6 +1417,7 @@ link[rel="icon"] { border-radius: 50%; }
   @media (prefers-reduced-motion: reduce) {
     .fab, .fab-top { transition: opacity 0.2s ease; }
     .fab:hover, .fab:active { transform: none; }
+    .fab-whatsapp { animation: none; }
     .fab-whatsapp:hover { animation: none; }
   }
 
