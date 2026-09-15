@@ -68,7 +68,12 @@
 </script>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
-<script src="/assets/js/site.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -432,5 +437,6 @@
 
 
 
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

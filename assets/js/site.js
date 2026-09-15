@@ -1,9 +1,4 @@
-/* Shared site script — extracted from index.html / projects/index.html / contact/index.html (previously ~70KB of near-identical inline <script> blocks duplicated on every page load). Loaded synchronously in the same document position as before, so execution order/timing is unchanged. */
-
-window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-D3BGPZ2LCR');
+/* Shared site script — extracted from index.html / projects/index.html / contact/index.html (previously ~70KB of near-identical inline <script> blocks duplicated on every page load). Loaded at the end of <body>, after all the DOM elements it references, so document.getElementById() calls resolve correctly. */
 
 function openCvModal() {
     document.getElementById('cvModalOverlay').style.display = 'flex';
