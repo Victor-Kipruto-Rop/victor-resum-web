@@ -1099,19 +1099,21 @@ const themeToggle = document.getElementById('theme-toggle');
     toggleTopFab();
   })();
 
-  // Floating WhatsApp button: footer-docking (so it never overlaps the
-  // footer) + the greeting tooltip's scroll-triggered reveal, both driven
-  // by one requestAnimationFrame-throttled scroll handler for performance.
+  // Floating WhatsApp button: as the footer scrolls into view, raise the
+  // fixed FAB row (via the --fab-lift custom property, read by both FABs
+  // and the tooltip in CSS) instead of switching them to position:absolute.
+  // Staying position:fixed the whole time means left/right are always
+  // measured from the real viewport edge — never at risk of drifting off
+  // the visible screen. Combined with the greeting tooltip's scroll
+  // reveal, throttled through one requestAnimationFrame per scroll tick.
   (function () {
     const footer = document.querySelector('footer');
-    const dockedFabs = Array.from(document.querySelectorAll('.fab'));
     const tooltip = document.getElementById('chatTooltip');
     const closeBtn = document.getElementById('chatTooltipClose');
     if (!footer && !tooltip) return;
 
-    const DOCK_GAP = 24;       // px above the footer's top edge for the FABs
-    const TOOLTIP_STACK = 70;  // extra px so the tooltip docks above the FAB, not on top of it
-    const REVEAL_AFTER = 200;  // px scrolled before the tooltip appears
+    const LIFT_GAP = 14;      // px of breathing room once lifted above the footer
+    const REVEAL_AFTER = 200; // px scrolled before the tooltip appears
     const DISMISS_KEY = 'chatTooltipDismissed';
 
     let dismissed = false;
@@ -1122,31 +1124,12 @@ const themeToggle = document.getElementById('theme-toggle');
     function updatePositions() {
       ticking = false;
 
-      // Dock the FABs (and the tooltip, stacked above them) once the
-      // footer scrolls into view, instead of sitting fixed on top of it.
-      if (footer && dockedFabs.length) {
-        const footerTop = footer.getBoundingClientRect().top;
-        const shouldDock = footerTop <= window.innerHeight;
-        if (shouldDock) {
-          const bottomOffset = Math.round(document.documentElement.scrollHeight - footer.offsetTop + DOCK_GAP);
-          dockedFabs.forEach(function (fab) {
-            fab.style.position = 'absolute';
-            fab.style.bottom = bottomOffset + 'px';
-          });
-          if (tooltip) {
-            tooltip.style.position = 'absolute';
-            tooltip.style.bottom = (bottomOffset + TOOLTIP_STACK) + 'px';
-          }
-        } else {
-          dockedFabs.forEach(function (fab) {
-            fab.style.position = '';
-            fab.style.bottom = '';
-          });
-          if (tooltip) {
-            tooltip.style.position = '';
-            tooltip.style.bottom = '';
-          }
-        }
+      // How far the footer's top edge has crept up into the viewport —
+      // 0 or negative means the footer isn't showing yet.
+      if (footer) {
+        const overlap = window.innerHeight - footer.getBoundingClientRect().top;
+        const lift = overlap > 0 ? Math.round(overlap + LIFT_GAP) : 0;
+        document.documentElement.style.setProperty('--fab-lift', lift + 'px');
       }
 
       // Reveal the tooltip once past the threshold; once shown it stays
