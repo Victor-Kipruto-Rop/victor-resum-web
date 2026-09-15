@@ -1098,3 +1098,83 @@ const themeToggle = document.getElementById('theme-toggle');
     window.addEventListener('scroll', toggleTopFab, { passive: true });
     toggleTopFab();
   })();
+
+  // Floating WhatsApp button: footer-docking (so it never overlaps the
+  // footer) + the greeting tooltip's scroll-triggered reveal, both driven
+  // by one requestAnimationFrame-throttled scroll handler for performance.
+  (function () {
+    const footer = document.querySelector('footer');
+    const dockedFabs = Array.from(document.querySelectorAll('.fab'));
+    const tooltip = document.getElementById('chatTooltip');
+    const closeBtn = document.getElementById('chatTooltipClose');
+    if (!footer && !tooltip) return;
+
+    const DOCK_GAP = 24;       // px above the footer's top edge for the FABs
+    const TOOLTIP_STACK = 70;  // extra px so the tooltip docks above the FAB, not on top of it
+    const REVEAL_AFTER = 200;  // px scrolled before the tooltip appears
+    const DISMISS_KEY = 'chatTooltipDismissed';
+
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch (err) { /* storage unavailable */ }
+    let revealed = false; // once true, the tooltip stays visible until dismissed
+    let ticking = false;
+
+    function updatePositions() {
+      ticking = false;
+
+      // Dock the FABs (and the tooltip, stacked above them) once the
+      // footer scrolls into view, instead of sitting fixed on top of it.
+      if (footer && dockedFabs.length) {
+        const footerTop = footer.getBoundingClientRect().top;
+        const shouldDock = footerTop <= window.innerHeight;
+        if (shouldDock) {
+          const bottomOffset = Math.round(document.documentElement.scrollHeight - footer.offsetTop + DOCK_GAP);
+          dockedFabs.forEach(function (fab) {
+            fab.style.position = 'absolute';
+            fab.style.bottom = bottomOffset + 'px';
+          });
+          if (tooltip) {
+            tooltip.style.position = 'absolute';
+            tooltip.style.bottom = (bottomOffset + TOOLTIP_STACK) + 'px';
+          }
+        } else {
+          dockedFabs.forEach(function (fab) {
+            fab.style.position = '';
+            fab.style.bottom = '';
+          });
+          if (tooltip) {
+            tooltip.style.position = '';
+            tooltip.style.bottom = '';
+          }
+        }
+      }
+
+      // Reveal the tooltip once past the threshold; once shown it stays
+      // up (per spec) regardless of further scrolling, until dismissed.
+      if (tooltip && !dismissed && !revealed && window.scrollY > REVEAL_AFTER) {
+        revealed = true;
+        tooltip.classList.add('is-visible');
+      }
+    }
+
+    function onScrollOrResize() {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updatePositions);
+      }
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        dismissed = true;
+        tooltip.classList.remove('is-visible');
+        try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (err) { /* storage unavailable */ }
+      });
+    }
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+    updatePositions();
+  })();
