@@ -1110,11 +1110,19 @@ const themeToggle = document.getElementById('theme-toggle');
     const footer = document.querySelector('footer');
     const tooltip = document.getElementById('chatTooltip');
     const closeBtn = document.getElementById('chatTooltipClose');
-    if (!footer && !tooltip) return;
+    const progressRing = document.querySelector('.fab-top-ring-progress');
+    if (!footer && !tooltip && !progressRing) return;
 
     const LIFT_GAP = 14;      // px of breathing room once lifted above the footer
     const REVEAL_AFTER = 200; // px scrolled before the tooltip appears
     const DISMISS_KEY = 'chatTooltipDismissed';
+    const RING_R = 19; // must match the <circle r="19"> in the markup
+    const RING_CIRCUMFERENCE = 2 * Math.PI * RING_R;
+
+    if (progressRing) {
+      progressRing.style.strokeDasharray = String(RING_CIRCUMFERENCE);
+      progressRing.style.strokeDashoffset = String(RING_CIRCUMFERENCE);
+    }
 
     let dismissed = false;
     try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch (err) { /* storage unavailable */ }
@@ -1137,6 +1145,14 @@ const themeToggle = document.getElementById('theme-toggle');
       if (tooltip && !dismissed && !revealed && window.scrollY > REVEAL_AFTER) {
         revealed = true;
         tooltip.classList.add('is-visible');
+      }
+
+      // Fill the scroll-to-top ring in step with how far down the page
+      // the visitor has read.
+      if (progressRing) {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+        progressRing.style.strokeDashoffset = String(RING_CIRCUMFERENCE * (1 - progress));
       }
     }
 

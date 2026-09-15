@@ -1300,8 +1300,10 @@ link[rel="icon"] { border-radius: 50%; }
   .fab:active { transform: translateY(-1px) scale(0.96); box-shadow: 0 4px 10px rgba(0,0,0,0.18); }
   .fab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .fab svg { width: 26px; height: 26px; display: block; }
+  .fab-top .fab-top-ring { width: 100%; height: 100%; } /* overrides the generic .fab svg sizing above — the ring fills the whole button */
   @media (max-width: 480px) {
     .fab svg { width: 22px; height: 22px; }
+    .fab-top .fab-top-ring { width: 100%; height: 100%; }
   }
 
   /* WhatsApp FAB lives bottom-right per spec; scroll-to-top lives
@@ -1317,7 +1319,7 @@ link[rel="icon"] { border-radius: 50%; }
   }
   .fab-whatsapp {
     right: max(var(--fab-edge), env(safe-area-inset-right));
-    background: #25D366;
+    background: linear-gradient(135deg, #2CE374, #1DA851);
     color: #fff;
     animation: fabIdlePulse 2.8s ease-in-out infinite;
   }
@@ -1325,10 +1327,24 @@ link[rel="icon"] { border-radius: 50%; }
   .fab-whatsapp:hover {
     animation: fabPulseRing 1.4s ease-out infinite;
   }
+  .fab-status-dot {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #CBFF4D;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+  }
+  @media (max-width: 480px) {
+    .fab-status-dot { top: 1px; right: 1px; width: 11px; height: 11px; }
+  }
 
   .fab-top {
     left: max(var(--fab-edge), env(safe-area-inset-left));
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent), rgba(0,0,0,0.2)), var(--accent);
     color: #fff;
     opacity: 0;
     pointer-events: none;
@@ -1340,7 +1356,26 @@ link[rel="icon"] { border-radius: 50%; }
     transform: translateY(0);
   }
   .fab-top:hover { transform: translateY(-3px) scale(1.05); }
-  .fab-top svg { stroke: #fff; fill: none; transform: translateY(-1px); } /* optical nudge: the chevron makes a dead-center arrow read as low */
+  /* Scroll-progress ring: fills as the visitor scrolls down the page,
+     sitting behind the arrow so the button also works as a reading-
+     progress indicator, not just a jump-to-top control. */
+  .fab-top-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+  }
+  .fab-top-ring-track { fill: none; stroke: rgba(255,255,255,0.28); stroke-width: 2.5; }
+  .fab-top-ring-progress {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+  }
+  .fab-top-arrow { position: relative; stroke: #fff; fill: none; transform: translateY(-1px); } /* optical nudge: the chevron makes a dead-center arrow read as low */
 
   /* ── WhatsApp chat tooltip: glassmorphic greeting card ──
      right/bottom reuse the exact same --fab-edge / --fab-size / --fab-lift
@@ -1353,7 +1388,7 @@ link[rel="icon"] { border-radius: 50%; }
     bottom: calc(max(var(--fab-bottom-base), env(safe-area-inset-bottom)) + var(--fab-size) + 14px + var(--fab-lift));
     z-index: 499;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     width: 240px;
     max-width: calc(100vw - 40px);
@@ -1362,7 +1397,7 @@ link[rel="icon"] { border-radius: 50%; }
     backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgba(var(--paper-rgb), 0.14);
     color: var(--paper);
-    padding: 14px 14px 14px 16px;
+    padding: 12px 14px 12px 12px;
     border-radius: 16px;
     box-shadow: 0 12px 28px rgba(0,0,0,0.22), 0 4px 10px rgba(0,0,0,0.12);
     opacity: 0;
@@ -1397,6 +1432,18 @@ link[rel="icon"] { border-radius: 50%; }
     visibility: visible;
     transform: translateY(0);
   }
+  .chat-tooltip-avatar {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2CE374, #1DA851);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  .chat-tooltip-avatar svg { width: 17px; height: 17px; fill: #fff; }
   .chat-tooltip-body { flex: 1; min-width: 0; }
   .chat-tooltip-title {
     display: flex;
@@ -1433,6 +1480,8 @@ link[rel="icon"] { border-radius: 50%; }
 
   @media (max-width: 480px) {
     .chat-tooltip { width: 210px; }
+    .chat-tooltip-avatar { width: 30px; height: 30px; }
+    .chat-tooltip-avatar svg { width: 15px; height: 15px; }
     .chat-tooltip-title { font-size: 13px; }
     .chat-tooltip-text { font-size: 11.5px; }
     .footer-main { grid-template-columns: 1fr; gap: 28px; }
