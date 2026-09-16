@@ -1078,33 +1078,3 @@ const themeToggle = document.getElementById('theme-toggle');
   window.addEventListener('resize', updateScrollProgress);
   updateScrollProgress();
 
-  // Floating action buttons: WhatsApp + scroll-to-top
-  (function () {
-    const topFab = document.getElementById('scrollToTopFab');
-    const whatsappFab = document.querySelector('.fab-whatsapp');
-    if (!topFab) return;
-
-    const SHOW_AFTER = 400;
-    function toggleTopFab() {
-      topFab.classList.toggle('is-visible', window.scrollY > SHOW_AFTER);
-    }
-    topFab.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    window.addEventListener('scroll', toggleTopFab, { passive: true });
-    toggleTopFab();
-
-    // Hide both buttons once the footer scrolls into view so they never
-    // sit on top of the footer's links / copyright line
-    const footer = document.querySelector('footer');
-    if (footer && 'IntersectionObserver' in window) {
-      const footerObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          topFab.classList.toggle('fab-hidden', entry.isIntersecting);
-          if (whatsappFab) whatsappFab.classList.toggle('fab-hidden', entry.isIntersecting);
-        });
-      }, { rootMargin: '0px 0px -40px 0px' });
-      footerObserver.observe(footer);
-    }
-  })();
-

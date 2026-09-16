@@ -1264,106 +1264,6 @@ link[rel="icon"] { border-radius: 50%; }
     .footer-tagline { max-width: 100%; }
   }
 
-  /* ── Floating action buttons ──
-     Two simple, independent circular buttons (WhatsApp + scroll-to-top).
-     No shared JS-computed positioning between them — each is just
-     position:fixed with a fixed bottom/side offset, so there's nothing
-     to drift out of sync and nothing that can be pushed off-screen. */
-  .fab {
-    position: fixed;
-    bottom: max(24px, env(safe-area-inset-bottom));
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.10);
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
-                box-shadow 0.25s ease,
-                opacity 0.3s ease,
-                visibility 0.3s;
-    z-index: 500;
-  }
-  .fab svg { width: 24px; height: 24px; display: block; stroke: #fff; fill: none; }
-  .fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 12px 26px rgba(0,0,0,0.24), 0 4px 10px rgba(0,0,0,0.14); }
-  .fab:active { transform: translateY(-1px) scale(0.96); }
-  .fab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-  .fab-whatsapp {
-    left: max(24px, env(safe-area-inset-left));
-    background: #25D366;
-  }
-  .fab-whatsapp svg { stroke: none; fill: #fff; }
-  .fab-whatsapp::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
-    animation: fab-pulse 2.6s ease-out infinite;
-    pointer-events: none;
-  }
-  @keyframes fab-pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
-    70%  { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-  }
-
-  .fab-top {
-    right: max(24px, env(safe-area-inset-right));
-    background: var(--accent);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(12px);
-  }
-  .fab-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
-
-  /* Fade both out once the footer scrolls into view, so they never sit
-     on top of the footer's links / copyright line */
-  .fab.fab-hidden { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
-
-  /* Simple CSS-only tooltip, desktop/hover-capable devices only - no JS,
-     no dismiss state, nothing that can get out of sync with the button */
-  @media (hover: hover) and (pointer: fine) {
-    .fab[data-tooltip]::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 50%;
-      transform: translateY(50%);
-      white-space: nowrap;
-      background: var(--ink);
-      color: var(--paper);
-      font-family: 'Fira Code', monospace;
-      font-size: 11px;
-      letter-spacing: 0.02em;
-      padding: 7px 12px;
-      border-radius: 8px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-    .fab-whatsapp[data-tooltip]::after { left: calc(100% + 14px); }
-    .fab-top[data-tooltip]::after { right: calc(100% + 14px); }
-    .fab[data-tooltip]:hover::after,
-    .fab[data-tooltip]:focus-visible::after { opacity: 1; }
-  }
-
-  @media (max-width: 480px) {
-    .fab { width: 50px; height: 50px; bottom: max(16px, env(safe-area-inset-bottom)); }
-    .fab svg { width: 21px; height: 21px; }
-    .fab-whatsapp { left: max(14px, env(safe-area-inset-left)); }
-    .fab-top { right: max(14px, env(safe-area-inset-right)); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .fab { transition: opacity 0.2s ease, visibility 0.2s; }
-    .fab:hover, .fab:active { transform: none; }
-    .fab-whatsapp::before { animation: none; }
-  }
 
   /* ══════════════════ ADVANCED TRANSITIONS: scroll-reveal ══════════════════ */
   .reveal {
@@ -1469,7 +1369,7 @@ link[rel="icon"] { border-radius: 50%; }
 
 /* ── Print stylesheet ── */
   @media print {
-    .site-nav, footer, .fab, .fab-whatsapp, .fab-top, #cursor, #cursor-ring,
+    .site-nav, footer, #cursor, #cursor-ring,
     #scrollProgress, .hero-illustration, .skip-link, .contact-form-card,
     .cert-seal, .expertise-icon { display: none !important; }
     body { background: #fff !important; color: #000 !important; cursor: auto !important; }
