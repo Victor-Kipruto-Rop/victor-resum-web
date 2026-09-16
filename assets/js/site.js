@@ -1078,99 +1078,33 @@ const themeToggle = document.getElementById('theme-toggle');
   window.addEventListener('resize', updateScrollProgress);
   updateScrollProgress();
 
-(function () {
+  // Floating action buttons: WhatsApp + scroll-to-top
+  (function () {
     const topFab = document.getElementById('scrollToTopFab');
+    const whatsappFab = document.querySelector('.fab-whatsapp');
     if (!topFab) return;
+
     const SHOW_AFTER = 400;
     function toggleTopFab() {
-      if (window.scrollY > SHOW_AFTER) {
-        topFab.classList.add('is-visible');
-      } else {
-        topFab.classList.remove('is-visible');
-      }
+      topFab.classList.toggle('is-visible', window.scrollY > SHOW_AFTER);
     }
     topFab.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     window.addEventListener('scroll', toggleTopFab, { passive: true });
     toggleTopFab();
-  })();
 
-  // Floating WhatsApp button: as the footer scrolls into view, raise the
-  // fixed FAB row (via the --fab-lift custom property, read by both FABs
-  // and the tooltip in CSS) instead of switching them to position:absolute.
-  // Staying position:fixed the whole time means left/right are always
-  // measured from the real viewport edge — never at risk of drifting off
-  // the visible screen. Combined with the greeting tooltip's scroll
-  // reveal, throttled through one requestAnimationFrame per scroll tick.
-  (function () {
+    // Hide both buttons once the footer scrolls into view so they never
+    // sit on top of the footer's links / copyright line
     const footer = document.querySelector('footer');
-    const tooltip = document.getElementById('chatTooltip');
-    const closeBtn = document.getElementById('chatTooltipClose');
-    const progressRing = document.querySelector('.fab-top-ring-progress');
-    if (!footer && !tooltip && !progressRing) return;
-
-    const LIFT_GAP = 14;      // px of breathing room once lifted above the footer
-    const REVEAL_AFTER = 200; // px scrolled before the tooltip appears
-    const DISMISS_KEY = 'chatTooltipDismissed';
-    const RING_R = 19; // must match the <circle r="19"> in the markup
-    const RING_CIRCUMFERENCE = 2 * Math.PI * RING_R;
-
-    if (progressRing) {
-      progressRing.style.strokeDasharray = String(RING_CIRCUMFERENCE);
-      progressRing.style.strokeDashoffset = String(RING_CIRCUMFERENCE);
+    if (footer && 'IntersectionObserver' in window) {
+      const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          topFab.classList.toggle('fab-hidden', entry.isIntersecting);
+          if (whatsappFab) whatsappFab.classList.toggle('fab-hidden', entry.isIntersecting);
+        });
+      }, { rootMargin: '0px 0px -40px 0px' });
+      footerObserver.observe(footer);
     }
-
-    let dismissed = false;
-    try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch (err) { /* storage unavailable */ }
-    let revealed = false; // once true, the tooltip stays visible until dismissed
-    let ticking = false;
-
-    function updatePositions() {
-      ticking = false;
-
-      // How far the footer's top edge has crept up into the viewport —
-      // 0 or negative means the footer isn't showing yet.
-      if (footer) {
-        const overlap = window.innerHeight - footer.getBoundingClientRect().top;
-        const lift = overlap > 0 ? Math.round(overlap + LIFT_GAP) : 0;
-        document.documentElement.style.setProperty('--fab-lift', lift + 'px');
-      }
-
-      // Reveal the tooltip once past the threshold; once shown it stays
-      // up (per spec) regardless of further scrolling, until dismissed.
-      if (tooltip && !dismissed && !revealed && window.scrollY > REVEAL_AFTER) {
-        revealed = true;
-        tooltip.classList.add('is-visible');
-      }
-
-      // Fill the scroll-to-top ring in step with how far down the page
-      // the visitor has read.
-      if (progressRing) {
-        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
-        progressRing.style.strokeDashoffset = String(RING_CIRCUMFERENCE * (1 - progress));
-      }
-    }
-
-    function onScrollOrResize() {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(updatePositions);
-      }
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dismissed = true;
-        tooltip.classList.remove('is-visible');
-        try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (err) { /* storage unavailable */ }
-      });
-    }
-
-    window.addEventListener('scroll', onScrollOrResize, { passive: true });
-    window.addEventListener('resize', onScrollOrResize);
-    updatePositions();
   })();
+

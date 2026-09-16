@@ -1257,251 +1257,112 @@ link[rel="icon"] { border-radius: 50%; }
     .expertise-grid { grid-template-columns: 1fr; }
   }
 
-  /* ── Floating Action Buttons ──
-     Shared geometry lives in custom properties so the WhatsApp FAB, the
-     scroll-to-top FAB, and the tooltip's pointer are always derived from
-     the same numbers — this is what guarantees the two buttons share an
-     identical baseline and the tooltip's arrow always centers on the
-     WhatsApp icon, at every breakpoint, with no hardcoded values to drift
-     out of sync. --fab-lift is written by JS as the footer scrolls into
-     view; everything stays position:fixed (never absolute), so the
-     buttons can never be pushed outside the viewport horizontally. */
-  :root {
-    --fab-size: 56px;
-    --fab-edge: 20px;
-    --fab-bottom-base: 24px;
-    --fab-lift: 0px;
-  }
-  @media (max-width: 480px) {
-    :root {
-      --fab-size: 50px;
-      --fab-edge: 14px;
-      --fab-bottom-base: 16px;
-    }
-  }
-
-  .fab {
-    position: fixed;
-    bottom: calc(max(var(--fab-bottom-base), env(safe-area-inset-bottom)) + var(--fab-lift));
-    width: var(--fab-size);
-    height: var(--fab-size);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 500;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    border: none;
-    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease, opacity 0.25s ease, background 0.2s ease;
-    text-decoration: none;
-  }
-  .fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 22px rgba(0,0,0,0.22), 0 3px 8px rgba(0,0,0,0.12); }
-  .fab:active { transform: translateY(-1px) scale(0.96); box-shadow: 0 4px 10px rgba(0,0,0,0.18); }
-  .fab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .fab svg { width: 26px; height: 26px; display: block; }
-  .fab-top .fab-top-ring { width: 100%; height: 100%; } /* overrides the generic .fab svg sizing above — the ring fills the whole button */
-  @media (max-width: 480px) {
-    .fab svg { width: 22px; height: 22px; }
-    .fab-top .fab-top-ring { width: 100%; height: 100%; }
-  }
-
-  /* WhatsApp FAB lives bottom-right per spec; scroll-to-top lives
-     bottom-left so the two buttons don't stack on top of each other. */
-  @keyframes fabIdlePulse {
-    0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1), 0 0 0 0 rgba(37,211,102,0.4); }
-    50%      { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1), 0 0 0 9px rgba(37,211,102,0); }
-  }
-  @keyframes fabPulseRing {
-    0%   { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 0 0 0 rgba(37,211,102,0.55); }
-    70%  { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 0 0 14px rgba(37,211,102,0); }
-    100% { box-shadow: 0 6px 16px rgba(0,0,0,0.18), 0 0 0 0 rgba(37,211,102,0); }
-  }
-  .fab-whatsapp {
-    right: max(var(--fab-edge), env(safe-area-inset-right));
-    background: linear-gradient(135deg, #2CE374, #1DA851);
-    color: #fff;
-    animation: fabIdlePulse 2.8s ease-in-out infinite;
-  }
-  .fab-whatsapp svg { fill: #fff; }
-  .fab-whatsapp:hover {
-    animation: fabPulseRing 1.4s ease-out infinite;
-  }
-  .fab-status-dot {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #CBFF4D;
-    border: 2px solid #fff;
-    box-sizing: border-box;
-  }
-  @media (max-width: 480px) {
-    .fab-status-dot { top: 1px; right: 1px; width: 11px; height: 11px; }
-  }
-
-  .fab-top {
-    left: max(var(--fab-edge), env(safe-area-inset-left));
-    background: linear-gradient(135deg, var(--accent), rgba(0,0,0,0.2)), var(--accent);
-    color: #fff;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(12px);
-  }
-  .fab-top.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-  .fab-top:hover { transform: translateY(-3px) scale(1.05); }
-  /* Scroll-progress ring: fills as the visitor scrolls down the page,
-     sitting behind the arrow so the button also works as a reading-
-     progress indicator, not just a jump-to-top control. */
-  .fab-top-ring {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-    pointer-events: none;
-  }
-  .fab-top-ring-track { fill: none; stroke: rgba(255,255,255,0.28); stroke-width: 2.5; }
-  .fab-top-ring-progress {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 0.1s linear;
-  }
-  .fab-top-arrow { position: relative; stroke: #fff; fill: none; transform: translateY(-1px); } /* optical nudge: the chevron makes a dead-center arrow read as low */
-
-  /* ── WhatsApp chat tooltip: glassmorphic greeting card ──
-     right/bottom reuse the exact same --fab-edge / --fab-size / --fab-lift
-     variables as .fab-whatsapp, so its right edge always lines up with the
-     button's right edge and it always clears the button by the same 14px
-     regardless of breakpoint. */
-  .chat-tooltip {
-    position: fixed;
-    right: max(var(--fab-edge), env(safe-area-inset-right));
-    bottom: calc(max(var(--fab-bottom-base), env(safe-area-inset-bottom)) + var(--fab-size) + 14px + var(--fab-lift));
-    z-index: 499;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 240px;
-    max-width: calc(100vw - 40px);
-    background: rgba(var(--ink-rgb), 0.72);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(var(--paper-rgb), 0.14);
-    color: var(--paper);
-    padding: 12px 14px 12px 12px;
-    border-radius: 16px;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.22), 0 4px 10px rgba(0,0,0,0.12);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px);
-    transition: opacity 0.45s cubic-bezier(0.34,1.56,0.64,1),
-                transform 0.45s cubic-bezier(0.34,1.56,0.64,1),
-                visibility 0.45s;
-  }
-  .chat-tooltip-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    min-width: 0;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  }
-  .chat-tooltip::after {
-    content: '';
-    position: absolute;
-    /* centers a 12px diamond on the fab's horizontal midpoint: the
-       tooltip's right edge coincides with the fab's right edge (same
-       --fab-edge value), so half the fab's width minus half the
-       diamond's width lands the tail dead-center on the icon at any
-       breakpoint — no hardcoded offset to fall out of sync. */
-    right: calc((var(--fab-size) / 2) - 6px);
-    bottom: -6px;
-    width: 12px;
-    height: 12px;
-    background: rgba(var(--ink-rgb), 0.72);
-    border-bottom: 1px solid rgba(var(--paper-rgb), 0.14);
-    border-right: 1px solid rgba(var(--paper-rgb), 0.14);
-    transform: rotate(45deg);
-    border-radius: 2px;
-  }
-  .chat-tooltip.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  .chat-tooltip-avatar {
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #2CE374, #1DA851);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-  .chat-tooltip-avatar svg { width: 17px; height: 17px; fill: #fff; }
-  .chat-tooltip-body { flex: 1; min-width: 0; }
-  .chat-tooltip-title {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0 0 4px;
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    font-weight: 700;
-    font-size: 13.5px;
-    color: var(--paper);
-  }
-  .chat-tooltip-title .emoji { font-size: 15px; line-height: 1; }
-  .chat-tooltip-text {
-    margin: 0;
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    font-size: 12px;
-    line-height: 1.45;
-    color: rgba(var(--paper-rgb), 0.78);
-  }
-  .chat-tooltip-close {
-    flex-shrink: 0;
-    width: 20px; height: 20px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(var(--paper-rgb), 0.1);
-    border-radius: 50%;
-    color: var(--paper);
-    font-size: 12px;
-    line-height: 1;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  .chat-tooltip-close:hover { background: rgba(var(--paper-rgb), 0.22); transform: scale(1.08); }
 
   @media (max-width: 480px) {
-    .chat-tooltip { width: 210px; }
-    .chat-tooltip-avatar { width: 30px; height: 30px; }
-    .chat-tooltip-avatar svg { width: 15px; height: 15px; }
-    .chat-tooltip-title { font-size: 13px; }
-    .chat-tooltip-text { font-size: 11.5px; }
     .footer-main { grid-template-columns: 1fr; gap: 28px; }
     .footer-brand { grid-column: auto; }
     .footer-tagline { max-width: 100%; }
   }
 
+  /* ── Floating action buttons ──
+     Two simple, independent circular buttons (WhatsApp + scroll-to-top).
+     No shared JS-computed positioning between them — each is just
+     position:fixed with a fixed bottom/side offset, so there's nothing
+     to drift out of sync and nothing that can be pushed off-screen. */
+  .fab {
+    position: fixed;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.10);
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                box-shadow 0.25s ease,
+                opacity 0.3s ease,
+                visibility 0.3s;
+    z-index: 500;
+  }
+  .fab svg { width: 24px; height: 24px; display: block; stroke: #fff; fill: none; }
+  .fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 12px 26px rgba(0,0,0,0.24), 0 4px 10px rgba(0,0,0,0.14); }
+  .fab:active { transform: translateY(-1px) scale(0.96); }
+  .fab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .fab-whatsapp {
+    left: max(24px, env(safe-area-inset-left));
+    background: #25D366;
+  }
+  .fab-whatsapp svg { stroke: none; fill: #fff; }
+  .fab-whatsapp::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+    animation: fab-pulse 2.6s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes fab-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+    70%  { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+
+  .fab-top {
+    right: max(24px, env(safe-area-inset-right));
+    background: var(--accent);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+  }
+  .fab-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+  /* Fade both out once the footer scrolls into view, so they never sit
+     on top of the footer's links / copyright line */
+  .fab.fab-hidden { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+
+  /* Simple CSS-only tooltip, desktop/hover-capable devices only - no JS,
+     no dismiss state, nothing that can get out of sync with the button */
+  @media (hover: hover) and (pointer: fine) {
+    .fab[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 50%;
+      transform: translateY(50%);
+      white-space: nowrap;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      padding: 7px 12px;
+      border-radius: 8px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .fab-whatsapp[data-tooltip]::after { left: calc(100% + 14px); }
+    .fab-top[data-tooltip]::after { right: calc(100% + 14px); }
+    .fab[data-tooltip]:hover::after,
+    .fab[data-tooltip]:focus-visible::after { opacity: 1; }
+  }
+
+  @media (max-width: 480px) {
+    .fab { width: 50px; height: 50px; bottom: max(16px, env(safe-area-inset-bottom)); }
+    .fab svg { width: 21px; height: 21px; }
+    .fab-whatsapp { left: max(14px, env(safe-area-inset-left)); }
+    .fab-top { right: max(14px, env(safe-area-inset-right)); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .fab, .fab-top { transition: opacity 0.2s ease; }
+    .fab { transition: opacity 0.2s ease, visibility 0.2s; }
     .fab:hover, .fab:active { transform: none; }
-    .fab-whatsapp { animation: none; }
-    .fab-whatsapp:hover { animation: none; }
+    .fab-whatsapp::before { animation: none; }
   }
 
   /* ══════════════════ ADVANCED TRANSITIONS: scroll-reveal ══════════════════ */
@@ -1608,7 +1469,7 @@ link[rel="icon"] { border-radius: 50%; }
 
 /* ── Print stylesheet ── */
   @media print {
-    .site-nav, footer, .fab, .fab-whatsapp, .fab-top, .chat-tooltip, #cursor, #cursor-ring,
+    .site-nav, footer, .fab, .fab-whatsapp, .fab-top, #cursor, #cursor-ring,
     #scrollProgress, .hero-illustration, .skip-link, .contact-form-card,
     .cert-seal, .expertise-icon { display: none !important; }
     body { background: #fff !important; color: #000 !important; cursor: auto !important; }
