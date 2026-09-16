@@ -200,11 +200,9 @@ const themeToggle = document.getElementById('theme-toggle');
         if (r.name.toLowerCase() === 'victor-kipruto-rop' || r.name.toLowerCase() === 'kipruto45') return false;
         const nameDesc = (r.name + ' ' + (r.description || '')).toLowerCase();
         const isMatch = deKeywords.some(keyword => nameDesc.includes(keyword));
-        if (isMatch) console.log('Match found:', r.name);
         return isMatch;
       }) : []);
 
-      console.log('Filtered projects count:', filtered.length);
       // sort by popularity (stars) then recent activity
       filtered.sort((a,b)=> {
         const starsA = a.stargazers_count || 0; const starsB = b.stargazers_count || 0;
@@ -214,7 +212,6 @@ const themeToggle = document.getElementById('theme-toggle');
 
       // show all relevant projects
       const display = filtered;
-      console.log('Displaying projects:', display.map(p => p.name));
       // Map specific repos to images
       const projectImageMap = {
         'Real_Time_Transaction_Streaming-MPESA-': 'assets/images/4.jpeg',
