@@ -10,9 +10,7 @@ link[rel="icon"] { border-radius: 50%; }
 
 :root {
     --ink:    #0a0e14;
-    --ink-rgb: 10, 14, 20;
     --paper:  #f5f0e8;
-    --paper-rgb: 245, 240, 232;
     --accent: #c8401a;
     --blue:   #1a4fd6;
     --muted:  #7a7060;
@@ -24,9 +22,7 @@ link[rel="icon"] { border-radius: 50%; }
   
   body.dark-mode {
     --ink:    #f5f0e8;
-    --ink-rgb: 245, 240, 232;
     --paper:  #0a0e14;
-    --paper-rgb: 10, 14, 20;
     --accent: #ff4b2b;
     --blue:   #3b82f6;
     --muted:  #a1a1aa;
