@@ -10,7 +10,9 @@ link[rel="icon"] { border-radius: 50%; }
 
 :root {
     --ink:    #0a0e14;
+    --ink-rgb: 10, 14, 20;
     --paper:  #f5f0e8;
+    --paper-rgb: 245, 240, 232;
     --accent: #c8401a;
     --blue:   #1a4fd6;
     --muted:  #7a7060;
@@ -22,7 +24,9 @@ link[rel="icon"] { border-radius: 50%; }
   
   body.dark-mode {
     --ink:    #f5f0e8;
+    --ink-rgb: 245, 240, 232;
     --paper:  #0a0e14;
+    --paper-rgb: 10, 14, 20;
     --accent: #ff4b2b;
     --blue:   #3b82f6;
     --muted:  #a1a1aa;
@@ -1261,6 +1265,258 @@ link[rel="icon"] { border-radius: 50%; }
   }
 
 
+  /* ── Floating Action Buttons ──
+     Shared geometry lives in custom properties so the WhatsApp FAB, the
+     scroll-to-top FAB, and the tooltip's pointer are always derived from
+     the same numbers — this is what guarantees the two buttons share an
+     identical baseline and the tooltip's arrow always centers on the
+     WhatsApp icon, at every breakpoint, with no hardcoded values to drift
+     out of sync. JS switches them to position:absolute, docked at a
+     stable document-relative point, once the footer scrolls into view —
+     see the comment in site.js for why that's safer than continuously
+     lifting a position:fixed element (a tall footer can exceed the
+     viewport height, which pushed the button off the top of the screen). */
+  :root {
+    --fab-size: 56px;
+    --fab-edge: 20px;
+    --fab-bottom-base: 24px;
+  }
+  @media (max-width: 480px) {
+    :root {
+      --fab-size: 50px;
+      --fab-edge: 14px;
+      --fab-bottom-base: 16px;
+    }
+  }
+
+  .fab {
+    position: fixed;
+    bottom: max(var(--fab-bottom-base), env(safe-area-inset-bottom));
+    width: var(--fab-size);
+    height: var(--fab-size);
+    border-radius: 50%;
+    z-index: 500;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2), 0 2px 6px rgba(0,0,0,0.12),
+                inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -8px 12px rgba(0,0,0,0.12);
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease, opacity 0.25s ease, background 0.2s ease;
+    text-decoration: none;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+  }
+  .fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 22px rgba(0,0,0,0.25), 0 3px 8px rgba(0,0,0,0.14), inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -8px 12px rgba(0,0,0,0.12); }
+  .fab:active { transform: translateY(-1px) scale(0.96); box-shadow: 0 4px 10px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -6px 10px rgba(0,0,0,0.14); }
+  .fab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Icons are baked in as a CSS background layer (icon + gradient, as two
+     comma-separated background-image values) rather than a child <svg>
+     laid out by flexbox. background-position:center is one of the most
+     reliably-supported centering mechanisms in CSS, with nothing for a
+     particular browser/device to get wrong the way an SVG child's own
+     intrinsic sizing occasionally can — this replaced a real, reproduced
+     mis-centering bug seen on an actual device that never showed up in
+     any headless test. */
+  .fab-top .fab-top-ring { width: 100%; height: 100%; position: absolute; inset: 0; }
+
+  /* WhatsApp FAB lives bottom-right per spec; scroll-to-top lives
+     bottom-left so the two buttons don't stack on top of each other. */
+  @keyframes fabIdlePulse {
+    0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.2), 0 2px 6px rgba(0,0,0,0.12), inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -8px 12px rgba(0,0,0,0.12), 0 0 0 0 rgba(37,211,102,0.4); }
+    50%      { box-shadow: 0 6px 16px rgba(0,0,0,0.2), 0 2px 6px rgba(0,0,0,0.12), inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -8px 12px rgba(0,0,0,0.12), 0 0 0 9px rgba(37,211,102,0); }
+  }
+  @keyframes fabPulseRing {
+    0%   { box-shadow: 0 6px 16px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -8px 12px rgba(0,0,0,0.12), 0 0 0 0 rgba(37,211,102,0.55); }
+    70%  { box-shadow: 0 6px 16px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -8px 12px rgba(0,0,0,0.12), 0 0 0 14px rgba(37,211,102,0); }
+    100% { box-shadow: 0 6px 16px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -8px 12px rgba(0,0,0,0.12), 0 0 0 0 rgba(37,211,102,0); }
+  }
+  .fab-whatsapp {
+    right: max(var(--fab-edge), env(safe-area-inset-right));
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22white%22%3E%3Cpath%20d%3D%22M17.472%2014.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94%201.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198%200-.52.074-.792.372-.272.297-1.04%201.016-1.04%202.479%200%201.462%201.065%202.875%201.213%203.074.149.198%202.096%203.2%205.077%204.487.709.306%201.262.489%201.694.625.712.227%201.36.195%201.871.118.571-.085%201.758-.719%202.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z%22/%3E%3Cpath%20d%3D%22M12.001%202C6.478%202%202%206.477%202%2011.999c0%202.113.652%204.075%201.762%205.688L2.5%2022l4.428-1.235A9.94%209.94%200%200012.001%2022C17.523%2022%2022%2017.523%2022%2012%2022%206.477%2017.523%202%2012.001%202zm5.876%2015.876a8.06%208.06%200%2001-11.407.24l-.213-.213-2.658.741.75-2.593-.222-.223A8.07%208.07%200%20013.933%206.13a8.07%208.07%200%200113.944%205.869%208.02%208.02%200%2001-2.001%205.877z%22/%3E%3C/svg%3E"), linear-gradient(135deg, #2fe27c, #17a94f);
+    background-size: 26px 26px, cover;
+    color: #fff;
+    animation: fabIdlePulse 2.8s ease-in-out infinite;
+  }
+  .fab-whatsapp:hover {
+    animation: fabPulseRing 1.4s ease-out infinite;
+  }
+  @media (max-width: 480px) {
+    .fab-whatsapp { background-size: 22px 22px, cover; }
+  }
+  .fab-status-dot {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #CBFF4D;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+  }
+  @media (max-width: 480px) {
+    .fab-status-dot { top: 1px; right: 1px; width: 11px; height: 11px; }
+  }
+
+  .fab-top {
+    left: max(var(--fab-edge), env(safe-area-inset-left));
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.75%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2019V6M6%2011l6-6%206%206%22/%3E%3C/svg%3E"), linear-gradient(135deg, var(--accent), rgba(0,0,0,0.22)), linear-gradient(135deg, var(--accent), var(--accent));
+    background-size: 22px 22px, cover, cover;
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+  }
+  @media (max-width: 480px) {
+    .fab-top { background-size: 20px 20px, cover, cover; }
+  }
+  .fab-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .fab-top:hover { transform: translateY(-3px) scale(1.05); }
+  /* Scroll-progress ring: fills as the visitor scrolls down the page,
+     sitting on top of the arrow (painted via background-image above) so
+     the button also works as a reading-progress indicator, not just a
+     jump-to-top control. It stays a real SVG element (not a background
+     layer) because JS updates its stroke-dashoffset every scroll tick. */
+  .fab-top-ring {
+    transform: rotate(-90deg);
+    pointer-events: none;
+  }
+  .fab-top-ring-track { fill: none; stroke: rgba(255,255,255,0.28); stroke-width: 2.5; }
+  .fab-top-ring-progress {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+  }
+
+  /* ── WhatsApp chat tooltip: glassmorphic greeting card ──
+     right/bottom reuse the exact same --fab-edge / --fab-size variables
+     as .fab-whatsapp, so its right edge always lines up with the
+     button's right edge and it always clears the button by the same 14px
+     regardless of breakpoint. */
+  .chat-tooltip {
+    position: fixed;
+    right: max(var(--fab-edge), env(safe-area-inset-right));
+    bottom: calc(max(var(--fab-bottom-base), env(safe-area-inset-bottom)) + var(--fab-size) + 14px);
+    z-index: 499;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 240px;
+    max-width: calc(100vw - 40px);
+    background: rgba(var(--ink-rgb), 0.72);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(var(--paper-rgb), 0.14);
+    color: var(--paper);
+    padding: 12px 14px 12px 12px;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.22), 0 4px 10px rgba(0,0,0,0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.45s cubic-bezier(0.34,1.56,0.64,1),
+                transform 0.45s cubic-bezier(0.34,1.56,0.64,1),
+                visibility 0.45s;
+  }
+  .chat-tooltip-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .chat-tooltip::after {
+    content: '';
+    position: absolute;
+    /* centers a 12px diamond on the fab's horizontal midpoint: the
+       tooltip's right edge coincides with the fab's right edge (same
+       --fab-edge value), so half the fab's width minus half the
+       diamond's width lands the tail dead-center on the icon at any
+       breakpoint — no hardcoded offset to fall out of sync. */
+    right: calc((var(--fab-size) / 2) - 6px);
+    bottom: -6px;
+    width: 12px;
+    height: 12px;
+    background: rgba(var(--ink-rgb), 0.72);
+    border-bottom: 1px solid rgba(var(--paper-rgb), 0.14);
+    border-right: 1px solid rgba(var(--paper-rgb), 0.14);
+    transform: rotate(45deg);
+    border-radius: 2px;
+  }
+  .chat-tooltip.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .chat-tooltip-avatar {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22white%22%3E%3Cpath%20d%3D%22M17.472%2014.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94%201.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198%200-.52.074-.792.372-.272.297-1.04%201.016-1.04%202.479%200%201.462%201.065%202.875%201.213%203.074.149.198%202.096%203.2%205.077%204.487.709.306%201.262.489%201.694.625.712.227%201.36.195%201.871.118.571-.085%201.758-.719%202.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z%22/%3E%3Cpath%20d%3D%22M12.001%202C6.478%202%202%206.477%202%2011.999c0%202.113.652%204.075%201.762%205.688L2.5%2022l4.428-1.235A9.94%209.94%200%200012.001%2022C17.523%2022%2022%2017.523%2022%2012%2022%206.477%2017.523%202%2012.001%202zm5.876%2015.876a8.06%208.06%200%2001-11.407.24l-.213-.213-2.658.741.75-2.593-.222-.223A8.07%208.07%200%20013.933%206.13a8.07%208.07%200%200113.944%205.869%208.02%208.02%200%2001-2.001%205.877z%22/%3E%3C/svg%3E"), linear-gradient(135deg, #2fe27c, #17a94f);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: 17px 17px, cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.35);
+  }
+  .chat-tooltip-body { flex: 1; min-width: 0; }
+  .chat-tooltip-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 4px;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--paper);
+  }
+  .chat-tooltip-title .emoji { font-size: 15px; line-height: 1; }
+  .chat-tooltip-text {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-size: 12px;
+    line-height: 1.45;
+    color: rgba(var(--paper-rgb), 0.78);
+  }
+  .chat-tooltip-close {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(var(--paper-rgb), 0.1);
+    border-radius: 50%;
+    color: var(--paper);
+    font-size: 12px;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .chat-tooltip-close:hover { background: rgba(var(--paper-rgb), 0.22); transform: scale(1.08); }
+
+  @media (max-width: 480px) {
+    .chat-tooltip { width: 210px; }
+    .chat-tooltip-avatar { width: 30px; height: 30px; background-size: 15px 15px, cover; }
+    .chat-tooltip-title { font-size: 13px; }
+    .chat-tooltip-text { font-size: 11.5px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fab, .fab-top { transition: opacity 0.2s ease; }
+    .fab:hover, .fab:active { transform: none; }
+    .fab-whatsapp { animation: none; }
+    .fab-whatsapp:hover { animation: none; }
+  }
+
+
   /* ══════════════════ ADVANCED TRANSITIONS: scroll-reveal ══════════════════ */
   .reveal {
     opacity: 0;
@@ -1365,7 +1621,7 @@ link[rel="icon"] { border-radius: 50%; }
 
 /* ── Print stylesheet ── */
   @media print {
-    .site-nav, footer, #cursor, #cursor-ring,
+    .site-nav, footer, .fab, .fab-whatsapp, .fab-top, .chat-tooltip, #cursor, #cursor-ring,
     #scrollProgress, .hero-illustration, .skip-link, .contact-form-card,
     .cert-seal, .expertise-icon { display: none !important; }
     body { background: #fff !important; color: #000 !important; cursor: auto !important; }

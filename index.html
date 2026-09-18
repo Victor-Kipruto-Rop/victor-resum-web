@@ -29,7 +29,7 @@
 <link rel="manifest" href="/manifest.json"/>
 <meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
-<link rel="stylesheet" href="/assets/css/site.css"/>
+<link rel="stylesheet" href="/assets/css/site.css?v=db25bbfd"/>
 <style>
   /* Page-specific overrides for index.html only (the shared assets/css/site.css
      covers everything common to index/projects/contact) */
@@ -778,6 +778,29 @@
 
 
 
-<script src="/assets/js/site.js"></script>
+<!-- Floating Action Buttons -->
+<div class="chat-tooltip" id="chatTooltip">
+  <a class="chat-tooltip-link" href="https://wa.me/254723484552" target="_blank" rel="noopener">
+  <span class="chat-tooltip-avatar" aria-hidden="true"></span>
+  <div class="chat-tooltip-body">
+    <p class="chat-tooltip-title">Hey there <span class="emoji">👋</span></p>
+    <p class="chat-tooltip-text">Open to internships & data collabs — message me on WhatsApp.</p>
+  </div>
+  </a>
+  <button type="button" class="chat-tooltip-close" id="chatTooltipClose" aria-label="Dismiss">&times;</button>
+</div>
+
+<a class="fab fab-whatsapp" href="https://wa.me/254723484552" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+  <span class="fab-status-dot" aria-hidden="true"></span>
+</a>
+
+<button type="button" class="fab fab-top" id="scrollToTopFab" aria-label="Scroll to top" title="Scroll to top">
+  <svg class="fab-top-ring" viewBox="0 0 44 44" aria-hidden="true">
+    <circle class="fab-top-ring-track" cx="22" cy="22" r="19"></circle>
+    <circle class="fab-top-ring-progress" cx="22" cy="22" r="19"></circle>
+  </svg>
+</button>
+
+<script src="/assets/js/site.js?v=b253c5ae"></script>
 </body>
 </html>
