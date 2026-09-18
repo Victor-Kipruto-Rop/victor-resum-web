@@ -740,12 +740,59 @@ link[rel="icon"] { border-radius: 50%; }
     width: 100%;
     max-width: 300px;
   }
+  /* Soft ambient glow behind the frame, for depth. */
   .about-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: -32px; left: -32px; right: -32px; bottom: -32px;
+    background: radial-gradient(circle at 32% 24%, color-mix(in srgb, var(--accent) 38%, transparent), transparent 68%);
+    filter: blur(32px);
+    z-index: -1;
+    opacity: 0.55;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  /* Offset outline frame, shifted slightly on hover for a subtle parallax lift. */
+  .about-photo-frame::after {
     content: '';
     position: absolute; top: 16px; left: -16px; right: 16px; bottom: -16px;
     border: 1.5px solid var(--accent);
-    border-radius: 10px;
+    border-radius: 12px;
     z-index: 0;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .about-photo-frame:hover::before { opacity: 0.8; }
+  .about-photo-frame:hover::after { transform: translate(4px, -4px); }
+  .about-photo-frame picture {
+    position: relative;
+    display: block;
+    z-index: 1;
+  }
+  /* Corner-bracket accents, echoing the site's monospace/schematic
+     details ("// 02" section labels, Fira Code) elsewhere on the page. */
+  .about-photo-frame picture::before,
+  .about-photo-frame picture::after {
+    content: '';
+    position: absolute;
+    width: 22px; height: 22px;
+    border: 2px solid var(--accent);
+    z-index: 2;
+    pointer-events: none;
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+  .about-photo-frame picture::before {
+    top: -8px; left: -8px;
+    border-right: none; border-bottom: none;
+    border-radius: 4px 0 0 0;
+  }
+  .about-photo-frame picture::after {
+    bottom: -8px; right: -8px;
+    border-left: none; border-top: none;
+    border-radius: 0 0 4px 0;
+  }
+  .about-photo-frame:hover picture::before,
+  .about-photo-frame:hover picture::after {
+    width: 28px; height: 28px;
   }
   .about-photo {
     position: relative; z-index: 1;
@@ -756,15 +803,43 @@ link[rel="icon"] { border-radius: 50%; }
     border-radius: 10px;
     filter: grayscale(35%) contrast(1.02);
     box-shadow: 0 24px 48px rgba(10,14,20,0.18);
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease, box-shadow 0.5s ease;
+  }
+  .about-photo-frame:hover .about-photo {
+    transform: scale(1.015);
+    filter: grayscale(8%) contrast(1.05);
+    box-shadow: 0 32px 64px rgba(10,14,20,0.26);
   }
   body.dark-mode .about-photo { box-shadow: 0 24px 48px rgba(0,0,0,0.5); }
+  body.dark-mode .about-photo-frame:hover .about-photo { box-shadow: 0 32px 64px rgba(0,0,0,0.6); }
   .about-role-chip {
-    position: absolute; z-index: 2; left: 18px; bottom: -16px;
-    background: var(--accent); color: var(--paper);
+    position: absolute; z-index: 3; left: 18px; bottom: -16px;
+    display: flex; align-items: center; gap: 7px;
+    background: rgba(var(--ink-rgb), 0.78);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    backdrop-filter: blur(10px) saturate(160%);
+    border: 1px solid rgba(var(--paper-rgb), 0.15);
+    color: var(--paper);
     font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
-    padding: 8px 14px; border-radius: 999px;
-    box-shadow: 0 8px 18px rgba(10,14,20,0.25);
+    padding: 8px 14px 8px 11px; border-radius: 999px;
+    box-shadow: 0 10px 22px rgba(10,14,20,0.28);
     white-space: nowrap;
+  }
+  .chip-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #3ddc73;
+    box-shadow: 0 0 0 3px rgba(61,220,115,0.25);
+    flex-shrink: 0;
+    animation: chipDotPulse 2.2s ease-in-out infinite;
+  }
+  @keyframes chipDotPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(61,220,115,0.25); }
+    50%      { box-shadow: 0 0 0 6px rgba(61,220,115,0.1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chip-dot { animation: none; }
+    .about-photo, .about-photo-frame::after, .about-photo-frame::before,
+    .about-photo-frame picture::before, .about-photo-frame picture::after { transition: none; }
   }
   .about-text h2 { margin-bottom: 24px; }
   .about-lead {
@@ -943,7 +1018,10 @@ link[rel="icon"] { border-radius: 50%; }
     .about-layout { gap: 40px; }
     .contact-layout { gap: 48px; }
     .hero-photo, .about-photo { width: 100%; height: auto; aspect-ratio: 4/5; }
-    .about-photo-wrap::before { display: none; }
+    .about-photo-frame::before,
+    .about-photo-frame::after,
+    .about-photo-frame picture::before,
+    .about-photo-frame picture::after { display: none; }
     footer { padding: 40px 24px 24px; }
     .footer-main { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
     .footer-brand { grid-column: 1 / -1; padding-right: 0; }
@@ -1655,5 +1733,6 @@ link[rel="icon"] { border-radius: 50%; }
     .section-title, h1, h2, h3 { color: #000 !important; }
     .impact-value, .stat-value { color: #000 !important; }
     section { page-break-inside: avoid; }
-    .about-photo-frame::before { display: none; }
+    .about-photo-frame::before, .about-photo-frame::after,
+    .about-photo-frame picture::before, .about-photo-frame picture::after { display: none; }
   }
