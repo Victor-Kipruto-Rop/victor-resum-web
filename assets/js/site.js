@@ -1,4 +1,4 @@
-/* Shared site script — extracted from index.html / projects/index.html / contact/index.html (previously ~70KB of near-identical inline <script> blocks duplicated on every page load). Loaded at the end of <body>, after all the DOM elements it references, so document.getElementById() calls resolve correctly. */
+/* Shared site script, extracted from index.html / projects/index.html / contact/index.html (previously ~70KB of near-identical inline <script> blocks duplicated on every page load). Loaded at the end of <body>, after all the DOM elements it references, so document.getElementById() calls resolve correctly. */
 
 function openCvModal() {
     document.getElementById('cvModalOverlay').style.display = 'flex';
@@ -1097,13 +1097,13 @@ const themeToggle = document.getElementById('theme-toggle');
   })();
 
   // Floating WhatsApp button: as the footer's top edge rises into view,
-  // lift the FABs (still position:fixed — always safely viewport-relative,
+  // lift the FABs (still position:fixed, always safely viewport-relative,
   // so left/right can never drift off-screen) by exactly how much of the
   // footer is showing, so they stay clear of its content. Once you've
   // scrolled all the way past the footer's top edge (its top has gone
   // above the viewport, meaning the screen is now entirely footer), fade
-  // the FABs out entirely rather than pin them at an awkward fixed height
-  // — a footer taller than the viewport (common once stacked to one
+  // the FABs out entirely rather than pin them at an awkward fixed height.
+  // A footer taller than the viewport (common once stacked to one
   // column on mobile) has no single "just above it" spot that stays
   // sensible for arbitrarily deep scrolling, and the footer already
   // carries its own contact links at that point.
@@ -1156,7 +1156,7 @@ const themeToggle = document.getElementById('theme-toggle');
       if (footer && dockedFabs.length) {
         const footerTop = footer.getBoundingClientRect().top;
         if (footerTop >= window.innerHeight) {
-          // footer isn't showing yet — normal resting position
+          // footer isn't showing yet, so use the normal resting position
           setFabState(null, false);
         } else if (footerTop >= 0) {
           // footer's top edge is somewhere within the viewport: lift by
@@ -1164,7 +1164,7 @@ const themeToggle = document.getElementById('theme-toggle');
           const lift = Math.round((window.innerHeight - footerTop) + DOCK_GAP);
           setFabState(lift, false);
         } else {
-          // scrolled fully past the footer's top edge — fade out rather
+          // scrolled fully past the footer's top edge, so fade out rather
           // than pin at an ever-taller, increasingly awkward position
           setFabState(null, true);
         }
