@@ -1096,27 +1096,16 @@ const themeToggle = document.getElementById('theme-toggle');
     toggleTopFab();
   })();
 
-  // Floating WhatsApp button: as the footer's top edge rises into view,
-  // lift the FABs (still position:fixed, always safely viewport-relative,
-  // so left/right can never drift off-screen) by exactly how much of the
-  // footer is showing, so they stay clear of its content. Once you've
-  // scrolled all the way past the footer's top edge (its top has gone
-  // above the viewport, meaning the screen is now entirely footer), fade
-  // the FABs out entirely rather than pin them at an awkward fixed height.
-  // A footer taller than the viewport (common once stacked to one
-  // column on mobile) has no single "just above it" spot that stays
-  // sensible for arbitrarily deep scrolling, and the footer already
-  // carries its own contact links at that point.
+  // Floating WhatsApp button + scroll-to-top: kept genuinely fixed at all
+  // times (no lifting or fading near the footer) - the footer itself
+  // reserves bottom padding sized to clear the buttons instead, so they
+  // can never cover its content.
   (function () {
-    const footer = document.querySelector('footer');
-    const dockedFabs = Array.from(document.querySelectorAll('.fab'));
     const tooltip = document.getElementById('chatTooltip');
     const closeBtn = document.getElementById('chatTooltipClose');
     const progressRing = document.querySelector('.fab-top-ring-progress');
-    if (!footer && !tooltip && !progressRing) return;
+    if (!tooltip && !progressRing) return;
 
-    const DOCK_GAP = 14;      // px of breathing room once lifted above the footer
-    const TOOLTIP_STACK = 70; // extra px so the tooltip sits above the FAB, not on top of it
     const REVEAL_AFTER = 200; // px scrolled before the tooltip appears
     const DISMISS_KEY = 'chatTooltipDismissed';
     const RING_R = 19; // must match the <circle r="19"> in the markup
@@ -1132,43 +1121,8 @@ const themeToggle = document.getElementById('theme-toggle');
     let revealed = false; // once true, the tooltip stays visible until dismissed
     let ticking = false;
 
-    function setFabState(bottomPx, hidden) {
-      dockedFabs.forEach(function (fab) {
-        fab.style.bottom = bottomPx === null ? '' : bottomPx + 'px';
-        fab.style.opacity = hidden ? '0' : '';
-        fab.style.pointerEvents = hidden ? 'none' : '';
-      });
-      if (tooltip) {
-        tooltip.style.bottom = bottomPx === null ? '' : (bottomPx + TOOLTIP_STACK) + 'px';
-        if (hidden) {
-          tooltip.style.opacity = '0';
-          tooltip.style.visibility = 'hidden';
-        } else {
-          tooltip.style.opacity = '';
-          tooltip.style.visibility = '';
-        }
-      }
-    }
-
     function updatePositions() {
       ticking = false;
-
-      if (footer && dockedFabs.length) {
-        const footerTop = footer.getBoundingClientRect().top;
-        if (footerTop >= window.innerHeight) {
-          // footer isn't showing yet, so use the normal resting position
-          setFabState(null, false);
-        } else if (footerTop >= 0) {
-          // footer's top edge is somewhere within the viewport: lift by
-          // exactly that much showing, so the buttons stay just clear of it
-          const lift = Math.round((window.innerHeight - footerTop) + DOCK_GAP);
-          setFabState(lift, false);
-        } else {
-          // scrolled fully past the footer's top edge, so fade out rather
-          // than pin at an ever-taller, increasingly awkward position
-          setFabState(null, true);
-        }
-      }
 
       // Reveal the tooltip once past the threshold; once shown it stays
       // up (per spec) regardless of further scrolling, until dismissed.

@@ -922,8 +922,13 @@ link[rel="icon"] { border-radius: 50%; }
   @keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:0.35 } }
 
   /* ── Footer ── */
+  /* Bottom padding is oversized on purpose: it reserves clearance for
+     the fixed-position WhatsApp/scroll-to-top buttons (24px base offset
+     + 56px button + 20px gap = 100px, added to the original 32px), which
+     stay fixed at all times and would otherwise sit on top of this
+     content once scrolled to the very bottom of the page. */
   footer {
-    background: var(--card); padding: 64px 72px 32px;
+    background: var(--card); padding: 64px 72px 132px;
     border-top: 3px solid var(--accent);
     display: flex; flex-direction: column; gap: 40px;
     color: var(--muted);
@@ -1022,7 +1027,7 @@ link[rel="icon"] { border-radius: 50%; }
     .about-photo-frame::after,
     .about-photo-frame picture::before,
     .about-photo-frame picture::after { display: none; }
-    footer { padding: 40px 24px 24px; }
+    footer { padding: 40px 24px 124px; } /* extra bottom clearance for the fixed FABs, see the desktop rule's comment */
     .footer-main { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
     .footer-brand { grid-column: 1 / -1; padding-right: 0; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
