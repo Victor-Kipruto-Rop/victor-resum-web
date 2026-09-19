@@ -981,28 +981,13 @@ link[rel="icon"] { border-radius: 50%; }
   }
   .footer-social-icon:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); box-shadow: var(--shadow-sm); }
   .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; justify-content: center; align-items: center;
     padding-top: 24px; border-top: 1px solid var(--rule);
   }
-  .footer-top-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: none; border: none; cursor: pointer; padding: 0;
-    font-family: 'Fira Code', monospace; font-size: 11px; color: var(--muted);
-    transition: color 0.2s ease, transform 0.2s ease;
-  }
-  .footer-top-link:hover { color: var(--accent); transform: translateY(-2px); }
-  .footer-top-link i { font-size: 10px; }
   footer p {
     font-family: 'Fira Code', monospace; font-size: 11px;
     color: var(--muted); letter-spacing: 0.08em; margin: 0;
   }
-  .footer-top-btn {
-    font-family: 'Fira Code', monospace; font-size: 11px; letter-spacing: 0.06em;
-    background: transparent; border: 1px solid var(--rule); color: var(--muted);
-    padding: 8px 16px; border-radius: 999px; cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-  }
-  .footer-top-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
   /* ── Animations ── */
   @keyframes fadeUp {
