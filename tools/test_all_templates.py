@@ -9,7 +9,7 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-current_dir = Path(__file__).parent.absolute()
+current_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(current_dir))
 sys.path.insert(0, str(current_dir / "scripts" / "python"))
 sys.path.insert(0, str(current_dir / "blog-ai"))

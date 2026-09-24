@@ -15,7 +15,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Add paths
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'scripts', 'python'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'python'))
 
 from email_templates_modern import TEMPLATES, generate_unsubscribe_token
 

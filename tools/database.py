@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent / 'victor_portfolio.db'
+DB_PATH = Path(__file__).resolve().parent.parent / 'victor_portfolio.db'
 DATABASE_URL = f"sqlite:///{DB_PATH}"
 
 class Database:

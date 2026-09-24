@@ -274,7 +274,7 @@ To enable live email sending:
    export RESEND_API_KEY='re_xxxxxxxxxxxxxxxx'
 
 3. Run test again:
-   python3 test_send_email.py
+   python3 tools/test_send_email.py
 
 4. Check email in inbox:
    - From: onboarding@resend.dev (or your verified domain)
@@ -297,7 +297,7 @@ For production deployment:
    export SENDER_EMAIL='noreply@yourdomain.com'
 
 2. Run subscription service:
-   python3 subscription_email_service.py
+   python3 tools/subscription_email_service.py
 
 3. Test via form at:
    http://localhost:5500/subscribe.html

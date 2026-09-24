@@ -24,7 +24,7 @@ from typing import Dict, Any, Optional
 # ============================================================================
 
 # Load .env file
-env_path = Path(__file__).parent / ".env"
+env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(env_path)
 
 # Setup logging

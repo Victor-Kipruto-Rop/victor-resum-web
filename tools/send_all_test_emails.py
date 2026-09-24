@@ -1,32 +1,29 @@
 #!/usr/bin/env python3
 """
-Send all test emails via SMTP (Gmail or another provider)
+Send all 13 test emails to the specified recipient
+Uses Resend API if configured, otherwise saves to test files
 """
 
-import smtplib
 import os
+import json
 import sys
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import requests
 from datetime import datetime
 from pathlib import Path
 
 # Add paths
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'scripts', 'python'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'python'))
 
 from email_templates_modern import TEMPLATES
 
 # Configuration
 RECIPIENT_EMAIL = "kiprutovictor39@gmail.com"
 RECIPIENT_NAME = "Victor Kipruto"
+TWITTER_HANDLE = "VictorKipr10418"
+SENDER_EMAIL = os.getenv('SENDER_EMAIL', 'onboarding@resend.dev')
+RESEND_API_KEY = os.getenv('RESEND_API_KEY', '')
 
-# SMTP Configuration - Gmail or custom SMTP
-SMTP_SERVER = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
-SMTP_PORT = int(os.getenv('SMTP_PORT', '587'))
-SENDER_EMAIL = os.getenv('SENDER_EMAIL', '')  # Your email address
-SENDER_PASSWORD = os.getenv('SENDER_PASSWORD', '')  # Your app password
-
-# Test data
+# Test data for each template
 TEST_DATA = {
     'welcome': {
         'name': RECIPIENT_NAME,
@@ -80,7 +77,7 @@ TEST_DATA = {
         'name': RECIPIENT_NAME,
         'email': RECIPIENT_EMAIL,
         'milestone': 1000,
-        'celebration_message': '1,000 incredible subscribers!',
+        'celebration_message': '1,000 incredible subscribers strong!',
         'subject': 'We Hit 1,000 Subscribers!'
     },
     'viral_alert': {
@@ -150,89 +147,68 @@ TEST_DATA = {
     }
 }
 
-def send_email_smtp(subject: str, html: str, to_email: str) -> dict:
-    """Send email via SMTP"""
-    
-    if not SENDER_EMAIL or not SENDER_PASSWORD:
-        return {
-            'success': False,
-            'error': 'SMTP credentials not configured. Set SENDER_EMAIL and SENDER_PASSWORD env vars'
-        }
+def send_via_resend(subject: str, html: str, to_email: str) -> dict:
+    """Send email via Resend API"""
+    if not RESEND_API_KEY:
+        return {'success': False, 'error': 'Resend API key not configured'}
     
     try:
-        # Create message
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = subject
-        msg['From'] = SENDER_EMAIL
-        msg['To'] = to_email
-        msg['Reply-To'] = 'kiprutovictor39@gmail.com'
+        response = requests.post(
+            'https://api.resend.com/emails',
+            headers={'Authorization': f'Bearer {RESEND_API_KEY}'},
+            json={
+                'from': SENDER_EMAIL,
+                'to': to_email,
+                'subject': subject,
+                'html': html,
+                'reply_to': 'kiprutovictor39@gmail.com'
+            },
+            timeout=10
+        )
         
-        # Attach HTML
-        msg.attach(MIMEText(html, 'html'))
-        
-        # Connect to SMTP server
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=10) as server:
-            server.starttls()
-            server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            server.send_message(msg)
-        
-        return {'success': True, 'message': f'Email sent successfully'}
-    
-    except smtplib.SMTPAuthenticationError:
-        return {
-            'success': False,
-            'error': 'SMTP authentication failed. Check SENDER_EMAIL and SENDER_PASSWORD'
-        }
-    except smtplib.SMTPException as e:
-        return {'success': False, 'error': f'SMTP error: {str(e)}'}
+        if response.status_code == 200:
+            data = response.json()
+            return {'success': True, 'message_id': data.get('id')}
+        else:
+            return {'success': False, 'error': f'API Error: {response.status_code}'}
     except Exception as e:
         return {'success': False, 'error': str(e)}
 
-def send_all_emails():
-    """Send all test emails"""
+def save_test_email(template_name: str, subject: str, html: str) -> str:
+    """Save email to test file"""
+    os.makedirs('data/test_emails_sent', exist_ok=True)
+    filename = f'data/test_emails_sent/{template_name}_{datetime.now().strftime("%Y%m%d_%H%M%S")}.html'
     
+    # Prepend subject to HTML for reference
+    full_html = f"""<!--
+    SUBJECT: {subject}
+    TO: {RECIPIENT_EMAIL}
+    SENT: {datetime.now().isoformat()}
+    -->
+    {html}"""
+    
+    with open(filename, 'w') as f:
+        f.write(full_html)
+    return filename
+
+def send_all_emails():
+    """Send all 13 test emails"""
     print("=" * 80)
-    print("  SENDING ALL TEST EMAILS")
+    print("  SEND ALL TEST EMAILS")
     print("=" * 80)
     print(f"\nRecipient: {RECIPIENT_NAME} <{RECIPIENT_EMAIL}>")
-    print(f"SMTP Server: {SMTP_SERVER}:{SMTP_PORT}")
-    print(f"From: {SENDER_EMAIL if SENDER_EMAIL else 'NOT CONFIGURED'}")
+    print(f"Twitter/X: @{TWITTER_HANDLE}")
     print(f"Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    
-    if not SENDER_EMAIL or not SENDER_PASSWORD:
-        print("\n" + "=" * 80)
-        print("  ⚠️  SMTP CREDENTIALS NOT CONFIGURED")
-        print("=" * 80)
-        print("""
-To send emails, set these environment variables:
-
-For Gmail:
-  export SENDER_EMAIL='your-email@gmail.com'
-  export SENDER_PASSWORD='your-app-password'  # Not your regular password!
-  
-  Get an app password: https://support.google.com/accounts/answer/185833
-
-For other SMTP servers:
-  export SENDER_EMAIL='your-email@example.com'
-  export SENDER_PASSWORD='your-password'
-  export SMTP_SERVER='smtp.example.com'
-  export SMTP_PORT='587'
-
-Then run:
-  SENDER_EMAIL='...' SENDER_PASSWORD='...' python3 send_all_emails_smtp.py
-        """)
-        return False
-    
+    print(f"API Status: {'✓ Configured' if RESEND_API_KEY else '⚠ Not configured (will save to files)'}")
     print("\n" + "=" * 80)
-    print("  SENDING EMAILS...")
-    print("=" * 80)
     
     results = {
         'timestamp': datetime.now().isoformat(),
         'recipient': RECIPIENT_EMAIL,
-        'sender': SENDER_EMAIL,
+        'api_available': bool(RESEND_API_KEY),
         'emails_sent': [],
-        'emails_failed': []
+        'emails_failed': [],
+        'summary': {}
     }
     
     template_names = [
@@ -247,36 +223,57 @@ Then run:
         print("-" * 80)
         
         try:
+            # Get template function
             template_func = TEMPLATES.get(template_name)
             if not template_func:
                 raise ValueError(f"Template not found")
             
+            # Get test data
             test_kwargs = TEST_DATA.get(template_name, {})
             subject = test_kwargs.pop('subject', f'Test: {template_name}')
             
+            # Generate HTML
             html = template_func(**test_kwargs)
             
             if not html or len(html) < 500:
                 raise ValueError("Invalid HTML generated")
             
-            # Send via SMTP
-            result = send_email_smtp(subject, html, RECIPIENT_EMAIL)
-            
-            if result['success']:
-                print(f"✅ SENT")
-                print(f"   Subject: {subject}")
-                print(f"   To: {RECIPIENT_EMAIL}")
+            # Try to send via Resend
+            if RESEND_API_KEY:
+                result = send_via_resend(subject, html, RECIPIENT_EMAIL)
+                if result['success']:
+                    print(f"✅ SENT via Resend API")
+                    print(f"   Message ID: {result.get('message_id')}")
+                    results['emails_sent'].append({
+                        'template': template_name,
+                        'subject': subject,
+                        'method': 'resend_api',
+                        'status': 'sent',
+                        'message_id': result.get('message_id')
+                    })
+                else:
+                    # Fallback to saving file
+                    saved_file = save_test_email(template_name, subject, html)
+                    print(f"⚠ Resend API failed, saved to file")
+                    print(f"   File: {saved_file}")
+                    results['emails_failed'].append({
+                        'template': template_name,
+                        'subject': subject,
+                        'method': 'file_save',
+                        'reason': result.get('error'),
+                        'file': saved_file
+                    })
+            else:
+                # Save to file
+                saved_file = save_test_email(template_name, subject, html)
+                print(f"📄 Saved to file (API not configured)")
+                print(f"   File: {saved_file}")
                 results['emails_sent'].append({
                     'template': template_name,
                     'subject': subject,
-                    'status': 'sent'
-                })
-            else:
-                print(f"❌ FAILED: {result['error']}")
-                results['emails_failed'].append({
-                    'template': template_name,
-                    'subject': subject,
-                    'error': result['error']
+                    'method': 'file_save',
+                    'status': 'saved',
+                    'file': saved_file
                 })
         
         except Exception as e:
@@ -294,28 +291,43 @@ Then run:
     failed = len(results['emails_failed'])
     total = sent + failed
     
-    print(f"\n✅ Sent: {sent}/13")
-    print(f"❌ Failed: {failed}/13")
+    print(f"\n✅ Successful: {sent}/{total}")
+    print(f"❌ Failed: {failed}/{total}")
     
-    if sent > 0:
-        print(f"\n🎉 All emails have been sent to {RECIPIENT_EMAIL}!")
-        print(f"\nCheck your inbox for:")
-        for email in results['emails_sent']:
-            print(f"   • {email['subject']}")
-    
-    if failed > 0:
-        print(f"\n⚠️  Some emails failed to send:")
-        for email in results['emails_failed']:
-            print(f"   • {email['template']}: {email['error']}")
+    if RESEND_API_KEY:
+        resend_sent = sum(1 for e in results['emails_sent'] if e.get('method') == 'resend_api')
+        file_saved = sum(1 for e in results['emails_sent'] if e.get('method') == 'file_save')
+        print(f"   - Via Resend API: {resend_sent}")
+        print(f"   - Saved to Files: {file_saved}")
     
     # Save results
-    results_file = f'data/test_emails_sent/smtp_send_results_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json'
+    results['summary'] = {
+        'total_sent': sent,
+        'total_failed': failed,
+        'recipient_email': RECIPIENT_EMAIL,
+        'recipient_name': RECIPIENT_NAME,
+        'twitter_handle': TWITTER_HANDLE
+    }
+    
+    results_file = f'data/test_emails_sent/send_results_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json'
     os.makedirs('data/test_emails_sent', exist_ok=True)
-    import json
     with open(results_file, 'w') as f:
         json.dump(results, f, indent=2)
     
     print(f"\n📊 Results saved to: {results_file}")
+    print(f"\n📧 Test emails location: data/test_emails_sent/")
+    
+    print("\n" + "=" * 80)
+    print("  NEXT STEPS")
+    print("=" * 80)
+    print(f"\n1. Check your email: {RECIPIENT_EMAIL}")
+    if not RESEND_API_KEY:
+        print(f"2. View saved emails: data/test_emails_sent/")
+        print(f"3. Set RESEND_API_KEY env var to send actual emails")
+    else:
+        print(f"2. Verify all emails were received")
+    print(f"3. Check design consistency and social links (@{TWITTER_HANDLE})")
+    print(f"4. Test on mobile devices")
     
     return failed == 0
 

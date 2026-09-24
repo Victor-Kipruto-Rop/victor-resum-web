@@ -85,16 +85,16 @@ cat << 'EOF'
 🚀 QUICK COMMANDS
 ─────────────────────────────────────────────────────────────────────────────
   Initialize database:
-    $ python3 database.py
+    $ python3 tools/database.py
 
   Test subscriptions:
-    $ python3 test_subscriptions.py
+    $ python3 tools/test_subscriptions.py
 
   Test dashboards:
-    $ python3 test_dashboards.py
+    $ python3 tools/test_dashboards.py
 
   Harden security:
-    $ python3 harden_dashboard_security.py
+    $ python3 tools/harden_dashboard_security.py
 
   Access dashboard:
     http://localhost:5500/dashboard-hub.html

@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 # Paths
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 SUBSCRIBERS_DIR = BASE_DIR / "subscribers"
 EMAIL_FILE = SUBSCRIBERS_DIR / "email.json"
 TELEGRAM_FILE = SUBSCRIBERS_DIR / "telegram.json"

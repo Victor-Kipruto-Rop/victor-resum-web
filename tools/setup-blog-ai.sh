@@ -37,7 +37,7 @@ main() {
     print_header "🤖 Blog AI System - Setup & Deployment"
     
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    RESUME_DIR="$(cd "$SCRIPT_DIR" && pwd)"
+    RESUME_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
     BLOG_AI_DIR="$RESUME_DIR/blog-ai"
     VENV_DIR="$RESUME_DIR/venv"
     
@@ -111,7 +111,7 @@ EOF
     # Step 5: Test system
     print_header "Step 5: System Test"
     
-    python3 "$RESUME_DIR/test_system.py"
+    python3 "$RESUME_DIR/tools/test_system.py"
     
     # Step 6: Show next steps
     print_header "🚀 Setup Complete!"

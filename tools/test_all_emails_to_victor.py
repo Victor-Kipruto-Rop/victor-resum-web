@@ -5,7 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Add scripts/python to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'scripts', 'python'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'python'))
 
 from email_templates_modern import TEMPLATES
 from notify_email import send_email_notification

@@ -14,7 +14,7 @@ from typing import Dict, List
 
 # Add paths
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'scripts', 'python'))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'social-automation'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'social-automation'))
 
 def print_header(title: str):
     """Print formatted header"""
@@ -534,8 +534,8 @@ def main():
    cp social-automation/config.json.example .env
 
 3. Run Production Tests:
-   python3 test_social_posting.py    # Post to all platforms
-   python3 test_email_sending.py     # Send test emails
+   python3 tools/test_social_posting.py    # Post to all platforms
+   python3 tools/test_email_sending.py     # Send test emails
    python3 test_email_tracking.py    # Track opens/clicks
 
 4. Monitor Deployments:

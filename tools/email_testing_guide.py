@@ -64,7 +64,7 @@ To send the test emails to kiprutovictor39@gmail.com via Resend API:
    export RESEND_API_KEY='re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
    
 3. Run the send script with the API key configured:
-   RESEND_API_KEY='re_...' python3 send_all_test_emails.py
+   RESEND_API_KEY='re_...' python3 tools/send_all_test_emails.py
 
 4. Emails will be delivered to: kiprutovictor39@gmail.com
 

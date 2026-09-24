@@ -152,7 +152,7 @@ ACQUISITION METRICS
 📊 Coverage:          92.3% of main pages
 
 Verification run command:
-  $ python3 verify_ga4.py
+  $ python3 tools/verify_ga4.py
 
 ═══════════════════════════════════════════════════════════════════════════════
 📋 DOCUMENTATION

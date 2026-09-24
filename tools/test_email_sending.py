@@ -330,7 +330,7 @@ def main():
    python3 -c "import os; print('API Key:', os.getenv('RESEND_API_KEY', 'NOT SET'))"
 
 5. Run production test:
-   python3 test_email_sending.py
+   python3 tools/test_email_sending.py
         """)
     else:
         print_success("Resend API is configured and ready for sending!")

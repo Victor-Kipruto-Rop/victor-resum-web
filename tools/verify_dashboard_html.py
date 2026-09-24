@@ -178,7 +178,7 @@ class HTMLValidator:
         print("-" * 80)
 
 def main():
-    dashboard_path = str(Path(__file__).resolve().parent / 'dashboard')
+    dashboard_path = str(Path(__file__).resolve().parent.parent / 'dashboard')
     
     if not os.path.exists(dashboard_path):
         print(f"❌ Dashboard path not found: {dashboard_path}")

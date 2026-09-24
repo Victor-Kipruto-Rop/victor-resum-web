@@ -96,4 +96,4 @@ if len(sys.argv) > 1:
     except Exception as e:
         print(f"Error: {e}")
 else:
-    print("To exchange code, run: python3 linkedin_auth.py YOUR_AUTH_CODE")
+    print("To exchange code, run: python3 tools/linkedin_auth.py YOUR_AUTH_CODE")

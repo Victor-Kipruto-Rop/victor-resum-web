@@ -11,7 +11,7 @@ import json
 from datetime import datetime
 
 # Add blog-ai to path
-sys.path.insert(0, str(Path(__file__).parent / "blog-ai"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "blog-ai"))
 
 def print_header(text):
     """Print colored header"""
@@ -74,9 +74,9 @@ def test_config():
     """Test configuration files"""
     print_section("Testing Configuration Files")
     
-    config_path = Path(__file__).parent / "blog-ai" / "config.json"
-    prompts_path = Path(__file__).parent / "blog-ai" / "prompts.json"
-    template_path = Path(__file__).parent / "blog-ai" / "template.md"
+    config_path = Path(__file__).resolve().parent.parent / "blog-ai" / "config.json"
+    prompts_path = Path(__file__).resolve().parent.parent / "blog-ai" / "prompts.json"
+    template_path = Path(__file__).resolve().parent.parent / "blog-ai" / "template.md"
     
     try:
         with open(config_path) as f:
@@ -154,8 +154,8 @@ def test_environment():
     """Test environment variables"""
     print_section("Testing Environment Variables")
     
-    env_file = Path(__file__).parent / "blog-ai" / ".env"
-    env_example = Path(__file__).parent / "blog-ai" / ".env.example"
+    env_file = Path(__file__).resolve().parent.parent / "blog-ai" / ".env"
+    env_example = Path(__file__).resolve().parent.parent / "blog-ai" / ".env.example"
     
     if env_file.exists():
         print("✅ .env file exists")
@@ -244,7 +244,7 @@ def demo_file_structure():
     """Show complete file structure"""
     print_section("Complete Blog AI File Structure")
     
-    base_path = Path(__file__).parent
+    base_path = Path(__file__).resolve().parent.parent
     
     print("blog-ai/")
     print("├── generate.py           - AI post generator")
@@ -358,7 +358,7 @@ def main():
     print_header("🤖 Blog AI System - Complete Test & Demonstration")
     
     print(f"📅 Date: {datetime.now().strftime('%B %d, %Y at %H:%M:%S')}")
-    print(f"📍 Location: {Path(__file__).parent}")
+    print(f"📍 Location: {Path(__file__).resolve().parent.parent}")
     
     # Run tests
     tests_passed = 0
