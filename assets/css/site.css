@@ -235,6 +235,7 @@ link[rel="icon"] { border-radius: 50%; }
     justify-content: center;
     position: relative;
     overflow: hidden;
+    padding-top: 112px; /* clear the fixed nav (~81-102px tall) */
   }
   #hero::before, #hero::after {
     content: '';
@@ -291,11 +292,11 @@ link[rel="icon"] { border-radius: 50%; }
     .hero-left { padding: 48px 32px; }
   }
   @media (max-width: 720px) {
-    #hero { min-height: auto; padding-top: 60px; }
+    #hero { min-height: auto; padding-top: 84px; }
     .hero-left { padding: 24px 20px 32px 20px; gap: 14px; }
   }
   @media (max-width: 480px) {
-    #hero { padding-top: 55px; }
+    #hero { padding-top: 84px; }
     .hero-left { padding: 16px 16px 20px 16px; gap: 10px; }
   }
   .hero-eyebrow {
