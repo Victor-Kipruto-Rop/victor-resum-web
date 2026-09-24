@@ -32,20 +32,20 @@ jobs:
       
       - name: Validate blog posts JSON
         run: |
-          python -m json.tool public/blog/posts.json > /dev/null && echo "✓ public/blog/posts.json is valid"
+          python -m json.tool blog/posts.json > /dev/null && echo "✓ blog/posts.json is valid"
       
       - name: Check sitemap freshness
         run: |
-          if [ -f public/sitemap.xml ]; then
+          if [ -f sitemap.xml ]; then
             echo "✓ Sitemap exists"
-            head -5 public/sitemap.xml
+            head -5 sitemap.xml
           fi
       
       - name: Verify RSS feed
         run: |
-          if [ -f public/feed.xml ]; then
+          if [ -f feed.xml ]; then
             echo "✓ RSS feed exists"
-            python -c "import xml.etree.ElementTree as ET; ET.parse('public/feed.xml'); print('✓ RSS validation passed')"
+            python -c "import xml.etree.ElementTree as ET; ET.parse('feed.xml'); print('✓ RSS validation passed')"
           fi
       
       - name: Generate health report

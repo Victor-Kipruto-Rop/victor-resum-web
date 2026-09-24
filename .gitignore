@@ -66,9 +66,14 @@ data/test_emails*.json
 data/test_emails_all/
 data/test_emails_sent/
 
+<<<<<<< HEAD
 # Built by ops/tools/build_site.py for GitHub Pages
 _site/
 
 # Wrangler local state (never commit)
 .wrangler/
 
+=======
+# Built by tools/build_site.py for GitHub Pages
+_site/
+>>>>>>> 3739e5988bd1c0397dffbc05ef8cb6d93fb22a99

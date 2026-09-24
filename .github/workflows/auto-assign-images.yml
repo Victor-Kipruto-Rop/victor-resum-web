@@ -3,7 +3,7 @@ name: 🎨 Auto Image Assignment
 on:
   push:
     paths:
-      - 'public/blog/posts.json'
+      - 'blog/posts.json'
     branches:
       - main
   workflow_dispatch:
@@ -25,21 +25,24 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Initialize Image Library
         run: |
-          python ops/scripts/python/image_library_manager.py
+          cd scripts/python
+          python image_library_manager.py
         continue-on-error: true
       
       - name: Test Image Selection
         run: |
-          python ops/scripts/python/image_selector.py
+          cd scripts/python
+          python image_selector.py
         continue-on-error: true
       
       - name: Run Auto Image Assigner
         run: |
-          python ops/scripts/python/auto_image_assigner.py
+          cd scripts/python
+          python auto_image_assigner.py
         continue-on-error: true
       
       - name: Generate Social Metadata
@@ -49,9 +52,7 @@ jobs:
           from pathlib import Path
           
           try:
-              import sys
-          sys.path.insert(0, 'ops/scripts/python')
-          from auto_image_assigner import AutoImageAssigner
+              from scripts.python.auto_image_assigner import AutoImageAssigner
               assigner = AutoImageAssigner()
               posts = assigner.load_posts()
               social_metadata = assigner.generate_social_metadata(posts)
@@ -67,7 +68,7 @@ jobs:
           import json
           from pathlib import Path
           
-          posts_file = Path('public/blog/posts.json')
+          posts_file = Path('blog/posts.json')
           with open(posts_file) as f:
               posts = json.load(f)
           
@@ -90,8 +91,8 @@ jobs:
           git config user.name 'GitHub Actions'
           git config user.email 'actions@github.com'
           
-          git add public/blog/posts.json
-          git add public/assets/auto/
+          git add blog/posts.json
+          git add assets/auto/
           
           if git diff --cached --quiet; then
               echo "No changes to commit"
@@ -129,7 +130,7 @@ jobs:
           import xml.etree.ElementTree as ET
           
           # Load posts
-          posts_file = Path('public/blog/posts.json')
+          posts_file = Path('blog/posts.json')
           with open(posts_file) as f:
               posts = json.load(f)
           
@@ -153,11 +154,9 @@ jobs:
           python -c "
           import json
           from pathlib import Path
-          import sys
-          sys.path.insert(0, 'ops/scripts/python')
           from config import Config
           
-          posts_file = Path('public/blog/posts.json')
+          posts_file = Path('blog/posts.json')
           with open(posts_file) as f:
               posts = json.load(f)
           

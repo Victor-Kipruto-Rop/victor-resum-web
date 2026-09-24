@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://www.w3schools.com/xml/simple.xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Technical Blog - Victor Kipruto Rop</title>
+    <link>https://www.victorkipruto.com/blog</link>
+    <atom:link href="https://www.victorkipruto.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Data engineering, FinTech infrastructure, and streaming systems insights</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Sep 2026 09:00:00 GMT</lastBuildDate>
+    <ttl>1440</ttl>
+
+    <image>
+      <url>https://www.victorkipruto.com/og-image.png</url>
+      <title>Victor Kipruto Rop - Technical Blog</title>
+      <link>https://www.victorkipruto.com/blog</link>
+    </image>
+
+    <managingEditor>kiprutovictor39@gmail.com (Victor Kipruto Rop)</managingEditor>
+    <webMaster>kiprutovictor39@gmail.com (Victor Kipruto Rop)</webMaster>
+
+    <category>Data Engineering</category>
+    <category>FinTech</category>
+    <category>Streaming Systems</category>
+
+    <item>
+      <title>The Real Cost of a Slow Batch Load: What Cutting 4 Minutes to 45 Seconds Actually Taught Me</title>
+      <link>https://www.victorkipruto.com/blog#blog-6</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-6</guid>
+      <pubDate>Sun, 06 Sep 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Performance</category>
+      <description>2026's data engineering conversation has shifted from \"can it scale\" to \"what does it cost to run.\" Here's the exact tuning work that took one ingestion pipeline from a 4-minute load to 45 seconds.</description>
+    </item>
+    <item>
+      <title>Why I'm Not Rushing to Put PesaGuard on Iceberg (Yet)</title>
+      <link>https://www.victorkipruto.com/blog#blog-5</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-5</guid>
+      <pubDate>Thu, 03 Sep 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Data Architecture</category>
+      <description>Iceberg Summit 2026 declared the adoption question settled. For a solo builder running one pilot customer on Postgres, the actual question is different: settled for who, and at what scale?</description>
+    </item>
+    <item>
+      <title>Why I'm Building PesaGuard on Event-Driven Architecture, Not Batch</title>
+      <link>https://www.victorkipruto.com/blog#blog-1</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-1</guid>
+      <pubDate>Sun, 26 Jul 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Streaming</category>
+      <description>Batch processing is no longer the center of gravity in 2026 data systems. Here is why Daraja and M-Pesa fraud detection requires instant stream ingestion over overnight batch jobs.</description>
+    </item>
+    <item>
+      <title>What 'Platform Engineering' Means for a Solo Data Engineer</title>
+      <link>https://www.victorkipruto.com/blog#blog-2</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-2</guid>
+      <pubDate>Mon, 20 Jul 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Platform Engineering</category>
+      <description>The 2026 shift is moving away from tool-hoarding toward internal data platforms. How I apply modular platform thinking across CampusHub, MyChama, and PesaGuard.</description>
+    </item>
+    <item>
+      <title>Governance-as-Code for M-Pesa Data Pipelines</title>
+      <link>https://www.victorkipruto.com/blog#blog-3</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-3</guid>
+      <pubDate>Wed, 15 Jul 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>Governance</category>
+      <description>Automation-first compliance: enforcing automated audit trails, line-level data lineage, and Kenyan Data Protection Act requirements directly inside Git CI/CD.</description>
+    </item>
+    <item>
+      <title>AI Copilots Didn't Replace My Pipeline Work: They Changed What 'Junior' Means</title>
+      <link>https://www.victorkipruto.com/blog#blog-4</link>
+      <guid isPermaLink="true">https://www.victorkipruto.com/blog#blog-4</guid>
+      <pubDate>Wed, 08 Jul 2026 09:00:00 GMT</pubDate>
+      <author>Victor Kipruto Rop</author>
+      <category>AI Workflows</category>
+      <description>AI tools draft SQL, write boilerplate connectors, and debug errors automatically. Where engineer judgment matters most in an AI-assisted world.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,38 @@
+[
+  {
+    "timestamp": "2026-06-06T14:23:43.703942",
+    "stage": "Subscriber Manager",
+    "status": "success",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-06-06T14:23:43.726395",
+    "stage": "Segmentation Engine",
+    "status": "success",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-06-06T14:23:43.769088",
+    "stage": "Event Detection",
+    "status": "success",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-06-06T14:23:43.771444",
+    "stage": "Deduplication",
+    "status": "success",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-06-06T14:23:44.483598",
+    "stage": "Telegram Notifications",
+    "status": "success",
+    "details": ""
+  },
+  {
+    "timestamp": "2026-06-06T14:23:44.487213",
+    "stage": "Email Notifications",
+    "status": "success",
+    "details": ""
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-06-06T14:23:43.697889",
+  "total_subscribers": 1,
+  "by_type": {
+    "email": 1,
+    "telegram": 0
+  },
+  "by_status": {
+    "active": 1
+  },
+  "by_engagement": {
+    "active": 1
+  },
+  "last_updated": "2026-06-09T03:29:04.998004",
+  "stats": {
+    "email_subscriptions": 2,
+    "last_updated": "2026-06-09T03:29:04.997994",
+    "notifications_sent": 10,
+    "last_notification": "2026-06-09T03:29:04.997953"
+  }
+}

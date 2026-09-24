@@ -1,0 +1,22 @@
+{
+  "name": "Victor Kipruto Rop",
+  "short_name": "Victor Kipruto",
+  "description": "Data Engineer and Data Science Student building scalable data pipelines, real-time systems, and FinTech infrastructure.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0e14",
+  "theme_color": "#c8401a",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

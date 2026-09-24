@@ -3,8 +3,8 @@ name: Notify Subscribers - Blog Updates
 on:
   push:
     paths:
-      - 'public/blog/posts.json'
-      - 'public/posts/**'
+      - 'blog/posts.json'
+      - 'blog/posts/**'
     branches:
       - main
   workflow_dispatch:
@@ -38,7 +38,8 @@ jobs:
       - name: Detect blog events
         id: detect
         run: |
-          python ops/scripts/python/event_detection.py
+          cd scripts/python
+          python event_detection.py
           
           # Count events for output
           if [ -f "../../notifications/events.json" ]; then
@@ -53,7 +54,7 @@ jobs:
         if: steps.detect.outputs.events-count > 0
         with:
           name: blog-events
-          path: ops/notifications/events.json
+          path: notifications/events.json
   
   segment-subscribers:
     runs-on: ubuntu-latest
@@ -72,15 +73,16 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Run subscriber segmentation
         run: |
-          python ops/scripts/python/subscriber_segmentation.py
+          cd scripts/python
+          python subscriber_segmentation.py
       
       - name: Verify segments
         run: |
-          if [ -f "ops/subscribers/segments.json" ]; then
+          if [ -f "subscribers/segments.json" ]; then
             echo "✓ Subscriber segments created"
           fi
   
@@ -101,7 +103,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Download events
         uses: actions/download-artifact@v4
@@ -114,12 +116,10 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
         continue-on-error: true
         run: |
-          cd ops/scripts/python
+          cd scripts/python
           python -c "
           import os
           import json
-          import sys
-          sys.path.insert(0, 'ops/scripts/python')
           from telegram_notifier import TelegramNotifier
           
           notifier = TelegramNotifier()
@@ -136,10 +136,10 @@ jobs:
       - name: Log notification status
         run: |
           echo "✓ Notifications processed"
-          if [ -f "ops/notifications/telegram-log.json" ]; then
+          if [ -f "notifications/telegram-log.json" ]; then
             echo "✓ Telegram log created"
           fi
-          if [ -f "ops/notifications/email-log.json" ]; then
+          if [ -f "notifications/email-log.json" ]; then
             echo "✓ Email log created"
           fi
   
@@ -156,22 +156,22 @@ jobs:
           echo "📊 Notification Delivery Report"
           echo "================================"
           
-          if [ -f "ops/notifications/telegram-log.json" ]; then
+          if [ -f "notifications/telegram-log.json" ]; then
             echo "📱 Telegram Log:"
-            cat ops/notifications/telegram-log.json | head -20
+            cat notifications/telegram-log.json | head -20
           fi
           
-          if [ -f "ops/notifications/email-log.json" ]; then
+          if [ -f "notifications/email-log.json" ]; then
             echo ""
             echo "📧 Email Log:"
-            cat ops/notifications/email-log.json | head -20
+            cat notifications/email-log.json | head -20
           fi
       
       - name: Upload logs
         uses: actions/upload-artifact@v4
         with:
           name: notification-logs
-          path: ops/notifications/
+          path: notifications/
           retention-days: 30
   
   create-summary:
@@ -203,7 +203,7 @@ jobs:
           
           ## Delivery Verification
           - Status: ${{ needs.verify-delivery.result }}
-          - Logs location: ops/notifications/
+          - Logs location: notifications/
           
           ## Next Steps
           1. Check notification logs for delivery status

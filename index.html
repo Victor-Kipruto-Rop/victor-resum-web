@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" data-blog-post="portfolio-home">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Victor Kipruto Rop | Data Engineer | Data Science Student</title>
+<meta name="description" content="Data Engineer and Data Science Student building scalable data pipelines, real-time streaming systems, and FinTech infrastructure with Python and cloud tools."/>
+<meta name="keywords" content="Victor Kipruto Rop, Data Engineer, Data Science Student, FinTech infrastructure, Python, SQL, data pipelines, real-time streaming, analytics, cloud data engineering"/>
+<meta name="author" content="Victor Kipruto Rop"/>
+<link rel="canonical" href="https://www.victorkipruto.com/"/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.victorkipruto.com/"/>
+<meta property="og:title" content="Victor Kipruto Rop | Data Engineer | Data Science Student"/>
+<meta property="og:description" content="Data Engineer and Data Science Student building scalable data pipelines, real-time streaming systems, and FinTech infrastructure with Python and cloud tools."/>
+<meta property="og:site_name" content="Victor Kipruto Rop"/>
+<meta property="og:image" content="https://www.victorkipruto.com/og-image.png"/>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Victor Kipruto Rop | Data Engineer | Data Science Student"/>
+<meta name="twitter:description" content="Data Engineer and Data Science Student building scalable data pipelines, real-time streaming systems, and FinTech infrastructure with Python and cloud tools."/>
+<meta name="twitter:image" content="https://www.victorkipruto.com/og-image.png"/>
+
+<!-- RSS Discovery Link -->
+<link rel="alternate" type="application/rss+xml" title="Victor Kipruto's Blog" href="https://www.victorkipruto.com/rss.xml">
+
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#ff4b2b"/>
+<link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
+<link rel="stylesheet" href="/assets/css/site.css?v=a0ebda58"/>
+<style>
+  /* Page-specific overrides for index.html only (the shared assets/css/site.css
+     covers everything common to index/projects/contact) */
+  #hero > *:not(.hero-illustration) { position: relative; z-index: 1; }
+  .hero-cta { justify-content: center; }
+
+/* ── Impact / By the Numbers ── */
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 48px;
+  }
+  @media (max-width: 900px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .impact-grid { grid-template-columns: 1fr; margin-top: 32px; } }
+  .impact-card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 26px 24px; text-align: left;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .impact-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(10,14,20,0.08); }
+  body.dark-mode .impact-card:hover { box-shadow: 0 0 0 1px var(--accent), 0 20px 40px rgba(255,75,43,0.15); }
+  .impact-value {
+    font-family: 'Fira Code', monospace; font-size: 2.1rem; font-weight: 700;
+    color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1;
+    margin-bottom: 12px;
+  }
+  body.dark-mode .impact-value { text-shadow: 0 0 22px color-mix(in srgb, var(--accent) 45%, transparent); }
+  .impact-unit { font-size: 1.1rem; color: var(--muted); font-weight: 500; }
+  .impact-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Victor Kipruto Rop",
+  "url": "https://www.victorkipruto.com/",
+  "jobTitle": "Data Engineer",
+  "description": "Data Engineer and Data Science Student building scalable data pipelines, real-time systems, analytics, and FinTech infrastructure.",
+  "sameAs": [
+    "https://github.com/Victor-Kipruto-Rop",
+    "https://www.linkedin.com/in/victor-kipruto-rop/"
+  ],
+  "knowsAbout": [
+    "Python",
+    "SQL",
+    "Data Pipelines",
+    "Real-time Streaming",
+    "Analytics",
+    "Cloud Data Engineering",
+    "FinTech Infrastructure"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Nairobi",
+    "addressCountry": "Kenya"
+  }
+}
+</script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3BGPZ2LCR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D3BGPZ2LCR');
+</script>
+
+
+</head>
+<body>
+<div id="scrollProgress"></div>
+
+<div id="preloader">
+  <div class="loader-text"><span>Victor Kipruto Rop</span></div>
+</div>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a class="nav-logo" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener">
+    <img src="/assets/1-96.jpeg" width="48" height="48" decoding="async" alt="Victor Kipruto Rop" style="height: 48px; width: 48px; border-radius: 50%; object-fit: cover; display: block;"/>
+    <span class="nav-username">@Victor-Kipruto-Rop</span>
+  </a>
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger-icon">☰</span>
+      <span class="hamburger-close">✕</span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="/projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="/blog">Blog</a>
+      <a href="/github-activity">Activity</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="hero-illustration" viewBox="0 0 720 600" fill="none" aria-hidden="true" focusable="false">
+    <path d="M40 520 C 180 520, 200 380, 320 360 S 480 260, 560 200 S 620 90, 690 60" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.7"/>
+    <path d="M40 560 C 190 560, 230 440, 340 420 S 500 320, 580 260 S 630 140, 690 110" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-opacity="0.35"/>
+    <circle cx="40" cy="520" r="6" fill="currentColor" fill-opacity="0.8"/>
+    <circle cx="320" cy="360" r="8" fill="currentColor" fill-opacity="0.6"/>
+    <circle cx="560" cy="200" r="7" fill="currentColor" fill-opacity="0.7"/>
+    <circle cx="690" cy="60" r="9" fill="currentColor" fill-opacity="0.9"/>
+    <rect x="300" y="342" width="16" height="16" rx="3" transform="rotate(20 308 350)" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5"/>
+    <rect x="540" y="182" width="14" height="14" rx="3" transform="rotate(-15 547 189)" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.5"/>
+    <g stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25">
+      <line x1="0" y1="80" x2="720" y2="80"/>
+      <line x1="0" y1="200" x2="720" y2="200"/>
+      <line x1="0" y1="320" x2="720" y2="320"/>
+      <line x1="0" y1="440" x2="720" y2="440"/>
+      <line x1="120" y1="0" x2="120" y2="600"/>
+      <line x1="360" y1="0" x2="360" y2="600"/>
+      <line x1="600" y1="0" x2="600" y2="600"/>
+    </g>
+  </svg>
+  <div class="hero-left">
+    <p class="hero-eyebrow">// AVAILABLE FOR INTERNSHIPS · 2026</p>
+    <h1 class="hero-name" id="hero-name">Victor Kipruto Rop</h1>
+    <p class="hero-title">Data Engineer · Pipeline Architect · Data Architect</p>
+    <p class="hero-desc">
+      Building production-grade data systems that scale. From Kafka streams to Airflow orchestration. Experienced in designing reliable ETL, low-latency streaming, and warehouse modelling. Based in Nairobi, Kenya.
+    </p>
+    <div class="hero-cta">
+      <a class="btn-primary magnetic" href="/projects">View Projects</a>
+      <a class="btn-ghost magnetic" href="/contact">Hire Me</a>
+      <a class="btn-ghost magnetic" href="https://calendly.com/kiprutovictor39" target="_blank" rel="noopener" aria-label="Schedule a call">Schedule Call</a>
+      <a class="btn-ghost magnetic" href="#" onclick="openCvModal(); return false;" aria-label="View or Download Victor's Resume CV">View/Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar" aria-label="Quick facts">
+  <div class="stat-item reveal">
+    <span class="stat-value">4+</span>
+    <span class="stat-label">Production Projects</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay: 0.1s">
+    <span class="stat-value">20+</span>
+    <span class="stat-label">Technical Skills</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay: 0.2s">
+    <span class="stat-value">3</span>
+    <span class="stat-label">Certifications</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay: 0.3s">
+    <span class="stat-value">2028</span>
+    <span class="stat-label">Expected Graduation</span>
+  </div>
+</div>
+
+
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">// 02</p>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-layout">
+    <div class="about-photo-frame">
+      <picture>
+        <source srcset="/assets/myprofile.webp" type="image/webp" />
+        <img class="about-photo" src="/assets/myprofile.jpeg" alt="Victor Kipruto Rop" loading="lazy" />
+      </picture>
+      <span class="about-role-chip"><span class="chip-dot" aria-hidden="true"></span>Data Engineer in training</span>
+    </div>
+    <div class="about-text">
+      <p class="about-lead">
+        I'm a BSc Data Science student at The Cooperative University of Kenya, building a career at the intersection of scalable systems and trustworthy data.
+      </p>
+      <p class="about-body">
+        My work is driven by a belief that clean, well-engineered data infrastructure is what separates organisations that can act on their data from those that only think they can.
+      </p>
+      <p class="about-body">
+        Most of that work has centered on Kenya's mobile money rails specifically: M-Pesa transaction pipelines, Safaricom's Daraja API, and the reconciliation problems that come with a payment network processing at national scale. It's a narrow, underserved niche globally, and one where the infrastructure challenges are genuinely different from a typical Stripe or PayPal integration.
+      </p>
+      <div class="about-facts">
+        <div class="about-fact">
+          <span class="fact-label">University</span>
+          <span class="fact-value">The Cooperative University of Kenya</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Degree</span>
+          <span class="fact-value">BSc Data Science · Expected August 2028</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Location</span>
+          <span class="fact-value">Nairobi, Kenya</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">Status</span>
+          <span class="fact-value">Open to Data Engineering internships</span>
+        </div>
+        <div class="about-fact">
+          <span class="fact-label">GitHub</span>
+          <span class="fact-value">github.com/Victor-Kipruto-Rop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">// 03</p>
+  <h2 class="section-title">Learning & Project Experience</h2>
+  <div class="experience-timeline">
+    <div class="experience-item reveal">
+      <div class="experience-node experience-node-current"></div>
+      <div class="experience-card">
+        <div class="experience-header">
+          <div>
+            <h3 class="experience-title">Data Engineering Intern</h3>
+            <p class="experience-company">Openfloat Limited · Industrial Attachment</p>
+          </div>
+          <span class="experience-date">Jun 2026 – Present</span>
+        </div>
+        <p class="experience-desc">Building and maintaining data pipelines that handle transaction and streaming data, as part of my industrial attachment.</p>
+        <div class="experience-skills">
+          <span class="skill-tag">Data Pipelines</span>
+          <span class="skill-tag">Streaming Data</span>
+          <span class="skill-tag">Transaction Data</span>
+        </div>
+      </div>
+    </div>
+    <div class="experience-item reveal" style="transition-delay:0.1s">
+      <div class="experience-node experience-node-current"></div>
+      <div class="experience-card">
+        <div class="experience-header">
+          <div>
+            <h3 class="experience-title">PesaGuard: FinTech Reconciliation Platform</h3>
+            <p class="experience-company">Independent Product · Live Pilot</p>
+          </div>
+          <span class="experience-date">2026 – Ongoing</span>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">What I built</p>
+          <p class="experience-subsection-text">A real-time M-Pesa reconciliation and anomaly-detection platform: a Flask backend that ingests Safaricom Daraja webhook events, an idempotency-guarded reconciliation engine, a PostgreSQL data layer, and a Next.js 14 admin dashboard for monitoring transactions, match rates, and open anomalies.</p>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">What problem I solved</p>
+          <p class="experience-subsection-text">Kenyan SACCOs, e-commerce operators, and small fintechs had no reliable way to reconcile M-Pesa payments against their own ledgers. It was typically a manual, end-of-day spreadsheet exercise. Worse, Safaricom retries webhook deliveries, so duplicate transactions were a certainty, not an edge case, with nothing in place to catch them.</p>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">Technologies</p>
+          <div class="experience-skills">
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Daraja API</span>
+          </div>
+        </div>
+        <div class="experience-subsection">
+          <p class="experience-subsection-label">Impact</p>
+          <p class="experience-subsection-text">Live in production with one pilot customer processing real M-Pesa transactions. Shipped webhook idempotency, the highest-priority risk in the system, verified end-to-end across the reconciliation engine, so a retried or duplicate webhook can never be double-counted. Also produced a target-state architecture spec scoping the platform to 100M transactions/day.</p>
+        </div>
+      </div>
+    </div>
+    <div class="experience-item reveal" style="transition-delay:0.2s">
+      <div class="experience-node"></div>
+      <div class="experience-card">
+        <div class="experience-header">
+          <div>
+            <h3 class="experience-title">BSc Data Science Student</h3>
+            <p class="experience-company">The Cooperative University of Kenya</p>
+          </div>
+          <span class="experience-date">Expected Aug 2028</span>
+        </div>
+        <p class="experience-desc">Over the past year, I've specialized in data engineering and have built production-grade data systems through hands-on projects. Designed and implemented scalable ETL pipelines, real-time stream processing with Kafka, and warehouse infrastructure. These projects have equipped me with deep technical skills in Python, SQL, Airflow orchestration, and cloud architecture.</p>
+        <div class="experience-skills">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Apache Airflow</span>
+          <span class="skill-tag">Kafka</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">ETL/ELT</span>
+        </div>
+      </div>
+    </div>
+    <div class="experience-item reveal" style="transition-delay:0.3s">
+      <div class="experience-node"></div>
+      <div class="experience-card">
+        <div class="experience-header">
+          <div>
+            <h3 class="experience-title">Hands-On Project Development</h3>
+            <p class="experience-company">Building Real-World Data Infrastructure</p>
+          </div>
+          <span class="experience-date">Last 12 Months</span>
+        </div>
+        <p class="experience-desc">Completed 4+ major projects involving data pipeline design, cloud ETL systems, real-time transaction streaming, and warehouse optimization. Each project has significantly strengthened my understanding of production systems, best practices, and scalable architecture. I'm committed to continuous learning, eager to gain from experienced professionals, and passionate about building reliable data systems that drive organizational value.</p>
+        <div class="experience-skills">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Cloud Architecture</span>
+          <span class="skill-tag">System Design</span>
+          <span class="skill-tag">CI/CD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// 04</p>
+  <h2 class="section-title">Technical Skills</h2>
+  <p class="skills-hint"><i class="fas fa-hand-pointer"></i> Tap any skill for why I use it, where I've used it, and the project behind it</p>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-diagram-project"></i></div>
+        <h3 class="skill-category-title">Orchestration & Pipelines</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('dbt')">dbt</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-bolt"></i></div>
+        <h3 class="skill-category-title">Streaming & Real-Time</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('PyFlink')">PyFlink</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-database"></i></div>
+        <h3 class="skill-category-title">Data Modeling & Warehousing</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Star Schema')">Star Schema</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Dimensional Modelling')">Dimensional Modelling</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('OLAP Queries')">OLAP Queries</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Data Warehousing')">Data Warehousing</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('SCD Type 2')">SCD Type 2</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-shield-halved"></i></div>
+        <h3 class="skill-category-title">Data Quality & Reliability</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Deduplication')">Deduplication</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Validation Rule Engines')">Validation Rule Engines</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Anomaly Detection')">Anomaly Detection</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-code"></i></div>
+        <h3 class="skill-category-title">Languages & Databases</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Python')">Python</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('SQL')">SQL</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('PostgreSQL')">PostgreSQL</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('MySQL')">MySQL</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Shell / Bash')">Shell / Bash</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-gears"></i></div>
+        <h3 class="skill-category-title">DevOps & Testing</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Docker')">Docker</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Docker Compose')">Docker Compose</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-cloud"></i></div>
+        <h3 class="skill-category-title">Cloud & Infrastructure</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Terraform')">Terraform</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Kubernetes')">Kubernetes</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('AWS (S3, EC2)')">AWS (S3, EC2)</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-layer-group"></i></div>
+        <h3 class="skill-category-title">Data Processing Libraries</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Pandas')">Pandas</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('NumPy')">NumPy</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('SQLAlchemy')">SQLAlchemy</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-chart-line"></i></div>
+        <h3 class="skill-category-title">Visualisation & Analysis</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Grafana')">Grafana</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Plotly')">Plotly</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Jupyter Notebooks')">Jupyter Notebooks</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">// 05</p>
+  <h2 class="section-title">Professional Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-seal">IBM</div>
+      <p class="cert-issuer">IBM / Cognitive Class</p>
+      <h3 class="cert-title">Big Data Foundations</h3>
+      <p class="cert-desc">Comprehensive training in big data concepts, Hadoop ecosystem, and distributed computing fundamentals.</p>
+      <div class="cert-skills">
+        <span class="skill-tag">Big Data</span>
+        <span class="skill-tag">Hadoop</span>
+        <span class="skill-tag">IBM Cloud</span>
+      </div>
+      <div class="cert-footer">
+        <span class="cert-year">2026</span>
+        <button onclick="openCertModal('assets/certifications/IBM_BD0101EN_Certificate_Cognitive_Class.pdf')" class="cert-view-btn">View Certificate <i class="fas fa-arrow-up-right-from-square"></i></button>
+      </div>
+    </div>
+    <div class="cert-card reveal" style="transition-delay:0.1s">
+      <div class="cert-seal">IBM</div>
+      <p class="cert-issuer">IBM</p>
+      <h3 class="cert-title">Enterprise Design Thinking</h3>
+      <p class="cert-desc">Mastered user-centered design principles and collaboration techniques for solving complex business problems.</p>
+      <div class="cert-skills">
+        <span class="skill-tag">Design Thinking</span>
+        <span class="skill-tag">User Experience</span>
+        <span class="skill-tag">Problem Solving</span>
+      </div>
+      <div class="cert-footer">
+        <span class="cert-year">2026</span>
+        <button onclick="openCertModal('assets/certifications/IBM_Design_Thinking.pdf')" class="cert-view-btn">View Certificate <i class="fas fa-arrow-up-right-from-square"></i></button>
+      </div>
+    </div>
+    <div class="cert-card reveal" style="transition-delay:0.2s">
+      <div class="cert-seal">VC</div>
+      <p class="cert-issuer">Verified Credential</p>
+      <h3 class="cert-title">Professional Development</h3>
+      <p class="cert-desc">Continued learning and specialization in scalable data systems and engineering best practices.</p>
+      <div class="cert-skills">
+        <span class="skill-tag">Data Engineering</span>
+        <span class="skill-tag">Systems Architecture</span>
+      </div>
+      <div class="cert-footer">
+        <span class="cert-year">2026</span>
+        <button onclick="openCertModal('assets/certifications/Professional_Development.pdf')" class="cert-view-btn">View Certificate <i class="fas fa-arrow-up-right-from-square"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BY THE NUMBERS -->
+<section id="impact" aria-label="Impact by the numbers">
+  <p class="section-label">// 06</p>
+  <h2 class="section-title">Impact, By the Numbers</h2>
+  <p class="section-subtitle">What the work has actually produced, not just what it uses.</p>
+  <div class="impact-grid">
+    <div class="impact-card reveal">
+      <div class="impact-value">70,000<span class="impact-unit">/sec</span></div>
+      <div class="impact-label">Peak ingestion throughput on the Cloud ETL Ingestion Pipeline</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.06s">
+      <div class="impact-value">38<span class="impact-unit">/38</span></div>
+      <div class="impact-label">Tests passing, gating every deploy to the Kenyan Market ETL Pipeline</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.12s">
+      <div class="impact-value">100M<span class="impact-unit">/day</span></div>
+      <div class="impact-label">Transaction scale scoped in PesaGuard's target-state architecture spec</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.18s">
+      <div class="impact-value">Zero</div>
+      <div class="impact-label">Duplicate transactions from Daraja webhook retries, by design</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.24s">
+      <div class="impact-value">4min &rarr; 45s</div>
+      <div class="impact-label">Full batch load time cut via connection pooling and batch tuning</div>
+    </div>
+    <div class="impact-card reveal" style="transition-delay:0.3s">
+      <div class="impact-value">4+</div>
+      <div class="impact-label">Production data systems shipped, from streaming to reconciliation</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <p class="footer-logo">Victor Kipruto Rop</p>
+      <p class="footer-tagline">Data engineer building real-time reconciliation and streaming infrastructure for East African FinTech.</p>
+      <div class="footer-status"><span class="dot"></span>Open to internships &amp; collaboration</div>
+    </div>
+    <div class="footer-col">
+      <p class="footer-links-label">Explore</p>
+      <nav class="footer-links" aria-label="Footer explore links">
+        <a href="#about">About</a>
+        <a href="/projects">Projects</a>
+        <a href="/how-i-work">How I Work</a>
+        <a href="/blog">Technical Blog</a>
+      </nav>
+    </div>
+    <div class="footer-col">
+      <p class="footer-links-label">Resources</p>
+      <nav class="footer-links" aria-label="Footer resource links">
+        <a href="/github-activity">GitHub Activity</a>
+        <a href="/top-repositories">Top Repositories</a>
+        <a href="#skills">Technical Skills</a>
+        <a href="/contact">Get in Touch</a>
+      </nav>
+    </div>
+    <div class="footer-col">
+      <p class="footer-links-label">Connect</p>
+      <div class="footer-social">
+        <a class="footer-social-icon" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg>
+        </a>
+        <a class="footer-social-icon" href="https://www.linkedin.com/in/victor-kipruto-rop" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg>
+        </a>
+        <a class="footer-social-icon" href="mailto:kiprutovictor39@gmail.com" aria-label="Email" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M125.4 128C91.5 128 64 155.5 64 189.4C64 190.3 64 191.1 64.1 192L64 192L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 192L575.9 192C575.9 191.1 576 190.3 576 189.4C576 155.5 548.5 128 514.6 128L125.4 128zM528 256.3L528 448C528 456.8 520.8 464 512 464L128 464C119.2 464 112 456.8 112 448L112 256.3L266.8 373.7C298.2 397.6 341.7 397.6 373.2 373.7L528 256.3zM112 189.4C112 182 118 176 125.4 176L514.6 176C522 176 528 182 528 189.4C528 193.6 526 197.6 522.7 200.1L344.2 335.5C329.9 346.3 310.1 346.3 295.8 335.5L117.3 200.1C114 197.6 112 193.6 112 189.4z"/></svg>
+        </a>
+        <a class="footer-social-icon" href="tel:+254723484552" aria-label="Phone" title="Call">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;display:block" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.21z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Victor Kipruto Rop. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- CV Action Modal Component -->
+<div class="cv-modal-overlay" id="cvModalOverlay" role="dialog" aria-labelledby="cvModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="cv-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:400px;width:90%;padding:32px;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);text-align:center;">
+    <h2 id="cvModalTitle" style="font-size:20px;font-weight:700;margin-bottom:24px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);">Choose CV Action</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="/assets/Victor_Kipruto_Resume.pdf" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none;display:block;width:100%;">View Resume</a>
+      <button onclick="downloadCv()" class="btn-outline" style="width:100%;padding:14px;cursor:pointer;border-radius:8px;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">Download Resume</button>
+      <button onclick="closeCvModal()" class="btn-ghost" style="width:100%;margin-top:8px;">Close</button>
+    </div>
+    <div id="cvSuccessMsg" style="display:none; margin-top:20px; padding:12px; border-radius:8px; background:#4ade80; color:white; font-size:13px; font-weight:600;">✅ Resume download started!</div>
+  </div>
+</div>
+
+<!-- Certificate Viewer Modal -->
+<div class="cert-modal-overlay" id="certModalOverlay" role="dialog" aria-labelledby="certModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);z-index:10000;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="cert-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-width:900px;width:90%;height:90vh;display:flex;flex-direction:column;position:relative;border:1px solid var(--rule);">
+    <div style="padding:16px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="certModalTitle" style="font-size:18px;font-weight:700;margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);">Certificate Viewer</h2>
+      <button onclick="closeCertModal()" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;">✕</button>
+    </div>
+    <iframe id="certModalIframe" style="width:100%;height:100%;border:none;flex:1;"></iframe>
+    <div style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;">
+        <p style="font-size:12px; color:var(--muted); font-family:'Fira Code',monospace;">Note: Certificates are for viewing only.</p>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="/assets/js/vendor/formspree-ajax-1.1.5.js" defer></script>
+
+<!-- Project Modal Component -->
+<div class="project-modal-overlay" id="projectModalOverlay" role="dialog" aria-labelledby="projectModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="project-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:800px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
+    <div class="project-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:10;">
+      <h2 id="projectModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);">Project Details</h2>
+      <button class="project-modal-close" id="projectModalClose" aria-label="Close project modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="project-modal-content" style="padding:32px;">
+      <img id="projectModalImage" class="project-modal-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="Project Preview" loading="lazy">
+      <div class="project-modal-meta">
+        <span id="projectModalTime"></span>
+        <span id="projectModalCategory"></span>
+      </div>
+      <div id="projectModalDescription" style="font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:24px;"></div>
+      
+      <div class="project-modal-section-title">Tools & Technologies</div>
+      <div id="projectModalStack" class="project-stack" style="margin-bottom:24px;"></div>
+      
+      <div id="projectModalCaseStudySection"></div>
+
+      <div id="projectModalFeaturesSection">
+        <div class="project-modal-section-title">Key Features & Achievements</div>
+        <ul id="projectModalFeatures" class="project-modal-list" style="font-size:15px;line-height:1.7;color:var(--muted);"></ul>
+      </div>
+    </div>
+    <div class="project-modal-footer" style="padding:24px;border-top:1px solid var(--rule);display:flex;gap:12px;justify-content:flex-end;background:rgba(0,0,0,0.02);position:sticky;bottom:0;z-index:10;">
+      <a id="projectModalGithub" href="#" target="_blank" rel="noopener" class="btn-sm btn-primary-sm" style="text-decoration:none;">GitHub Repository</a>
+      <button onclick="closeProjectModal()" class="btn-sm btn-outline" style="cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Skill Modal Component -->
+<div class="skill-modal-overlay" id="skillModalOverlay" role="dialog" aria-labelledby="skillModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="skill-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:500px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;border:1px solid var(--rule);">
+    <div class="skill-modal-header" style="padding:24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="skillModalTitle" style="font-size:20px;font-weight:700;margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:var(--accent);">Skill Details</h2>
+      <button class="skill-modal-close" id="skillModalClose" aria-label="Close skill modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="skill-modal-content" style="padding:24px;">
+      <div id="skillModalBody" style="font-size:15px;line-height:1.7;color:var(--muted);font-family:'Fira Code',monospace;">
+        <!-- Content will be injected by JavaScript -->
+      </div>
+    </div>
+    <div class="skill-modal-footer" style="padding:16px 24px;border-top:1px solid var(--rule);text-align:right;background:rgba(0,0,0,0.02);">
+      <button onclick="closeSkillModal()" class="btn-sm btn-outline" style="cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Subscription Modal Component -->
+<div class="subscription-modal-overlay" id="subscriptionModalOverlay" role="dialog" aria-labelledby="subscriptionModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
+  <div class="subscription-modal" style="background:var(--card);color:var(--ink);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:600px;width:90%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease;position:relative;">
+    <div class="subscription-modal-header" style="padding:32px 24px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+      <h2 id="subscriptionModalTitle" style="font-size:24px;font-weight:700;margin:0;font-family:'Playfair Display',serif;">Subscribe for Updates</h2>
+      <button class="subscription-modal-close" id="subscriptionModalClose" aria-label="Close subscription modal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);padding:4px;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div class="subscription-modal-content" style="padding:32px 24px;">
+      <div class="subscription-option-tabs" style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
+        <button class="subscription-tab active" data-tab="feed" aria-label="Feed subscription options" style="flex:1;min-width:140px;padding:12px 16px;background:var(--card);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+          <i class="fas fa-rss"></i> <span>Feed</span>
+        </button>
+        <button class="subscription-tab" data-tab="email" aria-label="Email subscription" style="flex:1;min-width:140px;padding:12px 16px;background:var(--card);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+          <i class="fas fa-envelope"></i> <span>Email</span>
+        </button>
+        <button class="subscription-tab" data-tab="messaging" aria-label="Messaging apps" style="flex:1;min-width:140px;padding:12px 16px;background:var(--card);border:1px solid var(--rule);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s ease;display:flex;align-items:center;gap:8px;justify-content:center;">
+          <i class="fas fa-comment"></i> <span>Messages</span>
+        </button>
+      </div>
+
+      <!-- Feed Tab -->
+      <div class="subscription-form active" id="feedTab" style="display:block;">
+        <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+          <button class="subscription-option" data-option="rss" aria-label="Subscribe via RSS feed" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-rss" style="color:var(--accent);"></i>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">RSS Feed</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Raw feed format</span>
+          </button>
+
+          <button class="subscription-option" data-option="inoreader" aria-label="Subscribe via Inoreader" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-book-reader" style="color:#3498db;"></i>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Inoreader</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Powerful RSS reader</span>
+          </button>
+
+          <button class="subscription-option" data-option="feedly" aria-label="Subscribe via Feedly" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-layer-group" style="color:#2ecc71;"></i>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Feedly</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Popular feed reader</span>
+          </button>
+
+          <button class="subscription-option" data-option="copy-url" aria-label="Copy RSS URL" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-link" style="color:var(--accent);"></i>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Copy URL</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Manual subscription</span>
+          </button>
+        </div>
+
+        <div class="subscription-rss-copy" id="rssUrlSection" style="background:var(--card);padding:16px;border-radius:8px;margin-top:16px;border:1px solid var(--rule);display:none;">
+          <div class="subscription-rss-label" style="font-size:12px;font-weight:600;margin-bottom:8px;text-transform:uppercase;opacity:0.7;">RSS Feed URL</div>
+          <div class="subscription-rss-url" style="display:flex;gap:8px;align-items:center;">
+            <input type="text" class="subscription-rss-input" id="rssUrlInput" readonly value="https://www.victorkipruto.com/rss.xml" style="flex:1;padding:10px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;font-size:12px;font-family:'Fira Code',monospace;color:var(--ink);">
+            <button class="subscription-copy-btn" id="copyRssBtn" aria-label="Copy RSS URL to clipboard" style="padding:10px 16px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:all 0.3s ease;white-space:nowrap;">
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Tab -->
+      <form class="subscription-form" id="emailTab" style="display:none;">
+        <div class="subscription-form-group" style="margin-bottom:16px;">
+          <label for="emailName" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Name</label>
+          <input type="text" id="emailName" required placeholder="Your name" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'Fira Code',monospace;transition:border-color 0.3s ease;">
+        </div>
+        <div class="subscription-form-group" style="margin-bottom:16px;">
+          <label for="emailAddress" style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Email Address</label>
+          <input type="email" id="emailAddress" required placeholder="your@email.com" style="width:100%;padding:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:'Fira Code',monospace;transition:border-color 0.3s ease;">
+        </div>
+        <button type="submit" class="subscription-form-submit" style="width:100%;padding:12px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s ease;">Subscribe to Email Updates</button>
+      </form>
+
+      <!-- Messaging Tab -->
+      <div class="subscription-form" id="messagingTab" style="display:none;">
+        <div class="subscription-options-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+          <button class="subscription-option" data-option="telegram" aria-label="Subscribe via Telegram" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fab fa-telegram" style="color:#0088cc;"></i>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Telegram</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Instant notifications</span>
+          </button>
+
+          <button class="subscription-option" data-option="twitter" aria-label="Follow on Twitter/X" style="padding:20px;border:2px solid var(--rule);border-radius:10px;cursor:pointer;transition:all 0.3s ease;text-align:center;background:transparent;display:block;">
+            <span class="subscription-option-icon" style="font-size:32px;margin-bottom:12px;height:48px;display:flex;align-items:center;justify-content:center;">
+              <i class="fab fa-x-twitter" style="color:var(--ink);"></i>
+            </span>
+            <span class="subscription-option-label" style="font-size:14px;font-weight:600;margin-bottom:4px;">Twitter/X</span>
+            <span class="subscription-option-desc" style="font-size:12px;color:var(--muted);opacity:0.7;">Social updates</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Notification -->
+      <div class="subscription-notification" id="subscriptionNotification" role="alert" style="margin-top:20px;padding:16px;background:#4ade80;color:white;border-radius:8px;text-align:center;display:none;animation:slideDown 0.3s ease;">
+        ✅ Thanks for subscribing to Victor Kipruto's developer updates.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Floating Action Buttons -->
+<div class="chat-tooltip" id="chatTooltip">
+  <a class="chat-tooltip-link" href="https://wa.me/254723484552" target="_blank" rel="noopener">
+  <span class="chat-tooltip-avatar" aria-hidden="true"></span>
+  <div class="chat-tooltip-body">
+    <p class="chat-tooltip-title">Hey there <span class="emoji">👋</span></p>
+    <p class="chat-tooltip-text">Open to internships & data collabs. Message me on WhatsApp.</p>
+  </div>
+  </a>
+  <button type="button" class="chat-tooltip-close" id="chatTooltipClose" aria-label="Dismiss">&times;</button>
+</div>
+
+<a class="fab fab-whatsapp" href="https://wa.me/254723484552" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+  <span class="fab-status-dot" aria-hidden="true"></span>
+</a>
+
+<button type="button" class="fab fab-top" id="scrollToTopFab" aria-label="Scroll to top" title="Scroll to top">
+  <svg class="fab-top-ring" viewBox="0 0 44 44" aria-hidden="true">
+    <circle class="fab-top-ring-track" cx="22" cy="22" r="19"></circle>
+    <circle class="fab-top-ring-progress" cx="22" cy="22" r="19"></circle>
+  </svg>
+</button>
+
+<script src="/assets/js/site.js?v=f7f08d4f"></script>
+</body>
+</html>

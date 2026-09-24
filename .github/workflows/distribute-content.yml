@@ -29,7 +29,7 @@ jobs:
       - name: Detect new/updated posts
         id: detect
         run: |
-          if [ ! -f previous/public/blog/posts.json ] && [ ! -f previous/blog/posts.json ]; then
+          if [ ! -f previous/blog/posts.json ]; then
             echo "new_posts=all" >> $GITHUB_OUTPUT
           else
             echo "new_posts=compare" >> $GITHUB_OUTPUT
@@ -50,10 +50,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Prepare social content
-        run: python3 ops/scripts/python/prepare_distribution.py
+        run: python3 scripts/python/prepare_distribution.py
       
       - name: Upload distribution metadata
         uses: actions/upload-artifact@v4
@@ -82,10 +82,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Prepare and post to Twitter
-        run: python3 ops/scripts/python/distribute_twitter.py
+        run: python3 scripts/python/distribute_twitter.py
       
       - name: Log distribution
         run: echo "✓ Twitter distribution prepared (requires API key)"
@@ -110,10 +110,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Prepare LinkedIn post
-        run: python3 ops/scripts/python/distribute_linkedin.py
+        run: python3 scripts/python/distribute_linkedin.py
       
       - name: Log distribution
         run: echo "✓ LinkedIn distribution prepared (requires API key)"
@@ -138,10 +138,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Publish article to Dev.to
-        run: python3 ops/scripts/python/distribute_devto.py
+        run: python3 scripts/python/distribute_devto.py
 
   distribute-telegram:
     runs-on: ubuntu-latest
@@ -163,10 +163,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Send Telegram notification
-        run: python3 ops/scripts/python/distribute_telegram.py
+        run: python3 scripts/python/distribute_telegram.py
 
   send-newsletter:
     runs-on: ubuntu-latest
@@ -188,8 +188,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f ops/scripts/python/requirements.txt ]; then pip install -r ops/scripts/python/requirements.txt; fi
+          if [ -f scripts/python/requirements.txt ]; then pip install -r scripts/python/requirements.txt; fi
       
       - name: Prepare and send newsletter
-        run: python3 ops/scripts/python/send_newsletter.py
+        run: python3 scripts/python/send_newsletter.py
 
