@@ -29,7 +29,7 @@
 <link rel="manifest" href="/manifest.json"/>
 <meta name="theme-color" content="#ff4b2b"/>
 <link rel="icon" href="/assets/1.jpeg" type="image/jpeg"/>
-<link rel="stylesheet" href="/assets/css/site.css?v=5bbc8cca"/>
+<link rel="stylesheet" href="/assets/css/site.css?v=a0ebda58"/>
 <style>
   /* Page-specific overrides for index.html only (the shared assets/css/site.css
      covers everything common to index/projects/contact) */
@@ -38,9 +38,11 @@
 
 /* ── Impact / By the Numbers ── */
   .impact-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 20px; margin-top: 48px;
   }
+  @media (max-width: 900px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .impact-grid { grid-template-columns: 1fr; margin-top: 32px; } }
   .impact-card {
     background: var(--card); border: 1px solid var(--rule); border-radius: 14px;
     padding: 26px 24px; text-align: left;
@@ -119,7 +121,7 @@
 <!-- NAV -->
 <nav class="site-nav">
   <a class="nav-logo" href="https://github.com/Victor-Kipruto-Rop" target="_blank" rel="noopener">
-    <img src="/assets/1.jpeg" alt="Victor Kipruto Rop" style="height: 48px; width: 48px; border-radius: 50%; object-fit: cover; display: block;"/>
+    <img src="/assets/1-96.jpeg" width="48" height="48" decoding="async" alt="Victor Kipruto Rop" style="height: 48px; width: 48px; border-radius: 50%; object-fit: cover; display: block;"/>
     <span class="nav-username">@Victor-Kipruto-Rop</span>
   </a>
   <div class="nav-right">
@@ -264,6 +266,24 @@
       <div class="experience-card">
         <div class="experience-header">
           <div>
+            <h3 class="experience-title">Data Engineering Intern</h3>
+            <p class="experience-company">Openfloat Limited · Industrial Attachment</p>
+          </div>
+          <span class="experience-date">Jun 2026 – Present</span>
+        </div>
+        <p class="experience-desc">Building and maintaining data pipelines that handle transaction and streaming data, as part of my industrial attachment.</p>
+        <div class="experience-skills">
+          <span class="skill-tag">Data Pipelines</span>
+          <span class="skill-tag">Streaming Data</span>
+          <span class="skill-tag">Transaction Data</span>
+        </div>
+      </div>
+    </div>
+    <div class="experience-item reveal" style="transition-delay:0.1s">
+      <div class="experience-node experience-node-current"></div>
+      <div class="experience-card">
+        <div class="experience-header">
+          <div>
             <h3 class="experience-title">PesaGuard: FinTech Reconciliation Platform</h3>
             <p class="experience-company">Independent Product · Live Pilot</p>
           </div>
@@ -293,7 +313,7 @@
         </div>
       </div>
     </div>
-    <div class="experience-item reveal" style="transition-delay:0.1s">
+    <div class="experience-item reveal" style="transition-delay:0.2s">
       <div class="experience-node"></div>
       <div class="experience-card">
         <div class="experience-header">
@@ -313,7 +333,7 @@
         </div>
       </div>
     </div>
-    <div class="experience-item reveal" style="transition-delay:0.2s">
+    <div class="experience-item reveal" style="transition-delay:0.3s">
       <div class="experience-node"></div>
       <div class="experience-card">
         <div class="experience-header">
@@ -352,6 +372,7 @@
         <button type="button" class="skill-pill" onclick="openSkillModal('Apache Airflow')">Apache Airflow</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('ETL Design')">ETL Design</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('DAG Management')">DAG Management</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('dbt')">dbt</button>
       </div>
     </div>
     <div class="skill-category">
@@ -363,6 +384,7 @@
         <button type="button" class="skill-pill" onclick="openSkillModal('Apache Kafka')">Apache Kafka</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('Stream Processing')">Stream Processing</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('Producers &amp; Consumers')">Producers &amp; Consumers</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('PyFlink')">PyFlink</button>
       </div>
     </div>
     <div class="skill-category">
@@ -413,7 +435,16 @@
         <button type="button" class="skill-pill" onclick="openSkillModal('GitHub Actions')">GitHub Actions</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('Pytest')">Pytest</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('CI/CD Pipelines')">CI/CD Pipelines</button>
-        <button type="button" class="skill-pill" onclick="openSkillModal('Git')">Git</button>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-category-icon"><i class="fas fa-cloud"></i></div>
+        <h3 class="skill-category-title">Cloud & Infrastructure</h3>
+      </div>
+      <div class="skill-pill-group">
+        <button type="button" class="skill-pill" onclick="openSkillModal('Terraform')">Terraform</button>
+        <button type="button" class="skill-pill" onclick="openSkillModal('Kubernetes')">Kubernetes</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('AWS (S3, EC2)')">AWS (S3, EC2)</button>
       </div>
     </div>
@@ -426,7 +457,6 @@
         <button type="button" class="skill-pill" onclick="openSkillModal('Pandas')">Pandas</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('NumPy')">NumPy</button>
         <button type="button" class="skill-pill" onclick="openSkillModal('SQLAlchemy')">SQLAlchemy</button>
-        <button type="button" class="skill-pill" onclick="openSkillModal('Faker')">Faker</button>
       </div>
     </div>
     <div class="skill-category">
@@ -608,7 +638,7 @@
 
 
 
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script src="/assets/js/vendor/formspree-ajax-1.1.5.js" defer></script>
 
 <!-- Project Modal Component -->
 <div class="project-modal-overlay" id="projectModalOverlay" role="dialog" aria-labelledby="projectModalTitle" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;">
@@ -800,6 +830,6 @@
   </svg>
 </button>
 
-<script src="/assets/js/site.js?v=5f968a9c"></script>
+<script src="/assets/js/site.js?v=f7f08d4f"></script>
 </body>
 </html>

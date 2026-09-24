@@ -130,19 +130,15 @@ const themeToggle = document.getElementById('theme-toggle');
     const idToLink = new Map(navAnchorLinks.map(a => [a.getAttribute('href').slice(1), a]));
     const spy = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const link = idToLink.get(entry.target.id);
-          if (link) {
-            navAnchorLinks.forEach(a => a.classList.remove('active-link'));
-            link.classList.add('active-link');
-          }
-        }
+        if (!entry.isIntersecting) return;
+        // Sections with no nav link (hero, impact...) clear the highlight
+        // instead of leaving the previous section marked as active.
+        const link = idToLink.get(entry.target.id);
+        navAnchorLinks.forEach(a => a.classList.remove('active-link'));
+        if (link) link.classList.add('active-link');
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    idToLink.forEach((link, id) => {
-      const el = document.getElementById(id);
-      if (el) spy.observe(el);
-    });
+    document.querySelectorAll('main > section[id]').forEach(el => spy.observe(el));
   })();
 
 
@@ -688,6 +684,26 @@ const themeToggle = document.getElementById('theme-toggle');
   };
 
   const skillData = {
+    'dbt': {
+      why: "dbt puts transformation logic in version-controlled, testable SQL, so analytics models get the same review and testing discipline as application code.",
+      where: "Modelling the transformation layer of the real-time M-Pesa transaction streaming pipeline.",
+      project: "Real-Time Transaction Streaming System"
+    },
+    'PyFlink': {
+      why: "Flink handles stateful, windowed processing over unbounded event streams, and PyFlink lets me express that logic in Python without switching stacks.",
+      where: "The stream-processing layer of the real-time M-Pesa transaction streaming pipeline, working on events flowing through Kafka.",
+      project: "Real-Time Transaction Streaming System"
+    },
+    'Terraform': {
+      why: "Infrastructure defined as code is reviewable and reproducible. I can rebuild an environment from the repo instead of from memory.",
+      where: "Provisioning the infrastructure behind the real-time M-Pesa transaction streaming pipeline.",
+      project: "Real-Time Transaction Streaming System"
+    },
+    'Kubernetes': {
+      why: "Long-running stream consumers need to restart, scale and roll out predictably. Kubernetes gives me that declaratively.",
+      where: "Deploying the services of the real-time M-Pesa transaction streaming pipeline.",
+      project: "Real-Time Transaction Streaming System"
+    },
     'Apache Airflow': {
       why: "Airflow gives pipelines explicit dependencies, retries, and visibility instead of a black-box cron job. When something fails at 2am, I can see exactly which task and why.",
       where: "Building the DAG-orchestrated ETL pipeline for M-Pesa transaction processing, with each cleaning stage as an independently retryable task.",
@@ -788,11 +804,6 @@ const themeToggle = document.getElementById('theme-toggle');
       where: "Tuning connection pooling and batch execution size to cut a 1.6M+ row load from 4 minutes down to 45 seconds.",
       project: "Cloud ETL Pipeline"
     },
-    'Git': {
-      why: "A clean commit history is documentation. I use branching and commit discipline so the reasoning behind a change is never lost.",
-      where: "Managing version control and collaborative workflows across every project in this portfolio.",
-      project: "Cloud ETL Pipeline"
-    },
     'Docker Compose': {
       why: "Local development should mirror production topology. Compose lets me spin up the full multi-service stack with one command.",
       where: "Containerising the complete Airflow and PostgreSQL stack so the environment is fully reproducible with a single command.",
@@ -827,11 +838,6 @@ const themeToggle = document.getElementById('theme-toggle');
       why: "An ORM layer means the same codebase can target different databases without rewriting every query by hand.",
       where: "Managing the PostgreSQL output layer and connection handling across the ETL pipeline's database interactions.",
       project: "Cloud ETL Pipeline"
-    },
-    'Faker': {
-      why: "Testing a pipeline against realistic data, not just placeholder strings, catches edge cases that synthetic filler data never will.",
-      where: "Generating a configurable synthetic data feed with realistic Kenyan phone number distributions for pipeline testing.",
-      project: "M-Pesa Airflow Transaction Pipeline"
     },
     'Grafana': {
       why: "A pipeline without a dashboard is a pipeline nobody's actually watching. Grafana turns pipeline output into something a team can monitor live.",
