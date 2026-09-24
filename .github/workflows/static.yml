@@ -37,12 +37,16 @@ jobs:
           test -f robots.txt
           test -f sitemap.xml
           test -f index.html
+      - name: Assemble public site
+        # Publishes only the website (see tools/build_site.py); automation,
+        # tooling, subscriber data and logs are never served publicly.
+        run: python3 tools/build_site.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
