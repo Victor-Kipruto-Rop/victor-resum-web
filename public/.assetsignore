@@ -1,0 +1,11 @@
+# Files excluded from the Cloudflare Workers asset upload (gitignore syntax).
+# Defense in depth: private/runtime artifacts must never be served even if
+# they are accidentally copied into public/.
+*.log
+*.db
+*.sqlite
+.env*
+__pycache__/
+ops/
+content/
+subscribers*

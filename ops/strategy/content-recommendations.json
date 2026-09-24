@@ -1,0 +1,255 @@
+[
+  {
+    "rank": 1,
+    "title": "Advanced Kubernetes Patterns for Data Engineers",
+    "searchVolume": 8400,
+    "difficulty": "Advanced",
+    "estimatedTraffic": 600,
+    "tags": [
+      "kubernetes",
+      "data-engineering",
+      "devops"
+    ],
+    "why": "Highest search volume + data eng focused audience",
+    "outline": [
+      "Introduction to Operators",
+      "StatefulSet patterns for databases",
+      "Monitoring and observability",
+      "GitOps workflows",
+      "Production deployment checklist"
+    ]
+  },
+  {
+    "rank": 2,
+    "title": "dbt Advanced Patterns: Macros, Tests, and Performance",
+    "searchVolume": 6200,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 450,
+    "tags": [
+      "dbt",
+      "sql",
+      "analytics-engineering"
+    ],
+    "why": "Growing dbt ecosystem, demand for advanced skills",
+    "outline": [
+      "Custom macro development",
+      "Advanced testing strategies",
+      "Performance optimization",
+      "Scaling dbt at enterprise",
+      "Best practices from industry"
+    ]
+  },
+  {
+    "rank": 3,
+    "title": "Data Quality at Scale: Great Expectations, Soda, and dbt",
+    "searchVolume": 5800,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 420,
+    "tags": [
+      "data-quality",
+      "testing",
+      "frameworks"
+    ],
+    "why": "Active comparison searches, growing framework adoption",
+    "outline": [
+      "Framework comparison matrix",
+      "Implementation guide for each",
+      "Integration patterns",
+      "Cost considerations",
+      "Real-world use cases"
+    ]
+  },
+  {
+    "rank": 4,
+    "title": "Building Real-time Analytics Pipelines with Kafka and ClickHouse",
+    "searchVolume": 4100,
+    "difficulty": "Advanced",
+    "estimatedTraffic": 320,
+    "tags": [
+      "kafka",
+      "clickhouse",
+      "real-time"
+    ],
+    "why": "Real-time analytics is trending",
+    "outline": []
+  },
+  {
+    "rank": 5,
+    "title": "Python Async for Data Processing: asyncio, aiohttp, and Patterns",
+    "searchVolume": 2800,
+    "difficulty": "Advanced",
+    "estimatedTraffic": 220,
+    "tags": [
+      "python",
+      "async",
+      "performance"
+    ],
+    "why": "Performance optimization interest from data engineers",
+    "outline": []
+  },
+  {
+    "rank": 6,
+    "title": "Infrastructure as Code: Terraform vs Pulumi vs CloudFormation",
+    "searchVolume": 1400,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 120,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 7,
+    "title": "Building CI/CD Pipelines for Data Teams",
+    "searchVolume": 1300,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 115,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 8,
+    "title": "Apache Airflow Best Practices: DAG Design Patterns",
+    "searchVolume": 1200,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 110,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 9,
+    "title": "Docker Multi-stage Builds for Data Apps",
+    "searchVolume": 1100,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 105,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 10,
+    "title": "Machine Learning Model Versioning and Registry",
+    "searchVolume": 1000,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 100,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 11,
+    "title": "Building Custom Airflow Operators",
+    "searchVolume": 900,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 95,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 12,
+    "title": "Spark vs Polars vs DuckDB: Comparative Analysis",
+    "searchVolume": 800,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 90,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 13,
+    "title": "PostgreSQL Performance Tuning for Analytics",
+    "searchVolume": 700,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 85,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 14,
+    "title": "Building a Data Lakehouse Architecture",
+    "searchVolume": 600,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 80,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 15,
+    "title": "Implementing Feature Stores: Feast, Tecton, or Hopsworks",
+    "searchVolume": 500,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 75,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 16,
+    "title": "Data Lineage and Catalog with Open Metadata",
+    "searchVolume": 400,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 70,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 17,
+    "title": "Monitoring Data Quality with Great Expectations",
+    "searchVolume": 300,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 65,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 18,
+    "title": "Building REST APIs with FastAPI for Data Services",
+    "searchVolume": 200,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 60,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 19,
+    "title": "GraphQL for Data APIs: Design Patterns",
+    "searchVolume": 100,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 55,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  },
+  {
+    "rank": 20,
+    "title": "Streaming Data Deduplication Strategies",
+    "searchVolume": 0,
+    "difficulty": "Intermediate",
+    "estimatedTraffic": 50,
+    "tags": [
+      "data-engineering"
+    ],
+    "why": "Related to audience interests"
+  }
+]

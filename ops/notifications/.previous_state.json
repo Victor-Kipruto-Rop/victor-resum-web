@@ -1,0 +1,42 @@
+{
+  "advanced-kubernetes-patterns": {
+    "title": "Advanced Kubernetes Patterns for Data Engineers",
+    "category": "Infrastructure",
+    "views": 0,
+    "engagementScore": 0,
+    "publishDate": "2026-06-01T00:00:00Z",
+    "updatedDate": "2026-06-05T12:30:00Z"
+  },
+  "building-data-pipelines-airflow": {
+    "title": "Building Data Pipelines with Apache Airflow",
+    "category": "Data Engineering",
+    "views": 0,
+    "engagementScore": 0,
+    "publishDate": "2026-05-25T00:00:00Z",
+    "updatedDate": "2026-06-01T10:00:00Z"
+  },
+  "dbt-best-practices": {
+    "title": "dbt Best Practices: Structuring Your Data Models",
+    "category": "Data Transformation",
+    "views": 0,
+    "engagementScore": 0,
+    "publishDate": "2026-05-15T00:00:00Z",
+    "updatedDate": "2026-05-20T14:20:00Z"
+  },
+  "data-quality-frameworks-comparison": {
+    "title": "Data Quality Frameworks: Great Expectations vs Soda",
+    "category": "Data Quality",
+    "views": 0,
+    "engagementScore": 0,
+    "publishDate": "2026-05-08T00:00:00Z",
+    "updatedDate": "2026-06-03T09:15:00Z"
+  },
+  "python-performance-optimization": {
+    "title": "Python Performance Optimization for Data Processing",
+    "category": "Python",
+    "views": 0,
+    "engagementScore": 0,
+    "publishDate": "2026-04-30T00:00:00Z",
+    "updatedDate": "2026-05-18T11:45:00Z"
+  }
+}
