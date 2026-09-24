@@ -1,0 +1,252 @@
+[
+  {
+    "slug": "mastering-apache-spark-shuffle-operations-for-large-scale-data-processing",
+    "title": "Mastering Apache Spark Shuffle Operations for Large-Scale Data Processing",
+    "category": "Data Engineering",
+    "publishDate": "2026-06-08T23:12:42.902384Z",
+    "scores": {
+      "overall": 14,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 70
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "advanced-kubernetes-patterns",
+    "title": "Advanced Kubernetes Patterns for Data Engineers",
+    "category": "Infrastructure",
+    "publishDate": "2026-06-01T00:00:00Z",
+    "scores": {
+      "overall": 14,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 70
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "building-data-pipelines-airflow",
+    "title": "Building Data Pipelines with Apache Airflow",
+    "category": "Data Engineering",
+    "publishDate": "2026-05-25T00:00:00Z",
+    "scores": {
+      "overall": 14,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 70
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "designing-a-modern-data-lakehouse-from-architecture-to-implementation",
+    "title": "Designing a Modern Data Lakehouse: From Architecture to Implementation",
+    "category": "Architecture",
+    "publishDate": "2026-06-09T03:12:42.902384Z",
+    "scores": {
+      "overall": 10,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 50
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "optimizing-snowflake-virtual-warehouses-for-cost-and-performance",
+    "title": "Optimizing Snowflake Virtual Warehouses for Cost and Performance",
+    "category": "Cloud",
+    "publishDate": "2026-06-08T19:12:42.902384Z",
+    "scores": {
+      "overall": 10,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 50
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "production-grade-python-testing-strategies-for-data-pipelines",
+    "title": "Production-Grade Python Testing Strategies for Data Pipelines",
+    "category": "Best Practices",
+    "publishDate": "2026-06-08T15:12:42.902384Z",
+    "scores": {
+      "overall": 10,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 50
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "building-a-real-time-dashboard-pipeline-with-flink-kafka-and-grafana",
+    "title": "Building a Real-Time Dashboard Pipeline with Flink, Kafka, and Grafana",
+    "category": "Analytics",
+    "publishDate": "2026-06-08T11:12:42.902384Z",
+    "scores": {
+      "overall": 10,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 50
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "dbt-best-practices",
+    "title": "dbt Best Practices: Structuring Your Data Models",
+    "category": "Data Transformation",
+    "publishDate": "2026-05-15T00:00:00Z",
+    "scores": {
+      "overall": 10,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 50
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "data-quality-frameworks-comparison",
+    "title": "Data Quality Frameworks: Great Expectations vs Soda",
+    "category": "Data Quality",
+    "publishDate": "2026-05-08T00:00:00Z",
+    "scores": {
+      "overall": 10,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 50
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  },
+  {
+    "slug": "python-performance-optimization",
+    "title": "Python Performance Optimization for Data Processing",
+    "category": "Python",
+    "publishDate": "2026-04-30T00:00:00Z",
+    "scores": {
+      "overall": 10,
+      "traffic": 0,
+      "engagement": 0,
+      "conversion": 0,
+      "recruiter": 50
+    },
+    "analytics": {
+      "views": 0,
+      "avgScrollDepth": 0,
+      "avgTimeOnPage": 0,
+      "ctr": 0
+    },
+    "classification": "Failing",
+    "recommendations": [
+      "Low traffic - Consider SEO optimization and promotion",
+      "Low engagement - Add more visuals or restructure content",
+      "Low conversions - Improve CTAs and add more links"
+    ]
+  }
+]

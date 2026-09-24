@@ -1,0 +1,51 @@
+{
+  "high_opportunity": [
+    {
+      "topic": "Advanced Kubernetes Patterns for Data Engineers",
+      "searchVolume": 8400,
+      "difficulty": "Advanced",
+      "opportunity": "Very High",
+      "reason": "Highest search volume, minimal competition in data eng space",
+      "targetAudience": "Data Engineers, DevOps",
+      "estimatedTraffic": 600
+    },
+    {
+      "topic": "dbt Patterns & Macros Advanced Guide",
+      "searchVolume": 6200,
+      "difficulty": "Intermediate",
+      "opportunity": "High",
+      "reason": "Growing dbt adoption, demand for advanced patterns",
+      "targetAudience": "Analytics Engineers",
+      "estimatedTraffic": 450
+    },
+    {
+      "topic": "Data Quality Frameworks Comparison",
+      "searchVolume": 5800,
+      "difficulty": "Intermediate",
+      "opportunity": "High",
+      "reason": "Great Expectations vs Soda vs dbt tests - Active comparison searches",
+      "targetAudience": "Data Engineers",
+      "estimatedTraffic": 420
+    }
+  ],
+  "medium_opportunity": [
+    {
+      "topic": "Kafka vs RabbitMQ vs Pulsar",
+      "searchVolume": 3200,
+      "difficulty": "Intermediate",
+      "opportunity": "Medium",
+      "reason": "Streaming infrastructure decisions",
+      "targetAudience": "Data Engineers",
+      "estimatedTraffic": 200
+    },
+    {
+      "topic": "Python Async Patterns for Data Processing",
+      "searchVolume": 2800,
+      "difficulty": "Advanced",
+      "opportunity": "Medium",
+      "reason": "Performance optimization interest",
+      "targetAudience": "Python Developers",
+      "estimatedTraffic": 180
+    }
+  ]
+}

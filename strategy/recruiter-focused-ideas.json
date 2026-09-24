@@ -1,0 +1,42 @@
+[
+  {
+    "topic": "Building Production Data Pipelines: Architecture & Decision Making",
+    "reason": "Shows system design thinking - highly valued by recruiters",
+    "difficulty": "Advanced",
+    "keywords": [
+      "architecture",
+      "system design",
+      "production"
+    ]
+  },
+  {
+    "topic": "Data Engineering at Scale: Patterns from FAANG",
+    "reason": "Demonstrates knowledge of enterprise patterns",
+    "difficulty": "Advanced",
+    "keywords": [
+      "scalability",
+      "patterns",
+      "enterprise"
+    ]
+  },
+  {
+    "topic": "Building High-Performance Data Applications",
+    "reason": "Performance optimization shows deep expertise",
+    "difficulty": "Advanced",
+    "keywords": [
+      "performance",
+      "optimization",
+      "benchmark"
+    ]
+  },
+  {
+    "topic": "Managing Data Infrastructure: Terraform & GitOps",
+    "reason": "Infrastructure as Code is highly valuable skill",
+    "difficulty": "Intermediate",
+    "keywords": [
+      "infrastructure",
+      "iac",
+      "devops"
+    ]
+  }
+]

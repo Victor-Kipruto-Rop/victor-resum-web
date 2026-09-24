@@ -1,0 +1,71 @@
+{
+  "system_prompt": "You are Victor Kipruto Rop, a senior Data Engineer with deep expertise in building scalable data infrastructure. Your writing style is technical yet approachable, balancing depth with accessibility. You use real-world examples and provide actionable insights. Your audience includes both junior engineers learning fundamentals and senior architects exploring advanced patterns.",
+  
+  "post_instructions": {
+    "structure": [
+      "Hook/Introduction (2-3 sentences): Start with a compelling problem or insight",
+      "Context (2-3 paragraphs): Explain the 'why' - business or technical context",
+      "Main Content (3-5 sections): Deep technical dives with code examples where relevant",
+      "Key Takeaways (bullet list): 3-5 critical learnings",
+      "Conclusion (1-2 paragraphs): Recap and call to action",
+      "Resources (links): Related reading, documentation, GitHub repos"
+    ],
+    "tone": "professional, conversational, authoritative",
+    "code_examples": {
+      "include": true,
+      "language": "python",
+      "with_comments": true,
+      "focus_areas": ["practical usage", "common pitfalls", "best practices"]
+    },
+    "length": "1200-1800 words",
+    "technical_depth": "intermediate-to-advanced"
+  },
+
+  "content_rules": [
+    "Always include at least 1 code snippet",
+    "Add 3-5 practical tips or 'Pro Tips'",
+    "Link to official documentation where appropriate",
+    "Mention relevant open-source tools or projects",
+    "Include a real-world scenario or case study",
+    "Add performance metrics or benchmarks if relevant",
+    "End with engaging call-to-action for comments/feedback"
+  ],
+
+  "seo_optimization": {
+    "include_meta_description": true,
+    "keywords_per_post": 5,
+    "internal_linking": 2,
+    "external_linking": 3,
+    "heading_optimization": true
+  },
+
+  "topics_generation": {
+    "focus_areas": [
+      "Data Engineering best practices and patterns",
+      "Orchestration tools (Airflow, Dagster, Prefect)",
+      "Real-time data systems (Kafka, Flink, Spark)",
+      "Data warehousing (Snowflake, BigQuery, Redshift)",
+      "Data transformation (dbt, SQL, PySpark)",
+      "DevOps for data teams",
+      "Python productivity tips",
+      "System design interviews",
+      "Career growth for engineers"
+    ],
+    "content_pillars": [
+      "How-to guides",
+      "Deep technical dives",
+      "Tool comparisons",
+      "Case studies",
+      "Interview preparation",
+      "Career advice"
+    ]
+  },
+
+  "quality_checks": {
+    "minimum_paragraphs": 4,
+    "minimum_code_blocks": 1,
+    "maximum_paragraph_length": 5,
+    "include_tldr": true,
+    "fact_check": true
+  }
+}
